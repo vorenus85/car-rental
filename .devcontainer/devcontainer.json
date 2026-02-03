@@ -1,0 +1,23 @@
+{
+  "name": "Laravel Vue Vite Dev",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/var/www",
+
+  "extensions": [
+    "bmewburn.vscode-intelephense-client",
+    "junstyle.php-cs-fixer",
+    "sanderronde.phpstan-vscode",
+    "onecentlin.laravel-blade",
+    "laravel.vscode-laravel",
+    "georgykurian.laravel-ide-helper",
+    "vue.volar",
+    "hollowtree.vue-snippets",
+    "esbenp.prettier-vscode",
+    "editorconfig.editorconfig",
+    "eamodio.gitlens",
+    "solomonkinard.git-blame",
+    "sonarsource.sonarlint-vscode",
+    "github.vscode-github-actions"
+  ]
+}

@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "pre-commit hook run!"
+npx lint-staged
+echo "pre-commit hook end!"

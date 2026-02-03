@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "vue.volar",
+    "mikestead.dotenv",
+    "ms-azuretools.vscode-docker",
+    "usernamehw.errorlens",
+    "eamodio.gitlens",
+    "editorconfig.editorconfig"
+  ]
+}
