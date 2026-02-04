@@ -1,4 +1,4 @@
-# Laravel + PrimeVue Starter Kit Rest api based
+# Car Rental
 
 ## 💡 Two ways to run this project
 
@@ -22,8 +22,8 @@
 ### 2.1 Clone the repository
 
 ```bash
-git clone https://github.com/vorenus85/laravel-vue-starter-rest-api
-cd laravel-vue-starter-rest-api
+git clone https://github.com/vorenus85/car-renter
+cd car-renter
 ```
 
 ### 2.2 Install PHP dependencies
