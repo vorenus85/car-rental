@@ -1,0 +1,45 @@
+.layout-topbar {
+    position: fixed;
+    height: 4rem;
+    z-index: 997;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0 2rem;
+    background-color: var(--surface-card);
+    transition: left var(--layout-section-transition-duration);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.layout-topbar-action,
+.layout-menu-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.25rem;
+    color: var(--text-color);
+    transition: background-color var(--element-transition-duration);
+    cursor: pointer;
+    margin-right: 1rem;
+
+    i {
+        font-size: 1.5rem;
+    }
+
+    &:hover {
+        background: var(--surface-hover);
+        transition: var(--element-transition-duration);
+    }
+}
+
+.app-name {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-transform: uppercase;
+}

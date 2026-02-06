@@ -1,0 +1,15 @@
+.p-image {
+    width: 45px;
+    min-width: 45px;
+}
+
+@media (min-width: 992px) {
+    .p-image {
+        width: 90px;
+        min-width: 90px;
+    }
+}
+
+.p-image-original {
+    padding: 1rem;
+}

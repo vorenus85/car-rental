@@ -1,0 +1,16 @@
+.card {
+    background: var(--surface-card);
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: var(--content-border-radius);
+}
+
+@media (min-width: 992px) {
+    .card {
+        padding: 2rem;
+    }
+}
+
+.card:last-child {
+    margin-bottom: 0;
+}

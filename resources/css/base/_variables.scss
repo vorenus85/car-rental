@@ -1,0 +1,14 @@
+:root {
+    --surface-card: #fff;
+    --surface-ground: var(--p-surface-100);
+    --surface-overlay: #fff;
+    --surface-hover: var(--p-content-hover-background);
+
+    --layout-section-transition-duration: 0.2s;
+    --element-transition-duration: 0.2s;
+
+    --content-border-radius: 5px;
+
+    --text-color: var(--p-text-color);
+    --maskbg: var(--p-mask-background);
+}
