@@ -1,0 +1,29 @@
+.px-0 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.text-muted-color {
+    color: var(--p-text-muted-color);
+}
+
+.rounded-border {
+    border-radius: var(--p-content-border-radius);
+}
+
+.dashboard-kpi-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.bg-orange-100 {
+    background-color: rgb(255 237 213);
+}
+
+.bg-purple-100 {
+    background-color: #f3e8ff;
+}
+
+.bg-cyan-100 {
+    background-color: rgb(207 250 254);
+}
