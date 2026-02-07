@@ -22,6 +22,11 @@ export default defineConfig({
         watch: {
             ignored: ['**/storage/framework/views/**'],
         },
+        proxy: {
+            '/sanctum': 'http://localhost:8080',
+            '/api': 'http://localhost:8080',
+            '/login': 'http://localhost:8080',
+        },
         host: true,
         port: 5173,
         hmr: {
