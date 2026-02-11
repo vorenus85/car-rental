@@ -22,7 +22,7 @@ class CarModelSeeder extends Seeder
             $brand = Brand::where('name', $item['name'])->first();
 
             if (! $brand) {
-                continue; // vagy throw Exception
+                continue;
             }
 
             $carModels = $item["models"];

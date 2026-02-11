@@ -16,13 +16,13 @@ class FeatureSeeder extends Seeder
     {
         //
         $json = File::get(database_path('data/features.json'));
-        $authors = json_decode($json, true);
+        $data = json_decode($json, true);
 
         // Populate with data
-        foreach ($authors as $author) {
+        foreach ($data as $item) {
             Feature::create([
-                'name' => $author['name'],
-                'description' => $author['description'],
+                'name' => $item['name'],
+                'description' => $item['description'],
             ]);
         }
 

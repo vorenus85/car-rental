@@ -16,13 +16,13 @@ class ColorsTableSeeder extends Seeder
     {
         //
         $json = File::get(database_path('data/colors.json'));
-        $authors = json_decode($json, true);
+        $data = json_decode($json, true);
 
         // Populate with data
-        foreach ($authors as $author) {
+        foreach ($data as $item) {
             Color::create([
-                'name' => $author['name'],
-                'hex_code' => $author['hex_code'],
+                'name' => $item['name'],
+                'hex_code' => $item['hex_code'],
             ]);
         }
 

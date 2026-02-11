@@ -16,13 +16,13 @@ class BrandSeeder extends Seeder
     {
         //
         $json = File::get(database_path('data/brands_with_models.json'));
-        $authors = json_decode($json, true);
+        $data = json_decode($json, true);
 
         // Populate with data
-        foreach ($authors as $author) {
+        foreach ($data as $item) {
             Brand::create([
-                'name' => $author['name'],
-                'icon' => $author['icon'],
+                'name' => $item['name'],
+                'icon' => $item['icon'],
             ]);
         }
 
