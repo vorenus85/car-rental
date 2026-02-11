@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ColorsTableSeeder::class,
             FeatureSeeder::class,
+            BrandSeeder::class,
+            CarModelSeeder::class,
         ]);
 
         $this->command->info('All data seeded successfully!');

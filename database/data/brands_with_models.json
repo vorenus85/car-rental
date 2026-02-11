@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Toyota",
+        "icon": "",
+        "models": ["Corolla", "Camry", "Yaris", "Avalon"]
+    },
+    {
+        "name": "Hyundai",
+        "icon": "",
+        "models": ["Accent", "Sonata", "Ioniq", "Palisade"]
+    },
+    {
+        "name": "Aston Martin",
+        "icon": "",
+        "models": ["DB11", "DB12 Volante", "DBS", "Vantage", "Rapide"]
+    },
+    {
+        "name": "BMW",
+        "icon": "",
+        "models": ["5 Series", "7 Series", "X1", "LX3", "X5", "X7"]
+    },
+    {
+        "name": "Kia",
+        "icon": "",
+        "models": ["Optima", "Stinger", "Soul", "Sportage", "EV6"]
+    },
+    {
+        "name": "Mercedes-Benz",
+        "icon": "",
+        "models": ["C-Class", "E-Class", "S-Class", "GLA", "GLC", "GLE", "GLS"]
+    },
+    {
+        "name": "Nissan",
+        "icon": "",
+        "models": ["Ariya", "Maxima", "Rogue", "Murano", "Pathfinder"]
+    },
+    {
+        "name": "Range Rover",
+        "icon": "",
+        "models": ["Evoque", "Velar", "Sport", "Vogue"]
+    },
+    {
+        "name": "Volkswagn",
+        "icon": "",
+        "models": ["Golf", "Passat", "Amarok", "Touareg"]
+    },
+    {
+        "name": "Audi",
+        "icon": "",
+        "models": ["A5", "A6", "Q2", "Q3", "Q7", "Q4 e-tron"]
+    }
+]
