@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UsersTableSeeder::class,
+            ColorsTableSeeder::class,
+            FeatureSeeder::class,
         ]);
 
         $this->command->info('All data seeded successfully!');
