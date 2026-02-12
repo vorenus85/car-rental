@@ -22,6 +22,7 @@
         font-size: 14px;
     }
 
+    div,
     a {
         font-size: 14px;
         display: flex;
@@ -35,5 +36,24 @@
         &.router-link-active {
             background: var(--surface-hover);
         }
+    }
+}
+
+.sidebar-submenu {
+    margin-top: 0.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition:
+        max-height 0.25s ease,
+        opacity 0.2s ease;
+    visibility: hidden;
+
+    &.open {
+        max-height: 500px;
+        visibility: visible;
+    }
+
+    li a {
+        padding-left: 1rem;
     }
 }

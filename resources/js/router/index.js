@@ -8,6 +8,10 @@ import ClientsPage from '@/pages/ClientsPage.vue'
 import SettingsPage from '@/pages/SettingsPage.vue'
 import NotFoundPage from '@/pages/NotFoundPage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
+import BrandsPage from '@/pages/BrandsPage.vue'
+import ModelsPage from '@/pages/ModelsPage.vue'
+import ColorsPage from '@/pages/ColorsPage.vue'
+import FeaturesPage from '@/pages/FeaturesPage.vue'
 
 import { useAuthStore } from '@/stores/auth'
 
@@ -35,6 +39,38 @@ const router = createRouter({
             path: '/units',
             name: 'units',
             component: UnitsPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/brands',
+            name: 'brands',
+            component: BrandsPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/models',
+            name: 'models',
+            component: ModelsPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/colors',
+            name: 'colors',
+            component: ColorsPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/features',
+            name: 'features',
+            component: FeaturesPage,
             meta: {
                 requiresAuth: true,
             },

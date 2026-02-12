@@ -2,17 +2,47 @@
     <div class="layout-sidebar shadow">
         <ul class="sidebar-menu">
             <template v-for="menu in menus" :key="menu.title">
-                <SidebarMenuitem
-                    :icon="menu.icon"
-                    :route-name="menu.routeName"
-                    :title="menu.title"
-                />
+                <li class="sidebar-menuitem">
+                    <template v-if="menu?.items?.length">
+                        <SidebarMenuitem :icon="menu.icon" :title="menu.title" @toggle="doToggle" />
+                        <ul class="sidebar-submenu" :class="{ open: open }">
+                            <template v-for="submenu in menu?.items" :key="submenu.title">
+                                <li class="sidebar-menuitem sidebar-sub-menuitem">
+                                    <SidebarMenuitem
+                                        :icon="submenu.icon"
+                                        :route-name="submenu.routeName"
+                                        :title="submenu.title"
+                                    />
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+                    <SidebarMenuitem
+                        v-else
+                        :icon="menu.icon"
+                        :route-name="menu.routeName"
+                        :title="menu.title"
+                    />
+                </li>
             </template>
         </ul>
     </div>
 </template>
 <script setup>
 import SidebarMenuitem from '@/components/SidebarMenuitem.vue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+const open = ref(false)
+const route = useRoute()
+
+watch(
+    () => route.name,
+    name => {
+        open.value = ['brands', 'models', 'colors', 'features'].includes(name)
+    },
+    { immediate: true }
+)
 
 const menus = [
     {
@@ -21,7 +51,7 @@ const menus = [
         title: 'Dashboard',
     },
     {
-        icon: 'bookmark',
+        icon: 'clock',
         routeName: 'bookings',
         title: 'Bookings',
     },
@@ -29,6 +59,28 @@ const menus = [
         icon: 'car',
         routeName: 'units',
         title: 'Units',
+        items: [
+            {
+                icon: 'bookmark',
+                routeName: 'brands',
+                title: 'Brands',
+            },
+            {
+                icon: 'clone',
+                routeName: 'models',
+                title: 'Models',
+            },
+            {
+                icon: 'palette',
+                routeName: 'colors',
+                title: 'Colors',
+            },
+            {
+                icon: 'sparkles',
+                routeName: 'features',
+                title: 'Features',
+            },
+        ],
     },
     {
         icon: 'calendar',
@@ -51,4 +103,8 @@ const menus = [
         title: 'Logout',
     },
 ]
+
+const doToggle = () => {
+    open.value = !open.value
+}
 </script>
