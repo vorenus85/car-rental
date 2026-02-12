@@ -13,7 +13,6 @@
 </template>
 <script setup>
 import UiIcon from '@/components/UiIcon.vue'
-
 const emit = defineEmits(['toggle'])
 
 defineProps({

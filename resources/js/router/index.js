@@ -2,16 +2,26 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import DashboardPage from '@/pages/DashboardPage.vue'
 import BookingsPage from '@/pages/BookingsPage.vue'
-import UnitsPage from '@/pages/UnitsPage.vue'
 import CalendarPage from '@/pages/CalendarPage.vue'
 import ClientsPage from '@/pages/ClientsPage.vue'
 import SettingsPage from '@/pages/SettingsPage.vue'
 import NotFoundPage from '@/pages/NotFoundPage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
-import BrandsPage from '@/pages/BrandsPage.vue'
-import ModelsPage from '@/pages/ModelsPage.vue'
-import ColorsPage from '@/pages/ColorsPage.vue'
-import FeaturesPage from '@/pages/FeaturesPage.vue'
+import CarListPage from '@/pages/Car/ListPage.vue'
+import CarCreatePage from '@/pages/Car/CreatePage.vue'
+import CarEditPage from '@/pages/Car/EditPage.vue'
+import BrandListPage from '@/pages/Brand/ListPage.vue'
+import BrandCreatePage from '@/pages/Brand/CreatePage.vue'
+import BrandEditPage from '@/pages/Brand/EditPage.vue'
+import ModelListPage from '@/pages/Model/ListPage.vue'
+import ModelCreatePage from '@/pages/Model/CreatePage.vue'
+import ModelEditPage from '@/pages/Model/EditPage.vue'
+import ColorListPage from '@/pages/Color/ListPage.vue'
+import ColorCreatePage from '@/pages/Color/CreatePage.vue'
+import ColorEditPage from '@/pages/Color/EditPage.vue'
+import FeatureListPage from '@/pages/Feature/ListPage.vue'
+import FeatureCreatePage from '@/pages/Feature/CreatePage.vue'
+import FeatureEditPage from '@/pages/Feature/EditPage.vue'
 
 import { useAuthStore } from '@/stores/auth'
 
@@ -36,9 +46,25 @@ const router = createRouter({
             },
         },
         {
-            path: '/units',
-            name: 'units',
-            component: UnitsPage,
+            path: '/cars',
+            name: 'cars',
+            component: CarListPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/cars/create',
+            name: 'cars.create',
+            component: CarCreatePage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/cars/:id',
+            name: 'cars.show',
+            component: CarEditPage,
             meta: {
                 requiresAuth: true,
             },
@@ -46,7 +72,23 @@ const router = createRouter({
         {
             path: '/brands',
             name: 'brands',
-            component: BrandsPage,
+            component: BrandListPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/brands/create',
+            name: 'brands.create',
+            component: BrandCreatePage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/brands/:id',
+            name: 'brands.show',
+            component: BrandEditPage,
             meta: {
                 requiresAuth: true,
             },
@@ -54,7 +96,23 @@ const router = createRouter({
         {
             path: '/models',
             name: 'models',
-            component: ModelsPage,
+            component: ModelListPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/models/create',
+            name: 'models.create',
+            component: ModelCreatePage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/models/:id',
+            name: 'models.show',
+            component: ModelEditPage,
             meta: {
                 requiresAuth: true,
             },
@@ -62,7 +120,23 @@ const router = createRouter({
         {
             path: '/colors',
             name: 'colors',
-            component: ColorsPage,
+            component: ColorListPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/colors/create',
+            name: 'colors.create',
+            component: ColorCreatePage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/colors/:id',
+            name: 'colors.show',
+            component: ColorEditPage,
             meta: {
                 requiresAuth: true,
             },
@@ -70,7 +144,23 @@ const router = createRouter({
         {
             path: '/features',
             name: 'features',
-            component: FeaturesPage,
+            component: FeatureListPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/features/create',
+            name: 'features.create',
+            component: FeatureCreatePage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/features/:id',
+            name: 'features.show',
+            component: FeatureEditPage,
             meta: {
                 requiresAuth: true,
             },

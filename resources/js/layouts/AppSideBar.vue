@@ -39,7 +39,23 @@ const route = useRoute()
 watch(
     () => route.name,
     name => {
-        open.value = ['brands', 'models', 'colors', 'features'].includes(name)
+        open.value = [
+            'brands',
+            'brands.create',
+            'brands.edit',
+            'models',
+            'models.create',
+            'models.edit',
+            'colors',
+            'colors.create',
+            'colors.edit',
+            'features',
+            'features.create',
+            'features.edit',
+            'cars',
+            'cars.create',
+            'cars.edit',
+        ].includes(name)
     },
     { immediate: true }
 )
@@ -56,10 +72,15 @@ const menus = [
         title: 'Bookings',
     },
     {
-        icon: 'car',
+        icon: 'list',
         routeName: 'units',
         title: 'Units',
         items: [
+            {
+                icon: 'car',
+                routeName: 'cars',
+                title: 'Cars',
+            },
             {
                 icon: 'bookmark',
                 routeName: 'brands',
