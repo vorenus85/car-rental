@@ -1,52 +1,117 @@
 [
     {
-        "name": "Toyota",
-        "logo": "",
-        "models": ["Corolla", "Camry", "Yaris", "Avalon"]
-    },
-    {
-        "name": "Hyundai",
-        "logo": "",
-        "models": ["Accent", "Sonata", "Ioniq", "Palisade"]
+        "name": "Alfa Romeo",
+        "image": "alfa-romeo-logo.png",
+        "models": ["Giulia", "Stelvio", "Tonale"]
     },
     {
         "name": "Aston Martin",
-        "logo": "",
-        "models": ["DB11", "DB12 Volante", "DBS", "Vantage", "Rapide"]
-    },
-    {
-        "name": "BMW",
-        "logo": "",
-        "models": ["5 Series", "7 Series", "X1", "LX3", "X5", "X7"]
-    },
-    {
-        "name": "Kia",
-        "logo": "",
-        "models": ["Optima", "Stinger", "Soul", "Sportage", "EV6"]
-    },
-    {
-        "name": "Mercedes-Benz",
-        "logo": "",
-        "models": ["C-Class", "E-Class", "S-Class", "GLA", "GLC", "GLE", "GLS"]
-    },
-    {
-        "name": "Nissan",
-        "logo": "",
-        "models": ["Ariya", "Maxima", "Rogue", "Murano", "Pathfinder"]
-    },
-    {
-        "name": "Range Rover",
-        "logo": "",
-        "models": ["Evoque", "Velar", "Sport", "Vogue"]
-    },
-    {
-        "name": "Volkswagn",
-        "logo": "",
-        "models": ["Golf", "Passat", "Amarok", "Touareg"]
+        "image": "aston-martin-logo.png",
+        "models": ["DB11", "DB12 Volante", "DBS", "Rapide", "Vantage"]
     },
     {
         "name": "Audi",
-        "logo": "",
-        "models": ["A5", "A6", "Q2", "Q3", "Q7", "Q4 e-tron"]
+        "image": "audi-logo.png",
+        "models": ["A5", "A6", "Q2", "Q3", "Q4 e-tron", "Q7"]
+    },
+    {
+        "name": "BMW",
+        "image": "bmw-logo.png",
+        "models": ["5 Series", "7 Series", "LX3", "X1", "X5", "X7"]
+    },
+    {
+        "name": "Chevrolet",
+        "image": "chevrolet-logo.png",
+        "models": ["Camaro", "Corvette", "Tahoe"]
+    },
+    {
+        "name": "Ford",
+        "image": "ford-logo.png",
+        "models": ["Focus", "Mustang", "Explorer"]
+    },
+    {
+        "name": "Hyundai",
+        "image": "hyundai-logo.png",
+        "models": ["Accent", "Ioniq", "Palisade", "Sonata"]
+    },
+    {
+        "name": "Kia",
+        "image": "kia-logo.png",
+        "models": ["EV6", "Optima", "Soul", "Sportage", "Stinger"]
+    },
+    {
+        "name": "Lexus",
+        "image": "lexus-logo.png",
+        "models": ["IS", "RX", "NX"]
+    },
+    {
+        "name": "Mazda",
+        "image": "mazda-logo.png",
+        "models": ["Mazda3", "CX-5", "MX-5"]
+    },
+    {
+        "name": "Mercedes-Benz",
+        "image": "mercedes-benz-logo.png",
+        "models": ["C-Class", "E-Class", "GLA", "GLC", "GLE", "GLS", "S-Class"]
+    },
+    {
+        "name": "Nissan",
+        "image": "nissan-logo.png",
+        "models": ["Ariya", "Maxima", "Murano", "Pathfinder", "Rogue"]
+    },
+    {
+        "name": "Opel",
+        "image": "opel-logo.png",
+        "models": ["Astra", "Corsa", "Grandland"]
+    },
+    {
+        "name": "Porsche",
+        "image": "porsche-logo.png",
+        "models": ["911", "Cayenne", "Taycan"]
+    },
+    {
+        "name": "Range Rover",
+        "image": "range-rover-logo.png",
+        "models": ["Evoque", "Sport", "Velar", "Vogue"]
+    },
+    {
+        "name": "Seat",
+        "image": "seat-logo.png",
+        "models": ["Ibiza", "Leon", "Ateca"]
+    },
+    {
+        "name": "Skoda",
+        "image": "skoda-logo.png",
+        "models": ["Octavia", "Superb", "Kodiaq"]
+    },
+    {
+        "name": "Subaru",
+        "image": "subaru-logo.png",
+        "models": ["Impreza", "Outback", "Forester"]
+    },
+    {
+        "name": "Suzuki",
+        "image": "suzuki-logo.png",
+        "models": ["Swift", "Vitara", "SX4"]
+    },
+    {
+        "name": "Tesla",
+        "image": "tesla-logo.png",
+        "models": ["Model 3", "Model Y", "Model S"]
+    },
+    {
+        "name": "Toyota",
+        "image": "toyota-logo.png",
+        "models": ["Avalon", "Camry", "Corolla", "Yaris"]
+    },
+    {
+        "name": "Volkswagen",
+        "image": "volkswagen-logo.png",
+        "models": ["Amarok", "Golf", "Passat", "Touareg"]
+    },
+    {
+        "name": "Volvo",
+        "image": "volvo-logo.png",
+        "models": ["XC60", "XC90", "S60"]
     }
 ]
