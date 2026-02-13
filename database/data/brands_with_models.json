@@ -1,52 +1,52 @@
 [
     {
         "name": "Toyota",
-        "icon": "",
+        "logo": "",
         "models": ["Corolla", "Camry", "Yaris", "Avalon"]
     },
     {
         "name": "Hyundai",
-        "icon": "",
+        "logo": "",
         "models": ["Accent", "Sonata", "Ioniq", "Palisade"]
     },
     {
         "name": "Aston Martin",
-        "icon": "",
+        "logo": "",
         "models": ["DB11", "DB12 Volante", "DBS", "Vantage", "Rapide"]
     },
     {
         "name": "BMW",
-        "icon": "",
+        "logo": "",
         "models": ["5 Series", "7 Series", "X1", "LX3", "X5", "X7"]
     },
     {
         "name": "Kia",
-        "icon": "",
+        "logo": "",
         "models": ["Optima", "Stinger", "Soul", "Sportage", "EV6"]
     },
     {
         "name": "Mercedes-Benz",
-        "icon": "",
+        "logo": "",
         "models": ["C-Class", "E-Class", "S-Class", "GLA", "GLC", "GLE", "GLS"]
     },
     {
         "name": "Nissan",
-        "icon": "",
+        "logo": "",
         "models": ["Ariya", "Maxima", "Rogue", "Murano", "Pathfinder"]
     },
     {
         "name": "Range Rover",
-        "icon": "",
+        "logo": "",
         "models": ["Evoque", "Velar", "Sport", "Vogue"]
     },
     {
         "name": "Volkswagn",
-        "icon": "",
+        "logo": "",
         "models": ["Golf", "Passat", "Amarok", "Touareg"]
     },
     {
         "name": "Audi",
-        "icon": "",
+        "logo": "",
         "models": ["A5", "A6", "Q2", "Q3", "Q7", "Q4 e-tron"]
     }
 ]
