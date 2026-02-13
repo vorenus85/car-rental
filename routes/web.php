@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FeatureController;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{feature}', [FeatureController::class, 'show']);
         Route::put('/{feature}', [FeatureController::class, 'update']);
         Route::delete('/{feature}', [FeatureController::class, 'destroy']);
+    });
+
+    Route::prefix('/api/admin/brands')->group(function(){
+        Route::get('/', [BrandController::class, 'index']);
+        Route::post('/', [BrandController::class, 'store']);
+        Route::get('/{brand}', [BrandController::class, 'show']);
+        Route::put('/{brand}', [BrandController::class, 'update']);
+        Route::delete('/{brand}', [BrandController::class, 'destroy']);
     });
 
 });
