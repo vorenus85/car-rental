@@ -68,8 +68,7 @@
 <script setup>
 import AppLayout from '@/layouts/AppLayout.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import ProgressBar from 'primevue/progressbar'
-import { Button, FileUpload, InputText, Message } from 'primevue'
+import { Button, FileUpload, InputText, Message, ProgressBar } from 'primevue'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { useBrand } from '@/composables/useBrand'
 import { createBrand } from '@/services/brandService'

@@ -1,4 +1,10 @@
-import { fetchBrands, deleteBrandById, fetchBrand, uploadBrandImage } from '@/services/brandService'
+import {
+    fetchBrands,
+    deleteBrandById,
+    fetchBrand,
+    uploadBrandImage,
+    deleteBrandImage,
+} from '@/services/brandService'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -59,8 +65,10 @@ export const useBrand = () => {
 
         try {
             const { data } = await fetchBrand(brandId)
+            console.log(data)
             initialValues.name = data.name
             initialValues.image = data.image
+            initialValues.image_url = data.image_url
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
             loading.value = false
         } catch (e) {
@@ -120,12 +128,24 @@ export const useBrand = () => {
         }
     }
 
+    const deleteImage = async () => {
+        try {
+            await deleteBrandImage(brandId)
+            initialValues.image = ''
+            uploadedImage.value = ''
+        } catch (e) {
+            void e // to avoid unused variable lint error
+            // console.error(e) -- IGNORE --
+        }
+    }
+
     return {
         brands,
         getBrand,
         getBrands,
         deleteBrand,
         brandValidator,
+        deleteImage,
         initialValues,
         loading,
         formKey,

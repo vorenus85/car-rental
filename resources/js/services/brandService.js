@@ -29,3 +29,7 @@ export const uploadBrandImage = (file, onProgress) => {
         },
     })
 }
+
+export const deleteBrandImage = id => {
+    return axios.delete(`/api/admin/brands/image/delete/${id}`)
+}
