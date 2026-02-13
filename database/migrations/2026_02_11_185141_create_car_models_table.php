@@ -15,10 +15,9 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('brand_id');
+            $table->foreignId('brand_id')->nullable()->constrained('brands')->nullOnDelete();
             $table->timestamps();
 
-            $table->foreign('brand_id')->references('id')->on('brands');
         });
     }
 
