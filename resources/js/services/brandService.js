@@ -17,3 +17,15 @@ export const createBrand = values => {
 export const updateBrandById = (id, values) => {
     return axios.put(`/api/admin/brands/${id}`, values)
 }
+
+export const uploadBrandImage = (file, onProgress) => {
+    const formData = new FormData()
+    formData.append('file', file)
+
+    return axios.post('/api/admin/brands/image/upload', formData, {
+        onUploadProgress: event => {
+            if (!event.total || !onProgress) return
+            onProgress(Math.round((event.loaded * 100) / event.total))
+        },
+    })
+}

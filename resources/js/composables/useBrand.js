@@ -1,4 +1,4 @@
-import { fetchBrands, deleteBrandById, fetchBrand } from '@/services/brandService'
+import { fetchBrands, deleteBrandById, fetchBrand, uploadBrandImage } from '@/services/brandService'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -9,12 +9,15 @@ export const useBrand = () => {
     const formKey = ref(0)
     const route = useRoute()
     const brandId = route.params.id
+    const isUploading = ref(false)
+    const uploadProgress = ref(0)
+    const uploadedImage = ref(null)
 
     const { customToast } = useCustomToast()
 
     const initialValues = reactive({
         name: '',
-        logo: '',
+        image: '',
     })
 
     const brandValidator = ({ values }) => {
@@ -57,7 +60,7 @@ export const useBrand = () => {
         try {
             const { data } = await fetchBrand(brandId)
             initialValues.name = data.name
-            initialValues.logo = data.logo
+            initialValues.image = data.image
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
             loading.value = false
         } catch (e) {
@@ -87,6 +90,36 @@ export const useBrand = () => {
         }
     }
 
+    const onRemoveImage = () => {
+        isUploading.value = false
+        uploadProgress.value = 0
+    }
+
+    const onClearUploaderStatus = () => {
+        isUploading.value = false
+        uploadProgress.value = 0
+    }
+
+    const onImageUpload = async event => {
+        try {
+            isUploading.value = true
+            const file = event.files[0]
+
+            const formData = new FormData()
+            formData.append('file', file)
+
+            const { data } = await uploadBrandImage(file, progress => {
+                uploadProgress.value = progress
+            })
+
+            uploadedImage.value = data.filename
+        } catch (e) {
+            isUploading.value = false
+            void e // to avoid unused variable lint error
+            // console.error(e) -- IGNORE --
+        }
+    }
+
     return {
         brands,
         getBrand,
@@ -97,5 +130,11 @@ export const useBrand = () => {
         loading,
         formKey,
         brandId,
+        isUploading,
+        uploadProgress,
+        onRemoveImage,
+        onClearUploaderStatus,
+        onImageUpload,
+        uploadedImage,
     }
 }

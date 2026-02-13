@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BrandResource;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class BrandController extends Controller
         //
         $brands = Brand::all();
 
-        return response()->json($brands);
+        return response()->json(BrandResource::collection($brands), 200);
     }
 
     /**
@@ -26,12 +27,12 @@ class BrandController extends Controller
         //
         $request->validate([
             'name' => 'required|string',
-            'icon' => 'string'
+            'image' => 'string'
         ]);
 
         $brand = Brand::create([
             'name' => $request->name,
-            'icon' => $request->icon
+            'image' => $request->image
         ]);
 
         return response()->json($brand, 201);
@@ -54,7 +55,7 @@ class BrandController extends Controller
         //
         $validated = $request->validate([
             'name' => 'required|string',
-            'hex_code' => 'required|string'
+            'image' => 'string'
         ]);
 
         $brand->update($validated);

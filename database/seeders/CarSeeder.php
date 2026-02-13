@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Car;
+use App\Models\CarModel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
@@ -20,8 +21,15 @@ class CarSeeder extends Seeder
 
         // Populate with data
         foreach ($data as $item) {
+
+            $model = CarModel::where('name', $item['model_name'])->first();
+
+            if (!$model) {
+                throw new \Exception("Model not found: " . $item['model_name']. ", licence_plate". $item['licence_plate']);
+            }
+
             Car::create([
-                'model_id' => $item['model_id'],
+                'model_id' => $model['id'],
                 'licence_plate' => $item['licence_plate'],
                 'image' => $item['image'],
                 'price_per_day' => $item['price_per_day'],

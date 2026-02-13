@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\UploadBrandLogoController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{brand}', [BrandController::class, 'show']);
         Route::put('/{brand}', [BrandController::class, 'update']);
         Route::delete('/{brand}', [BrandController::class, 'destroy']);
+
+        Route::post('/image/upload', [UploadBrandLogoController::class, 'store']);
+        Route::delete('/image/delete/{brand}', [UploadBrandLogoController::class, 'delete']);
     });
 
 });

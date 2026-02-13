@@ -22,7 +22,7 @@ class BrandSeeder extends Seeder
         foreach ($data as $item) {
             Brand::create([
                 'name' => $item['name'],
-                'logo' => $item['logo'],
+                'image' => $item['image'],
             ]);
         }
 

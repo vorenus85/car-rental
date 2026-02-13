@@ -15,7 +15,7 @@ return new class extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->string('name');
-            $table->string('logo');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

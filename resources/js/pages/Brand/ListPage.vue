@@ -38,8 +38,18 @@
                     </div>
                 </template>
                 <template #empty> No results found. </template>
-                <Column sortable field="logo" header="Logo" style="width: 10%">
-                    <template #body="slotProps"> {{ slotProps.data.logo }}</template>
+                <Column sortable field="image" header="Logo" style="width: 10%">
+                    <template #body="slotProps">
+                        <Image
+                            :src="
+                                slotProps.data?.image
+                                    ? `${slotProps.data.image_url}`
+                                    : '/no-image.jpg'
+                            "
+                            :alt="slotProps.data?.title"
+                            preview
+                        />
+                    </template>
                 </Column>
                 <Column sortable field="name" header="Name" style="width: 25%">
                     <template #body="slotProps"> <Chip :label="slotProps.data.name" /></template>
@@ -81,6 +91,7 @@ import {
     Column,
     DataTable,
     IconField,
+    Image,
     InputIcon,
     InputText,
     useConfirm,
