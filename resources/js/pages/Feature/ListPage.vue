@@ -74,11 +74,21 @@
 <script setup>
 import AppLayout from '@/layouts/AppLayout.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { Button, Chip, Column, DataTable, IconField, InputIcon, InputText } from 'primevue'
+import {
+    Button,
+    Chip,
+    Column,
+    DataTable,
+    IconField,
+    InputIcon,
+    InputText,
+    useConfirm,
+} from 'primevue'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { useFeature } from '@/composables/useFeature'
 import { useCustomConfirm } from '@/composables/useCustomConfirm'
+import { onMounted, ref } from 'vue'
 
 const { toCreateFeature } = useRedirects()
 const confirm = useConfirm()

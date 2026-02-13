@@ -42,7 +42,7 @@ export const useFeature = () => {
 
         try {
             const { data } = await fetchFeatures()
-            colors.value = data
+            features.value = data
             loading.value = false
         } catch (e) {
             loading.value = false
