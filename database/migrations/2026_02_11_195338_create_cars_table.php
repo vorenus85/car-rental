@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->unsignedBigInteger('model_id');
+            $table->foreignId('model_id')->nullable()->constrained('car_models')->nullOnDelete();
             $table->string('licence_plate')->unique();
             $table->string('image');
             $table->integer('price_per_day');
@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('body_type'); // ['suv', 'sedan', 'hatchback', 'coupe', 'convertible', 'truck', 'van', 'wagon', 'crossover', 'minivan']
             $table->string('transmission'); // ['automatic', 'manual']
             $table->string('fuel'); // ['petrol', 'diesel', 'eletric', 'hybrid']
-            $table->unsignedBigInteger('color_id');
+            $table->foreignId('color_id')->nullable()->constrained('colors')->nullOnDelete();
             $table->integer('production_year');
             $table->integer('top_speed');
             $table->decimal('acceleration', 4, 1);
@@ -30,8 +30,6 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->timestamps();
 
-            $table->foreign('model_id')->references('id')->on('car_models');
-            $table->foreign('color_id')->references('id')->on('colors');
         });
     }
 
