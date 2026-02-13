@@ -10,7 +10,7 @@
                 />
             </template>
         </PageTitle>
-        <div class="card">
+        <div v-if="formKey" class="card">
             <Form
                 :key="formKey"
                 v-slot="$form"
