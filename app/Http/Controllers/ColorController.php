@@ -12,7 +12,7 @@ class ColorController extends Controller
      */
     public function index()
     {
-        $colors = Color::all();
+        $colors = Color::select('id', 'name', 'hex_code')->orderBy('name', 'asc')->get();
 
         return response()->json($colors);
     }

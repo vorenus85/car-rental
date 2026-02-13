@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CarModelResource;
 use App\Models\CarModel;
 use Illuminate\Http\Request;
 
@@ -13,8 +14,15 @@ class CarModelController extends Controller
     public function index()
     {
         //
-        $carModels = CarModel::all();
-        return response()->json($carModels);
+        $carModels = CarModel::query()
+        ->join('brands', 'car_models.brand_id', '=', 'brands.id')
+        ->select('car_models.id', 'car_models.name', 'car_models.brand_id')
+        ->with('brand')
+        ->orderBy('brands.name', 'asc')
+        ->orderBy('car_models.name', 'asc')
+        ->get();
+        // return response()->json($carModels);
+        return CarModelResource::collection($carModels);
     }
 
     /**

@@ -15,7 +15,7 @@ class BrandController extends Controller
     public function index()
     {
         //
-        $brands = Brand::all();
+        $brands = Brand::select('id', 'name','image')->orderBy('name', 'asc')->get();
 
         return response()->json(BrandResource::collection($brands), 200);
     }

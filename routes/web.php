@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BrandImageController;
+use App\Http\Controllers\CarModelController;
 use App\Http\Controllers\ColorController;
 use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\UploadBrandLogoController;
@@ -47,6 +48,14 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::post('/image/upload', [BrandImageController::class, 'store']);
         Route::delete('/image/delete/{brand}', [BrandImageController::class, 'delete']);
+    });
+
+     Route::prefix('/api/admin/models')->group(function(){
+        Route::get('/', [CarModelController::class, 'index']);
+        Route::post('/', [CarModelController::class, 'store']);
+        Route::get('/{model}', [CarModelController::class, 'show']);
+        Route::put('/{model}', [CarModelController::class, 'update']);
+        Route::delete('/{model}', [CarModelController::class, 'destroy']);
     });
 
 });

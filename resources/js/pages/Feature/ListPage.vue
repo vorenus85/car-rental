@@ -10,8 +10,8 @@
                 v-model:filters="filters"
                 :value="features"
                 paginator
-                :rows="10"
-                :rows-per-page-options="[10, 20, 50]"
+                :rows="20"
+                :rows-per-page-options="[20, 50]"
                 table-style="min-width: 50rem"
                 :loading="loading"
                 :global-filter-fields="['name', 'description']"
