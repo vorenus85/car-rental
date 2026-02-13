@@ -65,7 +65,6 @@ export const useBrand = () => {
 
         try {
             const { data } = await fetchBrand(brandId)
-            console.log(data)
             initialValues.name = data.name
             initialValues.image = data.image
             initialValues.image_url = data.image_url

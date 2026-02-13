@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
-class UploadBrandLogoController extends Controller
+class BrandImageController extends Controller
 {
     //
      public function store(Request $request)
