@@ -1,4 +1,5 @@
 import { fetchModels, deleteModelById, fetchModel } from '@/services/modelService'
+import { fetchBrand } from '@/services/brandService'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -14,6 +15,7 @@ export const useModel = () => {
 
     const initialValues = reactive({
         name: '',
+        brand: '',
     })
 
     const modelValidator = ({ values }) => {
@@ -21,6 +23,10 @@ export const useModel = () => {
 
         if (!values.name) {
             errors.name = [{ message: 'Model name is required.' }]
+        }
+
+        if (!values.brand) {
+            errors.brand = [{ message: 'Brand is required.' }]
         }
 
         if (Object.keys(errors).length) {
@@ -41,7 +47,6 @@ export const useModel = () => {
 
         try {
             const { data } = await fetchModels()
-            console.log(data)
             models.value = data.data
             loading.value = false
         } catch (e) {
@@ -57,6 +62,8 @@ export const useModel = () => {
         try {
             const { data } = await fetchModel(modelId)
             initialValues.name = data.name
+            const brand = await fetchBrand(data.brand_id)
+            initialValues.brand = { id: brand.data.id, name: brand.data.name }
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
             loading.value = false
         } catch (e) {

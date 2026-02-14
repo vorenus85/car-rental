@@ -42,12 +42,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/image/delete/{brand}', [BrandImageController::class, 'delete']);
     });
 
-     Route::prefix('/api/admin/models')->group(function(){
+    Route::prefix('/api/admin/models')->group(function(){
         Route::get('/', [CarModelController::class, 'index']);
         Route::post('/', [CarModelController::class, 'store']);
-        Route::get('/{model}', [CarModelController::class, 'show']);
-        Route::put('/{model}', [CarModelController::class, 'update']);
-        Route::delete('/{model}', [CarModelController::class, 'destroy']);
+        Route::get('/{carModel}', [CarModelController::class, 'show']);
+        Route::put('/{carModel}', [CarModelController::class, 'update']);
+        Route::delete('/{carModel}', [CarModelController::class, 'destroy']);
     });
 
 });

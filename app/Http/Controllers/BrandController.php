@@ -12,9 +12,15 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        if($request->boolean('minimal')){
+            $brands = Brand::select('id', 'name')->orderBy('name', 'asc')->get();
+
+            return response()->json($brands)->setStatusCode(200);
+        }
+
         $brands = Brand::select('id', 'name','image')->orderBy('name', 'asc')->get();
 
         return response()->json(BrandResource::collection($brands), 200);

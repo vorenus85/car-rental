@@ -22,7 +22,6 @@ return new class extends Migration
             $table->string('body_type'); // ['suv', 'sedan', 'hatchback', 'coupe', 'convertible', 'truck', 'van', 'wagon', 'crossover', 'minivan']
             $table->string('transmission'); // ['automatic', 'manual']
             $table->string('fuel'); // ['petrol', 'diesel', 'eletric', 'hybrid']
-            $table->foreignId('color_id')->nullable()->constrained('colors')->nullOnDelete();
             $table->integer('production_year');
             $table->integer('top_speed');
             $table->decimal('acceleration', 4, 1);

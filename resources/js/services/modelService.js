@@ -7,6 +7,7 @@ export const fetchModel = id => {
 }
 
 export const deleteModelById = id => {
+    console.log('deleteModelById', id)
     return axios.delete(`/api/admin/models/${id}`)
 }
 

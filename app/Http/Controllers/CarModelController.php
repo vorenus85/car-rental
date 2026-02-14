@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CarModelResource;
+use App\Models\Car;
 use App\Models\CarModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CarModelController extends Controller
 {
@@ -21,7 +23,6 @@ class CarModelController extends Controller
         ->orderBy('brands.name', 'asc')
         ->orderBy('car_models.name', 'asc')
         ->get();
-        // return response()->json($carModels);
         return CarModelResource::collection($carModels);
     }
 
@@ -75,8 +76,11 @@ class CarModelController extends Controller
     public function destroy(CarModel $carModel)
     {
         //
-        $carModel->delete();
+        $carModel->cars()->update(['model_id' => null]);
+        $deleted = $carModel->delete();
 
-        return response()->json([ 'status' => 'ok' ], 200);
+        return response()->json([ 'status' => $deleted ? 'deleted' : 'failed', 'carModel' => $carModel ]);
+
+
     }
 }
