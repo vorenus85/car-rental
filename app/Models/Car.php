@@ -19,7 +19,6 @@ class Car extends Model
         'transmission',
         'fuel',
         'status',
-        'color_id',
         'production_year',
         'top_speed',
         'acceleration',

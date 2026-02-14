@@ -37,7 +37,6 @@ class CarSeeder extends Seeder
                 'transmission' => $item['transmission'],
                 'fuel' => $item['fuel'],
                 'status' => $item['status'],
-                'color_id' => $item['color_id'],
                 'production_year' => $item['production_year'],
                 'top_speed' => $item['top_speed'],
                 'acceleration' => $item['acceleration'],
