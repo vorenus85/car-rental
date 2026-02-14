@@ -23,14 +23,6 @@ Route::get('/auth/check', function () {
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::prefix('/api/admin/colors')->group(function(){
-        Route::get('/', [ColorController::class, 'index']);
-        Route::post('/', [ColorController::class, 'store']);
-        Route::get('/{color}', [ColorController::class, 'show']);
-        Route::put('/{color}', [ColorController::class, 'update']);
-        Route::delete('/{color}', [ColorController::class, 'destroy']);
-    });
-
     Route::prefix('/api/admin/features')->group(function(){
         Route::get('/', [FeatureController::class, 'index']);
         Route::post('/', [FeatureController::class, 'store']);

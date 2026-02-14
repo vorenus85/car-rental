@@ -16,9 +16,6 @@ import BrandEditPage from '@/pages/Brand/EditPage.vue'
 import ModelListPage from '@/pages/Model/ListPage.vue'
 import ModelCreatePage from '@/pages/Model/CreatePage.vue'
 import ModelEditPage from '@/pages/Model/EditPage.vue'
-import ColorListPage from '@/pages/Color/ListPage.vue'
-import ColorCreatePage from '@/pages/Color/CreatePage.vue'
-import ColorEditPage from '@/pages/Color/EditPage.vue'
 import FeatureListPage from '@/pages/Feature/ListPage.vue'
 import FeatureCreatePage from '@/pages/Feature/CreatePage.vue'
 import FeatureEditPage from '@/pages/Feature/EditPage.vue'
@@ -113,30 +110,6 @@ const router = createRouter({
             path: '/models/:id',
             name: 'models.show',
             component: ModelEditPage,
-            meta: {
-                requiresAuth: true,
-            },
-        },
-        {
-            path: '/colors',
-            name: 'colors',
-            component: ColorListPage,
-            meta: {
-                requiresAuth: true,
-            },
-        },
-        {
-            path: '/colors/create',
-            name: 'colors.create',
-            component: ColorCreatePage,
-            meta: {
-                requiresAuth: true,
-            },
-        },
-        {
-            path: '/colors/:id',
-            name: 'colors.show',
-            component: ColorEditPage,
             meta: {
                 requiresAuth: true,
             },
