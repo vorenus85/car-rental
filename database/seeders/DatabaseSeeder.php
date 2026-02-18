@@ -18,6 +18,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UsersTableSeeder::class,
+            FeatureSeeder::class,
+            BrandSeeder::class,
+            CarModelSeeder::class,
+            CarSeeder::class,
         ]);
 
         $this->command->info('All data seeded successfully!');

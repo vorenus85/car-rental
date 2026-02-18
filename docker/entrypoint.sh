@@ -16,9 +16,9 @@ php artisan config:clear
 php artisan route:clear
 
 # Copy default images (only if not present)
-#if [ -d /var/www/docker/default-images ]; then
-#    cp -n /var/www/docker/default-images/* storage/app/public/uploads
-#fi
+if [ -d /var/www/docker/default-images ]; then
+   cp -n /var/www/docker/default-images/* storage/app/public/uploads
+fi
 
 # Wait for DB
 echo "Waiting for database..."
