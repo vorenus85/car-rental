@@ -15,7 +15,7 @@ export const useLayout = () => {
             return
         }
 
-        document.startViewTransition(() => executeDarkModeToggle(event))
+        document.startViewTransition(() => executeDarkModeToggle())
     }
 
     const executeDarkModeToggle = () => {
