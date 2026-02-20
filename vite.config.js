@@ -13,6 +13,13 @@ export default defineConfig({
         vue(),
         tailwindcss(),
     ],
+    test: {
+        environment: 'jsdom',
+        coverage: {
+            provider: 'v8',
+            reporter: ['text', 'html'],
+        },
+    },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'resources/js'),
