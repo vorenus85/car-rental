@@ -5,9 +5,7 @@ export const useAuth = () => {
 
         if (!values.email) {
             errors.email = [{ message: 'Email is required.' }]
-        }
-
-        if (!emailRegex.test(values.email)) {
+        } else if (!emailRegex.test(values.email)) {
             errors.email = [{ message: 'Invalid email address.' }]
         }
 

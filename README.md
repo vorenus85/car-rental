@@ -203,11 +203,46 @@ composer test
 
 ## 🧹 8. Useful Commands
 
-| Command                            | Description                     |
-| ---------------------------------- | ------------------------------- |
-| `php artisan serve`                | Start Laravel dev server        |
-| `php artisan migrate:fresh --seed` | Rebuild database with seed data |
-| `php artisan cache:clear`          | Clear application cache         |
-| `npm run dev`                      | Run frontend with HMR           |
-| `npm run build`                    | Production frontend build       |
-| `php artisan queue:listen`         | Start queue worker              |
+### 🐳 Docker Commands
+
+| Command                                                    | Description                        |
+| ---------------------------------------------------------- | ---------------------------------- |
+| `docker compose up -d`                                     | Start all containers               |
+| `docker compose down`                                      | Stop all containers                |
+| `docker compose down -v`                                   | Stop containers and remove volumes |
+| `docker compose build --no-cache`                          | Rebuild containers from scratch    |
+| `docker compose exec app bash`                             | Open shell inside app container    |
+| `docker compose exec app php artisan migrate`              | Run database migrations            |
+| `docker compose exec app php artisan migrate:fresh --seed` | Reset DB with seed data            |
+| `docker compose exec app php artisan cache:clear`          | Clear application cache            |
+| `docker compose exec app php artisan queue:listen`         | Start queue worker                 |
+
+### 🧪 Testing & Coverage
+
+### Backend (Laravel)
+
+| Command                                                             | Description                             |
+| ------------------------------------------------------------------- | --------------------------------------- |
+| `docker compose exec app php artisan test`                          | Run backend tests                       |
+| `docker compose exec app php artisan test --coverage`               | Run backend tests with coverage summary |
+| `docker compose exec app php artisan test --coverage-html=coverage` | Generate backend HTML coverage report   |
+
+Coverage report will be available at:
+
+```bash
+coverage/index.html
+```
+
+### Frontend (Vue + Vitest)
+
+| Command                 | Description                    |
+| ----------------------- | ------------------------------ |
+| `npm run test`          | Run tests in watch mode        |
+| `npm run test:run`      | Run tests once                 |
+| `npm run test:coverage` | Run tests with coverage report |
+
+Frontend coverage report will be generated in:
+
+```bash
+coverage/
+```
