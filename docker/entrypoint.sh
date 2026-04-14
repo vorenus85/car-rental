@@ -1,6 +1,12 @@
 #!/bin/bash
 set -e
 
+# Install PHP dependencies on first boot when the bind mount hides the image layer.
+if [ ! -f /var/www/vendor/autoload.php ]; then
+    echo "Composer dependencies missing. Running composer install..."
+    composer install --no-interaction --prefer-dist
+fi
+
 # Ensure storage & cache
 mkdir -p storage/framework/views storage/framework/cache storage/framework/sessions storage/app/public/uploads
 chown -R www-data:www-data storage bootstrap/cache

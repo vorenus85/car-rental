@@ -87,37 +87,6 @@ php artisan queue:listen
 npm run dev
 ```
 
-## 🌐 5. Local Domain Configuration (optional)
-
-To access the project via a custom local domain (e.g. laravel-vue-starter.local):
-
-### Edit your hosts file
-
-```lua
-127.0.0.1    laravel-vue-starter.local
-```
-
-### Create an Apache VirtualHost
-
-```apache
-<VirtualHost *:80>
-    ServerName laravel-vue-starter.local
-    DocumentRoot "C:/wamp64/www/git/laravel-vue-starter/public"
-
-    <Directory "C:/wamp64/www/git/laravel-vue-starter/public">
-        AllowOverride All
-        Require all granted
-        Options Indexes FollowSymLinks
-    </Directory>
-</VirtualHost>
-```
-
-### Update .env
-
-```env
-APP_URL=http://localhost:8080
-```
-
 ## 🐳 6. Running the project with Docker (recommended)
 
 This project can also be run using **Docker + Docker Compose**, without installing PHP, Composer, Node.js or a web server locally.
@@ -141,6 +110,8 @@ From the project root directory:
 ```bash
 docker compose up -d
 ```
+
+On first start the `app` container now installs missing PHP dependencies automatically if `vendor/` is not present yet.
 
 ### Install dependencies
 
