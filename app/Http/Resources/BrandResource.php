@@ -26,7 +26,7 @@ class BrandResource extends JsonResource
             // @phpstan-ignore property.notFound
             'image_url' => $this->image
                 ? Storage::url('/uploads/'.$this->image)
-                : null
+                : null,
         ];
     }
 }

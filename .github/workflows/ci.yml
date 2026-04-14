@@ -1,47 +1,50 @@
 name: Laravel + Vue CI
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
+    push:
+        branches: [main]
+    pull_request:
 
 jobs:
-  backend:
-    name: PHPStan
-    runs-on: ubuntu-latest
+    backend:
+        name: PHPStan
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
+        steps:
+            - uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          coverage: none
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.3'
+                  coverage: none
 
-      - name: Install Composer dependencies
-        run: composer install --no-interaction --prefer-dist
+            - name: Install Composer dependencies
+              run: composer install --no-interaction --prefer-dist
 
-      - name: Run PHPStan
-        run: vendor/bin/phpstan analyse
+            - name: Run PHP CS Fixer (check only)
+              run: vendor/bin/php-cs-fixer fix --dry-run --diff
 
-  frontend:
-    name: ESLint + Prettier
-    runs-on: ubuntu-latest
+            - name: Run PHPStan
+              run: vendor/bin/phpstan analyse
 
-    steps:
-      - uses: actions/checkout@v4
+    frontend:
+        name: ESLint + Prettier
+        runs-on: ubuntu-latest
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
+        steps:
+            - uses: actions/checkout@v4
 
-      - name: Install NPM dependencies
-        run: npm ci
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '20'
 
-      - name: Run ESLint
-        run: npm run lint
+            - name: Install NPM dependencies
+              run: npm ci
 
-      - name: Run Prettier check
-        run: npm run format:check
+            - name: Run ESLint
+              run: npm run lint
+
+            - name: Run Prettier check
+              run: npm run format:check
