@@ -15,13 +15,13 @@ class BrandController extends Controller
     public function index(Request $request)
     {
         //
-        if($request->boolean('minimal')){
+        if ($request->boolean('minimal')) {
             $brands = Brand::select('id', 'name')->orderBy('name', 'asc')->get();
 
             return response()->json($brands)->setStatusCode(200);
         }
 
-        $brands = Brand::select('id', 'name','image')->orderBy('name', 'asc')->get();
+        $brands = Brand::select('id', 'name', 'image')->orderBy('name', 'asc')->get();
 
         return response()->json(BrandResource::collection($brands), 200);
     }
@@ -34,12 +34,12 @@ class BrandController extends Controller
         //
         $request->validate([
             'name' => 'required|string',
-            'image' => 'string'
+            'image' => 'string',
         ]);
 
         $brand = Brand::create([
             'name' => $request->name,
-            'image' => $request->image
+            'image' => $request->image,
         ]);
 
         return response()->json($brand, 201);
@@ -51,7 +51,7 @@ class BrandController extends Controller
     public function show(Brand $brand)
     {
         //
-         $brand['image_url'] = $brand->image ? Storage::url('/uploads/'.$brand->image) : "";
+        $brand['image_url'] = $brand->image ? Storage::url('/uploads/'.$brand->image) : "";
         return response()->json($brand);
     }
 
@@ -63,7 +63,7 @@ class BrandController extends Controller
         //
         $validated = $request->validate([
             'name' => 'required|string',
-            'image' => 'string'
+            'image' => 'string',
         ]);
 
         $brand->update($validated);

@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Feature;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
 
 class FeatureController extends Controller
 {
@@ -34,7 +32,7 @@ class FeatureController extends Controller
 
         $feature = Feature::create([
             'name' => $request->name,
-            'description' => $request->icon
+            'description' => $request->icon,
         ]);
 
         return response()->json($feature, 201);
@@ -57,7 +55,7 @@ class FeatureController extends Controller
         //
         $validated = $request->validate([
             'name' => 'required|string',
-            'description' => 'string'
+            'description' => 'string',
         ]);
 
         $feature->update($validated);

@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\CarModelResource;
-use App\Models\Car;
 use App\Models\CarModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class CarModelController extends Controller
 {
@@ -32,14 +30,14 @@ class CarModelController extends Controller
     public function store(Request $request)
     {
         //
-         $request->validate([
-            'name' => 'required|string',
-            'brand_id' => 'required|int'
+        $request->validate([
+           'name' => 'required|string',
+           'brand_id' => 'required|int',
         ]);
 
         $carModel = CarModel::create([
             'name' => $request->name,
-            'brand_id' => $request->brand_id
+            'brand_id' => $request->brand_id,
         ]);
 
         return response()->json($carModel, 201);
@@ -62,7 +60,7 @@ class CarModelController extends Controller
         //
         $validated = $request->validate([
             'name' => 'required|string',
-            'brand_id' => 'required|int'
+            'brand_id' => 'required|int',
         ]);
 
         $carModel->update($validated);

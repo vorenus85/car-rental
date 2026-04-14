@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class BrandImageController extends Controller
 {
     //
-     public function store(Request $request)
+    public function store(Request $request)
     {
         try {
             $request->validate([
@@ -42,7 +42,8 @@ class BrandImageController extends Controller
         }
     }
 
-    public function delete(Brand $brand){
+    public function delete(Brand $brand)
+    {
         try {
             if ($brand->image && Storage::exists('/uploads/'.$brand->image)) {
                 Storage::delete('/uploads/'.$brand->image);
