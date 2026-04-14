@@ -18,6 +18,18 @@ export default defineConfig({
         coverage: {
             provider: 'v8',
             reporter: ['text', 'html'],
+            include: [
+                'resources/js/composables/**',
+                'resources/js/services/**',
+                'resources/js/stores/**',
+                'resources/js/validators/**',
+            ],
+            thresholds: {
+                lines: 70,
+                functions: 70,
+                branches: 60,
+                statements: 70,
+            },
         },
     },
     resolve: {
