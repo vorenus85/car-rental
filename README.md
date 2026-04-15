@@ -139,7 +139,7 @@ HTML report:
 coverage/index.html
 ```
 
-### Frontend Testing (Vue + Vitest)
+### 🧪 Frontend Testing (Vue + Vitest)
 
 | Command                 | Description                    |
 | ----------------------- | ------------------------------ |
