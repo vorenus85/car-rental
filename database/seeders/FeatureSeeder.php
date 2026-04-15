@@ -22,6 +22,7 @@ class FeatureSeeder extends Seeder
             Feature::create([
                 'name' => $item['name'],
                 'description' => $item['description'],
+                'category' => $item['category'],
             ]);
         }
 

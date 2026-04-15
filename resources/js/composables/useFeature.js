@@ -15,13 +15,25 @@ export const useFeature = () => {
     const initialValues = reactive({
         name: '',
         description: '',
+        category: '',
     })
+
+    const featureCategories = [
+        { id: 'safety', label: 'Safety' },
+        { id: 'comfort', label: 'Comfort' },
+        { id: 'technology', label: 'Technology' },
+        { id: 'driving', label: 'Driving' },
+    ]
 
     const featureValidator = ({ values }) => {
         const errors = {}
 
         if (!values.name) {
             errors.name = [{ message: 'Feature name is required.' }]
+        }
+
+        if (!values.category) {
+            errors.category = [{ message: 'Feature category is required.' }]
         }
 
         if (Object.keys(errors).length) {
@@ -58,6 +70,7 @@ export const useFeature = () => {
             const { data } = await fetchFeature(featureId)
             initialValues.name = data.name
             initialValues.description = data.description
+            initialValues.category = data.category
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
             loading.value = false
         } catch (e) {
@@ -93,6 +106,7 @@ export const useFeature = () => {
         getFeatures,
         deleteFeature,
         featureValidator,
+        featureCategories,
         initialValues,
         loading,
         formKey,

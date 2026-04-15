@@ -1,42 +1,125 @@
 [
     {
+        "name": "ABS",
+        "category": "safety",
+        "description": "Prevents wheel lock-up during braking for better control."
+    },
+    {
+        "name": "Electronic Stability Control",
+        "category": "safety",
+        "description": "Helps maintain vehicle stability during sudden maneuvers."
+    },
+    {
+        "name": "Airbags",
+        "category": "safety",
+        "description": "Provides additional protection in case of a collision."
+    },
+    {
+        "name": "Lane Departure Warning",
+        "category": "safety",
+        "description": "Alerts you if the vehicle drifts out of its lane."
+    },
+    {
+        "name": "Automatic Emergency Braking",
+        "category": "safety",
+        "description": "Automatically applies brakes to prevent or reduce impact."
+    },
+    {
+        "name": "Blind Spot Monitoring",
+        "category": "safety",
+        "description": "Warns you of vehicles in your blind spots."
+    },
+    {
+        "name": "Parking Sensors",
+        "category": "safety",
+        "description": "Detects nearby objects to assist with parking."
+    },
+    {
+        "name": "Rear View Camera",
+        "category": "safety",
+        "description": "Displays the area behind the car when reversing."
+    },
+
+    {
         "name": "Air Conditioning",
-        "description": ""
+        "category": "comfort",
+        "description": "Keeps the cabin cool and comfortable."
     },
     {
-        "name": "Bluetooth Connectivity",
-        "description": ""
+        "name": "Dual-zone Climate Control",
+        "category": "comfort",
+        "description": "Allows separate temperature settings for driver and passenger."
     },
     {
-        "name": "Backup Camera",
-        "description": ""
+        "name": "Heated Seats",
+        "category": "comfort",
+        "description": "Provides warmth for seats in cold weather."
     },
     {
-        "name": "Cruise Control",
-        "description": ""
+        "name": "Leather Seats",
+        "category": "comfort",
+        "description": "Premium seating material for added comfort."
     },
     {
         "name": "Keyless Entry",
-        "description": ""
+        "category": "comfort",
+        "description": "Unlock the car without using a physical key."
     },
     {
-        "name": "Power Windows and Locks",
-        "description": ""
+        "name": "Keyless Start",
+        "category": "comfort",
+        "description": "Start the engine with a button instead of a key."
+    },
+
+    {
+        "name": "Bluetooth",
+        "category": "technology",
+        "description": "Connect your phone wirelessly for calls and audio."
     },
     {
-        "name": "AM/FM Radio with CD Player",
-        "description": ""
+        "name": "Apple CarPlay",
+        "category": "technology",
+        "description": "Integrates your iPhone with the car’s infotainment system."
     },
     {
-        "name": "USB Charging Ports",
-        "description": ""
+        "name": "Android Auto",
+        "category": "technology",
+        "description": "Connects Android devices to the car’s display."
     },
     {
-        "name": "Spacious Trunk",
-        "description": ""
+        "name": "USB Ports",
+        "category": "technology",
+        "description": "Charge devices or connect media via USB."
     },
     {
-        "name": "Advanced Safety Features ",
-        "description": "(e.g., Lane Departure Warning, Automatic Emergency Braking)"
+        "name": "Navigation System (GPS)",
+        "category": "technology",
+        "description": "Built-in navigation to guide your journey."
+    },
+    {
+        "name": "Touchscreen Display",
+        "category": "technology",
+        "description": "Interactive screen for controlling car features."
+    },
+
+    {
+        "name": "Cruise Control",
+        "category": "driving",
+        "description": "Maintains a constant speed without pressing the accelerator."
+    },
+    {
+        "name": "Adaptive Cruise Control",
+        "category": "driving",
+        "description": "Automatically adjusts speed to keep a safe distance."
+    },
+    {
+        "name": "Automatic Transmission",
+        "category": "driving",
+        "description": "Shifts gears automatically for easier driving."
+    },
+    {
+        "name": "All-Wheel Drive (AWD)",
+        "category": "driving",
+        "description": "Provides better traction by powering all wheels."
     }
 ]
