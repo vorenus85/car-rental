@@ -28,7 +28,7 @@ cd car-renter
 
 ## 🐳 3. Running with Docker (Recommended)
 
-### Start containers
+### 3.1 Start containers
 ```bash
 docker compose up -d
 ```
