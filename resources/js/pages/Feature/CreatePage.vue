@@ -38,6 +38,27 @@
                     >
                 </div>
                 <div class="flex flex-col gap-1">
+                    <label for="category">Feature category</label>
+                    <Select
+                        input-id="category"
+                        name="category"
+                        :options="featureCategories"
+                        option-value="id"
+                        option-label="label"
+                        placeholder="Select category"
+                        :highlight-on-select="false"
+                        checkmark
+                        class="w-full md:w-56"
+                    ></Select>
+                    <Message
+                        v-if="$form.category?.invalid"
+                        severity="error"
+                        size="small"
+                        variant="simple"
+                        >{{ $form.category?.error?.message }}</Message
+                    >
+                </div>
+                <div class="flex flex-col gap-1">
                     <label for="description">Feature description</label>
                     <Textarea
                         name="description"
@@ -71,7 +92,7 @@
 <script setup>
 import AppLayout from '@/layouts/AppLayout.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { Button, InputText, Message, Textarea } from 'primevue'
+import { Button, InputText, Message, Select, Textarea } from 'primevue'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { useFeature } from '@/composables/useFeature'
@@ -81,7 +102,7 @@ import { Form } from '@primevue/forms'
 const { toFeaturesList } = useRedirects()
 const { customToast } = useCustomToast()
 
-const { initialValues, featureValidator } = useFeature()
+const { initialValues, featureValidator, featureCategories } = useFeature()
 
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {

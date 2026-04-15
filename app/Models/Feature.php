@@ -13,5 +13,6 @@ class Feature extends Model
     protected $fillable = [
         'name',
         'description',
+        'category',
     ];
 }

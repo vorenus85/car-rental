@@ -13,7 +13,7 @@ class FeatureController extends Controller
     public function index()
     {
         //
-        $features = Feature::select('id', 'name', 'description')->orderBy('name', 'asc')->get();
+        $features = Feature::select('id', 'name', 'description', 'category')->orderBy('name', 'asc')->get();
 
         return response()->json($features);
     }
@@ -26,13 +26,15 @@ class FeatureController extends Controller
         //
         $request->validate([
             'name' => 'required|string',
+            'category' => 'required|string',
             'description' => 'string',
         ]);
 
 
         $feature = Feature::create([
             'name' => $request->name,
-            'description' => $request->icon,
+            'category' => $request->category,
+            'description' => $request->description,
         ]);
 
         return response()->json($feature, 201);
@@ -55,6 +57,7 @@ class FeatureController extends Controller
         //
         $validated = $request->validate([
             'name' => 'required|string',
+            'category' => 'required|string',
             'description' => 'string',
         ]);
 
@@ -69,8 +72,8 @@ class FeatureController extends Controller
     public function destroy(Feature $feature)
     {
         //
-        $feature->delete();
+        $result = $feature->delete();
 
-        return response()->json([ 'status' => 'ok' ], 200);
+        return response()->json(['result' => $result], 200);
     }
 }

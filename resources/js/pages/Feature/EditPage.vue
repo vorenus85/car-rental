@@ -40,6 +40,27 @@
                     >
                 </div>
                 <div class="flex flex-col gap-1">
+                    <label for="category">Feature category</label>
+                    <Select
+                        input-id="category"
+                        name="category"
+                        :options="featureCategories"
+                        option-value="id"
+                        option-label="label"
+                        placeholder="Select category"
+                        :highlight-on-select="false"
+                        checkmark
+                        class="w-full md:w-56"
+                    ></Select>
+                    <Message
+                        v-if="$form.category?.invalid"
+                        severity="error"
+                        size="small"
+                        variant="simple"
+                        >{{ $form.category?.error?.message }}</Message
+                    >
+                </div>
+                <div class="flex flex-col gap-1">
                     <label for="description">Feature description</label>
                     <Textarea
                         name="description"
@@ -74,7 +95,7 @@
 import AppLayout from '@/layouts/AppLayout.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import { Form } from '@primevue/forms'
-import { Button, InputText, Message, Textarea } from 'primevue'
+import { Button, InputText, Message, Select, Textarea } from 'primevue'
 import { useFeature } from '@/composables/useFeature'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { updateFeatureById } from '@/services/featureService'
@@ -82,7 +103,8 @@ import { useRedirects } from '@/composables/useRedirects.js'
 import { onMounted } from 'vue'
 
 const { toFeaturesList } = useRedirects()
-const { initialValues, formKey, featureId, getFeature, featureValidator } = useFeature()
+const { initialValues, formKey, featureId, getFeature, featureValidator, featureCategories } =
+    useFeature()
 const { customToast } = useCustomToast()
 
 const onFormSubmit = async ({ valid, values }) => {
