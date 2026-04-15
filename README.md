@@ -1,5 +1,7 @@
 # Car Rental
 
+A modern full-stack car rental application built with Laravel and Vue.js, featuring booking management, car inventory handling, and a scalable architecture with Docker-based development environment. Designed to simulate real-world rental workflows with clean UI and developer-friendly setup.
+
 ## 🚀 1. System Requirements
 
 ### ✅ Recommended (Docker-based setup)
