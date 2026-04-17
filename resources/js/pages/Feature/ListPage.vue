@@ -79,7 +79,6 @@ import AppLayout from '@/layouts/AppLayout.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import {
     Button,
-    Chip,
     Column,
     DataTable,
     IconField,

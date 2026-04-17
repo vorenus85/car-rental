@@ -25,6 +25,6 @@ class CarModel extends Model
 
     public function variants(): HasMany
     {
-        return $this->hasMany(Variant::class);
+        return $this->hasMany(Variant::class, 'model_id', 'id');
     }
 }
