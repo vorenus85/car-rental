@@ -93,7 +93,6 @@ import AppLayout from '@/layouts/AppLayout.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import {
     Button,
-    Chip,
     Column,
     DataTable,
     IconField,
@@ -111,7 +110,7 @@ import { onMounted, ref } from 'vue'
 
 const { tocreateCarModel } = useRedirects()
 const confirm = useConfirm()
-const { loading, models, getModels, deleteModel } = useCarModel()
+const { loading, models, getCarModels, deleteCarModel } = useCarModel()
 const filters = ref()
 const { confirmAction } = useCustomConfirm()
 
@@ -134,13 +133,13 @@ const clearFilter = () => {
 const deleteConfirm = id => {
     confirmAction(confirm, {
         action: () => {
-            deleteModel(id)
+            deleteCarModel(id)
         },
         acceptLabel: 'Delete',
     })
 }
 
 onMounted(() => {
-    getModels()
+    getCarModels()
 })
 </script>

@@ -21,12 +21,13 @@ class BrandResource extends JsonResource
             'id' => $this->id,
             // @phpstan-ignore property.notFound
             'name' => $this->name,
-            // @phpstan-ignore property.notFound
-            'image' => $this->image,
-            // @phpstan-ignore property.notFound
-            'image_url' => $this->image
-                ? Storage::url('/uploads/'.$this->image)
-                : null,
+            'image' => $this->whenHas('image'),
+            'image_url' => $this->whenHas('image', function () {
+                // @phpstan-ignore property.notFound
+                return $this->image
+                    ? Storage::url('/uploads/' . $this->image)
+                    : null;
+            }),
         ];
     }
 }

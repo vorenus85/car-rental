@@ -37,22 +37,22 @@
                     <label for="brand">Brand</label>
                     <Select
                         id="brand"
-                        v-model="selectedBrand"
                         filter
                         :options="brands"
+                        option-value="id"
                         option-label="name"
                         placeholder="Select Brand"
                         checkmark
-                        name="brand"
+                        name="brand_id"
                         :highlight-on-select="false"
                         class="w-full md:w-56"
                     />
                     <Message
-                        v-if="$form.brand?.invalid"
+                        v-if="$form.brand_id?.invalid"
                         severity="error"
                         size="small"
                         variant="simple"
-                        >{{ $form.brand?.error?.message }}</Message
+                        >{{ $form.brand_id?.error?.message }}</Message
                     >
                 </div>
                 <div class="flex flex-col gap-1">
@@ -100,14 +100,12 @@ import { onMounted, ref } from 'vue'
 
 const { toModelsList } = useRedirects()
 const { customToast } = useCustomToast()
-const { initialValues, modelValidator, formKey, modelId, getModel } = useCarModel()
-const { getBrandsMinimal, brands } = useBrand()
-const selectedBrand = ref({})
+const { initialValues, modelValidator, formKey, modelId, getCarModel } = useCarModel()
+const { getBrands, brands } = useBrand()
 
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
         try {
-            values.brand_id = selectedBrand.value.id
             await updateCarModelById(modelId, values)
 
             customToast.success('Model updated successfully!')
@@ -122,14 +120,7 @@ const onFormSubmit = async ({ valid, values }) => {
     }
 }
 onMounted(async () => {
-    await getModel()
-    await getBrandsMinimal()
-    // console.log(initialValues)
-    selectedBrand.value = {
-        id: initialValues.brand.id,
-        name: initialValues.brand.name,
-    }
-
-    console.log(selectedBrand.value)
+    await getCarModel()
+    await getBrands()
 })
 </script>

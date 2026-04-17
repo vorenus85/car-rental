@@ -16,13 +16,13 @@ class BrandController extends Controller
     public function index(Request $request)
     {
         //
-        if ($request->boolean('minimal')) {
-            $brands = Brand::select('id', 'name')->orderBy('name', 'asc')->get();
+        $query = Brand::query()->select('id', 'name')->orderBy('name', 'asc');
 
-            return response()->json($brands)->setStatusCode(200);
+        if ($request->boolean('with_images')) {
+            $query->addSelect('image');
         }
 
-        $brands = Brand::select('id', 'name', 'image')->orderBy('name', 'asc')->get();
+        $brands = $query->get();
 
         return response()->json(BrandResource::collection($brands), 200);
     }
