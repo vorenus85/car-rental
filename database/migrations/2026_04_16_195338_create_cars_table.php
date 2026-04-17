@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
 
             $table->foreignId('variant_id')
-                ->constrained('car_variants')
+                ->constrained('variants')
                 ->cascadeOnDelete();
 
             $table->string('licence_plate')->unique();

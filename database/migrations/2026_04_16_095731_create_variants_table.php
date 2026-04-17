@@ -13,7 +13,7 @@ return new class extends Migration
     {
         //
 
-        Schema::create('car_variants', function (Blueprint $table) {
+        Schema::create('variants', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
 
@@ -46,6 +46,6 @@ return new class extends Migration
     public function down(): void
     {
         //
-        Schema::dropIfExists('car_variants');
+        Schema::dropIfExists('variants');
     }
 };

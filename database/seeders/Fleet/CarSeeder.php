@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Fleet;
 
-use App\Models\Car;
-use App\Models\CarModel;
+use App\Models\Fleet\Car;
+use App\Models\Fleet\CarModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
@@ -15,7 +15,7 @@ class CarSeeder extends Seeder
     public function run(): void
     {
         //
-        $json = File::get(database_path('data/cars.json'));
+        $json = File::get(database_path('data/fleet/cars.json'));
         $data = json_decode($json, true);
 
         // Populate with data
@@ -24,7 +24,7 @@ class CarSeeder extends Seeder
             $model = CarModel::where('name', $item['model_name'])->first();
 
             if (!$model) {
-                throw new \Exception("Model not found: " . $item['model_name']. ", licence_plate". $item['licence_plate']);
+                throw new \Exception("Model not found: " . $item['model_name'] . ", licence_plate" . $item['licence_plate']);
             }
 
             Car::create([

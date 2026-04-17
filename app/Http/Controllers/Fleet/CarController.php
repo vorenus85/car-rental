@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Fleet;
 
-use App\Models\Car;
+use App\Http\Controllers\Controller;
+use App\Models\Fleet\Car;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
@@ -57,7 +58,6 @@ class CarController extends Controller
         ]);
 
         return response()->json($car, 201);
-
     }
 
     /**
@@ -77,7 +77,7 @@ class CarController extends Controller
         //
         $validated = $request->validate([
             'model_id' => 'required|string',
-            'licence_plate' => 'required|string|unique:cars,licence_plate,'.$car->id,
+            'licence_plate' => 'required|string|unique:cars,licence_plate,' . $car->id,
             'image' => 'nullable|string',
             'price_per_day' => 'required|numeric',
             'body_type' => 'required|string',
@@ -105,6 +105,6 @@ class CarController extends Controller
         //
         $car->delete();
 
-        return response()->json([ 'status' => 'ok' ], 200);
+        return response()->json(['status' => 'ok'], 200);
     }
 }

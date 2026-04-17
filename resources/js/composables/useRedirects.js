@@ -31,7 +31,7 @@ export const useRedirects = () => {
         router.push({ name: 'models' })
     }
 
-    const toCreateModel = () => {
+    const tocreateCarModel = () => {
         router.push({ name: 'models.create' })
     }
 
@@ -70,7 +70,7 @@ export const useRedirects = () => {
         toCreateCar,
         toBrandsList,
         toCreateBrand,
-        toCreateModel,
+        tocreateCarModel,
         toModelsList,
         toVariantsList,
         toCreateVariant,

@@ -89,16 +89,16 @@ import AppLayout from '@/layouts/AppLayout.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import { Button, InputText, Message, Select, Textarea } from 'primevue'
 import { useCustomToast } from '@/composables/useCustomToast'
-import { useModel } from '@/composables/useModel'
+import { useCarModel } from '@/composables/useCarModel'
 import { useBrand } from '@/composables/useBrand'
 import { useRedirects } from '@/composables/useRedirects.js'
-import { createModel } from '@/services/modelService'
+import { createCarModel } from '@/services/carModelService'
 import { Form } from '@primevue/forms'
 import { onMounted, ref } from 'vue'
 
 const { toModelsList } = useRedirects()
 const { customToast } = useCustomToast()
-const { initialValues, modelValidator } = useModel()
+const { initialValues, modelValidator } = useCarModel()
 const { getBrandsMinimal, brands } = useBrand()
 const selectedBrand = ref({})
 
@@ -106,7 +106,7 @@ const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
         try {
             values.brand_id = selectedBrand.value.id
-            await createModel(values)
+            await createCarModel(values)
 
             customToast.success('Model created successfully!')
 

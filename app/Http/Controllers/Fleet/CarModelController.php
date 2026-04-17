@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Fleet;
 
+use App\Http\Controllers\Controller;
 use App\Http\Resources\CarModelResource;
-use App\Models\CarModel;
+use App\Models\Fleet\CarModel;
 use Illuminate\Http\Request;
 
 class CarModelController extends Controller

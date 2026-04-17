@@ -1,10 +1,10 @@
-import { fetchModels, deleteModelById, fetchModel } from '@/services/modelService'
+import { fetchCarModels, deleteCarModelById, fetchCarModel } from '@/services/carModelService'
 import { fetchBrand } from '@/services/brandService'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
-export const useModel = () => {
+export const useCarModel = () => {
     const loading = ref(false)
     const models = ref([])
     const formKey = ref(0)
@@ -47,7 +47,7 @@ export const useModel = () => {
         loading.value = true
 
         try {
-            const { data } = await fetchModels()
+            const { data } = await fetchCarModels()
             models.value = data.data
             loading.value = false
         } catch (e) {
@@ -61,7 +61,7 @@ export const useModel = () => {
         loading.value = true
 
         try {
-            const { data } = await fetchModel(modelId)
+            const { data } = await fetchCarModel(modelId)
             initialValues.name = data.name
             initialValues.description = data.description
             const brand = await fetchBrand(data.brand_id)
@@ -79,7 +79,7 @@ export const useModel = () => {
         loading.value = true
 
         try {
-            await deleteModelById(id)
+            await deleteCarModelById(id)
             const idIndex = models.value.findIndex(el => {
                 return el.id === id
             })

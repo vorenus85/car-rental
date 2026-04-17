@@ -2,7 +2,7 @@
     <AppLayout>
         <PageTitle title="Models">
             <template #actions>
-                <Button icon="pi pi-plus" label="New" primary @click="toCreateModel" />
+                <Button icon="pi pi-plus" label="New" primary @click="tocreateCarModel" />
             </template>
         </PageTitle>
         <div class="card shadow list-page">
@@ -104,13 +104,13 @@ import {
 } from 'primevue'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
 import { useRedirects } from '@/composables/useRedirects.js'
-import { useModel } from '@/composables/useModel'
+import { useCarModel } from '@/composables/useCarModel'
 import { useCustomConfirm } from '@/composables/useCustomConfirm'
 import { onMounted, ref } from 'vue'
 
-const { toCreateModel } = useRedirects()
+const { tocreateCarModel } = useRedirects()
 const confirm = useConfirm()
-const { loading, models, getModels, deleteModel } = useModel()
+const { loading, models, getModels, deleteModel } = useCarModel()
 const filters = ref()
 const { confirmAction } = useCustomConfirm()
 

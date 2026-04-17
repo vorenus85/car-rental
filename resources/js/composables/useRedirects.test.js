@@ -70,9 +70,9 @@ describe('useRedirects', () => {
     })
 
     it('redirects to create model', () => {
-        const { toCreateModel } = useRedirects()
+        const { tocreateCarModel } = useRedirects()
 
-        toCreateModel()
+        tocreateCarModel()
 
         expect(pushMock).toHaveBeenCalledWith({ name: 'models.create' })
     })

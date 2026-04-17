@@ -93,14 +93,14 @@ import { Button, InputText, Message, Select, Textarea } from 'primevue'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { Form } from '@primevue/forms'
 import { useCustomToast } from '@/composables/useCustomToast'
-import { useModel } from '@/composables/useModel'
+import { useCarModel } from '@/composables/useCarModel'
 import { useBrand } from '@/composables/useBrand'
-import { updateModelById } from '@/services/modelService'
+import { updateCarModelById } from '@/services/carModelService'
 import { onMounted, ref } from 'vue'
 
 const { toModelsList } = useRedirects()
 const { customToast } = useCustomToast()
-const { initialValues, modelValidator, formKey, modelId, getModel } = useModel()
+const { initialValues, modelValidator, formKey, modelId, getModel } = useCarModel()
 const { getBrandsMinimal, brands } = useBrand()
 const selectedBrand = ref({})
 
@@ -108,7 +108,7 @@ const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
         try {
             values.brand_id = selectedBrand.value.id
-            await updateModelById(modelId, values)
+            await updateCarModelById(modelId, values)
 
             customToast.success('Model updated successfully!')
 

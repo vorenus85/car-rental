@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Fleet;
 
-use App\Models\Feature;
+use App\Http\Controllers\Controller;
+use App\Models\Fleet\Feature;
 use Illuminate\Http\Request;
 
 class FeatureController extends Controller
