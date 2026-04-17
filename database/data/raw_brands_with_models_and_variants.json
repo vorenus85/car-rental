@@ -1,0 +1,594 @@
+[
+    {
+        "name": "Volkswagen",
+        "image": "volkswagen-logo.png",
+        "models": [
+            {
+                "name": "Polo",
+                "description": "A compact city car that is easy to drive, fuel-efficient, and perfect for urban travel.",
+                "variants": [
+                    {
+                        "name": "1.0 MPI Manual",
+                        "category": "Economy",
+                        "description": "An economical petrol engine with manual transmission, ideal for short city trips and low fuel consumption.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    },
+                    {
+                        "name": "1.0 TSI Manual",
+                        "category": "Economy",
+                        "description": "A turbocharged petrol engine offering better performance while maintaining excellent fuel efficiency.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    }
+                ]
+            },
+            {
+                "name": "Golf",
+                "description": "A versatile and comfortable compact car, ideal for both city driving and longer journeys.",
+                "variants": [
+                    {
+                        "name": "1.5 TSI Manual",
+                        "category": "Compact",
+                        "description": "A balanced petrol engine with manual transmission, offering smooth performance and efficiency.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    },
+                    {
+                        "name": "2.0 TDI Automatic",
+                        "category": "Compact",
+                        "description": "A powerful and fuel-efficient diesel engine with automatic transmission, perfect for long-distance travel.",
+                        "body_type": "hatchback",
+                        "transmission": "automatic",
+                        "fuel": "diesel"
+                    }
+                ]
+            },
+            {
+                "name": "Passat",
+                "description": "A spacious and refined business-class sedan designed for comfort, long-distance driving, and premium experience.",
+                "variants": [
+                    {
+                        "name": "2.0 TDI Automatic",
+                        "category": "Business",
+                        "description": "A highly efficient diesel engine with automatic transmission, ideal for highway driving and corporate use.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "diesel"
+                    },
+                    {
+                        "name": "2.0 TSI Automatic",
+                        "category": "Business",
+                        "description": "A strong petrol engine delivering smooth and responsive performance with automatic transmission.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "petrol"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Toyota",
+        "image": "toyota-logo.png",
+        "models": [
+            {
+                "name": "Yaris",
+                "description": "A compact and efficient city car, ideal for urban driving with excellent fuel economy and easy handling.",
+                "variants": [
+                    {
+                        "name": "1.0 VVT-i Manual",
+                        "category": "Economy",
+                        "description": "A simple and economical petrol engine with manual transmission, perfect for short city trips.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    },
+                    {
+                        "name": "1.5 Hybrid Automatic",
+                        "category": "Economy",
+                        "description": "A self-charging hybrid system with automatic transmission, offering low fuel consumption and smooth driving in urban environments.",
+                        "body_type": "hatchback",
+                        "transmission": "automatic",
+                        "fuel": "hybrid"
+                    }
+                ]
+            },
+            {
+                "name": "Corolla",
+                "description": "A reliable and comfortable compact car, well-suited for both city use and longer journeys.",
+                "variants": [
+                    {
+                        "name": "1.8 Hybrid Automatic",
+                        "category": "Compact",
+                        "description": "An efficient hybrid engine with automatic transmission, ideal for balanced everyday driving and fuel savings.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "hybrid"
+                    },
+                    {
+                        "name": "2.0 Hybrid Automatic",
+                        "category": "Compact",
+                        "description": "A more powerful hybrid option delivering improved performance while maintaining excellent efficiency.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "hybrid"
+                    }
+                ]
+            },
+            {
+                "name": "RAV4",
+                "description": "A spacious and versatile SUV designed for comfort, safety, and performance on both city roads and longer trips.",
+                "variants": [
+                    {
+                        "name": "2.5 Hybrid AWD",
+                        "category": "SUV",
+                        "description": "A powerful hybrid system with all-wheel drive, providing excellent traction and efficiency for all driving conditions.",
+                        "body_type": "suv",
+                        "transmission": "automatic",
+                        "fuel": "hybrid"
+                    },
+                    {
+                        "name": "2.0 Petrol Manual",
+                        "category": "SUV",
+                        "description": "A traditional petrol engine with manual transmission, offering reliable performance and a more engaging driving experience.",
+                        "body_type": "suv",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skoda",
+        "image": "skoda-logo.png",
+        "models": [
+            {
+                "name": "Fabia",
+                "description": "A practical and efficient small car, ideal for city driving with a focus on simplicity and low running costs.",
+                "variants": [
+                    {
+                        "name": "1.0 MPI Manual",
+                        "category": "Economy",
+                        "description": "A reliable and fuel-efficient petrol engine with manual transmission, perfect for everyday urban use.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    },
+                    {
+                        "name": "1.0 TSI Manual",
+                        "category": "Economy",
+                        "description": "A turbocharged petrol engine offering improved performance while maintaining low fuel consumption.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    }
+                ]
+            },
+            {
+                "name": "Octavia",
+                "description": "A spacious and versatile compact car, known for its practicality, comfort, and excellent value for money.",
+                "variants": [
+                    {
+                        "name": "1.5 TSI Manual",
+                        "category": "Compact",
+                        "description": "A balanced petrol engine with manual transmission, suitable for both city driving and longer trips.",
+                        "body_type": "wagon",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    },
+                    {
+                        "name": "2.0 TDI Automatic",
+                        "category": "Compact",
+                        "description": "A highly efficient diesel engine with automatic transmission, ideal for long-distance travel and highway use.",
+                        "body_type": "wagon",
+                        "transmission": "automatic",
+                        "fuel": "diesel"
+                    }
+                ]
+            },
+            {
+                "name": "Superb",
+                "description": "A large and comfortable business-class car offering premium space, smooth driving, and excellent long-distance comfort.",
+                "variants": [
+                    {
+                        "name": "2.0 TDI Automatic",
+                        "category": "Business",
+                        "description": "A fuel-efficient diesel engine with automatic transmission, perfect for extended journeys and professional use.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "diesel"
+                    },
+                    {
+                        "name": "2.0 TSI Automatic",
+                        "category": "Business",
+                        "description": "A powerful petrol engine delivering smooth performance and a more dynamic driving experience.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "petrol"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ford",
+        "image": "ford-logo.png",
+        "models": [
+            {
+                "name": "Fiesta",
+                "description": "A compact and agile city car, perfect for urban driving with responsive handling and low fuel consumption.",
+                "variants": [
+                    {
+                        "name": "1.0 EcoBoost Manual",
+                        "category": "Economy",
+                        "description": "A small turbocharged petrol engine with manual transmission, offering a great balance of efficiency and performance for city use.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    }
+                ]
+            },
+            {
+                "name": "Focus",
+                "description": "A well-balanced compact car offering comfort, modern features, and a smooth driving experience for everyday use.",
+                "variants": [
+                    {
+                        "name": "1.0 EcoBoost Manual",
+                        "category": "Compact",
+                        "description": "An efficient turbocharged petrol engine with manual transmission, ideal for daily driving and fuel savings.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    },
+                    {
+                        "name": "1.5 EcoBoost Automatic",
+                        "category": "Compact",
+                        "description": "A more powerful petrol engine with automatic transmission, delivering smooth acceleration and enhanced driving comfort.",
+                        "body_type": "hatchback",
+                        "transmission": "automatic",
+                        "fuel": "petrol"
+                    }
+                ]
+            },
+            {
+                "name": "Kuga",
+                "description": "A spacious and modern SUV designed for comfort, practicality, and versatility on both city roads and longer trips.",
+                "variants": [
+                    {
+                        "name": "1.5 EcoBoost",
+                        "category": "SUV",
+                        "description": "A reliable petrol engine offering solid performance and versatility for everyday driving.",
+                        "body_type": "suv",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    },
+                    {
+                        "name": "2.5 Plug-in Hybrid",
+                        "category": "SUV",
+                        "description": "A plug-in hybrid system combining electric driving capability with petrol power, ideal for efficient city travel and longer journeys.",
+                        "body_type": "suv",
+                        "transmission": "automatic",
+                        "fuel": "hybrid"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Hyundai",
+        "image": "hyundai-logo.png",
+        "models": [
+            {
+                "name": "Ioniq 5",
+                "description": "A fully electric SUV offering modern design, fast charging, and a smooth, quiet driving experience.",
+                "variants": [
+                    {
+                        "name": "Long Range Automatic",
+                        "category": "SUV",
+                        "description": "A fully electric powertrain with long driving range and fast charging capability, ideal for both city and long-distance travel.",
+                        "body_type": "suv",
+                        "transmission": "automatic",
+                        "fuel": "electric"
+                    }
+                ]
+            },
+            {
+                "name": "Ioniq 6",
+                "description": "A sleek and efficient electric sedan designed for long-range driving, combining modern design with advanced technology.",
+                "variants": [
+                    {
+                        "name": "Long Range Automatic",
+                        "category": "Business",
+                        "description": "A fully electric drivetrain offering extended range, smooth acceleration, and a quiet, comfortable driving experience.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "electric"
+                    }
+                ]
+            },
+            {
+                "name": "i20",
+                "description": "A modern and compact city car offering efficiency, ease of driving, and practicality for everyday urban use.",
+                "variants": [
+                    {
+                        "name": "1.2 MPI Manual",
+                        "category": "Economy",
+                        "description": "A simple and reliable petrol engine with manual transmission, ideal for city driving and low running costs.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    }
+                ]
+            },
+            {
+                "name": "i30",
+                "description": "A well-equipped compact car combining comfort, modern technology, and smooth performance for daily driving.",
+                "variants": [
+                    {
+                        "name": "1.0 T-GDI",
+                        "category": "Compact",
+                        "description": "An efficient turbocharged petrol engine offering a good balance of performance and fuel economy.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    },
+                    {
+                        "name": "1.5 T-GDI",
+                        "category": "Compact",
+                        "description": "A more powerful turbocharged engine delivering stronger acceleration and improved driving dynamics.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    }
+                ]
+            },
+            {
+                "name": "Tucson",
+                "description": "A stylish and spacious SUV designed for comfort, advanced technology, and versatility on both city roads and longer journeys.",
+                "variants": [
+                    {
+                        "name": "1.6 T-GDI",
+                        "category": "SUV",
+                        "description": "A responsive turbocharged petrol engine providing solid performance for everyday driving.",
+                        "body_type": "suv",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    },
+                    {
+                        "name": "1.6 Hybrid",
+                        "category": "SUV",
+                        "description": "A hybrid powertrain combining efficiency and smooth automatic driving, ideal for reducing fuel consumption in urban environments.",
+                        "body_type": "suv",
+                        "transmission": "automatic",
+                        "fuel": "hybrid"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Kia",
+        "image": "kia-logo.png",
+        "models": [
+            {
+                "name": "Rio",
+                "description": "A compact and practical city car offering simplicity, reliability, and low running costs for everyday urban driving.",
+                "variants": [
+                    {
+                        "name": "1.2 MPI Manual",
+                        "category": "Economy",
+                        "description": "A reliable petrol engine with manual transmission, ideal for short trips and efficient city driving.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    }
+                ]
+            },
+            {
+                "name": "Ceed",
+                "description": "A modern and comfortable compact car with a focus on technology, practicality, and everyday usability.",
+                "variants": [
+                    {
+                        "name": "1.0 T-GDI",
+                        "category": "Compact",
+                        "description": "An efficient turbocharged petrol engine offering a smooth and economical driving experience.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    },
+                    {
+                        "name": "1.5 T-GDI",
+                        "category": "Compact",
+                        "description": "A more powerful turbocharged engine delivering stronger performance and improved responsiveness.",
+                        "body_type": "hatchback",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    }
+                ]
+            },
+            {
+                "name": "Sportage",
+                "description": "A bold and spacious SUV combining modern design, advanced features, and versatility for both city and long-distance travel.",
+                "variants": [
+                    {
+                        "name": "1.6 T-GDI",
+                        "category": "SUV",
+                        "description": "A turbocharged petrol engine providing reliable performance for everyday driving conditions.",
+                        "body_type": "suv",
+                        "transmission": "manual",
+                        "fuel": "petrol"
+                    },
+                    {
+                        "name": "1.6 Hybrid",
+                        "category": "SUV",
+                        "description": "A hybrid powertrain offering improved fuel efficiency and smooth automatic driving, ideal for urban and mixed use.",
+                        "body_type": "suv",
+                        "transmission": "automatic",
+                        "fuel": "hybrid"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "BMW",
+        "image": "bmw-logo.png",
+        "models": [
+            {
+                "name": "4 Series",
+                "description": "A sporty and stylish coupe offering dynamic performance, premium comfort, and an engaging driving experience.",
+                "variants": [
+                    {
+                        "name": "420i Automatic",
+                        "category": "Premium",
+                        "description": "A petrol engine delivering smooth performance and sporty driving dynamics in a sleek coupe design.",
+                        "body_type": "coupe",
+                        "transmission": "automatic",
+                        "fuel": "petrol"
+                    }
+                ]
+            },
+            {
+                "name": "i4",
+                "description": "A fully electric premium sedan combining performance, comfort, and zero-emission driving.",
+                "variants": [
+                    {
+                        "name": "eDrive40 Automatic",
+                        "category": "Premium",
+                        "description": "An electric drivetrain delivering smooth acceleration, long range, and a quiet premium driving experience.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "electric"
+                    }
+                ]
+            },
+            {
+                "name": "3 Series",
+                "description": "A sporty and refined business-class sedan offering a perfect balance of performance, comfort, and driving dynamics.",
+                "variants": [
+                    {
+                        "name": "320d Automatic",
+                        "category": "Business",
+                        "description": "A fuel-efficient diesel engine with automatic transmission, ideal for long-distance travel and comfortable highway driving.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "diesel"
+                    },
+                    {
+                        "name": "330i Automatic",
+                        "category": "Business",
+                        "description": "A powerful petrol engine delivering smooth acceleration and a more dynamic driving experience.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "petrol"
+                    }
+                ]
+            },
+            {
+                "name": "5 Series",
+                "description": "A premium executive sedan designed for maximum comfort, advanced technology, and a high-end driving experience.",
+                "variants": [
+                    {
+                        "name": "520d Automatic",
+                        "category": "Premium",
+                        "description": "An efficient diesel engine with automatic transmission, offering excellent comfort and economy for long journeys.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "diesel"
+                    },
+                    {
+                        "name": "530e Hybrid",
+                        "category": "Premium",
+                        "description": "A plug-in hybrid combining electric driving with strong performance, ideal for efficient city use and premium comfort.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "hybrid"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Mercedes-Benz",
+        "image": "mercedes-benz-logo.png",
+        "models": [
+            {
+                "name": "EQE",
+                "description": "A fully electric luxury sedan offering a quiet ride, advanced technology, and premium comfort for long-distance travel.",
+                "variants": [
+                    {
+                        "name": "EQE 350 Automatic",
+                        "category": "Premium",
+                        "description": "An electric drivetrain delivering smooth performance, refined comfort, and zero-emission driving.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "electric"
+                    }
+                ]
+            },
+            {
+                "name": "C-Class Coupe",
+                "description": "A stylish and elegant coupe offering premium comfort, refined design, and a smooth driving experience.",
+                "variants": [
+                    {
+                        "name": "C300 Coupe Automatic",
+                        "category": "Premium",
+                        "description": "A petrol engine delivering smooth performance and refined comfort in a sleek coupe design.",
+                        "body_type": "coupe",
+                        "transmission": "automatic",
+                        "fuel": "petrol"
+                    }
+                ]
+            },
+            {
+                "name": "C-Class",
+                "description": "A refined and comfortable business-class sedan, offering a smooth driving experience with premium materials and modern technology.",
+                "variants": [
+                    {
+                        "name": "C200 Automatic",
+                        "category": "Business",
+                        "description": "A balanced petrol engine with automatic transmission, providing smooth performance and everyday comfort.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "petrol"
+                    },
+                    {
+                        "name": "C300 Automatic",
+                        "category": "Business",
+                        "description": "A more powerful petrol engine delivering enhanced performance while maintaining a refined and comfortable ride.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "petrol"
+                    }
+                ]
+            },
+            {
+                "name": "E-Class",
+                "description": "A luxury executive sedan designed for maximum comfort, advanced technology, and effortless long-distance driving.",
+                "variants": [
+                    {
+                        "name": "E220d Automatic",
+                        "category": "Premium",
+                        "description": "A highly efficient diesel engine with automatic transmission, ideal for long journeys with excellent fuel economy and comfort.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "diesel"
+                    },
+                    {
+                        "name": "E300 Automatic",
+                        "category": "Premium",
+                        "description": "A powerful petrol engine offering smooth acceleration, quiet performance, and a premium driving experience.",
+                        "body_type": "sedan",
+                        "transmission": "automatic",
+                        "fuel": "petrol"
+                    }
+                ]
+            }
+        ]
+    }
+]
