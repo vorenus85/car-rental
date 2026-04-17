@@ -350,10 +350,12 @@
         "image": "vw_passat.jpg",
         "price_per_day": 60,
         "status": "available",
+
+        "production_year": 2019,
+
         "body_type": "wagon",
         "transmission": "automatic",
         "fuel": "diesel",
-        "production_year": 2019,
         "top_speed": 220,
         "acceleration": 8.1,
         "range": 900,

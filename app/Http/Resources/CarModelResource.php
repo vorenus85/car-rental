@@ -19,6 +19,8 @@ class CarModelResource extends JsonResource
             'id' => $this->id,
             // @phpstan-ignore property.notFound
             'name' => $this->name,
+            // @phpstan-ignore property.notFound
+            'description' => $this->description,
             'brand' => new BrandResource($this->whenLoaded('brand')),
         ];
     }

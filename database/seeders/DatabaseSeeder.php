@@ -10,8 +10,8 @@ class DatabaseSeeder extends Seeder
     use WithoutModelEvents;
 
     /**
-    * Seed the application's database.
-    */
+     * Seed the application's database.
+     */
     public function run(): void
     {
 
@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             FeatureSeeder::class,
             BrandSeeder::class,
             CarModelSeeder::class,
-            CarSeeder::class,
+            CarVariantSeeder::class,
+            // CarSeeder::class,
         ]);
 
         $this->command->info('All data seeded successfully!');

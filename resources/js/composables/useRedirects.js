@@ -35,6 +35,14 @@ export const useRedirects = () => {
         router.push({ name: 'models.create' })
     }
 
+    const toVariantsList = () => {
+        router.push({ name: 'variants' })
+    }
+
+    const toCreateVariant = () => {
+        router.push({ name: 'variants.create' })
+    }
+
     const toFeaturesList = () => {
         router.push({ name: 'features' })
     }
@@ -64,6 +72,8 @@ export const useRedirects = () => {
         toCreateBrand,
         toCreateModel,
         toModelsList,
+        toVariantsList,
+        toCreateVariant,
         toFeaturesList,
         toCreateFeature,
         toCalendar,

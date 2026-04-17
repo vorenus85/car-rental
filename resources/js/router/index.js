@@ -1,21 +1,33 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import DashboardPage from '@/pages/DashboardPage.vue'
+
 import BookingsPage from '@/pages/BookingsPage.vue'
+
 import CalendarPage from '@/pages/CalendarPage.vue'
+
 import ClientsPage from '@/pages/ClientsPage.vue'
+
 import SettingsPage from '@/pages/SettingsPage.vue'
 import NotFoundPage from '@/pages/NotFoundPage.vue'
 import LoginPage from '@/pages/LoginPage.vue'
+
 import CarListPage from '@/pages/Car/ListPage.vue'
 import CarCreatePage from '@/pages/Car/CreatePage.vue'
 import CarEditPage from '@/pages/Car/EditPage.vue'
+
 import BrandListPage from '@/pages/Brand/ListPage.vue'
 import BrandCreatePage from '@/pages/Brand/CreatePage.vue'
 import BrandEditPage from '@/pages/Brand/EditPage.vue'
+
 import ModelListPage from '@/pages/Model/ListPage.vue'
 import ModelCreatePage from '@/pages/Model/CreatePage.vue'
 import ModelEditPage from '@/pages/Model/EditPage.vue'
+
+import VariantListPage from '@/pages/Variant/ListPage.vue'
+import VariantCreatePage from '@/pages/Variant/CreatePage.vue'
+import VariantEditPage from '@/pages/Variant/EditPage.vue'
+
 import FeatureListPage from '@/pages/Feature/ListPage.vue'
 import FeatureCreatePage from '@/pages/Feature/CreatePage.vue'
 import FeatureEditPage from '@/pages/Feature/EditPage.vue'
@@ -110,6 +122,30 @@ const router = createRouter({
             path: '/models/:id',
             name: 'models.show',
             component: ModelEditPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/variants',
+            name: 'variants',
+            component: VariantListPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/variants/create',
+            name: 'variants.create',
+            component: VariantCreatePage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/variants/:id',
+            name: 'variants.show',
+            component: VariantEditPage,
             meta: {
                 requiresAuth: true,
             },

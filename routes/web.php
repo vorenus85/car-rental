@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\BrandImageController;
 use App\Http\Controllers\CarModelController;
+use App\Http\Controllers\CarVariantController;
 use App\Http\Controllers\FeatureController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/auth/logout', [AuthController::class, 'logout']);
-Route::get('/auth/me', fn (Request $request) => response()->json($request->user()));
+Route::get('/auth/me', fn(Request $request) => response()->json($request->user()));
 Route::get('/auth/check', function () {
     return response()->json([
         'authenticated' => Auth::check(),
@@ -48,6 +49,13 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{carModel}', [CarModelController::class, 'destroy']);
     });
 
+    Route::prefix('/api/admin/variants')->group(function () {
+        Route::get('/', [CarVariantController::class, 'index']);
+        Route::post('/', [CarVariantController::class, 'store']);
+        Route::get('/{carVariant}', [CarVariantController::class, 'show']);
+        Route::put('/{carVariant}', [CarVariantController::class, 'update']);
+        Route::delete('/{carVariant}', [CarVariantController::class, 'destroy']);
+    });
 });
 
 Route::get('{any}', function () {

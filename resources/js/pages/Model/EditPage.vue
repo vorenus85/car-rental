@@ -55,6 +55,23 @@
                         >{{ $form.brand?.error?.message }}</Message
                     >
                 </div>
+                <div class="flex flex-col gap-1">
+                    <label for="description">Description</label>
+                    <Textarea
+                        id="description"
+                        rows="5"
+                        cols="30"
+                        placeholder="Model description"
+                        name="description"
+                    />
+                    <Message
+                        v-if="$form.description?.invalid"
+                        severity="error"
+                        size="small"
+                        variant="simple"
+                        >{{ $form.description?.error?.message }}</Message
+                    >
+                </div>
                 <div class="flex flex-col">
                     <Button
                         type="submit"
@@ -72,7 +89,7 @@
 <script setup>
 import AppLayout from '@/layouts/AppLayout.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { Button, InputText, Message, Select } from 'primevue'
+import { Button, InputText, Message, Select, Textarea } from 'primevue'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { Form } from '@primevue/forms'
 import { useCustomToast } from '@/composables/useCustomToast'

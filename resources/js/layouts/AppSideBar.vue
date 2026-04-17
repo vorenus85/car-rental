@@ -46,6 +46,9 @@ watch(
             'models',
             'models.create',
             'models.edit',
+            'variants',
+            'variants.create',
+            'variants.edit',
             'features',
             'features.create',
             'features.edit',
@@ -87,6 +90,11 @@ const menus = [
                 icon: 'clone',
                 routeName: 'models',
                 title: 'Models',
+            },
+            {
+                icon: 'clone',
+                routeName: 'variants',
+                title: 'Variants',
             },
             {
                 icon: 'sparkles',

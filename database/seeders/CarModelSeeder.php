@@ -14,11 +14,11 @@ class CarModelSeeder extends Seeder
      */
     public function run(): void
     {
-        $path = database_path('data/brands_with_models.json');
+        $path = database_path('data/car_models.json');
         $data = json_decode(File::get($path), true);
 
         foreach ($data as $item) {
-            $brand = Brand::where('name', $item['name'])->first();
+            $brand = Brand::where('name', $item['brand'])->first();
 
             if (! $brand) {
                 continue;
@@ -28,13 +28,13 @@ class CarModelSeeder extends Seeder
 
             foreach ($carModels as $carModel) {
                 CarModel::create([
-                    'name' => $carModel,
+                    'name' => $carModel['name'],
                     'brand_id' => $brand['id'],
+                    'description' => $carModel['description'],
                 ]);
             }
-
         }
 
-        $this->command->info('CarModels data seeded successfully!');
+        $this->command->info('Car models data seeded successfully!');
     }
 }
