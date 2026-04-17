@@ -23,8 +23,8 @@ class CarModel extends Model
         return $this->belongsTo(Brand::class);
     }
 
-    public function cars(): HasMany
+    public function variants(): HasMany
     {
-        return $this->hasMany(Car::class, 'model_id', 'id');
+        return $this->hasMany(Variant::class);
     }
 }
