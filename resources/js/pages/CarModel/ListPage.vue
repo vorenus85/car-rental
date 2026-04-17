@@ -40,7 +40,7 @@
                 <template #empty> No results found. </template>
                 <Column sortable field="brand.name" header="Brand" style="width: 20%">
                     <template #body="slotProps">
-                        <div class="flex gap-3 items-center">
+                        <div class="flex gap-1 items-center">
                             <Image
                                 :src="
                                     slotProps.data?.brand.image
@@ -49,13 +49,13 @@
                                 "
                                 :alt="slotProps.data?.title"
                             />
-                            <Chip :label="slotProps.data.brand.name" />
+                            <Tag :value="slotProps.data.brand.name" severity="secondary" />
                         </div>
                     </template>
                 </Column>
                 <Column sortable field="name" header="Name" style="width: 10%">
                     <template #body="slotProps">
-                        <Chip severity="primary" :label="slotProps.data.name"
+                        <Tag severity="secondary" :value="slotProps.data.name"
                     /></template>
                 </Column>
                 <Column sortable field="description" header="Description" style="width: 30%">
@@ -100,6 +100,7 @@ import {
     Image,
     InputIcon,
     InputText,
+    Tag,
     useConfirm,
 } from 'primevue'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'

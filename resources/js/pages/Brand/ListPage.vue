@@ -38,21 +38,20 @@
                     </div>
                 </template>
                 <template #empty> No results found. </template>
-                <Column sortable field="image" header="Logo" style="width: 10%">
-                    <template #body="slotProps">
-                        <Image
-                            :src="
-                                slotProps.data?.image
-                                    ? `${slotProps.data.image_url}`
-                                    : '/no-image.jpg'
-                            "
-                            :alt="slotProps.data?.title"
-                            preview
-                        />
-                    </template>
-                </Column>
                 <Column sortable field="name" header="Name" style="width: 25%">
-                    <template #body="slotProps"> <Chip :label="slotProps.data.name" /></template>
+                    <template #body="slotProps">
+                        <div class="flex gap-1 items-center">
+                            <Image
+                                :src="
+                                    slotProps.data?.image
+                                        ? `${slotProps.data.image_url}`
+                                        : '/no-image.jpg'
+                                "
+                                :alt="slotProps.data?.title"
+                            />
+                            <Tag :value="slotProps.data.name" severity="secondary" />
+                        </div>
+                    </template>
                 </Column>
                 <Column header="Actions" style="width: 10%">
                     <template #body="slotProps">
@@ -94,6 +93,7 @@ import {
     Image,
     InputIcon,
     InputText,
+    Tag,
     useConfirm,
 } from 'primevue'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
