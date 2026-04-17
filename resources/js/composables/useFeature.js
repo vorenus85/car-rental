@@ -55,11 +55,11 @@ export const useFeature = () => {
         try {
             const { data } = await fetchFeatures()
             features.value = data
-            loading.value = false
         } catch (e) {
-            loading.value = false
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
         }
     }
 
@@ -72,11 +72,11 @@ export const useFeature = () => {
             initialValues.description = data.description
             initialValues.category = data.category
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
-            loading.value = false
         } catch (e) {
-            loading.value = false
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
         }
     }
 
@@ -91,12 +91,11 @@ export const useFeature = () => {
             features.value.splice(idIndex, 1)
 
             customToast.success('Feature deleted successfully!')
-
-            loading.value = false
         } catch (e) {
-            loading.value = false
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
         }
     }
 
