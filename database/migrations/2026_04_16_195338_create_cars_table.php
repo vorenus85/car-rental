@@ -15,7 +15,7 @@ return new class extends Migration {
 
             $table->foreignId('variant_id')
                 ->constrained('variants')
-                ->cascadeOnDelete();
+                ->restrictOnDelete();
 
             $table->string('licence_plate')->unique();
 
