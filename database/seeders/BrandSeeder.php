@@ -14,7 +14,7 @@ class BrandSeeder extends Seeder
     public function run(): void
     {
         //
-        $json = File::get(database_path('data/brands_with_models.json'));
+        $json = File::get(database_path('data/brands.json'));
         $data = json_decode($json, true);
 
         // Populate with data

@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Volkswagen",
+        "image": "volkswagen-logo.png"
+    },
+    {
+        "name": "Toyota",
+        "image": "toyota-logo.png"
+    },
+    {
+        "name": "Skoda",
+        "image": "skoda-logo.png"
+    },
+    {
+        "name": "Ford",
+        "image": "ford-logo.png"
+    },
+    {
+        "name": "Hyundai",
+        "image": "hyundai-logo.png"
+    },
+    {
+        "name": "Kia",
+        "image": "kia-logo.png"
+    },
+    {
+        "name": "BMW",
+        "image": "bmw-logo.png"
+    },
+    {
+        "name": "Mercedes-Benz",
+        "image": "mercedes-benz-logo.png"
+    },
+    {
+        "name": "Tesla",
+        "image": "tesla-logo.png"
+    }
+]
