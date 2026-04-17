@@ -7,7 +7,6 @@ export const fetchVariant = id => {
 }
 
 export const deleteVariantById = id => {
-    console.log('deleteVariantById', id)
     return axios.delete(`/api/admin/variants/${id}`)
 }
 

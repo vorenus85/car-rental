@@ -7,7 +7,6 @@ export const fetchCarModel = id => {
 }
 
 export const deleteCarModelById = id => {
-    console.log('deleteCarModelById', id)
     return axios.delete(`/api/admin/car-models/${id}`)
 }
 
