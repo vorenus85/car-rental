@@ -4,7 +4,6 @@ import {
     fetchBrand,
     uploadBrandImage,
     deleteBrandImage,
-    fetchMinimalBrands,
 } from '@/services/brandService'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { reactive, ref } from 'vue'
@@ -47,31 +46,17 @@ export const useBrand = () => {
         }
     }
 
-    const getBrands = async () => {
+    const getBrands = async params => {
         loading.value = true
 
         try {
-            const { data } = await fetchBrands()
+            const { data } = await fetchBrands({ ...params })
             brands.value = data
-            loading.value = false
         } catch (e) {
-            loading.value = false
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
-        }
-    }
-
-    const getBrandsMinimal = async () => {
-        loading.value = true
-
-        try {
-            const { data } = await fetchMinimalBrands()
-            brands.value = data
+        } finally {
             loading.value = false
-        } catch (e) {
-            loading.value = false
-            void e // to avoid unused variable lint error
-            // console.error(e) -- IGNORE --
         }
     }
 
@@ -157,7 +142,6 @@ export const useBrand = () => {
         brands,
         getBrand,
         getBrands,
-        getBrandsMinimal,
         deleteBrand,
         brandValidator,
         deleteImage,

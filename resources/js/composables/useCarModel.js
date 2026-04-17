@@ -1,5 +1,4 @@
 import { fetchCarModels, deleteCarModelById, fetchCarModel } from '@/services/carModelService'
-import { fetchBrand } from '@/services/brandService'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -15,7 +14,7 @@ export const useCarModel = () => {
 
     const initialValues = reactive({
         name: '',
-        brand: '',
+        brand_id: '',
         description: '',
     })
 
@@ -43,7 +42,7 @@ export const useCarModel = () => {
         }
     }
 
-    const getModels = async () => {
+    const getCarModels = async () => {
         loading.value = true
 
         try {
@@ -57,15 +56,14 @@ export const useCarModel = () => {
         }
     }
 
-    const getModel = async () => {
+    const getCarModel = async () => {
         loading.value = true
 
         try {
             const { data } = await fetchCarModel(modelId)
             initialValues.name = data.name
             initialValues.description = data.description
-            const brand = await fetchBrand(data.brand_id)
-            initialValues.brand = { id: brand.data.id, name: brand.data.name }
+            initialValues.brand_id = data.brand_id
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
             loading.value = false
         } catch (e) {
@@ -75,7 +73,7 @@ export const useCarModel = () => {
         }
     }
 
-    const deleteModel = async id => {
+    const deleteCarModel = async id => {
         loading.value = true
 
         try {
@@ -97,9 +95,9 @@ export const useCarModel = () => {
 
     return {
         models,
-        getModel,
-        getModels,
-        deleteModel,
+        getCarModel,
+        getCarModels,
+        deleteCarModel,
         modelValidator,
         initialValues,
         loading,

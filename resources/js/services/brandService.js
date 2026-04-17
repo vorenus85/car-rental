@@ -1,9 +1,5 @@
-export const fetchBrands = () => {
-    return axios.get('/api/admin/brands')
-}
-
-export const fetchMinimalBrands = () => {
-    return axios.get('/api/admin/brands/?minimal=1')
+export const fetchBrands = async (params = {}) => {
+    return axios.get('/api/admin/brands', { params })
 }
 
 export const fetchBrand = id => {

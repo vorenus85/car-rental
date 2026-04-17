@@ -134,6 +134,6 @@ const deleteConfirm = id => {
 }
 
 onMounted(async () => {
-    await getBrands()
+    await getBrands({ with_images: true })
 })
 </script>

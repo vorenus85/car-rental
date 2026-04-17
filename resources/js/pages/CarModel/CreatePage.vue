@@ -35,22 +35,22 @@
                     <label for="brand">Brand</label>
                     <Select
                         id="brand"
-                        v-model="selectedBrand"
                         filter
                         :options="brands"
+                        option-value="id"
                         option-label="name"
                         placeholder="Select Brand"
                         checkmark
-                        name="brand"
+                        name="brand_id"
                         :highlight-on-select="false"
                         class="w-full md:w-56"
                     />
                     <Message
-                        v-if="$form.brand?.invalid"
+                        v-if="$form.brand_id?.invalid"
                         severity="error"
                         size="small"
                         variant="simple"
-                        >{{ $form.brand?.error?.message }}</Message
+                        >{{ $form.brand_id?.error?.message }}</Message
                     >
                 </div>
                 <div class="flex flex-col gap-1">
@@ -94,18 +94,16 @@ import { useBrand } from '@/composables/useBrand'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { createCarModel } from '@/services/carModelService'
 import { Form } from '@primevue/forms'
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 
 const { toModelsList } = useRedirects()
 const { customToast } = useCustomToast()
 const { initialValues, modelValidator } = useCarModel()
-const { getBrandsMinimal, brands } = useBrand()
-const selectedBrand = ref({})
+const { getBrands, brands } = useBrand()
 
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
         try {
-            values.brand_id = selectedBrand.value.id
             await createCarModel(values)
 
             customToast.success('Model created successfully!')
@@ -120,6 +118,6 @@ const onFormSubmit = async ({ valid, values }) => {
     }
 }
 onMounted(async () => {
-    await getBrandsMinimal()
+    await getBrands()
 })
 </script>
