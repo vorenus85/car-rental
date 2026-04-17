@@ -27,7 +27,7 @@ class VariantController extends Controller
             ->join('brands', 'car_models.brand_id', '=', 'brands.id')
             ->with([
                 'model:id,name,brand_id',
-                'model.brand:id,name,image'
+                'model.brand:id,name,image',
             ])
             ->orderBy('brands.name', 'asc')
             ->orderBy('car_models.name', 'asc')
@@ -70,7 +70,7 @@ class VariantController extends Controller
 
         if ($variant->cars()->exists()) {
             return response()->json([
-                'message' => 'Cannot delete variant with assigned cars.'
+                'message' => 'Cannot delete variant with assigned cars.',
             ], 422);
         }
         $result = $variant->delete();

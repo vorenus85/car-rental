@@ -80,7 +80,7 @@ class BrandController extends Controller
         //
         if ($brand->models()->exists()) {
             return response()->json([
-                'message' => 'Brand cannot be deleted because it has associated models.'
+                'message' => 'Brand cannot be deleted because it has associated models.',
             ], 422);
         }
 

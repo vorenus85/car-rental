@@ -80,7 +80,7 @@ class CarModelController extends Controller
         //
         if ($carModel->variants()->exists()) {
             return response()->json([
-                'message' => 'Cannot delete car model with assigned variants.'
+                'message' => 'Cannot delete car model with assigned variants.',
             ], 422);
         }
 
