@@ -18,7 +18,7 @@ return new class extends Migration {
 
             $table->foreignId('model_id')
                 ->constrained('car_models')
-                ->restrictOnDelete();
+                ->cascadeOnDelete();
 
             $table->string('name');
             $table->string('category');

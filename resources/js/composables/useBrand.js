@@ -88,16 +88,12 @@ export const useBrand = () => {
             brands.value.splice(idIndex, 1)
 
             customToast.success('Brand deleted successfully!')
+
+            loading.value = false
         } catch (e) {
-            const message =
-                e?.response?.data?.message || 'Something went wrong while deleting the brand.'
-
-            customToast.error(message)
-
+            loading.value = false
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
-        } finally {
-            loading.value = false
         }
     }
 

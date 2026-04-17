@@ -15,10 +15,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->foreignId('brand_id')
-                ->constrained('brands')
-                ->restrictOnDelete();
-
+            $table->foreignId('brand_id')->nullable()->constrained('brands')->nullOnDelete();
             $table->timestamps();
         });
     }

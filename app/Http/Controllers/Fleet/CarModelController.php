@@ -78,14 +78,9 @@ class CarModelController extends Controller
     public function destroy(CarModel $carModel)
     {
         //
-        if ($carModel->variants()->exists()) {
-            return response()->json([
-                'message' => 'Cannot delete car model with assigned variants.'
-            ], 422);
-        }
+        $carModel->cars()->update(['model_id' => null]);
+        $deleted = $carModel->delete();
 
-        $result = $carModel->delete();
-
-        return response()->json(['result' => $result], 200);
+        return response()->json(['status' => $deleted ? 'deleted' : 'failed', 'carModel' => $carModel]);
     }
 }

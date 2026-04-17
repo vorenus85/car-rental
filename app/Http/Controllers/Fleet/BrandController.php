@@ -77,14 +77,9 @@ class BrandController extends Controller
      */
     public function destroy(Brand $brand)
     {
-        if ($brand->models()->exists()) {
-            return response()->json([
-                'message' => 'Brand cannot be deleted because it has associated models.'
-            ], 422);
-        }
+        //
+        $brand->delete();
 
-        $result = $brand->delete();
-
-        return response()->json(['result' => $result], 200);
+        return response()->json(['status' => 'ok'], 200);
     }
 }
