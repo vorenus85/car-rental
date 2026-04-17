@@ -39,7 +39,9 @@
                 </template>
                 <template #empty> No results found. </template>
                 <Column sortable field="name" header="Name" style="width: 25%">
-                    <template #body="slotProps"> <Chip :label="slotProps.data.name" /></template>
+                    <template #body="slotProps">
+                        <Tag :value="slotProps.data.name" severity="secondary"
+                    /></template>
                 </Column>
                 <Column sortable field="category" header="Category" style="width: 10%"> </Column>
                 <Column sortable field="description" header="Description" style="width: 25%">
@@ -83,6 +85,7 @@ import {
     IconField,
     InputIcon,
     InputText,
+    Tag,
     useConfirm,
 } from 'primevue'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'

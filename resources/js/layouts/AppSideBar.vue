@@ -73,8 +73,8 @@ const menus = [
     },
     {
         icon: 'list',
-        routeName: 'units',
-        title: 'Units',
+        routeName: 'fleet',
+        title: 'Fleet',
         items: [
             {
                 icon: 'car',

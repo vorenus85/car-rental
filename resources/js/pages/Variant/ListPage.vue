@@ -39,7 +39,9 @@
                 </template>
                 <template #empty> No results found. </template>
                 <Column sortable field="name" header="Name" style="width: 10%">
-                    <template #body="slotProps"> <Chip :label="slotProps.data.name" /></template>
+                    <template #body="slotProps">
+                        <Tag :value="slotProps.data.name" severity="secondary"
+                    /></template>
                 </Column>
                 <Column sortable field="category" header="Category" style="width: 10%"> </Column
             ></DataTable>
@@ -49,7 +51,7 @@
 <script setup>
 import AppLayout from '@/layouts/AppLayout.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { Button, Chip, Column, DataTable, IconField, InputIcon, InputText } from 'primevue'
+import { Button, Chip, Column, DataTable, IconField, InputIcon, InputText, Tag } from 'primevue'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { onMounted, ref } from 'vue'
 import { useVariant } from '@/composables/useVariant.js'
