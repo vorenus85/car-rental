@@ -15,12 +15,12 @@ class CarModelController extends Controller
     {
         //
         $carModels = CarModel::query()
-        ->join('brands', 'car_models.brand_id', '=', 'brands.id')
-        ->select('car_models.id', 'car_models.name', 'car_models.brand_id')
-        ->with('brand')
-        ->orderBy('brands.name', 'asc')
-        ->orderBy('car_models.name', 'asc')
-        ->get();
+            ->join('brands', 'car_models.brand_id', '=', 'brands.id')
+            ->select('car_models.id', 'car_models.name', 'car_models.description', 'car_models.brand_id')
+            ->with('brand')
+            ->orderBy('brands.name', 'asc')
+            ->orderBy('car_models.name', 'asc')
+            ->get();
         return CarModelResource::collection($carModels);
     }
 
@@ -31,13 +31,15 @@ class CarModelController extends Controller
     {
         //
         $request->validate([
-           'name' => 'required|string',
-           'brand_id' => 'required|int',
+            'name' => 'required|string',
+            'description' => 'string',
+            'brand_id' => 'required|int',
         ]);
 
         $carModel = CarModel::create([
             'name' => $request->name,
             'brand_id' => $request->brand_id,
+            'description' => $request->description,
         ]);
 
         return response()->json($carModel, 201);
@@ -60,6 +62,7 @@ class CarModelController extends Controller
         //
         $validated = $request->validate([
             'name' => 'required|string',
+            'description' => 'string',
             'brand_id' => 'required|int',
         ]);
 
@@ -77,8 +80,6 @@ class CarModelController extends Controller
         $carModel->cars()->update(['model_id' => null]);
         $deleted = $carModel->delete();
 
-        return response()->json([ 'status' => $deleted ? 'deleted' : 'failed', 'carModel' => $carModel ]);
-
-
+        return response()->json(['status' => $deleted ? 'deleted' : 'failed', 'carModel' => $carModel]);
     }
 }

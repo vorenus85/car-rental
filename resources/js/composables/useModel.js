@@ -16,6 +16,7 @@ export const useModel = () => {
     const initialValues = reactive({
         name: '',
         brand: '',
+        description: '',
     })
 
     const modelValidator = ({ values }) => {
@@ -62,6 +63,7 @@ export const useModel = () => {
         try {
             const { data } = await fetchModel(modelId)
             initialValues.name = data.name
+            initialValues.description = data.description
             const brand = await fetchBrand(data.brand_id)
             initialValues.brand = { id: brand.data.id, name: brand.data.name }
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792

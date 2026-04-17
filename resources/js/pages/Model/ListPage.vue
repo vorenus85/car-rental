@@ -38,14 +38,9 @@
                     </div>
                 </template>
                 <template #empty> No results found. </template>
-                <Column sortable field="name" header="Name" style="width: 25%">
+                <Column sortable field="brand.name" header="Brand" style="width: 20%">
                     <template #body="slotProps">
-                        <Chip severity="primary" :label="slotProps.data.name"
-                    /></template>
-                </Column>
-                <Column sortable field="brand.name" header="Brand" style="width: 25%">
-                    <template #body="slotProps">
-                        <div class="flex gap-5 items-center">
+                        <div class="flex gap-3 items-center">
                             <Image
                                 :src="
                                     slotProps.data?.brand.image
@@ -58,7 +53,14 @@
                         </div>
                     </template>
                 </Column>
-                <Column header="Actions" style="width: 25%">
+                <Column sortable field="name" header="Name" style="width: 10%">
+                    <template #body="slotProps">
+                        <Chip severity="primary" :label="slotProps.data.name"
+                    /></template>
+                </Column>
+                <Column sortable field="description" header="Description" style="width: 30%">
+                </Column>
+                <Column header="Actions" style="width: 20%">
                     <template #body="slotProps">
                         <div class="flex items-center justify-list gap-3">
                             <Button v-slot="buttonProps" severity="info" as-child>
