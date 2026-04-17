@@ -1,0 +1,175 @@
+[
+    {
+        "brand": "Volkswagen",
+        "models": [
+            {
+                "name": "Polo",
+                "description": "A compact city car that is easy to drive, fuel-efficient, and perfect for urban travel."
+            },
+            {
+                "name": "Golf",
+                "description": "A versatile and comfortable compact car, ideal for both city driving and longer journeys."
+            },
+            {
+                "name": "Passat",
+                "description": "A spacious and refined business-class sedan designed for comfort, long-distance driving, and premium experience."
+            }
+        ]
+    },
+    {
+        "brand": "Toyota",
+        "models": [
+            {
+                "name": "Yaris",
+                "description": "A compact and efficient city car, ideal for urban driving with excellent fuel economy and easy handling."
+            },
+            {
+                "name": "Corolla",
+                "description": "A reliable and comfortable compact car, well-suited for both city use and longer journeys."
+            },
+            {
+                "name": "RAV4",
+                "description": "A spacious and versatile SUV designed for comfort, safety, and performance on both city roads and longer trips."
+            }
+        ]
+    },
+    {
+        "brand": "Skoda",
+        "models": [
+            {
+                "name": "Fabia",
+                "description": "A practical and efficient small car, ideal for city driving with a focus on simplicity and low running costs."
+            },
+            {
+                "name": "Octavia",
+                "description": "A spacious and versatile compact car, known for its practicality, comfort, and excellent value for money."
+            },
+            {
+                "name": "Superb",
+                "description": "A large and comfortable business-class car offering premium space, smooth driving, and excellent long-distance comfort."
+            }
+        ]
+    },
+    {
+        "brand": "Ford",
+        "models": [
+            {
+                "name": "Fiesta",
+                "description": "A compact and agile city car, perfect for urban driving with responsive handling and low fuel consumption."
+            },
+            {
+                "name": "Focus",
+                "description": "A well-balanced compact car offering comfort, modern features, and a smooth driving experience for everyday use."
+            },
+            {
+                "name": "Kuga",
+                "description": "A spacious and modern SUV designed for comfort, practicality, and versatility on both city roads and longer trips."
+            }
+        ]
+    },
+    {
+        "brand": "Hyundai",
+        "models": [
+            {
+                "name": "Ioniq 5",
+                "description": "A fully electric SUV offering modern design, fast charging, and a smooth, quiet driving experience."
+            },
+            {
+                "name": "Ioniq 6",
+                "description": "A sleek and efficient electric sedan designed for long-range driving, combining modern design with advanced technology."
+            },
+            {
+                "name": "i20",
+                "description": "A modern and compact city car offering efficiency, ease of driving, and practicality for everyday urban use."
+            },
+            {
+                "name": "i30",
+                "description": "A well-equipped compact car combining comfort, modern technology, and smooth performance for daily driving."
+            },
+            {
+                "name": "Tucson",
+                "description": "A stylish and spacious SUV designed for comfort, advanced technology, and versatility on both city roads and longer journeys."
+            }
+        ]
+    },
+    {
+        "brand": "Kia",
+        "models": [
+            {
+                "name": "Rio",
+                "description": "A compact and practical city car offering simplicity, reliability, and low running costs for everyday urban driving."
+            },
+            {
+                "name": "Ceed",
+                "description": "A modern and comfortable compact car with a focus on technology, practicality, and everyday usability."
+            },
+            {
+                "name": "Sportage",
+                "description": "A bold and spacious SUV combining modern design, advanced features, and versatility for both city and long-distance travel."
+            }
+        ]
+    },
+    {
+        "brand": "BMW",
+        "models": [
+            {
+                "name": "4 Series",
+                "description": "A sporty and stylish coupe offering dynamic performance, premium comfort, and an engaging driving experience."
+            },
+            {
+                "name": "i4",
+                "description": "A fully electric premium sedan combining performance, comfort, and zero-emission driving."
+            },
+            {
+                "name": "3 Series",
+                "description": "A sporty and refined business-class sedan offering a perfect balance of performance, comfort, and driving dynamics."
+            },
+            {
+                "name": "5 Series",
+                "description": "A premium executive sedan designed for maximum comfort, advanced technology, and a high-end driving experience."
+            }
+        ]
+    },
+    {
+        "brand": "Mercedes-Benz",
+        "models": [
+            {
+                "name": "EQE",
+                "description": "A fully electric luxury sedan offering a quiet ride, advanced technology, and premium comfort for long-distance travel."
+            },
+            {
+                "name": "C-Class Coupe",
+                "description": "A stylish and elegant coupe offering premium comfort, refined design, and a smooth driving experience."
+            },
+            {
+                "name": "C-Class",
+                "description": "A refined and comfortable business-class sedan, offering a smooth driving experience with premium materials and modern technology."
+            },
+            {
+                "name": "E-Class",
+                "description": "A luxury executive sedan designed for maximum comfort, advanced technology, and effortless long-distance driving."
+            }
+        ]
+    },
+    {
+        "brand": "Tesla",
+        "models": [
+            {
+                "name": "Model 3",
+                "description": "A modern and efficient electric sedan offering strong performance, advanced technology, and an excellent balance for everyday driving."
+            },
+            {
+                "name": "Model S",
+                "description": "A premium electric sedan delivering high performance, long range, and cutting-edge technology for a luxury driving experience."
+            },
+            {
+                "name": "Model Y",
+                "description": "A versatile electric SUV combining practicality, spacious interior, and efficient performance for both city and family use."
+            },
+            {
+                "name": "Model X",
+                "description": "A high-end electric SUV featuring distinctive design, advanced technology, and exceptional comfort for premium travel."
+            }
+        ]
+    }
+]
