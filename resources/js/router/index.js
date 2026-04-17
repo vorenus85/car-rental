@@ -20,9 +20,9 @@ import BrandListPage from '@/pages/Brand/ListPage.vue'
 import BrandCreatePage from '@/pages/Brand/CreatePage.vue'
 import BrandEditPage from '@/pages/Brand/EditPage.vue'
 
-import ModelListPage from '@/pages/Model/ListPage.vue'
-import ModelCreatePage from '@/pages/Model/CreatePage.vue'
-import ModelEditPage from '@/pages/Model/EditPage.vue'
+import CarModelListPage from '@/pages/CarModel/ListPage.vue'
+import CarModelCreatePage from '@/pages/CarModel/CreatePage.vue'
+import CarModelEditPage from '@/pages/CarModel/EditPage.vue'
 
 import VariantListPage from '@/pages/Variant/ListPage.vue'
 import VariantCreatePage from '@/pages/Variant/CreatePage.vue'
@@ -105,7 +105,7 @@ const router = createRouter({
         {
             path: '/models',
             name: 'models',
-            component: ModelListPage,
+            component: CarModelListPage,
             meta: {
                 requiresAuth: true,
             },
@@ -113,7 +113,7 @@ const router = createRouter({
         {
             path: '/models/create',
             name: 'models.create',
-            component: ModelCreatePage,
+            component: CarModelCreatePage,
             meta: {
                 requiresAuth: true,
             },
@@ -121,7 +121,7 @@ const router = createRouter({
         {
             path: '/models/:id',
             name: 'models.show',
-            component: ModelEditPage,
+            component: CarModelEditPage,
             meta: {
                 requiresAuth: true,
             },

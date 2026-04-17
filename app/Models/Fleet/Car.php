@@ -1,30 +1,29 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Fleet;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CarVariant extends Model
+class Car extends Model
 {
     //
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'model_id',
-        'category',
-        'description',
-
-        'body_type',
-        'transmission',
-        'fuel',
-
+        'licence_plate',
+        'image',
+        'price_per_day',
+        'status',
+        'production_year',
         'top_speed',
         'acceleration',
         'range',
+        'description',
+    ];
 
-        'seats',
-        'doors',
+    protected $casts = [
+        'acceleration' => 'float',
     ];
 }

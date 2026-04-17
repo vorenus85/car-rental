@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Fleet;
 
-use App\Models\Brand;
+use App\Http\Controllers\Controller;
+use App\Models\Fleet\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -38,21 +39,20 @@ class BrandImageController extends Controller
                 'trace' => $th->getTraceAsString(),
             ]);
 
-            return response()->json([ 'status' => 'error', 'message' => 'Error during upload brand image' ], 500);
+            return response()->json(['status' => 'error', 'message' => 'Error during upload brand image'], 500);
         }
     }
 
     public function delete(Brand $brand)
     {
         try {
-            if ($brand->image && Storage::exists('/uploads/'.$brand->image)) {
-                Storage::delete('/uploads/'.$brand->image);
+            if ($brand->image && Storage::exists('/uploads/' . $brand->image)) {
+                Storage::delete('/uploads/' . $brand->image);
                 $brand->update(["image" => ""]);
                 return response()->json(["status" => 'ok']);
             }
 
             return abort(500);
-
         } catch (\Throwable $th) {
 
             Log::error('Brand delete image failed', [
@@ -61,7 +61,7 @@ class BrandImageController extends Controller
                 'trace' => $th->getTraceAsString(),
             ]);
 
-            return response()->json([ 'status' => 'error', 'message' => 'Error during delete brand image' ], 500);
+            return response()->json(['status' => 'error', 'message' => 'Error during delete brand image'], 500);
         }
     }
 }

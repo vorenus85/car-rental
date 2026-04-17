@@ -2,6 +2,11 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Fleet\BrandSeeder;
+use Database\Seeders\Fleet\CarModelSeeder;
+use Database\Seeders\Fleet\CarSeeder;
+use Database\Seeders\Fleet\FeatureSeeder;
+use Database\Seeders\Fleet\VariantSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,7 +25,7 @@ class DatabaseSeeder extends Seeder
             FeatureSeeder::class,
             BrandSeeder::class,
             CarModelSeeder::class,
-            CarVariantSeeder::class,
+            VariantSeeder::class,
             // CarSeeder::class,
         ]);
 

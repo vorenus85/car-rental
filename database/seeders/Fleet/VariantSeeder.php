@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Fleet;
 
-use App\Models\CarModel;
-use App\Models\CarVariant;
+use App\Models\Fleet\CarModel;
+use App\Models\Fleet\Variant;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
-class CarVariantSeeder extends Seeder
+class VariantSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class CarVariantSeeder extends Seeder
     public function run(): void
     {
         //
-        $path = database_path('data/car_variants.json');
+        $path = database_path('data/fleet/variants.json');
         $data = json_decode(File::get($path), true);
 
         foreach ($data as $item) {
@@ -25,7 +25,7 @@ class CarVariantSeeder extends Seeder
                 continue;
             }
 
-            CarVariant::create([
+            Variant::create([
                 'name' => $item['name'],
                 'model_id' => $model['id'],
                 'category' => $item['category'],

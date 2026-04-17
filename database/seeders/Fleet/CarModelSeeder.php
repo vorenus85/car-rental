@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Fleet;
 
-use App\Models\Brand;
-use App\Models\CarModel;
+use App\Models\Fleet\Brand;
+use App\Models\Fleet\CarModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
@@ -14,7 +14,7 @@ class CarModelSeeder extends Seeder
      */
     public function run(): void
     {
-        $path = database_path('data/car_models.json');
+        $path = database_path('data/fleet/car_models.json');
         $data = json_decode(File::get($path), true);
 
         foreach ($data as $item) {

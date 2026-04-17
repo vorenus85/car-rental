@@ -1,12 +1,12 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Fleet;
 
-use App\Models\Feature;
+use App\Models\Fleet\Brand;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
-class FeatureSeeder extends Seeder
+class BrandSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,18 +14,17 @@ class FeatureSeeder extends Seeder
     public function run(): void
     {
         //
-        $json = File::get(database_path('data/features.json'));
+        $json = File::get(database_path('data/fleet/brands.json'));
         $data = json_decode($json, true);
 
         // Populate with data
         foreach ($data as $item) {
-            Feature::create([
+            Brand::create([
                 'name' => $item['name'],
-                'description' => $item['description'],
-                'category' => $item['category'],
+                'image' => $item['image'],
             ]);
         }
 
-        $this->command->info('Features data seeded successfully!');
+        $this->command->info('Brands data seeded successfully!');
     }
 }

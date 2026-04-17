@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BrandController;
-use App\Http\Controllers\BrandImageController;
-use App\Http\Controllers\CarModelController;
-use App\Http\Controllers\CarVariantController;
-use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\Fleet\BrandController;
+use App\Http\Controllers\Fleet\BrandImageController;
+use App\Http\Controllers\Fleet\CarModelController;
+use App\Http\Controllers\Fleet\FeatureController;
+use App\Http\Controllers\Fleet\VariantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -41,7 +41,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/image/delete/{brand}', [BrandImageController::class, 'delete']);
     });
 
-    Route::prefix('/api/admin/models')->group(function () {
+    Route::prefix('/api/admin/car-models')->group(function () {
         Route::get('/', [CarModelController::class, 'index']);
         Route::post('/', [CarModelController::class, 'store']);
         Route::get('/{carModel}', [CarModelController::class, 'show']);
@@ -50,11 +50,11 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('/api/admin/variants')->group(function () {
-        Route::get('/', [CarVariantController::class, 'index']);
-        Route::post('/', [CarVariantController::class, 'store']);
-        Route::get('/{carVariant}', [CarVariantController::class, 'show']);
-        Route::put('/{carVariant}', [CarVariantController::class, 'update']);
-        Route::delete('/{carVariant}', [CarVariantController::class, 'destroy']);
+        Route::get('/', [VariantController::class, 'index']);
+        Route::post('/', [VariantController::class, 'store']);
+        Route::get('/{variant}', [VariantController::class, 'show']);
+        Route::put('/{variant}', [VariantController::class, 'update']);
+        Route::delete('/{variant}', [VariantController::class, 'destroy']);
     });
 });
 

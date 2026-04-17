@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Fleet;
 
-use App\Models\CarVariant;
+use App\Http\Controllers\Controller;
+use App\Models\Fleet\Variant;
 use Illuminate\Http\Request;
 
-class CarVariantController extends Controller
+class VariantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class CarVariantController extends Controller
     public function index()
     {
         //
-        $car_variants = CarVariant::get();
+        $car_variants = Variant::get();
 
         return response()->json($car_variants, 200);
     }
