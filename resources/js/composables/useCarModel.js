@@ -1,4 +1,9 @@
-import { fetchCarModels, deleteCarModelById, fetchCarModel } from '@/services/carModelService'
+import {
+    fetchCarModels,
+    fetchCarModelsByBrand,
+    deleteCarModelById,
+    fetchCarModel,
+} from '@/services/carModelService'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -48,11 +53,25 @@ export const useCarModel = () => {
         try {
             const { data } = await fetchCarModels()
             carModels.value = data.data
-            loading.value = false
         } catch (e) {
-            loading.value = false
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
+        }
+    }
+
+    const getCarModelsByBrand = async params => {
+        loading.value = true
+
+        try {
+            const { data } = await fetchCarModelsByBrand({ ...params })
+            carModels.value = data
+        } catch (e) {
+            void e // to avoid unused variable lint error
+            // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
         }
     }
 
@@ -65,11 +84,11 @@ export const useCarModel = () => {
             initialValues.description = data.description
             initialValues.brand_id = data.brand_id
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
-            loading.value = false
         } catch (e) {
-            loading.value = false
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
         }
     }
 
@@ -100,6 +119,7 @@ export const useCarModel = () => {
         carModels,
         getCarModel,
         getCarModels,
+        getCarModelsByBrand,
         deleteCarModel,
         modelValidator,
         initialValues,

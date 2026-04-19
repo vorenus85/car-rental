@@ -2,6 +2,10 @@ export const fetchCarModels = () => {
     return axios.get('/api/admin/car-models')
 }
 
+export const fetchCarModelsByBrand = params => {
+    return axios.get('/api/admin/car-models/options', { params })
+}
+
 export const fetchCarModel = id => {
     return axios.get(`/api/admin/car-models/${id}`)
 }
