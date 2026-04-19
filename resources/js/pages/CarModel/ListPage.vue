@@ -8,7 +8,7 @@
         <div class="card shadow list-page">
             <DataTable
                 v-model:filters="filters"
-                :value="models"
+                :value="carModels"
                 paginator
                 :rows="20"
                 :rows-per-page-options="[20, 50]"
@@ -110,7 +110,7 @@ import { onMounted, ref } from 'vue'
 
 const { tocreateCarModel } = useRedirects()
 const confirm = useConfirm()
-const { loading, models, getCarModels, deleteCarModel } = useCarModel()
+const { loading, carModels, getCarModels, deleteCarModel } = useCarModel()
 const filters = ref()
 const { confirmAction } = useCustomConfirm()
 

@@ -21,19 +21,15 @@ return new class extends Migration {
                 ->restrictOnDelete();
 
             $table->string('name');
-            $table->string('category');
+            $table->enum('category', ['economy', 'compact', 'suv', 'business', 'premium']);
             $table->text('description')->nullable();
 
             $table->enum('body_type', ['suv', 'sedan', 'hatchback', 'coupe', 'wagon']);
             $table->enum('transmission', ['manual', 'automatic']);
             $table->enum('fuel', ['petrol', 'diesel', 'electric', 'hybrid']);
 
-            $table->integer('top_speed')->nullable();
-            $table->decimal('acceleration', 4, 1)->nullable();
-            $table->integer('range')->nullable();
-
-            $table->integer('seats')->nullable();
-            $table->integer('doors')->nullable();
+            $table->integer('seats');
+            $table->integer('doors');
 
             $table->timestamps();
         });

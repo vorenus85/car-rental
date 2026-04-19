@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/auth/login', [AuthController::class, 'login']);
 Route::post('/auth/logout', [AuthController::class, 'logout']);
-Route::get('/auth/me', fn (Request $request) => response()->json($request->user()));
+Route::get('/auth/me', fn(Request $request) => response()->json($request->user()));
 Route::get('/auth/check', function () {
     return response()->json([
         'authenticated' => Auth::check(),
@@ -43,6 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('/api/admin/car-models')->group(function () {
         Route::get('/', [CarModelController::class, 'index']);
+        Route::get('/options', [CarModelController::class, 'options']);
         Route::post('/', [CarModelController::class, 'store']);
         Route::get('/{carModel}', [CarModelController::class, 'show']);
         Route::put('/{carModel}', [CarModelController::class, 'update']);

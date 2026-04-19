@@ -1,6 +1,6 @@
 import { fetchVariants, deleteVariantById } from '@/services/variantService'
 import { useCustomToast } from '@/composables/useCustomToast'
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 
 export const useVariant = () => {
@@ -9,8 +9,154 @@ export const useVariant = () => {
     const formKey = ref(0)
     const route = useRoute()
     const variantId = route.params.id
-
     const { customToast } = useCustomToast()
+
+    const initialValues = reactive({
+        name: '',
+        brand_id: '',
+        model_id: '',
+        category: '',
+        body_type: '',
+        transmission: 'manual',
+        fuel: 'petrol',
+        seats: '1',
+        doors: '1',
+        description: '',
+    })
+
+    const variantValidator = ({ values }) => {
+        const errors = {}
+
+        if (!values.name) {
+            errors.name = [{ message: 'Please enter a variant name.' }]
+        }
+
+        if (!values.brand_id) {
+            errors.brand_id = [{ message: 'Please select a brand.' }]
+        }
+
+        if (!values.model_id) {
+            errors.model_id = [{ message: 'Please select a model.' }]
+        }
+
+        if (!values.category) {
+            errors.category = [{ message: 'Please select a category.' }]
+        }
+
+        if (!values.body_type) {
+            errors.body_type = [{ message: 'Please select a body type.' }]
+        }
+
+        if (!values.transmission) {
+            errors.transmission = [{ message: 'Please select a transmission type.' }]
+        }
+
+        if (!values.fuel) {
+            errors.fuel = [{ message: 'Please select a fuel type.' }]
+        }
+
+        if (!values.seats) {
+            errors.seats = [{ message: 'Please enter the number of seats.' }]
+        } else if (Number(values.seats < 1)) {
+            errors.seats = [{ message: 'Seats must be minimum 1.' }]
+        }
+
+        if (!values.doors) {
+            errors.doors = [{ message: 'Please enter the number of doors.' }]
+        } else if (Number(values.doors) < 1) {
+            errors.doors = [{ message: 'Doors must be minimum 1.' }]
+        }
+
+        /*
+        if (Object.keys(errors).length) {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            })
+        }
+        */
+
+        return {
+            values,
+            errors,
+        }
+    }
+
+    const variantCategories = [
+        {
+            id: 'economy',
+            label: 'Economy',
+        },
+        {
+            id: 'compact',
+            label: 'Compact',
+        },
+        {
+            id: 'suv',
+            label: 'SUV',
+        },
+        {
+            id: 'business',
+            label: 'Business',
+        },
+        {
+            id: 'premium',
+            label: 'Premium',
+        },
+    ]
+
+    const bodyTypes = [
+        {
+            id: 'suv',
+            label: 'SUV',
+        },
+        {
+            id: 'sedan',
+            label: 'Sedan',
+        },
+        {
+            id: 'hatchback',
+            label: 'Hatchback',
+        },
+        {
+            id: 'coupe',
+            label: 'Coupe',
+        },
+        {
+            id: 'wagon',
+            label: 'Wagon',
+        },
+    ]
+
+    const transmissions = [
+        {
+            id: 'manual',
+            label: 'Manual',
+        },
+        {
+            id: 'automatic',
+            label: 'Automatic',
+        },
+    ]
+
+    const fuelTypes = [
+        {
+            id: 'petrol',
+            label: 'Petrol',
+        },
+        {
+            id: 'diesel',
+            label: 'Diesel',
+        },
+        {
+            id: 'electric',
+            label: 'Electric',
+        },
+        {
+            id: 'hybrid',
+            label: 'Hybrid',
+        },
+    ]
 
     const getVariants = async () => {
         loading.value = true
@@ -53,6 +199,12 @@ export const useVariant = () => {
         loading,
         getVariants,
         deleteVariant,
+        variantCategories,
+        variantValidator,
+        initialValues,
+        bodyTypes,
+        transmissions,
+        fuelTypes,
         variants,
         formKey,
     }

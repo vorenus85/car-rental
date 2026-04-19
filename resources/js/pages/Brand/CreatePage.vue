@@ -20,7 +20,7 @@
                 :validate-on-blur="true"
                 @submit="onFormSubmit"
             >
-                <div class="flex flex-col gap-1">
+                <div class="flex flex-col gap-1 mb-4">
                     <label for="name">Brand name</label>
                     <InputText id="name" name="name" type="text" placeholder="Aston Martin" fluid />
                     <Message
@@ -34,7 +34,7 @@
 
                 <InputText name="image" type="hidden" />
 
-                <div class="flex flex-col gap-1">
+                <div class="flex flex-col gap-1 mb-4">
                     <label for="description">Brand logo</label>
                     <div class="file-upload-clean">
                         <FileUpload

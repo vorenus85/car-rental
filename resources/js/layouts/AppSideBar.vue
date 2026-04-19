@@ -87,12 +87,12 @@ const menus = [
                 title: 'Brands',
             },
             {
-                icon: 'clone',
+                icon: 'th-large',
                 routeName: 'models',
                 title: 'Models',
             },
             {
-                icon: 'clone',
+                icon: 'sliders-h',
                 routeName: 'variants',
                 title: 'Variants',
             },

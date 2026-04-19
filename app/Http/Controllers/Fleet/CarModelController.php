@@ -25,6 +25,15 @@ class CarModelController extends Controller
         return CarModelResource::collection($carModels);
     }
 
+    public function options(Request $request)
+    {
+        $brand_id = $request->brand_id;
+
+        $carModels = CarModel::select('id', 'name', 'brand_id')->where('brand_id', $brand_id)->orderBy('name', 'asc')->get();
+
+        return response()->json($carModels, 200);
+    }
+
     /**
      * Store a newly created resource in storage.
      */

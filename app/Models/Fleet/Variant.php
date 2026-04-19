@@ -22,10 +22,6 @@ class Variant extends Model
         'transmission',
         'fuel',
 
-        'top_speed',
-        'acceleration',
-        'range',
-
         'seats',
         'doors',
     ];
