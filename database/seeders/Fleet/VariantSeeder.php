@@ -35,10 +35,6 @@ class VariantSeeder extends Seeder
                 'transmission' => $item['transmission'],
                 'fuel' => $item['fuel'],
 
-                'top_speed' => $item['top_speed'],
-                'acceleration' => $item['acceleration'],
-                'range' => $item['range'],
-
                 'seats' => $item['seats'],
                 'doors' => $item['doors'],
             ]);

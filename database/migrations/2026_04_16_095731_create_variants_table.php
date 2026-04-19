@@ -28,10 +28,6 @@ return new class extends Migration {
             $table->enum('transmission', ['manual', 'automatic']);
             $table->enum('fuel', ['petrol', 'diesel', 'electric', 'hybrid']);
 
-            $table->integer('top_speed')->nullable();
-            $table->decimal('acceleration', 4, 1)->nullable();
-            $table->integer('range')->nullable();
-
             $table->integer('seats')->nullable();
             $table->integer('doors')->nullable();
 

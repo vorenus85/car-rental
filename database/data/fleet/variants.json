@@ -8,9 +8,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 170,
-        "acceleration": 14.5,
-        "range": 700,
         "seats": 5,
         "doors": 5
     },
@@ -23,9 +20,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 190,
-        "acceleration": 10.8,
-        "range": 750,
         "seats": 5,
         "doors": 5
     },
@@ -38,9 +32,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 210,
-        "acceleration": 8.5,
-        "range": 800,
         "seats": 5,
         "doors": 5
     },
@@ -54,9 +45,6 @@
         "body_type": "hatchback",
         "transmission": "automatic",
         "fuel": "diesel",
-        "top_speed": 220,
-        "acceleration": 8.0,
-        "range": 1000,
         "seats": 5,
         "doors": 5
     },
@@ -69,9 +57,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "diesel",
-        "top_speed": 230,
-        "acceleration": 7.5,
-        "range": 1100,
         "seats": 5,
         "doors": 4
     },
@@ -84,9 +69,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "petrol",
-        "top_speed": 240,
-        "acceleration": 6.8,
-        "range": 800,
         "seats": 5,
         "doors": 4
     },
@@ -100,9 +82,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 165,
-        "acceleration": 14.8,
-        "range": 650,
         "seats": 5,
         "doors": 5
     },
@@ -115,9 +94,6 @@
         "body_type": "hatchback",
         "transmission": "automatic",
         "fuel": "hybrid",
-        "top_speed": 175,
-        "acceleration": 10.5,
-        "range": 900,
         "seats": 5,
         "doors": 5
     },
@@ -130,9 +106,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "hybrid",
-        "top_speed": 180,
-        "acceleration": 9.5,
-        "range": 950,
         "seats": 5,
         "doors": 4
     },
@@ -146,9 +119,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "hybrid",
-        "top_speed": 190,
-        "acceleration": 8.2,
-        "range": 900,
         "seats": 5,
         "doors": 4
     },
@@ -161,9 +131,6 @@
         "body_type": "suv",
         "transmission": "automatic",
         "fuel": "hybrid",
-        "top_speed": 185,
-        "acceleration": 8.0,
-        "range": 950,
         "seats": 5,
         "doors": 5
     },
@@ -176,9 +143,6 @@
         "body_type": "suv",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 195,
-        "acceleration": 9.5,
-        "range": 750,
         "seats": 5,
         "doors": 5
     },
@@ -192,9 +156,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 165,
-        "acceleration": 14.8,
-        "range": 650,
         "seats": 5,
         "doors": 5
     },
@@ -207,9 +168,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 185,
-        "acceleration": 10.5,
-        "range": 750,
         "seats": 5,
         "doors": 5
     },
@@ -222,9 +180,6 @@
         "body_type": "wagon",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 210,
-        "acceleration": 8.5,
-        "range": 800,
         "seats": 5,
         "doors": 5
     },
@@ -238,9 +193,6 @@
         "body_type": "wagon",
         "transmission": "automatic",
         "fuel": "diesel",
-        "top_speed": 220,
-        "acceleration": 8.0,
-        "range": 1000,
         "seats": 5,
         "doors": 5
     },
@@ -253,9 +205,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "diesel",
-        "top_speed": 230,
-        "acceleration": 7.5,
-        "range": 1100,
         "seats": 5,
         "doors": 4
     },
@@ -268,9 +217,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "petrol",
-        "top_speed": 240,
-        "acceleration": 6.8,
-        "range": 800,
         "seats": 5,
         "doors": 4
     },
@@ -284,9 +230,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 180,
-        "acceleration": 10.5,
-        "range": 700,
         "seats": 5,
         "doors": 5
     },
@@ -299,9 +242,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 195,
-        "acceleration": 10.0,
-        "range": 750,
         "seats": 5,
         "doors": 5
     },
@@ -314,9 +254,6 @@
         "body_type": "hatchback",
         "transmission": "automatic",
         "fuel": "petrol",
-        "top_speed": 210,
-        "acceleration": 8.2,
-        "range": 750,
         "seats": 5,
         "doors": 5
     },
@@ -330,9 +267,6 @@
         "body_type": "suv",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 195,
-        "acceleration": 9.5,
-        "range": 750,
         "seats": 5,
         "doors": 5
     },
@@ -345,9 +279,6 @@
         "body_type": "suv",
         "transmission": "automatic",
         "fuel": "hybrid",
-        "top_speed": 200,
-        "acceleration": 7.8,
-        "range": 900,
         "seats": 5,
         "doors": 5
     },
@@ -360,9 +291,6 @@
         "body_type": "suv",
         "transmission": "automatic",
         "fuel": "electric",
-        "top_speed": 185,
-        "acceleration": 7.4,
-        "range": 480,
         "seats": 5,
         "doors": 5
     },
@@ -376,9 +304,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "electric",
-        "top_speed": 185,
-        "acceleration": 7.1,
-        "range": 520,
         "seats": 5,
         "doors": 4
     },
@@ -391,9 +316,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 165,
-        "acceleration": 13.5,
-        "range": 650,
         "seats": 5,
         "doors": 5
     },
@@ -406,9 +328,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 195,
-        "acceleration": 10.2,
-        "range": 750,
         "seats": 5,
         "doors": 5
     },
@@ -422,9 +341,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 210,
-        "acceleration": 8.3,
-        "range": 750,
         "seats": 5,
         "doors": 5
     },
@@ -437,9 +353,6 @@
         "body_type": "suv",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 190,
-        "acceleration": 9.5,
-        "range": 750,
         "seats": 5,
         "doors": 5
     },
@@ -452,9 +365,6 @@
         "body_type": "suv",
         "transmission": "automatic",
         "fuel": "hybrid",
-        "top_speed": 193,
-        "acceleration": 8.0,
-        "range": 900,
         "seats": 5,
         "doors": 5
     },
@@ -468,9 +378,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 165,
-        "acceleration": 13.8,
-        "range": 650,
         "seats": 5,
         "doors": 5
     },
@@ -483,9 +390,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 195,
-        "acceleration": 10.2,
-        "range": 750,
         "seats": 5,
         "doors": 5
     },
@@ -498,9 +402,6 @@
         "body_type": "hatchback",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 210,
-        "acceleration": 8.3,
-        "range": 750,
         "seats": 5,
         "doors": 5
     },
@@ -514,9 +415,6 @@
         "body_type": "suv",
         "transmission": "manual",
         "fuel": "petrol",
-        "top_speed": 190,
-        "acceleration": 9.5,
-        "range": 750,
         "seats": 5,
         "doors": 5
     },
@@ -529,9 +427,6 @@
         "body_type": "suv",
         "transmission": "automatic",
         "fuel": "hybrid",
-        "top_speed": 193,
-        "acceleration": 8.0,
-        "range": 900,
         "seats": 5,
         "doors": 5
     },
@@ -544,9 +439,6 @@
         "body_type": "coupe",
         "transmission": "automatic",
         "fuel": "petrol",
-        "top_speed": 240,
-        "acceleration": 7.5,
-        "range": 750,
         "seats": 4,
         "doors": 2
     },
@@ -560,9 +452,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "electric",
-        "top_speed": 190,
-        "acceleration": 5.7,
-        "range": 590,
         "seats": 5,
         "doors": 4
     },
@@ -575,9 +464,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "diesel",
-        "top_speed": 235,
-        "acceleration": 7.1,
-        "range": 1100,
         "seats": 5,
         "doors": 4
     },
@@ -590,9 +476,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "petrol",
-        "top_speed": 250,
-        "acceleration": 5.8,
-        "range": 750,
         "seats": 5,
         "doors": 4
     },
@@ -606,9 +489,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "diesel",
-        "top_speed": 235,
-        "acceleration": 7.3,
-        "range": 1200,
         "seats": 5,
         "doors": 4
     },
@@ -621,9 +501,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "hybrid",
-        "top_speed": 235,
-        "acceleration": 5.9,
-        "range": 850,
         "seats": 5,
         "doors": 4
     },
@@ -636,9 +513,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "electric",
-        "top_speed": 210,
-        "acceleration": 6.4,
-        "range": 620,
         "seats": 5,
         "doors": 4
     },
@@ -652,9 +526,6 @@
         "body_type": "coupe",
         "transmission": "automatic",
         "fuel": "petrol",
-        "top_speed": 250,
-        "acceleration": 6.0,
-        "range": 750,
         "seats": 4,
         "doors": 2
     },
@@ -667,9 +538,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "petrol",
-        "top_speed": 235,
-        "acceleration": 7.3,
-        "range": 750,
         "seats": 5,
         "doors": 4
     },
@@ -682,9 +550,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "petrol",
-        "top_speed": 250,
-        "acceleration": 6.0,
-        "range": 750,
         "seats": 5,
         "doors": 4
     },
@@ -698,9 +563,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "diesel",
-        "top_speed": 240,
-        "acceleration": 7.4,
-        "range": 1200,
         "seats": 5,
         "doors": 4
     },
@@ -713,9 +575,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "petrol",
-        "top_speed": 250,
-        "acceleration": 6.2,
-        "range": 800,
         "seats": 5,
         "doors": 4
     },
@@ -728,9 +587,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "electric",
-        "top_speed": 201,
-        "acceleration": 6.1,
-        "range": 491,
         "seats": 5,
         "doors": 4
     },
@@ -743,9 +599,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "electric",
-        "top_speed": 233,
-        "acceleration": 4.4,
-        "range": 602,
         "seats": 5,
         "doors": 4
     },
@@ -758,9 +611,6 @@
         "body_type": "sedan",
         "transmission": "automatic",
         "fuel": "electric",
-        "top_speed": 250,
-        "acceleration": 3.2,
-        "range": 652,
         "seats": 5,
         "doors": 4
     },
@@ -773,9 +623,6 @@
         "body_type": "suv",
         "transmission": "automatic",
         "fuel": "electric",
-        "top_speed": 217,
-        "acceleration": 5.0,
-        "range": 533,
         "seats": 5,
         "doors": 5
     },
@@ -788,9 +635,6 @@
         "body_type": "suv",
         "transmission": "automatic",
         "fuel": "electric",
-        "top_speed": 250,
-        "acceleration": 3.9,
-        "range": 576,
         "seats": 6,
         "doors": 5
     }
