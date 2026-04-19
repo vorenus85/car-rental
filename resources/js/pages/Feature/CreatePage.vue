@@ -20,7 +20,7 @@
                 :validate-on-blur="true"
                 @submit="onFormSubmit"
             >
-                <div class="flex flex-col gap-1">
+                <div class="flex flex-col gap-1 mb-4">
                     <label for="name">Feature name</label>
                     <InputText
                         id="name"
@@ -37,7 +37,7 @@
                         >{{ $form.name.error?.message }}</Message
                     >
                 </div>
-                <div class="flex flex-col gap-1">
+                <div class="flex flex-col gap-1 mb-4">
                     <label for="category">Feature category</label>
                     <Select
                         input-id="category"
@@ -58,7 +58,7 @@
                         >{{ $form.category?.error?.message }}</Message
                     >
                 </div>
-                <div class="flex flex-col gap-1">
+                <div class="flex flex-col gap-1 mb-4">
                     <label for="description">Feature description</label>
                     <Textarea
                         name="description"

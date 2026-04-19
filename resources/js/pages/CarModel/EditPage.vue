@@ -22,7 +22,7 @@
                 :validate-on-mount="true"
                 @submit="onFormSubmit"
             >
-                <div class="flex flex-col gap-1">
+                <div class="flex flex-col gap-1 mb-4">
                     <label for="name">Model name</label>
                     <InputText id="name" name="name" type="text" placeholder="Crimson" fluid />
                     <Message
@@ -33,7 +33,7 @@
                         >{{ $form.name.error?.message }}</Message
                     >
                 </div>
-                <div class="flex flex-col gap-1">
+                <div class="flex flex-col gap-1 mb-4">
                     <label for="brand">Brand</label>
                     <Select
                         id="brand"
@@ -55,7 +55,7 @@
                         >{{ $form.brand_id?.error?.message }}</Message
                     >
                 </div>
-                <div class="flex flex-col gap-1">
+                <div class="flex flex-col gap-1 mb-4">
                     <label for="description">Description</label>
                     <Textarea
                         id="description"
@@ -96,7 +96,7 @@ import { useCustomToast } from '@/composables/useCustomToast'
 import { useCarModel } from '@/composables/useCarModel'
 import { useBrand } from '@/composables/useBrand'
 import { updateCarModelById } from '@/services/carModelService'
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 
 const { toModelsList } = useRedirects()
 const { customToast } = useCustomToast()

@@ -5,7 +5,7 @@ import { useRoute } from 'vue-router'
 
 export const useCarModel = () => {
     const loading = ref(false)
-    const models = ref([])
+    const carModels = ref([])
     const formKey = ref(0)
     const route = useRoute()
     const modelId = route.params.id
@@ -47,7 +47,7 @@ export const useCarModel = () => {
 
         try {
             const { data } = await fetchCarModels()
-            models.value = data.data
+            carModels.value = data.data
             loading.value = false
         } catch (e) {
             loading.value = false
@@ -97,7 +97,7 @@ export const useCarModel = () => {
     }
 
     return {
-        models,
+        carModels,
         getCarModel,
         getCarModels,
         deleteCarModel,
