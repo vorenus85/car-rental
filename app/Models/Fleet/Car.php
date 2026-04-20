@@ -11,19 +11,14 @@ class Car extends Model
     use HasFactory;
 
     protected $fillable = [
-        'model_id',
+        'variant_id',
         'licence_plate',
         'image',
         'price_per_day',
         'status',
         'production_year',
-        'top_speed',
-        'acceleration',
-        'range',
+        'mileage',
+        'color',
         'description',
-    ];
-
-    protected $casts = [
-        'acceleration' => 'float',
     ];
 }
