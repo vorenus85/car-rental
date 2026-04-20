@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             BrandSeeder::class,
             CarModelSeeder::class,
             VariantSeeder::class,
-            // CarSeeder::class,
+            CarSeeder::class,
         ]);
 
         $this->command->info('All data seeded successfully!');

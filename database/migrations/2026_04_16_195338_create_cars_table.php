@@ -22,6 +22,8 @@ return new class extends Migration {
             $table->integer('price_per_day');
             $table->enum('status', ['available', 'unavailable', 'maintenance']);
 
+            $table->enum('color', ['white', 'black', 'silver', 'gray', 'red', 'blue', 'green', 'yellow', 'orange', 'brown']);
+
             $table->integer('production_year');
             $table->integer('mileage');
 

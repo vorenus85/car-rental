@@ -4,6 +4,7 @@ namespace Database\Seeders\Fleet;
 
 use App\Models\Fleet\Car;
 use App\Models\Fleet\CarModel;
+use App\Models\Fleet\Variant;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
@@ -14,34 +15,41 @@ class CarSeeder extends Seeder
      */
     public function run(): void
     {
-        //
         $json = File::get(database_path('data/fleet/cars.json'));
         $data = json_decode($json, true);
 
-        // Populate with data
-        foreach ($data as $item) {
+        foreach ($data as $index => $item) {
 
-            $model = CarModel::where('name', $item['model_name'])->first();
+            $variant = Variant::where('name', $item['variant'])->first();
 
-            if (!$model) {
-                throw new \Exception("Model not found: " . $item['model_name'] . ", licence_plate" . $item['licence_plate']);
+            if (!$variant) {
+                dd([
+                    'error' => 'Variant not found',
+                    'index' => $index,
+                    'item' => $item,
+                ]);
             }
 
-            Car::create([
-                'model_id' => $model['id'],
-                'licence_plate' => $item['licence_plate'],
-                'image' => $item['image'],
-                'price_per_day' => $item['price_per_day'],
-                'body_type' => $item['body_type'],
-                'transmission' => $item['transmission'],
-                'fuel' => $item['fuel'],
-                'status' => $item['status'],
-                'production_year' => $item['production_year'],
-                'top_speed' => $item['top_speed'],
-                'acceleration' => $item['acceleration'],
-                'range' => $item['range'],
-                'description' => $item['description'],
-            ]);
+            try {
+                Car::create([
+                    'variant_id' => $variant->id,
+                    'licence_plate' => $item['licence_plate'],
+                    'price_per_day' => $item['price_per_day'],
+                    'status' => $item['status'],
+                    'production_year' => $item['production_year'],
+                    'mileage' => $item['mileage'],
+                    'color' => $item['color'],
+                    'image' => $item['image'],
+                    'description' => $item['description'],
+                ]);
+            } catch (\Exception $e) {
+                dd([
+                    'error' => 'Insert failed',
+                    'index' => $index,
+                    'item' => $item,
+                    'message' => $e->getMessage(),
+                ]);
+            }
         }
 
         $this->command->info('Cars data seeded successfully!');
