@@ -75,17 +75,43 @@ class VariantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Variant $variant)
     {
         //
+        return response()->json(
+            $variant->load('model.brand')
+        );
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Variant $variant)
     {
         //
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+
+            'model_id' => ['required', 'integer', 'exists:car_models,id'],
+
+            'category' => ['required', 'in:economy,compact,suv,business,premium'],
+
+            'description' => ['nullable', 'string'],
+
+            'body_type' => ['required', 'in:suv,sedan,hatchback,coupe,wagon'],
+
+            'transmission' => ['required', 'in:manual,automatic'],
+
+            'fuel' => ['required', 'in:petrol,diesel,electric,hybrid'],
+
+            'seats' => ['required', 'integer', 'min:1', 'max:9'],
+
+            'doors' => ['required', 'integer', 'min:1', 'max:5'],
+        ]);
+
+        $variant->update($validated);
+
+        return response()->json($variant, 200);
     }
 
     /**

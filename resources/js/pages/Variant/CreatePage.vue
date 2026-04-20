@@ -12,6 +12,7 @@
         </PageTitle>
         <div class="card">
             <Form
+                ref="formRef"
                 v-slot="$form"
                 :initial-values="initialValues"
                 :resolver="variantValidator"
@@ -183,7 +184,7 @@
                                     v-model="initialValues.seats"
                                     class="w-full"
                                     :min="1"
-                                    :max="8"
+                                    :max="9"
                                 />
                             </div>
                         </div>
@@ -269,20 +270,32 @@ import { useCustomToast } from '@/composables/useCustomToast'
 
 const { getBrands, brands } = useBrand()
 const { getCarModelsByBrand, carModels } = useCarModel()
-const { variantCategories, bodyTypes, transmissions, fuelTypes, variantValidator, initialValues } =
-    useVariant()
-
+const {
+    variantCategories,
+    bodyTypes,
+    transmissions,
+    fuelTypes,
+    variantValidator,
+    initialValues,
+    selectedBrand,
+} = useVariant()
 const { toVariantsList } = useRedirects()
 const { customToast } = useCustomToast()
-const selectedBrand = ref({ id: null, name: null })
+const formRef = ref(null)
 
 watch(selectedBrand, newValue => {
+    if (formRef.value) {
+        formRef.value.setFieldValue('model_id', null)
+    }
+
     if (newValue) {
         getCarModelsByBrand({ brand_id: newValue })
+    } else {
+        carModels.value = []
     }
 })
 
-const onFormSubmit = async ({ valid, values }) => {
+const onFormSubmit = async ({ valid, values, errors }) => {
     values.seats = initialValues.seats
     values.doors = initialValues.doors
     if (valid) {
