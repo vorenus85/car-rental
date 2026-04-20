@@ -46,6 +46,11 @@
                 <Column sortable field="category" header="Category" style="width: 10%"> </Column>
                 <Column sortable field="description" header="Description" style="width: 25%">
                 </Column>
+                <Column sortable field="updated_at" header="Updated at" style="width: 10%">
+                    <template #body="slotProps">
+                        <FormatedDate :date="slotProps.data.updated_at"></FormatedDate
+                    ></template>
+                </Column>
                 <Column header="Actions" style="width: 10%">
                     <template #body="slotProps">
                         <div class="flex items-center justify-list gap-3">
@@ -92,6 +97,7 @@ import { useRedirects } from '@/composables/useRedirects.js'
 import { useFeature } from '@/composables/useFeature'
 import { useCustomConfirm } from '@/composables/useCustomConfirm'
 import { onMounted, ref } from 'vue'
+import FormatedDate from '@/components/Table/FormatedDate.vue'
 
 const { toCreateFeature } = useRedirects()
 const confirm = useConfirm()

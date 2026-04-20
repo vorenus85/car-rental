@@ -60,6 +60,11 @@
                 </Column>
                 <Column sortable field="description" header="Description" style="width: 30%">
                 </Column>
+                <Column sortable field="updated_at" header="Updated at" style="width: 10%">
+                    <template #body="slotProps">
+                        <FormatedDate :date="slotProps.data.updated_at"></FormatedDate
+                    ></template>
+                </Column>
                 <Column header="Actions" style="width: 20%">
                     <template #body="slotProps">
                         <div class="flex items-center justify-list gap-3">
@@ -107,6 +112,7 @@ import { useRedirects } from '@/composables/useRedirects.js'
 import { useCarModel } from '@/composables/useCarModel'
 import { useCustomConfirm } from '@/composables/useCustomConfirm'
 import { onMounted, ref } from 'vue'
+import FormatedDate from '@/components/Table/FormatedDate.vue'
 
 const { tocreateCarModel } = useRedirects()
 const confirm = useConfirm()

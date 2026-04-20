@@ -14,7 +14,7 @@ class FeatureController extends Controller
     public function index()
     {
         //
-        $features = Feature::select('id', 'name', 'description', 'category')->orderBy('name', 'asc')->get();
+        $features = Feature::select('id', 'name', 'description', 'category', 'updated_at')->orderBy('name', 'asc')->get();
 
         return response()->json($features);
     }

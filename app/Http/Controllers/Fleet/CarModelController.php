@@ -17,7 +17,7 @@ class CarModelController extends Controller
         //
         $carModels = CarModel::query()
             ->join('brands', 'car_models.brand_id', '=', 'brands.id')
-            ->select('car_models.id', 'car_models.name', 'car_models.description', 'car_models.brand_id')
+            ->select('car_models.id', 'car_models.name', 'car_models.description', 'car_models.brand_id', 'car_models.updated_at')
             ->with('brand')
             ->orderBy('brands.name', 'asc')
             ->orderBy('car_models.name', 'asc')
