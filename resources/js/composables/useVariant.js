@@ -1,4 +1,4 @@
-import { fetchVariants, deleteVariantById } from '@/services/variantService'
+import { fetchVariants, deleteVariantById, fetchVariant } from '@/services/variantService'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
@@ -23,6 +23,8 @@ export const useVariant = () => {
         doors: '1',
         description: '',
     })
+
+    const selectedBrand = ref({ id: null, name: null })
 
     const variantValidator = ({ values }) => {
         const errors = {}
@@ -158,6 +160,33 @@ export const useVariant = () => {
         },
     ]
 
+    const getVariant = async () => {
+        loading.value = true
+
+        try {
+            const { data } = await fetchVariant(variantId)
+            initialValues.name = data.name
+
+            initialValues.category = data.category
+            initialValues.body_type = data.body_type
+            initialValues.transmission = data.transmission
+            initialValues.fuel = data.fuel
+            initialValues.seats = data.seats
+            initialValues.doors = data.doors
+            initialValues.description = data.description
+
+            formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
+            selectedBrand.value = data.model.brand.id
+            initialValues.brand_id = data.model.brand_id
+            initialValues.model_id = data.model_id
+        } catch (e) {
+            void e // to avoid unused variable lint error
+            // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
+        }
+    }
+
     const getVariants = async () => {
         loading.value = true
 
@@ -197,6 +226,8 @@ export const useVariant = () => {
 
     return {
         loading,
+        selectedBrand,
+        getVariant,
         getVariants,
         deleteVariant,
         variantCategories,
@@ -206,6 +237,7 @@ export const useVariant = () => {
         transmissions,
         fuelTypes,
         variants,
+        variantId,
         formKey,
     }
 }
