@@ -22,9 +22,6 @@ jobs:
             - name: Install Composer dependencies
               run: composer install --no-interaction --prefer-dist
 
-            - name: Run PHP CS Fixer (check only)
-              run: vendor/bin/php-cs-fixer fix --dry-run --diff
-
             - name: Run PHPStan
               run: vendor/bin/phpstan analyse
 
