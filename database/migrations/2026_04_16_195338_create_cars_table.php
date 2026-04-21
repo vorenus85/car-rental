@@ -19,8 +19,8 @@ return new class extends Migration {
 
             $table->string('licence_plate')->unique();
 
-            $table->integer('price_per_day');
-            $table->enum('status', ['available', 'unavailable', 'maintenance']);
+            $table->float('price_per_day', 2);
+            $table->enum('status', ['available', 'reserved', 'rented', 'maintenance', 'retired']);
 
             $table->enum('color', ['white', 'black', 'silver', 'gray', 'red', 'blue', 'green', 'yellow', 'orange', 'brown']);
 

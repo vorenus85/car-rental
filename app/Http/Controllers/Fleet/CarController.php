@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Fleet;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CarResource;
 use App\Models\Fleet\Car;
 use Illuminate\Http\Request;
 
@@ -14,9 +15,26 @@ class CarController extends Controller
     public function index()
     {
         //
-        $cars = Car::all();
+        $cars = Car::query()
+            ->select([
+                'id',
+                'licence_plate',
+                'price_per_day',
+                'status',
+                'production_year',
+                'mileage',
+                'image',
+                'updated_at',
+                'variant_id'
+            ])
+            ->with([
+                'variant:id,name,model_id',
+                'variant.model:id,name,brand_id',
+                'variant.model.brand:id,name'
+            ])
+            ->get();
 
-        return response()->json($cars);
+        return response()->json(CarResource::collection($cars), 200);
     }
 
     /**
