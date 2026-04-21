@@ -21,4 +21,9 @@ class Car extends Model
         'color',
         'description',
     ];
+
+    public function variant()
+    {
+        return $this->belongsTo(\App\Models\Fleet\Variant::class);
+    }
 }

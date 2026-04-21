@@ -5,11 +5,11 @@
         "variant": "1.0 MPI Manual",
         "licence_plate": "ABC-101",
         "price_per_day": 35,
-        "status": "available",
+        "status": "rented",
         "production_year": 2019,
         "mileage": 82000,
         "color": "white",
-        "image": "vw_polo_white.jpg",
+        "image": "vw_polo_1.0_mpi.jpg",
         "description": "Reliable and economical city car, ideal for short trips."
     },
     {
@@ -18,11 +18,11 @@
         "variant": "1.0 MPI Manual",
         "licence_plate": "ABC-102",
         "price_per_day": 34,
-        "status": "maintenance",
+        "status": "retired",
         "production_year": 2018,
         "mileage": 110000,
         "color": "red",
-        "image": "vw_polo_red.jpg",
+        "image": "vw_polo_1.0_mpi.jpg",
         "description": "Older unit currently under maintenance, previously used for city rentals."
     },
     {
@@ -31,11 +31,11 @@
         "variant": "1.0 TSI Manual",
         "licence_plate": "ABC-201",
         "price_per_day": 42,
-        "status": "available",
+        "status": "retired",
         "production_year": 2021,
         "mileage": 48000,
         "color": "blue",
-        "image": "vw_polo_blue.jpg",
+        "image": "vw_polo_1.0_tsi.jpg",
         "description": "Turbocharged engine with responsive performance and low consumption."
     },
     {
@@ -44,11 +44,11 @@
         "variant": "1.0 TSI Manual",
         "licence_plate": "ABC-202",
         "price_per_day": 40,
-        "status": "unavailable",
+        "status": "maintenance",
         "production_year": 2020,
         "mileage": 67000,
         "color": "gray",
-        "image": "vw_polo_gray.jpg",
+        "image": "vw_polo_1.0_tsi.jpg",
         "description": "Currently rented, well-maintained and comfortable for city driving."
     },
     {
@@ -61,7 +61,7 @@
         "production_year": 2022,
         "mileage": 32000,
         "color": "black",
-        "image": "vw_golf_black.jpg",
+        "image": "vw_golf_1.5_tsi.jpg",
         "description": "Modern compact car with balanced performance and comfort."
     },
     {
@@ -74,7 +74,7 @@
         "production_year": 2021,
         "mileage": 41000,
         "color": "silver",
-        "image": "vw_golf_silver.jpg",
+        "image": "vw_golf_1.5_tsi.jpg",
         "description": "Efficient and versatile hatchback, suitable for both city and highway."
     },
 
@@ -84,11 +84,11 @@
         "variant": "2.0 TDI Automatic",
         "licence_plate": "DEF-401",
         "price_per_day": 60,
-        "status": "available",
+        "status": "rented",
         "production_year": 2021,
         "mileage": 52000,
         "color": "black",
-        "image": "vw_golf_black.jpg",
+        "image": "vw_golf_2.0_tdi.jpg",
         "description": "Comfortable diesel automatic, ideal for longer trips with low consumption."
     },
     {
@@ -97,11 +97,11 @@
         "variant": "2.0 TDI Automatic",
         "licence_plate": "DEF-402",
         "price_per_day": 58,
-        "status": "unavailable",
+        "status": "rented",
         "production_year": 2020,
         "mileage": 68000,
         "color": "red",
-        "image": "vw_golf_red.jpg",
+        "image": "vw_golf_2.0_tdi.jpg",
         "description": "Currently rented, reliable and efficient for both city and highway use."
     },
     {
@@ -114,9 +114,10 @@
         "production_year": 2022,
         "mileage": 39000,
         "color": "silver",
-        "image": "vw_passat_silver.jpg",
+        "image": "vw_passat_2.0_tdi.jpg",
         "description": "Spacious and fuel-efficient business sedan, perfect for long-distance travel."
     },
+
     {
         "brand": "Volkswagen",
         "model": "Passat",
@@ -127,7 +128,7 @@
         "production_year": 2021,
         "mileage": 61000,
         "color": "white",
-        "image": "vw_passat_white.jpg",
+        "image": "vw_passat_2.0_tdi.jpg",
         "description": "Currently under maintenance, previously used for corporate rentals."
     },
     {
@@ -140,7 +141,7 @@
         "production_year": 2023,
         "mileage": 28000,
         "color": "blue",
-        "image": "vw_passat_blue.jpg",
+        "image": "vw_passat_2.0_tsi.jpg",
         "description": "Powerful petrol engine with smooth automatic transmission and premium feel."
     },
     {
@@ -149,11 +150,11 @@
         "variant": "2.0 TSI Automatic",
         "licence_plate": "DEF-602",
         "price_per_day": 78,
-        "status": "available",
+        "status": "rented",
         "production_year": 2022,
         "mileage": 35000,
         "color": "black",
-        "image": "vw_passat_black.jpg",
+        "image": "vw_passat_2.0_tsi.jpg",
         "description": "Refined driving experience with strong performance and comfort."
     },
 
@@ -163,11 +164,11 @@
         "variant": "1.0 VVT-i Manual",
         "licence_plate": "GHI-101",
         "price_per_day": 32,
-        "status": "available",
+        "status": "reserved",
         "production_year": 2019,
         "mileage": 78000,
         "color": "white",
-        "image": "toyota_yaris_white.jpg",
+        "image": "toyota_yaris_1.0_vvt-i.jpg",
         "description": "Compact and economical city car, ideal for short trips and easy parking."
     },
     {
@@ -180,7 +181,7 @@
         "production_year": 2018,
         "mileage": 102000,
         "color": "red",
-        "image": "toyota_yaris_red.jpg",
+        "image": "toyota_yaris_1.0_vvt-i.jpg",
         "description": "Older unit currently under maintenance, previously used for urban rentals."
     },
     {
@@ -189,11 +190,11 @@
         "variant": "1.5 Hybrid Automatic",
         "licence_plate": "GHI-201",
         "price_per_day": 45,
-        "status": "available",
+        "status": "rented",
         "production_year": 2022,
         "mileage": 34000,
         "color": "blue",
-        "image": "toyota_yaris_blue.jpg",
+        "image": "toyota_yaris_1.5_hybrid.jpg",
         "description": "Modern hybrid system with smooth automatic driving and excellent fuel efficiency."
     },
     {
@@ -202,11 +203,11 @@
         "variant": "1.5 Hybrid Automatic",
         "licence_plate": "GHI-202",
         "price_per_day": 44,
-        "status": "unavailable",
+        "status": "available",
         "production_year": 2021,
         "mileage": 42000,
         "color": "silver",
-        "image": "toyota_yaris_silver.jpg",
+        "image": "toyota_yaris_1.5_hybrid.jpg",
         "description": "Currently rented, quiet and efficient hybrid ideal for city driving."
     },
     {
@@ -219,7 +220,7 @@
         "production_year": 2023,
         "mileage": 25000,
         "color": "black",
-        "image": "toyota_corolla_black.jpg",
+        "image": "toyota_corolla_1.8_hybrid.jpg",
         "description": "Spacious and efficient hybrid sedan, perfect for daily use and longer trips."
     },
     {
@@ -232,7 +233,7 @@
         "production_year": 2022,
         "mileage": 37000,
         "color": "yellow",
-        "image": "toyota_corolla_yellow.jpg",
+        "image": "toyota_corolla_1.8_hybrid.jpg",
         "description": "Reliable hybrid with smooth performance and low consumption."
     },
 
@@ -242,11 +243,11 @@
         "variant": "2.0 Hybrid Automatic",
         "licence_plate": "JKL-401",
         "price_per_day": 62,
-        "status": "available",
+        "status": "rented",
         "production_year": 2023,
         "mileage": 22000,
         "color": "white",
-        "image": "toyota_corolla_white.jpg",
+        "image": "toyota_corolla_2.0_hybrid.jpg",
         "description": "More powerful hybrid sedan with smooth performance and excellent fuel efficiency."
     },
     {
@@ -255,11 +256,11 @@
         "variant": "2.0 Hybrid Automatic",
         "licence_plate": "JKL-402",
         "price_per_day": 60,
-        "status": "unavailable",
+        "status": "available",
         "production_year": 2022,
         "mileage": 34000,
         "color": "black",
-        "image": "toyota_corolla_black.jpg",
+        "image": "toyota_corolla_2.0_hybrid.jpg",
         "description": "Currently rented, refined hybrid with strong acceleration and comfort."
     },
     {
@@ -272,7 +273,7 @@
         "production_year": 2023,
         "mileage": 18000,
         "color": "yellow",
-        "image": "toyota_rav4_yellow.jpg",
+        "image": "toyota_rav4_2.5_hybrid.jpg",
         "description": "Top-tier hybrid SUV with AWD, ideal for all conditions and long-distance comfort."
     },
     {
@@ -281,11 +282,11 @@
         "variant": "2.5 Hybrid AWD",
         "licence_plate": "JKL-502",
         "price_per_day": 82,
-        "status": "available",
+        "status": "rented",
         "production_year": 2022,
         "mileage": 29000,
         "color": "blue",
-        "image": "toyota_rav4_blue.jpg",
+        "image": "toyota_rav4_2.5_hybrid.jpg",
         "description": "Spacious and efficient SUV with excellent traction and smooth automatic drive."
     },
     {
@@ -298,7 +299,7 @@
         "production_year": 2021,
         "mileage": 47000,
         "color": "silver",
-        "image": "toyota_rav4_silver.jpg",
+        "image": "toyota_rav4_2.0_petrol.jpg",
         "description": "Reliable petrol SUV with manual transmission for a more engaging driving experience."
     },
     {
@@ -311,7 +312,7 @@
         "production_year": 2020,
         "mileage": 62000,
         "color": "white",
-        "image": "toyota_rav4_white.jpg",
+        "image": "toyota_rav4_2.0_petrol.jpg",
         "description": "Currently under maintenance, previously used for mixed city and off-road driving."
     },
 
@@ -321,11 +322,11 @@
         "variant": "1.0 MPI Manual",
         "licence_plate": "MNO-101",
         "price_per_day": 33,
-        "status": "available",
+        "status": "reserved",
         "production_year": 2019,
         "mileage": 87000,
         "color": "white",
-        "image": "skoda_fabia_white.jpg",
+        "image": "skoda_fabia_1.0_mpi.jpg",
         "description": "Simple and reliable city car, ideal for daily commuting."
     },
     {
@@ -338,7 +339,7 @@
         "production_year": 2018,
         "mileage": 115000,
         "color": "red",
-        "image": "skoda_fabia_red.jpg",
+        "image": "skoda_fabia_1.0_mpi.jpg",
         "description": "Older unit currently under maintenance, previously used for urban rentals."
     },
     {
@@ -347,11 +348,11 @@
         "variant": "1.0 TSI Manual",
         "licence_plate": "MNO-201",
         "price_per_day": 38,
-        "status": "available",
+        "status": "rented",
         "production_year": 2021,
         "mileage": 52000,
         "color": "blue",
-        "image": "skoda_fabia_blue.jpg",
+        "image": "skoda_fabia_1.0_tsi.jpg",
         "description": "Turbocharged engine with better responsiveness and efficiency."
     },
     {
@@ -360,11 +361,11 @@
         "variant": "1.0 TSI Manual",
         "licence_plate": "MNO-202",
         "price_per_day": 36,
-        "status": "unavailable",
+        "status": "rented",
         "production_year": 2020,
         "mileage": 69000,
         "color": "gray",
-        "image": "skoda_fabia_gray.jpg",
+        "image": "skoda_fabia_1.0_tsi.jpg",
         "description": "Currently rented, well-balanced for both city and short highway trips."
     },
     {
@@ -377,7 +378,7 @@
         "production_year": 2022,
         "mileage": 36000,
         "color": "black",
-        "image": "skoda_octavia_black.jpg",
+        "image": "skoda_octavia_1.5_tsi.jpg",
         "description": "Spacious wagon with strong performance and practical design."
     },
     {
@@ -386,11 +387,11 @@
         "variant": "1.5 TSI Manual",
         "licence_plate": "MNO-302",
         "price_per_day": 50,
-        "status": "available",
+        "status": "rented",
         "production_year": 2021,
         "mileage": 47000,
         "color": "silver",
-        "image": "skoda_octavia_silver.jpg",
+        "image": "skoda_octavia_1.5_tsi.jpg",
         "description": "Comfortable and efficient for both daily use and longer journeys."
     },
 
@@ -404,7 +405,7 @@
         "production_year": 2021,
         "mileage": 64000,
         "color": "silver",
-        "image": "skoda_octavia_silver.jpg",
+        "image": "skoda_octavia_2.0_tdi.jpg",
         "description": "Efficient diesel wagon, perfect for long-distance travel and daily reliability."
     },
     {
@@ -413,11 +414,11 @@
         "variant": "2.0 TDI Automatic",
         "licence_plate": "PQR-402",
         "price_per_day": 56,
-        "status": "unavailable",
+        "status": "available",
         "production_year": 2020,
         "mileage": 82000,
         "color": "white",
-        "image": "skoda_octavia_white.jpg",
+        "image": "skoda_octavia_2.0_tdi.jpg",
         "description": "Currently rented, known for its low consumption and highway comfort."
     },
     {
@@ -426,11 +427,11 @@
         "variant": "2.0 TDI Automatic",
         "licence_plate": "PQR-501",
         "price_per_day": 75,
-        "status": "available",
+        "status": "rented",
         "production_year": 2022,
         "mileage": 43000,
         "color": "black",
-        "image": "skoda_superb_black.jpg",
+        "image": "skoda_superb_2.0_tdi.jpg",
         "description": "Spacious business sedan with excellent fuel efficiency and premium comfort."
     },
     {
@@ -443,7 +444,7 @@
         "production_year": 2021,
         "mileage": 59000,
         "color": "blue",
-        "image": "skoda_superb_blue.jpg",
+        "image": "skoda_superb_2.0_tdi.jpg",
         "description": "Currently under maintenance, previously used for executive travel."
     },
     {
@@ -452,11 +453,11 @@
         "variant": "2.0 TSI Automatic",
         "licence_plate": "PQR-601",
         "price_per_day": 82,
-        "status": "available",
+        "status": "rented",
         "production_year": 2023,
         "mileage": 27000,
         "color": "gray",
-        "image": "skoda_superb_gray.jpg",
+        "image": "skoda_superb_2.0_tsi.jpg",
         "description": "Powerful petrol engine with smooth automatic transmission and premium driving experience."
     },
     {
@@ -469,7 +470,7 @@
         "production_year": 2022,
         "mileage": 35000,
         "color": "white",
-        "image": "skoda_superb_white.jpg",
+        "image": "skoda_superb_2.0_tsi.jpg",
         "description": "Refined and dynamic sedan, combining performance with comfort."
     },
 
@@ -479,11 +480,11 @@
         "variant": "1.0 EcoBoost Manual",
         "licence_plate": "STU-101",
         "price_per_day": 34,
-        "status": "available",
+        "status": "rented",
         "production_year": 2019,
         "mileage": 76000,
         "color": "white",
-        "image": "ford_fiesta_white.jpg",
+        "image": "ford_fiesta_1.0_ecoboost.jpg",
         "description": "Compact and efficient city car, easy to drive and park."
     },
     {
@@ -496,7 +497,7 @@
         "production_year": 2018,
         "mileage": 98000,
         "color": "red",
-        "image": "ford_fiesta_red.jpg",
+        "image": "ford_fiesta_1.0_ecoboost.jpg",
         "description": "Older unit currently under maintenance, previously used for urban rentals."
     },
     {
@@ -509,7 +510,7 @@
         "production_year": 2021,
         "mileage": 54000,
         "color": "blue",
-        "image": "ford_focus_blue.jpg",
+        "image": "ford_focus_1.0_ecoboost.jpg",
         "description": "Efficient and practical hatchback for everyday driving."
     },
     {
@@ -518,11 +519,11 @@
         "variant": "1.0 EcoBoost Manual",
         "licence_plate": "STU-202",
         "price_per_day": 40,
-        "status": "unavailable",
+        "status": "available",
         "production_year": 2020,
         "mileage": 67000,
         "color": "gray",
-        "image": "ford_focus_gray.jpg",
+        "image": "ford_focus_1.0_ecoboost.jpg",
         "description": "Currently rented, balanced performance and fuel economy."
     },
     {
@@ -531,11 +532,11 @@
         "variant": "1.5 EcoBoost Automatic",
         "licence_plate": "STU-301",
         "price_per_day": 52,
-        "status": "available",
+        "status": "reserved",
         "production_year": 2022,
         "mileage": 36000,
         "color": "black",
-        "image": "ford_focus_black.jpg",
+        "image": "ford_focus_1.5_ecoboost.jpg",
         "description": "Smooth automatic driving with stronger engine and enhanced comfort."
     },
     {
@@ -544,11 +545,11 @@
         "variant": "1.5 EcoBoost Automatic",
         "licence_plate": "STU-302",
         "price_per_day": 50,
-        "status": "available",
+        "status": "rented",
         "production_year": 2021,
         "mileage": 47000,
         "color": "silver",
-        "image": "ford_focus_silver.jpg",
+        "image": "ford_focus_1.5_ecoboost.jpg",
         "description": "Comfortable and responsive hatchback for city and highway driving."
     },
     {
@@ -557,11 +558,11 @@
         "variant": "1.5 EcoBoost Automatic",
         "licence_plate": "STU-303",
         "price_per_day": 48,
-        "status": "unavailable",
+        "status": "rented",
         "production_year": 2020,
         "mileage": 59000,
         "color": "white",
-        "image": "ford_focus_white.jpg",
+        "image": "ford_focus_1.5_ecoboost.jpg",
         "description": "Currently rented, reliable and versatile for all driving conditions."
     },
     {
@@ -574,7 +575,7 @@
         "production_year": 2020,
         "mileage": 68000,
         "color": "blue",
-        "image": "ford_fiesta_blue.jpg",
+        "image": "ford_fiesta_1.0_ecoboost.jpg",
         "description": "Well-maintained compact car with great fuel efficiency."
     },
 
@@ -584,11 +585,11 @@
         "variant": "1.5 EcoBoost",
         "licence_plate": "VWX-101",
         "price_per_day": 65,
-        "status": "available",
+        "status": "rented",
         "production_year": 2020,
         "mileage": 62000,
         "color": "white",
-        "image": "ford_kuga_white.jpg",
+        "image": "ford_kuga_1.5_ecoboost.jpg",
         "description": "Versatile petrol SUV suitable for both city and family use."
     },
     {
@@ -597,11 +598,11 @@
         "variant": "1.5 EcoBoost",
         "licence_plate": "VWX-102",
         "price_per_day": 63,
-        "status": "unavailable",
+        "status": "available",
         "production_year": 2019,
         "mileage": 78000,
         "color": "gray",
-        "image": "ford_kuga_gray.jpg",
+        "image": "ford_kuga_1.5_ecoboost.jpg",
         "description": "Currently rented, practical SUV with solid performance."
     },
     {
@@ -614,7 +615,7 @@
         "production_year": 2022,
         "mileage": 38000,
         "color": "black",
-        "image": "ford_kuga_black.jpg",
+        "image": "ford_kuga_2.5_plug_in_hybrid.jpg",
         "description": "Efficient plug-in hybrid offering electric driving and low fuel consumption."
     },
     {
@@ -627,7 +628,7 @@
         "production_year": 2021,
         "mileage": 47000,
         "color": "blue",
-        "image": "ford_kuga_blue.jpg",
+        "image": "ford_kuga_2.5_plug_in_hybrid.jpg",
         "description": "Comfortable and eco-friendly SUV ideal for mixed driving conditions."
     },
     {
@@ -636,11 +637,11 @@
         "variant": "Long Range Automatic",
         "licence_plate": "VWX-301",
         "price_per_day": 95,
-        "status": "available",
+        "status": "reserved",
         "production_year": 2023,
         "mileage": 21000,
         "color": "silver",
-        "image": "hyundai_ioniq5_silver.jpg",
+        "image": "hyundai_ioniq_5_long_range.jpg",
         "description": "Fully electric SUV with long range and fast charging capability."
     },
     {
@@ -653,7 +654,7 @@
         "production_year": 2022,
         "mileage": 29000,
         "color": "white",
-        "image": "hyundai_ioniq5_white.jpg",
+        "image": "hyundai_ioniq_5_long_range.jpg",
         "description": "Modern electric vehicle offering smooth, quiet and efficient driving."
     },
 
@@ -667,7 +668,7 @@
         "production_year": 2019,
         "mileage": 82000,
         "color": "white",
-        "image": "hyundai_i20_white.jpg",
+        "image": "hyundai_i20_1.2_mpi.jpg",
         "description": "Simple and economical hatchback, ideal for everyday city use."
     },
     {
@@ -676,11 +677,11 @@
         "variant": "1.2 MPI Manual",
         "licence_plate": "YZA-102",
         "price_per_day": 29,
-        "status": "maintenance",
+        "status": "available",
         "production_year": 2018,
         "mileage": 105000,
         "color": "red",
-        "image": "hyundai_i20_red.jpg",
+        "image": "hyundai_i20_1.2_mpi.jpg",
         "description": "Older unit currently under maintenance, previously used for city rentals."
     },
     {
@@ -693,7 +694,7 @@
         "production_year": 2021,
         "mileage": 56000,
         "color": "blue",
-        "image": "hyundai_i30_blue.jpg",
+        "image": "hyundai_i30_1.0_tdi.jpg",
         "description": "Balanced hatchback with efficient turbo engine for daily driving."
     },
     {
@@ -702,11 +703,11 @@
         "variant": "1.0 T-GDI",
         "licence_plate": "YZA-202",
         "price_per_day": 41,
-        "status": "unavailable",
+        "status": "maintenance",
         "production_year": 2020,
         "mileage": 69000,
         "color": "gray",
-        "image": "hyundai_i30_gray.jpg",
+        "image": "hyundai_i30_1.0_tdi.jpg",
         "description": "Currently rented, reliable and efficient for both city and highway use."
     },
     {
@@ -715,11 +716,11 @@
         "variant": "Long Range Automatic",
         "licence_plate": "YZA-301",
         "price_per_day": 98,
-        "status": "available",
+        "status": "rented",
         "production_year": 2023,
         "mileage": 18000,
         "color": "black",
-        "image": "hyundai_ioniq6_black.jpg",
+        "image": "hyundai_ioniq_6_long_range.jpg",
         "description": "Premium electric sedan with long range and smooth, quiet driving experience."
     },
     {
@@ -728,11 +729,11 @@
         "variant": "Long Range Automatic",
         "licence_plate": "YZA-302",
         "price_per_day": 95,
-        "status": "available",
+        "status": "reserved",
         "production_year": 2022,
         "mileage": 26000,
         "color": "silver",
-        "image": "hyundai_ioniq6_silver.jpg",
+        "image": "hyundai_ioniq_6_long_range.jpg",
         "description": "Modern EV with excellent efficiency, comfort, and advanced technology."
     },
 
@@ -746,7 +747,7 @@
         "production_year": 2021,
         "mileage": 52000,
         "color": "blue",
-        "image": "hyundai_i30_blue.jpg",
+        "image": "hyundai_i30_1.5_t_gdi.jpg",
         "description": "More powerful turbocharged hatchback with responsive performance."
     },
     {
@@ -755,11 +756,11 @@
         "variant": "1.5 T-GDI",
         "licence_plate": "BCD-402",
         "price_per_day": 44,
-        "status": "unavailable",
+        "status": "rented",
         "production_year": 2020,
         "mileage": 66000,
         "color": "gray",
-        "image": "hyundai_i30_gray.jpg",
+        "image": "hyundai_i30_1.5_t_gdi.jpg",
         "description": "Currently rented, balanced performance and everyday usability."
     },
     {
@@ -772,7 +773,7 @@
         "production_year": 2021,
         "mileage": 58000,
         "color": "white",
-        "image": "hyundai_tucson_white.jpg",
+        "image": "hyundai_tucson_1.6_t_gdi.jpg",
         "description": "Versatile petrol SUV with solid performance for daily use."
     },
     {
@@ -785,7 +786,7 @@
         "production_year": 2022,
         "mileage": 39000,
         "color": "black",
-        "image": "hyundai_tucson_black.jpg",
+        "image": "hyundai_tucson_1.6_hybrid.jpg",
         "description": "Efficient hybrid SUV with smooth automatic driving and lower consumption."
     },
     {
@@ -798,7 +799,7 @@
         "production_year": 2021,
         "mileage": 47000,
         "color": "silver",
-        "image": "hyundai_tucson_silver.jpg",
+        "image": "hyundai_tucson_1.6_hybrid.jpg",
         "description": "Currently under maintenance, previously used for mixed city and highway driving."
     },
 
@@ -812,7 +813,7 @@
         "production_year": 2019,
         "mileage": 88000,
         "color": "white",
-        "image": "kia_rio_white.jpg",
+        "image": "kia_rio_1.2_mpi.jpg",
         "description": "Simple and reliable city car, perfect for everyday commuting."
     },
     {
@@ -825,7 +826,7 @@
         "production_year": 2018,
         "mileage": 112000,
         "color": "red",
-        "image": "kia_rio_red.jpg",
+        "image": "kia_rio_1.2_mpi.jpg",
         "description": "Older unit currently under maintenance, previously used for city rentals."
     },
     {
@@ -834,11 +835,11 @@
         "variant": "1.0 T-GDI",
         "licence_plate": "EFG-201",
         "price_per_day": 40,
-        "status": "available",
+        "status": "reserved",
         "production_year": 2021,
         "mileage": 57000,
         "color": "blue",
-        "image": "kia_ceed_blue.jpg",
+        "image": "kia_ceed_1.0_t_gdi.jpg",
         "description": "Efficient compact hatchback with smooth turbocharged engine."
     },
     {
@@ -847,11 +848,11 @@
         "variant": "1.0 T-GDI",
         "licence_plate": "EFG-202",
         "price_per_day": 38,
-        "status": "unavailable",
+        "status": "available",
         "production_year": 2020,
         "mileage": 69000,
         "color": "gray",
-        "image": "kia_ceed_gray.jpg",
+        "image": "kia_ceed_1.0_t_gdi.jpg",
         "description": "Currently rented, balanced performance and fuel economy."
     },
     {
@@ -860,11 +861,11 @@
         "variant": "1.5 T-GDI",
         "licence_plate": "EFG-301",
         "price_per_day": 46,
-        "status": "available",
+        "status": "retired",
         "production_year": 2022,
         "mileage": 36000,
         "color": "black",
-        "image": "kia_ceed_black.jpg",
+        "image": "kia_ceed_1.5_t_gdi.jpg",
         "description": "More powerful turbo engine offering better acceleration and driving comfort."
     },
     {
@@ -873,11 +874,11 @@
         "variant": "1.5 T-GDI",
         "licence_plate": "EFG-302",
         "price_per_day": 44,
-        "status": "available",
+        "status": "rented",
         "production_year": 2021,
         "mileage": 48000,
         "color": "silver",
-        "image": "kia_ceed_silver.jpg",
+        "image": "kia_ceed_1.5_t_gdi.jpg",
         "description": "Comfortable and responsive compact car for everyday and longer trips."
     },
 
@@ -887,11 +888,11 @@
         "variant": "1.6 T-GDI",
         "licence_plate": "HIJ-101",
         "price_per_day": 66,
-        "status": "available",
+        "status": "reserved",
         "production_year": 2021,
         "mileage": 59000,
         "color": "white",
-        "image": "kia_sportage_white.jpg",
+        "image": "kia_sportage_1.6_t_gdi.jpg",
         "description": "Reliable petrol SUV, suitable for both city and family use."
     },
     {
@@ -900,11 +901,11 @@
         "variant": "1.6 T-GDI",
         "licence_plate": "HIJ-102",
         "price_per_day": 64,
-        "status": "unavailable",
+        "status": "available",
         "production_year": 2020,
         "mileage": 72000,
         "color": "gray",
-        "image": "kia_sportage_gray.jpg",
+        "image": "kia_sportage_1.6_t_gdi.jpg",
         "description": "Currently rented, practical SUV with solid everyday performance."
     },
     {
@@ -917,7 +918,7 @@
         "production_year": 2022,
         "mileage": 41000,
         "color": "black",
-        "image": "kia_sportage_black.jpg",
+        "image": "kia_sportage_1.6_hybrid.jpg",
         "description": "Efficient hybrid SUV with smooth automatic driving and lower fuel consumption."
     },
     {
@@ -926,11 +927,11 @@
         "variant": "1.6 Hybrid",
         "licence_plate": "HIJ-202",
         "price_per_day": 74,
-        "status": "maintenance",
+        "status": "available",
         "production_year": 2021,
         "mileage": 52000,
         "color": "blue",
-        "image": "kia_sportage_blue.jpg",
+        "image": "kia_sportage_1.6_hybrid.jpg",
         "description": "Currently under maintenance, previously used for mixed driving conditions."
     },
     {
@@ -943,7 +944,7 @@
         "production_year": 2023,
         "mileage": 21000,
         "color": "black",
-        "image": "bmw_4series_black.jpg",
+        "image": "bmw_4_series_420i.jpg",
         "description": "Premium coupe offering sporty performance and a refined driving experience."
     },
     {
@@ -956,7 +957,7 @@
         "production_year": 2022,
         "mileage": 29000,
         "color": "white",
-        "image": "bmw_4series_white.jpg",
+        "image": "bmw_4_series_420i.jpg",
         "description": "Elegant and dynamic coupe with smooth automatic transmission and premium comfort."
     },
 
@@ -966,11 +967,11 @@
         "variant": "eDrive40 Automatic",
         "licence_plate": "LMN-101",
         "price_per_day": 110,
-        "status": "available",
+        "status": "reserved",
         "production_year": 2023,
         "mileage": 19000,
         "color": "black",
-        "image": "bmw_i4_black.jpg",
+        "image": "bmw_i4_edrive40.jpg",
         "description": "Premium electric sedan with long range and smooth, quiet performance."
     },
     {
@@ -983,7 +984,7 @@
         "production_year": 2022,
         "mileage": 27000,
         "color": "white",
-        "image": "bmw_i4_white.jpg",
+        "image": "bmw_i4_edrive40.jpg",
         "description": "Modern EV offering excellent efficiency and refined driving experience."
     },
     {
@@ -992,11 +993,11 @@
         "variant": "320d Automatic",
         "licence_plate": "LMN-201",
         "price_per_day": 78,
-        "status": "available",
+        "status": "rented",
         "production_year": 2021,
         "mileage": 72000,
         "color": "gray",
-        "image": "bmw_3series_gray.jpg",
+        "image": "bmw_3_series_320d.jpg",
         "description": "Efficient diesel sedan ideal for long-distance and highway driving."
     },
     {
@@ -1005,11 +1006,11 @@
         "variant": "330i Automatic",
         "licence_plate": "LMN-301",
         "price_per_day": 88,
-        "status": "available",
+        "status": "retired",
         "production_year": 2022,
         "mileage": 42000,
         "color": "blue",
-        "image": "bmw_3series_blue.jpg",
+        "image": "bmw_3_series_330i.jpg",
         "description": "Dynamic petrol sedan with smooth acceleration and sporty handling."
     },
 
@@ -1023,7 +1024,7 @@
         "production_year": 2021,
         "mileage": 78000,
         "color": "black",
-        "image": "bmw_5series_black.jpg",
+        "image": "bmw_5_series_520d.jpg",
         "description": "Efficient diesel sedan offering excellent comfort for long-distance travel."
     },
     {
@@ -1032,11 +1033,11 @@
         "variant": "520d Automatic",
         "licence_plate": "NOP-102",
         "price_per_day": 82,
-        "status": "unavailable",
+        "status": "available",
         "production_year": 2020,
         "mileage": 95000,
         "color": "gray",
-        "image": "bmw_5series_gray.jpg",
+        "image": "bmw_5_series_520d.jpg",
         "description": "Currently rented, reliable and economical for extended journeys."
     },
     {
@@ -1049,7 +1050,7 @@
         "production_year": 2022,
         "mileage": 42000,
         "color": "white",
-        "image": "bmw_5series_white.jpg",
+        "image": "bmw_5_series_530e.jpg",
         "description": "Plug-in hybrid combining electric efficiency with premium comfort."
     },
     {
@@ -1058,11 +1059,11 @@
         "variant": "530e Hybrid",
         "licence_plate": "NOP-202",
         "price_per_day": 92,
-        "status": "available",
+        "status": "reserved",
         "production_year": 2021,
         "mileage": 52000,
         "color": "blue",
-        "image": "bmw_5series_blue.jpg",
+        "image": "bmw_5_series_530e.jpg",
         "description": "Smooth and efficient hybrid sedan, ideal for both city and highway use."
     },
     {
@@ -1071,11 +1072,11 @@
         "variant": "EQE 350 Automatic",
         "licence_plate": "NOP-301",
         "price_per_day": 115,
-        "status": "available",
+        "status": "reserved",
         "production_year": 2023,
         "mileage": 21000,
         "color": "silver",
-        "image": "mercedes_eqe_silver.jpg",
+        "image": "mercedes_benz_eqe_350.jpg",
         "description": "Fully electric premium sedan with refined comfort and advanced technology."
     },
     {
@@ -1088,7 +1089,7 @@
         "production_year": 2022,
         "mileage": 29000,
         "color": "black",
-        "image": "mercedes_eqe_black.jpg",
+        "image": "mercedes_benz_eqe_350.jpg",
         "description": "Modern EV offering quiet driving, strong performance, and zero emissions."
     },
 
@@ -1102,7 +1103,7 @@
         "production_year": 2021,
         "mileage": 61000,
         "color": "black",
-        "image": "mercedes_cclass_black.jpg",
+        "image": "mercedes_benz_c_200.jpg",
         "description": "Comfortable and refined sedan ideal for everyday business use."
     },
     {
@@ -1111,11 +1112,11 @@
         "variant": "C200 Automatic",
         "licence_plate": "QRS-102",
         "price_per_day": 70,
-        "status": "unavailable",
+        "status": "rented",
         "production_year": 2020,
         "mileage": 74000,
         "color": "silver",
-        "image": "mercedes_cclass_silver.jpg",
+        "image": "mercedes_benz_c_200.jpg",
         "description": "Currently rented, offering smooth performance and reliable comfort."
     },
     {
@@ -1128,7 +1129,7 @@
         "production_year": 2022,
         "mileage": 43000,
         "color": "blue",
-        "image": "mercedes_cclass_blue.jpg",
+        "image": "mercedes_benz_c_300.jpg",
         "description": "More powerful engine with enhanced driving dynamics and premium comfort."
     },
     {
@@ -1141,7 +1142,7 @@
         "production_year": 2023,
         "mileage": 25000,
         "color": "white",
-        "image": "mercedes_coupe_white.jpg",
+        "image": "mercedes_benz_c_300.jpg",
         "description": "Stylish coupe with sporty performance and refined interior."
     },
     {
@@ -1150,11 +1151,11 @@
         "variant": "C300 Coupe Automatic",
         "licence_plate": "QRS-302",
         "price_per_day": 92,
-        "status": "available",
+        "status": "retired",
         "production_year": 2022,
         "mileage": 34000,
         "color": "black",
-        "image": "mercedes_coupe_black.jpg",
+        "image": "mercedes_benz_c_300.jpg",
         "description": "Elegant and dynamic coupe offering a premium driving experience."
     },
 
@@ -1168,7 +1169,7 @@
         "production_year": 2021,
         "mileage": 82000,
         "color": "black",
-        "image": "mercedes_eclass_black.jpg",
+        "image": "mercedes_benz_e_220_d.jpg",
         "description": "Efficient diesel sedan ideal for long-distance travel with excellent comfort."
     },
     {
@@ -1177,11 +1178,11 @@
         "variant": "E220d Automatic",
         "licence_plate": "TUV-102",
         "price_per_day": 85,
-        "status": "unavailable",
+        "status": "rented",
         "production_year": 2020,
         "mileage": 98000,
         "color": "gray",
-        "image": "mercedes_eclass_gray.jpg",
+        "image": "mercedes_benz_e_220_d.jpg",
         "description": "Currently rented, reliable and economical for extended journeys."
     },
     {
@@ -1194,7 +1195,7 @@
         "production_year": 2022,
         "mileage": 46000,
         "color": "white",
-        "image": "mercedes_eclass_white.jpg",
+        "image": "mercedes_benz_e_300.jpg",
         "description": "Smooth and powerful petrol engine delivering a premium driving experience."
     },
     {
@@ -1207,7 +1208,7 @@
         "production_year": 2021,
         "mileage": 58000,
         "color": "blue",
-        "image": "mercedes_eclass_blue.jpg",
+        "image": "mercedes_benz_e_300.jpg",
         "description": "Refined and comfortable sedan with strong performance."
     },
     {
@@ -1220,7 +1221,7 @@
         "production_year": 2023,
         "mileage": 24000,
         "color": "black",
-        "image": "tesla_model3_black.jpg",
+        "image": "tesla_model_3_standard_range_rwd.jpg",
         "description": "Modern electric sedan with smooth acceleration and minimalist interior."
     },
     {
@@ -1229,11 +1230,11 @@
         "variant": "Standard Range RWD",
         "licence_plate": "TUV-302",
         "price_per_day": 90,
-        "status": "available",
+        "status": "reserved",
         "production_year": 2022,
         "mileage": 32000,
         "color": "white",
-        "image": "tesla_model3_white.jpg",
+        "image": "tesla_model_3_standard_range_rwd.jpg",
         "description": "Efficient EV offering quiet driving and advanced technology features."
     },
 
@@ -1247,7 +1248,7 @@
         "production_year": 2023,
         "mileage": 22000,
         "color": "white",
-        "image": "tesla_model3_white.jpg",
+        "image": "tesla_model_3_longe_range_awd.jpg",
         "description": "Long range AWD electric sedan with balanced performance and everyday usability."
     },
     {
@@ -1256,11 +1257,11 @@
         "variant": "Long Range AWD",
         "licence_plate": "XYZ-102",
         "price_per_day": 92,
-        "status": "unavailable",
+        "status": "rented",
         "production_year": 2022,
         "mileage": 31000,
         "color": "black",
-        "image": "tesla_model3_black.jpg",
+        "image": "tesla_model_3_longe_range_awd.jpg",
         "description": "Currently rented, efficient and practical EV with strong range."
     },
     {
@@ -1269,11 +1270,11 @@
         "variant": "Long Range AWD",
         "licence_plate": "XYZ-201",
         "price_per_day": 105,
-        "status": "available",
+        "status": "reserved",
         "production_year": 2023,
         "mileage": 24000,
         "color": "gray",
-        "image": "tesla_modely_gray.jpg",
+        "image": "tesla_model_y_longe_range_awd.jpg",
         "description": "Spacious electric SUV with AWD and long range, ideal for families."
     },
     {
@@ -1282,11 +1283,11 @@
         "variant": "Long Range AWD",
         "licence_plate": "XYZ-202",
         "price_per_day": 102,
-        "status": "available",
+        "status": "retired",
         "production_year": 2022,
         "mileage": 33000,
         "color": "blue",
-        "image": "tesla_modely_blue.jpg",
+        "image": "tesla_model_y_longe_range_awd.jpg",
         "description": "Versatile EV combining practicality and strong performance."
     },
     {
@@ -1299,7 +1300,7 @@
         "production_year": 2023,
         "mileage": 18000,
         "color": "black",
-        "image": "tesla_models_black.jpg",
+        "image": "tesla_model_s_long_range_awd.jpg",
         "description": "Flagship electric sedan with exceptional range and premium comfort."
     },
     {
@@ -1312,7 +1313,7 @@
         "production_year": 2022,
         "mileage": 26000,
         "color": "silver",
-        "image": "tesla_models_silver.jpg",
+        "image": "tesla_model_s_long_range_awd.jpg",
         "description": "High-end EV offering smooth acceleration and advanced technology."
     },
 
@@ -1326,7 +1327,7 @@
         "production_year": 2023,
         "mileage": 17000,
         "color": "white",
-        "image": "tesla_modelx_white.jpg",
+        "image": "tesla_model_x_long_range_awd.jpg",
         "description": "Premium electric SUV with spacious interior and advanced features, ideal for luxury travel."
     },
     {
@@ -1339,7 +1340,7 @@
         "production_year": 2022,
         "mileage": 25000,
         "color": "black",
-        "image": "tesla_modelx_black.jpg",
+        "image": "tesla_model_x_long_range_awd.jpg",
         "description": "High-end EV offering strong performance, comfort, and innovative design."
     }
 ]
