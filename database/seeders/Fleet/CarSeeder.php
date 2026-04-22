@@ -20,7 +20,8 @@ class CarSeeder extends Seeder
 
         foreach ($data as $index => $item) {
 
-            $variant = Variant::where('name', $item['variant'])->first();
+            $model = CarModel::where('name', $item['model'])->first();
+            $variant = Variant::where('name', $item['variant'])->where('model_id', $model['id'])->first();
 
             if (!$variant) {
                 dd([

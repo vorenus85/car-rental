@@ -22,7 +22,7 @@
         "production_year": 2018,
         "mileage": 110000,
         "color": "red",
-        "image": "vw_polo_1.0_mpi.jpg",
+        "image": "vw_polo_1.0_mpi_v2.jpg",
         "description": "Older unit currently under maintenance, previously used for city rentals."
     },
     {
@@ -48,7 +48,7 @@
         "production_year": 2020,
         "mileage": 67000,
         "color": "gray",
-        "image": "vw_polo_1.0_tsi.jpg",
+        "image": "vw_polo_1.0_tsi_v2.jpg",
         "description": "Currently rented, well-maintained and comfortable for city driving."
     },
     {
@@ -74,7 +74,7 @@
         "production_year": 2021,
         "mileage": 41000,
         "color": "silver",
-        "image": "vw_golf_1.5_tsi.jpg",
+        "image": "vw_golf_1.5_tsi_v2.jpg",
         "description": "Efficient and versatile hatchback, suitable for both city and highway."
     },
 
@@ -101,7 +101,7 @@
         "production_year": 2020,
         "mileage": 68000,
         "color": "red",
-        "image": "vw_golf_2.0_tdi.jpg",
+        "image": "vw_golf_2.0_tdi_v2.jpg",
         "description": "Currently rented, reliable and efficient for both city and highway use."
     },
     {
@@ -128,7 +128,7 @@
         "production_year": 2021,
         "mileage": 61000,
         "color": "white",
-        "image": "vw_passat_2.0_tdi.jpg",
+        "image": "vw_passat_2.0_tdi_v2.jpg",
         "description": "Currently under maintenance, previously used for corporate rentals."
     },
     {
@@ -154,7 +154,7 @@
         "production_year": 2022,
         "mileage": 35000,
         "color": "black",
-        "image": "vw_passat_2.0_tsi.jpg",
+        "image": "vw_passat_2.0_tsi_v2.jpg",
         "description": "Refined driving experience with strong performance and comfort."
     },
 
@@ -181,7 +181,7 @@
         "production_year": 2018,
         "mileage": 102000,
         "color": "red",
-        "image": "toyota_yaris_1.0_vvt-i.jpg",
+        "image": "toyota_yaris_1.0_vvt-i_v2.jpg",
         "description": "Older unit currently under maintenance, previously used for urban rentals."
     },
     {
@@ -207,7 +207,7 @@
         "production_year": 2021,
         "mileage": 42000,
         "color": "silver",
-        "image": "toyota_yaris_1.5_hybrid.jpg",
+        "image": "toyota_yaris_1.5_hybrid_v2.jpg",
         "description": "Currently rented, quiet and efficient hybrid ideal for city driving."
     },
     {
@@ -233,7 +233,7 @@
         "production_year": 2022,
         "mileage": 37000,
         "color": "yellow",
-        "image": "toyota_corolla_1.8_hybrid.jpg",
+        "image": "toyota_corolla_1.8_hybrid_v2.jpg",
         "description": "Reliable hybrid with smooth performance and low consumption."
     },
 
@@ -260,7 +260,7 @@
         "production_year": 2022,
         "mileage": 34000,
         "color": "black",
-        "image": "toyota_corolla_2.0_hybrid.jpg",
+        "image": "toyota_corolla_2.0_hybrid_v2.jpg",
         "description": "Currently rented, refined hybrid with strong acceleration and comfort."
     },
     {
@@ -286,7 +286,7 @@
         "production_year": 2022,
         "mileage": 29000,
         "color": "blue",
-        "image": "toyota_rav4_2.5_hybrid.jpg",
+        "image": "toyota_rav4_2.5_hybrid_v2.jpg",
         "description": "Spacious and efficient SUV with excellent traction and smooth automatic drive."
     },
     {
@@ -312,7 +312,7 @@
         "production_year": 2020,
         "mileage": 62000,
         "color": "white",
-        "image": "toyota_rav4_2.0_petrol.jpg",
+        "image": "toyota_rav4_2.0_petrol_v2.jpg",
         "description": "Currently under maintenance, previously used for mixed city and off-road driving."
     },
 
@@ -339,7 +339,7 @@
         "production_year": 2018,
         "mileage": 115000,
         "color": "red",
-        "image": "skoda_fabia_1.0_mpi.jpg",
+        "image": "skoda_fabia_1.0_mpi_v2.jpg",
         "description": "Older unit currently under maintenance, previously used for urban rentals."
     },
     {
@@ -365,7 +365,7 @@
         "production_year": 2020,
         "mileage": 69000,
         "color": "gray",
-        "image": "skoda_fabia_1.0_tsi.jpg",
+        "image": "skoda_fabia_1.0_tsi_v2.jpg",
         "description": "Currently rented, well-balanced for both city and short highway trips."
     },
     {
@@ -391,7 +391,7 @@
         "production_year": 2021,
         "mileage": 47000,
         "color": "silver",
-        "image": "skoda_octavia_1.5_tsi.jpg",
+        "image": "skoda_octavia_1.5_tsi_v2.jpg",
         "description": "Comfortable and efficient for both daily use and longer journeys."
     },
 
@@ -418,7 +418,7 @@
         "production_year": 2020,
         "mileage": 82000,
         "color": "white",
-        "image": "skoda_octavia_2.0_tdi.jpg",
+        "image": "skoda_octavia_2.0_tdi_v2.jpg",
         "description": "Currently rented, known for its low consumption and highway comfort."
     },
     {
@@ -444,7 +444,7 @@
         "production_year": 2021,
         "mileage": 59000,
         "color": "blue",
-        "image": "skoda_superb_2.0_tdi.jpg",
+        "image": "skoda_superb_2.0_tdi_v2.jpg",
         "description": "Currently under maintenance, previously used for executive travel."
     },
     {
@@ -470,7 +470,7 @@
         "production_year": 2022,
         "mileage": 35000,
         "color": "white",
-        "image": "skoda_superb_2.0_tsi.jpg",
+        "image": "skoda_superb_2.0_tsi_v2.jpg",
         "description": "Refined and dynamic sedan, combining performance with comfort."
     },
 
@@ -497,7 +497,7 @@
         "production_year": 2018,
         "mileage": 98000,
         "color": "red",
-        "image": "ford_fiesta_1.0_ecoboost.jpg",
+        "image": "ford_fiesta_1.0_ecoboost_v2.jpg",
         "description": "Older unit currently under maintenance, previously used for urban rentals."
     },
     {
@@ -523,7 +523,7 @@
         "production_year": 2020,
         "mileage": 67000,
         "color": "gray",
-        "image": "ford_focus_1.0_ecoboost.jpg",
+        "image": "ford_focus_1.0_ecoboost_v2.jpg",
         "description": "Currently rented, balanced performance and fuel economy."
     },
     {
@@ -549,7 +549,7 @@
         "production_year": 2021,
         "mileage": 47000,
         "color": "silver",
-        "image": "ford_focus_1.5_ecoboost.jpg",
+        "image": "ford_focus_1.5_ecoboost_v2.jpg",
         "description": "Comfortable and responsive hatchback for city and highway driving."
     },
     {
@@ -562,7 +562,7 @@
         "production_year": 2020,
         "mileage": 59000,
         "color": "white",
-        "image": "ford_focus_1.5_ecoboost.jpg",
+        "image": "ford_focus_1.5_ecoboost_v3.jpg",
         "description": "Currently rented, reliable and versatile for all driving conditions."
     },
     {
@@ -575,7 +575,7 @@
         "production_year": 2020,
         "mileage": 68000,
         "color": "blue",
-        "image": "ford_fiesta_1.0_ecoboost.jpg",
+        "image": "ford_fiesta_1.0_ecoboost_v3.jpg",
         "description": "Well-maintained compact car with great fuel efficiency."
     },
 
@@ -602,7 +602,7 @@
         "production_year": 2019,
         "mileage": 78000,
         "color": "gray",
-        "image": "ford_kuga_1.5_ecoboost.jpg",
+        "image": "ford_kuga_1.5_ecoboost_v2.jpg",
         "description": "Currently rented, practical SUV with solid performance."
     },
     {
@@ -628,7 +628,7 @@
         "production_year": 2021,
         "mileage": 47000,
         "color": "blue",
-        "image": "ford_kuga_2.5_plug_in_hybrid.jpg",
+        "image": "ford_kuga_2.5_plug_in_hybrid_v2.jpg",
         "description": "Comfortable and eco-friendly SUV ideal for mixed driving conditions."
     },
     {
@@ -681,7 +681,7 @@
         "production_year": 2018,
         "mileage": 105000,
         "color": "red",
-        "image": "hyundai_i20_1.2_mpi.jpg",
+        "image": "hyundai_i20_1.2_mpi_v2.jpg",
         "description": "Older unit currently under maintenance, previously used for city rentals."
     },
     {
@@ -707,7 +707,7 @@
         "production_year": 2020,
         "mileage": 69000,
         "color": "gray",
-        "image": "hyundai_i30_1.0_tdi.jpg",
+        "image": "hyundai_i30_1.0_tdi_v2.jpg",
         "description": "Currently rented, reliable and efficient for both city and highway use."
     },
     {
@@ -733,7 +733,7 @@
         "production_year": 2022,
         "mileage": 26000,
         "color": "silver",
-        "image": "hyundai_ioniq_6_long_range.jpg",
+        "image": "hyundai_ioniq_6_long_range_v2.jpg",
         "description": "Modern EV with excellent efficiency, comfort, and advanced technology."
     },
 
@@ -760,7 +760,7 @@
         "production_year": 2020,
         "mileage": 66000,
         "color": "gray",
-        "image": "hyundai_i30_1.5_t_gdi.jpg",
+        "image": "hyundai_i30_1.5_t_gdi_v2.jpg",
         "description": "Currently rented, balanced performance and everyday usability."
     },
     {
@@ -799,7 +799,7 @@
         "production_year": 2021,
         "mileage": 47000,
         "color": "silver",
-        "image": "hyundai_tucson_1.6_hybrid.jpg",
+        "image": "hyundai_tucson_1.6_hybrid_v2.jpg",
         "description": "Currently under maintenance, previously used for mixed city and highway driving."
     },
 
@@ -826,7 +826,7 @@
         "production_year": 2018,
         "mileage": 112000,
         "color": "red",
-        "image": "kia_rio_1.2_mpi.jpg",
+        "image": "kia_rio_1.2_mpi_v2.jpg",
         "description": "Older unit currently under maintenance, previously used for city rentals."
     },
     {
@@ -852,7 +852,7 @@
         "production_year": 2020,
         "mileage": 69000,
         "color": "gray",
-        "image": "kia_ceed_1.0_t_gdi.jpg",
+        "image": "kia_ceed_1.0_t_gdi_v2.jpg",
         "description": "Currently rented, balanced performance and fuel economy."
     },
     {
@@ -878,7 +878,7 @@
         "production_year": 2021,
         "mileage": 48000,
         "color": "silver",
-        "image": "kia_ceed_1.5_t_gdi.jpg",
+        "image": "kia_ceed_1.5_t_gdi_v2.jpg",
         "description": "Comfortable and responsive compact car for everyday and longer trips."
     },
 
@@ -905,7 +905,7 @@
         "production_year": 2020,
         "mileage": 72000,
         "color": "gray",
-        "image": "kia_sportage_1.6_t_gdi.jpg",
+        "image": "kia_sportage_1.6_t_gdi_v2.jpg",
         "description": "Currently rented, practical SUV with solid everyday performance."
     },
     {
@@ -931,7 +931,7 @@
         "production_year": 2021,
         "mileage": 52000,
         "color": "blue",
-        "image": "kia_sportage_1.6_hybrid.jpg",
+        "image": "kia_sportage_1.6_hybrid_v2.jpg",
         "description": "Currently under maintenance, previously used for mixed driving conditions."
     },
     {
@@ -957,7 +957,7 @@
         "production_year": 2022,
         "mileage": 29000,
         "color": "white",
-        "image": "bmw_4_series_420i.jpg",
+        "image": "bmw_4_series_420i_v2.jpg",
         "description": "Elegant and dynamic coupe with smooth automatic transmission and premium comfort."
     },
 
@@ -984,7 +984,7 @@
         "production_year": 2022,
         "mileage": 27000,
         "color": "white",
-        "image": "bmw_i4_edrive40.jpg",
+        "image": "bmw_i4_edrive40_v2.jpg",
         "description": "Modern EV offering excellent efficiency and refined driving experience."
     },
     {
@@ -1037,7 +1037,7 @@
         "production_year": 2020,
         "mileage": 95000,
         "color": "gray",
-        "image": "bmw_5_series_520d.jpg",
+        "image": "bmw_5_series_520d_v2.jpg",
         "description": "Currently rented, reliable and economical for extended journeys."
     },
     {
@@ -1063,7 +1063,7 @@
         "production_year": 2021,
         "mileage": 52000,
         "color": "blue",
-        "image": "bmw_5_series_530e.jpg",
+        "image": "bmw_5_series_530e_v2.jpg",
         "description": "Smooth and efficient hybrid sedan, ideal for both city and highway use."
     },
     {
@@ -1089,7 +1089,7 @@
         "production_year": 2022,
         "mileage": 29000,
         "color": "black",
-        "image": "mercedes_benz_eqe_350.jpg",
+        "image": "mercedes_benz_eqe_350_v2.jpg",
         "description": "Modern EV offering quiet driving, strong performance, and zero emissions."
     },
 
@@ -1116,7 +1116,7 @@
         "production_year": 2020,
         "mileage": 74000,
         "color": "silver",
-        "image": "mercedes_benz_c_200.jpg",
+        "image": "mercedes_benz_c_200_v2.jpg",
         "description": "Currently rented, offering smooth performance and reliable comfort."
     },
     {
@@ -1142,7 +1142,7 @@
         "production_year": 2023,
         "mileage": 25000,
         "color": "white",
-        "image": "mercedes_benz_c_300.jpg",
+        "image": "mercedes_benz_c_300_coupe.jpg",
         "description": "Stylish coupe with sporty performance and refined interior."
     },
     {
@@ -1155,7 +1155,7 @@
         "production_year": 2022,
         "mileage": 34000,
         "color": "black",
-        "image": "mercedes_benz_c_300.jpg",
+        "image": "mercedes_benz_c_300_coupe_v2.jpg",
         "description": "Elegant and dynamic coupe offering a premium driving experience."
     },
 
@@ -1182,7 +1182,7 @@
         "production_year": 2020,
         "mileage": 98000,
         "color": "gray",
-        "image": "mercedes_benz_e_220_d.jpg",
+        "image": "mercedes_benz_e_220_d_v2.jpg",
         "description": "Currently rented, reliable and economical for extended journeys."
     },
     {
@@ -1208,7 +1208,7 @@
         "production_year": 2021,
         "mileage": 58000,
         "color": "blue",
-        "image": "mercedes_benz_e_300.jpg",
+        "image": "mercedes_benz_e_300_v2.jpg",
         "description": "Refined and comfortable sedan with strong performance."
     },
     {
@@ -1234,7 +1234,7 @@
         "production_year": 2022,
         "mileage": 32000,
         "color": "white",
-        "image": "tesla_model_3_standard_range_rwd.jpg",
+        "image": "tesla_model_3_standard_range_rwd_v2.jpg",
         "description": "Efficient EV offering quiet driving and advanced technology features."
     },
 
@@ -1261,7 +1261,7 @@
         "production_year": 2022,
         "mileage": 31000,
         "color": "black",
-        "image": "tesla_model_3_longe_range_awd.jpg",
+        "image": "tesla_model_3_longe_range_awd_v2.jpg",
         "description": "Currently rented, efficient and practical EV with strong range."
     },
     {
@@ -1287,7 +1287,7 @@
         "production_year": 2022,
         "mileage": 33000,
         "color": "blue",
-        "image": "tesla_model_y_longe_range_awd.jpg",
+        "image": "tesla_model_y_longe_range_awd_v2.jpg",
         "description": "Versatile EV combining practicality and strong performance."
     },
     {
@@ -1313,7 +1313,7 @@
         "production_year": 2022,
         "mileage": 26000,
         "color": "silver",
-        "image": "tesla_model_s_long_range_awd.jpg",
+        "image": "tesla_model_s_long_range_awd_v2.jpg",
         "description": "High-end EV offering smooth acceleration and advanced technology."
     },
 
@@ -1340,7 +1340,7 @@
         "production_year": 2022,
         "mileage": 25000,
         "color": "black",
-        "image": "tesla_model_x_long_range_awd.jpg",
+        "image": "tesla_model_x_long_range_awd_v2.jpg",
         "description": "High-end EV offering strong performance, comfort, and innovative design."
     }
 ]
