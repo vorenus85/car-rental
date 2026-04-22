@@ -1,6 +1,6 @@
 import { fetchFeatures, deleteFeatureById, fetchFeature } from '@/services/featureService'
 import { useCustomToast } from '@/composables/useCustomToast'
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 export const useFeature = () => {
@@ -24,6 +24,23 @@ export const useFeature = () => {
         { id: 'technology', label: 'Technology' },
         { id: 'driving', label: 'Driving' },
     ]
+
+    const groupedFeatures = computed(() => {
+        const result = featureCategories.map(category => ({
+            ...category,
+            features: [],
+        }))
+
+        features.value.forEach(feature => {
+            const categoryGroup = result.find(group => group.id === feature.category)
+
+            if (categoryGroup) {
+                categoryGroup.features.push(feature)
+            }
+        })
+
+        return result
+    })
 
     const featureValidator = ({ values }) => {
         const errors = {}
@@ -105,6 +122,7 @@ export const useFeature = () => {
         getFeatures,
         deleteFeature,
         featureValidator,
+        groupedFeatures,
         featureCategories,
         initialValues,
         loading,

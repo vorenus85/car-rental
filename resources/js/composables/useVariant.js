@@ -22,6 +22,7 @@ export const useVariant = () => {
         seats: '1',
         doors: '1',
         description: '',
+        features: [],
     })
 
     const selectedBrand = ref({ id: null, name: null })
@@ -83,6 +84,8 @@ export const useVariant = () => {
             errors,
         }
     }
+
+    const selectedFeatures = ref([])
 
     const variantCategories = [
         {
@@ -174,6 +177,8 @@ export const useVariant = () => {
             initialValues.seats = data.seats
             initialValues.doors = data.doors
             initialValues.description = data.description
+            selectedFeatures.value = data.features.map(f => f.id)
+            initialValues.features = data.features.map(f => f.id)
 
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
             selectedBrand.value = data.model.brand.id
@@ -227,6 +232,7 @@ export const useVariant = () => {
     return {
         loading,
         selectedBrand,
+        selectedFeatures,
         getVariant,
         getVariants,
         deleteVariant,

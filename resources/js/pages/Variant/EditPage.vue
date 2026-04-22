@@ -16,12 +16,12 @@
                 v-slot="$form"
                 :initial-values="initialValues"
                 :resolver="variantValidator"
-                class="flex flex-col gap-4 w-full lg:w-1/2"
+                class="flex flex-col gap-4 w-full"
                 :validate-on-value-update="true"
                 :validate-on-blur="true"
                 @submit="onFormSubmit"
             >
-                <div class="flex flex-col gap-1 mb-4">
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="name">Variant name</label>
                     <InputText
                         id="name"
@@ -38,7 +38,7 @@
                         >{{ $form.name.error?.message }}</Message
                     >
                 </div>
-                <div class="flex flex-col gap-1 mb-4">
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="brand">Brand</label>
                     <Select
                         v-model="selectedBrand"
@@ -61,7 +61,7 @@
                         >{{ $form.brand_id?.error?.message }}</Message
                     >
                 </div>
-                <div class="flex flex-col gap-1 mb-4">
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="model">Model</label>
                     <Select
                         input-id="model"
@@ -83,7 +83,7 @@
                         >{{ $form.model_id?.error?.message }}</Message
                     >
                 </div>
-                <div class="flex flex-col gap-1 mb-4">
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="category">Category</label>
                     <small class="p-text-secondary">
                         Select the vehicle category. This determines pricing tier and positioning
@@ -109,7 +109,7 @@
                         >{{ $form.category?.error?.message }}</Message
                     >
                 </div>
-                <div class="flex flex-col gap-1 mb-4">
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="body_type">Body type</label>
                     <Select
                         id="body_type"
@@ -131,7 +131,7 @@
                         >{{ $form.body_type?.error?.message }}</Message
                     >
                 </div>
-                <div class="flex flex-col gap-1 mb-4">
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="transmission">Transmission</label>
                     <SelectButton
                         name="transmission"
@@ -148,7 +148,7 @@
                         >{{ $form.transmission?.error?.message }}</Message
                     >
                 </div>
-                <div class="flex flex-col gap-1 mb-4">
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="fuel">Fuel type</label>
                     <Select
                         id="fuel"
@@ -170,7 +170,7 @@
                         >{{ $form.fuel?.error?.message }}</Message
                     >
                 </div>
-                <div class="flex flex-col gap-1 mb-4">
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="seats">Seats</label>
                     <div class="w-1/2">
                         <div>
@@ -197,7 +197,7 @@
                         >
                     </div>
                 </div>
-                <div class="flex flex-col gap-1 mb-4">
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="seats">Doors</label>
                     <div class="w-1/2">
                         <div>
@@ -224,7 +224,36 @@
                         >
                     </div>
                 </div>
-                <div class="flex flex-col gap-1 mb-4">
+                <div class="flex flex-col gap-1 mb-4 w-full">
+                    <label for="description">Features</label>
+                    <div class="flex flex-col gap-2">
+                        <div v-for="category in groupedFeatures" :key="category.id">
+                            <strong class="mb-2">{{ category.label }}</strong>
+
+                            <div
+                                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-4"
+                            >
+                                <div
+                                    v-for="feature in category.features"
+                                    :key="feature.id"
+                                    class="flex gap-2"
+                                >
+                                    <Checkbox
+                                        v-model="selectedFeatures"
+                                        name="features"
+                                        :input-id="'feature-' + feature.id"
+                                        :value="feature.id"
+                                    />
+
+                                    <label :for="'feature-' + feature.id">
+                                        {{ feature.name }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="description">Description</label>
                     <Textarea
                         name="description"
@@ -241,7 +270,7 @@
                         >{{ $form.description.error?.message }}</Message
                     >
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col w-full lg:w-1/2">
                     <Button
                         type="submit"
                         severity="primary"
@@ -258,12 +287,22 @@
 <script setup>
 import AppLayout from '@/layouts/AppLayout.vue'
 import PageTitle from '@/components/PageTitle.vue'
-import { Button, InputText, Message, Select, SelectButton, Slider, Textarea } from 'primevue'
+import {
+    Button,
+    Checkbox,
+    InputText,
+    Message,
+    Select,
+    SelectButton,
+    Slider,
+    Textarea,
+} from 'primevue'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { Form } from '@primevue/forms'
 import { useBrand } from '@/composables/useBrand'
 import { useCarModel } from '@/composables/useCarModel'
 import { useVariant } from '@/composables/useVariant'
+import { useFeature } from '@/composables/useFeature'
 import { updateVariantById } from '@/services/variantService'
 import { onMounted, watch, ref } from 'vue'
 import { useCustomToast } from '@/composables/useCustomToast'
@@ -271,6 +310,7 @@ import { useCustomToast } from '@/composables/useCustomToast'
 const { toVariantsList } = useRedirects()
 const { getBrands, brands } = useBrand()
 const { getCarModelsByBrand, carModels } = useCarModel()
+const { groupedFeatures, getFeatures } = useFeature()
 const {
     variantCategories,
     bodyTypes,
@@ -282,6 +322,7 @@ const {
     formKey,
     selectedBrand,
     variantId,
+    selectedFeatures,
 } = useVariant()
 const { customToast } = useCustomToast()
 const formRef = ref(null)
@@ -321,5 +362,6 @@ const onFormSubmit = async ({ valid, values }) => {
 onMounted(async () => {
     await getBrands()
     await getVariant()
+    await getFeatures()
 })
 </script>

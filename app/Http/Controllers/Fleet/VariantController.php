@@ -46,25 +46,24 @@ class VariantController extends Controller
         //
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-
             'model_id' => ['required', 'integer', 'exists:car_models,id'],
-
             'category' => ['required', 'in:economy,compact,suv,business,premium'],
-
             'description' => ['nullable', 'string'],
-
             'body_type' => ['required', 'in:suv,sedan,hatchback,coupe,wagon'],
-
             'transmission' => ['required', 'in:manual,automatic'],
-
             'fuel' => ['required', 'in:petrol,diesel,electric,hybrid'],
-
             'seats' => ['required', 'integer', 'min:1', 'max:9'],
-
             'doors' => ['required', 'integer', 'min:1', 'max:5'],
+
+            'features' => 'nullable|array',
+            'features.*' => 'exists:features,id',
         ]);
 
         $variant = Variant::create($validated);
+
+        if ($request->has('features')) {
+            $variant->features()->sync($request->features);
+        }
 
         return response()->json([
             'message' => 'Variant created successfully.',
@@ -79,7 +78,7 @@ class VariantController extends Controller
     {
         //
         return response()->json(
-            $variant->load('model.brand')
+            $variant->load('model.brand')->load('features')
         );
     }
 
@@ -91,25 +90,24 @@ class VariantController extends Controller
         //
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-
             'model_id' => ['required', 'integer', 'exists:car_models,id'],
-
             'category' => ['required', 'in:economy,compact,suv,business,premium'],
-
             'description' => ['nullable', 'string'],
-
             'body_type' => ['required', 'in:suv,sedan,hatchback,coupe,wagon'],
-
             'transmission' => ['required', 'in:manual,automatic'],
-
             'fuel' => ['required', 'in:petrol,diesel,electric,hybrid'],
-
             'seats' => ['required', 'integer', 'min:1', 'max:9'],
-
             'doors' => ['required', 'integer', 'min:1', 'max:5'],
+
+            'features' => 'nullable|array',
+            'features.*' => 'exists:features,id',
         ]);
 
         $variant->update($validated);
+
+        if ($request->has('features')) {
+            $variant->features()->sync($request->features);
+        }
 
         return response()->json($variant, 200);
     }
