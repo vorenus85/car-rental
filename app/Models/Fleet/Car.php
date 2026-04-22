@@ -4,6 +4,8 @@ namespace App\Models\Fleet;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Car extends Model
 {
@@ -22,8 +24,8 @@ class Car extends Model
         'description',
     ];
 
-    public function variant()
+    public function variant(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\Fleet\Variant::class);
+        return $this->belongsTo(Variant::class);
     }
 }

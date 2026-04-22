@@ -49,6 +49,7 @@ class CarResource extends JsonResource
                         'id' => $this->variant->model->id,
                         // @phpstan-ignore property.notFound
                         'name' => $this->variant->model->name,
+                        // @phpstan-ignore property.notFound
                         'brand' => $this->variant->model->relationLoaded('brand') ? [
                             // @phpstan-ignore property.notFound
                             'id' => $this->variant->model->brand->id,

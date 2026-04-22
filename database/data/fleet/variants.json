@@ -9,7 +9,15 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Air Conditioning",
+            "Bluetooth",
+            "USB Ports"
+        ]
     },
     {
         "brand": "Volkswagen",
@@ -21,7 +29,21 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Parking Sensors",
+            "Air Conditioning",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Volkswagen",
@@ -33,7 +55,30 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -46,7 +91,25 @@
         "transmission": "automatic",
         "fuel": "diesel",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Volkswagen",
@@ -58,7 +121,30 @@
         "transmission": "automatic",
         "fuel": "diesel",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "Volkswagen",
@@ -70,7 +156,31 @@
         "transmission": "automatic",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -83,7 +193,17 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Air Conditioning",
+            "Bluetooth",
+            "USB Ports"
+        ]
     },
     {
         "brand": "Toyota",
@@ -95,7 +215,24 @@
         "transmission": "automatic",
         "fuel": "hybrid",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Toyota",
@@ -107,7 +244,30 @@
         "transmission": "automatic",
         "fuel": "hybrid",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -120,7 +280,30 @@
         "transmission": "automatic",
         "fuel": "hybrid",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "Toyota",
@@ -132,7 +315,31 @@
         "transmission": "automatic",
         "fuel": "hybrid",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "All-Wheel Drive (AWD)",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "Toyota",
@@ -144,7 +351,23 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
 
     {
@@ -157,7 +380,15 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Air Conditioning",
+            "Bluetooth",
+            "USB Ports"
+        ]
     },
     {
         "brand": "Skoda",
@@ -169,7 +400,21 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Parking Sensors",
+            "Air Conditioning",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Skoda",
@@ -181,7 +426,28 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -194,7 +460,27 @@
         "transmission": "automatic",
         "fuel": "diesel",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "Skoda",
@@ -206,7 +492,30 @@
         "transmission": "automatic",
         "fuel": "diesel",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "Skoda",
@@ -218,7 +527,31 @@
         "transmission": "automatic",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -231,7 +564,17 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Air Conditioning",
+            "Bluetooth",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Ford",
@@ -243,7 +586,22 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Parking Sensors",
+            "Air Conditioning",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Ford",
@@ -255,7 +613,29 @@
         "transmission": "automatic",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Keyless Entry",
+            "Keyless Start",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -268,7 +648,23 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Ford",
@@ -280,7 +676,30 @@
         "transmission": "automatic",
         "fuel": "hybrid",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "Hyundai",
@@ -292,7 +711,31 @@
         "transmission": "automatic",
         "fuel": "electric",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -305,7 +748,31 @@
         "transmission": "automatic",
         "fuel": "electric",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "Hyundai",
@@ -317,7 +784,16 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Air Conditioning",
+            "Bluetooth",
+            "USB Ports"
+        ]
     },
     {
         "brand": "Hyundai",
@@ -329,7 +805,22 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Parking Sensors",
+            "Air Conditioning",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
 
     {
@@ -342,7 +833,24 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Hyundai",
@@ -354,7 +862,23 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Hyundai",
@@ -366,7 +890,30 @@
         "transmission": "automatic",
         "fuel": "hybrid",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -379,7 +926,17 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Air Conditioning",
+            "Bluetooth",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Kia",
@@ -391,7 +948,22 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Parking Sensors",
+            "Air Conditioning",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Kia",
@@ -403,7 +975,26 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -416,7 +1007,23 @@
         "transmission": "manual",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Kia",
@@ -428,7 +1035,30 @@
         "transmission": "automatic",
         "fuel": "hybrid",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "BMW",
@@ -440,7 +1070,31 @@
         "transmission": "automatic",
         "fuel": "petrol",
         "seats": 4,
-        "doors": 2
+        "doors": 2,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -453,7 +1107,31 @@
         "transmission": "automatic",
         "fuel": "electric",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "BMW",
@@ -465,7 +1143,29 @@
         "transmission": "automatic",
         "fuel": "diesel",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "BMW",
@@ -477,7 +1177,31 @@
         "transmission": "automatic",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -490,7 +1214,30 @@
         "transmission": "automatic",
         "fuel": "diesel",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "BMW",
@@ -502,7 +1249,31 @@
         "transmission": "automatic",
         "fuel": "hybrid",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "Mercedes-Benz",
@@ -514,7 +1285,31 @@
         "transmission": "automatic",
         "fuel": "electric",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -527,7 +1322,31 @@
         "transmission": "automatic",
         "fuel": "petrol",
         "seats": 4,
-        "doors": 2
+        "doors": 2,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "Mercedes-Benz",
@@ -539,7 +1358,24 @@
         "transmission": "automatic",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Mercedes-Benz",
@@ -551,7 +1387,30 @@
         "transmission": "automatic",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
 
     {
@@ -564,7 +1423,30 @@
         "transmission": "automatic",
         "fuel": "diesel",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "Mercedes-Benz",
@@ -576,7 +1458,31 @@
         "transmission": "automatic",
         "fuel": "petrol",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Apple CarPlay",
+            "Android Auto",
+            "USB Ports",
+            "Touchscreen Display",
+            "Navigation System (GPS)"
+        ]
     },
     {
         "brand": "Tesla",
@@ -588,7 +1494,26 @@
         "transmission": "automatic",
         "fuel": "electric",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Navigation System (GPS)",
+            "Touchscreen Display"
+        ]
     },
 
     {
@@ -601,7 +1526,26 @@
         "transmission": "automatic",
         "fuel": "electric",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Navigation System (GPS)",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Tesla",
@@ -613,7 +1557,28 @@
         "transmission": "automatic",
         "fuel": "electric",
         "seats": 5,
-        "doors": 4
+        "doors": 4,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Navigation System (GPS)",
+            "Touchscreen Display"
+        ]
     },
     {
         "brand": "Tesla",
@@ -625,7 +1590,27 @@
         "transmission": "automatic",
         "fuel": "electric",
         "seats": 5,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "Bluetooth",
+            "Navigation System (GPS)",
+            "Touchscreen Display"
+        ]
     },
 
     {
@@ -638,6 +1623,28 @@
         "transmission": "automatic",
         "fuel": "electric",
         "seats": 6,
-        "doors": 5
+        "doors": 5,
+        "features": [
+            "ABS",
+            "Electronic Stability Control",
+            "Airbags",
+            "Lane Departure Warning",
+            "Automatic Emergency Braking",
+            "Blind Spot Monitoring",
+            "Parking Sensors",
+            "Rear View Camera",
+            "Air Conditioning",
+            "Dual-zone Climate Control",
+            "Heated Seats",
+            "Leather Seats",
+            "Keyless Entry",
+            "Keyless Start",
+            "Cruise Control",
+            "Adaptive Cruise Control",
+            "All-Wheel Drive (AWD)",
+            "Bluetooth",
+            "Navigation System (GPS)",
+            "Touchscreen Display"
+        ]
     }
 ]

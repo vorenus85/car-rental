@@ -39,7 +39,6 @@
         "category": "safety",
         "description": "Displays the area behind the car when reversing."
     },
-
     {
         "name": "Air Conditioning",
         "category": "comfort",
@@ -70,7 +69,6 @@
         "category": "comfort",
         "description": "Start the engine with a button instead of a key."
     },
-
     {
         "name": "Bluetooth",
         "category": "technology",
@@ -101,7 +99,6 @@
         "category": "technology",
         "description": "Interactive screen for controlling car features."
     },
-
     {
         "name": "Cruise Control",
         "category": "driving",
