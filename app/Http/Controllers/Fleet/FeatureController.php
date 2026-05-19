@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Fleet;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FeatureRequest;
+use App\Http\Resources\FeatureResource;
 use App\Models\Fleet\Feature;
-use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FeatureController extends Controller
 {
@@ -14,29 +16,20 @@ class FeatureController extends Controller
     public function index()
     {
         //
-        $features = Feature::select('id', 'name', 'description', 'category', 'updated_at')->orderBy('name', 'asc')->get();
+        $features = Feature::orderBy('name', 'asc')->get();
 
-        return response()->json($features);
+        return FeatureResource::collection($features);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(FeatureRequest $request)
     {
         //
-        $request->validate([
-            'name' => 'required|string',
-            'category' => 'required|string',
-            'description' => 'string',
-        ]);
+        $validated = $request->validated();
 
-
-        $feature = Feature::create([
-            'name' => $request->name,
-            'category' => $request->category,
-            'description' => $request->description,
-        ]);
+        $feature = Feature::create($validated);
 
         return response()->json($feature, 201);
     }
@@ -53,14 +46,10 @@ class FeatureController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Feature $feature)
+    public function update(FeatureRequest $request, Feature $feature)
     {
         //
-        $validated = $request->validate([
-            'name' => 'required|string',
-            'category' => 'required|string',
-            'description' => 'string',
-        ]);
+        $validated = $request->validated();
 
         $feature->update($validated);
 
@@ -70,11 +59,11 @@ class FeatureController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Feature $feature)
+    public function destroy(Feature $feature): Response
     {
         //
-        $result = $feature->delete();
+        $feature->delete();
 
-        return response()->json(['result' => $result], 200);
+        return response()->noContent();
     }
 }

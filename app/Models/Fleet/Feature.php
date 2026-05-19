@@ -17,6 +17,10 @@ class Feature extends Model
         'category',
     ];
 
+    /**
+     *
+     * @return BelongsToMany<Variant, $this>
+     */
     public function variants(): BelongsToMany
     {
         return $this->belongsToMany(Variant::class);

@@ -22,6 +22,7 @@ class CarModelController extends Controller
             ->orderBy('brands.name', 'asc')
             ->orderBy('car_models.name', 'asc')
             ->get();
+
         return CarModelResource::collection($carModels);
     }
 
