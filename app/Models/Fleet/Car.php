@@ -24,6 +24,10 @@ class Car extends Model
         'description',
     ];
 
+    /**
+     *
+     * @return BelongsTo<Variant, $this>
+     */
     public function variant(): BelongsTo
     {
         return $this->belongsTo(Variant::class);

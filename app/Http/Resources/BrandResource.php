@@ -1,11 +1,16 @@
 <?php
 
+
 namespace App\Http\Resources;
 
+use App\Models\Fleet\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @mixin Brand
+ */
 class BrandResource extends JsonResource
 {
     /**
@@ -17,13 +22,10 @@ class BrandResource extends JsonResource
     {
 
         return [
-            // @phpstan-ignore property.notFound
             'id' => $this->id,
-            // @phpstan-ignore property.notFound
             'name' => $this->name,
             'image' => $this->whenHas('image'),
             'image_url' => $this->whenHas('image', function () {
-                // @phpstan-ignore property.notFound
                 return $this->image
                     ? Storage::url('/uploads/' . $this->image)
                     : null;

@@ -27,16 +27,28 @@ class Variant extends Model
         'doors',
     ];
 
+    /**
+     *
+     * @return BelongsTo<CarModel, $this>
+     */
     public function model(): BelongsTo
     {
         return $this->belongsTo(CarModel::class);
     }
 
+    /**
+     *
+     * @return HasMany<Car, $this>
+     */
     public function cars(): HasMany
     {
         return $this->hasMany(Car::class, 'variant_id', 'id');
     }
 
+    /**
+     *
+     * @return BelongsToMany<Feature, $this>
+     */
     public function features(): BelongsToMany
     {
         return $this->belongsToMany(Feature::class);
