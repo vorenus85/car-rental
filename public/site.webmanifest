@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Velora - Car Rental",
+  "short_name": "Velora",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
