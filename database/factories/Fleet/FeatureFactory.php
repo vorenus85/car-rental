@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Fleet;
 
 use App\Models\Fleet\Feature;
 use Illuminate\Database\Eloquent\Factories\Factory;
