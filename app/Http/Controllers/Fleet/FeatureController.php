@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Fleet;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FeatureRequest;
+use App\Http\Requests\StoreFeatureRequest;
+use App\Http\Requests\UpdateFeatureRequest;
 use App\Http\Resources\FeatureResource;
 use App\Models\Fleet\Feature;
 use Illuminate\Http\Response;
@@ -24,7 +25,7 @@ class FeatureController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(FeatureRequest $request)
+    public function store(StoreFeatureRequest $request)
     {
         //
         $validated = $request->validated();
@@ -46,7 +47,7 @@ class FeatureController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(FeatureRequest $request, Feature $feature)
+    public function update(UpdateFeatureRequest $request, Feature $feature)
     {
         //
         $validated = $request->validated();
