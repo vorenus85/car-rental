@@ -33,19 +33,19 @@ class VariantFactory extends Factory
             'category' => fake()->randomElement([
                 'economy',
                 'compact',
-                'sedan',
                 'suv',
-                'luxury',
+                'business',
+                'premium'
             ]),
 
             'description' => fake()->sentence(),
 
             'body_type' => fake()->randomElement([
+                'suv',
                 'sedan',
                 'hatchback',
-                'wagon',
-                'suv',
                 'coupe',
+                'wagon'
             ]),
 
             'transmission' => fake()->randomElement([
