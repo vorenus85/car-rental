@@ -4,8 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class FeatureRequest extends FormRequest
+class UpdateFeatureRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,7 +16,11 @@ class FeatureRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'name' => [
+                'required',
+                'string',
+                Rule::unique('features', 'name')->ignore($this->feature),
+            ],
             'category' => 'required|string',
             'description' => 'string',
         ];
