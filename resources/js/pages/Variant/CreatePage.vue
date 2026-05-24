@@ -239,7 +239,6 @@
                                     class="flex gap-2"
                                 >
                                     <Checkbox
-                                        model-value="initialValues.features"
                                         name="features"
                                         :input-id="'feature-' + feature.id"
                                         :value="feature.id"

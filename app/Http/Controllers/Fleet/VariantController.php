@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Fleet;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreVariantRequest;
+use App\Http\Requests\UpdateVariantRequest;
 use App\Models\Fleet\Variant;
-use Illuminate\Http\Request;
 
 class VariantController extends Controller
 {
@@ -41,23 +42,10 @@ class VariantController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreVariantRequest $request)
     {
         //
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'model_id' => ['required', 'integer', 'exists:car_models,id'],
-            'category' => ['required', 'in:economy,compact,suv,business,premium'],
-            'description' => ['nullable', 'string'],
-            'body_type' => ['required', 'in:suv,sedan,hatchback,coupe,wagon'],
-            'transmission' => ['required', 'in:manual,automatic'],
-            'fuel' => ['required', 'in:petrol,diesel,electric,hybrid'],
-            'seats' => ['required', 'integer', 'min:1', 'max:9'],
-            'doors' => ['required', 'integer', 'min:1', 'max:5'],
-
-            'features' => 'nullable|array',
-            'features.*' => 'exists:features,id',
-        ]);
+        $validated = $request->validated();
 
         $variant = Variant::create($validated);
 
@@ -85,23 +73,10 @@ class VariantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Variant $variant)
+    public function update(UpdateVariantRequest $request, Variant $variant)
     {
         //
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'model_id' => ['required', 'integer', 'exists:car_models,id'],
-            'category' => ['required', 'in:economy,compact,suv,business,premium'],
-            'description' => ['nullable', 'string'],
-            'body_type' => ['required', 'in:suv,sedan,hatchback,coupe,wagon'],
-            'transmission' => ['required', 'in:manual,automatic'],
-            'fuel' => ['required', 'in:petrol,diesel,electric,hybrid'],
-            'seats' => ['required', 'integer', 'min:1', 'max:9'],
-            'doors' => ['required', 'integer', 'min:1', 'max:5'],
-
-            'features' => 'nullable|array',
-            'features.*' => 'exists:features,id',
-        ]);
+        $validated = $request->validated();
 
         $variant->update($validated);
 
@@ -124,8 +99,9 @@ class VariantController extends Controller
                 'message' => 'Cannot delete variant with assigned cars.',
             ], 422);
         }
-        $result = $variant->delete();
 
-        return response()->json(['result' => $result], 200);
+        $variant->delete();
+
+        return response()->noContent();
     }
 }
