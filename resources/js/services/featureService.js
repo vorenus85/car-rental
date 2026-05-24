@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const fetchFeatures = () => {
     return axios.get('/api/admin/features')
 }

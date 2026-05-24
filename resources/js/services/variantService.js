@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const fetchVariants = () => {
     return axios.get('/api/admin/variants')
 }
