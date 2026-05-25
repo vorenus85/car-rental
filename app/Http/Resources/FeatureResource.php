@@ -22,6 +22,7 @@ class FeatureResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
+            'category' => $this->category,
             'updated_at' => $this->updated_at,
         ];
     }
