@@ -68,7 +68,7 @@ describe('FeatureController', function () {
             ->assertJsonValidationErrors([
                 'name',
                 'category',
-            ]);
+            ])->assertJsonCount(2, 'errors');
     });
 
     it('can update a feature', function () {
