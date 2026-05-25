@@ -75,7 +75,7 @@
                             <Button
                                 icon="pi pi-eye"
                                 severity="info"
-                                as-router-link
+                                as="router-link"
                                 :to="{
                                     name: 'variants.show',
                                     params: {
