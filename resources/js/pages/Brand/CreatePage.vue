@@ -92,7 +92,7 @@ const {
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
         try {
-            values.image = uploadedImage.value
+            values.image = uploadedImage?.value || null
             await createBrand(values)
 
             customToast.success('Feature created successfully!')
