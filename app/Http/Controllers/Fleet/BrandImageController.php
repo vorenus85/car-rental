@@ -3,65 +3,61 @@
 namespace App\Http\Controllers\Fleet;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UploadImageRequest;
 use App\Models\Fleet\Brand;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
+use App\Http\Services\ImageUploadService;
 
 class BrandImageController extends Controller
 {
-    //
-    public function store(Request $request)
+    public function __construct(
+        protected ImageUploadService $imageUploadService
+    ) {}
+
+    public function store(UploadImageRequest $request)
     {
         try {
-            $request->validate([
-                'file' => 'required|file|mimes:jpg,jpeg,png,webp|max:2048',
-            ]);
+            $result = $this->imageUploadService->upload(
+                $request->file('file'),
+                'uploads/'
+            );
 
-            $file = $request->file('file');
-
-            $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
-
-            $disk = config('filesystems.default'); // local or s3
-            $path = $file->storeAs('uploads', $filename, $disk);
-
-            return response()->json([
-                'path' => $path,
-                'filename' => $filename,
-                'url' => Storage::disk($disk)->url($path),
-            ]);
+            return response()->json($result);
         } catch (\Throwable $th) {
 
-            Log::error('Brand delete upload failed', [
-                'user_id' => auth()->id(),
-                'error' => $th->getMessage(),
-                'trace' => $th->getTraceAsString(),
-            ]);
-
-            return response()->json(['status' => 'error', 'message' => 'Error during upload brand image'], 500);
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error during upload brand image',
+            ], 500);
         }
     }
 
     public function delete(Brand $brand)
     {
         try {
-            if ($brand->image && Storage::exists('/uploads/' . $brand->image)) {
-                Storage::delete('/uploads/' . $brand->image);
-                $brand->update(["image" => ""]);
-                return response()->json(["status" => 'ok']);
+
+            if (! $brand->image) {
+                return response()->json([
+                    'status' => 'error',
+                ], 404);
             }
 
-            return abort(500);
-        } catch (\Throwable $th) {
+            $this->imageUploadService->delete(
+                'uploads/' . $brand->image
+            );
 
-            Log::error('Brand delete image failed', [
-                'user_id' => auth()->id(),
-                'error' => $th->getMessage(),
-                'trace' => $th->getTraceAsString(),
+            $brand->update([
+                'image' => null,
             ]);
 
-            return response()->json(['status' => 'error', 'message' => 'Error during delete brand image'], 500);
+            return response()->json([
+                'status' => 'ok',
+            ]);
+        } catch (\Throwable $th) {
+
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Error during delete brand image',
+            ], 500);
         }
     }
 }

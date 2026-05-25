@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Fleet;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreBrandRequest;
+use App\Http\Requests\UpdateBrandRequest;
 use App\Http\Resources\BrandResource;
 use App\Models\Fleet\Brand;
 use Illuminate\Http\Request;
@@ -30,18 +32,12 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreBrandRequest $request)
     {
         //
-        $request->validate([
-            'name' => 'required|string',
-            'image' => 'string',
-        ]);
+        $validated = $request->validated();
 
-        $brand = Brand::create([
-            'name' => $request->name,
-            'image' => $request->image,
-        ]);
+        $brand = Brand::create($validated);
 
         return response()->json($brand, 201);
     }
@@ -59,13 +55,10 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Brand $brand)
+    public function update(UpdateBrandRequest $request, Brand $brand)
     {
         //
-        $validated = $request->validate([
-            'name' => 'required|string',
-            'image' => 'string',
-        ]);
+        $validated = $request->validated();
 
         $brand->update($validated);
 
@@ -84,8 +77,8 @@ class BrandController extends Controller
             ], 422);
         }
 
-        $result = $brand->delete();
+        $brand->delete();
 
-        return response()->json(['result' => $result], 200);
+        return response()->noContent();
     }
 }

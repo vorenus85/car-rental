@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const fetchBrands = async (params = {}) => {
     return axios.get('/api/admin/brands', { params })
 }
