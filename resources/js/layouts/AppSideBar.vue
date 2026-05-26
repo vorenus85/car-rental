@@ -72,11 +72,6 @@ const menus = [
         title: 'Bookings',
     },
     {
-        icon: 'cog',
-        routeName: 'account',
-        title: 'Account',
-    },
-    {
         icon: 'list',
         routeName: 'fleet',
         title: 'Fleet',
@@ -134,3 +129,14 @@ const doToggle = () => {
     open.value = !open.value
 }
 </script>
+<style scoped>
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    height: stretch;
+}
+
+.sidebar-menuitem:nth-last-child(1) {
+    margin-top: auto;
+}
+</style>
