@@ -32,6 +32,9 @@ import FeatureListPage from '@/pages/Feature/ListPage.vue'
 import FeatureCreatePage from '@/pages/Feature/CreatePage.vue'
 import FeatureEditPage from '@/pages/Feature/EditPage.vue'
 
+import AcountProfilePage from '@/pages/Account/ProfilePage.vue'
+import AccountPasswordPage from '@/pages/Account/PasswordPage.vue'
+
 import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
@@ -44,6 +47,33 @@ const router = createRouter({
             name: 'dashboard',
             component: DashboardPage,
             meta: { requiresAuth: true },
+        },
+
+        {
+            path: '/account',
+            name: 'account',
+            redirect: () => {
+                return { path: '/account/profile' }
+            },
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/account/profile',
+            name: 'profile',
+            component: AcountProfilePage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/account/password',
+            name: 'password',
+            component: AccountPasswordPage,
+            meta: {
+                requiresAuth: true,
+            },
         },
 
         {

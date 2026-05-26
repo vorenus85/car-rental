@@ -15,22 +15,23 @@
 
 .layout-topbar-action,
 .layout-menu-button {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    width: 2.5rem;
-    height: 2.25rem;
     color: var(--text-color);
     transition: background-color var(--element-transition-duration);
     cursor: pointer;
     margin-right: 1rem;
 
     i {
+        background: var(--surface-hover);
         font-size: 1.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
     }
 
-    &:hover {
+    i:hover {
         background: var(--surface-hover);
         transition: var(--element-transition-duration);
     }
