@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Fleet\BrandController;
 use App\Http\Controllers\Fleet\BrandImageController;
@@ -22,6 +23,12 @@ Route::get('/auth/check', function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    Route::prefix('/api/admin/account')->group(function () {
+        Route::get('/me', [AccountController::class, 'show']);
+        Route::put('/me', [AccountController::class, 'update']);
+        Route::put('/password', [AccountController::class, 'changePassword']);
+    });
 
     Route::prefix('/api/admin/features')->group(function () {
         Route::get('/', [FeatureController::class, 'index']);

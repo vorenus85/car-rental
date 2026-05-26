@@ -72,6 +72,11 @@ const menus = [
         title: 'Bookings',
     },
     {
+        icon: 'cog',
+        routeName: 'account',
+        title: 'Account',
+    },
+    {
         icon: 'list',
         routeName: 'fleet',
         title: 'Fleet',

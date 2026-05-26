@@ -98,8 +98,8 @@ describe('brandService', () => {
     it('deleteBrandImage calls correct endpoint', async () => {
         axios.delete.mockResolvedValue()
 
-        await deleteBrandById(1)
+        await deleteBrandImage(1)
 
-        expect(axios.delete).toHaveBeenCalledWith('/api/admin/brands/1')
+        expect(axios.delete).toHaveBeenCalledWith('/api/admin/brands/image/delete/1')
     })
 })
