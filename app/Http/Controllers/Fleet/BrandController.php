@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Fleet;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBrandRequest;
-use App\Http\Requests\UpdateBrandRequest;
+use App\Http\Requests\Fleet\Brand\StoreBrandRequest;
+use App\Http\Requests\Fleet\Brand\UpdateBrandRequest;
 use App\Http\Resources\BrandResource;
 use App\Models\Fleet\Brand;
 use Illuminate\Http\Request;
@@ -59,6 +59,10 @@ class BrandController extends Controller
     {
         //
         $validated = $request->validated();
+
+        if (empty($validated['image'])) {
+            unset($validated['image']);
+        }
 
         $brand->update($validated);
 
