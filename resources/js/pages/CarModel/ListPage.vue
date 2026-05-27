@@ -68,17 +68,17 @@
                 <Column header="Actions" style="width: 20%">
                     <template #body="slotProps">
                         <div class="flex items-center justify-list gap-3">
-                            <Button v-slot="buttonProps" severity="info" as-child>
-                                <RouterLink
-                                    :to="{
-                                        name: 'models.show',
-                                        params: {
-                                            id: slotProps.data?.id,
-                                        },
-                                    }"
-                                    :class="buttonProps.class"
-                                    >Edit</RouterLink
-                                >
+                            <Button
+                                severity="info"
+                                as="router-link"
+                                icon="pi pi-eye"
+                                :to="{
+                                    name: 'models.show',
+                                    params: {
+                                        id: slotProps.data?.id,
+                                    },
+                                }"
+                            >
                             </Button>
 
                             <Button

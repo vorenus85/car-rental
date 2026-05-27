@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Fleet;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Fleet\CarModel\StoreCarModelRequest;
+use App\Http\Requests\Fleet\CarModel\UpdateCarModelRequest;
 use App\Http\Resources\CarModelResource;
 use App\Models\Fleet\CarModel;
 use Illuminate\Http\Request;
@@ -38,20 +40,12 @@ class CarModelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCarModelRequest $request)
     {
         //
-        $request->validate([
-            'name' => 'required|string',
-            'description' => 'string',
-            'brand_id' => 'required|int',
-        ]);
+        $validated = $request->validated();
 
-        $carModel = CarModel::create([
-            'name' => $request->name,
-            'brand_id' => $request->brand_id,
-            'description' => $request->description,
-        ]);
+        $carModel = CarModel::create($validated);
 
         return response()->json($carModel, 201);
     }
@@ -68,14 +62,10 @@ class CarModelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CarModel $carModel)
+    public function update(UpdateCarModelRequest $request, CarModel $carModel)
     {
         //
-        $validated = $request->validate([
-            'name' => 'required|string',
-            'description' => 'string',
-            'brand_id' => 'required|int',
-        ]);
+        $validated = $request->validated();
 
         $carModel->update($validated);
 
@@ -94,8 +84,8 @@ class CarModelController extends Controller
             ], 422);
         }
 
-        $result = $carModel->delete();
+        $carModel->delete();
 
-        return response()->json(['result' => $result], 200);
+        return response()->noContent();
     }
 }
