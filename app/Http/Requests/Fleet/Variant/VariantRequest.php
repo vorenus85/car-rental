@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Fleet\Variant;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateVariantRequest extends FormRequest
+class VariantRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
