@@ -56,17 +56,17 @@
                 <Column header="Actions" style="width: 10%">
                     <template #body="slotProps">
                         <div class="flex items-center justify-list gap-3">
-                            <Button v-slot="buttonProps" severity="info" as-child>
-                                <RouterLink
-                                    :to="{
-                                        name: 'brands.show',
-                                        params: {
-                                            id: slotProps.data?.id,
-                                        },
-                                    }"
-                                    :class="buttonProps.class"
-                                    >Edit</RouterLink
-                                >
+                            <Button
+                                severity="info"
+                                as="router-link"
+                                icon="pi pi-eye"
+                                :to="{
+                                    name: 'brands.show',
+                                    params: {
+                                        id: slotProps.data?.id,
+                                    },
+                                }"
+                            >
                             </Button>
 
                             <Button
@@ -86,7 +86,6 @@ import AppLayout from '@/layouts/AppLayout.vue'
 import PageTitle from '@/components/PageTitle.vue'
 import {
     Button,
-    Chip,
     Column,
     DataTable,
     IconField,
