@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const checkAuth = async () => {
     return await axios.get('/auth/check')
 }
