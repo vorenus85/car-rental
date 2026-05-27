@@ -4,6 +4,7 @@ namespace App\Http\Requests\Fleet\CarModel;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateCarModelRequest extends FormRequest
 {
@@ -15,7 +16,11 @@ class UpdateCarModelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string',
+            'name' => [
+                'required',
+                'string',
+                Rule::unique('car_models', 'name')->ignore($this->carModel)
+            ],
             'description' => 'string',
             'brand_id' => 'required|int',
         ];
