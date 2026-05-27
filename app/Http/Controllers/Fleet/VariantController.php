@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Fleet;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreVariantRequest;
-use App\Http\Requests\UpdateVariantRequest;
+use App\Http\Requests\Fleet\Variant\VariantRequest;
 use App\Models\Fleet\Variant;
 
 class VariantController extends Controller
@@ -42,7 +41,7 @@ class VariantController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreVariantRequest $request)
+    public function store(VariantRequest $request)
     {
         //
         $validated = $request->validated();
@@ -73,7 +72,7 @@ class VariantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateVariantRequest $request, Variant $variant)
+    public function update(VariantRequest $request, Variant $variant)
     {
         //
         $validated = $request->validated();

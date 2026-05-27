@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Fleet;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreFeatureRequest;
-use App\Http\Requests\UpdateFeatureRequest;
+use App\Http\Requests\Fleet\Feature\StoreFeatureRequest;
+use App\Http\Requests\Fleet\Feature\UpdateFeatureRequest;
 use App\Http\Resources\FeatureResource;
 use App\Models\Fleet\Feature;
 use Illuminate\Http\Response;
