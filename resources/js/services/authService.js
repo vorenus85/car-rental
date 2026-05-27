@@ -19,3 +19,11 @@ export const doLogout = async () => {
 export const doLogin = async (email, password) => {
     return await axios.post('/auth/login', { email, password }, { withCredentials: true })
 }
+
+export const forgotPassword = async email => {
+    return axios.post('/auth/forgot-password', { email })
+}
+
+export const resetPassword = async values => {
+    return axios.post('/auth/reset-password', values)
+}

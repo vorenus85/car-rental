@@ -10,7 +10,10 @@ import ClientsPage from '@/pages/ClientsPage.vue'
 
 import SettingsPage from '@/pages/SettingsPage.vue'
 import NotFoundPage from '@/pages/NotFoundPage.vue'
-import LoginPage from '@/pages/LoginPage.vue'
+
+import ForgotPasswordPage from '@/pages/Auth/ForgotPasswordPage.vue'
+import ResetPasswordPage from '@/pages/Auth/ResetPasswordPage.vue'
+import LoginPage from '@/pages/Auth/LoginPage.vue'
 
 import CarListPage from '@/pages/Car/ListPage.vue'
 import CarCreatePage from '@/pages/Car/CreatePage.vue'
@@ -42,6 +45,8 @@ const router = createRouter({
     routes: [
         { path: '/:pathMatch(.*)*', name: 'notFound', component: NotFoundPage },
         { path: '/', name: 'login', component: LoginPage },
+        { path: '/forgot-password', name: 'forgot-password', component: ForgotPasswordPage },
+        { path: '/reset-password', name: 'reset-password', component: ResetPasswordPage },
         {
             path: '/dashboard',
             name: 'dashboard',

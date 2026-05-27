@@ -21,6 +21,8 @@ Route::get('/auth/check', function () {
         'user' => Auth::user(),
     ]);
 });
+Route::post('/auth/forgot-password', [AuthController::class, 'sendResetLink']);
+Route::post('/auth/reset-password', [AuthController::class, 'reset']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
