@@ -1,7 +1,7 @@
 <template>
     <main>
         <div class="h-screen flex items-center justify-center flex-col">
-            <div><LogoIcon class="mb-5" /></div>
+            <div class="mb-5"><LogoIcon /></div>
             <Card class="p-4 py-6 w-full sm:max-w-lg">
                 <template #content>
                     <div
@@ -36,7 +36,8 @@
                             :resolver="loginValidator"
                             @submit="onFormSubmit"
                         >
-                            <div class="flex flex-col gap-1">
+                            <div class="flex flex-col gap-1 text-left">
+                                <label for="email">Email address</label>
                                 <InputText
                                     name="email"
                                     type="email"
@@ -51,12 +52,13 @@
                                     >{{ $form.email.error?.message }}</Message
                                 >
                             </div>
-                            <div class="flex flex-col gap-1">
+                            <div class="flex flex-col gap-1 text-left">
                                 <FormField
                                     v-slot="$field"
                                     name="password"
                                     class="flex flex-col gap-1"
                                 >
+                                    <label for="password">Password</label>
                                     <Password
                                         type="text"
                                         placeholder="Password"
@@ -71,6 +73,11 @@
                                         variant="simple"
                                         >{{ $field.error?.message }}</Message
                                     >
+                                    <div class="text-right mb-4">
+                                        <RouterLink to="/forgot-password" class="font-semibold"
+                                            >Forgot your password?</RouterLink
+                                        >
+                                    </div>
                                 </FormField>
                             </div>
                             <Button type="submit" label="Log in" />
