@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Ethan Walker",
+        "phone": "923-456-7890",
+        "email": "ethan.walker@laravel-starter.com",
+        "active": true
+    },
+    {
+        "name": "Lucas Bennett",
+        "phone": "234-567-8901",
+        "email": "lucas.bennett@laravel-starter.com",
+        "active": true
+    },
+    {
+        "name": "Noah Mitchell",
+        "phone": "345-678-9012",
+        "email": "noah.mitchell@laravel-starter.com",
+        "active": false
+    },
+    {
+        "name": "Oliver Thompson",
+        "phone": "456-789-0123",
+        "email": "oliver.thompson@laravel-starter.com",
+        "active": true
+    },
+    {
+        "name": "James Carter",
+        "phone": "567-890-1234",
+        "email": "james.carter@laravel-starter.com",
+        "active": false
+    }
+]

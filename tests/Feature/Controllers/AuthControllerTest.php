@@ -207,4 +207,23 @@ describe('AuthController', function () {
             ->assertStatus(422)
             ->assertJsonValidationErrors(['password']);
     });
+
+    it('cannot login with inactive account', function () {
+        $user = User::factory()->create([
+            'active' => false,
+            'password' => bcrypt('password'),
+        ]);
+
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/login', [
+            'email' => $user->email,
+            'password' => 'password',
+            '_token' => 'test-token',
+        ]);
+
+        $response
+            ->assertStatus(403)
+            ->assertJson([
+                'message' => 'Your account has been deactivated. Please contact an administrator.',
+            ]);
+    });
 });

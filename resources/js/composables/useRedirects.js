@@ -67,6 +67,14 @@ export const useRedirects = () => {
         router.push({ name: 'login' })
     }
 
+    const toCreateUser = () => {
+        router.push({ name: 'users.create' })
+    }
+
+    const toUsersList = () => {
+        router.push({ name: 'users' })
+    }
+
     return {
         toDashboard,
         toBookingsList,
@@ -84,5 +92,7 @@ export const useRedirects = () => {
         toClientsList,
         toSettings,
         toLogin,
+        toCreateUser,
+        toUsersList,
     }
 }
