@@ -18,6 +18,7 @@ describe('User model', function () {
                 'email',
                 'phone',
                 'password',
+                'active',
             ]);
     });
 

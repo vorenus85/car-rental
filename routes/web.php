@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Fleet\BrandController;
 use App\Http\Controllers\Fleet\BrandImageController;
 use App\Http\Controllers\Fleet\CarController;
@@ -25,6 +26,15 @@ Route::post('/auth/forgot-password', [AuthController::class, 'sendResetLink']);
 Route::post('/auth/reset-password', [AuthController::class, 'reset']);
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    Route::prefix('/api/admin/users')->group(function () {
+        Route::get('/', [UserController::class, 'index']);
+        Route::post('/', [UserController::class, 'store']);
+        Route::get('/{user}', [UserController::class, 'show']);
+        Route::put('/{user}', [UserController::class, 'update']);
+        Route::delete('/{user}', [UserController::class, 'destroy']);
+        Route::put('/{user}/toggle-active', [UserController::class, 'toggleActive']);
+    });
 
     Route::prefix('/api/admin/account')->group(function () {
         Route::get('/me', [AccountController::class, 'show']);

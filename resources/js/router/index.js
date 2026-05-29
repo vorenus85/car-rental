@@ -38,6 +38,10 @@ import FeatureEditPage from '@/pages/Feature/EditPage.vue'
 import AcountProfilePage from '@/pages/Account/ProfilePage.vue'
 import AccountPasswordPage from '@/pages/Account/PasswordPage.vue'
 
+import UserListPage from '@/pages/User/ListPage.vue'
+import UserCreatePage from '@/pages/User/CreatePage.vue'
+import UserEditPage from '@/pages/User/EditPage.vue'
+
 import { useAuthStore } from '@/stores/auth'
 
 const router = createRouter({
@@ -47,6 +51,30 @@ const router = createRouter({
         { path: '/', name: 'login', component: LoginPage },
         { path: '/forgot-password', name: 'forgot-password', component: ForgotPasswordPage },
         { path: '/reset-password', name: 'reset-password', component: ResetPasswordPage },
+        {
+            path: '/users',
+            name: 'users',
+            component: UserListPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/users/create',
+            name: 'users.create',
+            component: UserCreatePage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/users/:id',
+            name: 'users.show',
+            component: UserEditPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
         {
             path: '/dashboard',
             name: 'dashboard',

@@ -117,6 +117,13 @@ const menus = [
         icon: 'cog',
         routeName: 'settings',
         title: 'Settings',
+        items: [
+            {
+                icon: 'user',
+                routeName: 'users',
+                title: 'Users',
+            },
+        ],
     },
     {
         icon: 'sign-out',
