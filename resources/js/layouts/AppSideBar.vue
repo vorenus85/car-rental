@@ -4,8 +4,12 @@
             <template v-for="menu in menus" :key="menu.title">
                 <li class="sidebar-menuitem">
                     <template v-if="menu?.items?.length">
-                        <SidebarMenuitem :icon="menu.icon" :title="menu.title" @toggle="doToggle" />
-                        <ul class="sidebar-submenu" :class="{ open: open }">
+                        <SidebarMenuitem
+                            :icon="menu.icon"
+                            :title="menu.title"
+                            @toggle="doToggle(menu.title)"
+                        />
+                        <ul class="sidebar-submenu" :class="{ open: openMenu === menu.title }">
                             <template v-for="submenu in menu?.items" :key="submenu.title">
                                 <li class="sidebar-menuitem sidebar-sub-menuitem">
                                     <SidebarMenuitem
@@ -33,8 +37,12 @@ import SidebarMenuitem from '@/components/SidebarMenuitem.vue'
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
-const open = ref(false)
+const openMenu = ref(null)
 const route = useRoute()
+
+const doToggle = menuTitle => {
+    openMenu.value = openMenu.value === menuTitle ? null : menuTitle
+}
 
 watch(
     () => route.name,
@@ -131,10 +139,6 @@ const menus = [
         title: 'Logout',
     },
 ]
-
-const doToggle = () => {
-    open.value = !open.value
-}
 </script>
 <style scoped>
 .sidebar-menu {
