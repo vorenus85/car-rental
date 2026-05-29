@@ -214,9 +214,10 @@ describe('AuthController', function () {
             'password' => bcrypt('password'),
         ]);
 
-        $response = $this->postJson('/auth/login', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/login', [
             'email' => $user->email,
             'password' => 'password',
+            '_token' => 'test-token',
         ]);
 
         $response

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,23 +25,12 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
         //
-        $request->validate([
-            "name" => "string|required",
-            "phone" => "nullable|string",
-            "email" => "string|required|email|unique:users,email",
-        ], [
-            'email.unique' => 'This email already exists.'
-        ]);
+        $validated = $request->validated();
 
-        $user = User::create([
-            'name' => $request->name,
-            'phone' => $request->phone,
-            'active' => true,
-            'email' => $request->email
-        ]);
+        $user = User::create($validated);
 
         return response()->json($user, 201);
     }
@@ -58,19 +49,12 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
         //
-        $request->validate([
-            "name" => "string|required",
-            "phone" => "nullable|string",
-            "active" => "boolean",
-            "email" => "string|required|email|unique:users,email," . $user->id,
-        ], [
-            'email.unique' => 'This email already exists.'
-        ]);
+        $validated = $request->validated();
 
-        $user->update($request->all());
+        $user->update($validated);
 
         return response()->json($user);
     }
@@ -81,7 +65,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return response()->json(null, 204);
+        return response()->noContent();
     }
 
     public function toggleActive(User $user)

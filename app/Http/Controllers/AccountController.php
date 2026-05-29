@@ -35,7 +35,7 @@ class AccountController extends Controller
     {
         $request->validated();
 
-        $user  = $user = Auth::user();
+        $user = Auth::user();
 
         $user->update([
             'password' => Hash::make($request->password),
