@@ -97,6 +97,7 @@ import { useCustomToast } from '@/composables/useCustomToast'
 import { useBrand } from '@/composables/useBrand'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { updateBrandById } from '@/services/brandService'
+import { brandValidator } from '@/validators/brandValidator'
 import { Form } from '@primevue/forms'
 import { onMounted } from 'vue'
 
@@ -105,7 +106,6 @@ const { customToast } = useCustomToast()
 
 const {
     initialValues,
-    brandValidator,
     isUploading,
     uploadProgress,
     onRemoveImage,
@@ -118,7 +118,7 @@ const {
     brandId,
 } = useBrand()
 
-const onFormSubmit = async ({ valid, values }) => {
+const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             values.image = uploadedImage.value
@@ -133,6 +133,8 @@ const onFormSubmit = async ({ valid, values }) => {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 

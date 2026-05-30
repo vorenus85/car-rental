@@ -14,7 +14,7 @@
             <Form
                 v-slot="$form"
                 :initial-values
-                :resolver="modelValidator"
+                :resolver="carModelValidator"
                 class="flex flex-col gap-4 w-full lg:w-1/2"
                 :validate-on-value-update="true"
                 :validate-on-blur="true"
@@ -93,15 +93,16 @@ import { useCarModel } from '@/composables/useCarModel'
 import { useBrand } from '@/composables/useBrand'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { createCarModel } from '@/services/carModelService'
+import { carModelValidator } from '@/validators/carModelValidator'
 import { Form } from '@primevue/forms'
 import { onMounted } from 'vue'
 
 const { toModelsList } = useRedirects()
 const { customToast } = useCustomToast()
-const { initialValues, modelValidator } = useCarModel()
+const { initialValues } = useCarModel()
 const { getBrands, brands } = useBrand()
 
-const onFormSubmit = async ({ valid, values }) => {
+const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             await createCarModel(values)
@@ -115,6 +116,8 @@ const onFormSubmit = async ({ valid, values }) => {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 onMounted(async () => {

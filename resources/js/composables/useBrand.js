@@ -26,26 +26,6 @@ export const useBrand = () => {
         image: '',
     })
 
-    const brandValidator = ({ values }) => {
-        const errors = {}
-
-        if (!values.name) {
-            errors.name = [{ message: 'Brand name is required.' }]
-        }
-
-        if (Object.keys(errors).length) {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth',
-            })
-        }
-
-        return {
-            values,
-            errors,
-        }
-    }
-
     const getBrands = async params => {
         loading.value = true
 
@@ -146,7 +126,6 @@ export const useBrand = () => {
         getBrand,
         getBrands,
         deleteBrand,
-        brandValidator,
         deleteImage,
         initialValues,
         loading,

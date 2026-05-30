@@ -56,7 +56,7 @@ import { forgotPasswordValidator } from '@/validators/forgotPasswordValidator'
 
 const { customToast } = useCustomToast()
 
-const onFormSubmit = async ({ valid, values }) => {
+const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             const { data } = await forgotPassword(values.email)
@@ -65,6 +65,8 @@ const onFormSubmit = async ({ valid, values }) => {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 </script>

@@ -94,13 +94,12 @@ import LogoIcon from '@/components/LogoIcon.vue'
 import { Form, FormField } from '@primevue/forms'
 import { Button, Card, InputText, Message, Password, Tag } from 'primevue'
 import { useAuthStore } from '@/stores/auth'
-import { useAuth } from '@/composables/useAuth'
+import { loginValidator } from '@/validators/loginValidator'
 import { useRedirects } from '@/composables/useRedirects'
 import { useCustomToast } from '@/composables/useCustomToast'
 
 const { customToast } = useCustomToast()
 const { login } = useAuthStore()
-const { loginValidator } = useAuth()
 const { toDashboard } = useRedirects()
 
 const demoEmail = import.meta.env.VITE_DEMO_EMAIL
@@ -115,7 +114,7 @@ const setClipboard = async text => {
     await navigator.clipboard.write([clipboardItem])
 }
 
-const onFormSubmit = async ({ valid, values }) => {
+const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             await login(values.email, values.password)
@@ -124,6 +123,8 @@ const onFormSubmit = async ({ valid, values }) => {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 </script>

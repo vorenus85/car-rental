@@ -303,21 +303,15 @@ import { useCarModel } from '@/composables/useCarModel'
 import { useVariant } from '@/composables/useVariant'
 import { useFeature } from '@/composables/useFeature'
 import { createVariant } from '@/services/variantService'
+import { variantValidator } from '@/validators/variantValidator'
 import { onMounted, ref, watch } from 'vue'
 import { useCustomToast } from '@/composables/useCustomToast'
 
 const { getBrands, brands } = useBrand()
 const { getCarModelsByBrand, carModels } = useCarModel()
 const { groupedFeatures, getFeatures } = useFeature()
-const {
-    variantCategories,
-    bodyTypes,
-    transmissions,
-    fuelTypes,
-    variantValidator,
-    initialValues,
-    selectedBrand,
-} = useVariant()
+const { variantCategories, bodyTypes, transmissions, fuelTypes, initialValues, selectedBrand } =
+    useVariant()
 const { toVariantsList } = useRedirects()
 const { customToast } = useCustomToast()
 const formRef = ref(null)
@@ -343,14 +337,14 @@ const onFormSubmit = async ({ valid, values, errors }) => {
 
             customToast.success('Variant created successfully!')
 
-            setTimeout(() => {
-                toVariantsList()
-            }, 300)
+            toVariantsList()
         } catch (error) {
             console.log(error)
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 

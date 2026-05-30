@@ -88,11 +88,12 @@ import { useUser } from '@/composables/useUser.js'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { Form } from '@primevue/forms'
 import { updateUserById } from '@/services/userService'
+import { userValidator } from '@/validators/userValidator'
 import { onMounted } from 'vue'
 
 const { toUsersList } = useRedirects()
 const { customToast } = useCustomToast()
-const { initialValues, userId, userValidator, formKey, getUser } = useUser()
+const { initialValues, userId, formKey, getUser } = useUser()
 
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
@@ -101,13 +102,13 @@ const onFormSubmit = async ({ valid, values }) => {
 
             customToast.success('User updated successfully!')
 
-            setTimeout(() => {
-                toUsersList()
-            }, 300)
+            toUsersList()
         } catch (error) {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 

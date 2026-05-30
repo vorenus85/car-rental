@@ -97,14 +97,15 @@ import { useCustomToast } from '@/composables/useCustomToast'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { useFeature } from '@/composables/useFeature'
 import { createFeature } from '@/services/featureService'
+import { featureValidator } from '@/validators/featureValidator'
 import { Form } from '@primevue/forms'
 
 const { toFeaturesList } = useRedirects()
 const { customToast } = useCustomToast()
 
-const { initialValues, featureValidator, featureCategories } = useFeature()
+const { initialValues, featureCategories } = useFeature()
 
-const onFormSubmit = async ({ valid, values }) => {
+const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             await createFeature(values)
@@ -118,6 +119,8 @@ const onFormSubmit = async ({ valid, values }) => {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 </script>

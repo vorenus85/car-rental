@@ -15,7 +15,7 @@
                 :key="formKey"
                 v-slot="$form"
                 :initial-values
-                :resolver="modelValidator"
+                :resolver="carModelValidator"
                 class="flex flex-col gap-4 w-full lg:w-1/2"
                 :validate-on-value-update="true"
                 :validate-on-blur="true"
@@ -96,14 +96,15 @@ import { useCustomToast } from '@/composables/useCustomToast'
 import { useCarModel } from '@/composables/useCarModel'
 import { useBrand } from '@/composables/useBrand'
 import { updateCarModelById } from '@/services/carModelService'
+import { carModelValidator } from '@/validators/carModelValidator'
 import { onMounted } from 'vue'
 
 const { toModelsList } = useRedirects()
 const { customToast } = useCustomToast()
-const { initialValues, modelValidator, formKey, modelId, getCarModel } = useCarModel()
+const { initialValues, formKey, modelId, getCarModel } = useCarModel()
 const { getBrands, brands } = useBrand()
 
-const onFormSubmit = async ({ valid, values }) => {
+const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             await updateCarModelById(modelId, values)
@@ -117,6 +118,8 @@ const onFormSubmit = async ({ valid, values }) => {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 onMounted(async () => {

@@ -95,12 +95,13 @@ import { Form } from '@primevue/forms'
 import { onMounted } from 'vue'
 import { useAccount } from '@/composables/useAccount'
 import { updateMe } from '@/services/accountService'
+import { profileValidator } from '@/validators/profileValidator'
 import { useCustomToast } from '@/composables/useCustomToast'
 
 const { customToast } = useCustomToast()
-const { accountMenu, profileValidator, getProfile, initialValues, formKey } = useAccount()
+const { accountMenu, getProfile, initialValues, formKey } = useAccount()
 
-const onFormSubmit = async ({ valid, values }) => {
+const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             await updateMe(values)
@@ -110,6 +111,8 @@ const onFormSubmit = async ({ valid, values }) => {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 

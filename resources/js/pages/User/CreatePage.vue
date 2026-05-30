@@ -87,10 +87,11 @@ import { useUser } from '@/composables/useUser.js'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { Form } from '@primevue/forms'
 import { createUser } from '@/services/userService'
+import { userValidator } from '@/validators/userValidator'
 
 const { toUsersList } = useRedirects()
 const { customToast } = useCustomToast()
-const { initialValues, userValidator } = useUser()
+const { initialValues } = useUser()
 
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
@@ -99,13 +100,13 @@ const onFormSubmit = async ({ valid, values }) => {
 
             customToast.success('User created successfully!')
 
-            setTimeout(() => {
-                toUsersList()
-            }, 300)
+            toUsersList()
         } catch (error) {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 </script>

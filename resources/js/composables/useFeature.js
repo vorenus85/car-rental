@@ -42,30 +42,6 @@ export const useFeature = () => {
         return result
     })
 
-    const featureValidator = ({ values }) => {
-        const errors = {}
-
-        if (!values.name) {
-            errors.name = [{ message: 'Feature name is required.' }]
-        }
-
-        if (!values.category) {
-            errors.category = [{ message: 'Feature category is required.' }]
-        }
-
-        if (Object.keys(errors).length) {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth',
-            })
-        }
-
-        return {
-            values,
-            errors,
-        }
-    }
-
     const getFeatures = async () => {
         loading.value = true
 
@@ -121,7 +97,6 @@ export const useFeature = () => {
         getFeature,
         getFeatures,
         deleteFeature,
-        featureValidator,
         groupedFeatures,
         featureCategories,
         initialValues,

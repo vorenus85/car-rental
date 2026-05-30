@@ -23,7 +23,7 @@
                 @click="toggle"
             >
                 <i class="pi pi-user"></i>
-                <div class="flex flex-col items-start leading-tight">
+                <div class="hidden md:flex flex-col items-start leading-tight">
                     <div>{{ authStore.user.name }}</div>
                     <span class="text-muted-color text-sm">Admin</span>
                 </div>
