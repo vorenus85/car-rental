@@ -113,13 +113,19 @@ import { useCustomToast } from '@/composables/useCustomToast'
 import { updatePassword } from '@/services/accountService'
 import { changePasswordValidator } from '@/validators/changePasswordValidator'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const { accountMenu, password, password_confirmation } = useAccount()
 const { customToast } = useCustomToast()
 const formRef = ref(null)
 
+accountMenu.value = accountMenu.value.map(item => ({
+    ...item,
+    command: () => router.push(item.route),
+}))
+
 const onFormSubmit = async ({ valid, values, errors }) => {
-    console.log(errors)
     if (valid) {
         try {
             await updatePassword(values)

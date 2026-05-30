@@ -1,24 +1,18 @@
 import { reactive, ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { fetchMe } from '@/services/accountService'
 
 export const useAccount = () => {
-    const router = useRouter()
     const formKey = ref(0)
     const password = ref(null)
     const password_confirmation = ref(null)
     const accountMenu = ref([
         {
             label: 'Profile',
-            command: () => {
-                router.push('/account/profile')
-            },
+            route: '/account/profile',
         },
         {
             label: 'Password',
-            command: () => {
-                router.push('/account/password')
-            },
+            route: '/account/password',
         },
     ])
 

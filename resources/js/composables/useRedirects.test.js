@@ -70,11 +70,27 @@ describe('useRedirects', () => {
     })
 
     it('redirects to create model', () => {
-        const { tocreateCarModel } = useRedirects()
+        const { toCreateModel } = useRedirects()
 
-        tocreateCarModel()
+        toCreateModel()
 
         expect(pushMock).toHaveBeenCalledWith({ name: 'models.create' })
+    })
+
+    it('redirects to variants list', () => {
+        const { toVariantsList } = useRedirects()
+
+        toVariantsList()
+
+        expect(pushMock).toHaveBeenCalledWith({ name: 'variants' })
+    })
+
+    it('redirects to variant create', () => {
+        const { toCreateVariant } = useRedirects()
+
+        toCreateVariant()
+
+        expect(pushMock).toHaveBeenCalledWith({ name: 'variants.create' })
     })
 
     it('redirects to features list', () => {
@@ -115,5 +131,29 @@ describe('useRedirects', () => {
         toSettings()
 
         expect(pushMock).toHaveBeenCalledWith({ name: 'settings' })
+    })
+
+    it('redirects to login', () => {
+        const { toLogin } = useRedirects()
+
+        toLogin()
+
+        expect(pushMock).toHaveBeenCalledWith({ name: 'login' })
+    })
+
+    it('redirects to user create', () => {
+        const { toCreateUser } = useRedirects()
+
+        toCreateUser()
+
+        expect(pushMock).toHaveBeenCalledWith({ name: 'users.create' })
+    })
+
+    it('redirects to user list', () => {
+        const { toUsersList } = useRedirects()
+
+        toUsersList()
+
+        expect(pushMock).toHaveBeenCalledWith({ name: 'users' })
     })
 })
