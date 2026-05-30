@@ -2,7 +2,7 @@
     <AppLayout>
         <PageTitle title="Models">
             <template #actions>
-                <Button icon="pi pi-plus" label="New" primary @click="tocreateCarModel" />
+                <Button icon="pi pi-plus" label="New" primary @click="toCreateModel" />
             </template>
         </PageTitle>
         <div class="card shadow list-page">
@@ -114,7 +114,7 @@ import { useCustomConfirm } from '@/composables/useCustomConfirm'
 import { onMounted, ref } from 'vue'
 import FormatedDate from '@/components/Table/FormatedDate.vue'
 
-const { tocreateCarModel } = useRedirects()
+const { toCreateModel } = useRedirects()
 const confirm = useConfirm()
 const { loading, carModels, getCarModels, deleteCarModel } = useCarModel()
 const filters = ref()
