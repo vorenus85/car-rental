@@ -16,7 +16,7 @@ class StoreCarModelRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'description' => 'string',
+            'description' => 'nullable|string',
             'brand_id' => 'required|int',
         ];
     }

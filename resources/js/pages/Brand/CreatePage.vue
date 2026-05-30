@@ -72,6 +72,7 @@ import { Button, FileUpload, InputText, Message, ProgressBar } from 'primevue'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { useBrand } from '@/composables/useBrand'
 import { createBrand } from '@/services/brandService'
+import { brandValidator } from '@/validators/brandValidator'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { Form } from '@primevue/forms'
 
@@ -80,7 +81,6 @@ const { customToast } = useCustomToast()
 
 const {
     initialValues,
-    brandValidator,
     isUploading,
     uploadProgress,
     onRemoveImage,
@@ -89,7 +89,7 @@ const {
     uploadedImage,
 } = useBrand()
 
-const onFormSubmit = async ({ valid, values }) => {
+const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             values.image = uploadedImage?.value || null
@@ -104,6 +104,8 @@ const onFormSubmit = async ({ valid, values }) => {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 </script>

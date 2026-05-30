@@ -111,9 +111,10 @@ import { Form } from '@primevue/forms'
 import { useAccount } from '@/composables/useAccount'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { updatePassword } from '@/services/accountService'
+import { changePasswordValidator } from '@/validators/changePasswordValidator'
 import { ref } from 'vue'
 
-const { accountMenu, changePasswordValidator, password, password_confirmation } = useAccount()
+const { accountMenu, password, password_confirmation } = useAccount()
 const { customToast } = useCustomToast()
 const formRef = ref(null)
 
@@ -125,10 +126,11 @@ const onFormSubmit = async ({ valid, values, errors }) => {
             formRef.value.reset()
             customToast.success('Password updated successfully!')
         } catch (error) {
-            console.log(error)
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 </script>

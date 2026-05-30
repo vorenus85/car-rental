@@ -99,15 +99,15 @@ import { Button, InputText, Message, Select, Textarea } from 'primevue'
 import { useFeature } from '@/composables/useFeature'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { updateFeatureById } from '@/services/featureService'
+import { featureValidator } from '@/validators/featureValidator'
 import { useRedirects } from '@/composables/useRedirects.js'
 import { onMounted } from 'vue'
 
 const { toFeaturesList } = useRedirects()
-const { initialValues, formKey, featureId, getFeature, featureValidator, featureCategories } =
-    useFeature()
+const { initialValues, formKey, featureId, getFeature, featureCategories } = useFeature()
 const { customToast } = useCustomToast()
 
-const onFormSubmit = async ({ valid, values }) => {
+const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             await updateFeatureById(featureId, values)
@@ -121,6 +121,8 @@ const onFormSubmit = async ({ valid, values }) => {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 

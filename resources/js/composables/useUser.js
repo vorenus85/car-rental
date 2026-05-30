@@ -20,22 +20,6 @@ export const useUser = () => {
         active: true,
     })
 
-    const userValidator = ({ values }) => {
-        const errors = {}
-
-        if (!values.name) {
-            errors.name = [{ message: 'Name is required.' }]
-        }
-
-        if (!values.email) {
-            errors.email = [{ message: 'Email is required.' }]
-        } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-            errors.email = [{ message: 'Email is invalid.' }]
-        }
-
-        return { values, errors }
-    }
-
     const toggleActive = async id => {
         //loading.value = true
 
@@ -105,7 +89,6 @@ export const useUser = () => {
     }
 
     return {
-        userValidator,
         toggleActive,
         loading,
         users,

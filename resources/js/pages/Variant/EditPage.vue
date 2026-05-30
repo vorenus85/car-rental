@@ -304,6 +304,7 @@ import { useCarModel } from '@/composables/useCarModel'
 import { useVariant } from '@/composables/useVariant'
 import { useFeature } from '@/composables/useFeature'
 import { updateVariantById } from '@/services/variantService'
+import { variantValidator } from '@/validators/variantValidator'
 import { onMounted, watch, ref } from 'vue'
 import { useCustomToast } from '@/composables/useCustomToast'
 
@@ -316,7 +317,6 @@ const {
     bodyTypes,
     transmissions,
     fuelTypes,
-    variantValidator,
     initialValues,
     getVariant,
     formKey,
@@ -348,14 +348,14 @@ const onFormSubmit = async ({ valid, values }) => {
 
             customToast.success('Variant updated successfully!')
 
-            setTimeout(() => {
-                toVariantsList()
-            }, 300)
+            toVariantsList()
         } catch (error) {
             console.log(error)
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
 

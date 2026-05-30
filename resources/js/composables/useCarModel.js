@@ -23,30 +23,6 @@ export const useCarModel = () => {
         description: '',
     })
 
-    const modelValidator = ({ values }) => {
-        const errors = {}
-
-        if (!values.name) {
-            errors.name = [{ message: 'Model name is required.' }]
-        }
-
-        if (!values.brand) {
-            errors.brand = [{ message: 'Brand is required.' }]
-        }
-
-        if (Object.keys(errors).length) {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth',
-            })
-        }
-
-        return {
-            values,
-            errors,
-        }
-    }
-
     const getCarModels = async () => {
         loading.value = true
 
@@ -97,18 +73,19 @@ export const useCarModel = () => {
 
         try {
             await deleteCarModelById(id)
-            const idIndex = models.value.findIndex(el => {
+            const idIndex = carModels.value.findIndex(el => {
                 return el.id === id
             })
-            models.value.splice(idIndex, 1)
+            carModels.value.splice(idIndex, 1)
 
             customToast.success('Model deleted successfully!')
         } catch (e) {
+            console.log(e)
             const message =
                 e?.response?.data?.message || 'Something went wrong while deleting the car model.'
 
             customToast.error(message)
-            void e // to avoid unused variable lint error
+            // void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
         } finally {
             loading.value = false
@@ -121,7 +98,6 @@ export const useCarModel = () => {
         getCarModels,
         getCarModelsByBrand,
         deleteCarModel,
-        modelValidator,
         initialValues,
         loading,
         formKey,
