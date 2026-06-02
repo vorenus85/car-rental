@@ -53,6 +53,15 @@
                         </div>
                     </template>
                 </Column>
+
+                <Column sortable field="licence_plate" header="Plate" style="width: 10%">
+                    <template #body="slotProps">
+                        <Tag severity="secondary" class="no-wrap">
+                            {{ slotProps.data.licence_plate }}
+                        </Tag>
+                    </template>
+                </Column>
+
                 <Column sortable field="id" header="Name" style="width: 10%">
                     <template #body="slotProps">
                         <div class="flex gap-1">
@@ -74,23 +83,39 @@
                         </div>
                     </template>
                 </Column>
-                <Column sortable field="licence_plate" header="Plate" style="width: 10%">
+
+                <Column sortable field="category" header="Category" style="width: 10%">
                     <template #body="slotProps">
                         <Tag severity="secondary" class="no-wrap">
-                            {{ slotProps.data.licence_plate }}
+                            {{ slotProps.data.variant.category }}
                         </Tag>
                     </template>
                 </Column>
+
+                <Column sortable field="production_year" header="Year" style="width: 10%">
+                    <template #body="slotProps">
+                        {{ slotProps.data.production_year }}
+                    </template>
+                </Column>
+
+                <Column sortable field="mileage" header="Mileage" style="width: 10%">
+                    <template #body="slotProps">
+                        <span class="no-wrap">{{ slotProps.data.mileage }} km </span>
+                    </template>
+                </Column>
+
                 <Column sortable field="price_per_day" header="Price/Day" style="width: 10%">
                     <template #body="slotProps">
                         <PriceTag :price="slotProps.data.price_per_day"></PriceTag>
                     </template>
                 </Column>
+
                 <Column sortable field="status" header="Status" style="width: 10%">
                     <template #body="slotProps">
                         <StatusTag :status="slotProps.data.status"></StatusTag>
                     </template>
                 </Column>
+
                 <Column sortable field="updated_at" header="Updated at" style="width: 10%">
                     <template #body="slotProps">
                         <FormatedDate :date="slotProps.data.updated_at"></FormatedDate
@@ -99,17 +124,17 @@
                 <Column header="Actions" style="width: 10%">
                     <template #body="slotProps">
                         <div class="flex items-center justify-list gap-3">
-                            <Button v-slot="buttonProps" severity="info" as-child>
-                                <RouterLink
-                                    :to="{
-                                        name: 'cars.show',
-                                        params: {
-                                            id: slotProps.data?.id,
-                                        },
-                                    }"
-                                    :class="buttonProps.class"
-                                    >Edit</RouterLink
-                                >
+                            <Button
+                                severity="info"
+                                icon="pi pi-eye"
+                                as="router-link"
+                                :to="{
+                                    name: 'cars.show',
+                                    params: {
+                                        id: slotProps.data?.id,
+                                    },
+                                }"
+                            >
                             </Button>
 
                             <Button

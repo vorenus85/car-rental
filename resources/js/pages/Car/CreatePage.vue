@@ -257,17 +257,17 @@
                         >
                     </div>
                     <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
-                        <label for="milage">Milage </label>
+                        <label for="mileage">Mileage </label>
                         <InputGroup>
-                            <InputNumber id="milage" name="milage" placeholder="Milage" />
+                            <InputNumber id="mileage" name="mileage" placeholder="Mileage" />
                             <InputGroupAddon>km</InputGroupAddon>
                         </InputGroup>
                         <Message
-                            v-if="$form.milage?.invalid"
+                            v-if="$form.mileage?.invalid"
                             severity="error"
                             size="small"
                             variant="simple"
-                            >{{ $form.milage?.error?.message }}</Message
+                            >{{ $form.mileage?.error?.message }}</Message
                         >
                     </div>
                 </div>
@@ -423,8 +423,9 @@ import { useBrand } from '@/composables/useBrand'
 import { useCarModel } from '@/composables/useCarModel'
 import { useFeature } from '@/composables/useFeature'
 import { useVariant } from '@/composables/useVariant'
+import { createCar } from '@/services/carService'
 import { carValidator } from '@/validators/carValidator'
-import { computed, onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import CarColorSelect from '@/components/CarColorSelect.vue'
 import { useCustomToast } from '@/composables/useCustomToast'
 
@@ -543,7 +544,7 @@ const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             values.image = uploadedImage?.value || null
-            // await createCar(values)
+            await createCar(values)
 
             customToast.success('Car created successfully!')
 

@@ -13,30 +13,6 @@ export const carValidator = ({ values }) => {
         errors.variant_id = [{ message: 'Please select a variant.' }]
     }
 
-    if (!values.category) {
-        errors.category = [{ message: 'Please select a category.' }]
-    }
-
-    if (!values.body_type) {
-        errors.body_type = [{ message: 'Please select a body type.' }]
-    }
-
-    if (!values.transmission) {
-        errors.transmission = [{ message: 'Please select a transmission type.' }]
-    }
-
-    if (!values.fuel) {
-        errors.fuel = [{ message: 'Please select a fuel type.' }]
-    }
-
-    if (!values.seats) {
-        errors.seats = [{ message: 'Please select the number of seats.' }]
-    }
-
-    if (!values.doors) {
-        errors.doors = [{ message: 'Please select the number of doors.' }]
-    }
-
     if (!values.licence_plate) {
         errors.licence_plate = [{ message: 'Please add licence plate number.' }]
     }
@@ -49,8 +25,8 @@ export const carValidator = ({ values }) => {
         errors.production_year = [{ message: 'Please add production year.' }]
     }
 
-    if (!values.milage) {
-        errors.milage = [{ message: 'Please add milage.' }]
+    if (!values.mileage) {
+        errors.mileage = [{ message: 'Please add mileage.' }]
     }
 
     if (!values.price_per_day) {
