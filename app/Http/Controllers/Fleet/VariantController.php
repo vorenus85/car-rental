@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Fleet;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Fleet\Variant\VariantRequest;
 use App\Models\Fleet\Variant;
+use Illuminate\Http\Request;
 
 class VariantController extends Controller
 {
@@ -84,6 +85,19 @@ class VariantController extends Controller
         }
 
         return response()->json($variant, 200);
+    }
+
+    public function options(Request $request)
+    {
+        $model_id = $request->model_id;
+
+        $variants = Variant::query()
+            ->select(['id', 'name', 'model_id'])
+            ->where('model_id', $model_id)
+            ->with('model:id,name,brand_id')
+            ->get();
+
+        return response()->json($variants);
     }
 
     /**

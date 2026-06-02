@@ -76,7 +76,9 @@
                 </Column>
                 <Column sortable field="licence_plate" header="Plate" style="width: 10%">
                     <template #body="slotProps">
-                        <Tag severity="secondary">{{ slotProps.data.licence_plate }}</Tag>
+                        <Tag severity="secondary" class="no-wrap">
+                            {{ slotProps.data.licence_plate }}
+                        </Tag>
                     </template>
                 </Column>
                 <Column sortable field="price_per_day" header="Price/Day" style="width: 10%">

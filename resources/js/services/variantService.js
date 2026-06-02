@@ -4,6 +4,10 @@ export const fetchVariants = () => {
     return axios.get('/api/admin/variants')
 }
 
+export const fetchVariantsByCarModel = params => {
+    return axios.get('/api/admin/variants/options', { params })
+}
+
 export const fetchVariant = id => {
     return axios.get(`/api/admin/variants/${id}`)
 }

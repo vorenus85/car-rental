@@ -72,6 +72,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('/api/admin/variants')->group(function () {
         Route::get('/', [VariantController::class, 'index']);
+        Route::get('/options', [VariantController::class, 'options']);
         Route::post('/', [VariantController::class, 'store']);
         Route::get('/{variant}', [VariantController::class, 'show']);
         Route::put('/{variant}', [VariantController::class, 'update']);
