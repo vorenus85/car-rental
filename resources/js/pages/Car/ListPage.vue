@@ -172,7 +172,7 @@ import FormatedDate from '@/components/Table/FormatedDate.vue'
 import StatusTag from '../../components/Table/StatusTag.vue'
 import PriceTag from '../../components/Table/PriceTag.vue'
 
-const { loading, getCars, cars } = useCar()
+const { loading, getCars, cars, deleteCar } = useCar()
 const { toCreateCar } = useRedirects()
 const confirm = useConfirm()
 const { confirmAction } = useCustomConfirm()
@@ -201,7 +201,7 @@ const clearFilter = () => {
 const deleteConfirm = id => {
     confirmAction(confirm, {
         action: () => {
-            deleteFeature(id)
+            deleteCar(id)
         },
         acceptLabel: 'Delete',
     })

@@ -17,3 +17,19 @@ export const createCar = values => {
 export const updateCarById = (id, values) => {
     return axios.put(`/api/admin/cars/${id}`, values)
 }
+
+export const uploadCarImage = (file, onProgress) => {
+    const formData = new FormData()
+    formData.append('file', file)
+
+    return axios.post('/api/admin/cars/image/upload', formData, {
+        onUploadProgress: event => {
+            if (!event.total || !onProgress) return
+            onProgress(Math.round((event.loaded * 100) / event.total))
+        },
+    })
+}
+
+export const deleteCarImage = id => {
+    return axios.delete(`/api/admin/cars/image/delete/${id}`)
+}

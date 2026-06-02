@@ -1,5 +1,6 @@
-import { fetchCars } from '@/services/carService'
+import { fetchCars, deleteCarById, uploadCarImage } from '@/services/carService'
 import { reactive, ref } from 'vue'
+import { useCustomToast } from '@/composables/useCustomToast'
 
 export const useCar = () => {
     const loading = ref(false)
@@ -8,6 +9,8 @@ export const useCar = () => {
     const isUploading = ref(false)
     const uploadProgress = ref(0)
     const uploadedImage = ref(null)
+
+    const { customToast } = useCustomToast()
 
     const initialValues = reactive({})
 
@@ -37,6 +40,29 @@ export const useCar = () => {
             const { data } = await fetchCars()
             cars.value = data
         } catch (e) {
+            void e // to avoid unused variable lint error
+            // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
+        }
+    }
+
+    const deleteCar = async id => {
+        loading.value = true
+
+        try {
+            await deleteCarById(id)
+            const idIndex = cars.value.findIndex(el => {
+                return el.id === id
+            })
+            cars.value.splice(idIndex, 1)
+
+            customToast.success('Car deleted successfully!')
+        } catch (e) {
+            const message =
+                e?.response?.data?.message || 'Something went wrong while deleting the car.'
+
+            customToast.error(message)
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
         } finally {
@@ -76,6 +102,7 @@ export const useCar = () => {
         onRemoveImage,
         onClearUploaderStatus,
         onImageUpload,
+        deleteCar,
         rentalStatuses,
     }
 }

@@ -24,7 +24,6 @@ class CarResource extends JsonResource
             'licence_plate' => $this->licence_plate,
             'price_per_day' => $this->price_per_day,
             'status' => $this->status,
-            'production_year' => $this->production_year,
             'updated_at' => $this->updated_at,
             'mileage' => $this->mileage,
             'production_year' => $this->production_year,

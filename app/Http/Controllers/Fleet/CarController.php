@@ -8,6 +8,7 @@ use App\Http\Requests\Fleet\Car\UpdateCarRequest;
 use App\Http\Resources\CarResource;
 use App\Models\Fleet\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
 {
@@ -77,9 +78,13 @@ class CarController extends Controller
      */
     public function destroy(Car $car)
     {
-        //
+
+        if ($car->image) {
+            Storage::delete('uploads/' . $car->image);
+        }
+
         $car->delete();
 
-        return response()->json(['status' => 'ok'], 200);
+        return response()->noContent();
     }
 }
