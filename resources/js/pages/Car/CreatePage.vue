@@ -440,14 +440,14 @@ const {
     onImageUpload,
     uploadedImage,
     rentalStatuses,
-} = useCar()
 
-const selectedCategory = ref(null)
-const selectedBodyType = ref(null)
-const selectedTransmission = ref(null)
-const selectedFuelType = ref(null)
-const selectedSeats = ref(null)
-const selectedDoors = ref(null)
+    selectedCategory,
+    selectedBodyType,
+    selectedTransmission,
+    selectedFuelType,
+    selectedSeats,
+    selectedDoors,
+} = useCar()
 
 const { customToast } = useCustomToast()
 const { toCarsList } = useRedirects()

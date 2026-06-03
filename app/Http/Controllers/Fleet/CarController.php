@@ -57,7 +57,15 @@ class CarController extends Controller
     public function show(Car $car)
     {
         //
-        return response()->json($car);
+        $result = Car::where('id', $car->id)->with([
+            'variant:id,name,model_id,category,body_type,transmission,fuel,seats,doors',
+            'variant.model:id,name,brand_id',
+            'variant.model.brand:id'
+        ])->first();
+
+        $result['image_url'] = $result->image ? Storage::url('/uploads/' . $result->image) : "";
+
+        return response()->json($result);
     }
 
     /**
@@ -67,6 +75,10 @@ class CarController extends Controller
     {
         //
         $validated = $request->validated();
+
+        if (empty($validated['image'])) {
+            unset($validated['image']);
+        }
 
         $car->update($validated);
 

@@ -1,26 +1,52 @@
-import { fetchCars, deleteCarById, uploadCarImage } from '@/services/carService'
+import {
+    fetchCars,
+    deleteCarById,
+    uploadCarImage,
+    fetchCar,
+    deleteCarImage,
+} from '@/services/carService'
 import { reactive, ref } from 'vue'
 import { useCustomToast } from '@/composables/useCustomToast'
+import { useRoute } from 'vue-router'
 
 export const useCar = () => {
     const loading = ref(false)
     const cars = ref([])
+    const route = useRoute()
+    const carId = route.params.id
     const formKey = ref(0)
     const isUploading = ref(false)
     const uploadProgress = ref(0)
     const uploadedImage = ref(null)
 
+    const selectedCategory = ref(null)
+    const selectedBodyType = ref(null)
+    const selectedTransmission = ref(null)
+    const selectedFuelType = ref(null)
+    const selectedSeats = ref(null)
+    const selectedDoors = ref(null)
+
     const { customToast } = useCustomToast()
 
-    const initialValues = reactive({})
+    const initialValues = reactive({
+        brand_id: null,
+        model_id: null,
+        variant_id: null,
+        licence_plate: '',
+        color: '',
+        production_year: null,
+        mileage: null,
+        price_per_day: null,
+        status: '',
+        description: '',
+    })
 
     const rentalStatuses = [
         { id: 'available', name: 'Available' },
-        { id: 'unavailable', name: 'Unavailable' },
-        { id: 'rented', name: 'Rented' },
-        { id: 'retired', name: 'Retired' },
-        { id: 'maintenance', name: 'Maintenance' },
         { id: 'reserved', name: 'Reserved' },
+        { id: 'rented', name: 'Rented' },
+        { id: 'maintenance', name: 'Maintenance' },
+        { id: 'retired', name: 'Retired' },
     ]
 
     const onRemoveImage = () => {
@@ -44,6 +70,43 @@ export const useCar = () => {
             // console.error(e) -- IGNORE --
         } finally {
             loading.value = false
+        }
+    }
+
+    const getCar = async () => {
+        loading.value = true
+
+        try {
+            const { data } = await fetchCar(carId)
+
+            initialValues.brand_id = data.variant.model.brand.id
+            initialValues.model_id = data.variant.model.id
+            initialValues.variant_id = data.variant.id
+
+            initialValues.licence_plate = data.licence_plate
+            initialValues.color = data.color
+            initialValues.production_year = data.production_year
+            initialValues.mileage = data.mileage
+            initialValues.price_per_day = data.price_per_day
+            initialValues.status = data.status
+            initialValues.description = data.description
+
+            initialValues.image = data.image
+            initialValues.image_url = data.image_url
+
+            selectedCategory.value = data.variant.category
+            selectedBodyType.value = data.variant.body_type
+            selectedTransmission.value = data.variant.transmission
+            selectedFuelType.value = data.variant.fuel_type
+            selectedSeats.value = data.variant.seats
+            selectedDoors.value = data.variant.doors
+
+            formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
+            loading.value = false
+        } catch (e) {
+            loading.value = false
+            void e // to avoid unused variable lint error
+            // console.error(e) -- IGNORE --
         }
     }
 
@@ -90,11 +153,23 @@ export const useCar = () => {
         }
     }
 
+    const deleteImage = async () => {
+        try {
+            await deleteCarImage(carId)
+            initialValues.image = ''
+            uploadedImage.value = ''
+        } catch (e) {
+            void e // to avoid unused variable lint error
+            // console.error(e) -- IGNORE --
+        }
+    }
+
     return {
         loading,
         cars,
         formKey,
         getCars,
+        getCar,
         initialValues,
         isUploading,
         uploadProgress,
@@ -103,6 +178,14 @@ export const useCar = () => {
         onClearUploaderStatus,
         onImageUpload,
         deleteCar,
+        deleteImage,
         rentalStatuses,
+        selectedCategory,
+        selectedBodyType,
+        selectedTransmission,
+        selectedFuelType,
+        selectedSeats,
+        selectedDoors,
+        carId,
     }
 }
