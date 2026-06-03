@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Fleet\BrandController;
 use App\Http\Controllers\Fleet\BrandImageController;
 use App\Http\Controllers\Fleet\CarController;
+use App\Http\Controllers\Fleet\CarImageController;
 use App\Http\Controllers\Fleet\CarModelController;
 use App\Http\Controllers\Fleet\FeatureController;
 use App\Http\Controllers\Fleet\VariantController;
@@ -72,6 +73,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('/api/admin/variants')->group(function () {
         Route::get('/', [VariantController::class, 'index']);
+        Route::get('/options', [VariantController::class, 'options']);
         Route::post('/', [VariantController::class, 'store']);
         Route::get('/{variant}', [VariantController::class, 'show']);
         Route::put('/{variant}', [VariantController::class, 'update']);
@@ -84,6 +86,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{car}', [CarController::class, 'show']);
         Route::put('/{car}', [CarController::class, 'update']);
         Route::delete('/{car}', [CarController::class, 'destroy']);
+
+        Route::post('/image/upload', [CarImageController::class, 'store']);
+        Route::delete('/image/delete/{car}', [CarImageController::class, 'delete']);
     });
 });
 

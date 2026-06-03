@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Fleet\Brand;
 use App\Models\Fleet\CarModel;
 use App\Models\Fleet\Variant;
 use App\Models\User;
@@ -96,7 +97,6 @@ describe('VariantController', function () {
             ])->assertJsonCount(8, 'errors');
     });
 
-    // can update a variant
     it('can update a variant', function () {
         $variant = Variant::factory()->create();
 
@@ -128,6 +128,54 @@ describe('VariantController', function () {
             'id' => $variant->id,
             'name' => 'Updated Variant',
         ]);
+    });
+
+    it('returns variants by model id with model relation', function () {
+        $brand = Brand::factory()->create();
+
+        $model = CarModel::factory()->create([
+            'brand_id' => $brand->id,
+        ]);
+
+        $otherModel = CarModel::factory()->create([
+            'brand_id' => $brand->id,
+        ]);
+
+        $variant1 = Variant::factory()->create([
+            'name' => 'Variant A',
+            'model_id' => $model->id,
+        ]);
+
+        $variant2 = Variant::factory()->create([
+            'name' => 'Variant B',
+            'model_id' => $model->id,
+        ]);
+
+        Variant::factory()->create([
+            'name' => 'Should Not Be Returned',
+            'model_id' => $otherModel->id,
+        ]);
+
+        $response = $this->getJson(
+            "/api/admin/variants/options?model_id={$model->id}"
+        );
+
+        $response
+            ->assertOk()
+            ->assertJsonCount(2)
+            ->assertJsonFragment([
+                'id' => $variant1->id,
+                'name' => 'Variant A',
+                'model_id' => $model->id,
+            ])
+            ->assertJsonFragment([
+                'id' => $variant2->id,
+                'name' => 'Variant B',
+                'model_id' => $model->id,
+            ])
+            ->assertJsonPath('0.model.id', $model->id)
+            ->assertJsonPath('0.model.name', $model->name)
+            ->assertJsonPath('0.model.brand_id', $brand->id);
     });
 
     it('can delete a variant', function () {

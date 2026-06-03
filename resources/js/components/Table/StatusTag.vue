@@ -1,5 +1,5 @@
 <template>
-    <span class="status-tag font-medium" :class="`status-${status}`">
+    <span class="status-tag font-medium no-wrap" :class="`status-${status}`">
         {{ status }}
     </span>
 </template>

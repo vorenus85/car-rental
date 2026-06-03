@@ -1,5 +1,5 @@
 <template>
-    <span>{{ formatDateTime(date) }}</span>
+    <small>{{ formatDateTime(date) }}</small>
 </template>
 <script setup>
 defineProps({

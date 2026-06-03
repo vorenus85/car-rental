@@ -24,9 +24,9 @@ class CarResource extends JsonResource
             'licence_plate' => $this->licence_plate,
             'price_per_day' => $this->price_per_day,
             'status' => $this->status,
-            'production_year' => $this->production_year,
             'updated_at' => $this->updated_at,
             'mileage' => $this->mileage,
+            'production_year' => $this->production_year,
             'image' => $this->whenHas('image'),
             'image_url' => $this->whenHas('image', function () {
                 return $this->image
@@ -37,6 +37,7 @@ class CarResource extends JsonResource
                 return [
                     'id' => $this->variant->id,
                     'name' => $this->variant->name,
+                    'category' => $this->variant->category,
                     'model' => $this->variant->relationLoaded('model') ? [
                         'id' => $this->variant->model->id,
                         'name' => $this->variant->model->name,

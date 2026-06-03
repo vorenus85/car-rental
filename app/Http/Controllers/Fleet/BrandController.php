@@ -81,6 +81,10 @@ class BrandController extends Controller
             ], 422);
         }
 
+        if ($brand->image) {
+            Storage::delete('uploads/' . $brand->image);
+        }
+
         $brand->delete();
 
         return response()->noContent();

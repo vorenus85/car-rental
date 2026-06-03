@@ -1,5 +1,5 @@
 <template>
-    <Tag size="small" severity="secondary">€ {{ price }}</Tag>
+    <Tag size="small" severity="secondary no-wrap">€ {{ price }}</Tag>
 </template>
 <script setup>
 import { Tag } from 'primevue'

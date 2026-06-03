@@ -1,4 +1,9 @@
-import { fetchVariants, deleteVariantById, fetchVariant } from '@/services/variantService'
+import {
+    fetchVariants,
+    deleteVariantById,
+    fetchVariant,
+    fetchVariantsByCarModel,
+} from '@/services/variantService'
 import { useCustomToast } from '@/composables/useCustomToast'
 import { ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
@@ -26,6 +31,9 @@ export const useVariant = () => {
     })
 
     const selectedBrand = ref({ id: null, name: null })
+
+    const selectedCarModel = ref({ id: null, name: null })
+    const selectedVariant = ref({ id: null, name: null })
 
     const selectedFeatures = ref([])
 
@@ -134,11 +142,40 @@ export const useVariant = () => {
         }
     }
 
+    const getVariantById = async id => {
+        loading.value = true
+
+        try {
+            const { data } = await fetchVariant(id)
+
+            return data
+        } catch (e) {
+            void e // to avoid unused variable lint error
+            // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
+        }
+    }
+
     const getVariants = async () => {
         loading.value = true
 
         try {
             const { data } = await fetchVariants()
+            variants.value = data
+        } catch (e) {
+            void e // to avoid unused variable lint error
+            // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
+        }
+    }
+
+    const getVariantsByCarmodel = async params => {
+        loading.value = true
+
+        try {
+            const { data } = await fetchVariantsByCarModel({ ...params })
             variants.value = data
         } catch (e) {
             void e // to avoid unused variable lint error
@@ -174,10 +211,14 @@ export const useVariant = () => {
     return {
         loading,
         selectedBrand,
+        selectedCarModel,
+        selectedVariant,
         selectedFeatures,
         getVariant,
+        getVariantById,
         getVariants,
         deleteVariant,
+        getVariantsByCarmodel,
         variantCategories,
         initialValues,
         bodyTypes,

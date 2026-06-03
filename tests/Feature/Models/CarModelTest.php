@@ -1,49 +1,39 @@
 <?php
 
 use App\Models\Fleet\Brand;
+use App\Models\Fleet\Car;
 use App\Models\Fleet\CarModel;
 use App\Models\Fleet\Variant;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-
-describe('CarModel model', function () {
+describe('Car model', function () {
     it('has fillable attributes', function () {
-        $carModel = new CarModel();
+        $carModel = new Car();
 
         expect($carModel->getFillable())
             ->toBe([
-                'name',
+                'variant_id',
+                'licence_plate',
+                'image',
+                'price_per_day',
+                'status',
+                'production_year',
+                'mileage',
+                'color',
                 'description',
-                'brand_id',
             ]);
     });
 
+    it('can retrieve its variant', function () {
+        $variant = Variant::factory()->create();
 
-    it('belongs to a brand', function () {
-        $brand = Brand::factory()->create();
+        $car = Car::factory()->create([
+            'variant_id' => $variant->id,
+        ]);
 
-        $carModel = CarModel::factory()->create(["brand_id" => $brand->id]);
-
-        expect($carModel->brand)
-            ->toBeInstanceOf(Brand::class)
-            ->id->toBe($brand->id);
-    });
-
-    it('has many variant', function () {
-
-        $carModel = CarModel::factory()->create();
-
-        Variant::factory()
-            ->count(3)
-            ->create([
-                'model_id' => $carModel->id,
-            ]);
-
-        expect($carModel->variants)
-            ->toHaveCount(3)
-            ->each
-            ->toBeInstanceOf(Variant::class);
+        expect($car->variant)->toBeInstanceOf(Variant::class);
+        expect($car->variant->id)->toBe($variant->id);
     });
 });
