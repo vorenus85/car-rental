@@ -1,6 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { useVariant } from '@/composables/useVariant'
-import { fetchVariants, fetchVariant, deleteVariantById } from '@/services/variantService'
+import {
+    fetchVariants,
+    fetchVariant,
+    deleteVariantById,
+    fetchVariantsByCarModel,
+} from '@/services/variantService'
 
 const successMock = vi.fn()
 const errorMock = vi.fn()
@@ -26,6 +31,7 @@ vi.mock('@/services/variantService', () => ({
     fetchVariants: vi.fn(),
     fetchVariant: vi.fn(),
     deleteVariantById: vi.fn(),
+    fetchVariantsByCarModel: vi.fn(),
 }))
 
 describe('useVariant', () => {
@@ -61,6 +67,68 @@ describe('useVariant', () => {
 
         expect(variant.variants.value).toHaveLength(2)
         expect(variant.loading.value).toBe(false)
+    })
+
+    it('loads variant by id', async () => {
+        vi.mocked(fetchVariant).mockResolvedValue({
+            data: {
+                id: 2,
+                name: 'Corolla Comfort',
+                category: 'economy',
+                body_type: 'sedan',
+                transmission: 'automatic',
+                fuel: 'hybrid',
+                seats: 5,
+                doors: 4,
+                description: 'Test description',
+                model_id: 10,
+                features: [{ id: 1 }, { id: 2 }],
+                model: {
+                    brand: {
+                        id: 3,
+                    },
+                    brand_id: 3,
+                },
+            },
+        })
+
+        const variant = useVariant()
+
+        const result = await variant.getVariantById(2)
+
+        expect(result.name).toBe('Corolla Comfort')
+        expect(result.category).toBe('economy')
+        expect(result.body_type).toBe('sedan')
+        expect(result.transmission).toBe('automatic')
+        expect(result.fuel).toBe('hybrid')
+        expect(result.seats).toBe(5)
+        expect(result.doors).toBe(4)
+        expect(result.description).toBe('Test description')
+        expect(result.model_id).toBe(10)
+        expect(result.features).toEqual([{ id: 1 }, { id: 2 }])
+    })
+
+    it('loads variants by car model id', async () => {
+        vi.mocked(fetchVariantsByCarModel).mockResolvedValue({
+            data: [
+                { id: 1, name: 'Variant 1' },
+                { id: 2, name: 'Variant 2' },
+                { id: 3, name: 'Variant 3' },
+                { id: 4, name: 'Variant 4' },
+            ],
+        })
+
+        const variant = useVariant()
+
+        await variant.getVariantsByCarmodel({
+            model_id: 2,
+        })
+
+        expect(fetchVariantsByCarModel).toHaveBeenCalledWith({
+            model_id: 2,
+        })
+
+        expect(variant.variants.value).toHaveLength(4)
     })
 
     it('loads variant details', async () => {
