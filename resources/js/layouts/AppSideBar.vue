@@ -63,6 +63,9 @@ watch(
             'cars',
             'cars.create',
             'cars.edit',
+            'locations',
+            'locations.create',
+            'locations.edit',
         ].includes(name)
     },
     { immediate: true }
@@ -108,6 +111,11 @@ const menus = [
                 icon: 'sparkles',
                 routeName: 'features',
                 title: 'Features',
+            },
+            {
+                icon: 'map-marker',
+                routeName: 'locations',
+                title: 'Locations',
             },
         ],
     },

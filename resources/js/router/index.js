@@ -19,6 +19,10 @@ import CarListPage from '@/pages/Car/ListPage.vue'
 import CarCreatePage from '@/pages/Car/CreatePage.vue'
 import CarEditPage from '@/pages/Car/EditPage.vue'
 
+import LocationListPage from '@/pages/Location/ListPage.vue'
+import LocationCreatePage from '@/pages/Location/CreatePage.vue'
+import LocationEditPage from '@/pages/Location/EditPage.vue'
+
 import BrandListPage from '@/pages/Brand/ListPage.vue'
 import BrandCreatePage from '@/pages/Brand/CreatePage.vue'
 import BrandEditPage from '@/pages/Brand/EditPage.vue'
@@ -137,6 +141,30 @@ const router = createRouter({
             path: '/cars/:id',
             name: 'cars.show',
             component: CarEditPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/locations',
+            name: 'locations',
+            component: LocationListPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/locations/create',
+            name: 'locations.create',
+            component: LocationCreatePage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/locations/:id',
+            name: 'locations.show',
+            component: LocationEditPage,
             meta: {
                 requiresAuth: true,
             },

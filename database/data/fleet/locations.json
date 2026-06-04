@@ -1,7 +1,7 @@
 [
     {
         "name": "Budapest Airport Terminal 2",
-        "country": "Hungary",
+        "country": "hu",
         "city": "Budapest",
         "address": "Budapest Ferenc Liszt International Airport, Terminal 2",
         "type": "airport",
@@ -21,7 +21,7 @@
     },
     {
         "name": "Budapest Keleti Railway Station",
-        "country": "Hungary",
+        "country": "hu",
         "city": "Budapest",
         "address": "Kerepesi út 2-4, Budapest",
         "type": "railway_station",
@@ -41,7 +41,7 @@
     },
     {
         "name": "Budapest City Center",
-        "country": "Hungary",
+        "country": "hu",
         "city": "Budapest",
         "address": "Deák Ferenc tér, Budapest",
         "type": "city_center",
@@ -59,7 +59,7 @@
     },
     {
         "name": "Vienna International Airport",
-        "country": "Austria",
+        "country": "at",
         "city": "Vienna",
         "address": "Vienna Airport, Schwechat",
         "type": "airport",
@@ -79,7 +79,7 @@
     },
     {
         "name": "Vienna Central Station",
-        "country": "Austria",
+        "country": "at",
         "city": "Vienna",
         "address": "Am Hauptbahnhof 1, Vienna",
         "type": "railway_station",
@@ -97,7 +97,7 @@
     },
     {
         "name": "Vienna City Center",
-        "country": "Austria",
+        "country": "at",
         "city": "Vienna",
         "address": "Stephansplatz, Vienna",
         "type": "city_center",
@@ -115,7 +115,7 @@
     },
     {
         "name": "Prague Airport Terminal 1",
-        "country": "Czech Republic",
+        "country": "cz",
         "city": "Prague",
         "address": "Aviatická, Prague",
         "type": "airport",
@@ -135,7 +135,7 @@
     },
     {
         "name": "Prague Main Railway Station",
-        "country": "Czech Republic",
+        "country": "cz",
         "city": "Prague",
         "address": "Wilsonova 300/8, Prague",
         "type": "railway_station",
@@ -153,7 +153,7 @@
     },
     {
         "name": "Prague Old Town Center",
-        "country": "Czech Republic",
+        "country": "cz",
         "city": "Prague",
         "address": "Old Town Square, Prague",
         "type": "city_center",
