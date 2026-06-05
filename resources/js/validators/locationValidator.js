@@ -27,10 +27,6 @@ export const locationValidator = ({ values }) => {
         errors.email = [{ message: 'Invalid email address.' }]
     }
 
-    if (!values.business_hours) {
-        errors.business_hours = [{ message: 'Business hours is required.' }]
-    }
-
     return {
         values,
         errors,

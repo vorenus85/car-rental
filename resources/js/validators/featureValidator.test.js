@@ -2,27 +2,30 @@ import { describe, it, expect } from 'vitest'
 import { featureValidator } from '@/validators/featureValidator'
 
 describe('featureValidator', () => {
+    const validValues = {
+        name: 'Sunroof',
+        category: 'luxury',
+    }
+
     it('should return error when name is missing', () => {
         const result = featureValidator({
             values: {
-                category: 'luxury',
+                ...validValues,
+                name: '',
             },
         })
 
-        expect(result.errors).toEqual({
-            name: [{ message: 'Feature name is required.' }],
-        })
+        expect(result.errors.name).toEqual([{ message: 'Feature name is required.' }])
     })
 
     it('should return error when category is missing', () => {
         const result = featureValidator({
             values: {
-                name: 'Sunroof',
+                ...validValues,
+                category: '',
             },
         })
 
-        expect(result.errors).toEqual({
-            category: [{ message: 'Feature category is required.' }],
-        })
+        expect(result.errors.category).toEqual([{ message: 'Feature category is required.' }])
     })
 })
