@@ -188,8 +188,8 @@
                     >
                 </div>
                 <div class="flex flex-col gap-1 mb-4">
-                    <label for="is_active">Is active</label>
-                    <ToggleSwitch name="is_active" />
+                    <label for="active">Is active</label>
+                    <ToggleSwitch name="active" />
                 </div>
                 <div class="flex flex-col gap-1 mb-4">
                     <label for="description">Description</label>

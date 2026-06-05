@@ -108,7 +108,7 @@ export const useLocation = () => {
             },
         },
         description: null,
-        is_active: true,
+        active: true,
     })
 
     const countriesMap = {
@@ -162,7 +162,7 @@ export const useLocation = () => {
             initialValues.phone = data.phone
             initialValues.email = data.email
             initialValues.description = data.description
-            initialValues.is_active = Boolean(data.is_active)
+            initialValues.active = Boolean(data.active)
             initialValues.business_hours = {
                 monday: {
                     label: 'Monday',

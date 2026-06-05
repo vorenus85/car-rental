@@ -59,7 +59,7 @@ class LocationController extends Controller
 
     public function toggleActive(Location $location)
     {
-        $location->is_active = !$location->is_active;
+        $location->active = !$location->active;
         $location->save();
 
         return response()->json($location);

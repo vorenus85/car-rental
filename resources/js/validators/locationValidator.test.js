@@ -10,7 +10,7 @@ describe('locationValidator', () => {
         phone: '+4205553002',
         email: 'prague-center@example.com',
         description: 'City center office in Prague.',
-        is_active: true,
+        active: true,
     }
 
     it('returns no errors for valid values', () => {

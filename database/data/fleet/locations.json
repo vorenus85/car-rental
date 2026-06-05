@@ -17,7 +17,7 @@
             "sunday": { "enabled": true, "open": "00:00", "close": "23:59" }
         },
         "description": "Pickup and drop-off point at Budapest Airport Terminal 2.",
-        "is_active": true
+        "active": true
     },
     {
         "name": "Budapest Keleti Railway Station",
@@ -37,7 +37,7 @@
             "sunday": { "enabled": true, "open": "06:00", "close": "22:00" }
         },
         "description": "Convenient pickup location next to Keleti Railway Station.",
-        "is_active": true
+        "active": true
     },
     {
         "name": "Budapest City Center",
@@ -55,7 +55,7 @@
             "friday": { "enabled": true, "open": "08:00", "close": "18:00" }
         },
         "description": "Downtown Budapest rental office.",
-        "is_active": true
+        "active": true
     },
     {
         "name": "Vienna International Airport",
@@ -75,7 +75,7 @@
             "sunday": { "enabled": true, "open": "00:00", "close": "23:59" }
         },
         "description": "Airport pickup and return location.",
-        "is_active": true
+        "active": true
     },
     {
         "name": "Vienna Central Station",
@@ -93,7 +93,7 @@
             "friday": { "enabled": true, "open": "06:00", "close": "22:00" }
         },
         "description": "Rental desk near Vienna Central Station.",
-        "is_active": true
+        "active": true
     },
     {
         "name": "Vienna City Center",
@@ -111,7 +111,7 @@
             "friday": { "enabled": true, "open": "08:00", "close": "18:00" }
         },
         "description": "Downtown Vienna pickup point.",
-        "is_active": true
+        "active": true
     },
     {
         "name": "Prague Airport Terminal 1",
@@ -131,7 +131,7 @@
             "sunday": { "enabled": true, "open": "00:00", "close": "23:59" }
         },
         "description": "Main airport location in Prague.",
-        "is_active": true
+        "active": true
     },
     {
         "name": "Prague Main Railway Station",
@@ -149,7 +149,7 @@
             "friday": { "enabled": true, "open": "06:00", "close": "22:00" }
         },
         "description": "Pickup point at Prague railway station.",
-        "is_active": true
+        "active": true
     },
     {
         "name": "Prague Old Town Center",
@@ -167,6 +167,6 @@
             "friday": { "enabled": true, "open": "08:00", "close": "18:00" }
         },
         "description": "City center office in Prague.",
-        "is_active": true
+        "active": true
     }
 ]

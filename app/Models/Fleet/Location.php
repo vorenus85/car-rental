@@ -28,11 +28,11 @@ class Location extends Model
         'image',
         'description',
 
-        'is_active'
+        'active'
     ];
 
     protected $casts = [
         'business_hours' => 'array',
-        'is_active' => 'boolean',
+        'active' => 'boolean',
     ];
 }

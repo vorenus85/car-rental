@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Fleet;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -62,7 +62,7 @@ class LocationFactory extends Factory
 
             'description' => fake()->paragraph(),
 
-            'is_active' => fake()->boolean(90),
+            'active' => fake()->boolean(90),
         ];
     }
 }

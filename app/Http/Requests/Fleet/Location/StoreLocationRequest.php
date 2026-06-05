@@ -39,7 +39,7 @@ class StoreLocationRequest extends FormRequest
 
             'description' => ['nullable', 'string'],
 
-            'is_active' => ['required', 'boolean'],
+            'active' => ['required', 'boolean'],
         ];
     }
 }

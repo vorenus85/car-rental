@@ -61,7 +61,7 @@ describe('useLocation', () => {
                 phone: '+361234567',
                 email: 'airport@test.com',
                 description: 'Test description',
-                is_active: 1,
+                active: 1,
                 business_hours: {},
             },
         })
@@ -73,7 +73,7 @@ describe('useLocation', () => {
         expect(fetchLocation).toHaveBeenCalledWith(123)
         expect(initialValues.name).toBe('Budapest Airport')
         expect(initialValues.email).toBe('airport@test.com')
-        expect(initialValues.is_active).toBe(true)
+        expect(initialValues.active).toBe(true)
         expect(formKey.value).toBe(1)
     })
 

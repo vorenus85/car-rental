@@ -40,14 +40,14 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->text('description')->nullable();
 
-            $table->boolean('is_active')->default(true);
+            $table->boolean('active')->default(true);
 
             $table->timestamps();
 
             $table->index('country');
             $table->index('city');
             $table->index('type');
-            $table->index('is_active');
+            $table->index('active');
         });
     }
 
