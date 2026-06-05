@@ -30,9 +30,28 @@ export const useLocation = () => {
         },
     ])
 
-    function createTime(hour, minute = 0) {
+    const createTime = (hour, minute = 0) => {
         const date = new Date()
         date.setHours(hour, minute, 0, 0)
+
+        return date
+    }
+
+    const parseTime = value => {
+        if (!value) {
+            return null
+        }
+
+        // ISO string
+        if (value.includes('T')) {
+            return new Date(value)
+        }
+
+        // HH:mm
+        const [hours, minutes] = value.split(':')
+
+        const date = new Date()
+        date.setHours(Number(hours), Number(minutes), 0, 0)
 
         return date
     }
@@ -135,8 +154,87 @@ export const useLocation = () => {
 
         try {
             const { data } = await fetchLocation(locationId)
+            console.log(data)
             initialValues.name = data.name
+            initialValues.city_country = { code: data.country, label: data.city, value: data.city }
+            initialValues.address = data.address
+            initialValues.type = data.type
+            initialValues.phone = data.phone
+            initialValues.email = data.email
             initialValues.description = data.description
+            initialValues.is_active = Boolean(data.is_active)
+            initialValues.business_hours = {
+                monday: {
+                    label: 'Monday',
+                    enabled: data.business_hours?.monday?.enabled || false,
+                    open: data.business_hours?.monday?.open
+                        ? parseTime(data.business_hours.monday.open)
+                        : createTime(6),
+                    close: data.business_hours?.monday?.close
+                        ? parseTime(data.business_hours.monday.close)
+                        : createTime(22),
+                },
+                tuesday: {
+                    label: 'Tuesday',
+                    enabled: data.business_hours?.tuesday?.enabled || false,
+                    open: data.business_hours?.tuesday?.open
+                        ? parseTime(data.business_hours.tuesday.open)
+                        : createTime(6),
+                    close: data.business_hours?.tuesday?.close
+                        ? parseTime(data.business_hours.tuesday.close)
+                        : createTime(22),
+                },
+                wednesday: {
+                    label: 'Wednesday',
+                    enabled: data.business_hours?.wednesday?.enabled || false,
+                    open: data.business_hours?.wednesday?.open
+                        ? parseTime(data.business_hours.wednesday.open)
+                        : createTime(6),
+                    close: data.business_hours?.wednesday?.close
+                        ? parseTime(data.business_hours.wednesday.close)
+                        : createTime(22),
+                },
+                thursday: {
+                    label: 'Thursday',
+                    enabled: data.business_hours?.thursday?.enabled || false,
+                    open: data.business_hours?.thursday?.open
+                        ? parseTime(data.business_hours.thursday.open)
+                        : createTime(6),
+                    close: data.business_hours?.thursday?.close
+                        ? parseTime(data.business_hours.thursday.close)
+                        : createTime(22),
+                },
+                friday: {
+                    label: 'Friday',
+                    enabled: data.business_hours?.friday?.enabled || false,
+                    open: data.business_hours?.friday?.open
+                        ? parseTime(data.business_hours.friday.open)
+                        : createTime(6),
+                    close: data.business_hours?.friday?.close
+                        ? parseTime(data.business_hours.friday.close)
+                        : createTime(22),
+                },
+                saturday: {
+                    label: 'Saturday',
+                    enabled: data.business_hours?.saturday?.enabled || false,
+                    open: data.business_hours?.saturday?.open
+                        ? parseTime(data.business_hours.saturday.open)
+                        : createTime(8),
+                    close: data.business_hours?.saturday?.close
+                        ? parseTime(data.business_hours.saturday.close)
+                        : createTime(18),
+                },
+                sunday: {
+                    label: 'Sunday',
+                    enabled: data.business_hours?.sunday?.enabled || false,
+                    open: data.business_hours?.sunday?.open
+                        ? parseTime(data.business_hours.sunday.open)
+                        : createTime(8),
+                    close: data.business_hours?.sunday?.close
+                        ? parseTime(data.business_hours.sunday.close)
+                        : createTime(18),
+                },
+            }
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
         } catch (e) {
             void e // to avoid unused variable lint error

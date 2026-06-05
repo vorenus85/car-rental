@@ -253,18 +253,15 @@ const onFormSubmit = async ({ valid, values, errors }) => {
     values.country = values.city_country.code
     values.city = values.city_country.value
 
-    console.log(values)
     if (valid) {
         try {
             await createLocation(values)
-
             customToast.success('Location created successfully!')
 
             setTimeout(() => {
                 toLocationsList()
             }, 300)
         } catch (error) {
-            console.log(error)
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }

@@ -8,13 +8,13 @@
         "phone": "+3615551000",
         "email": "budapest-airport@example.com",
         "business_hours": {
-            "monday": { "open": "00:00", "close": "23:59" },
-            "tuesday": { "open": "00:00", "close": "23:59" },
-            "wednesday": { "open": "00:00", "close": "23:59" },
-            "thursday": { "open": "00:00", "close": "23:59" },
-            "friday": { "open": "00:00", "close": "23:59" },
-            "saturday": { "open": "00:00", "close": "23:59" },
-            "sunday": { "open": "00:00", "close": "23:59" }
+            "monday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "tuesday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "wednesday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "thursday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "friday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "saturday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "sunday": { "enabled": true, "open": "00:00", "close": "23:59" }
         },
         "description": "Pickup and drop-off point at Budapest Airport Terminal 2.",
         "is_active": true
@@ -28,13 +28,13 @@
         "phone": "+3615551001",
         "email": "budapest-keleti@example.com",
         "business_hours": {
-            "monday": { "open": "06:00", "close": "22:00" },
-            "tuesday": { "open": "06:00", "close": "22:00" },
-            "wednesday": { "open": "06:00", "close": "22:00" },
-            "thursday": { "open": "06:00", "close": "22:00" },
-            "friday": { "open": "06:00", "close": "22:00" },
-            "saturday": { "open": "06:00", "close": "22:00" },
-            "sunday": { "open": "06:00", "close": "22:00" }
+            "monday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "tuesday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "wednesday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "thursday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "friday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "saturday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "sunday": { "enabled": true, "open": "06:00", "close": "22:00" }
         },
         "description": "Convenient pickup location next to Keleti Railway Station.",
         "is_active": true
@@ -48,11 +48,11 @@
         "phone": "+3615551002",
         "email": "budapest-center@example.com",
         "business_hours": {
-            "monday": { "open": "08:00", "close": "18:00" },
-            "tuesday": { "open": "08:00", "close": "18:00" },
-            "wednesday": { "open": "08:00", "close": "18:00" },
-            "thursday": { "open": "08:00", "close": "18:00" },
-            "friday": { "open": "08:00", "close": "18:00" }
+            "monday": { "enabled": true, "open": "08:00", "close": "18:00" },
+            "tuesday": { "enabled": true, "open": "08:00", "close": "18:00" },
+            "wednesday": { "enabled": true, "open": "08:00", "close": "18:00" },
+            "thursday": { "enabled": true, "open": "08:00", "close": "18:00" },
+            "friday": { "enabled": true, "open": "08:00", "close": "18:00" }
         },
         "description": "Downtown Budapest rental office.",
         "is_active": true
@@ -66,13 +66,13 @@
         "phone": "+4315552000",
         "email": "vienna-airport@example.com",
         "business_hours": {
-            "monday": { "open": "00:00", "close": "23:59" },
-            "tuesday": { "open": "00:00", "close": "23:59" },
-            "wednesday": { "open": "00:00", "close": "23:59" },
-            "thursday": { "open": "00:00", "close": "23:59" },
-            "friday": { "open": "00:00", "close": "23:59" },
-            "saturday": { "open": "00:00", "close": "23:59" },
-            "sunday": { "open": "00:00", "close": "23:59" }
+            "monday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "tuesday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "wednesday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "thursday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "friday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "saturday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "sunday": { "enabled": true, "open": "00:00", "close": "23:59" }
         },
         "description": "Airport pickup and return location.",
         "is_active": true
@@ -86,11 +86,11 @@
         "phone": "+4315552001",
         "email": "vienna-station@example.com",
         "business_hours": {
-            "monday": { "open": "06:00", "close": "22:00" },
-            "tuesday": { "open": "06:00", "close": "22:00" },
-            "wednesday": { "open": "06:00", "close": "22:00" },
-            "thursday": { "open": "06:00", "close": "22:00" },
-            "friday": { "open": "06:00", "close": "22:00" }
+            "monday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "tuesday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "wednesday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "thursday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "friday": { "enabled": true, "open": "06:00", "close": "22:00" }
         },
         "description": "Rental desk near Vienna Central Station.",
         "is_active": true
@@ -104,11 +104,11 @@
         "phone": "+4315552002",
         "email": "vienna-center@example.com",
         "business_hours": {
-            "monday": { "open": "08:00", "close": "18:00" },
-            "tuesday": { "open": "08:00", "close": "18:00" },
-            "wednesday": { "open": "08:00", "close": "18:00" },
-            "thursday": { "open": "08:00", "close": "18:00" },
-            "friday": { "open": "08:00", "close": "18:00" }
+            "monday": { "enabled": true, "open": "08:00", "close": "18:00" },
+            "tuesday": { "enabled": true, "open": "08:00", "close": "18:00" },
+            "wednesday": { "enabled": true, "open": "08:00", "close": "18:00" },
+            "thursday": { "enabled": true, "open": "08:00", "close": "18:00" },
+            "friday": { "enabled": true, "open": "08:00", "close": "18:00" }
         },
         "description": "Downtown Vienna pickup point.",
         "is_active": true
@@ -122,13 +122,13 @@
         "phone": "+4205553000",
         "email": "prague-airport@example.com",
         "business_hours": {
-            "monday": { "open": "00:00", "close": "23:59" },
-            "tuesday": { "open": "00:00", "close": "23:59" },
-            "wednesday": { "open": "00:00", "close": "23:59" },
-            "thursday": { "open": "00:00", "close": "23:59" },
-            "friday": { "open": "00:00", "close": "23:59" },
-            "saturday": { "open": "00:00", "close": "23:59" },
-            "sunday": { "open": "00:00", "close": "23:59" }
+            "monday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "tuesday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "wednesday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "thursday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "friday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "saturday": { "enabled": true, "open": "00:00", "close": "23:59" },
+            "sunday": { "enabled": true, "open": "00:00", "close": "23:59" }
         },
         "description": "Main airport location in Prague.",
         "is_active": true
@@ -142,11 +142,11 @@
         "phone": "+4205553001",
         "email": "prague-station@example.com",
         "business_hours": {
-            "monday": { "open": "06:00", "close": "22:00" },
-            "tuesday": { "open": "06:00", "close": "22:00" },
-            "wednesday": { "open": "06:00", "close": "22:00" },
-            "thursday": { "open": "06:00", "close": "22:00" },
-            "friday": { "open": "06:00", "close": "22:00" }
+            "monday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "tuesday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "wednesday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "thursday": { "enabled": true, "open": "06:00", "close": "22:00" },
+            "friday": { "enabled": true, "open": "06:00", "close": "22:00" }
         },
         "description": "Pickup point at Prague railway station.",
         "is_active": true
@@ -160,11 +160,11 @@
         "phone": "+4205553002",
         "email": "prague-center@example.com",
         "business_hours": {
-            "monday": { "open": "08:00", "close": "18:00" },
-            "tuesday": { "open": "08:00", "close": "18:00" },
-            "wednesday": { "open": "08:00", "close": "18:00" },
-            "thursday": { "open": "08:00", "close": "18:00" },
-            "friday": { "open": "08:00", "close": "18:00" }
+            "monday": { "enabled": true, "open": "08:00", "close": "18:00" },
+            "tuesday": { "enabled": true, "open": "08:00", "close": "18:00" },
+            "wednesday": { "enabled": true, "open": "08:00", "close": "18:00" },
+            "thursday": { "enabled": true, "open": "08:00", "close": "18:00" },
+            "friday": { "enabled": true, "open": "08:00", "close": "18:00" }
         },
         "description": "City center office in Prague.",
         "is_active": true
