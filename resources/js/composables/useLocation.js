@@ -12,10 +12,84 @@ export const useLocation = () => {
 
     const { customToast } = useCustomToast()
 
+    const groupedCities = ref([
+        {
+            label: 'Hungary',
+            code: 'hu',
+            items: [{ code: 'hu', label: 'Budapest', value: 'Budapest' }],
+        },
+        {
+            label: 'Austria',
+            code: 'at',
+            items: [{ code: 'at', label: 'Vienna', value: 'Vienna' }],
+        },
+        {
+            label: 'Czech Republic',
+            code: 'cz',
+            items: [{ code: 'cz', label: 'Prague', value: 'Prague' }],
+        },
+    ])
+
+    function createTime(hour, minute = 0) {
+        const date = new Date()
+        date.setHours(hour, minute, 0, 0)
+
+        return date
+    }
+
     const initialValues = reactive({
         name: '',
-        description: '',
-        category: '',
+        city_country: '',
+        address: '',
+        type: '',
+        phone: '',
+        email: '',
+        business_hours: {
+            monday: {
+                label: 'Monday',
+                enabled: true,
+                open: createTime(6),
+                close: createTime(22),
+            },
+            tuesday: {
+                label: 'Tuesday',
+                enabled: true,
+                open: createTime(6),
+                close: createTime(22),
+            },
+            wednesday: {
+                label: 'Wednesday',
+                enabled: true,
+                open: createTime(6),
+                close: createTime(22),
+            },
+            thursday: {
+                label: 'Thursday',
+                enabled: true,
+                open: createTime(6),
+                close: createTime(22),
+            },
+            friday: {
+                label: 'Friday',
+                enabled: true,
+                open: createTime(6),
+                close: createTime(22),
+            },
+            saturday: {
+                label: 'Saturday',
+                enabled: false,
+                open: createTime(8),
+                close: createTime(18),
+            },
+            sunday: {
+                label: 'Sunday',
+                enabled: false,
+                open: createTime(8),
+                close: createTime(18),
+            },
+        },
+        description: null,
+        is_active: true,
     })
 
     const countriesMap = {
@@ -34,12 +108,12 @@ export const useLocation = () => {
     }
 
     const locationTypes = [
-        { id: 'airport', name: 'Airport' },
-        { id: 'railway_station', name: 'Railway Station' },
-        { id: 'city_center', name: 'City Center' },
-        { id: 'office', name: 'Office' },
-        { id: 'hotel', name: 'Hotel' },
-        { id: 'other', name: 'Other' },
+        { id: 'airport', label: 'Airport' },
+        { id: 'railway_station', label: 'Railway Station' },
+        { id: 'city_center', label: 'City Center' },
+        { id: 'office', label: 'Office' },
+        { id: 'hotel', label: 'Hotel' },
+        { id: 'other', label: 'Other' },
     ]
 
     const getLocations = async () => {
@@ -63,7 +137,6 @@ export const useLocation = () => {
             const { data } = await fetchLocation(locationId)
             initialValues.name = data.name
             initialValues.description = data.description
-            initialValues.category = data.category
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
         } catch (e) {
             void e // to avoid unused variable lint error
@@ -104,5 +177,6 @@ export const useLocation = () => {
         locationTypes,
         countriesMap,
         locationTypeMap,
+        groupedCities,
     }
 }

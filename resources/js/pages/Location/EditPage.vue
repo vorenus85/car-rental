@@ -1,6 +1,6 @@
 <template>
     <AppLayout>
-        <PageTitle title="Units"> </PageTitle>
+        <PageTitle title="Edit Location"> </PageTitle>
     </AppLayout>
 </template>
 <script setup>
