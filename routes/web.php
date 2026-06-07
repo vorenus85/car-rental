@@ -9,6 +9,7 @@ use App\Http\Controllers\Fleet\CarController;
 use App\Http\Controllers\Fleet\CarImageController;
 use App\Http\Controllers\Fleet\CarModelController;
 use App\Http\Controllers\Fleet\FeatureController;
+use App\Http\Controllers\Fleet\LocationController;
 use App\Http\Controllers\Fleet\VariantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -89,6 +90,15 @@ Route::middleware('auth:sanctum')->group(function () {
 
         Route::post('/image/upload', [CarImageController::class, 'store']);
         Route::delete('/image/delete/{car}', [CarImageController::class, 'delete']);
+    });
+
+    Route::prefix('/api/admin/locations')->group(function () {
+        Route::get('/', [LocationController::class, 'index']);
+        Route::post('/', [LocationController::class, 'store']);
+        Route::get('/{location}', [LocationController::class, 'show']);
+        Route::put('/{location}', [LocationController::class, 'update']);
+        Route::delete('/{location}', [LocationController::class, 'destroy']);
+        Route::put('/{location}/toggle-active', [LocationController::class, 'toggleActive']);
     });
 });
 

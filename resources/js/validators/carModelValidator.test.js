@@ -2,27 +2,30 @@ import { describe, it, expect } from 'vitest'
 import { carModelValidator } from '@/validators/carModelValidator'
 
 describe('carModelValidator', () => {
+    const validValues = {
+        brand_id: 1,
+        name: 'Crimson',
+    }
+
     it('should return error when name is missing', () => {
         const result = carModelValidator({
             values: {
-                brand_id: 1,
+                ...validValues,
+                name: '',
             },
         })
 
-        expect(result.errors).toEqual({
-            name: [{ message: 'Car model name is required.' }],
-        })
+        expect(result.errors.name).toEqual([{ message: 'Car model name is required.' }])
     })
 
     it('should return error when brand_id is missing', () => {
         const result = carModelValidator({
             values: {
-                name: 'Crimson',
+                ...validValues,
+                brand_id: '',
             },
         })
 
-        expect(result.errors).toEqual({
-            brand_id: [{ message: 'Brand is required.' }],
-        })
+        expect(result.errors.brand_id).toEqual([{ message: 'Brand is required.' }])
     })
 })

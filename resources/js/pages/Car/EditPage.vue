@@ -5,8 +5,9 @@
                 <Button icon="pi pi-angle-left" label="Back to list" primary @click="toCarsList" />
             </template>
         </PageTitle>
-        <div class="card">
+        <div v-if="formKey" class="card">
             <Form
+                :key="formKey"
                 ref="formRef"
                 v-slot="$form"
                 :initial-values
@@ -470,6 +471,7 @@ const {
     selectedDoors,
     carId,
     deleteImage,
+    formKey,
 } = useCar()
 
 const { customToast } = useCustomToast()

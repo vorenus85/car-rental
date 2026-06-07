@@ -24,6 +24,7 @@ class BrandResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'updated_at' => $this->updated_at,
             'image' => $this->whenHas('image'),
             'image_url' => $this->whenHas('image', function () {
                 return $this->image

@@ -1,20 +1,20 @@
 <template>
     <AppLayout>
-        <PageTitle title="Brands">
+        <PageTitle title="Locations">
             <template #actions>
-                <Button icon="pi pi-plus" label="New" primary @click="toCreateBrand" />
+                <Button icon="pi pi-plus" label="New" primary @click="toCreateLocation" />
             </template>
         </PageTitle>
         <div class="card shadow list-page">
             <DataTable
                 v-model:filters="filters"
-                :value="brands"
+                :value="locations"
                 paginator
                 :rows="20"
                 :rows-per-page-options="[20, 50]"
                 table-style="min-width: 50rem"
                 :loading="loading"
-                :global-filter-fields="['name']"
+                :global-filter-fields="['name', 'description']"
                 data-key="id"
             >
                 <template #header>
@@ -38,19 +38,37 @@
                     </div>
                 </template>
                 <template #empty> No results found. </template>
-                <Column sortable field="name" header="Name" style="width: 25%">
+                <Column sortable field="name" header="Name" style="width: 10%">
                     <template #body="slotProps">
-                        <div class="flex gap-1 items-center">
-                            <Image
-                                :src="
-                                    slotProps.data?.image
-                                        ? `${slotProps.data.image_url}`
-                                        : '/no-image.jpg'
-                                "
-                                :alt="slotProps.data?.title"
+                        <Tag :value="slotProps.data.name" severity="secondary"
+                    /></template>
+                </Column>
+                <Column sortable field="country" header="Country" style="width: 5%">
+                    <template #body="slotProps">
+                        <div class="flex items-center gap-2">
+                            <img
+                                :alt="countriesMap[slotProps.data.country]"
+                                src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
+                                :class="`mr-2 flag flag-${slotProps.data.country.toLowerCase()}`"
+                                style="width: 18px"
                             />
-                            <Tag :value="slotProps.data.name" severity="secondary" />
+                            {{ countriesMap[slotProps.data.country] }}
                         </div>
+                    </template>
+                </Column>
+                <Column sortable field="city" header="City" style="width: 5%">
+                    <template #body="slotProps">
+                        {{ slotProps.data.city }}
+                    </template>
+                </Column>
+                <Column sortable field="type" header="Type" style="width: 5%">
+                    <template #body="slotProps">
+                        {{ locationTypeMap[slotProps.data.type] }}
+                    </template>
+                </Column>
+                <Column sortable field="phone" header="Phone" style="width: 5%">
+                    <template #body="slotProps">
+                        <span class="no-wrap">{{ slotProps.data.phone }}</span>
                     </template>
                 </Column>
                 <Column sortable field="updated_at" header="Updated at" style="width: 10%">
@@ -63,10 +81,10 @@
                         <div class="flex items-center justify-list gap-3">
                             <Button
                                 severity="info"
-                                as="router-link"
                                 icon="pi pi-eye"
+                                as="router-link"
                                 :to="{
-                                    name: 'brands.show',
+                                    name: 'locations.show',
                                     params: {
                                         id: slotProps.data?.id,
                                     },
@@ -94,29 +112,33 @@ import {
     Column,
     DataTable,
     IconField,
-    Image,
     InputIcon,
     InputText,
     Tag,
     useConfirm,
 } from 'primevue'
-import FormatedDate from '@/components/Table/FormatedDate.vue'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
-import { useBrand } from '@/composables/useBrand.js'
 import { useRedirects } from '@/composables/useRedirects.js'
+import { useLocation } from '@/composables/useLocation'
 import { useCustomConfirm } from '@/composables/useCustomConfirm'
 import { onMounted, ref } from 'vue'
+import FormatedDate from '@/components/Table/FormatedDate.vue'
 
-const filters = ref()
-const { toCreateBrand } = useRedirects()
+const { toCreateLocation } = useRedirects()
 const confirm = useConfirm()
+const { loading, locations, getLocations, deleteLocation, countriesMap, locationTypeMap } =
+    useLocation()
+const filters = ref()
 const { confirmAction } = useCustomConfirm()
-const { loading, brands, getBrands, deleteBrand } = useBrand()
 
 const initFilters = () => {
     filters.value = {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         name: {
+            operator: FilterOperator.AND,
+            constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
+        },
+        description: {
             operator: FilterOperator.AND,
             constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
         },
@@ -132,13 +154,13 @@ const clearFilter = () => {
 const deleteConfirm = id => {
     confirmAction(confirm, {
         action: () => {
-            deleteBrand(id)
+            deleteLocation(id)
         },
         acceptLabel: 'Delete',
     })
 }
 
 onMounted(async () => {
-    await getBrands({ with_images: true })
+    await getLocations()
 })
 </script>

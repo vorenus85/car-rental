@@ -18,7 +18,7 @@ class BrandController extends Controller
     public function index(Request $request)
     {
         //
-        $query = Brand::query()->select('id', 'name')->orderBy('name', 'asc');
+        $query = Brand::query()->select('id', 'name', 'updated_at')->orderBy('name', 'asc');
 
         if ($request->boolean('with_images')) {
             $query->addSelect('image');

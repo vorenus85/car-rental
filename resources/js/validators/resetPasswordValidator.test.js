@@ -2,9 +2,18 @@ import { describe, it, expect } from 'vitest'
 import { resetPasswordValidator } from '@/validators/resetPasswordValidator'
 
 describe('resetPasswordValidator', () => {
+    const validValues = {
+        email: 'test@example.com',
+        password: 'password123',
+        password_confirmation: 'password123',
+    }
+
     it('should require email', () => {
         const result = resetPasswordValidator({
-            values: {},
+            values: {
+                ...validValues,
+                email: '',
+            },
         })
 
         expect(result.errors.email).toEqual([{ message: 'Email is required.' }])
@@ -13,6 +22,7 @@ describe('resetPasswordValidator', () => {
     it('should validate email format', () => {
         const result = resetPasswordValidator({
             values: {
+                ...validValues,
                 email: 'invalid-email',
             },
         })
@@ -23,7 +33,8 @@ describe('resetPasswordValidator', () => {
     it('should require password', () => {
         const result = resetPasswordValidator({
             values: {
-                email: 'test@example.com',
+                ...validValues,
+                password: '',
             },
         })
 
@@ -33,7 +44,7 @@ describe('resetPasswordValidator', () => {
     it('should validate minimum password length', () => {
         const result = resetPasswordValidator({
             values: {
-                email: 'test@example.com',
+                ...validValues,
                 password: '1234567',
                 password_confirmation: '1234567',
             },
@@ -47,8 +58,8 @@ describe('resetPasswordValidator', () => {
     it('should require password confirmation', () => {
         const result = resetPasswordValidator({
             values: {
-                email: 'test@example.com',
-                password: 'password123',
+                ...validValues,
+                password_confirmation: '',
             },
         })
 
@@ -60,7 +71,7 @@ describe('resetPasswordValidator', () => {
     it('should validate minimum confirmation length', () => {
         const result = resetPasswordValidator({
             values: {
-                email: 'test@example.com',
+                ...validValues,
                 password: '1234567',
                 password_confirmation: '1234567',
             },
@@ -74,8 +85,7 @@ describe('resetPasswordValidator', () => {
     it('should validate password confirmation match', () => {
         const result = resetPasswordValidator({
             values: {
-                email: 'test@example.com',
-                password: 'password123',
+                ...validValues,
                 password_confirmation: 'password456',
             },
         })
@@ -88,17 +98,11 @@ describe('resetPasswordValidator', () => {
     })
 
     it('should return no errors for valid input', () => {
-        const values = {
-            email: 'test@example.com',
-            password: 'password123',
-            password_confirmation: 'password123',
-        }
-
         const result = resetPasswordValidator({
-            values,
+            values: validValues,
         })
 
         expect(result.errors).toEqual({})
-        expect(result.values).toEqual(values)
+        expect(result.values).toEqual(validValues)
     })
 })

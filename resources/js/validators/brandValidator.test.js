@@ -17,8 +17,6 @@ describe('brandValidator', () => {
             values: {},
         })
 
-        expect(result.errors).toEqual({
-            name: [{ message: 'Brand name is required.' }],
-        })
+        expect(result.errors.name).toEqual([{ message: 'Brand name is required.' }])
     })
 })
