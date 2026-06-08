@@ -15,7 +15,29 @@ class LocationController extends Controller
     public function index()
     {
         //
-        $locations = Location::orderBy('name', 'asc')->get();
+        $locations = Location::select(
+            'id',
+            'name',
+            'country',
+            'city',
+            'type',
+            'phone',
+            'updated_at'
+        )
+            ->withCount([
+                'cars as total_cars_count',
+                'cars as available_cars_count' => function ($query) {
+                    $query->where('status', 'available');
+                },
+                'cars as rented_cars_count' => function ($query) {
+                    $query->where('status', 'rented');
+                },
+                'cars as maintenance_cars_count' => function ($query) {
+                    $query->where('status', 'maintenance');
+                }
+            ])
+            ->orderBy('name')
+            ->get();
         return response()->json($locations);
     }
 
@@ -45,6 +67,19 @@ class LocationController extends Controller
         //
         $location->update($request->validated());
         return response()->json($location);
+    }
+
+    /**
+     * Use for location select on car crud pages
+     */
+
+    public function options()
+    {
+        $locations = Location::query()
+            ->select(['id', 'name'])
+            ->get();
+
+        return response()->json($locations);
     }
 
     /**

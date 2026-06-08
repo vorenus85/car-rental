@@ -15,6 +15,7 @@ describe('Car model', function () {
         expect($carModel->getFillable())
             ->toBe([
                 'variant_id',
+                'location_id',
                 'licence_plate',
                 'image',
                 'price_per_day',

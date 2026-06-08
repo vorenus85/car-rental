@@ -33,6 +33,13 @@ class CarResource extends JsonResource
                     ? Storage::url('/uploads/' . $this->image)
                     : null;
             }),
+            'location' => $this->whenLoaded('location', function () {
+                return [
+                    'id' => $this->location->id,
+                    'name' => $this->location->name,
+                    'city' => $this->location->city,
+                ];
+            }),
             'variant' => $this->whenLoaded('variant', function () {
                 return [
                     'id' => $this->variant->id,

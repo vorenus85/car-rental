@@ -1,6 +1,11 @@
-import { fetchLocations, deleteLocationById, fetchLocation } from '@/services/locationService'
+import {
+    fetchLocations,
+    deleteLocationById,
+    fetchLocation,
+    fetchLocationsMinimal,
+} from '@/services/locationService'
 import { useCustomToast } from '@/composables/useCustomToast'
-import { reactive, ref, computed } from 'vue'
+import { reactive, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 export const useLocation = () => {
@@ -149,6 +154,20 @@ export const useLocation = () => {
         }
     }
 
+    const getLocationOptions = async () => {
+        loading.value = true
+
+        try {
+            const { data } = await fetchLocationsMinimal()
+            locations.value = data
+        } catch (e) {
+            void e // to avoid unused variable lint error
+            // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
+        }
+    }
+
     const getLocation = async () => {
         loading.value = true
 
@@ -276,5 +295,6 @@ export const useLocation = () => {
         countriesMap,
         locationTypeMap,
         groupedCities,
+        getLocationOptions,
     }
 }

@@ -84,7 +84,23 @@
                     </template>
                 </Column>
 
-                <Column sortable field="category" header="Category" style="width: 10%">
+                <Column sortable field="location.city" header="City" style="width: 5%">
+                    <template #body="slotProps">
+                        <Tag severity="secondary" class="no-wrap">
+                            {{ slotProps.data.location.city }}
+                        </Tag>
+                    </template>
+                </Column>
+
+                <Column sortable field="location.name" header="Location" style="width: 10%">
+                    <template #body="slotProps">
+                        <Tag severity="secondary" class="no-wrap">
+                            {{ slotProps.data.location.name }}
+                        </Tag>
+                    </template>
+                </Column>
+
+                <Column sortable field="variant.category" header="Category" style="width: 10%">
                     <template #body="slotProps">
                         <Tag severity="secondary" class="no-wrap">
                             {{ slotProps.data.variant.category }}

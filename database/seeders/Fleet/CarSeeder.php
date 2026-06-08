@@ -34,6 +34,7 @@ class CarSeeder extends Seeder
             try {
                 Car::create([
                     'variant_id' => $variant->id,
+                    'location_id' => $item['location_id'],
                     'licence_plate' => $item['licence_plate'],
                     'price_per_day' => $item['price_per_day'],
                     'status' => $item['status'],

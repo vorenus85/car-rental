@@ -14,6 +14,7 @@ class Car extends Model
 
     protected $fillable = [
         'variant_id',
+        'location_id',
         'licence_plate',
         'image',
         'price_per_day',
@@ -31,5 +32,14 @@ class Car extends Model
     public function variant(): BelongsTo
     {
         return $this->belongsTo(Variant::class);
+    }
+
+    /**
+     *
+     * @return BelongsTo<Location, $this>
+     */
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class);
     }
 }
