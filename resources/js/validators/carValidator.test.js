@@ -6,6 +6,7 @@ describe('carValidator', () => {
         brand_id: 1,
         model_id: 1,
         variant_id: 1,
+        location_id: 1,
 
         licence_plate: 'ABC-123',
         color: 'red',
@@ -52,6 +53,17 @@ describe('carValidator', () => {
         })
 
         expect(result.errors.variant_id).toEqual([{ message: 'Please select a variant.' }])
+    })
+
+    it('requires location_id', () => {
+        const result = carValidator({
+            values: {
+                ...validValues,
+                location_id: '',
+            },
+        })
+
+        expect(result.errors.location_id).toEqual([{ message: 'Please select a location.' }])
     })
 
     it('requires licence_plate', () => {

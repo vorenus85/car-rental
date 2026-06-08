@@ -62,11 +62,11 @@ defineProps({
     background: #b91c1c;
 }
 
-.status-retired {
+.status-inactive {
     background: #f1f5f9;
 }
 
-.status-retired:before {
+.status-inactive:before {
     background: #475569;
 }
 </style>

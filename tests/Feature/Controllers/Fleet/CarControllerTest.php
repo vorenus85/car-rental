@@ -3,6 +3,7 @@
 use App\Models\Fleet\Brand;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\CarModel;
+use App\Models\Fleet\Location;
 use App\Models\Fleet\Variant;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -15,6 +16,8 @@ beforeEach(function () {
     $this->user = User::factory()->create();
 
     $this->actingAs($this->user);
+
+    $this->location = Location::factory()->create();
 
     $this->brand = Brand::factory()->create();
 
@@ -43,6 +46,7 @@ describe('CarController', function () {
     it('stores a car', function () {
         $payload = [
             'variant_id' => $this->variant->id,
+            'location_id' => $this->location->id,
             'licence_plate' => 'ABC-123',
             'price_per_day' => 100,
             'status' => 'available',
@@ -82,11 +86,13 @@ describe('CarController', function () {
     it('updates a car', function () {
         $car = Car::factory()->create([
             'variant_id' => $this->variant->id,
+            'location_id' => $this->location->id,
             'color' => 'black',
         ]);
 
         $response = $this->withSession(['_token' => 'test-token'])->putJson("/api/admin/cars/{$car->id}", [
             'variant_id' => $this->variant->id,
+            'location_id' => $this->location->id,
             'licence_plate' => $car->licence_plate,
             'price_per_day' => $car->price_per_day,
             'status' => $car->status,

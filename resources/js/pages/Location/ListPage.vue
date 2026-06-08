@@ -40,9 +40,15 @@
                 <template #empty> No results found. </template>
                 <Column sortable field="name" header="Name" style="width: 10%">
                     <template #body="slotProps">
-                        <Tag :value="slotProps.data.name" severity="secondary"
+                        <Tag :value="slotProps.data.name" severity="secondary" class="no-wrap"
                     /></template>
                 </Column>
+                <Column sortable field="phone" header="Phone" style="width: 5%">
+                    <template #body="slotProps">
+                        <span class="no-wrap">{{ slotProps.data.phone }}</span>
+                    </template>
+                </Column>
+
                 <Column sortable field="country" header="Country" style="width: 5%">
                     <template #body="slotProps">
                         <div class="flex items-center gap-2">
@@ -66,12 +72,27 @@
                         {{ locationTypeMap[slotProps.data.type] }}
                     </template>
                 </Column>
-                <Column sortable field="phone" header="Phone" style="width: 5%">
+                <Column sortable field="total_cars_count" header="Total" style="width: 5%">
                     <template #body="slotProps">
-                        <span class="no-wrap">{{ slotProps.data.phone }}</span>
+                        {{ slotProps.data.total_cars_count }}
                     </template>
                 </Column>
-                <Column sortable field="updated_at" header="Updated at" style="width: 10%">
+                <Column sortable field="available_cars_count" header="Available " style="width: 5%">
+                    <template #body="slotProps">
+                        {{ slotProps.data.available_cars_count }}
+                    </template>
+                </Column>
+                <Column sortable field="rented_cars_count" header="Rented" style="width: 5%">
+                    <template #body="slotProps">
+                        {{ slotProps.data.rented_cars_count }}
+                    </template>
+                </Column>
+                <Column sortable field="maintenance_cars_count" header="Service " style="width: 5%">
+                    <template #body="slotProps">
+                        {{ slotProps.data.maintenance_cars_count }}
+                    </template>
+                </Column>
+                <Column sortable field="updated_at" header="Updated at" style="width: 5%">
                     <template #body="slotProps">
                         <FormatedDate :date="slotProps.data.updated_at"></FormatedDate
                     ></template>

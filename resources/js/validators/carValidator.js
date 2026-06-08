@@ -13,6 +13,10 @@ export const carValidator = ({ values }) => {
         errors.variant_id = [{ message: 'Please select a variant.' }]
     }
 
+    if (!values.location_id) {
+        errors.location_id = [{ message: 'Please select a location.' }]
+    }
+
     if (!values.licence_plate) {
         errors.licence_plate = [{ message: 'Please add licence plate number.' }]
     }

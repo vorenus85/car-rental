@@ -10,7 +10,8 @@
         "mileage": 82000,
         "color": "white",
         "image": "vw_polo_1.0_mpi.webp",
-        "description": "Reliable and economical city car, ideal for short trips."
+        "description": "Reliable and economical city car, ideal for short trips.",
+        "location_id": 1
     },
     {
         "brand": "Volkswagen",
@@ -23,7 +24,8 @@
         "mileage": 110000,
         "color": "red",
         "image": "vw_polo_1.0_mpi_v2.webp",
-        "description": "Older unit currently under maintenance, previously used for city rentals."
+        "description": "Older unit currently under maintenance, previously used for city rentals.",
+        "location_id": 2
     },
     {
         "brand": "Volkswagen",
@@ -31,12 +33,13 @@
         "variant": "1.0 MPI Manual",
         "licence_plate": "ABC-102",
         "price_per_day": 34,
-        "status": "retired",
+        "status": "inactive",
         "production_year": 2018,
         "mileage": 250000,
         "color": "red",
         "image": "vw_polo_1.0_mpi_v2.webp",
-        "description": "Older unit currently under maintenance, previously used for city rentals."
+        "description": "Older unit currently under maintenance, previously used for city rentals.",
+        "location_id": 3
     },
     {
         "brand": "Volkswagen",
@@ -49,7 +52,8 @@
         "mileage": 48000,
         "color": "blue",
         "image": "vw_polo_1.0_tsi.webp",
-        "description": "Turbocharged engine with responsive performance and low consumption."
+        "description": "Turbocharged engine with responsive performance and low consumption.",
+        "location_id": 4
     },
     {
         "brand": "Volkswagen",
@@ -57,12 +61,13 @@
         "variant": "1.0 TSI Manual",
         "licence_plate": "ABC-202",
         "price_per_day": 42,
-        "status": "retired",
+        "status": "inactive",
         "production_year": 2021,
         "mileage": 250000,
         "color": "blue",
         "image": "vw_polo_1.0_tsi.webp",
-        "description": "Turbocharged engine with responsive performance and low consumption."
+        "description": "Turbocharged engine with responsive performance and low consumption.",
+        "location_id": 5
     },
     {
         "brand": "Volkswagen",
@@ -75,7 +80,8 @@
         "mileage": 67000,
         "color": "gray",
         "image": "vw_polo_1.0_tsi_v2.webp",
-        "description": "Currently rented, well-maintained and comfortable for city driving."
+        "description": "Currently rented, well-maintained and comfortable for city driving.",
+        "location_id": 6
     },
     {
         "brand": "Volkswagen",
@@ -88,7 +94,8 @@
         "mileage": 32000,
         "color": "black",
         "image": "vw_golf_1.5_tsi.webp",
-        "description": "Modern compact car with balanced performance and comfort."
+        "description": "Modern compact car with balanced performance and comfort.",
+        "location_id": 7
     },
     {
         "brand": "Volkswagen",
@@ -101,9 +108,9 @@
         "mileage": 41000,
         "color": "silver",
         "image": "vw_golf_1.5_tsi_v2.webp",
-        "description": "Efficient and versatile hatchback, suitable for both city and highway."
+        "description": "Efficient and versatile hatchback, suitable for both city and highway.",
+        "location_id": 8
     },
-
     {
         "brand": "Volkswagen",
         "model": "Golf",
@@ -115,7 +122,8 @@
         "mileage": 52000,
         "color": "black",
         "image": "vw_golf_2.0_tdi.webp",
-        "description": "Comfortable diesel automatic, ideal for longer trips with low consumption."
+        "description": "Comfortable diesel automatic, ideal for longer trips with low consumption.",
+        "location_id": 9
     },
     {
         "brand": "Volkswagen",
@@ -128,7 +136,8 @@
         "mileage": 68000,
         "color": "red",
         "image": "vw_golf_2.0_tdi_v2.webp",
-        "description": "Currently rented, reliable and efficient for both city and highway use."
+        "description": "Currently rented, reliable and efficient for both city and highway use.",
+        "location_id": 1
     },
     {
         "brand": "Volkswagen",
@@ -141,9 +150,9 @@
         "mileage": 39000,
         "color": "silver",
         "image": "vw_passat_2.0_tdi.webp",
-        "description": "Spacious and fuel-efficient business sedan, perfect for long-distance travel."
+        "description": "Spacious and fuel-efficient business sedan, perfect for long-distance travel.",
+        "location_id": 2
     },
-
     {
         "brand": "Volkswagen",
         "model": "Passat",
@@ -155,7 +164,8 @@
         "mileage": 61000,
         "color": "white",
         "image": "vw_passat_2.0_tdi_v2.webp",
-        "description": "Currently under maintenance, previously used for corporate rentals."
+        "description": "Currently under maintenance, previously used for corporate rentals.",
+        "location_id": 3
     },
     {
         "brand": "Volkswagen",
@@ -168,7 +178,8 @@
         "mileage": 28000,
         "color": "blue",
         "image": "vw_passat_2.0_tsi.webp",
-        "description": "Powerful petrol engine with smooth automatic transmission and premium feel."
+        "description": "Powerful petrol engine with smooth automatic transmission and premium feel.",
+        "location_id": 4
     },
     {
         "brand": "Volkswagen",
@@ -181,7 +192,8 @@
         "mileage": 35000,
         "color": "black",
         "image": "vw_passat_2.0_tsi_v2.webp",
-        "description": "Refined driving experience with strong performance and comfort."
+        "description": "Refined driving experience with strong performance and comfort.",
+        "location_id": 5
     },
 
     {
@@ -195,7 +207,8 @@
         "mileage": 78000,
         "color": "white",
         "image": "toyota_yaris_1.0_vvt-i.webp",
-        "description": "Compact and economical city car, ideal for short trips and easy parking."
+        "description": "Compact and economical city car, ideal for short trips and easy parking.",
+        "location_id": 1
     },
     {
         "brand": "Toyota",
@@ -208,7 +221,8 @@
         "mileage": 102000,
         "color": "red",
         "image": "toyota_yaris_1.0_vvt-i_v2.webp",
-        "description": "Older unit currently under maintenance, previously used for urban rentals."
+        "description": "Older unit currently under maintenance, previously used for urban rentals.",
+        "location_id": 2
     },
     {
         "brand": "Toyota",
@@ -221,7 +235,8 @@
         "mileage": 34000,
         "color": "blue",
         "image": "toyota_yaris_1.5_hybrid.webp",
-        "description": "Modern hybrid system with smooth automatic driving and excellent fuel efficiency."
+        "description": "Modern hybrid system with smooth automatic driving and excellent fuel efficiency.",
+        "location_id": 3
     },
     {
         "brand": "Toyota",
@@ -234,7 +249,8 @@
         "mileage": 42000,
         "color": "silver",
         "image": "toyota_yaris_1.5_hybrid_v2.webp",
-        "description": "Currently rented, quiet and efficient hybrid ideal for city driving."
+        "description": "Currently rented, quiet and efficient hybrid ideal for city driving.",
+        "location_id": 4
     },
     {
         "brand": "Toyota",
@@ -247,7 +263,8 @@
         "mileage": 25000,
         "color": "black",
         "image": "toyota_corolla_1.8_hybrid.webp",
-        "description": "Spacious and efficient hybrid sedan, perfect for daily use and longer trips."
+        "description": "Spacious and efficient hybrid sedan, perfect for daily use and longer trips.",
+        "location_id": 5
     },
     {
         "brand": "Toyota",
@@ -260,9 +277,9 @@
         "mileage": 37000,
         "color": "yellow",
         "image": "toyota_corolla_1.8_hybrid_v2.webp",
-        "description": "Reliable hybrid with smooth performance and low consumption."
+        "description": "Reliable hybrid with smooth performance and low consumption.",
+        "location_id": 6
     },
-
     {
         "brand": "Toyota",
         "model": "Corolla",
@@ -274,7 +291,8 @@
         "mileage": 22000,
         "color": "white",
         "image": "toyota_corolla_2.0_hybrid.webp",
-        "description": "More powerful hybrid sedan with smooth performance and excellent fuel efficiency."
+        "description": "More powerful hybrid sedan with smooth performance and excellent fuel efficiency.",
+        "location_id": 7
     },
     {
         "brand": "Toyota",
@@ -287,7 +305,8 @@
         "mileage": 34000,
         "color": "black",
         "image": "toyota_corolla_2.0_hybrid_v2.webp",
-        "description": "Currently rented, refined hybrid with strong acceleration and comfort."
+        "description": "Currently rented, refined hybrid with strong acceleration and comfort.",
+        "location_id": 8
     },
     {
         "brand": "Toyota",
@@ -300,7 +319,8 @@
         "mileage": 18000,
         "color": "yellow",
         "image": "toyota_rav4_2.5_hybrid.webp",
-        "description": "Top-tier hybrid SUV with AWD, ideal for all conditions and long-distance comfort."
+        "description": "Top-tier hybrid SUV with AWD, ideal for all conditions and long-distance comfort.",
+        "location_id": 9
     },
     {
         "brand": "Toyota",
@@ -313,7 +333,8 @@
         "mileage": 29000,
         "color": "blue",
         "image": "toyota_rav4_2.5_hybrid_v2.webp",
-        "description": "Spacious and efficient SUV with excellent traction and smooth automatic drive."
+        "description": "Spacious and efficient SUV with excellent traction and smooth automatic drive.",
+        "location_id": 1
     },
     {
         "brand": "Toyota",
@@ -326,7 +347,8 @@
         "mileage": 47000,
         "color": "silver",
         "image": "toyota_rav4_2.0_petrol.webp",
-        "description": "Reliable petrol SUV with manual transmission for a more engaging driving experience."
+        "description": "Reliable petrol SUV with manual transmission for a more engaging driving experience.",
+        "location_id": 2
     },
     {
         "brand": "Toyota",
@@ -339,7 +361,8 @@
         "mileage": 62000,
         "color": "white",
         "image": "toyota_rav4_2.0_petrol_v2.webp",
-        "description": "Currently under maintenance, previously used for mixed city and off-road driving."
+        "description": "Currently under maintenance, previously used for mixed city and off-road driving.",
+        "location_id": 3
     },
 
     {
@@ -353,7 +376,8 @@
         "mileage": 87000,
         "color": "white",
         "image": "skoda_fabia_1.0_mpi.webp",
-        "description": "Simple and reliable city car, ideal for daily commuting."
+        "description": "Simple and reliable city car, ideal for daily commuting.",
+        "location_id": 1
     },
     {
         "brand": "Skoda",
@@ -366,7 +390,8 @@
         "mileage": 115000,
         "color": "red",
         "image": "skoda_fabia_1.0_mpi_v2.webp",
-        "description": "Older unit currently under maintenance, previously used for urban rentals."
+        "description": "Older unit currently under maintenance, previously used for urban rentals.",
+        "location_id": 2
     },
     {
         "brand": "Skoda",
@@ -379,7 +404,8 @@
         "mileage": 52000,
         "color": "blue",
         "image": "skoda_fabia_1.0_tsi.webp",
-        "description": "Turbocharged engine with better responsiveness and efficiency."
+        "description": "Turbocharged engine with better responsiveness and efficiency.",
+        "location_id": 3
     },
     {
         "brand": "Skoda",
@@ -392,7 +418,8 @@
         "mileage": 69000,
         "color": "gray",
         "image": "skoda_fabia_1.0_tsi_v2.webp",
-        "description": "Currently rented, well-balanced for both city and short highway trips."
+        "description": "Currently rented, well-balanced for both city and short highway trips.",
+        "location_id": 4
     },
     {
         "brand": "Skoda",
@@ -405,7 +432,8 @@
         "mileage": 36000,
         "color": "black",
         "image": "skoda_octavia_1.5_tsi.webp",
-        "description": "Spacious wagon with strong performance and practical design."
+        "description": "Spacious wagon with strong performance and practical design.",
+        "location_id": 5
     },
     {
         "brand": "Skoda",
@@ -418,9 +446,9 @@
         "mileage": 47000,
         "color": "silver",
         "image": "skoda_octavia_1.5_tsi_v2.webp",
-        "description": "Comfortable and efficient for both daily use and longer journeys."
+        "description": "Comfortable and efficient for both daily use and longer journeys.",
+        "location_id": 6
     },
-
     {
         "brand": "Skoda",
         "model": "Octavia",
@@ -432,7 +460,8 @@
         "mileage": 64000,
         "color": "silver",
         "image": "skoda_octavia_2.0_tdi.webp",
-        "description": "Efficient diesel wagon, perfect for long-distance travel and daily reliability."
+        "description": "Efficient diesel wagon, perfect for long-distance travel and daily reliability.",
+        "location_id": 7
     },
     {
         "brand": "Skoda",
@@ -445,7 +474,8 @@
         "mileage": 82000,
         "color": "white",
         "image": "skoda_octavia_2.0_tdi_v2.webp",
-        "description": "Currently rented, known for its low consumption and highway comfort."
+        "description": "Currently rented, known for its low consumption and highway comfort.",
+        "location_id": 8
     },
     {
         "brand": "Skoda",
@@ -458,7 +488,8 @@
         "mileage": 43000,
         "color": "black",
         "image": "skoda_superb_2.0_tdi.webp",
-        "description": "Spacious business sedan with excellent fuel efficiency and premium comfort."
+        "description": "Spacious business sedan with excellent fuel efficiency and premium comfort.",
+        "location_id": 9
     },
     {
         "brand": "Skoda",
@@ -471,7 +502,8 @@
         "mileage": 59000,
         "color": "blue",
         "image": "skoda_superb_2.0_tdi_v2.webp",
-        "description": "Currently under maintenance, previously used for executive travel."
+        "description": "Currently under maintenance, previously used for executive travel.",
+        "location_id": 1
     },
     {
         "brand": "Skoda",
@@ -484,7 +516,8 @@
         "mileage": 27000,
         "color": "gray",
         "image": "skoda_superb_2.0_tsi.webp",
-        "description": "Powerful petrol engine with smooth automatic transmission and premium driving experience."
+        "description": "Powerful petrol engine with smooth automatic transmission and premium driving experience.",
+        "location_id": 2
     },
     {
         "brand": "Skoda",
@@ -497,7 +530,8 @@
         "mileage": 35000,
         "color": "white",
         "image": "skoda_superb_2.0_tsi_v2.webp",
-        "description": "Refined and dynamic sedan, combining performance with comfort."
+        "description": "Refined and dynamic sedan, combining performance with comfort.",
+        "location_id": 3
     },
 
     {
@@ -511,7 +545,8 @@
         "mileage": 76000,
         "color": "white",
         "image": "ford_fiesta_1.0_ecoboost.webp",
-        "description": "Compact and efficient city car, easy to drive and park."
+        "description": "Compact and efficient city car, easy to drive and park.",
+        "location_id": 4
     },
     {
         "brand": "Ford",
@@ -524,7 +559,8 @@
         "mileage": 98000,
         "color": "red",
         "image": "ford_fiesta_1.0_ecoboost_v2.webp",
-        "description": "Older unit currently under maintenance, previously used for urban rentals."
+        "description": "Older unit currently under maintenance, previously used for urban rentals.",
+        "location_id": 5
     },
     {
         "brand": "Ford",
@@ -537,7 +573,8 @@
         "mileage": 54000,
         "color": "blue",
         "image": "ford_focus_1.0_ecoboost.webp",
-        "description": "Efficient and practical hatchback for everyday driving."
+        "description": "Efficient and practical hatchback for everyday driving.",
+        "location_id": 6
     },
     {
         "brand": "Ford",
@@ -550,7 +587,8 @@
         "mileage": 67000,
         "color": "gray",
         "image": "ford_focus_1.0_ecoboost_v2.webp",
-        "description": "Currently rented, balanced performance and fuel economy."
+        "description": "Currently rented, balanced performance and fuel economy.",
+        "location_id": 7
     },
     {
         "brand": "Ford",
@@ -563,7 +601,8 @@
         "mileage": 36000,
         "color": "black",
         "image": "ford_focus_1.5_ecoboost.webp",
-        "description": "Smooth automatic driving with stronger engine and enhanced comfort."
+        "description": "Smooth automatic driving with stronger engine and enhanced comfort.",
+        "location_id": 8
     },
     {
         "brand": "Ford",
@@ -576,7 +615,8 @@
         "mileage": 47000,
         "color": "silver",
         "image": "ford_focus_1.5_ecoboost_v2.webp",
-        "description": "Comfortable and responsive hatchback for city and highway driving."
+        "description": "Comfortable and responsive hatchback for city and highway driving.",
+        "location_id": 9
     },
     {
         "brand": "Ford",
@@ -589,7 +629,8 @@
         "mileage": 59000,
         "color": "white",
         "image": "ford_focus_1.5_ecoboost_v3.webp",
-        "description": "Currently rented, reliable and versatile for all driving conditions."
+        "description": "Currently rented, reliable and versatile for all driving conditions.",
+        "location_id": 1
     },
     {
         "brand": "Ford",
@@ -602,7 +643,8 @@
         "mileage": 68000,
         "color": "blue",
         "image": "ford_fiesta_1.0_ecoboost_v3.webp",
-        "description": "Well-maintained compact car with great fuel efficiency."
+        "description": "Well-maintained compact car with great fuel efficiency.",
+        "location_id": 2
     },
 
     {
@@ -616,7 +658,8 @@
         "mileage": 62000,
         "color": "white",
         "image": "ford_kuga_1.5_ecoboost.webp",
-        "description": "Versatile petrol SUV suitable for both city and family use."
+        "description": "Versatile petrol SUV suitable for both city and family use.",
+        "location_id": 3
     },
     {
         "brand": "Ford",
@@ -629,7 +672,8 @@
         "mileage": 78000,
         "color": "gray",
         "image": "ford_kuga_1.5_ecoboost_v2.webp",
-        "description": "Currently rented, practical SUV with solid performance."
+        "description": "Currently rented, practical SUV with solid performance.",
+        "location_id": 4
     },
     {
         "brand": "Ford",
@@ -642,7 +686,8 @@
         "mileage": 38000,
         "color": "black",
         "image": "ford_kuga_2.5_plug_in_hybrid.webp",
-        "description": "Efficient plug-in hybrid offering electric driving and low fuel consumption."
+        "description": "Efficient plug-in hybrid offering electric driving and low fuel consumption.",
+        "location_id": 5
     },
     {
         "brand": "Ford",
@@ -655,7 +700,8 @@
         "mileage": 47000,
         "color": "blue",
         "image": "ford_kuga_2.5_plug_in_hybrid_v2.webp",
-        "description": "Comfortable and eco-friendly SUV ideal for mixed driving conditions."
+        "description": "Comfortable and eco-friendly SUV ideal for mixed driving conditions.",
+        "location_id": 6
     },
     {
         "brand": "Hyundai",
@@ -668,7 +714,8 @@
         "mileage": 21000,
         "color": "silver",
         "image": "hyundai_ioniq_5_long_range.webp",
-        "description": "Fully electric SUV with long range and fast charging capability."
+        "description": "Fully electric SUV with long range and fast charging capability.",
+        "location_id": 7
     },
     {
         "brand": "Hyundai",
@@ -681,7 +728,8 @@
         "mileage": 29000,
         "color": "white",
         "image": "hyundai_ioniq_5_long_range.webp",
-        "description": "Modern electric vehicle offering smooth, quiet and efficient driving."
+        "description": "Modern electric vehicle offering smooth, quiet and efficient driving.",
+        "location_id": 8
     },
 
     {
@@ -695,7 +743,8 @@
         "mileage": 82000,
         "color": "white",
         "image": "hyundai_i20_1.2_mpi.webp",
-        "description": "Simple and economical hatchback, ideal for everyday city use."
+        "description": "Simple and economical hatchback, ideal for everyday city use.",
+        "location_id": 9
     },
     {
         "brand": "Hyundai",
@@ -708,7 +757,8 @@
         "mileage": 105000,
         "color": "red",
         "image": "hyundai_i20_1.2_mpi_v2.webp",
-        "description": "Older unit currently under maintenance, previously used for city rentals."
+        "description": "Older unit currently under maintenance, previously used for city rentals.",
+        "location_id": 1
     },
     {
         "brand": "Hyundai",
@@ -721,7 +771,8 @@
         "mileage": 56000,
         "color": "blue",
         "image": "hyundai_i30_1.0_tdi.webp",
-        "description": "Balanced hatchback with efficient turbo engine for daily driving."
+        "description": "Balanced hatchback with efficient turbo engine for daily driving.",
+        "location_id": 2
     },
     {
         "brand": "Hyundai",
@@ -734,7 +785,8 @@
         "mileage": 69000,
         "color": "gray",
         "image": "hyundai_i30_1.0_tdi_v2.webp",
-        "description": "Currently rented, reliable and efficient for both city and highway use."
+        "description": "Currently rented, reliable and efficient for both city and highway use.",
+        "location_id": 3
     },
     {
         "brand": "Hyundai",
@@ -747,7 +799,8 @@
         "mileage": 18000,
         "color": "black",
         "image": "hyundai_ioniq_6_long_range.webp",
-        "description": "Premium electric sedan with long range and smooth, quiet driving experience."
+        "description": "Premium electric sedan with long range and smooth, quiet driving experience.",
+        "location_id": 4
     },
     {
         "brand": "Hyundai",
@@ -760,7 +813,8 @@
         "mileage": 26000,
         "color": "silver",
         "image": "hyundai_ioniq_6_long_range_v2.webp",
-        "description": "Modern EV with excellent efficiency, comfort, and advanced technology."
+        "description": "Modern EV with excellent efficiency, comfort, and advanced technology.",
+        "location_id": 5
     },
 
     {
@@ -774,7 +828,8 @@
         "mileage": 52000,
         "color": "blue",
         "image": "hyundai_i30_1.5_t_gdi.webp",
-        "description": "More powerful turbocharged hatchback with responsive performance."
+        "description": "More powerful turbocharged hatchback with responsive performance.",
+        "location_id": 6
     },
     {
         "brand": "Hyundai",
@@ -787,7 +842,8 @@
         "mileage": 66000,
         "color": "gray",
         "image": "hyundai_i30_1.5_t_gdi_v2.webp",
-        "description": "Currently rented, balanced performance and everyday usability."
+        "description": "Currently rented, balanced performance and everyday usability.",
+        "location_id": 7
     },
     {
         "brand": "Hyundai",
@@ -800,7 +856,8 @@
         "mileage": 58000,
         "color": "white",
         "image": "hyundai_tucson_1.6_t_gdi.webp",
-        "description": "Versatile petrol SUV with solid performance for daily use."
+        "description": "Versatile petrol SUV with solid performance for daily use.",
+        "location_id": 8
     },
     {
         "brand": "Hyundai",
@@ -813,7 +870,8 @@
         "mileage": 39000,
         "color": "black",
         "image": "hyundai_tucson_1.6_hybrid.webp",
-        "description": "Efficient hybrid SUV with smooth automatic driving and lower consumption."
+        "description": "Efficient hybrid SUV with smooth automatic driving and lower consumption.",
+        "location_id": 9
     },
     {
         "brand": "Hyundai",
@@ -826,7 +884,8 @@
         "mileage": 47000,
         "color": "silver",
         "image": "hyundai_tucson_1.6_hybrid_v2.webp",
-        "description": "Currently under maintenance, previously used for mixed city and highway driving."
+        "description": "Currently under maintenance, previously used for mixed city and highway driving.",
+        "location_id": 1
     },
 
     {
@@ -840,7 +899,8 @@
         "mileage": 88000,
         "color": "white",
         "image": "kia_rio_1.2_mpi.webp",
-        "description": "Simple and reliable city car, perfect for everyday commuting."
+        "description": "Simple and reliable city car, perfect for everyday commuting.",
+        "location_id": 2
     },
     {
         "brand": "Kia",
@@ -853,7 +913,8 @@
         "mileage": 112000,
         "color": "red",
         "image": "kia_rio_1.2_mpi_v2.webp",
-        "description": "Older unit currently under maintenance, previously used for city rentals."
+        "description": "Older unit currently under maintenance, previously used for city rentals.",
+        "location_id": 3
     },
     {
         "brand": "Kia",
@@ -866,7 +927,8 @@
         "mileage": 57000,
         "color": "blue",
         "image": "kia_ceed_1.0_t_gdi.webp",
-        "description": "Efficient compact hatchback with smooth turbocharged engine."
+        "description": "Efficient compact hatchback with smooth turbocharged engine.",
+        "location_id": 4
     },
     {
         "brand": "Kia",
@@ -879,7 +941,8 @@
         "mileage": 69000,
         "color": "gray",
         "image": "kia_ceed_1.0_t_gdi_v2.webp",
-        "description": "Currently rented, balanced performance and fuel economy."
+        "description": "Currently rented, balanced performance and fuel economy.",
+        "location_id": 5
     },
     {
         "brand": "Kia",
@@ -887,12 +950,13 @@
         "variant": "1.5 T-GDI",
         "licence_plate": "EFG-301",
         "price_per_day": 30,
-        "status": "retired",
+        "status": "inactive",
         "production_year": 2020,
         "mileage": 360000,
         "color": "black",
         "image": "kia_ceed_1.5_t_gdi.webp",
-        "description": "More powerful turbo engine offering better acceleration and driving comfort."
+        "description": "More powerful turbo engine offering better acceleration and driving comfort.",
+        "location_id": 6
     },
     {
         "brand": "Kia",
@@ -905,7 +969,8 @@
         "mileage": 36000,
         "color": "black",
         "image": "kia_ceed_1.5_t_gdi.webp",
-        "description": "More powerful turbo engine offering better acceleration and driving comfort."
+        "description": "More powerful turbo engine offering better acceleration and driving comfort.",
+        "location_id": 7
     },
     {
         "brand": "Kia",
@@ -918,7 +983,8 @@
         "mileage": 48000,
         "color": "silver",
         "image": "kia_ceed_1.5_t_gdi_v2.webp",
-        "description": "Comfortable and responsive compact car for everyday and longer trips."
+        "description": "Comfortable and responsive compact car for everyday and longer trips.",
+        "location_id": 8
     },
 
     {
@@ -932,7 +998,8 @@
         "mileage": 59000,
         "color": "white",
         "image": "kia_sportage_1.6_t_gdi.webp",
-        "description": "Reliable petrol SUV, suitable for both city and family use."
+        "description": "Reliable petrol SUV, suitable for both city and family use.",
+        "location_id": 9
     },
     {
         "brand": "Kia",
@@ -945,7 +1012,8 @@
         "mileage": 72000,
         "color": "gray",
         "image": "kia_sportage_1.6_t_gdi_v2.webp",
-        "description": "Currently rented, practical SUV with solid everyday performance."
+        "description": "Currently rented, practical SUV with solid everyday performance.",
+        "location_id": 1
     },
     {
         "brand": "Kia",
@@ -958,7 +1026,8 @@
         "mileage": 41000,
         "color": "black",
         "image": "kia_sportage_1.6_hybrid.webp",
-        "description": "Efficient hybrid SUV with smooth automatic driving and lower fuel consumption."
+        "description": "Efficient hybrid SUV with smooth automatic driving and lower fuel consumption.",
+        "location_id": 2
     },
     {
         "brand": "Kia",
@@ -971,7 +1040,8 @@
         "mileage": 52000,
         "color": "blue",
         "image": "kia_sportage_1.6_hybrid_v2.webp",
-        "description": "Currently under maintenance, previously used for mixed driving conditions."
+        "description": "Currently under maintenance, previously used for mixed driving conditions.",
+        "location_id": 3
     },
     {
         "brand": "BMW",
@@ -984,7 +1054,8 @@
         "mileage": 21000,
         "color": "black",
         "image": "bmw_4_series_420i.webp",
-        "description": "Premium coupe offering sporty performance and a refined driving experience."
+        "description": "Premium coupe offering sporty performance and a refined driving experience.",
+        "location_id": 4
     },
     {
         "brand": "BMW",
@@ -997,7 +1068,8 @@
         "mileage": 29000,
         "color": "white",
         "image": "bmw_4_series_420i_v2.webp",
-        "description": "Elegant and dynamic coupe with smooth automatic transmission and premium comfort."
+        "description": "Elegant and dynamic coupe with smooth automatic transmission and premium comfort.",
+        "location_id": 5
     },
 
     {
@@ -1011,7 +1083,8 @@
         "mileage": 19000,
         "color": "black",
         "image": "bmw_i4_edrive40.webp",
-        "description": "Premium electric sedan with long range and smooth, quiet performance."
+        "description": "Premium electric sedan with long range and smooth, quiet performance.",
+        "location_id": 6
     },
     {
         "brand": "BMW",
@@ -1024,7 +1097,8 @@
         "mileage": 27000,
         "color": "white",
         "image": "bmw_i4_edrive40_v2.webp",
-        "description": "Modern EV offering excellent efficiency and refined driving experience."
+        "description": "Modern EV offering excellent efficiency and refined driving experience.",
+        "location_id": 7
     },
     {
         "brand": "BMW",
@@ -1037,7 +1111,8 @@
         "mileage": 72000,
         "color": "gray",
         "image": "bmw_3_series_320d.webp",
-        "description": "Efficient diesel sedan ideal for long-distance and highway driving."
+        "description": "Efficient diesel sedan ideal for long-distance and highway driving.",
+        "location_id": 8
     },
     {
         "brand": "BMW",
@@ -1050,7 +1125,8 @@
         "mileage": 42000,
         "color": "blue",
         "image": "bmw_3_series_330i.webp",
-        "description": "Dynamic petrol sedan with smooth acceleration and sporty handling."
+        "description": "Dynamic petrol sedan with smooth acceleration and sporty handling.",
+        "location_id": 9
     },
 
     {
@@ -1064,7 +1140,8 @@
         "mileage": 78000,
         "color": "black",
         "image": "bmw_5_series_520d.webp",
-        "description": "Efficient diesel sedan offering excellent comfort for long-distance travel."
+        "description": "Efficient diesel sedan offering excellent comfort for long-distance travel.",
+        "location_id": 1
     },
     {
         "brand": "BMW",
@@ -1077,7 +1154,8 @@
         "mileage": 95000,
         "color": "gray",
         "image": "bmw_5_series_520d_v2.webp",
-        "description": "Currently rented, reliable and economical for extended journeys."
+        "description": "Currently rented, reliable and economical for extended journeys.",
+        "location_id": 2
     },
     {
         "brand": "BMW",
@@ -1090,7 +1168,8 @@
         "mileage": 42000,
         "color": "white",
         "image": "bmw_5_series_530e.webp",
-        "description": "Plug-in hybrid combining electric efficiency with premium comfort."
+        "description": "Plug-in hybrid combining electric efficiency with premium comfort.",
+        "location_id": 3
     },
     {
         "brand": "BMW",
@@ -1103,7 +1182,8 @@
         "mileage": 52000,
         "color": "blue",
         "image": "bmw_5_series_530e_v2.webp",
-        "description": "Smooth and efficient hybrid sedan, ideal for both city and highway use."
+        "description": "Smooth and efficient hybrid sedan, ideal for both city and highway use.",
+        "location_id": 4
     },
     {
         "brand": "Mercedes-Benz",
@@ -1116,7 +1196,8 @@
         "mileage": 21000,
         "color": "silver",
         "image": "mercedes_benz_eqe_350.webp",
-        "description": "Fully electric premium sedan with refined comfort and advanced technology."
+        "description": "Fully electric premium sedan with refined comfort and advanced technology.",
+        "location_id": 5
     },
     {
         "brand": "Mercedes-Benz",
@@ -1129,7 +1210,8 @@
         "mileage": 29000,
         "color": "black",
         "image": "mercedes_benz_eqe_350_v2.webp",
-        "description": "Modern EV offering quiet driving, strong performance, and zero emissions."
+        "description": "Modern EV offering quiet driving, strong performance, and zero emissions.",
+        "location_id": 6
     },
 
     {
@@ -1143,7 +1225,8 @@
         "mileage": 61000,
         "color": "black",
         "image": "mercedes_benz_c_200.webp",
-        "description": "Comfortable and refined sedan ideal for everyday business use."
+        "description": "Comfortable and refined sedan ideal for everyday business use.",
+        "location_id": 7
     },
     {
         "brand": "Mercedes-Benz",
@@ -1156,7 +1239,8 @@
         "mileage": 74000,
         "color": "silver",
         "image": "mercedes_benz_c_200_v2.webp",
-        "description": "Currently rented, offering smooth performance and reliable comfort."
+        "description": "Currently rented, offering smooth performance and reliable comfort.",
+        "location_id": 8
     },
     {
         "brand": "Mercedes-Benz",
@@ -1169,7 +1253,8 @@
         "mileage": 43000,
         "color": "blue",
         "image": "mercedes_benz_c_300.webp",
-        "description": "More powerful engine with enhanced driving dynamics and premium comfort."
+        "description": "More powerful engine with enhanced driving dynamics and premium comfort.",
+        "location_id": 9
     },
     {
         "brand": "Mercedes-Benz",
@@ -1182,7 +1267,8 @@
         "mileage": 25000,
         "color": "white",
         "image": "mercedes_benz_c_300_coupe.webp",
-        "description": "Stylish coupe with sporty performance and refined interior."
+        "description": "Stylish coupe with sporty performance and refined interior.",
+        "location_id": 1
     },
     {
         "brand": "Mercedes-Benz",
@@ -1195,7 +1281,8 @@
         "mileage": 34000,
         "color": "black",
         "image": "mercedes_benz_c_300_coupe_v2.webp",
-        "description": "Elegant and dynamic coupe offering a premium driving experience."
+        "description": "Elegant and dynamic coupe offering a premium driving experience.",
+        "location_id": 2
     },
 
     {
@@ -1209,7 +1296,8 @@
         "mileage": 82000,
         "color": "black",
         "image": "mercedes_benz_e_220_d.webp",
-        "description": "Efficient diesel sedan ideal for long-distance travel with excellent comfort."
+        "description": "Efficient diesel sedan ideal for long-distance travel with excellent comfort.",
+        "location_id": 3
     },
     {
         "brand": "Mercedes-Benz",
@@ -1222,7 +1310,8 @@
         "mileage": 98000,
         "color": "gray",
         "image": "mercedes_benz_e_220_d_v2.webp",
-        "description": "Currently rented, reliable and economical for extended journeys."
+        "description": "Currently rented, reliable and economical for extended journeys.",
+        "location_id": 4
     },
     {
         "brand": "Mercedes-Benz",
@@ -1235,7 +1324,8 @@
         "mileage": 46000,
         "color": "white",
         "image": "mercedes_benz_e_300.webp",
-        "description": "Smooth and powerful petrol engine delivering a premium driving experience."
+        "description": "Smooth and powerful petrol engine delivering a premium driving experience.",
+        "location_id": 5
     },
     {
         "brand": "Mercedes-Benz",
@@ -1248,7 +1338,8 @@
         "mileage": 58000,
         "color": "blue",
         "image": "mercedes_benz_e_300_v2.webp",
-        "description": "Refined and comfortable sedan with strong performance."
+        "description": "Refined and comfortable sedan with strong performance.",
+        "location_id": 6
     },
     {
         "brand": "Tesla",
@@ -1261,7 +1352,8 @@
         "mileage": 24000,
         "color": "black",
         "image": "tesla_model_3_standard_range_rwd.webp",
-        "description": "Modern electric sedan with smooth acceleration and minimalist interior."
+        "description": "Modern electric sedan with smooth acceleration and minimalist interior.",
+        "location_id": 7
     },
     {
         "brand": "Tesla",
@@ -1274,7 +1366,8 @@
         "mileage": 32000,
         "color": "white",
         "image": "tesla_model_3_standard_range_rwd_v2.webp",
-        "description": "Efficient EV offering quiet driving and advanced technology features."
+        "description": "Efficient EV offering quiet driving and advanced technology features.",
+        "location_id": 8
     },
 
     {
@@ -1288,7 +1381,8 @@
         "mileage": 22000,
         "color": "white",
         "image": "tesla_model_3_longe_range_awd.webp",
-        "description": "Long range AWD electric sedan with balanced performance and everyday usability."
+        "description": "Long range AWD electric sedan with balanced performance and everyday usability.",
+        "location_id": 9
     },
     {
         "brand": "Tesla",
@@ -1301,7 +1395,8 @@
         "mileage": 31000,
         "color": "black",
         "image": "tesla_model_3_longe_range_awd_v2.webp",
-        "description": "Currently rented, efficient and practical EV with strong range."
+        "description": "Currently rented, efficient and practical EV with strong range.",
+        "location_id": 1
     },
     {
         "brand": "Tesla",
@@ -1314,7 +1409,8 @@
         "mileage": 24000,
         "color": "gray",
         "image": "tesla_model_y_longe_range_awd.webp",
-        "description": "Spacious electric SUV with AWD and long range, ideal for families."
+        "description": "Spacious electric SUV with AWD and long range, ideal for families.",
+        "location_id": 2
     },
     {
         "brand": "Tesla",
@@ -1327,7 +1423,8 @@
         "mileage": 33000,
         "color": "blue",
         "image": "tesla_model_y_longe_range_awd_v2.webp",
-        "description": "Versatile EV combining practicality and strong performance."
+        "description": "Versatile EV combining practicality and strong performance.",
+        "location_id": 3
     },
     {
         "brand": "Tesla",
@@ -1340,7 +1437,8 @@
         "mileage": 18000,
         "color": "black",
         "image": "tesla_model_s_long_range_awd.webp",
-        "description": "Flagship electric sedan with exceptional range and premium comfort."
+        "description": "Flagship electric sedan with exceptional range and premium comfort.",
+        "location_id": 4
     },
     {
         "brand": "Tesla",
@@ -1353,7 +1451,8 @@
         "mileage": 26000,
         "color": "silver",
         "image": "tesla_model_s_long_range_awd_v2.webp",
-        "description": "High-end EV offering smooth acceleration and advanced technology."
+        "description": "High-end EV offering smooth acceleration and advanced technology.",
+        "location_id": 5
     },
 
     {
@@ -1367,7 +1466,8 @@
         "mileage": 17000,
         "color": "white",
         "image": "tesla_model_x_long_range_awd.webp",
-        "description": "Premium electric SUV with spacious interior and advanced features, ideal for luxury travel."
+        "description": "Premium electric SUV with spacious interior and advanced features, ideal for luxury travel.",
+        "location_id": 6
     },
     {
         "brand": "Tesla",
@@ -1380,6 +1480,7 @@
         "mileage": 25000,
         "color": "black",
         "image": "tesla_model_x_long_range_awd_v2.webp",
-        "description": "High-end EV offering strong performance, comfort, and innovative design."
+        "description": "High-end EV offering strong performance, comfort, and innovative design.",
+        "location_id": 9
     }
 ]

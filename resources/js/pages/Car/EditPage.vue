@@ -7,7 +7,6 @@
         </PageTitle>
         <div v-if="formKey" class="card">
             <Form
-                :key="formKey"
                 ref="formRef"
                 v-slot="$form"
                 :initial-values
@@ -348,6 +347,28 @@
                             >{{ $form.status?.error?.message }}</Message
                         >
                     </div>
+                    <div class="flex flex-col gap-1 mb-4">
+                        <label for="location">Location</label>
+                        <Select
+                            id="location"
+                            filter
+                            :options="locations"
+                            option-value="id"
+                            option-label="name"
+                            placeholder="Select Location"
+                            checkmark
+                            name="location_id"
+                            :highlight-on-select="false"
+                            class="w-full md:w-56"
+                        />
+                        <Message
+                            v-if="$form.location_id?.invalid"
+                            severity="error"
+                            size="small"
+                            variant="simple"
+                            >{{ $form.location_id?.error?.message }}</Message
+                        >
+                    </div>
                 </div>
                 <div class="mb-4">
                     <div class="font-semibold text-xl">Media and description</div>
@@ -445,6 +466,7 @@ import { useBrand } from '@/composables/useBrand'
 import { useCarModel } from '@/composables/useCarModel'
 import { useFeature } from '@/composables/useFeature'
 import { useVariant } from '@/composables/useVariant'
+import { useLocation } from '@/composables/useLocation'
 import { updateCarById } from '@/services/carService'
 import { carValidator } from '@/validators/carValidator'
 import { onMounted, ref, watch } from 'vue'
@@ -476,6 +498,7 @@ const {
 
 const { customToast } = useCustomToast()
 const { toCarsList } = useRedirects()
+const { getLocationOptions, locations } = useLocation()
 const { getBrands, brands } = useBrand()
 const { getCarModelsByBrand, carModels } = useCarModel()
 const { groupedFeatures, getFeatures } = useFeature()
@@ -537,6 +560,14 @@ watch(selectedCarModel, newValue => {
         variants.value = []
     }
 })
+
+watch(
+    initialValues,
+    (newValue, oldValue) => {
+        //console.log(oldValue, newValue)
+    },
+    { deep: true }
+)
 
 watch(selectedVariant, async newValue => {
     selectedCategory.value = null
@@ -608,8 +639,7 @@ const initializeEditForm = async () => {
 }
 
 onMounted(async () => {
-    await Promise.all([getBrands(), getFeatures()])
-
+    await Promise.all([getBrands(), getFeatures(), getLocationOptions()])
     await getCar()
     await initializeEditForm()
 })

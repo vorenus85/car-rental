@@ -17,10 +17,15 @@ return new class extends Migration {
                 ->constrained('variants')
                 ->restrictOnDelete();
 
+            $table->foreignId('location_id')
+                ->constrained('locations')
+                ->cascadeOnUpdate()
+                ->restrictOnDelete();
+
             $table->string('licence_plate')->unique();
 
             $table->float('price_per_day', 2);
-            $table->enum('status', ['available', 'reserved', 'rented', 'maintenance', 'retired']);
+            $table->enum('status', ['available', 'reserved', 'rented', 'maintenance', 'inactive']);
 
             $table->enum('color', ['white', 'black', 'silver', 'gray', 'red', 'blue', 'green', 'yellow', 'orange', 'brown']);
 

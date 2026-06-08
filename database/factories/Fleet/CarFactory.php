@@ -3,6 +3,7 @@
 namespace Database\Factories\Fleet;
 
 use App\Models\Fleet\Car;
+use App\Models\Fleet\Location;
 use App\Models\Fleet\Variant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,6 +24,8 @@ class CarFactory extends Factory
         return [
             'variant_id' => Variant::factory(),
 
+            'location_id' => Location::factory(),
+
             'licence_plate' => strtoupper(fake()->bothify('???-####')),
 
             'image' => fake()->imageUrl(),
@@ -34,7 +37,7 @@ class CarFactory extends Factory
                 'reserved',
                 'rented',
                 'maintenance',
-                'retired'
+                'inactive'
             ]),
 
             'production_year' => fake()->numberBetween(2015, now()->year),

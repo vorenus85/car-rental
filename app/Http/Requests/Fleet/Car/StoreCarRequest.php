@@ -17,6 +17,8 @@ class StoreCarRequest extends FormRequest
         return [
             'variant_id' => ['required', 'exists:variants,id'],
 
+            'location_id' => ['required', 'exists:locations,id'],
+
             'licence_plate' => [
                 'required',
                 'string',
@@ -32,7 +34,7 @@ class StoreCarRequest extends FormRequest
 
             'status' => [
                 'required',
-                'in:available,reserved,rented,maintenance,retired',
+                'in:available,reserved,rented,maintenance,inactive',
             ],
 
             'color' => [

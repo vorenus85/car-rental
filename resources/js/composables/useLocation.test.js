@@ -1,6 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { useLocation } from '@/composables/useLocation'
-import { fetchLocations, fetchLocation, deleteLocationById } from '@/services/locationService'
+import {
+    fetchLocations,
+    fetchLocation,
+    deleteLocationById,
+    fetchLocationsMinimal,
+} from '@/services/locationService'
 
 const successMock = vi.fn()
 
@@ -8,6 +13,7 @@ vi.mock('@/services/locationService', () => ({
     fetchLocations: vi.fn(),
     fetchLocation: vi.fn(),
     deleteLocationById: vi.fn(),
+    fetchLocationsMinimal: vi.fn(),
 }))
 
 vi.mock('@/composables/useCustomToast', () => ({
@@ -46,6 +52,25 @@ describe('useLocation', () => {
         await getLocations()
 
         expect(fetchLocations).toHaveBeenCalled()
+        expect(locations.value).toEqual(locationsData)
+        expect(loading.value).toBe(false)
+    })
+
+    it('should fetch locations for select', async () => {
+        const locationsData = [
+            { id: 1, name: 'Budapest Airport' },
+            { id: 2, name: 'Vienna Airport' },
+        ]
+
+        fetchLocationsMinimal.mockResolvedValue({
+            data: locationsData,
+        })
+
+        const { getLocationOptions, locations, loading } = useLocation()
+
+        await getLocationOptions()
+
+        expect(fetchLocationsMinimal).toHaveBeenCalled()
         expect(locations.value).toEqual(locationsData)
         expect(loading.value).toBe(false)
     })

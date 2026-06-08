@@ -18,7 +18,7 @@ class BrandSeeder extends Seeder
         $data = json_decode($json, true);
 
         // Populate with data
-        foreach ($data as $item) {
+        foreach ($data as $index => $item) {
             Brand::create([
                 'name' => $item['name'],
                 'image' => $item['image'],

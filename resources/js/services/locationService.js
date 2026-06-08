@@ -4,6 +4,10 @@ export const fetchLocations = () => {
     return axios.get('/api/admin/locations')
 }
 
+export const fetchLocationsMinimal = () => {
+    return axios.get('/api/admin/locations/options')
+}
+
 export const fetchLocation = id => {
     return axios.get(`/api/admin/locations/${id}`)
 }

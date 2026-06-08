@@ -26,11 +26,12 @@ class CarController extends Controller
                 'status',
                 'production_year',
                 'mileage',
-                'production_year',
                 'image',
                 'updated_at',
-                'variant_id'
+                'variant_id',
+                'location_id',
             ])
+            ->with('location:id,name,city')
             ->with([
                 'variant:id,name,model_id,category',
                 'variant.model:id,name,brand_id',

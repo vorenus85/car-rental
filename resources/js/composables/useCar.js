@@ -32,6 +32,7 @@ export const useCar = () => {
         brand_id: null,
         model_id: null,
         variant_id: null,
+        location_id: null,
         licence_plate: '',
         color: '',
         production_year: null,
@@ -46,7 +47,7 @@ export const useCar = () => {
         { id: 'reserved', name: 'Reserved' },
         { id: 'rented', name: 'Rented' },
         { id: 'maintenance', name: 'Maintenance' },
-        { id: 'retired', name: 'Retired' },
+        { id: 'inactive', name: 'inactive' },
     ]
 
     const onRemoveImage = () => {
@@ -82,6 +83,7 @@ export const useCar = () => {
             initialValues.brand_id = data.variant.model.brand.id
             initialValues.model_id = data.variant.model.id
             initialValues.variant_id = data.variant.id
+            initialValues.location_id = data.location_id
 
             initialValues.licence_plate = data.licence_plate
             initialValues.color = data.color
@@ -102,8 +104,10 @@ export const useCar = () => {
             selectedDoors.value = data.variant.doors
 
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
+
             loading.value = false
         } catch (e) {
+            console.error(e)
             loading.value = false
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
