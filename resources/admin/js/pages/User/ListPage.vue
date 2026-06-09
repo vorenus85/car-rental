@@ -96,12 +96,12 @@ import { useCustomConfirm } from '@admin/composables/useCustomConfirm'
 import { useUser } from '@admin/composables/useUser.js'
 import { useRedirects } from '@admin/composables/useRedirects.js'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
 
 const filters = ref()
 const confirm = useConfirm()
 const { confirmAction } = useCustomConfirm()
-const { loading, users, allUsers, getUsers, deleteUser, toggleActive, selectedRole } = useUser()
+const { loading, users, getUsers, deleteUser, toggleActive } = useUser()
 const { toCreateUser } = useRedirects()
 
 const initFilters = () => {

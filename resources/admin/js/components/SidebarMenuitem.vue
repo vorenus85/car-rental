@@ -12,7 +12,6 @@
     </template>
 </template>
 <script setup>
-import { ref } from 'vue'
 import UiIcon from '@admin/components/UiIcon.vue'
 
 const emit = defineEmits(['toggle'])

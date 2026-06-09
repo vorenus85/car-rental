@@ -229,10 +229,8 @@ import {
     Button,
     Checkbox,
     DatePicker,
-    FileUpload,
     InputText,
     Message,
-    ProgressBar,
     Select,
     Textarea,
     ToggleSwitch,
@@ -243,7 +241,6 @@ import { locationValidator } from '@admin/validators/locationValidator.js'
 import { createLocation } from '@admin/services/locationService'
 import { useLocation } from '@admin/composables/useLocation'
 import { Form } from '@primevue/forms'
-import { ref } from 'vue'
 
 const { toLocationsList } = useRedirects()
 const { customToast } = useCustomToast()
