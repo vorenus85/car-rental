@@ -10,7 +10,7 @@
             </button>
             <div class="app-name">
                 <router-link to="/">
-                    <div class="flex gap-3"><LogoIcon></LogoIcon> Wheelzie</div>
+                    <div class="flex gap-3"><LogoIcon></LogoIcon> DrivenGo</div>
                 </router-link>
             </div>
         </div>
