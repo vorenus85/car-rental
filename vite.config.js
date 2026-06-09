@@ -7,7 +7,12 @@ import path from 'path'
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: [
+                'resources/admin/css/app.css',
+                'resources/admin/js/app.js',
+                'resources/storefront/css/app.css',
+                'resources/storefront/js/app.js',
+            ],
             refresh: true,
         }),
         vue(),
@@ -19,10 +24,15 @@ export default defineConfig({
             provider: 'v8',
             reporter: ['text', 'html'],
             include: [
-                'resources/js/composables/**',
-                'resources/js/services/**',
-                'resources/js/stores/**',
-                'resources/js/validators/**',
+                'resources/admin/js/composables/**',
+                'resources/admin/js/services/**',
+                'resources/admin/js/stores/**',
+                'resources/admin/js/validators/**',
+
+                'resources/storefront/js/composables/**',
+                'resources/storefront/js/services/**',
+                'resources/storefront/js/stores/**',
+                'resources/storefront/js/validators/**',
             ],
             thresholds: {
                 lines: 70,
@@ -34,7 +44,8 @@ export default defineConfig({
     },
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'resources/js'),
+            '@admin': path.resolve(__dirname, 'resources/admin/js'),
+            '@storefront': path.resolve(__dirname, 'resources/storefront/js'),
         },
     },
     server: {

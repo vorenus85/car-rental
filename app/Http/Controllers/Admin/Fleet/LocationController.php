@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Http\Controllers\Admin\Fleet;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Fleet\Location\StoreLocationRequest;
+use App\Http\Requests\Admin\Fleet\Location\UpdateLocationRequest;
+use App\Models\Fleet\Location;
+
+class LocationController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+        $locations = Location::select(
+            'id',
+            'name',
+            'country',
+            'city',
+            'type',
+            'phone',
+            'updated_at'
+        )
+            ->withCount([
+                'cars as total_cars_count',
+                'cars as available_cars_count' => function ($query) {
+                    $query->where('status', 'available');
+                },
+                'cars as rented_cars_count' => function ($query) {
+                    $query->where('status', 'rented');
+                },
+                'cars as maintenance_cars_count' => function ($query) {
+                    $query->where('status', 'maintenance');
+                }
+            ])
+            ->orderBy('name')
+            ->get();
+        return response()->json($locations);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreLocationRequest $request)
+    {
+        //
+        $location = Location::create($request->validated());
+        return response()->json($location, 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Location $location)
+    {
+        return response()->json($location);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateLocationRequest $request, Location $location)
+    {
+        //
+        $location->update($request->validated());
+        return response()->json($location);
+    }
+
+    /**
+     * Use for location select on car crud pages
+     */
+
+    public function options()
+    {
+        $locations = Location::query()
+            ->select(['id', 'name'])
+            ->get();
+
+        return response()->json($locations);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Location $location)
+    {
+        //
+        $location->delete();
+        return response()->noContent();
+    }
+
+    public function toggleActive(Location $location)
+    {
+        $location->active = !$location->active;
+        $location->save();
+
+        return response()->json($location);
+    }
+}
