@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\AccountController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\Fleet\BrandController;
-use App\Http\Controllers\Fleet\BrandImageController;
-use App\Http\Controllers\Fleet\CarController;
-use App\Http\Controllers\Fleet\CarImageController;
-use App\Http\Controllers\Fleet\CarModelController;
-use App\Http\Controllers\Fleet\FeatureController;
-use App\Http\Controllers\Fleet\LocationController;
-use App\Http\Controllers\Fleet\VariantController;
+use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\Fleet\BrandController;
+use App\Http\Controllers\Admin\Fleet\BrandImageController;
+use App\Http\Controllers\Admin\Fleet\CarController;
+use App\Http\Controllers\Admin\Fleet\CarImageController;
+use App\Http\Controllers\Admin\Fleet\CarModelController;
+use App\Http\Controllers\Admin\Fleet\FeatureController;
+use App\Http\Controllers\Admin\Fleet\LocationController;
+use App\Http\Controllers\Admin\Fleet\VariantController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
