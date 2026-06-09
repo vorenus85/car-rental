@@ -5,9 +5,9 @@
     "author": "Janos Perge",
     "scripts": {
         "build": "vite build",
-        "lint": "eslint resources/js --ext .js,.vue",
-        "format": "prettier --write \"resources/js/**/*.{js,vue}\"",
-        "format:check": "prettier --check \"resources/js/**/*.{js,vue}\"",
+        "lint": "eslint resources/admin resources/storefront --ext .js,.vue",
+        "format": "prettier --write \"resources/admin/**/*.{js,vue}\" \"resources/storefront/**/*.{js,vue}\"",
+        "format:check": "prettier --check \"resources/admin/**/*.{js,vue}\" \"resources/storefront/**/*.{js,vue}\"",
         "dev": "vite",
         "prepare": "husky setup",
         "test": "vitest",

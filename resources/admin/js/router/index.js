@@ -56,27 +56,30 @@ const router = createRouter({
         { path: '/forgot-password', name: 'forgot-password', component: ForgotPasswordPage },
         { path: '/reset-password', name: 'reset-password', component: ResetPasswordPage },
         {
-            path: '/users',
+            path: '/settings/users',
             name: 'users',
             component: UserListPage,
             meta: {
                 requiresAuth: true,
+                parent: 'settings',
             },
         },
         {
-            path: '/users/create',
+            path: '/settings/users/create',
             name: 'users.create',
             component: UserCreatePage,
             meta: {
                 requiresAuth: true,
+                parent: 'settings',
             },
         },
         {
-            path: '/users/:id',
+            path: '/settings/users/:id',
             name: 'users.show',
             component: UserEditPage,
             meta: {
                 requiresAuth: true,
+                parent: 'settings',
             },
         },
         {
@@ -122,27 +125,30 @@ const router = createRouter({
             },
         },
         {
-            path: '/cars',
+            path: '/fleet/cars',
             name: 'cars',
             component: CarListPage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/cars/create',
+            path: '/fleet/cars/create',
             name: 'cars.create',
             component: CarCreatePage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/cars/:id',
+            path: '/fleet/cars/:id',
             name: 'cars.show',
             component: CarEditPage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
@@ -170,99 +176,111 @@ const router = createRouter({
             },
         },
         {
-            path: '/brands',
+            path: '/fleet/brands',
             name: 'brands',
             component: BrandListPage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/brands/create',
+            path: '/fleet/brands/create',
             name: 'brands.create',
             component: BrandCreatePage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/brands/:id',
+            path: '/fleet/brands/:id',
             name: 'brands.show',
             component: BrandEditPage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/models',
+            path: '/fleet/models',
             name: 'models',
             component: CarModelListPage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/models/create',
+            path: '/fleet/models/create',
             name: 'models.create',
             component: CarModelCreatePage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/models/:id',
+            path: '/fleet/models/:id',
             name: 'models.show',
             component: CarModelEditPage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/variants',
+            path: '/fleet/variants',
             name: 'variants',
             component: VariantListPage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/variants/create',
+            path: '/fleet/variants/create',
             name: 'variants.create',
             component: VariantCreatePage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/variants/:id',
+            path: '/fleet/variants/:id',
             name: 'variants.show',
             component: VariantEditPage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/features',
+            path: '/fleet/features',
             name: 'features',
             component: FeatureListPage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/features/create',
+            path: '/fleet/features/create',
             name: 'features.create',
             component: FeatureCreatePage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {
-            path: '/features/:id',
+            path: '/fleet/features/:id',
             name: 'features.show',
             component: FeatureEditPage,
             meta: {
                 requiresAuth: true,
+                parent: 'fleet',
             },
         },
         {

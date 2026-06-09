@@ -80,10 +80,6 @@ describe('brandService', () => {
     it('uploadBrandImage calls correnct endpoint', async () => {
         axios.post.mockResolvedValue()
 
-        const file = new File(['dummy content'], 'sample.jpg', {
-            type: 'image/jpeg',
-        })
-
         await uploadBrandImage('sample.jpg')
 
         expect(axios.post).toHaveBeenCalledWith(

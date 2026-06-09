@@ -561,14 +561,6 @@ watch(selectedCarModel, newValue => {
     }
 })
 
-watch(
-    initialValues,
-    (newValue, oldValue) => {
-        //console.log(oldValue, newValue)
-    },
-    { deep: true }
-)
-
 watch(selectedVariant, async newValue => {
     selectedCategory.value = null
     selectedBodyType.value = null

@@ -1,10 +1,11 @@
 <script setup>
 import { Select } from 'primevue'
 
-const model = defineModel()
-
 defineProps({
-    name: String,
+    name: {
+        type: String,
+        default: 'white',
+    },
 })
 
 const colors = [

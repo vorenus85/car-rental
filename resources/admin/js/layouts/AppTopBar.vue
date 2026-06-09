@@ -28,7 +28,7 @@
                     <span class="text-muted-color text-sm">Admin</span>
                 </div>
             </button>
-            <Menu ref="menu" id="profile_menu" :model="topbarMenuItems" :popup="true" />
+            <Menu id="profile_menu" ref="menu" :model="topbarMenuItems" :popup="true" />
         </div>
     </header>
 </template>

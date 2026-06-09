@@ -7,9 +7,10 @@
                         <SidebarMenuitem
                             :icon="menu.icon"
                             :title="menu.title"
-                            @toggle="doToggle(menu.title)"
+                            :active="openMenu === menu.routeName"
+                            @toggle="doToggle(menu.routeName)"
                         />
-                        <ul class="sidebar-submenu" :class="{ open: openMenu === menu.title }">
+                        <ul class="sidebar-submenu" :class="{ open: openMenu === menu.routeName }">
                             <template v-for="submenu in menu?.items" :key="submenu.title">
                                 <li class="sidebar-menuitem sidebar-sub-menuitem">
                                     <SidebarMenuitem
@@ -34,42 +35,15 @@
 </template>
 <script setup>
 import SidebarMenuitem from '@admin/components/SidebarMenuitem.vue'
-import { ref, watch } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
-const openMenu = ref(null)
 const route = useRoute()
+const openMenu = ref(null)
 
-const doToggle = menuTitle => {
-    openMenu.value = openMenu.value === menuTitle ? null : menuTitle
+const doToggle = routeName => {
+    openMenu.value = openMenu.value === routeName ? null : routeName
 }
-
-watch(
-    () => route.name,
-    name => {
-        open.value = [
-            'brands',
-            'brands.create',
-            'brands.edit',
-            'models',
-            'models.create',
-            'models.edit',
-            'variants',
-            'variants.create',
-            'variants.edit',
-            'features',
-            'features.create',
-            'features.edit',
-            'cars',
-            'cars.create',
-            'cars.edit',
-            'locations',
-            'locations.create',
-            'locations.edit',
-        ].includes(name)
-    },
-    { immediate: true }
-)
 
 const menus = [
     {
@@ -91,33 +65,38 @@ const menus = [
                 icon: 'car',
                 routeName: 'cars',
                 title: 'Cars',
+                parent: 'fleet',
             },
             {
                 icon: 'bookmark',
                 routeName: 'brands',
                 title: 'Brands',
+                parent: 'fleet',
             },
             {
                 icon: 'th-large',
                 routeName: 'models',
                 title: 'Models',
+                parent: 'fleet',
             },
             {
                 icon: 'sliders-h',
                 routeName: 'variants',
                 title: 'Variants',
+                parent: 'fleet',
             },
             {
                 icon: 'sparkles',
                 routeName: 'features',
                 title: 'Features',
-            },
-            {
-                icon: 'map-marker',
-                routeName: 'locations',
-                title: 'Locations',
+                parent: 'fleet',
             },
         ],
+    },
+    {
+        icon: 'map-marker',
+        routeName: 'locations',
+        title: 'Locations',
     },
     {
         icon: 'calendar',
@@ -138,6 +117,7 @@ const menus = [
                 icon: 'user',
                 routeName: 'users',
                 title: 'Users',
+                parent: 'settings',
             },
         ],
     },
@@ -147,6 +127,12 @@ const menus = [
         title: 'Logout',
     },
 ]
+
+onMounted(() => {
+    if (route?.meta?.parent) {
+        openMenu.value = route?.meta?.parent
+    }
+})
 </script>
 <style scoped>
 .sidebar-menu {
