@@ -2,31 +2,31 @@
     {
         "name": "Ethan Walker",
         "phone": "923-456-7890",
-        "email": "ethan.walker@drivegngo.com",
+        "email": "ethan.walker@drivengo.com",
         "active": true
     },
     {
         "name": "Lucas Bennett",
         "phone": "234-567-8901",
-        "email": "lucas.bennett@drivegngo.com",
+        "email": "lucas.bennett@drivengo.com",
         "active": true
     },
     {
         "name": "Noah Mitchell",
         "phone": "345-678-9012",
-        "email": "noah.mitchell@drivegngo.com",
+        "email": "noah.mitchell@drivengo.com",
         "active": false
     },
     {
         "name": "Oliver Thompson",
         "phone": "456-789-0123",
-        "email": "oliver.thompson@drivegngo.com",
+        "email": "oliver.thompson@drivengo.com",
         "active": true
     },
     {
         "name": "James Carter",
         "phone": "567-890-1234",
-        "email": "james.carter@drivegngo.com",
+        "email": "james.carter@drivengo.com",
         "active": false
     }
 ]
