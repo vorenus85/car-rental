@@ -1,4 +1,9 @@
 :root {
+    --primary-color: #fcb102;
+    --secondary-color: #061324;
+    --header-bg: #050c1b;
+    --footer-bg: #081a30;
+
     --surface-card: #fff;
     --surface-ground: var(--p-surface-100);
     --surface-overlay: #fff;
@@ -11,4 +16,6 @@
 
     --text-color: var(--p-text-color);
     --maskbg: var(--p-mask-background);
+
+    --container-8xl: 88rem;
 }
