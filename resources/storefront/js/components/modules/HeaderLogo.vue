@@ -1,6 +1,6 @@
 <template>
     <div class="header-logo">
-        <RouterLink :to="home" class="header-logo-link flex align-center gap-2">
+        <RouterLink :to="{ name: 'home' }" class="header-logo-link flex align-center gap-2">
             <LogoIcon :size="40"></LogoIcon>
             <div class="header-logo-text">
                 <div class="brand-name text-white text-bold">
@@ -29,6 +29,11 @@ import LogoIcon from '@storefront/components/modules/LogoIcon.vue'
 
     small {
         opacity: 0.5;
+        transition: opacity 0.2s;
+    }
+
+    &:hover small {
+        opacity: 1;
     }
 }
 </style>

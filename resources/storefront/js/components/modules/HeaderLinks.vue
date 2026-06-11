@@ -1,6 +1,6 @@
 <template>
     <nav class="header-links hidden lg:flex">
-        <RouterLink v-for="menu in headerMenu" :key="menu.id" :to="menu.path">{{
+        <RouterLink v-for="menu in headerMenu" :key="menu.id" :to="{ name: menu.name }">{{
             menu.title
         }}</RouterLink>
     </nav>
@@ -12,8 +12,6 @@ const { headerMenu } = useHeaderMenu()
 </script>
 <style scoped lang="scss">
 .header-links {
-    display: inline-flex;
-    align-items: center;
     a {
         opacity: 0.75;
         font-weight: 400;

@@ -1,10 +1,10 @@
 <template>
-    <div class="py-4 px-4 home-advantages mx-auto max-w-8xl">
+    <div class="py-4 sm:px-4 px-10 home-advantages mx-auto max-w-8xl">
         <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             <div
                 v-for="item in advantages"
                 :key="item.icon"
-                class="flex items-center gap-3 rounded-3xl py-3 text-center justify-center"
+                class="flex items-center gap-3 rounded-3xl py-3 text-center justify-start"
             >
                 <div class="flex h-14 w-14 items-center justify-center home-advantages-icon">
                     <component class="advantage-icon" :is="icons[item.icon]" :size="40" />

@@ -1,5 +1,6 @@
 :root {
     --primary-color: #fcb102;
+    --primary-active-color: #e4a003;
     --secondary-color: #061324;
     --header-bg: #050c1b;
     --footer-bg: #081a30;
@@ -8,6 +9,8 @@
     --surface-ground: var(--p-surface-100);
     --surface-overlay: #fff;
     --surface-hover: var(--p-content-hover-background);
+
+    --transition-all: all 0.2s;
 
     --layout-section-transition-duration: 0.2s;
     --element-transition-duration: 0.2s;

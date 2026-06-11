@@ -40,7 +40,7 @@
 
                 <div class="mb-10 flex gap-4">
                     <div class="flex items-center gap-3 hero-advantages">
-                        <CarV2 size="30" class="hero-advantages-icon" />
+                        <CarV2 :size="30" class="hero-advantages-icon" />
 
                         <div>
                             <h3 class="font-semibold text-lg">Wide Selection</h3>
@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="flex items-center gap-3 hero-advantages">
-                        <ValletV1 size="30" class="hero-advantages-icon" />
+                        <ValletV1 :size="30" class="hero-advantages-icon" />
 
                         <div>
                             <h3 class="font-semibold text-lg">Best Prices</h3>
@@ -60,7 +60,7 @@
                     </div>
 
                     <div class="flex items-center gap-3 hero-advantages">
-                        <CalendarV1 size="30" class="hero-advantages-icon" />
+                        <CalendarV1 :size="30" class="hero-advantages-icon" />
 
                         <div>
                             <h3 class="font-semibold text-lg">Flexible Rental</h3>
