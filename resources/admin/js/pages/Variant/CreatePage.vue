@@ -270,34 +270,6 @@
                     </div>
                 </div>
 
-                <div class="flex flex-col gap-1 mb-4 w-full">
-                    <label for="description">Features</label>
-                    <div class="flex flex-col gap-2">
-                        <div v-for="category in groupedFeatures" :key="category.id">
-                            <strong class="mb-2">{{ category.label }}</strong>
-
-                            <div
-                                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-4"
-                            >
-                                <div
-                                    v-for="feature in category.features"
-                                    :key="feature.id"
-                                    class="flex gap-2"
-                                >
-                                    <Checkbox
-                                        name="features"
-                                        :input-id="'feature-' + feature.id"
-                                        :value="feature.id"
-                                    />
-
-                                    <label :for="'feature-' + feature.id">
-                                        {{ feature.name }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="description">Description</label>
                     <Textarea
@@ -334,7 +306,6 @@ import AppLayout from '@admin/layouts/AppLayout.vue'
 import PageTitle from '@admin/components/PageTitle.vue'
 import {
     Button,
-    Checkbox,
     InputGroup,
     InputGroupAddon,
     InputNumber,
@@ -350,7 +321,6 @@ import { Form } from '@primevue/forms'
 import { useBrand } from '@admin/composables/useBrand'
 import { useCarModel } from '@admin/composables/useCarModel'
 import { useVariant } from '@admin/composables/useVariant'
-import { useFeature } from '@admin/composables/useFeature'
 import { createVariant } from '@admin/services/variantService'
 import { variantValidator } from '@admin/validators/variantValidator'
 import { onMounted, ref, watch } from 'vue'
@@ -358,7 +328,6 @@ import { useCustomToast } from '@admin/composables/useCustomToast'
 
 const { getBrands, brands } = useBrand()
 const { getCarModelsByBrand, carModels } = useCarModel()
-const { groupedFeatures, getFeatures } = useFeature()
 const { variantCategories, bodyTypes, transmissions, fuelTypes, initialValues, selectedBrand } =
     useVariant()
 const { toVariantsList } = useRedirects()
@@ -400,6 +369,5 @@ const onFormSubmit = async ({ valid, values, errors }) => {
 
 onMounted(async () => {
     await getBrands()
-    await getFeatures()
 })
 </script>
