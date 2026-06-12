@@ -26,6 +26,8 @@ export const useVariant = () => {
         fuel: 'petrol',
         seats: '1',
         doors: '1',
+        luggage_count: '1',
+        range_km: '100',
         description: '',
         features: [],
     })
@@ -34,8 +36,6 @@ export const useVariant = () => {
 
     const selectedCarModel = ref({ id: null, name: null })
     const selectedVariant = ref({ id: null, name: null })
-
-    const selectedFeatures = ref([])
 
     const variantCategories = [
         {
@@ -126,14 +126,15 @@ export const useVariant = () => {
             initialValues.fuel = data.fuel
             initialValues.seats = data.seats
             initialValues.doors = data.doors
+            initialValues.luggage_count = data.luggage_count
+            initialValues.range_km = data.range_km
             initialValues.description = data.description
-            selectedFeatures.value = data.features.map(f => f.id)
-            initialValues.features = data.features.map(f => f.id)
 
-            formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
             selectedBrand.value = data.model.brand.id
             initialValues.brand_id = data.model.brand_id
             initialValues.model_id = data.model_id
+
+            formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
         } catch (e) {
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
@@ -213,7 +214,6 @@ export const useVariant = () => {
         selectedBrand,
         selectedCarModel,
         selectedVariant,
-        selectedFeatures,
         getVariant,
         getVariantById,
         getVariants,

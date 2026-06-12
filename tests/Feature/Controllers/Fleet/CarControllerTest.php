@@ -3,6 +3,7 @@
 use App\Models\Fleet\Brand;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\CarModel;
+use App\Models\Fleet\Feature;
 use App\Models\Fleet\Location;
 use App\Models\Fleet\Variant;
 use App\Models\User;
@@ -44,6 +45,8 @@ describe('CarController', function () {
     });
 
     it('stores a car', function () {
+        $features = Feature::factory()->count(2)->create();
+
         $payload = [
             'variant_id' => $this->variant->id,
             'location_id' => $this->location->id,
@@ -54,6 +57,7 @@ describe('CarController', function () {
             'mileage' => 1000,
             'color' => 'black',
             'description' => 'Test car',
+            'features' => $features->pluck('id')->all(),
             '_token' => 'test-token',
         ];
 
@@ -68,22 +72,37 @@ describe('CarController', function () {
         $this->assertDatabaseHas('cars', [
             'licence_plate' => 'ABC-123',
         ]);
+
+        $car = Car::where('licence_plate', 'ABC-123')->first();
+
+        foreach ($features as $feature) {
+            $this->assertDatabaseHas('car_feature', [
+                'car_id' => $car->id,
+                'feature_id' => $feature->id,
+            ]);
+        }
     });
 
     it('shows a car', function () {
+        $feature = Feature::factory()->create();
+
         $car = Car::factory()->create([
             'variant_id' => $this->variant->id,
         ]);
+        $car->features()->attach($feature);
 
         $response = $this->getJson("/api/admin/cars/{$car->id}");
 
         $response
             ->assertOk()
             ->assertJsonPath('id', $car->id)
-            ->assertJsonPath('variant.id', $this->variant->id);
+            ->assertJsonPath('variant.id', $this->variant->id)
+            ->assertJsonPath('features.0.id', $feature->id);
     });
 
     it('updates a car', function () {
+        $feature = Feature::factory()->create();
+
         $car = Car::factory()->create([
             'variant_id' => $this->variant->id,
             'location_id' => $this->location->id,
@@ -99,6 +118,7 @@ describe('CarController', function () {
             'production_year' => $car->production_year,
             'mileage' => $car->mileage,
             'color' => 'red',
+            'features' => [$feature->id],
             '_token' => 'test-token',
         ]);
 
@@ -107,6 +127,11 @@ describe('CarController', function () {
         $this->assertDatabaseHas('cars', [
             'id' => $car->id,
             'color' => 'red',
+        ]);
+
+        $this->assertDatabaseHas('car_feature', [
+            'car_id' => $car->id,
+            'feature_id' => $feature->id,
         ]);
     });
 

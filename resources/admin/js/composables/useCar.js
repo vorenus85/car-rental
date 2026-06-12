@@ -25,6 +25,8 @@ export const useCar = () => {
     const selectedFuelType = ref(null)
     const selectedSeats = ref(null)
     const selectedDoors = ref(null)
+    const selectedLuggageCount = ref(null)
+    const selectedRangeKm = ref(null)
 
     const { customToast } = useCustomToast()
 
@@ -40,6 +42,7 @@ export const useCar = () => {
         price_per_day: null,
         status: '',
         description: '',
+        features: [],
     })
 
     const rentalStatuses = [
@@ -96,12 +99,16 @@ export const useCar = () => {
             initialValues.image = data.image
             initialValues.image_url = data.image_url
 
+            initialValues.features = data.features.map(f => f.id)
+
             selectedCategory.value = data.variant.category
             selectedBodyType.value = data.variant.body_type
             selectedTransmission.value = data.variant.transmission
             selectedFuelType.value = data.variant.fuel_type
             selectedSeats.value = data.variant.seats
             selectedDoors.value = data.variant.doors
+            selectedLuggageCount.value = data.luggage_count
+            selectedRangeKm.value = data.range_km
 
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
 
@@ -190,6 +197,8 @@ export const useCar = () => {
         selectedFuelType,
         selectedSeats,
         selectedDoors,
+        selectedLuggageCount,
+        selectedRangeKm,
         carId,
     }
 }

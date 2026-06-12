@@ -161,10 +161,9 @@ describe('useVariant', () => {
         expect(variant.initialValues.category).toBe('economy')
         expect(variant.initialValues.body_type).toBe('sedan')
         expect(variant.initialValues.transmission).toBe('automatic')
-        expect(variant.initialValues.fuel).toBe('hybrid')
-        expect(variant.initialValues.features).toEqual([1, 2])
 
-        expect(variant.selectedFeatures.value).toEqual([1, 2])
+        expect(variant.initialValues.fuel).toBe('hybrid')
+
         expect(variant.selectedBrand.value).toBe(3)
 
         expect(variant.formKey.value).toBe(1)

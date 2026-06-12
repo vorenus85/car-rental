@@ -36,6 +36,7 @@ class CarController extends Controller
                 'variant.model:id,name,brand_id',
                 'variant.model.brand:id,name'
             ])
+            ->with('features:id,name,category')
             ->get();
 
         return response()->json(CarResource::collection($cars), 200);
@@ -46,9 +47,17 @@ class CarController extends Controller
      */
     public function store(StoreCarRequest $request)
     {
-        $car = Car::create($request->validated());
+        $validated = $request->validated();
+        $featureIds = $validated['features'] ?? null;
+        unset($validated['features']);
 
-        return response()->json($car, 201);
+        $car = Car::create($validated);
+
+        if ($featureIds !== null) {
+            $car->features()->sync($featureIds);
+        }
+
+        return response()->json($car->load('features'), 201);
     }
 
     /**
@@ -60,7 +69,8 @@ class CarController extends Controller
         $result = Car::where('id', $car->id)->with([
             'variant:id,name,model_id,category,body_type,transmission,fuel,seats,doors',
             'variant.model:id,name,brand_id',
-            'variant.model.brand:id'
+            'variant.model.brand:id',
+            'features:id,name',
         ])->first();
 
         $result['image_url'] = $result->image ? Storage::url('/uploads/' . $result->image) : "";
@@ -75,6 +85,8 @@ class CarController extends Controller
     {
         //
         $validated = $request->validated();
+        $featureIds = $validated['features'] ?? null;
+        unset($validated['features']);
 
         if (empty($validated['image'])) {
             unset($validated['image']);
@@ -82,7 +94,11 @@ class CarController extends Controller
 
         $car->update($validated);
 
-        return response()->json($car, 200);
+        if ($featureIds !== null) {
+            $car->features()->sync($featureIds);
+        }
+
+        return response()->json($car->load('features'), 200);
     }
 
     /**

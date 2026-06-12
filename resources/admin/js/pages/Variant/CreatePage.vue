@@ -224,34 +224,52 @@
                         >
                     </div>
                 </div>
-                <div class="flex flex-col gap-1 mb-4 w-full">
-                    <label for="description">Features</label>
-                    <div class="flex flex-col gap-2">
-                        <div v-for="category in groupedFeatures" :key="category.id">
-                            <strong class="mb-2">{{ category.label }}</strong>
 
-                            <div
-                                class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-4"
-                            >
-                                <div
-                                    v-for="feature in category.features"
-                                    :key="feature.id"
-                                    class="flex gap-2"
-                                >
-                                    <Checkbox
-                                        name="features"
-                                        :input-id="'feature-' + feature.id"
-                                        :value="feature.id"
-                                    />
-
-                                    <label :for="'feature-' + feature.id">
-                                        {{ feature.name }}
-                                    </label>
-                                </div>
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
+                    <label for="luggage_count">Luggage count</label>
+                    <div class="w-1/2">
+                        <div>
+                            <InputText
+                                v-model="initialValues.luggage_count"
+                                name="luggage_count"
+                                class="w-10 mb-4"
+                            />
+                            <div class="px-3 mb-4">
+                                <Slider
+                                    v-model="initialValues.luggage_count"
+                                    class="w-full"
+                                    :min="1"
+                                    :max="5"
+                                />
                             </div>
                         </div>
+                        <Message
+                            v-if="$form.luggage_count?.invalid"
+                            severity="error"
+                            size="small"
+                            variant="simple"
+                            >{{ $form.luggage_count?.error?.message }}</Message
+                        >
                     </div>
                 </div>
+
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
+                    <label for="range_km">Range</label>
+                    <div class="w-1/2">
+                        <InputGroup>
+                            <InputNumber id="range_km" name="range_km" placeholder="Range" />
+                            <InputGroupAddon>km</InputGroupAddon>
+                        </InputGroup>
+                        <Message
+                            v-if="$form.range_km?.invalid"
+                            severity="error"
+                            size="small"
+                            variant="simple"
+                            >{{ $form.range_km?.error?.message }}</Message
+                        >
+                    </div>
+                </div>
+
                 <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="description">Description</label>
                     <Textarea
@@ -288,7 +306,9 @@ import AppLayout from '@admin/layouts/AppLayout.vue'
 import PageTitle from '@admin/components/PageTitle.vue'
 import {
     Button,
-    Checkbox,
+    InputGroup,
+    InputGroupAddon,
+    InputNumber,
     InputText,
     Message,
     Select,
@@ -301,7 +321,6 @@ import { Form } from '@primevue/forms'
 import { useBrand } from '@admin/composables/useBrand'
 import { useCarModel } from '@admin/composables/useCarModel'
 import { useVariant } from '@admin/composables/useVariant'
-import { useFeature } from '@admin/composables/useFeature'
 import { createVariant } from '@admin/services/variantService'
 import { variantValidator } from '@admin/validators/variantValidator'
 import { onMounted, ref, watch } from 'vue'
@@ -309,7 +328,6 @@ import { useCustomToast } from '@admin/composables/useCustomToast'
 
 const { getBrands, brands } = useBrand()
 const { getCarModelsByBrand, carModels } = useCarModel()
-const { groupedFeatures, getFeatures } = useFeature()
 const { variantCategories, bodyTypes, transmissions, fuelTypes, initialValues, selectedBrand } =
     useVariant()
 const { toVariantsList } = useRedirects()
@@ -331,6 +349,7 @@ watch(selectedBrand, newValue => {
 const onFormSubmit = async ({ valid, values, errors }) => {
     values.seats = initialValues.seats
     values.doors = initialValues.doors
+    values.luggage_count = initialValues.luggage_count
     if (valid) {
         try {
             await createVariant(values)
@@ -339,7 +358,7 @@ const onFormSubmit = async ({ valid, values, errors }) => {
 
             toVariantsList()
         } catch (error) {
-            console.log(error)
+            // console.error(error)
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
@@ -350,6 +369,5 @@ const onFormSubmit = async ({ valid, values, errors }) => {
 
 onMounted(async () => {
     await getBrands()
-    await getFeatures()
 })
 </script>

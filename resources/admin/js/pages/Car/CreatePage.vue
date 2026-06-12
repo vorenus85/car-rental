@@ -17,7 +17,7 @@
                 @submit="onFormSubmit"
             >
                 <div class="mb-4">
-                    <div class="font-semibold text-xl">Basic Informations</div>
+                    <div class="font-semibold text-xl mb-2">Basic Informations</div>
                     <div class="flex flex-col gap-1 mb-4">
                         <label for="brand">Brand</label>
                         <Select
@@ -90,7 +90,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <div class="font-semibold text-xl mb-3">Variant informations</div>
+                    <div class="font-semibold text-xl mb-2">Variant informations</div>
                     <Message severity="info" class="mb-5">
                         Variant specifications are automatically populated based on the selected
                         Brand, Model, and Variant. These values are read-only on this page.
@@ -209,9 +209,47 @@
                             >{{ $form.doors?.error?.message }}</Message
                         >
                     </div>
+                    <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
+                        <label for="luggage_count">Luggage count </label>
+                        <InputText
+                            v-model="selectedLuggageCount"
+                            input-id="luggage_count"
+                            name="luggage_count"
+                            type="text"
+                            placeholder="Luggage"
+                            fluid
+                            readonly
+                        />
+                        <Message
+                            v-if="$form.luggage_count?.invalid"
+                            severity="error"
+                            size="small"
+                            variant="simple"
+                            >{{ $form.luggage_count?.error?.message }}</Message
+                        >
+                    </div>
+                    <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
+                        <label for="range_km">Range </label>
+                        <InputGroup>
+                            <InputNumber
+                                id="range_km"
+                                v-model="selectedRangeKm"
+                                name="range_km"
+                                placeholder="Range"
+                            />
+                            <InputGroupAddon>km</InputGroupAddon>
+                        </InputGroup>
+                        <Message
+                            v-if="$form.range_km?.invalid"
+                            severity="error"
+                            size="small"
+                            variant="simple"
+                            >{{ $form.range_km?.error?.message }}</Message
+                        >
+                    </div>
                 </div>
                 <div class="mb-4">
-                    <div class="font-semibold text-xl">Unit informations</div>
+                    <div class="font-semibold text-xl mb-2">Unit informations</div>
                     <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                         <label for="licence_plate">Licence Plate </label>
                         <InputText
@@ -231,7 +269,7 @@
                     </div>
                     <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                         <label for="color">Color </label>
-                        <CarColorSelect :value="$form.color?.value" name="color" />
+                        <CarColorSelect :value="$form.color?.value" />
                         <Message
                             v-if="$form.color?.invalid"
                             severity="error"
@@ -272,12 +310,7 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <div class="font-semibold text-xl">Unit features</div>
-                    <Message severity="info" class="mb-5">
-                        The selected Variant provides a predefined set of vehicle features. These
-                        values are automatically applied to streamline vehicle creation and may be
-                        customized as needed.</Message
-                    >
+                    <div class="font-semibold text-xl mb-2">Unit features</div>
                     <div class="flex flex-col gap-2">
                         <div v-for="category in groupedFeatures" :key="category.id">
                             <strong class="mb-2">{{ category.label }}</strong>
@@ -291,14 +324,13 @@
                                     class="flex gap-2"
                                 >
                                     <Checkbox
-                                        v-model="selectedFeatures"
-                                        name="features"
+                                        name="features[]"
                                         :input-id="'feature-' + feature.id"
                                         :value="feature.id"
                                     />
 
                                     <label :for="'feature-' + feature.id">
-                                        {{ feature.name }}
+                                        <span class="font-normal">{{ feature.name }}</span>
                                     </label>
                                 </div>
                             </div>
@@ -306,7 +338,7 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <div class="font-semibold text-xl">Rental Information</div>
+                    <div class="font-semibold text-xl mb-2">Rental Information</div>
                     <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                         <label for="price_per_day">Price/ Day </label>
                         <InputGroup>
@@ -371,7 +403,7 @@
                     </div>
                 </div>
                 <div class="mb-4">
-                    <div class="font-semibold text-xl">Media and description</div>
+                    <div class="font-semibold text-xl mb-2">Media and description</div>
                     <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                         <label for="description">Image</label>
                         <div class="file-upload-clean">
@@ -470,6 +502,8 @@ const {
     selectedFuelType,
     selectedSeats,
     selectedDoors,
+    selectedLuggageCount,
+    selectedRangeKm,
 } = useCar()
 
 const { customToast } = useCustomToast()
@@ -489,7 +523,6 @@ const {
     getVariantsByCarmodel,
     variants,
     getVariantById,
-    selectedFeatures,
 } = useVariant()
 
 watch(selectedBrand, newValue => {
@@ -501,7 +534,8 @@ watch(selectedBrand, newValue => {
     selectedFuelType.value = null
     selectedSeats.value = null
     selectedDoors.value = null
-    selectedFeatures.value = null
+    selectedLuggageCount.value = null
+    selectedRangeKm.value = null
 
     if (formRef.value) {
         formRef.value.setFieldValue('model_id', null)
@@ -524,7 +558,8 @@ watch(selectedCarModel, newValue => {
     selectedFuelType.value = null
     selectedSeats.value = null
     selectedDoors.value = null
-    selectedFeatures.value = null
+    selectedLuggageCount.value = null
+    selectedRangeKm.value = null
 
     if (formRef.value) {
         formRef.value.setFieldValue('variant_id', null)
@@ -544,7 +579,8 @@ watch(selectedVariant, async newValue => {
     selectedFuelType.value = null
     selectedSeats.value = null
     selectedDoors.value = null
-    selectedFeatures.value = null
+    selectedLuggageCount.value = null
+    selectedRangeKm.value = null
 
     if (newValue) {
         const result = await getVariantById(newValue)
@@ -559,8 +595,10 @@ watch(selectedVariant, async newValue => {
 
         selectedSeats.value = result.seats
         selectedDoors.value = result.doors
+        selectedLuggageCount.value = result.luggage_count
+        selectedRangeKm.value = result.range_km
 
-        selectedFeatures.value = result.features.map(f => f.id)
+        // selectedFeatures.value = result.features.map(f => f.id)
     }
 })
 

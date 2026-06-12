@@ -19,10 +19,10 @@ class Feature extends Model
 
     /**
      *
-     * @return BelongsToMany<Variant, $this>
+     * @return BelongsToMany<Car, $this>
      */
-    public function variants(): BelongsToMany
+    public function cars(): BelongsToMany
     {
-        return $this->belongsToMany(Variant::class);
+        return $this->belongsToMany(Car::class);
     }
 }

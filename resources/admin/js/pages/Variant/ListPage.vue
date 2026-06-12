@@ -64,6 +64,13 @@
                 <Column sortable field="transmission" header="Transmission" style="width: 10%">
                 </Column>
                 <Column sortable field="seats" header="Seats" style="width: 10%"> </Column>
+                <Column sortable field="luggage_count" header="Luggages" style="width: 10%">
+                </Column>
+                <Column sortable field="range_km" header="Range" style="width: 10%">
+                    <template #body="slotProps">
+                        <div>{{ slotProps.data.range_km }} km</div>
+                    </template></Column
+                >
                 <Column sortable field="updated_at" header="Updated at" style="width: 10%">
                     <template #body="slotProps">
                         <FormatedDate :date="slotProps.data.updated_at"></FormatedDate
