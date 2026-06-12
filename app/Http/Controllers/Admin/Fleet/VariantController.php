@@ -51,10 +51,6 @@ class VariantController extends Controller
 
         $variant = Variant::create($validated);
 
-        if ($request->has('features')) {
-            $variant->features()->sync($request->features);
-        }
-
         return response()->json([
             'message' => 'Variant created successfully.',
             'data' => $variant
@@ -68,7 +64,7 @@ class VariantController extends Controller
     {
         //
         return response()->json(
-            $variant->load('model.brand')->load('features')
+            $variant->load('model.brand')
         );
     }
 
@@ -81,10 +77,6 @@ class VariantController extends Controller
         $validated = $request->validated();
 
         $variant->update($validated);
-
-        if ($request->has('features')) {
-            $variant->features()->sync($request->features);
-        }
 
         return response()->json($variant, 200);
     }

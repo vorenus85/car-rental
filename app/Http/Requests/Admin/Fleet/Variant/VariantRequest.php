@@ -28,8 +28,6 @@ class VariantRequest extends FormRequest
 
             'range_km' => ['required', 'integer'],
 
-            'features' => 'nullable|array',
-            'features.*' => 'exists:features,id',
         ];
     }
 }

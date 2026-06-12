@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Fleet\Car;
 use App\Models\Fleet\Feature;
-use App\Models\Fleet\Variant;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -20,26 +20,26 @@ describe('Feature model', function () {
             ]);
     });
 
-    it('has many variants relationship', function () {
+    it('has many cars relationship', function () {
         $feature = new Feature();
 
-        expect($feature->variants())
+        expect($feature->cars())
             ->toBeInstanceOf(BelongsToMany::class);
     });
 
-    it('can attach variants to feature', function () {
+    it('can attach cars to feature', function () {
         $feature = Feature::factory()->create();
 
-        $variants = Variant::factory()
+        $cars = Car::factory()
             ->count(2)
             ->create();
 
-        $feature->variants()->attach($variants);
+        $feature->cars()->attach($cars);
 
-        expect($feature->variants)
+        expect($feature->cars)
             ->toHaveCount(2);
 
-        expect($feature->variants->first())
-            ->toBeInstanceOf(Variant::class);
+        expect($feature->cars->first())
+            ->toBeInstanceOf(Car::class);
     });
 });

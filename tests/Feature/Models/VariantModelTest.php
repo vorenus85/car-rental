@@ -2,9 +2,7 @@
 
 use App\Models\Fleet\Car;
 use App\Models\Fleet\CarModel;
-use App\Models\Fleet\Feature;
 use App\Models\Fleet\Variant;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -62,22 +60,4 @@ describe('Variant model', function () {
             ->toBeInstanceOf(Car::class);
     });
 
-    it('can attach features to variant', function () {
-        $variant = Variant::factory()->create();
-
-        $features = Feature::factory()
-            ->count(2)
-            ->create();
-
-        $variant->features()->attach($features);
-
-        expect($variant->features)
-            ->toHaveCount(2);
-
-        expect($variant->features->first())
-            ->toBeInstanceOf(Feature::class);
-
-        expect($variant->features())
-            ->toBeInstanceOf(BelongsToMany::class);
-    });
 });
