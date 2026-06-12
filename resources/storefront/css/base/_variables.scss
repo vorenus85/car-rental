@@ -1,8 +1,16 @@
 :root {
+    --primary-color: #fcb102;
+    --primary-active-color: #e4a003;
+    --secondary-color: #061324;
+    --header-bg: #050c1b;
+    --footer-bg: #081a30;
+
     --surface-card: #fff;
     --surface-ground: var(--p-surface-100);
     --surface-overlay: #fff;
     --surface-hover: var(--p-content-hover-background);
+
+    --transition-all: all 0.2s;
 
     --layout-section-transition-duration: 0.2s;
     --element-transition-duration: 0.2s;
@@ -11,4 +19,6 @@
 
     --text-color: var(--p-text-color);
     --maskbg: var(--p-mask-background);
+
+    --container-8xl: 88rem;
 }

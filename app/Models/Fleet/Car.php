@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 
 class Car extends Model
 {
@@ -23,6 +24,10 @@ class Car extends Model
         'mileage',
         'color',
         'description',
+    ];
+
+    protected $appends = [
+        'image_url',
     ];
 
     /**
@@ -50,5 +55,12 @@ class Car extends Model
     public function features(): BelongsToMany
     {
         return $this->belongsToMany(Feature::class);
+    }
+
+    public function getImageUrlAttribute(): ?string
+    {
+        return $this->image
+            ? Storage::url('/uploads/' . $this->image)
+            : null;
     }
 }

@@ -1,0 +1,14 @@
+.carousel-nav {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    .carousel-prev,
+    .carousel-next {
+        padding: 0;
+    }
+}
+
+.carousel__viewport {
+    padding-bottom: 1rem;
+}

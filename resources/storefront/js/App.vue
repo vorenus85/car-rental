@@ -1,5 +1,6 @@
 <script setup>
 import { ConfirmDialog, Toast } from 'primevue'
+import MobileMenu from '@storefront/components/modules/MobileMenu.vue'
 </script>
 
 <template>
@@ -9,4 +10,5 @@ import { ConfirmDialog, Toast } from 'primevue'
         <ConfirmDialog />
         <slot />
     </div>
+    <MobileMenu />
 </template>

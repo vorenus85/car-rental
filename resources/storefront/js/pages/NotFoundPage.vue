@@ -1,6 +1,8 @@
 <template>
-    <main>
-        <div class="h-screen flex items-center justify-center">
+    <PublicLayout>
+        <div
+            class="min-h-[500px] xl:min-h-[700px] lg:min-h-[600px] flex items-center justify-center"
+        >
             <Card class="p-4 py-6 sm:p-12">
                 <template #content>
                     <div
@@ -11,7 +13,7 @@
                         <p class="text-xl font-semibold text-muted-color">
                             Sorry, the resource you are looking for could not be found.
                         </p>
-                        <Button label="Back to homepage" severity="secondary" @click="toDashboard">
+                        <Button label="Back to homepage" severity="secondary" @click="toHome">
                             <template #icon>
                                 <UiIcon icon="arrow-left" />
                             </template>
@@ -20,12 +22,13 @@
                 </template>
             </Card>
         </div>
-    </main>
+    </PublicLayout>
 </template>
 <script setup>
+import PublicLayout from '@storefront/layouts/PublicLayout.vue'
+import UiIcon from '@storefront/components/PiIcon.vue'
 import { Button, Card } from 'primevue'
-import UiIcon from '@admin/components/UiIcon.vue'
-import { useRedirects } from '@admin/composables/useRedirects'
+import { useRedirects } from '@storefront/composables/useRedirects'
 
-const { toDashboard } = useRedirects()
+const { toHome } = useRedirects()
 </script>
