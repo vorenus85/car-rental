@@ -24,6 +24,9 @@ class VariantRequest extends FormRequest
             'fuel' => ['required', 'in:petrol,diesel,electric,hybrid'],
             'seats' => ['required', 'integer', 'min:1', 'max:9'],
             'doors' => ['required', 'integer', 'min:1', 'max:5'],
+            'luggage_count' => ['required', 'integer', 'min:1', 'max:5'],
+
+            'range_km' => ['required', 'integer'],
 
             'features' => 'nullable|array',
             'features.*' => 'exists:features,id',

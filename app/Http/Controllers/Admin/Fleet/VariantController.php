@@ -23,6 +23,8 @@ class VariantController extends Controller
                 'variants.fuel',
                 'variants.transmission',
                 'variants.seats',
+                'variants.luggage_count',
+                'variants.range_km',
                 'variants.updated_at',
             ])
             ->join('car_models', 'variants.model_id', '=', 'car_models.id')

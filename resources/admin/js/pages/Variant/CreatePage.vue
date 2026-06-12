@@ -224,6 +224,52 @@
                         >
                     </div>
                 </div>
+
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
+                    <label for="luggage_count">Luggage count</label>
+                    <div class="w-1/2">
+                        <div>
+                            <InputText
+                                v-model="initialValues.luggage_count"
+                                name="luggage_count"
+                                class="w-10 mb-4"
+                            />
+                            <div class="px-3 mb-4">
+                                <Slider
+                                    v-model="initialValues.luggage_count"
+                                    class="w-full"
+                                    :min="1"
+                                    :max="5"
+                                />
+                            </div>
+                        </div>
+                        <Message
+                            v-if="$form.luggage_count?.invalid"
+                            severity="error"
+                            size="small"
+                            variant="simple"
+                            >{{ $form.luggage_count?.error?.message }}</Message
+                        >
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
+                    <label for="range_km">Range</label>
+                    <div class="w-1/2">
+                        <InputGroup>
+                            <InputNumber id="range_km" name="range_km" placeholder="Range" />
+                            <InputGroupAddon>km</InputGroupAddon>
+                        </InputGroup>
+                        <Message
+                            v-if="$form.range_km?.invalid"
+                            severity="error"
+                            size="small"
+                            variant="simple"
+                            >{{ $form.range_km?.error?.message }}</Message
+                        >
+                    </div>
+                </div>
+
                 <div class="flex flex-col gap-1 mb-4 w-full">
                     <label for="description">Features</label>
                     <div class="flex flex-col gap-2">
@@ -289,6 +335,9 @@ import PageTitle from '@admin/components/PageTitle.vue'
 import {
     Button,
     Checkbox,
+    InputGroup,
+    InputGroupAddon,
+    InputNumber,
     InputText,
     Message,
     Select,
@@ -331,6 +380,7 @@ watch(selectedBrand, newValue => {
 const onFormSubmit = async ({ valid, values, errors }) => {
     values.seats = initialValues.seats
     values.doors = initialValues.doors
+    values.luggage_count = initialValues.luggage_count
     if (valid) {
         try {
             await createVariant(values)

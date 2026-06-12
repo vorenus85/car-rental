@@ -25,6 +25,9 @@ class Variant extends Model
 
         'seats',
         'doors',
+        'luggage_count',
+
+        'range_km',
     ];
 
     /**

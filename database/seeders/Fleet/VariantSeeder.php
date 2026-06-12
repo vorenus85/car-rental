@@ -40,6 +40,9 @@ class VariantSeeder extends Seeder
 
                 'seats' => $item['seats'],
                 'doors' => $item['doors'],
+                'luggage_count' => $item['luggage_count'],
+
+                'range_km' => $item['range_km'],
             ]);
 
             $featureNames = $this->getFeaturesForVariant($item);

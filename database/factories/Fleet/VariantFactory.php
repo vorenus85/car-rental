@@ -68,6 +68,16 @@ class VariantFactory extends Factory
                 4,
                 5,
             ]),
+
+            'luggage_count' => fake()->randomElement([
+                1,
+                2,
+                3,
+                4,
+                5,
+            ]),
+
+            'range_km' => fake()->numberBetween(450, 900),
         ];
     }
 }

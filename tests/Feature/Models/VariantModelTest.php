@@ -27,6 +27,9 @@ describe('Variant model', function () {
 
                 'seats',
                 'doors',
+                'luggage_count',
+
+                'range_km',
             ]);
     });
 
