@@ -30,6 +30,9 @@ return new class extends Migration {
 
             $table->integer('seats');
             $table->integer('doors');
+            $table->integer('luggage_count');
+
+            $table->integer('range_km');
 
             $table->timestamps();
         });

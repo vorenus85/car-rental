@@ -41,6 +41,20 @@ export const variantValidator = ({ values }) => {
         errors.doors = [{ message: 'Doors must be minimum 1.' }]
     }
 
+    if (
+        values.luggage_count === '' ||
+        values.luggage_count === null ||
+        values.luggage_count === undefined
+    ) {
+        errors.luggage_count = [{ message: 'Please enter the number of luggages.' }]
+    } else if (Number(values.luggage_count) < 1) {
+        errors.luggage_count = [{ message: 'Luggages must be minimum 1.' }]
+    }
+
+    if (!values.range_km) {
+        errors.range_km = [{ message: 'Please enter range.' }]
+    }
+
     return {
         values,
         errors,

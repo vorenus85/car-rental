@@ -26,6 +26,8 @@ export const useVariant = () => {
         fuel: 'petrol',
         seats: '1',
         doors: '1',
+        luggage_count: '1',
+        range_km: '100',
         description: '',
         features: [],
     })
@@ -126,6 +128,8 @@ export const useVariant = () => {
             initialValues.fuel = data.fuel
             initialValues.seats = data.seats
             initialValues.doors = data.doors
+            initialValues.luggage_count = data.luggage_count
+            initialValues.range_km = data.range_km
             initialValues.description = data.description
             selectedFeatures.value = data.features.map(f => f.id)
             initialValues.features = data.features.map(f => f.id)

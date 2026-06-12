@@ -41,6 +41,8 @@ describe('VariantController', function () {
             'fuel' => $variant->fuel,
             'seats' => $variant->seats,
             'doors' => $variant->doors,
+            'luggage_count' => $variant->luggage_count,
+            'range_km' => $variant->range_km,
         ]);
     });
 
@@ -58,6 +60,8 @@ describe('VariantController', function () {
             "fuel" => "petrol",
             "seats" => 5,
             "doors" => 5,
+            "luggage_count" => 3,
+            "range_km" => 1000,
             '_token' => 'test-token',
         ];
 
@@ -73,6 +77,8 @@ describe('VariantController', function () {
             "fuel" => "petrol",
             "seats" => 5,
             "doors" => 5,
+            "luggage_count" => 3,
+            "range_km" => 1000,
         ]);
 
         $this->assertDataBaseHas('variants', [
@@ -94,7 +100,9 @@ describe('VariantController', function () {
                 'fuel',
                 'seats',
                 'doors',
-            ])->assertJsonCount(8, 'errors');
+                'luggage_count',
+                'range_km',
+            ])->assertJsonCount(10, 'errors');
     });
 
     it('can update a variant', function () {
@@ -110,6 +118,8 @@ describe('VariantController', function () {
             'fuel' => 'diesel',
             'seats' => 5,
             'doors' => 4,
+            "luggage_count" => 3,
+            "range_km" => 1000,
             '_token' => 'test-token',
         ];
 

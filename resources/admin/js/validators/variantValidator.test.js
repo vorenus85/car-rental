@@ -12,6 +12,8 @@ describe('variantValidator', () => {
         fuel: 'hybrid',
         seats: 5,
         doors: 4,
+        luggage_count: 3,
+        range_km: 1000,
     }
 
     it('returns no errors for valid values', () => {
@@ -141,5 +143,29 @@ describe('variantValidator', () => {
         })
 
         expect(result.errors.doors).toEqual([{ message: 'Doors must be minimum 1.' }])
+    })
+
+    it('requires luggage count', () => {
+        const result = variantValidator({
+            values: {
+                ...validValues,
+                luggage_count: '',
+            },
+        })
+
+        expect(result.errors.luggage_count).toEqual([
+            { message: 'Please enter the number of luggages.' },
+        ])
+    })
+
+    it('requires luggage count to be at least 1', () => {
+        const result = variantValidator({
+            values: {
+                ...validValues,
+                luggage_count: 0,
+            },
+        })
+
+        expect(result.errors.luggage_count).toEqual([{ message: 'Luggages must be minimum 1.' }])
     })
 })

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Services\ImageUploadService;
+use App\Http\Services\Admin\ImageUploadService;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
