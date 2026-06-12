@@ -4,6 +4,7 @@ namespace Database\Seeders\Fleet;
 
 use App\Models\Fleet\Car;
 use App\Models\Fleet\CarModel;
+use App\Models\Fleet\Feature;
 use App\Models\Fleet\Variant;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
@@ -17,6 +18,9 @@ class CarSeeder extends Seeder
     {
         $json = File::get(database_path('data/fleet/cars.json'));
         $data = json_decode($json, true);
+        $variantData = collect(json_decode(File::get(database_path('data/fleet/variants.json')), true))
+            ->keyBy(fn (array $item) => $this->variantKey($item['brand'], $item['model'], $item['name']));
+        $features = Feature::all()->keyBy('name');
 
         foreach ($data as $index => $item) {
 
@@ -32,7 +36,7 @@ class CarSeeder extends Seeder
             }
 
             try {
-                Car::create([
+                $car = Car::create([
                     'variant_id' => $variant->id,
                     'location_id' => $item['location_id'],
                     'licence_plate' => $item['licence_plate'],
@@ -44,6 +48,13 @@ class CarSeeder extends Seeder
                     'image' => $item['image'],
                     'description' => $item['description'],
                 ]);
+
+                $featureIds = collect($variantData[$this->variantKey($item['brand'], $item['model'], $item['variant'])]['features'] ?? [])
+                    ->map(fn ($name) => $features[$name]->id ?? null)
+                    ->filter()
+                    ->values();
+
+                $car->features()->sync($featureIds);
             } catch (\Exception $e) {
                 dd([
                     'error' => 'Insert failed',
@@ -55,5 +66,10 @@ class CarSeeder extends Seeder
         }
 
         $this->command->info('Cars data seeded successfully!');
+    }
+
+    private function variantKey(string $brand, string $model, string $variant): string
+    {
+        return "{$brand}|{$model}|{$variant}";
     }
 }

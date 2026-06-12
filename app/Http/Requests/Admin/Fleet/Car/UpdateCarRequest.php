@@ -66,6 +66,9 @@ class UpdateCarRequest extends FormRequest
                 'string',
                 'max:500',
             ],
+
+            'features' => ['nullable', 'array'],
+            'features.*' => ['exists:features,id'],
         ];
     }
 }

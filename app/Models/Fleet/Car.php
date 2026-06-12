@@ -42,4 +42,13 @@ class Car extends Model
     {
         return $this->belongsTo(Location::class);
     }
+
+    /**
+     *
+     * @return BelongsToMany<Feature, $this>
+     */
+    public function features(): BelongsToMany
+    {
+        return $this->belongsToMany(Feature::class);
+    }
 }

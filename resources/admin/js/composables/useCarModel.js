@@ -80,7 +80,7 @@ export const useCarModel = () => {
 
             customToast.success('Model deleted successfully!')
         } catch (e) {
-            console.log(e)
+            console.error(e)
             const message =
                 e?.response?.data?.message || 'Something went wrong while deleting the car model.'
 
