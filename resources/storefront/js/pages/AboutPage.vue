@@ -3,5 +3,9 @@ import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 </script>
 
 <template>
-    <PublicLayout> About us page</PublicLayout>
+    <PublicLayout>
+        <div class="mx-auto max-w-8xl px-4 py-4 min-h-[500px]">
+            <h1 class="text-3xl">About us</h1>
+        </div>
+    </PublicLayout>
 </template>
