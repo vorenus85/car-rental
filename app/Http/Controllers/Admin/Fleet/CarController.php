@@ -70,7 +70,7 @@ class CarController extends Controller
             'variant:id,name,model_id,category,body_type,transmission,fuel,seats,doors',
             'variant.model:id,name,brand_id',
             'variant.model.brand:id',
-            'features:id,name,category',
+            'features:id,name',
         ])->first();
 
         $result['image_url'] = $result->image ? Storage::url('/uploads/' . $result->image) : "";

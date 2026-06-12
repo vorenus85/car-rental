@@ -1,13 +1,6 @@
 <script setup>
 import { Select } from 'primevue'
 
-defineProps({
-    name: {
-        type: String,
-        default: 'white',
-    },
-})
-
 const colors = [
     { label: 'White', value: 'white', hex: '#FFFFFF' },
     { label: 'Black', value: 'black', hex: '#000000' },
@@ -24,8 +17,7 @@ const colors = [
 
 <template>
     <Select
-        v-model="model"
-        :name="name"
+        name="color"
         :options="colors"
         option-label="label"
         option-value="value"
@@ -43,7 +35,6 @@ const colors = [
         </template>
 
         <template #value="{ value }">
-            <div>{{ value }}</div>
             <div v-if="value" class="flex items-center gap-3">
                 <span
                     class="w-4 h-4 rounded-full border border-gray-300"
