@@ -28,11 +28,7 @@ class CarResource extends JsonResource
             'mileage' => $this->mileage,
             'production_year' => $this->production_year,
             'image' => $this->whenHas('image'),
-            'image_url' => $this->whenHas('image', function () {
-                return $this->image
-                    ? Storage::url('/uploads/' . $this->image)
-                    : null;
-            }),
+            'image_url' => $this->image_url,
             'location' => $this->whenLoaded('location', function () {
                 return [
                     'id' => $this->location->id,
@@ -41,7 +37,7 @@ class CarResource extends JsonResource
                 ];
             }),
             'features' => $this->whenLoaded('features', function () {
-                return $this->features->map(fn ($feature) => [
+                return $this->features->map(fn($feature) => [
                     'id' => $feature->id,
                     'name' => $feature->name,
                     'category' => $feature->category,

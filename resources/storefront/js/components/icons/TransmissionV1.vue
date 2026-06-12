@@ -7,7 +7,7 @@
         fill="none"
     >
         <path
-            d="M666.767 333.333V244.433a88.867 88.867 0 0 0 -88.867 -88.867h-0.033V333.333z"
+            d="M676.833 179.667a56.5 56.5 0 1 0 0 -113 56.5 56.5 0 0 0 0 113"
             stroke="currentColor"
             stroke-width="50"
             stroke-miterlimit="10"
@@ -15,7 +15,7 @@
             stroke-linejoin="round"
         />
         <path
-            d="M577.667 155.567A88.9 88.9 0 0 0 488.833 66.667H311.033a88.9 88.9 0 0 0 -88.9 88.9v488.867h355.567z"
+            d="M400 179.667A56.5 56.5 0 1 0 400 66.667a56.5 56.5 0 0 0 0 113"
             stroke="currentColor"
             stroke-width="50"
             stroke-miterlimit="10"
@@ -23,7 +23,7 @@
             stroke-linejoin="round"
         />
         <path
-            d="M311 288.9h177.8v-133.333H311z"
+            d="M123.167 179.667a56.5 56.5 0 1 0 0 -113 56.5 56.5 0 0 0 0 113"
             stroke="currentColor"
             stroke-width="50"
             stroke-miterlimit="10"
@@ -31,7 +31,7 @@
             stroke-linejoin="round"
         />
         <path
-            d="M666.567 733.333a88.9 88.9 0 0 0 -88.9 -88.9H222.133A88.9 88.9 0 0 0 133.233 733.333z"
+            d="M123.167 733.333a56.5 56.5 0 1 0 0 -113 56.5 56.5 0 0 0 0 113"
             stroke="currentColor"
             stroke-width="50"
             stroke-miterlimit="10"
@@ -39,7 +39,7 @@
             stroke-linejoin="round"
         />
         <path
-            d="M400.1 377.767s-66.667 55.567 -66.667 111.1a66.667 66.667 0 0 0 133.333 0c0 -55.533 -66.667 -111.1 -66.667 -111.1"
+            d="M400 733.333a56.5 56.5 0 1 0 0 -113A56.5 56.5 0 0 0 400 733.333"
             stroke="currentColor"
             stroke-width="50"
             stroke-miterlimit="10"
@@ -47,7 +47,7 @@
             stroke-linejoin="round"
         />
         <path
-            d="M577.867 511.1a44.433 44.433 0 0 0 88.9 0V333.333"
+            d="M676.867 179.667v158.2c0 31.2 -25.333 56.5 -56.5 56.5H123.167v226"
             stroke="currentColor"
             stroke-width="50"
             stroke-miterlimit="10"
@@ -55,7 +55,31 @@
             stroke-linejoin="round"
         />
         <path
-            d="M66.667 733.333h666.667"
+            d="M123.167 394.333V179.667"
+            stroke="currentColor"
+            stroke-width="50"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+        <path
+            d="M400 179.667v440.667"
+            stroke="currentColor"
+            stroke-width="50"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+        <path
+            d="M676.833 733.333a56.5 56.5 0 1 0 0 -113 56.5 56.5 0 0 0 0 113"
+            stroke="currentColor"
+            stroke-width="50"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
+        <path
+            d="M676.833 507.333v113"
             stroke="currentColor"
             stroke-width="50"
             stroke-miterlimit="10"

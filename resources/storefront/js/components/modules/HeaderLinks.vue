@@ -32,6 +32,7 @@ const { headerMenu } = useHeaderMenu()
                 opacity 0.2s;
         }
 
+        &.router-link-active,
         &:hover {
             opacity: 1;
             &:after {
