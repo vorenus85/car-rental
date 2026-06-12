@@ -368,7 +368,7 @@ const onFormSubmit = async ({ valid, values }) => {
 
             toVariantsList()
         } catch (error) {
-            console.log(error)
+            // console.error(error)
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }

@@ -173,7 +173,6 @@ export const useLocation = () => {
 
         try {
             const { data } = await fetchLocation(locationId)
-            console.log(data)
             initialValues.name = data.name
             initialValues.city_country = { code: data.country, label: data.city, value: data.city }
             initialValues.address = data.address

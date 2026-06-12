@@ -53,7 +53,7 @@ describe('useCar', () => {
         vi.mocked(fetchCar).mockResolvedValue({
             data: {
                 licence_plate: 'ABC-123',
-                color: 'Red',
+                color: 'red',
                 production_year: 2020,
                 mileage: 10000,
                 price_per_day: 50,
@@ -61,6 +61,7 @@ describe('useCar', () => {
                 description: 'Test description',
                 image: 'test.jpg',
                 image_url: '/test.jpg',
+                features: [],
                 variant: {
                     id: 3,
                     category: 'premium',
@@ -69,6 +70,8 @@ describe('useCar', () => {
                     fuel_type: 'electric',
                     seats: 5,
                     doors: 4,
+                    luggage_count: 2,
+                    range_km: 1000,
                     model: {
                         id: 2,
                         brand: {
@@ -87,7 +90,10 @@ describe('useCar', () => {
         expect(car.initialValues.model_id).toBe(2)
         expect(car.initialValues.variant_id).toBe(3)
         expect(car.initialValues.licence_plate).toBe('ABC-123')
-        expect(car.initialValues.color).toBe('Red')
+        expect(car.initialValues.color).toBe('red')
+
+        expect(car.selectedCategory.value).toBe('premium')
+
         expect(car.formKey.value).toBe(1)
         expect(car.loading.value).toBe(false)
     })

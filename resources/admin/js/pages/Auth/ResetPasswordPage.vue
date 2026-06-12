@@ -123,7 +123,7 @@ const onFormSubmit = async ({ valid, values, errors }) => {
                 toLogin()
             }, 300)
         } catch (error) {
-            console.log(error)
+            // console.error(error)
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }
