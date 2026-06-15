@@ -88,52 +88,65 @@
                         >{{ $form.address.error?.message }}</Message
                     >
                 </div>
-                <div
-                    v-for="(day, key) in initialValues.business_hours"
-                    :key="key"
-                    class="flex items-center gap-3"
-                >
-                    <Checkbox
-                        v-model="day.enabled"
-                        :name="`business_hours.${key}.enabled`"
-                        binary
-                        :input-id="`${key}-enabled`"
-                    />
-
-                    <label :for="`${key}-enabled`" class="w-24">
-                        {{ day.label }}
-                    </label>
-
-                    <DatePicker
-                        v-model="day.open"
-                        :name="`business_hours[${key}][open]`"
-                        :disabled="!day.enabled"
-                        time-only
-                        hour-format="24"
-                        show-icon
+                <div class="flex flex-col gap-1 mb-4">
+                    <label for="address">Business hours</label>
+                    <div
+                        v-for="(day, key) in initialValues.business_hours"
+                        :key="key"
+                        class="flex items-center gap-3"
                     >
-                        <template #inputicon="slotProps">
-                            <i class="pi pi-clock" @click="slotProps.clickCallback" />
-                        </template>
-                    </DatePicker>
+                        <Checkbox
+                            v-model="day.enabled"
+                            :name="`business_hours.${key}.enabled`"
+                            binary
+                            readonly
+                            :input-id="`${key}-enabled`"
+                        />
 
-                    <span>-</span>
+                        <label :for="`${key}-enabled`" class="w-24">
+                            <small>{{ day.label }}</small>
+                        </label>
 
-                    <DatePicker
-                        v-model="day.close"
-                        :name="`business_hours[${key}][close]`"
-                        :disabled="!day.enabled"
-                        time-only
-                        hour-format="24"
-                        show-icon
-                    >
-                        <template #inputicon="slotProps">
-                            <i class="pi pi-clock" @click="slotProps.clickCallback" />
-                        </template>
-                    </DatePicker>
+                        <div class="">
+                            <DatePicker
+                                v-model="day.open"
+                                :name="`business_hours[${key}][open]`"
+                                :disabled="!day.enabled"
+                                time-only
+                                readonly
+                                hour-format="24"
+                                show-icon
+                                class="business-hours"
+                            >
+                                <template #inputicon="slotProps">
+                                    <i class="pi pi-clock" @click="slotProps.clickCallback" />
+                                </template>
+                            </DatePicker>
+                        </div>
 
-                    <input type="hidden" :name="`business_hours[${key}][day]`" :value="key" />
+                        <span>-</span>
+
+                        <div class="">
+                            <DatePicker
+                                v-model="day.close"
+                                :name="`business_hours[${key}][close]`"
+                                :disabled="!day.enabled"
+                                time-only
+                                readonly
+                                hour-format="24"
+                                show-icon
+                                class="business-hours"
+                            >
+                                <template #inputicon="slotProps">
+                                    <i class="pi pi-clock" @click="slotProps.clickCallback" />
+                                </template>
+                            </DatePicker>
+                        </div>
+
+                        <input type="hidden" :name="`business_hours[${key}][day]`" :value="key" />
+                    </div>
                 </div>
+
                 <div class="flex flex-col gap-1 mb-4">
                     <label for="type">Type</label>
                     <Select
@@ -277,3 +290,8 @@ onMounted(async () => {
     await getLocation()
 })
 </script>
+<style>
+.business-hours input {
+    max-width: 150px;
+}
+</style>

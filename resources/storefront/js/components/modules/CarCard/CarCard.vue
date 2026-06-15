@@ -1,6 +1,6 @@
 <template>
     <div
-        class="car-card overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:shadow-lg"
+        class="car-card overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition hover:shadow-lg"
     >
         <!-- Image -->
         <div class="relative">
@@ -57,7 +57,7 @@
                     <span class="text-xl font-bold"> €{{ pricePerDay }} </span>
                     <span class="text-sm text-gray-500"> /day </span>
                 </div>
-                <Button>View Details</Button>
+                <Button variant="outlined">View Details</Button>
             </div>
         </div>
     </div>

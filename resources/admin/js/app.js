@@ -24,6 +24,9 @@ app.use(PrimeVue, {
     theme: {
         preset: Aura,
     },
+    locale: {
+        firstDayOfWeek: 1,
+    },
 })
 app.directive('tooltip', Tooltip)
 app.use(router)

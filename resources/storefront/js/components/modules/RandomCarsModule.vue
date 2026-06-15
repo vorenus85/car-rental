@@ -66,7 +66,6 @@ const getRandomCars = async () => {
     try {
         const { data } = await fetchRandomCars()
         cars.value = data
-        console.log(cars)
     } catch (error) {
         console.error(error)
     } finally {
@@ -98,55 +97,6 @@ const carouselConfig = {
         },
     },
 }
-
-/*
-const cars = [
-    {
-        id: 1,
-        name: 'Volkswagen Golf',
-        image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=1200',
-        category: 'Premium',
-        pricePerDay: 35,
-        seats: 5,
-        baggage: 3,
-        fuel: 'Petrol',
-        transmission: 'Automatic',
-    },
-    {
-        id: 2,
-        name: 'BMW 3 Series',
-        image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=1200',
-        category: 'Premium',
-        pricePerDay: 45,
-        seats: 5,
-        baggage: 4,
-        fuel: 'Diesel',
-        transmission: 'Automatic',
-    },
-    {
-        id: 3,
-        name: 'Audi A4',
-        image: 'https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=1200',
-        category: 'Premium',
-        pricePerDay: 42,
-        seats: 5,
-        baggage: 4,
-        fuel: 'Petrol',
-        transmission: 'Automatic',
-    },
-    {
-        id: 4,
-        name: 'Mercedes-Benz C-Class',
-        image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1200',
-        category: 'Premium',
-        pricePerDay: 50,
-        seats: 5,
-        baggage: 4,
-        fuel: 'Hybrid',
-        transmission: 'Automatic',
-    },
-]
-    */
 
 onMounted(async () => {
     await getRandomCars()

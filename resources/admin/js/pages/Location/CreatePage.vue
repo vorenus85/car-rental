@@ -95,6 +95,7 @@
                         v-model="day.enabled"
                         :name="`business_hours.${key}.enabled`"
                         binary
+                        readonly
                         :input-id="`${key}-enabled`"
                     />
 
@@ -108,6 +109,7 @@
                         :disabled="!day.enabled"
                         time-only
                         hour-format="24"
+                        readonly
                         show-icon
                     >
                         <template #inputicon="slotProps">
@@ -122,6 +124,7 @@
                         :name="`business_hours[${key}][close]`"
                         :disabled="!day.enabled"
                         time-only
+                        readonly
                         hour-format="24"
                         show-icon
                     >
@@ -267,3 +270,8 @@ const onFormSubmit = async ({ valid, values, errors }) => {
     }
 }
 </script>
+<style>
+.business-hours input {
+    max-width: 150px;
+}
+</style>
