@@ -5,7 +5,7 @@ import { createPinia } from 'pinia'
 import PrimeVue from 'primevue/config'
 import ToastService from 'primevue/toastservice'
 import ConfirmationService from 'primevue/confirmationservice'
-import Aura from '@primeuix/themes/aura'
+import { MyPreset } from './presets/MyPreset.js'
 import 'primeicons/primeicons.css'
 import Tooltip from 'primevue/tooltip'
 
@@ -22,7 +22,10 @@ app.use(ToastService)
 app.use(ConfirmationService)
 app.use(PrimeVue, {
     theme: {
-        preset: Aura,
+        preset: MyPreset,
+    },
+    locale: {
+        firstDayOfWeek: 1,
     },
 })
 app.directive('tooltip', Tooltip)
