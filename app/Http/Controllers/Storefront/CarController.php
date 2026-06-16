@@ -44,9 +44,9 @@ class CarController extends Controller
 
                 'price_desc' => $query->orderBy('price_per_day', 'desc'),
 
-                'year_asc' => $query->orderBy('year', 'asc'),
+                'year_asc' => $query->orderBy('production_year', 'asc'),
 
-                'year_desc' => $query->orderBy('year', 'desc'),
+                'year_desc' => $query->orderBy('production_year', 'desc'),
 
                 default => $query->latest(),
             };

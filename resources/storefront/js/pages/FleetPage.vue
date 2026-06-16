@@ -4,8 +4,11 @@
             <BreadcrumbModule :items="breadcrumbItems"></BreadcrumbModule>
             <PageTitle title="Fleet"></PageTitle>
 
-            <div class="sort-bar-top flex py-3">
-                <small> Showing {{ count }} results </small>
+            <div class="sort-bar-top flex py-3 items-center justify-between mb-3">
+                <small>
+                    Showing <strong>{{ total }}</strong> results
+                </small>
+                <SortDropdown @change="onSort"></SortDropdown>
             </div>
             <div
                 class="car-list grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6"
@@ -25,6 +28,15 @@
                         :transmission="car.transmission"
                     ></CarCard>
                 </template>
+            </div>
+            <div>
+                <PaginationModule
+                    class="mt-3"
+                    :current-page="currentPage"
+                    :per-page="perPage"
+                    :total="total"
+                    @change="onPaginate"
+                ></PaginationModule>
             </div></div
     ></PublicLayout>
 </template>
@@ -35,6 +47,12 @@ import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vu
 import { fetchCars } from '@storefront/services/carService'
 import { ref, onMounted } from 'vue'
 import PageTitle from '@storefront/components/modules/PageTitle.vue'
+import PaginationModule from '@storefront/components/modules/PaginationModule.vue'
+import { useRoute, useRouter } from 'vue-router'
+import SortDropdown from '../components/modules/SortDropdown.vue'
+
+const route = useRoute()
+const router = useRouter()
 
 const breadcrumbItems = [
     {
@@ -44,14 +62,19 @@ const breadcrumbItems = [
 ]
 const loading = ref(false)
 const cars = ref([])
-const count = ref(null)
+const currentPage = ref(null)
+const perPage = ref(null)
+const total = ref(null)
 
 const getCars = async params => {
     loading.value = true
+    console.log(params)
     try {
         const result = await fetchCars(params)
-        console.log(result)
-        count.value = result.data.meta.total
+        //console.log(result)
+        total.value = result.data.meta.total
+        currentPage.value = result.data.meta.current_page
+        perPage.value = result.data.meta.per_page
         cars.value = result.data.data
     } catch (error) {
         console.error(error)
@@ -60,7 +83,33 @@ const getCars = async params => {
     }
 }
 
+const onPaginate = async page => {
+    const query = {
+        ...route.query,
+        page,
+    }
+
+    await router.push({
+        query,
+    })
+
+    await getCars(query)
+}
+
+const onSort = async sort => {
+    const query = {
+        ...route.query,
+        sort,
+    }
+
+    await router.push({
+        query,
+    })
+
+    await getCars(query)
+}
+
 onMounted(async () => {
-    await getCars({ transmission: 'manual' })
+    await getCars()
 })
 </script>

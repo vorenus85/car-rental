@@ -4,7 +4,7 @@
     >
         <!-- Image -->
         <div class="relative p-4">
-            <img :src="image" :alt="name" class="h-56 w-full object-contain" />
+            <img :src="image" :alt="name" class="h-56 w-full object-contain" loading="lazy" />
         </div>
 
         <div class="p-6 w-full">
