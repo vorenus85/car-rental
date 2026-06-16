@@ -21,7 +21,13 @@
                 /></Button>
             </div>
         </div>
-        <div class="cars-module-list module-body p-4">
+        <div
+            v-if="loadingCars"
+            class="car-list grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6"
+        >
+            <CarCardSkeleton v-for="n in 4" :key="n" />
+        </div>
+        <div v-else class="cars-module-list module-body p-4">
             <Carousel v-bind="carouselConfig" ref="carouselRef">
                 <Slide v-for="car in cars" :key="car.id" class="cars-module-item">
                     <CarCard
@@ -48,30 +54,18 @@ import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide } from 'vue3-carousel'
 import CarCard from '@storefront/components/modules/CarCard/CarCard.vue'
 import { Button } from 'primevue'
-import IconArrow from '@storefront/components//icons/IconArrow.vue'
-import { fetchRandomCars } from '@storefront/services/carService.js'
+import IconArrow from '@storefront/components/icons/IconArrow.vue'
+import { useCars } from '@storefront/composables/useCars.js'
 import { onMounted, ref } from 'vue'
+import CarCardSkeleton from '@storefront/components/modules/CarCard/CarCardSkeleton.vue'
 
+const { getRandomCars, loadingCars, cars } = useCars()
 const carouselRef = ref()
-const cars = ref([])
-const loading = ref(false)
 const next = () => {
     carouselRef.value.next()
 }
 const prev = () => {
     carouselRef.value.prev()
-}
-
-const getRandomCars = async () => {
-    loading.value = true
-    try {
-        const { data } = await fetchRandomCars()
-        cars.value = data.data
-    } catch (error) {
-        console.error(error)
-    } finally {
-        loading.value = false
-    }
 }
 
 const carouselConfig = {

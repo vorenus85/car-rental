@@ -13,7 +13,10 @@
             <div
                 class="car-list grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6"
             >
-                <template v-for="car in cars" :key="car.id">
+                <template v-if="loadingCars">
+                    <CarCardSkeleton v-for="n in 12" :key="n" />
+                </template>
+                <template v-for="car in cars" v-else :key="car.id">
                     <CarCard
                         :year="car.production_year"
                         :name="car.name"
@@ -44,12 +47,16 @@
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import CarCard from '@storefront/components/modules/CarCard/CarCard.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
-import { fetchCars } from '@storefront/services/carService'
-import { ref, onMounted } from 'vue'
+
+import { onMounted } from 'vue'
 import PageTitle from '@storefront/components/modules/PageTitle.vue'
 import PaginationModule from '@storefront/components/modules/PaginationModule.vue'
 import { useRoute, useRouter } from 'vue-router'
 import SortDropdown from '../components/modules/SortDropdown.vue'
+import { useCars } from '@storefront/composables/useCars'
+import CarCardSkeleton from '../components/modules/CarCard/CarCardSkeleton.vue'
+
+const { getCars, cars, loadingCars, currentPage, perPage, total } = useCars()
 
 const route = useRoute()
 const router = useRouter()
@@ -60,30 +67,11 @@ const breadcrumbItems = [
         route: '/fleet',
     },
 ]
-const loading = ref(false)
-const cars = ref([])
-const currentPage = ref(null)
-const perPage = ref(null)
-const total = ref(null)
-
-const getCars = async params => {
-    loading.value = true
-    console.log(params)
-    try {
-        const result = await fetchCars(params)
-        //console.log(result)
-        total.value = result.data.meta.total
-        currentPage.value = result.data.meta.current_page
-        perPage.value = result.data.meta.per_page
-        cars.value = result.data.data
-    } catch (error) {
-        console.error(error)
-    } finally {
-        loading.value = false
-    }
-}
 
 const onPaginate = async page => {
+    if (currentPage.value === page) {
+        return
+    }
     const query = {
         ...route.query,
         page,
@@ -97,6 +85,9 @@ const onPaginate = async page => {
 }
 
 const onSort = async sort => {
+    if (route.query.sort === sort) {
+        return
+    }
     const query = {
         ...route.query,
         sort,
