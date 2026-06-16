@@ -25,6 +25,7 @@
             <Carousel v-bind="carouselConfig" ref="carouselRef">
                 <Slide v-for="car in cars" :key="car.id" class="cars-module-item">
                     <CarCard
+                        :year="car.production_year"
                         :name="car.name"
                         :brand="car.brand_name"
                         :model="car.model_name"
@@ -48,7 +49,7 @@ import { Carousel, Slide } from 'vue3-carousel'
 import CarCard from '@storefront/components/modules/CarCard/CarCard.vue'
 import { Button } from 'primevue'
 import IconArrow from '@storefront/components//icons/IconArrow.vue'
-import { fetchRandomCars } from '@storefront/services/carsModuleService.js'
+import { fetchRandomCars } from '@storefront/services/carService.js'
 import { onMounted, ref } from 'vue'
 
 const carouselRef = ref()
@@ -65,7 +66,7 @@ const getRandomCars = async () => {
     loading.value = true
     try {
         const { data } = await fetchRandomCars()
-        cars.value = data
+        cars.value = data.data
     } catch (error) {
         console.error(error)
     } finally {

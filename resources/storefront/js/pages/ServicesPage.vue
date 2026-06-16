@@ -1,11 +1,10 @@
-<script setup>
-import PublicLayout from '@storefront/layouts/PublicLayout.vue'
-</script>
-
 <template>
     <PublicLayout>
         <div class="mx-auto max-w-8xl px-4 py-4 min-h-[500px]">
-            <h1 class="text-3xl">Services</h1>
-        </div></PublicLayout
-    >
+            <PageTitle title="Services"></PageTitle></div
+    ></PublicLayout>
 </template>
+<script setup>
+import PublicLayout from '@storefront/layouts/PublicLayout.vue'
+import PageTitle from '@storefront/components/modules/PageTitle.vue'
+</script>

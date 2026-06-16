@@ -3,8 +3,8 @@
         class="car-card overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm transition hover:shadow-lg"
     >
         <!-- Image -->
-        <div class="relative">
-            <img :src="image" :alt="name" class="h-56 w-full object-cover" />
+        <div class="relative p-4">
+            <img :src="image" :alt="name" class="h-56 w-full object-contain" loading="lazy" />
         </div>
 
         <div class="p-6 w-full">
@@ -13,12 +13,17 @@
                     {{ name }}
                 </h3>
 
-                <span
-                    class="mt-2 inline-flex py-1 text-sm font-medium capitalize"
-                    :class="category === 'suv' ? 'uppercase' : ''"
-                >
-                    {{ category }}
-                </span>
+                <div class="my-2">
+                    <span class="mr-2 inline-flex py-1 text-sm font-medium">
+                        <Tag severity="secondary">{{ year }}</Tag>
+                    </span>
+                    <span
+                        class="inline-flex py-1 text-sm font-medium capitalize"
+                        :class="category === 'suv' ? 'uppercase' : ''"
+                    >
+                        {{ category }}
+                    </span>
+                </div>
             </div>
 
             <div class="mb-4 grid grid-cols-2 gap-4">
@@ -64,7 +69,7 @@
 </template>
 
 <script setup>
-import { Button } from 'primevue'
+import { Button, Tag } from 'primevue'
 import FuelV1 from '@storefront/components/icons/FuelV1.vue'
 import SeatsV1 from '@storefront/components/icons/SeatsV1.vue'
 import TransmissionV1 from '@storefront/components/icons/TransmissionV1.vue'
@@ -89,6 +94,10 @@ defineProps({
     },
     category: {
         type: String,
+        required: true,
+    },
+    year: {
+        type: Number,
         required: true,
     },
     pricePerDay: {
