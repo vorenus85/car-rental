@@ -9,7 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @mixin Car
  */
-class CarModuleResource extends JsonResource
+class CarCardResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,6 +21,7 @@ class CarModuleResource extends JsonResource
         return [
             'id' => $this->id,
             'price_per_day' => $this->price_per_day,
+            'production_year' => $this->production_year,
             'image' => $this->whenHas('image'),
             'image_url' => $this->image_url,
             'category' => $this->variant?->category,

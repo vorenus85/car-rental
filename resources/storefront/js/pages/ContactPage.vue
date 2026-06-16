@@ -5,7 +5,6 @@ import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 <template>
     <PublicLayout>
         <div class="mx-auto max-w-8xl px-4 py-4 min-h-[500px]">
-            <h1 class="text-3xl">Contact</h1>
-        </div></PublicLayout
-    >
+            <PageTitle title="Contact"></PageTitle></div
+    ></PublicLayout>
 </template>
