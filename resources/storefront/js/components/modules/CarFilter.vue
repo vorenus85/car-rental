@@ -169,7 +169,7 @@ const openPanels = computed(() => {
     if (query.seats) panels.push('seats')
     if (query.transmission) panels.push('transmission')
     if (query.fuel) panels.push('fuel')
-    if (query.luggage) panels.push('luggage')
+    if (query.luggage_count) panels.push('luggage')
 
     return panels
 })
