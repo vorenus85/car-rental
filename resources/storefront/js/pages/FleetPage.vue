@@ -3,12 +3,12 @@
         <div class="mx-auto max-w-8xl px-4 py-4 min-h-[500px]">
             <BreadcrumbModule :items="breadcrumbItems"></BreadcrumbModule>
             <PageTitle title="Fleet"></PageTitle>
-            <div class="grid grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-4">
                 <aside class="col-span-1">
                     <CarFilter @filter="onFilter"></CarFilter>
                 </aside>
 
-                <div class="col-span-3">
+                <div class="col-span-3 mt-6 md:mt-0">
                     <div class="sort-bar-top flex py-3 items-center justify-between mb-3">
                         <small>
                             Showing <strong>{{ total }}</strong> results
