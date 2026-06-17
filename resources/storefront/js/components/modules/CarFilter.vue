@@ -35,9 +35,32 @@
             </Select>
         </div>
 
+        <div class="mb-8">
+            <h4 class="font-medium mb-4">Pick-up Date</h4>
+            <DatePicker
+                v-model="filters.pickupDate"
+                :min-date="minPickUpDate"
+                icon-display="input"
+                date-format="yy-mm-dd"
+                class="w-full"
+            />
+        </div>
+
+        <div class="mb-8">
+            <h4 class="font-medium mb-4">Drop-off Date</h4>
+
+            <DatePicker
+                v-model="filters.dropoffDate"
+                :min-date="mindropOffDate"
+                icon-display="input"
+                date-format="yy-mm-dd"
+                class="w-full"
+            />
+        </div>
+
         <!-- Price Range -->
         <div class="mb-8">
-            <h4 class="font-medium mb-4">Price Range</h4>
+            <h4 class="font-medium mb-4">Price per Day</h4>
 
             <Slider v-model="filters.priceRange" range :min="0" :max="200" class="mb-3" />
 
@@ -181,6 +204,7 @@ import {
     AccordionPanel,
     Button,
     Checkbox,
+    DatePicker,
     Select,
     Slider,
 } from 'primevue'
@@ -204,8 +228,23 @@ const openPanels = computed(() => {
     return panels
 })
 
+const defaultPickUpDate = ref(new Date())
+const minPickUpDate = new Date()
+
+const dropOffDate = new Date()
+dropOffDate.setDate(dropOffDate.getDate() + 3)
+const mindropOffDate = new Date()
+mindropOffDate.setDate(mindropOffDate.getDate() + 1)
+
+const defaultDropOffDate = ref(dropOffDate)
+
+defaultPickUpDate.value.setHours(0, 0, 0, 0)
+defaultDropOffDate.value.setHours(0, 0, 0, 0)
+
 const filters = reactive({
     location: null,
+    pickupDate: defaultPickUpDate,
+    dropoffDate: defaultDropOffDate,
     priceRange: [0, 200],
     carTypes: [],
     transmissions: [],
@@ -216,6 +255,8 @@ const filters = reactive({
 
 const clearFilters = () => {
     filters.location = null
+    filters.pickupDate = defaultPickUpDate
+    filters.dropoffDate = defaultDropOffDate
     filters.priceRange = [0, 200]
     filters.carTypes = []
     filters.transmissions = []
@@ -255,6 +296,18 @@ const doFilter = () => {
     emit('filter', filters)
 }
 onMounted(() => {
+    if (query['pick-up-date']) {
+        const pickupDate = new Date(route.query['pick-up-date'])
+        pickupDate.setHours(0, 0, 0, 0)
+        filters.pickupDate = pickupDate
+    }
+
+    if (query['drop-off-date']) {
+        const dropoffDate = new Date(route.query['drop-off-date'])
+        dropoffDate.setHours(0, 0, 0, 0)
+        filters.dropoffDate = dropoffDate
+    }
+
     if (query.location) {
         filters.location = Number(route.query.location)
     }

@@ -136,6 +136,8 @@ const onFilter = async filters => {
     console.log(filterQuery)
     const query = { ...route.query }
 
+    delete query['drop-off-date']
+    delete query['pick-up-date']
     delete query.location
     delete query.price_per_day
     delete query.body_type
