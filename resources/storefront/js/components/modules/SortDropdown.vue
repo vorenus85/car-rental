@@ -28,7 +28,11 @@
 
 <script setup>
 import { Select } from 'primevue'
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+const query = route.query
 
 const selectedSort = ref('price_desc')
 
@@ -64,4 +68,9 @@ const findOption = value => {
 const onChange = () => {
     emit('change', selectedSort.value)
 }
+onMounted(() => {
+    if (query.sort) {
+        selectedSort.value = query.sort
+    }
+})
 </script>

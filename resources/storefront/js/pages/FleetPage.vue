@@ -15,27 +15,31 @@
                         </small>
                         <SortDropdown @change="onSort"></SortDropdown>
                     </div>
+                    <template v-if="cars.length === 0">
+                        <Message class="w-full">No cars found matching your filters.</Message>
+                    </template>
                     <div
                         class="car-list grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-6"
                     >
                         <template v-if="loadingCars">
                             <CarCardSkeleton v-for="n in 12" :key="n" />
                         </template>
-                        <template v-for="car in cars" v-else :key="car.id">
-                            <CarCard
-                                :year="car.production_year"
-                                :name="car.name"
-                                :brand="car.brand_name"
-                                :model="car.model_name"
-                                :image="car.image_url"
-                                :category="car.category"
-                                :price-per-day="car.price_per_day"
-                                :seats="car.seats"
-                                :baggage="car.luggage_count"
-                                :fuel="car.fuel"
-                                :transmission="car.transmission"
-                            ></CarCard>
-                        </template>
+                        <template v-else>
+                            <template v-for="car in cars" :key="car.id">
+                                <CarCard
+                                    :year="car.production_year"
+                                    :name="car.name"
+                                    :brand="car.brand_name"
+                                    :model="car.model_name"
+                                    :image="car.image_url"
+                                    :category="car.category"
+                                    :price-per-day="car.price_per_day"
+                                    :seats="car.seats"
+                                    :baggage="car.luggage_count"
+                                    :fuel="car.fuel"
+                                    :transmission="car.transmission"
+                                ></CarCard> </template
+                        ></template>
                     </div>
                     <div>
                         <PaginationModule
@@ -63,6 +67,7 @@ import SortDropdown from '../components/modules/SortDropdown.vue'
 import { useCars } from '@storefront/composables/useCars'
 import CarCardSkeleton from '../components/modules/CarCard/CarCardSkeleton.vue'
 import CarFilter from '../components/modules/CarFilter.vue'
+import { Message } from 'primevue'
 
 const { getCars, cars, loadingCars, currentPage, perPage, total } = useCars()
 
