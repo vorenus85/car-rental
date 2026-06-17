@@ -14,25 +14,55 @@ class CarController extends Controller
         $query = Car::query()->with(['variant', 'variant.model', 'variant.model.brand'])->where('status', 'available');
 
         // location_id
-        if ($request->filled('location_id')) {
+        if ($request->filled('location')) {
             $query->where('location_id', $request->location_id);
         }
-        // category
-        if ($request->filled('category')) {
+        // body_type
+        if ($request->filled('body_type')) {
             $query->whereHas('variant', function ($query) use ($request) {
-                $query->where('category', $request->category);
+                $query->whereIn('body_type', (array) $request->body_type);
             });
         }
         // fuel_type
-        if ($request->filled('fuel_type')) {
+        if ($request->filled('fuel')) {
             $query->whereHas('variant', function ($query) use ($request) {
-                $query->where('fuel_type', $request->fuel_type);
+                $query->whereIn('fuel', (array) $request->fuel);
             });
         }
+
+        // price range
+        if (
+            $request->filled('price_per_day') &&
+            is_array($request->price_per_day) &&
+            count($request->price_per_day) === 2
+        ) {
+            $query->whereBetween(
+                'price_per_day',
+                [
+                    $request->price_per_day[0],
+                    $request->price_per_day[1],
+                ]
+            );
+        }
+
         // transmission
         if ($request->filled('transmission')) {
             $query->whereHas('variant', function ($query) use ($request) {
-                $query->where('transmission', $request->transmission);
+                $query->whereIn('transmission', (array) $request->transmission);
+            });
+        }
+
+        // seats
+        if ($request->filled('seats')) {
+            $query->whereHas('variant', function ($query) use ($request) {
+                $query->whereIn('seats', (array) $request->seats);
+            });
+        }
+
+        // luggage_count
+        if ($request->filled('luggage_count')) {
+            $query->whereHas('variant', function ($query) use ($request) {
+                $query->whereIn('luggage_count', (array) $request->luggage_count);
             });
         }
 
