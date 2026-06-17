@@ -21,17 +21,17 @@ export const useLocation = () => {
         {
             label: 'Hungary',
             code: 'hu',
-            items: [{ code: 'hu', label: 'Budapest', value: 'Budapest' }],
+            items: [{ id: 1, code: 'hu', label: 'Budapest', value: 1 }],
         },
         {
             label: 'Austria',
             code: 'at',
-            items: [{ code: 'at', label: 'Vienna', value: 'Vienna' }],
+            items: [{ id: 2, code: 'at', label: 'Vienna', value: 2 }],
         },
         {
             label: 'Czech Republic',
             code: 'cz',
-            items: [{ code: 'cz', label: 'Prague', value: 'Prague' }],
+            items: [{ id: 3, code: 'cz', label: 'Prague', value: 3 }],
         },
     ])
 
@@ -174,7 +174,12 @@ export const useLocation = () => {
         try {
             const { data } = await fetchLocation(locationId)
             initialValues.name = data.name
-            initialValues.city_country = { code: data.country, label: data.city, value: data.city }
+            initialValues.city_country = {
+                id: data.city_id,
+                code: data.country,
+                label: data.city,
+                value: data.city_id,
+            }
             initialValues.address = data.address
             initialValues.type = data.type
             initialValues.phone = data.phone

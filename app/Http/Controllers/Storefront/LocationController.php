@@ -10,10 +10,10 @@ class LocationController extends Controller
     public function index()
     {
         $locations = Location::query()
-            ->select(['id', 'name', 'city', 'country'])
+            ->select(['id', 'name', 'city_id', 'country'])
+            ->with('cityModel:id,name')
             ->where("active", true)
             ->orderBy('country', 'asc')
-            ->orderBy('city', 'asc')
             ->orderBy('name', 'asc')
             ->get();
 

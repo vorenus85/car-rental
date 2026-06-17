@@ -80,6 +80,7 @@ describe('useLocation', () => {
             data: {
                 name: 'Budapest Airport',
                 city: 'Budapest',
+                city_id: 1,
                 country: 'hu',
                 address: 'Airport road',
                 type: 'airport',

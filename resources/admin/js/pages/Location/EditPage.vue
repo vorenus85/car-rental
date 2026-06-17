@@ -265,7 +265,7 @@ const { initialValues, groupedCities, locationTypes, locationId, getLocation, fo
 
 const onFormSubmit = async ({ valid, values, errors }) => {
     values.country = values.city_country.code
-    values.city = values.city_country.value
+    values.city_id = values.city_country.value
 
     if (valid) {
         try {

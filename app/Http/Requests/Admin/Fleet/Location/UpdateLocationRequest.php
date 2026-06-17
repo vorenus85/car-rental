@@ -19,7 +19,7 @@ class UpdateLocationRequest extends FormRequest
             'name' => ['required', 'string', 'max:255', Rule::unique('locations', 'name')->ignore($this->location),],
 
             'country' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
+            'city_id' => ['required', Rule::exists('cities', 'id')],
             'address' => ['required', 'string', 'max:255'],
 
             'latitude' => ['nullable', 'numeric', 'between:-90,90'],

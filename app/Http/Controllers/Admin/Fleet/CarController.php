@@ -30,7 +30,8 @@ class CarController extends Controller
                 'variant_id',
                 'location_id',
             ])
-            ->with('location:id,name,city')
+            ->with('location:id,name,city_id')
+            ->with('location.cityModel:id,name')
             ->with([
                 'variant:id,name,model_id,category',
                 'variant.model:id,name,brand_id',

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Database\Seeders\Fleet\BrandSeeder;
 use Database\Seeders\Fleet\CarModelSeeder;
 use Database\Seeders\Fleet\CarSeeder;
+use Database\Seeders\Fleet\CitySeeder;
 use Database\Seeders\Fleet\FeatureSeeder;
 use Database\Seeders\Fleet\LocationSeeder;
 use Database\Seeders\Fleet\VariantSeeder;
@@ -23,6 +24,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             UsersTableSeeder::class,
+            CitySeeder::class,
             LocationSeeder::class,
             FeatureSeeder::class,
             BrandSeeder::class,

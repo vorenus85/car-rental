@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin\Fleet\Location;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreLocationRequest extends FormRequest
 {
@@ -18,7 +19,7 @@ class StoreLocationRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
 
             'country' => ['required', 'string', 'max:255'],
-            'city' => ['required', 'string', 'max:255'],
+            'city_id' => ['required', Rule::exists('cities', 'id')],
             'address' => ['required', 'string', 'max:255'],
 
             'latitude' => ['nullable', 'numeric', 'between:-90,90'],

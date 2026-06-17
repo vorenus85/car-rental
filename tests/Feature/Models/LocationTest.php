@@ -13,7 +13,7 @@ describe('Location model', function () {
             ->toBe([
                 'name',
                 'country',
-                'city',
+                'city_id',
                 'address',
 
                 'latitude',
