@@ -19,11 +19,12 @@ class LocationController extends Controller
             'id',
             'name',
             'country',
-            'city',
+            'city_id',
             'type',
             'phone',
             'updated_at'
         )
+            ->with('cityModel:id,name')
             ->withCount([
                 'cars as total_cars_count',
                 'cars as available_cars_count' => function ($query) {
@@ -48,7 +49,7 @@ class LocationController extends Controller
     {
         //
         $location = Location::create($request->validated());
-        return response()->json($location, 201);
+        return response()->json($location->load('cityModel:id,name'), 201);
     }
 
     /**
@@ -56,7 +57,7 @@ class LocationController extends Controller
      */
     public function show(Location $location)
     {
-        return response()->json($location);
+        return response()->json($location->load('cityModel:id,name'));
     }
 
     /**
@@ -66,7 +67,7 @@ class LocationController extends Controller
     {
         //
         $location->update($request->validated());
-        return response()->json($location);
+        return response()->json($location->load('cityModel:id,name'));
     }
 
     /**

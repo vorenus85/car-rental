@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Fleet\City;
 use App\Models\Fleet\Location;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -41,10 +42,11 @@ describe('LocationController', function () {
     });
 
     it('can create a location', function () {
+        $city = City::factory()->create(['name' => 'Budapest']);
 
         $payload = [
             'name' => 'Budapest Airport',
-            'city' => 'Budapest',
+            'city_id' => $city->id,
             'country' => 'hu',
             'address' => 'Airport Road 1',
             'type' => 'airport',
@@ -67,6 +69,7 @@ describe('LocationController', function () {
 
         $this->assertDatabaseHas('locations', [
             'name' => 'Budapest Airport',
+            'city_id' => $city->id,
         ]);
     });
 
@@ -89,10 +92,11 @@ describe('LocationController', function () {
     it('can update a location', function () {
 
         $location = Location::factory()->create();
+        $city = City::factory()->create(['name' => 'Vienna']);
 
         $payload = [
             'name' => 'Vienna Airport',
-            'city' => 'Vienna',
+            'city_id' => $city->id,
             'country' => 'at',
             'address' => 'Airport Road 2',
             'type' => 'airport',
@@ -119,6 +123,7 @@ describe('LocationController', function () {
         $this->assertDatabaseHas('locations', [
             'id' => $location->id,
             'name' => 'Vienna Airport',
+            'city_id' => $city->id,
         ]);
     });
 

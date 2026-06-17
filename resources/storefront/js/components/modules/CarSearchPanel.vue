@@ -2,7 +2,7 @@
     <div
         class="car-search rounded-xl border p-6 border-gray-200 bg-white shadow-sm mx-auto max-w-8xl"
     >
-        <div class="grid">
+        <div class="search-panel-grid">
             <div class="field">
                 <label for="pick-up-location" class="text-lg">Pick-up Location</label>
 
@@ -56,22 +56,6 @@
             </div>
 
             <div class="field">
-                <label class="text-lg">Pick-up Time</label>
-
-                <InputGroup>
-                    <InputGroupAddon> <i class="pi pi-clock" /></InputGroupAddon
-                    ><DatePicker
-                        v-model="form.pickupTime"
-                        time-only
-                        icon-display="input"
-                        class="w-full"
-                        :mindate="minTime"
-                        :max-date="maxTime"
-                        :step-minute="30"
-                /></InputGroup>
-            </div>
-
-            <div class="field">
                 <label class="text-lg">Drop-off Date</label>
                 <InputGroup>
                     <InputGroupAddon> <i class="pi pi-calendar" /> </InputGroupAddon
@@ -84,22 +68,7 @@
                 /></InputGroup>
             </div>
 
-            <div class="field">
-                <label class="text-lg">Drop-off Time</label>
-                <InputGroup>
-                    <InputGroupAddon> <i class="pi pi-clock" /> </InputGroupAddon
-                    ><DatePicker
-                        v-model="form.dropoffTime"
-                        :mindate="minTime"
-                        :max-date="maxTime"
-                        :step-minute="30"
-                        time-only
-                        icon-display="input"
-                        class="w-full"
-                /></InputGroup>
-            </div>
-
-            <div class="field button-wrapper">
+            <div class="field button-wrapper ml-auto">
                 <Button label="Search Cars" size="large" class="w-full" @click="searchCars" />
             </div>
         </div>
@@ -111,7 +80,7 @@ import { Button, DatePicker, InputGroup, InputGroupAddon, Select } from 'primevu
 import { onMounted, ref } from 'vue'
 import { useLocation } from '@storefront/composables/useLocation'
 import { useRouter } from 'vue-router'
-import { formatDate, formatTime } from '@storefront/utils.js'
+import { formatDate } from '@storefront/utils.js'
 
 const router = useRouter()
 const { getLocations, groupedLocations } = useLocation()
@@ -128,35 +97,19 @@ const defaultDropOffDate = ref(dropOffDate)
 defaultPickUpDate.value.setHours(0, 0, 0, 0)
 defaultDropOffDate.value.setHours(0, 0, 0, 0)
 
-const minTime = new Date()
-minTime.setHours(10, 0, 0, 0)
-const defaultPickUpTime = new Date()
-defaultPickUpTime.setHours(10, 0, 0, 0)
-
-const maxTime = new Date()
-maxTime.setHours(20, 0, 0, 0)
-const defaultDropOffTime = new Date()
-defaultDropOffTime.setHours(10, 0, 0, 0)
-
 const form = ref({
-    location: null,
+    city: null,
     pickupDate: defaultPickUpDate,
-    pickupTime: defaultPickUpTime,
     dropoffDate: defaultDropOffDate,
-    dropoffTime: defaultDropOffTime,
 })
 
 const searchCars = () => {
     router.push({
         path: '/fleet',
         query: {
-            ...(form.value.location && {
-                'location-id': form.value.location,
-            }),
+            location: Number(form.value.location),
             'pick-up-date': formatDate(form.value.pickupDate),
-            'pick-up-time': formatTime(form.value.pickupTime),
             'drop-off-date': formatDate(form.value.dropoffDate),
-            'drop-off-time': formatTime(form.value.dropoffTime),
         },
     })
 }
@@ -175,9 +128,9 @@ onMounted(() => {
     margin-bottom: 1rem;
 }
 
-.grid {
+.search-panel-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr 1fr auto;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
     gap: 1rem;
     align-items: end;
 }
@@ -193,7 +146,7 @@ onMounted(() => {
 }
 
 @media (max-width: 1200px) {
-    .grid {
+    .search-panel-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -203,7 +156,7 @@ onMounted(() => {
 }
 
 @media (max-width: 768px) {
-    .grid {
+    .search-panel-grid {
         grid-template-columns: 1fr;
     }
 }

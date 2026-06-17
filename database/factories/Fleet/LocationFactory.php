@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Fleet;
 
+use App\Models\Fleet\City;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class LocationFactory extends Factory
@@ -12,7 +13,7 @@ class LocationFactory extends Factory
             'name' => fake()->company() . ' Location',
 
             'country' => fake()->country(),
-            'city' => fake()->city(),
+            'city_id' => City::factory(),
             'address' => fake()->streetAddress(),
 
             'latitude' => fake()->latitude(),

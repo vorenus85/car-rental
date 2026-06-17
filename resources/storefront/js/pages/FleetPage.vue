@@ -100,23 +100,27 @@ const onPaginate = async page => {
 const buildFilters = filters => {
     const query = {}
 
-    if (filters?.carTypes.length) {
+    if (filters?.location) {
+        query.location = filters.location
+    }
+
+    if (filters?.carTypes) {
         query.body_type = filters.carTypes
     }
 
-    if (filters?.transmissions.length) {
+    if (filters?.transmissions) {
         query.transmission = filters.transmissions
     }
 
-    if (filters?.fuelTypes.length) {
+    if (filters?.fuelTypes) {
         query.fuel = filters.fuelTypes
     }
 
-    if (filters?.seats.length) {
+    if (filters?.seats) {
         query.seats = filters.seats
     }
 
-    if (filters?.luggageCounts.length) {
+    if (filters?.luggageCounts) {
         query.luggage_count = filters.luggageCounts
     }
 
@@ -129,9 +133,10 @@ const buildFilters = filters => {
 
 const onFilter = async filters => {
     const filterQuery = buildFilters(filters)
-
+    console.log(filterQuery)
     const query = { ...route.query }
 
+    delete query.location
     delete query.price_per_day
     delete query.body_type
     delete query.transmission

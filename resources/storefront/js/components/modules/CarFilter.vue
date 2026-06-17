@@ -7,6 +7,34 @@
             <Button @click="clearFilters" label="Clear All" link size="small" />
         </div>
 
+        <div class="mb-8">
+            <h4 class="font-medium mb-4">Pick-up Location</h4>
+            <Select
+                v-model="filters.location"
+                :options="groupedLocations"
+                input-id="pick-up-location"
+                option-group-label="label"
+                option-group-children="items"
+                option-label="label"
+                option-value="value"
+                filter
+                placeholder="Select location"
+                class="w-full"
+            >
+                <template #optiongroup="slotProps">
+                    <div class="flex items-center">
+                        <img
+                            :alt="slotProps.option.label"
+                            src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
+                            :class="`mr-2 flag flag-${slotProps?.option?.code?.toLowerCase()}`"
+                            style="width: 18px"
+                        />
+                        <div>{{ slotProps.option.label }}</div>
+                    </div>
+                </template>
+            </Select>
+        </div>
+
         <!-- Price Range -->
         <div class="mb-8">
             <h4 class="font-medium mb-4">Price Range</h4>
@@ -153,11 +181,13 @@ import {
     AccordionPanel,
     Button,
     Checkbox,
-    Divider,
+    Select,
     Slider,
 } from 'primevue'
-import { computed, onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useLocation } from '@storefront/composables/useLocation'
+const { getLocations, groupedLocations } = useLocation()
 
 const emit = defineEmits(['filter'])
 const route = useRoute()
@@ -175,6 +205,7 @@ const openPanels = computed(() => {
 })
 
 const filters = reactive({
+    location: null,
     priceRange: [0, 200],
     carTypes: [],
     transmissions: [],
@@ -184,6 +215,7 @@ const filters = reactive({
 })
 
 const clearFilters = () => {
+    filters.location = null
     filters.priceRange = [0, 200]
     filters.carTypes = []
     filters.transmissions = []
@@ -223,6 +255,10 @@ const doFilter = () => {
     emit('filter', filters)
 }
 onMounted(() => {
+    if (query.location) {
+        filters.location = Number(route.query.location)
+    }
+
     if (query.body_type) {
         filters.carTypes = Array.isArray(query.body_type) ? query.body_type : [query.body_type]
     }
@@ -256,5 +292,7 @@ onMounted(() => {
 
         filters.luggageCounts = luggage.map(Number)
     }
+
+    getLocations()
 })
 </script>

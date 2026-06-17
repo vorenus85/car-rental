@@ -2,10 +2,10 @@
 
 namespace Database\Seeders\Fleet;
 
+use App\Models\Fleet\City;
 use App\Models\Fleet\Location;
-use Illuminate\Support\Facades\File;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class LocationSeeder extends Seeder
 {
@@ -19,6 +19,11 @@ class LocationSeeder extends Seeder
         $data = json_decode(File::get($path), true);
 
         foreach ($data as $item) {
+            $city = City::firstOrCreate(['name' => $item['city']]);
+
+            $item['city_id'] = $city->id;
+            unset($item['city']);
+
             Location::create($item);
         }
 

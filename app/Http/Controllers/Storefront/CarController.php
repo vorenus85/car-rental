@@ -5,18 +5,28 @@ namespace App\Http\Controllers\Storefront;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Storefront\CarCardResource;
 use App\Models\Fleet\Car;
+use App\Models\Fleet\Location;
 use Illuminate\Http\Request;
 
 class CarController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Car::query()->with(['variant', 'variant.model', 'variant.model.brand'])->where('status', 'available');
+        $query = Car::query()
+            ->with(['variant', 'variant.model', 'variant.model.brand', 'location'])
+            ->where('status', 'available');
 
-        // location_id
+        // location
         if ($request->filled('location')) {
-            $query->where('location_id', $request->location_id);
+            $location = Location::find($request->input('location'));
+
+            if ($location) {
+                $query->whereHas('location', function ($q) use ($location) {
+                    $q->where('city_id', $location->city_id);
+                });
+            }
         }
+
         // body_type
         if ($request->filled('body_type')) {
             $query->whereHas('variant', function ($query) use ($request) {

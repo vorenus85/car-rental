@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!loading" class="cars-module mx-auto max-w-8xl">
+    <div v-if="!loadingCars" class="cars-module mx-auto max-w-8xl">
         <div class="module-head p-4">
             <h3 class="module-head-title">Explore Our Fleet</h3>
             <div class="carousel-nav">

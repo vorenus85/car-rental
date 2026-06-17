@@ -4,6 +4,7 @@ namespace App\Models\Fleet;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Location extends Model
@@ -13,7 +14,7 @@ class Location extends Model
     protected $fillable = [
         'name',
         'country',
-        'city',
+        'city_id',
         'address',
 
         'latitude',
@@ -32,6 +33,14 @@ class Location extends Model
         'active'
     ];
 
+    protected $appends = [
+        'city',
+    ];
+
+    protected $hidden = [
+        'city_model',
+    ];
+
     protected $casts = [
         'business_hours' => 'array',
         'active' => 'boolean',
@@ -45,5 +54,18 @@ class Location extends Model
     public function cars(): HasMany
     {
         return $this->hasMany(Car::class);
+    }
+
+    /**
+     * @return BelongsTo<City, $this>
+     */
+    public function cityModel(): BelongsTo
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
+
+    public function getCityAttribute(): ?string
+    {
+        return $this->cityModel?->name;
     }
 }
