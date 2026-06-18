@@ -4,7 +4,11 @@
             <BreadcrumbModule :items="breadcrumbItems"></BreadcrumbModule>
             <PageTitle title="Fleet"></PageTitle>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-4">
-                <aside class="col-span-1">
+                <aside class="col-span-1 relative">
+                    <div
+                        v-if="loadingCars"
+                        class="absolute inset-0 z-10 flex items-center justify-center bg-white/70"
+                    ></div>
                     <CarFilter @filter="onFilter"></CarFilter>
                 </aside>
 
@@ -60,7 +64,7 @@ import CarCard from '@storefront/components/modules/CarCard/CarCard.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
 
 import { onMounted, watch } from 'vue'
-import { Message } from 'primevue'
+import { Message, ProgressSpinner } from 'primevue'
 import { useRoute, useRouter } from 'vue-router'
 import PageTitle from '@storefront/components/modules/PageTitle.vue'
 import PaginationModule from '@storefront/components/modules/PaginationModule.vue'

@@ -315,21 +315,21 @@ const fuelTypes = [
 const seats = [2, 4, 5, 6]
 const luggageCounts = [1, 2, 3, 4, 5]
 
-onMounted(() => {
+const hydrateFiltersFromQuery = query => {
     if (query['pick-up-date']) {
-        const pickupDate = new Date(route.query['pick-up-date'])
+        const pickupDate = new Date(query['pick-up-date'])
         pickupDate.setHours(0, 0, 0, 0)
         filters.pickupDate = pickupDate
     }
 
     if (query['drop-off-date']) {
-        const dropoffDate = new Date(route.query['drop-off-date'])
+        const dropoffDate = new Date(query['drop-off-date'])
         dropoffDate.setHours(0, 0, 0, 0)
         filters.dropoffDate = dropoffDate
     }
 
     if (query.location) {
-        filters.location = Number(route.query.location)
+        filters.location = Number(query.location)
     }
 
     if (query.body_type) {
@@ -365,6 +365,10 @@ onMounted(() => {
 
         filters.luggageCounts = luggage.map(Number)
     }
+}
+
+onMounted(() => {
+    hydrateFiltersFromQuery(query)
 
     draftPriceRange.value = filters.priceRange
 
