@@ -1,5 +1,6 @@
 <script setup>
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
+import PageTitle from '@storefront/components/modules/PageTitle.vue'
 </script>
 
 <template>
