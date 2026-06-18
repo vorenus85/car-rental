@@ -4,7 +4,7 @@
         <div class="flex items-center justify-between mb-6">
             <h3 class="text-xl font-semibold">Filters</h3>
 
-            <Button @click="clearFilters" label="Clear All" link size="small" />
+            <Button label="Clear filters" link size="small" @click="clearFilters" />
         </div>
 
         <div class="mb-8">
@@ -62,7 +62,14 @@
         <div class="mb-8">
             <h4 class="font-medium mb-4">Price per Day</h4>
 
-            <Slider v-model="filters.priceRange" range :min="0" :max="200" class="mb-3" />
+            <Slider
+                v-model="draftPriceRange"
+                range
+                :min="0"
+                :max="200"
+                class="mb-3"
+                @slideend="applyPriceFilter"
+            />
 
             <div class="flex justify-between text-sm text-surface-500">
                 <span>${{ filters.priceRange[0] }}</span>
@@ -189,10 +196,11 @@
         <Button
             class="mt-3"
             severity="contrast"
+            outlined
             fluid
             size="large"
-            :label="`Show Results`"
-            @click="doFilter"
+            :label="`Clear filter`"
+            @click="clearFilters"
         />
     </div>
 </template>
@@ -208,7 +216,7 @@ import {
     Select,
     Slider,
 } from 'primevue'
-import { computed, onMounted, reactive, ref, watch } from 'vue'
+import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useLocation } from '@storefront/composables/useLocation'
 const { getLocations, groupedLocations } = useLocation()
@@ -241,6 +249,8 @@ const defaultDropOffDate = ref(dropOffDate)
 defaultPickUpDate.value.setHours(0, 0, 0, 0)
 defaultDropOffDate.value.setHours(0, 0, 0, 0)
 
+const syncing = ref(true)
+
 const filters = reactive({
     location: null,
     pickupDate: defaultPickUpDate,
@@ -252,6 +262,22 @@ const filters = reactive({
     seats: [],
     luggageCounts: [],
 })
+
+const draftPriceRange = ref([0, 200])
+
+const applyPriceFilter = event => {
+    filters.priceRange = event.value
+}
+
+watch(
+    filters,
+    () => {
+        if (syncing.value) return
+
+        emit('filter', filters)
+    },
+    { deep: true }
+)
 
 const clearFilters = () => {
     filters.location = null
@@ -287,29 +313,23 @@ const fuelTypes = [
 ]
 
 const seats = [2, 4, 5, 6]
-
 const luggageCounts = [1, 2, 3, 4, 5]
 
-const resultCount = ref(24)
-
-const doFilter = () => {
-    emit('filter', filters)
-}
-onMounted(() => {
+const hydrateFiltersFromQuery = query => {
     if (query['pick-up-date']) {
-        const pickupDate = new Date(route.query['pick-up-date'])
+        const pickupDate = new Date(query['pick-up-date'])
         pickupDate.setHours(0, 0, 0, 0)
         filters.pickupDate = pickupDate
     }
 
     if (query['drop-off-date']) {
-        const dropoffDate = new Date(route.query['drop-off-date'])
+        const dropoffDate = new Date(query['drop-off-date'])
         dropoffDate.setHours(0, 0, 0, 0)
         filters.dropoffDate = dropoffDate
     }
 
     if (query.location) {
-        filters.location = Number(route.query.location)
+        filters.location = Number(query.location)
     }
 
     if (query.body_type) {
@@ -345,7 +365,17 @@ onMounted(() => {
 
         filters.luggageCounts = luggage.map(Number)
     }
+}
+
+onMounted(() => {
+    hydrateFiltersFromQuery(query)
+
+    draftPriceRange.value = filters.priceRange
 
     getLocations()
+
+    nextTick(() => {
+        syncing.value = false
+    })
 })
 </script>

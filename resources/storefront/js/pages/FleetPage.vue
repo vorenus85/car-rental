@@ -4,7 +4,11 @@
             <BreadcrumbModule :items="breadcrumbItems"></BreadcrumbModule>
             <PageTitle title="Fleet"></PageTitle>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-0 md:gap-4">
-                <aside class="col-span-1">
+                <aside class="col-span-1 relative">
+                    <div
+                        v-if="loadingCars"
+                        class="absolute inset-0 z-10 flex items-center justify-center bg-white/70"
+                    ></div>
                     <CarFilter @filter="onFilter"></CarFilter>
                 </aside>
 
@@ -59,17 +63,17 @@ import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import CarCard from '@storefront/components/modules/CarCard/CarCard.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
 
-import { onMounted } from 'vue'
+import { onMounted, watch } from 'vue'
+import { Message, ProgressSpinner } from 'primevue'
+import { useRoute, useRouter } from 'vue-router'
 import PageTitle from '@storefront/components/modules/PageTitle.vue'
 import PaginationModule from '@storefront/components/modules/PaginationModule.vue'
-import { useRoute, useRouter } from 'vue-router'
-import SortDropdown from '../components/modules/SortDropdown.vue'
-import { useCars } from '@storefront/composables/useCars'
-import CarCardSkeleton from '../components/modules/CarCard/CarCardSkeleton.vue'
-import CarFilter from '../components/modules/CarFilter.vue'
-import { Message } from 'primevue'
+import SortDropdown from '@storefront/components/modules/SortDropdown.vue'
+import { useFleet } from '@storefront/composables/useFleet'
+import CarCardSkeleton from '@storefront/components/modules/CarCard/CarCardSkeleton.vue'
+import CarFilter from '@storefront/components/modules/CarFilter.vue'
 
-const { getCars, cars, loadingCars, currentPage, perPage, total } = useCars()
+const { getCars, cars, loadingCars, currentPage, perPage, total } = useFleet()
 
 const route = useRoute()
 const router = useRouter()
@@ -130,27 +134,34 @@ const buildFilters = filters => {
 
     return query
 }
+watch(
+    () => route.query,
+    query => getCars(query),
+    { immediate: true }
+)
 
 const onFilter = async filters => {
     const filterQuery = buildFilters(filters)
-    console.log(filterQuery)
-    const query = { ...route.query }
 
-    delete query['drop-off-date']
-    delete query['pick-up-date']
-    delete query.location
-    delete query.price_per_day
-    delete query.body_type
-    delete query.transmission
-    delete query.fuel
-    delete query.seats
-    delete query.luggage_count
+    const query = { ...route.query, ...filterQuery }
+
+    const FILTER_KEYS = [
+        'drop-off-date',
+        'pick-up-date',
+        'location',
+        'price_per_day',
+        'body_type',
+        'transmission',
+        'fuel',
+        'seats',
+        'luggage_count',
+    ]
+
+    FILTER_KEYS.forEach(key => delete query[key])
 
     Object.assign(query, filterQuery)
 
     await router.push({ query })
-
-    await getCars(query)
 }
 
 const onSort = async sort => {
@@ -165,14 +176,7 @@ const onSort = async sort => {
     await router.push({
         query,
     })
-
-    await getCars(query)
 }
 
-onMounted(async () => {
-    const query = {
-        ...route.query,
-    }
-    await getCars(query)
-})
+onMounted(async () => {})
 </script>
