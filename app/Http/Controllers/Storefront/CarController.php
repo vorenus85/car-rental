@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Storefront\CarCardResource;
+use App\Http\Resources\Storefront\CarListResource;
+use App\Http\Resources\Storefront\CarUnitResource;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
 use Illuminate\Http\Request;
@@ -99,7 +100,20 @@ class CarController extends Controller
         );
 
 
-        return CarCardResource::collection($cars);
+        return CarListResource::collection($cars);
+    }
+
+    public function show(Car $car)
+    {
+
+        $response = Car::with([
+            'variant:id,name,model_id,category,transmission,fuel,seats,doors,range_km,luggage_count,body_type,description',
+            'variant.model:id,name,brand_id',
+            'variant.model.brand:id,name',
+            'features',
+        ])->findOrFail($car->id);
+
+        return new CarUnitResource($response);
     }
 
     public function randomCars()
@@ -115,6 +129,6 @@ class CarController extends Controller
             ->limit(8)
             ->get();
 
-        return CarCardResource::collection($cars);
+        return CarListResource::collection($cars);
     }
 }

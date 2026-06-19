@@ -9,7 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @mixin Car
  */
-class CarCardResource extends JsonResource
+class CarListResource extends JsonResource
 {
     /**
      * Transform the resource into an array.

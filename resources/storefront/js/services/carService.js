@@ -9,3 +9,7 @@ export const fetchCars = params => {
         params,
     })
 }
+
+export const fetchCar = id => {
+    return axios.get(`/api/storefront/cars/${id}`)
+}

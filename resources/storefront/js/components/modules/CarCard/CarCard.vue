@@ -2,49 +2,59 @@
     <Card class="overflow-hidden">
         <template #header>
             <div class="p-4">
-                <img :src="image" :alt="name" class="h-56 w-full object-contain" loading="lazy" />
+                <RouterLink :to="{ name: 'car', params: { id: car.id } }"
+                    ><img
+                        :src="car.image_url"
+                        :alt="car.name"
+                        class="h-56 w-full object-contain hover:scale-110 transition-transform duration-300"
+                        loading="lazy"
+                    />
+                </RouterLink>
             </div>
         </template>
 
         <template #content>
             <div>
-                <h3 class="text-xl font-bold">
-                    {{ name }}
-                </h3>
+                <RouterLink
+                    :to="{ name: 'car', params: { id: car.id } }"
+                    class="text-xl font-bold hover:text-primary"
+                >
+                    {{ car.name }}
+                </RouterLink>
 
                 <div class="my-3 flex items-center gap-2">
-                    <Tag :value="year" severity="secondary" />
+                    <Tag :value="car.production_year" severity="secondary" />
 
                     <Tag
-                        :value="category"
+                        :value="car.category"
                         severity="secondary"
                         class="capitalize"
-                        :class="{ uppercase: category === 'suv' }"
+                        :class="{ uppercase: car.category === 'suv' }"
                     />
                 </div>
 
                 <div class="mb-5 grid grid-cols-2 gap-4">
                     <div class="flex items-center gap-2">
                         <SeatsV1 :size="20" />
-                        <span class="text-sm text-surface-600"> {{ seats }} seats </span>
+                        <span class="text-sm text-surface-600"> {{ car.seats }} seats </span>
                     </div>
 
                     <div class="flex items-center gap-2">
                         <LuggageV1 :size="20" />
-                        <span class="text-sm text-surface-600"> {{ baggage }} bag </span>
+                        <span class="text-sm text-surface-600"> {{ car.luggage_count }} bags </span>
                     </div>
 
                     <div class="flex items-center gap-2">
                         <FuelV1 :size="20" />
                         <span class="text-sm text-surface-600 capitalize">
-                            {{ fuel }}
+                            {{ car.fuel }}
                         </span>
                     </div>
 
                     <div class="flex items-center gap-2">
                         <TransmissionV1 :size="20" />
                         <span class="text-sm text-surface-600 capitalize">
-                            {{ transmission }}
+                            {{ car.transmission }}
                         </span>
                     </div>
                 </div>
@@ -53,11 +63,16 @@
 
                 <div class="flex items-center justify-between">
                     <div>
-                        <span class="text-2xl font-bold"> €{{ pricePerDay }} </span>
+                        <span class="text-2xl font-bold"> €{{ car.price_per_day }} </span>
                         <span class="text-sm text-surface-500"> /day </span>
                     </div>
 
-                    <Button label="View Details" outlined />
+                    <Button
+                        label="View Details"
+                        outlined
+                        as="router-link"
+                        :to="{ name: 'car', params: { id: car.id } }"
+                    />
                 </div>
             </div>
         </template>
@@ -72,49 +87,9 @@ import TransmissionV1 from '@storefront/components/icons/TransmissionV1.vue'
 import LuggageV1 from '@storefront/components/icons/LuggageV1.vue'
 
 defineProps({
-    name: {
-        type: String,
-        required: true,
-    },
-    brand: {
-        type: String,
-        required: true,
-    },
-    model: {
-        type: String,
-        required: true,
-    },
-    image: {
-        type: String,
-        required: true,
-    },
-    category: {
-        type: String,
-        required: true,
-    },
-    year: {
-        type: Number,
-        required: true,
-    },
-    pricePerDay: {
-        type: Number,
-        required: true,
-    },
-    seats: {
-        type: Number,
-        required: true,
-    },
-    baggage: {
-        type: Number,
-        required: true,
-    },
-    fuel: {
-        type: String,
-        required: true,
-    },
-    transmission: {
-        type: String,
-        required: true,
+    car: {
+        type: Object,
+        default: () => {},
     },
 })
 </script>

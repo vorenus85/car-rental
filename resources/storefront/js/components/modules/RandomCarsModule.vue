@@ -30,19 +30,7 @@
         <div v-else class="cars-module-list module-body p-4">
             <Carousel v-bind="carouselConfig" ref="carouselRef">
                 <Slide v-for="car in cars" :key="car.id" class="cars-module-item">
-                    <CarCard
-                        :year="car.production_year"
-                        :name="car.name"
-                        :brand="car.brand_name"
-                        :model="car.model_name"
-                        :image="car.image_url"
-                        :category="car.category"
-                        :price-per-day="car.price_per_day"
-                        :seats="car.seats"
-                        :baggage="car.luggage_count"
-                        :fuel="car.fuel"
-                        :transmission="car.transmission"
-                    ></CarCard>
+                    <CarCard :car="car"></CarCard>
                 </Slide>
             </Carousel>
         </div>

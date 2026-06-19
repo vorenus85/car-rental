@@ -30,19 +30,7 @@
                         </template>
                         <template v-else>
                             <template v-for="car in cars" :key="car.id">
-                                <CarCard
-                                    :year="car.production_year"
-                                    :name="car.name"
-                                    :brand="car.brand_name"
-                                    :model="car.model_name"
-                                    :image="car.image_url"
-                                    :category="car.category"
-                                    :price-per-day="car.price_per_day"
-                                    :seats="car.seats"
-                                    :baggage="car.luggage_count"
-                                    :fuel="car.fuel"
-                                    :transmission="car.transmission"
-                                ></CarCard> </template
+                                <CarCard :car="car"></CarCard> </template
                         ></template>
                     </div>
                     <div>
