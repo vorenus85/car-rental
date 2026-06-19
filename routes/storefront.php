@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('/api/storefront/cars')->group(function () {
     Route::get('/', [CarController::class, 'index']);
-    Route::get('/{car}', [CarController::class, 'show']);
     Route::get('/random-available', [CarController::class, 'randomCars']);
+    Route::get('/{car}', [CarController::class, 'show']);
 });
 
 Route::prefix('/api/storefront/locations')->group(function () {
