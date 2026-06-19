@@ -41,7 +41,7 @@
                         <div class="mt-8 grid grid-cols-4 gap-6">
                             <div v-tooltip="'Seats'" class="text-center flex flex-col items-center">
                                 <SeatsV1 :size="20" />
-                                <p class="text-sm">{{ car?.seats }}</p>
+                                <p class="text-sm">{{ car?.seats }} seats</p>
                             </div>
 
                             <div
@@ -69,7 +69,7 @@
                                 class="text-center flex flex-col items-center"
                             >
                                 <LuggageV1 :size="20" />
-                                <p class="text-sm">{{ car?.luggage_count }}</p>
+                                <p class="text-sm">{{ car?.luggage_count }} bags</p>
                             </div>
 
                             <div v-tooltip="'Doors'" class="text-center flex flex-col items-center">
@@ -201,7 +201,7 @@
                                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                                     <div>
                                         <h3 class="px-2 mb-3">Specifications</h3>
-                                        <div class="grid grid-cols-2 gap-3">
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                             <div
                                                 v-for="spec in specifications"
                                                 :key="spec.label"
@@ -210,13 +210,21 @@
                                                 <span class="text-md text-gray-500">{{
                                                     spec.label
                                                 }}</span>
-                                                <span class="text-sm">{{ spec.value }}</span>
+                                                <span
+                                                    class="text-sm"
+                                                    :class="{
+                                                        uppercase:
+                                                            spec.label === 'Car Type' &&
+                                                            spec.value === 'suv',
+                                                    }"
+                                                    >{{ spec.value }}</span
+                                                >
                                             </div>
                                         </div>
                                     </div>
                                     <div>
                                         <h3 class="px-2 mb-3">Description</h3>
-                                        <p>{{ car?.variant_desc }}</p>
+                                        <p class="px-2">{{ car?.variant_desc }}</p>
                                     </div>
                                 </div>
                             </TabPanel>
