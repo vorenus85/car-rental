@@ -3,16 +3,29 @@
 namespace App\Http\Services\Storefront;
 
 use App\Models\Fleet\Car;
+use App\Models\Fleet\Location;
 use Illuminate\Support\Collection;
 
 class SimilarCarsService
 {
     public function getSimilarCars(Car $car, int $limit = 8): Collection
     {
+        $car->loadMissing([
+            'location',
+            'variant',
+        ]);
+
         return Car::query()
             ->where('id', '!=', $car->id)
-            ->with(['variant', 'variant.model',])
             ->where('status', 'available')
+            ->with([
+                'location',
+                'variant',
+                'variant.model',
+            ])
+            ->whereHas('location', function ($query) use ($car) {
+                $query->where('city_id', $car->location->city_id);
+            })
             ->get()
             ->map(function (Car $candidate) use ($car) {
                 $candidate->setAttribute(

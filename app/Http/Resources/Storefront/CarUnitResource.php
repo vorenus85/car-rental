@@ -27,7 +27,6 @@ class CarUnitResource extends JsonResource
             'mileage' => $this->mileage,
             'image' => $this->whenHas('image'),
             'imageUrl' => $this->image_url,
-            'category' => $this->variant?->category,
             'seats' => $this->variant?->seats,
             'doors' => $this->variant?->doors,
             'transmission' => $this->variant?->transmission,

@@ -24,7 +24,7 @@ class CarListResource extends JsonResource
             'productionYear' => $this->production_year,
             'image' => $this->whenHas('image'),
             'imageUrl' => $this->image_url,
-            'category' => $this->variant?->category,
+            'bodyType' => $this->variant?->body_type,
             'seats' => $this->variant?->seats,
             'transmission' => $this->variant?->transmission,
             'fuel' => $this->variant?->fuel,

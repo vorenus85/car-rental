@@ -35,10 +35,10 @@
                     <Tag :value="car.productionYear" severity="secondary" />
 
                     <Tag
-                        :value="car.category"
+                        :value="car.bodyType"
                         severity="secondary"
                         class="capitalize"
-                        :class="{ uppercase: car.category === 'suv' }"
+                        :class="{ uppercase: car.bodyType === 'suv' }"
                     />
                 </div>
 

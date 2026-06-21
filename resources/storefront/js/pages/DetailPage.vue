@@ -26,7 +26,12 @@
 
                     <!-- car Info -->
                     <div>
-                        <Tag :value="car?.category" class="uppercase" severity="secondary" />
+                        <Tag
+                            :value="car?.bodyType"
+                            class="capitalize"
+                            :class="{ uppercase: car.bodyType === 'suv' }"
+                            severity="secondary"
+                        />
 
                         <h1 class="mt-4 text-4xl font-bold">
                             {{ car?.name }}
@@ -310,6 +315,7 @@
                 </div>
             </div>
         </div>
+        <HomeAdvantages class="mb-5"></HomeAdvantages>
         <div class="background-white pt-3">
             <CarsModule :cars="cars" title="Similar cars" :loading-cars="loadingCars"></CarsModule>
         </div>
@@ -317,6 +323,7 @@
 </template>
 <script setup>
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
+import HomeAdvantages from '@storefront/components/modules/HomeAdvantages.vue'
 import {
     Button,
     Card,
