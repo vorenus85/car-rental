@@ -30,19 +30,7 @@
         <div v-else class="cars-module-list module-body p-4">
             <Carousel v-bind="carouselConfig" ref="carouselRef">
                 <Slide v-for="car in cars" :key="car.id" class="cars-module-item">
-                    <CarCard
-                        :year="car.production_year"
-                        :name="car.name"
-                        :brand="car.brand_name"
-                        :model="car.model_name"
-                        :image="car.image_url"
-                        :category="car.category"
-                        :price-per-day="car.price_per_day"
-                        :seats="car.seats"
-                        :baggage="car.luggage_count"
-                        :fuel="car.fuel"
-                        :transmission="car.transmission"
-                    ></CarCard>
+                    <CarCard :car="car"></CarCard>
                 </Slide>
             </Carousel>
         </div>
@@ -55,12 +43,10 @@ import { Carousel, Slide } from 'vue3-carousel'
 import CarCard from '@storefront/components/modules/CarCard/CarCard.vue'
 import { Button } from 'primevue'
 import IconArrow from '@storefront/components/icons/IconArrow.vue'
-import { useCars } from '@storefront/composables/useCars.js'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import CarCardSkeleton from '@storefront/components/modules/CarCard/CarCardSkeleton.vue'
-
-const { getRandomCars, loadingCars, cars } = useCars()
 const carouselRef = ref()
+
 const next = () => {
     carouselRef.value.next()
 }
@@ -92,10 +78,6 @@ const carouselConfig = {
         },
     },
 }
-
-onMounted(async () => {
-    await getRandomCars()
-})
 </script>
 <style scoped>
 .cars-module-list {

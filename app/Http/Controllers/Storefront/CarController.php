@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Storefront\CarCardResource;
+use App\Http\Resources\Storefront\CarListResource;
+use App\Http\Resources\Storefront\CarUnitResource;
+use App\Http\Services\Storefront\SimilarCarsService;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
 use Illuminate\Http\Request;
@@ -28,9 +30,9 @@ class CarController extends Controller
         }
 
         // body_type
-        if ($request->filled('body_type')) {
+        if ($request->filled('bodyType')) {
             $query->whereHas('variant', function ($query) use ($request) {
-                $query->whereIn('body_type', (array) $request->body_type);
+                $query->whereIn('body_type', (array) $request->bodyType);
             });
         }
         // fuel_type
@@ -42,15 +44,15 @@ class CarController extends Controller
 
         // price range
         if (
-            $request->filled('price_per_day') &&
-            is_array($request->price_per_day) &&
-            count($request->price_per_day) === 2
+            $request->filled('pricePerDay') &&
+            is_array($request->pricePerDay) &&
+            count($request->pricePerDay) === 2
         ) {
             $query->whereBetween(
                 'price_per_day',
                 [
-                    $request->price_per_day[0],
-                    $request->price_per_day[1],
+                    $request->pricePerDay[0],
+                    $request->pricePerDay[1],
                 ]
             );
         }
@@ -70,9 +72,9 @@ class CarController extends Controller
         }
 
         // luggage_count
-        if ($request->filled('luggage_count')) {
+        if ($request->filled('luggageCount')) {
             $query->whereHas('variant', function ($query) use ($request) {
-                $query->whereIn('luggage_count', (array) $request->luggage_count);
+                $query->whereIn('luggage_count', (array) $request->luggageCount);
             });
         }
 
@@ -99,7 +101,20 @@ class CarController extends Controller
         );
 
 
-        return CarCardResource::collection($cars);
+        return CarListResource::collection($cars);
+    }
+
+    public function show(Car $car)
+    {
+
+        $response = Car::with([
+            'variant:id,name,model_id,category,transmission,fuel,seats,doors,range_km,luggage_count,body_type,description',
+            'variant.model:id,name,brand_id',
+            'variant.model.brand:id,name',
+            'features',
+        ])->findOrFail($car->id);
+
+        return new CarUnitResource($response);
     }
 
     public function randomCars()
@@ -115,6 +130,15 @@ class CarController extends Controller
             ->limit(8)
             ->get();
 
-        return CarCardResource::collection($cars);
+        return CarListResource::collection($cars);
+    }
+
+    public function similarCars(
+        Car $car,
+        SimilarCarsService $similarCarsService
+    ) {
+        $similarCars = $similarCarsService->getSimilarCars($car);
+
+        return CarListResource::collection($similarCars);
     }
 }

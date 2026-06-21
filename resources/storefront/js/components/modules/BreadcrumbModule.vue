@@ -1,10 +1,10 @@
 <template>
-    <div class="card flex justify-start">
+    <div class="card flex justify-start mb-5">
         <Breadcrumb :home="home" :model="items">
             <template #item="{ item, props }">
                 <router-link v-if="item.route" v-slot="{ href, navigate }" :to="item.route" custom>
                     <a :href="href" v-bind="props.action" @click="navigate">
-                        {{ item.label }}
+                        <i v-if="item.icon" :class="item.icon"></i>{{ item.label }}
                     </a>
                 </router-link>
 

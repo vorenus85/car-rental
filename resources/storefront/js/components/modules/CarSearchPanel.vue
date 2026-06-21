@@ -12,7 +12,7 @@
                     </InputGroupAddon>
 
                     <Select
-                        v-model="form.location"
+                        v-model="searchParams.location"
                         :options="groupedLocations"
                         input-id="pick-up-location"
                         option-group-label="label"
@@ -46,11 +46,12 @@
                         <i class="pi pi-calendar" />
                     </InputGroupAddon>
                     <DatePicker
-                        v-model="form.pickupDate"
+                        v-model="searchParams.pickUpDate"
                         :min-date="minPickUpDate"
                         icon-display="input"
                         date-format="yy-mm-dd"
                         class="w-full"
+                        placeholder="Select date"
                     />
                 </InputGroup>
             </div>
@@ -60,11 +61,12 @@
                 <InputGroup>
                     <InputGroupAddon> <i class="pi pi-calendar" /> </InputGroupAddon
                     ><DatePicker
-                        v-model="form.dropoffDate"
-                        :min-date="mindropOffDate"
+                        v-model="searchParams.dropOffDate"
+                        :min-date="minDropOffDate"
                         icon-display="input"
                         date-format="yy-mm-dd"
                         class="w-full"
+                        placeholder="Select date"
                 /></InputGroup>
             </div>
 
@@ -77,40 +79,29 @@
 
 <script setup>
 import { Button, DatePicker, InputGroup, InputGroupAddon, Select } from 'primevue'
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import { useLocation } from '@storefront/composables/useLocation'
+import { useRentalSearch } from '@storefront/composables/useRentalSearch'
 import { useRouter } from 'vue-router'
 import { formatDate } from '@storefront/utils.js'
 
 const router = useRouter()
 const { getLocations, groupedLocations } = useLocation()
-const defaultPickUpDate = ref(new Date())
-const minPickUpDate = new Date()
+const { searchParams, minPickUpDate, minDropOffDate } = useRentalSearch()
 
-const dropOffDate = new Date()
-dropOffDate.setDate(dropOffDate.getDate() + 3)
-const mindropOffDate = new Date()
-mindropOffDate.setDate(mindropOffDate.getDate() + 1)
-
-const defaultDropOffDate = ref(dropOffDate)
-
-defaultPickUpDate.value.setHours(0, 0, 0, 0)
-defaultDropOffDate.value.setHours(0, 0, 0, 0)
-
-const form = ref({
-    city: null,
-    pickupDate: defaultPickUpDate,
-    dropoffDate: defaultDropOffDate,
-})
-
-const searchCars = () => {
-    router.push({
+const searchCars = async () => {
+    await router.push({
         path: '/fleet',
         query: {
-            location: Number(form.value.location),
-            'pick-up-date': formatDate(form.value.pickupDate),
-            'drop-off-date': formatDate(form.value.dropoffDate),
+            location: Number(searchParams.location),
+            pickUpDate: formatDate(searchParams.pickUpDate),
+            dropOffDate: formatDate(searchParams.dropOffDate),
         },
+    })
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
     })
 }
 
