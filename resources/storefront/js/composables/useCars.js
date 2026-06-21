@@ -1,4 +1,4 @@
-import { fetchRandomCars } from '@storefront/services/carService'
+import { fetchRandomCars, fetchSimilarCars } from '@storefront/services/carService'
 import { ref } from 'vue'
 
 export const useCars = () => {
@@ -39,10 +39,23 @@ export const useCars = () => {
         }
     }
 
+    const getSimilarCars = async id => {
+        loadingCars.value = true
+        try {
+            const { data } = await fetchSimilarCars(id)
+            cars.value = data.data
+        } catch (error) {
+            console.error(error)
+        } finally {
+            loadingCars.value = false
+        }
+    }
+
     return {
         cars,
         loadingCars,
         getRandomCars,
         filterParams,
+        getSimilarCars,
     }
 }

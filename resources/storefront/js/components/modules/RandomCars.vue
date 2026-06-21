@@ -43,12 +43,10 @@ import { Carousel, Slide } from 'vue3-carousel'
 import CarCard from '@storefront/components/modules/CarCard/CarCard.vue'
 import { Button } from 'primevue'
 import IconArrow from '@storefront/components/icons/IconArrow.vue'
-import { useCars } from '@storefront/composables/useCars.js'
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import CarCardSkeleton from '@storefront/components/modules/CarCard/CarCardSkeleton.vue'
-
-const { getRandomCars, loadingCars, cars } = useCars()
 const carouselRef = ref()
+
 const next = () => {
     carouselRef.value.next()
 }
@@ -80,10 +78,6 @@ const carouselConfig = {
         },
     },
 }
-
-onMounted(async () => {
-    await getRandomCars()
-})
 </script>
 <style scoped>
 .cars-module-list {

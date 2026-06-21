@@ -2,7 +2,12 @@
     <Card class="overflow-hidden">
         <template #header>
             <div class="p-4">
-                <RouterLink :to="{ name: 'car', params: { id: car.id }, query: queryParams }"
+                <RouterLink
+                    :to="{
+                        name: 'car',
+                        params: { id: car.id },
+                        query: queryParams,
+                    }"
                     ><img
                         :src="car.imageUrl"
                         :alt="car.name"
@@ -16,8 +21,12 @@
         <template #content>
             <div>
                 <RouterLink
-                    :to="{ name: 'car', params: { id: car.id }, query: queryParams }"
                     class="text-xl font-bold hover:text-primary"
+                    :to="{
+                        name: 'car',
+                        params: { id: car.id },
+                        query: queryParams,
+                    }"
                 >
                     {{ car.name }}
                 </RouterLink>
@@ -71,7 +80,11 @@
                         label="View Details"
                         outlined
                         as="router-link"
-                        :to="{ name: 'car', params: { id: car.id }, query: queryParams }"
+                        :to="{
+                            name: 'car',
+                            params: { id: car.id },
+                            query: queryParams,
+                        }"
                     />
                 </div>
             </div>

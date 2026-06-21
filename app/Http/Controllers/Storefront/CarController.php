@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Storefront;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Storefront\CarListResource;
 use App\Http\Resources\Storefront\CarUnitResource;
+use App\Http\Services\Storefront\SimilarCarsService;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
 use Illuminate\Http\Request;
@@ -29,9 +30,9 @@ class CarController extends Controller
         }
 
         // body_type
-        if ($request->filled('body_type')) {
+        if ($request->filled('bodyType')) {
             $query->whereHas('variant', function ($query) use ($request) {
-                $query->whereIn('body_type', (array) $request->body_type);
+                $query->whereIn('body_type', (array) $request->bodyType);
             });
         }
         // fuel_type
@@ -43,15 +44,15 @@ class CarController extends Controller
 
         // price range
         if (
-            $request->filled('price_per_day') &&
-            is_array($request->price_per_day) &&
-            count($request->price_per_day) === 2
+            $request->filled('pricePerDay') &&
+            is_array($request->pricePerDay) &&
+            count($request->pricePerDay) === 2
         ) {
             $query->whereBetween(
                 'price_per_day',
                 [
-                    $request->price_per_day[0],
-                    $request->price_per_day[1],
+                    $request->pricePerDay[0],
+                    $request->pricePerDay[1],
                 ]
             );
         }
@@ -71,9 +72,9 @@ class CarController extends Controller
         }
 
         // luggage_count
-        if ($request->filled('luggage_count')) {
+        if ($request->filled('luggageCount')) {
             $query->whereHas('variant', function ($query) use ($request) {
-                $query->whereIn('luggage_count', (array) $request->luggage_count);
+                $query->whereIn('luggage_count', (array) $request->luggageCount);
             });
         }
 
@@ -130,5 +131,14 @@ class CarController extends Controller
             ->get();
 
         return CarListResource::collection($cars);
+    }
+
+    public function similarCars(
+        Car $car,
+        SimilarCarsService $similarCarsService
+    ) {
+        $similarCars = $similarCarsService->getSimilarCars($car);
+
+        return CarListResource::collection($similarCars);
     }
 }

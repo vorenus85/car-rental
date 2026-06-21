@@ -1,5 +1,5 @@
 <template>
-    <PublicLayout>
+    <PublicLayout class="details-page">
         <div class="mx-auto max-w-8xl px-4 py-4 min-h-[500px]">
             <BreadcrumbModule :items="breadcrumbItems"></BreadcrumbModule>
             <Button
@@ -310,6 +310,9 @@
                 </div>
             </div>
         </div>
+        <div class="background-white pt-3">
+            <CarsModule :cars="cars" title="Similar cars" :loading-cars="loadingCars"></CarsModule>
+        </div>
     </PublicLayout>
 </template>
 <script setup>
@@ -332,10 +335,12 @@ import FuelV1 from '@storefront/components/icons/FuelV1.vue'
 import SeatsV1 from '@storefront/components/icons/SeatsV1.vue'
 import TransmissionV1 from '@storefront/components/icons/TransmissionV1.vue'
 import LuggageV1 from '@storefront/components/icons/LuggageV1.vue'
-import { computed, onMounted } from 'vue'
+import { computed, onMounted, watch } from 'vue'
 import { useRentalSearch } from '@storefront/composables/useRentalSearch'
 import { useCar } from '@storefront/composables/useCar'
+import { useCars } from '@storefront/composables/useCars'
 import { useLocation } from '@storefront/composables/useLocation'
+import { useRoute } from 'vue-router'
 import { useRouter } from 'vue-router'
 import ProductionYearV1 from '@storefront/components/icons/ProductionYearV1.vue'
 import DoorsV1 from '@storefront/components/icons/DoorsV1.vue'
@@ -343,12 +348,16 @@ import MilageV1 from '@storefront/components/icons/MilageV1.vue'
 import RangeV1 from '@storefront/components/icons/RangeV1.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
 import { getDaysBetween } from '@storefront/utils.js'
+import CarsModule from '@storefront/components/modules/CarsModule.vue'
 
+const route = useRoute()
 const router = useRouter()
+const carId = route.params.id
 const { getLocations, groupedLocations } = useLocation()
 const { minPickUpDate, minDropOffDate, searchParams, hydrateRentalSearchFromQuery, timeOptions } =
     useRentalSearch()
-const { getCar, car, loadingCar, carId, bodyType } = useCar()
+const { getCar, car, loadingCar, bodyType } = useCar()
+const { cars, loadingCars, getSimilarCars } = useCars()
 
 const breadcrumbItems = computed(() => [
     {
@@ -374,14 +383,33 @@ const goBack = () => {
     }
 }
 
+watch(
+    () => route.params.id,
+    async id => {
+        Promise.all([getCar(id), getSimilarCars(id)])
+    }
+)
+
 onMounted(async () => {
-    await getCar()
-    await getLocations()
+    Promise.all([getCar(carId), getLocations(), getSimilarCars(carId)])
     hydrateRentalSearchFromQuery()
 })
 </script>
-<style>
-.p-datepicker-input {
+<style scoped>
+:deep(.p-datepicker-input) {
     width: 135px;
+}
+
+:deep(.p-image-mask .p-image-toolbar) {
+    --p-image-toolbar-background: rgba(0, 0, 0, 0.5);
+    background: var(--p-image-toolbar-background) !important;
+}
+
+:deep(.p-image-original) {
+    background: #fff !important;
+}
+
+:deep(.p-image-preview) {
+    display: flex !important;
 }
 </style>
