@@ -1,13 +1,14 @@
 <template>
     <PublicLayout>
         <div class="mx-auto max-w-8xl px-4 py-4 min-h-[500px]">
+            <BreadcrumbModule :items="breadcrumbItems"></BreadcrumbModule>
             <Button
                 size="small"
                 outlined
                 severity="secondary"
                 icon="pi pi-angle-left"
                 label="Back"
-                @click="router.push({ name: 'fleet' })"
+                @click="goBack"
             />
             <div class="container mx-auto py-8">
                 <div class="grid gap-8 lg:grid-cols-[1.5fr_1fr_320px]">
@@ -15,7 +16,7 @@
                     <div>
                         <div class="relative overflow-hidden rounded-lg bg-white">
                             <Image
-                                :src="car?.image_url"
+                                :src="car?.imageUrl"
                                 :alt="car?.name"
                                 class="h-full w-full object-cover"
                                 preview
@@ -25,13 +26,13 @@
 
                     <!-- car Info -->
                     <div>
-                        <Tag :value="car?.category" class="uppercase" />
+                        <Tag :value="car?.category" class="uppercase" severity="secondary" />
 
                         <h1 class="mt-4 text-4xl font-bold">
                             {{ car?.name }}
                         </h1>
 
-                        <p class="mt-2 text-surface-500">{{ car?.production_year }}</p>
+                        <p class="mt-2 text-surface-500">{{ car?.productionYear }}</p>
 
                         <p class="mt-6 leading-7 text-surface-600">
                             {{ car?.description }}
@@ -69,7 +70,7 @@
                                 class="text-center flex flex-col items-center"
                             >
                                 <LuggageV1 :size="20" />
-                                <p class="text-sm">{{ car?.luggage_count }} bags</p>
+                                <p class="text-sm">{{ car?.luggageCount }} bags</p>
                             </div>
 
                             <div v-tooltip="'Doors'" class="text-center flex flex-col items-center">
@@ -79,7 +80,7 @@
 
                             <div v-tooltip="'Range'" class="text-center flex flex-col items-center">
                                 <RangeV1 :size="20" />
-                                <p class="text-sm">{{ car?.range_km }} km</p>
+                                <p class="text-sm">{{ car?.rangeKm }} km</p>
                             </div>
 
                             <div
@@ -87,7 +88,7 @@
                                 class="text-center flex flex-col items-center"
                             >
                                 <ProductionYearV1 :size="20" />
-                                <p class="text-sm">{{ car?.production_year }}</p>
+                                <p class="text-sm">{{ car?.productionYear }}</p>
                             </div>
 
                             <div
@@ -107,7 +108,7 @@
                                 <div>
                                     <div class="flex items-baseline gap-2">
                                         <span class="text-4xl font-bold">
-                                            €{{ car?.price_per_day }}
+                                            €{{ car?.pricePerDay }}
                                         </span>
 
                                         <span class="text-surface-500"> / day </span>
@@ -124,12 +125,29 @@
                                     </label>
 
                                     <Select
-                                        v-model="booking.location"
-                                        :options="locations"
-                                        optionLabel="name"
+                                        v-model="searchParams.location"
+                                        :options="groupedLocations"
+                                        input-id="pick-up-location"
+                                        option-group-label="label"
+                                        option-group-children="items"
+                                        option-label="label"
+                                        option-value="value"
+                                        filter
                                         placeholder="Select location"
-                                        fluid
-                                    />
+                                        class="w-full"
+                                    >
+                                        <template #optiongroup="slotProps">
+                                            <div class="flex items-center">
+                                                <img
+                                                    :alt="slotProps.option.label"
+                                                    src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
+                                                    :class="`mr-2 flag flag-${slotProps?.option?.code?.toLowerCase()}`"
+                                                    style="width: 18px"
+                                                />
+                                                <div>{{ slotProps.option.label }}</div>
+                                            </div>
+                                        </template>
+                                    </Select>
                                 </div>
 
                                 <div class="grid grid-cols-2 gap-4">
@@ -138,7 +156,12 @@
                                             Pick-up Date
                                         </label>
 
-                                        <DatePicker v-model="booking.pickupDate" fluid />
+                                        <DatePicker
+                                            v-model="searchParams.pickUpDate"
+                                            :min-date="minPickUpDate"
+                                            date-format="yy-mm-dd"
+                                            placeholder="Select date"
+                                        />
                                     </div>
 
                                     <div>
@@ -147,9 +170,12 @@
                                         </label>
 
                                         <Select
-                                            v-model="booking.pickupTime"
-                                            :options="times"
-                                            fluid
+                                            v-model="searchParams.pickUpTime"
+                                            :options="timeOptions"
+                                            option-label="label"
+                                            option-value="value"
+                                            placeholder="Select time"
+                                            class="w-full"
                                         />
                                     </div>
                                 </div>
@@ -160,7 +186,13 @@
                                             Drop-off Date
                                         </label>
 
-                                        <DatePicker v-model="booking.dropoffDate" fluid />
+                                        <DatePicker
+                                            v-model="searchParams.dropOffDate"
+                                            :min-date="minDropOffDate"
+                                            date-format="yy-mm-dd"
+                                            class="w-full"
+                                            placeholder="Select date"
+                                        />
                                     </div>
 
                                     <div>
@@ -169,9 +201,12 @@
                                         </label>
 
                                         <Select
-                                            v-model="booking.dropoffTime"
-                                            :options="times"
-                                            fluid
+                                            v-model="searchParams.dropOffTime"
+                                            :options="timeOptions"
+                                            option-label="label"
+                                            option-value="value"
+                                            placeholder="Select time"
+                                            class="w-full"
                                         />
                                     </div>
                                 </div>
@@ -192,43 +227,11 @@
                 <div class="mt-5">
                     <Tabs value="0">
                         <TabList>
-                            <Tab value="0">Overview</Tab>
-                            <Tab value="1">Features</Tab>
-                            <Tab value="2">Rental terms</Tab>
+                            <Tab value="0">Features</Tab>
+                            <Tab value="1">Rental terms</Tab>
                         </TabList>
                         <TabPanels>
                             <TabPanel value="0">
-                                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                    <div>
-                                        <h3 class="px-2 mb-3">Specifications</h3>
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                            <div
-                                                v-for="spec in specifications"
-                                                :key="spec.label"
-                                                class="flex justify-between py-1 px-2 border-b border-gray-200"
-                                            >
-                                                <span class="text-md text-gray-500">{{
-                                                    spec.label
-                                                }}</span>
-                                                <span
-                                                    class="text-sm"
-                                                    :class="{
-                                                        uppercase:
-                                                            spec.label === 'Car Type' &&
-                                                            spec.value === 'suv',
-                                                    }"
-                                                    >{{ spec.value }}</span
-                                                >
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h3 class="px-2 mb-3">Description</h3>
-                                        <p class="px-2">{{ car?.variant_desc }}</p>
-                                    </div>
-                                </div>
-                            </TabPanel>
-                            <TabPanel value="1">
                                 <!-- Features -->
                                 <div class="grid grid-cols-2 gap-y-4">
                                     <template v-for="feature in car?.features" :key="feature">
@@ -239,7 +242,7 @@
                                     </template>
                                 </div>
                             </TabPanel>
-                            <TabPanel value="2">
+                            <TabPanel value="1">
                                 <div class="space-y-4">
                                     <ul class="space-y-3 text-gray-600">
                                         <li class="flex gap-2">
@@ -329,21 +332,56 @@ import FuelV1 from '@storefront/components/icons/FuelV1.vue'
 import SeatsV1 from '@storefront/components/icons/SeatsV1.vue'
 import TransmissionV1 from '@storefront/components/icons/TransmissionV1.vue'
 import LuggageV1 from '@storefront/components/icons/LuggageV1.vue'
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
+import { useRentalSearch } from '@storefront/composables/useRentalSearch'
 import { useCar } from '@storefront/composables/useCar'
+import { useLocation } from '@storefront/composables/useLocation'
 import { useRouter } from 'vue-router'
 import ProductionYearV1 from '@storefront/components/icons/ProductionYearV1.vue'
 import DoorsV1 from '@storefront/components/icons/DoorsV1.vue'
-import MilageV1 from '../components/icons/MilageV1.vue'
-import RangeV1 from '../components/icons/RangeV1.vue'
+import MilageV1 from '@storefront/components/icons/MilageV1.vue'
+import RangeV1 from '@storefront/components/icons/RangeV1.vue'
+import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
+import { getDaysBetween } from '@storefront/utils.js'
 
 const router = useRouter()
-const rentalPeriod = {}
-const booking = {}
-const { getCar, car, loadingCar, carId, specifications } = useCar()
+const { getLocations, groupedLocations } = useLocation()
+const { minPickUpDate, minDropOffDate, searchParams, hydrateRentalSearchFromQuery, timeOptions } =
+    useRentalSearch()
+const { getCar, car, loadingCar, carId, bodyType } = useCar()
 
-onMounted(() => {
-    getCar()
-    console.log(car)
+const breadcrumbItems = computed(() => [
+    {
+        label: 'Fleet',
+        route: '/fleet',
+    },
+    {
+        label: bodyType.value?.label ?? '',
+        route: `/fleet?bodyType=${bodyType.value?.value ?? ''}`,
+    },
+])
+
+const rentalPeriod = computed(() => {
+    const days = getDaysBetween(searchParams.pickUpDate, searchParams.dropOffDate)
+    return days === 1 ? days + ' day' : days + ' days'
+})
+
+const goBack = () => {
+    if (globalThis.history.length) {
+        router.back()
+    } else {
+        router.push({ name: 'fleet' })
+    }
+}
+
+onMounted(async () => {
+    await getCar()
+    await getLocations()
+    hydrateRentalSearchFromQuery()
 })
 </script>
+<style>
+.p-datepicker-input {
+    width: 135px;
+}
+</style>

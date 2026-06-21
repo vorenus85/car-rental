@@ -20,19 +20,19 @@ class CarListResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'price_per_day' => $this->price_per_day,
-            'production_year' => $this->production_year,
+            'pricePerDay' => $this->price_per_day,
+            'productionYear' => $this->production_year,
             'image' => $this->whenHas('image'),
-            'image_url' => $this->image_url,
+            'imageUrl' => $this->image_url,
             'category' => $this->variant?->category,
             'seats' => $this->variant?->seats,
             'transmission' => $this->variant?->transmission,
             'fuel' => $this->variant?->fuel,
-            'luggage_count' => $this->variant?->luggage_count,
+            'luggageCount' => $this->variant?->luggage_count,
             'name' => $this->variant?->model?->brand?->name . ' ' . $this->variant?->model?->name,
-            'variant_name' => $this->variant?->name,
-            'model_name' => $this->variant?->model?->name,
-            'brand_name' => $this->variant?->model?->brand?->name,
+            'variantName' => $this->variant?->name,
+            'modelName' => $this->variant?->model?->name,
+            'brandName' => $this->variant?->model?->brand?->name,
         ];
     }
 }

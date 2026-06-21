@@ -2,9 +2,9 @@
     <Card class="overflow-hidden">
         <template #header>
             <div class="p-4">
-                <RouterLink :to="{ name: 'car', params: { id: car.id } }"
+                <RouterLink :to="{ name: 'car', params: { id: car.id }, query: queryParams }"
                     ><img
-                        :src="car.image_url"
+                        :src="car.imageUrl"
                         :alt="car.name"
                         class="h-56 w-full object-contain hover:scale-110 transition-transform duration-300"
                         loading="lazy"
@@ -16,14 +16,14 @@
         <template #content>
             <div>
                 <RouterLink
-                    :to="{ name: 'car', params: { id: car.id } }"
+                    :to="{ name: 'car', params: { id: car.id }, query: queryParams }"
                     class="text-xl font-bold hover:text-primary"
                 >
                     {{ car.name }}
                 </RouterLink>
 
                 <div class="my-3 flex items-center gap-2">
-                    <Tag :value="car.production_year" severity="secondary" />
+                    <Tag :value="car.productionYear" severity="secondary" />
 
                     <Tag
                         :value="car.category"
@@ -41,7 +41,7 @@
 
                     <div class="flex items-center gap-2">
                         <LuggageV1 :size="20" />
-                        <span class="text-sm text-surface-600"> {{ car.luggage_count }} bags </span>
+                        <span class="text-sm text-surface-600"> {{ car.luggageCount }} bags </span>
                     </div>
 
                     <div class="flex items-center gap-2">
@@ -63,7 +63,7 @@
 
                 <div class="flex items-center justify-between">
                     <div>
-                        <span class="text-2xl font-bold"> €{{ car.price_per_day }} </span>
+                        <span class="text-2xl font-bold"> €{{ car.pricePerDay }} </span>
                         <span class="text-sm text-surface-500"> /day </span>
                     </div>
 
@@ -71,7 +71,7 @@
                         label="View Details"
                         outlined
                         as="router-link"
-                        :to="{ name: 'car', params: { id: car.id } }"
+                        :to="{ name: 'car', params: { id: car.id }, query: queryParams }"
                     />
                 </div>
             </div>
@@ -85,6 +85,15 @@ import FuelV1 from '@storefront/components/icons/FuelV1.vue'
 import SeatsV1 from '@storefront/components/icons/SeatsV1.vue'
 import TransmissionV1 from '@storefront/components/icons/TransmissionV1.vue'
 import LuggageV1 from '@storefront/components/icons/LuggageV1.vue'
+import { useRoute } from 'vue-router'
+import { computed } from 'vue'
+
+const route = useRoute()
+
+const queryParams = computed(() => {
+    const { location, pickUpDate, dropOffDate } = route.query
+    return { location, pickUpDate, dropOffDate }
+})
 
 defineProps({
     car: {

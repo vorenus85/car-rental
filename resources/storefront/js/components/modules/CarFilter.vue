@@ -38,11 +38,12 @@
         <div class="mb-8">
             <h4 class="font-medium mb-4">Pick-up Date</h4>
             <DatePicker
-                v-model="filters.pickupDate"
+                v-model="filters.pickUpDate"
                 :min-date="minPickUpDate"
                 icon-display="input"
                 date-format="yy-mm-dd"
                 class="w-full"
+                placeholder="Select date"
             />
         </div>
 
@@ -50,11 +51,12 @@
             <h4 class="font-medium mb-4">Drop-off Date</h4>
 
             <DatePicker
-                v-model="filters.dropoffDate"
-                :min-date="mindropOffDate"
+                v-model="filters.dropOffDate"
+                :min-date="minDropOffDate"
                 icon-display="input"
                 date-format="yy-mm-dd"
                 class="w-full"
+                placeholder="Select date"
             />
         </div>
 
@@ -82,7 +84,11 @@
             <h4 class="font-medium mb-4">Car Type</h4>
 
             <div class="space-y-3">
-                <div v-for="type in carTypes" :key="type.value" class="flex items-center gap-3">
+                <div
+                    v-for="type in filterParams.carTypes"
+                    :key="type.value"
+                    class="flex items-center gap-3"
+                >
                     <Checkbox
                         v-model="filters.carTypes"
                         :input-id="type.value"
@@ -103,7 +109,7 @@
                 <AccordionContent>
                     <div class="space-y-3">
                         <div
-                            v-for="item in transmissions"
+                            v-for="item in filterParams.transmissions"
                             :key="item.value"
                             class="flex items-center gap-3"
                         >
@@ -129,7 +135,7 @@
                 <AccordionContent>
                     <div class="space-y-3">
                         <div
-                            v-for="item in fuelTypes"
+                            v-for="item in filterParams.fuelTypes"
                             :key="item.value"
                             class="flex items-center gap-3"
                         >
@@ -154,7 +160,11 @@
 
                 <AccordionContent
                     ><div class="space-y-3">
-                        <div v-for="seat in seats" :key="seat" class="flex items-center gap-3">
+                        <div
+                            v-for="seat in filterParams.seats"
+                            :key="seat"
+                            class="flex items-center gap-3"
+                        >
                             <Checkbox
                                 v-model="filters.seats"
                                 :input-id="`seat-${seat}`"
@@ -175,7 +185,7 @@
                 <AccordionContent>
                     <div class="space-y-3">
                         <div
-                            v-for="count in luggageCounts"
+                            v-for="count in filterParams.luggageCounts"
                             :key="count"
                             class="flex items-center gap-3"
                         >
@@ -219,8 +229,10 @@ import {
 import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useLocation } from '@storefront/composables/useLocation'
-const { getLocations, groupedLocations } = useLocation()
+import { useCars } from '@storefront/composables/useCars.js'
 
+const { filterParams } = useCars()
+const { getLocations, groupedLocations } = useLocation()
 const emit = defineEmits(['filter'])
 const route = useRoute()
 const query = route.query
@@ -231,30 +243,22 @@ const openPanels = computed(() => {
     if (query.seats) panels.push('seats')
     if (query.transmission) panels.push('transmission')
     if (query.fuel) panels.push('fuel')
-    if (query.luggage_count) panels.push('luggage')
+    if (query.luggageCount) panels.push('luggage')
 
     return panels
 })
 
-const defaultPickUpDate = ref(new Date())
 const minPickUpDate = new Date()
 
-const dropOffDate = new Date()
-dropOffDate.setDate(dropOffDate.getDate() + 3)
-const mindropOffDate = new Date()
-mindropOffDate.setDate(mindropOffDate.getDate() + 1)
-
-const defaultDropOffDate = ref(dropOffDate)
-
-defaultPickUpDate.value.setHours(0, 0, 0, 0)
-defaultDropOffDate.value.setHours(0, 0, 0, 0)
+const minDropOffDate = new Date()
+minDropOffDate.setDate(minDropOffDate.getDate() + 1)
 
 const syncing = ref(true)
 
 const filters = reactive({
     location: null,
-    pickupDate: defaultPickUpDate,
-    dropoffDate: defaultDropOffDate,
+    pickUpDate: null,
+    dropOffDate: null,
     priceRange: [0, 200],
     carTypes: [],
     transmissions: [],
@@ -281,8 +285,8 @@ watch(
 
 const clearFilters = () => {
     filters.location = null
-    filters.pickupDate = defaultPickUpDate
-    filters.dropoffDate = defaultDropOffDate
+    filters.pickUpDate = null
+    filters.dropOffDate = null
     filters.priceRange = [0, 200]
     filters.carTypes = []
     filters.transmissions = []
@@ -292,54 +296,31 @@ const clearFilters = () => {
     emit('filter', filters)
 }
 
-const carTypes = [
-    { label: 'SUV', value: 'suv' },
-    { label: 'Sedan', value: 'sedan' },
-    { label: 'Hatchback', value: 'hatchback' },
-    { label: 'Coupe', value: 'coupe' },
-    { label: 'Wagon', value: 'wagon' },
-]
-
-const transmissions = [
-    { label: 'Automatic', value: 'automatic' },
-    { label: 'Manual', value: 'manual' },
-]
-
-const fuelTypes = [
-    { label: 'Petrol', value: 'petrol' },
-    { label: 'Diesel', value: 'diesel' },
-    { label: 'Hybrid', value: 'hybrid' },
-    { label: 'Electric', value: 'electric' },
-]
-
-const seats = [2, 4, 5, 6]
-const luggageCounts = [1, 2, 3, 4, 5]
-
 const hydrateFiltersFromQuery = query => {
-    if (query['pick-up-date']) {
-        const pickupDate = new Date(query['pick-up-date'])
-        pickupDate.setHours(0, 0, 0, 0)
-        filters.pickupDate = pickupDate
+    if (query.pickUpDate) {
+        const pickUpDate = new Date(query.pickUpDate)
+        pickUpDate.setHours(0, 0, 0, 0)
+        filters.pickUpDate = pickUpDate
     }
 
-    if (query['drop-off-date']) {
-        const dropoffDate = new Date(query['drop-off-date'])
-        dropoffDate.setHours(0, 0, 0, 0)
-        filters.dropoffDate = dropoffDate
+    if (query.dropOffDate) {
+        const dropOffDate = new Date(query.dropOffDate)
+        dropOffDate.setHours(0, 0, 0, 0)
+        filters.dropOffDate = dropOffDate
     }
 
     if (query.location) {
         filters.location = Number(query.location)
     }
 
-    if (query.body_type) {
-        filters.carTypes = Array.isArray(query.body_type) ? query.body_type : [query.body_type]
+    if (query.bodyType) {
+        filters.carTypes = Array.isArray(query.bodyType) ? query.bodyType : [query.bodyType]
     }
 
-    if (query.price_per_day) {
-        filters.priceRange = Array.isArray(query.price_per_day)
-            ? query.price_per_day
-            : [query.price_per_day]
+    if (query.pricePerDay) {
+        filters.priceRange = Array.isArray(query.pricePerDay)
+            ? query.pricePerDay
+            : [query.pricePerDay]
     }
 
     if (query.transmission) {
@@ -358,10 +339,10 @@ const hydrateFiltersFromQuery = query => {
         filters.seats = seats.map(Number)
     }
 
-    if (query.luggage_count) {
-        const luggage = Array.isArray(query.luggage_count)
-            ? query.luggage_count
-            : [query.luggage_count]
+    if (query.luggageCount) {
+        const luggage = Array.isArray(query.luggageCount)
+            ? query.luggageCount
+            : [query.luggageCount]
 
         filters.luggageCounts = luggage.map(Number)
     }
