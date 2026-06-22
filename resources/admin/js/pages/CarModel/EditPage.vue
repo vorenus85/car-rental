@@ -43,16 +43,16 @@
                         option-label="name"
                         placeholder="Select Brand"
                         checkmark
-                        name="brand_id"
+                        name="brandId"
                         :highlight-on-select="false"
                         class="w-full md:w-56"
                     />
                     <Message
-                        v-if="$form.brand_id?.invalid"
+                        v-if="$form.brandId?.invalid"
                         severity="error"
                         size="small"
                         variant="simple"
-                        >{{ $form.brand_id?.error?.message }}</Message
+                        >{{ $form.brandId?.error?.message }}</Message
                     >
                 </div>
                 <div class="flex flex-col gap-1 mb-4">

@@ -47,7 +47,7 @@ export const useBrand = () => {
             const { data } = await fetchBrand(brandId)
             initialValues.name = data.name
             initialValues.image = data.image
-            initialValues.image_url = data.image_url
+            initialValues.imageUrl = data.imageUrl
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
             loading.value = false
         } catch (e) {
@@ -105,6 +105,10 @@ export const useBrand = () => {
             uploadedImage.value = data.filename
         } catch (e) {
             isUploading.value = false
+            const message =
+                e?.response?.data?.message || 'Something went wrong while uploading image.'
+
+            customToast.error(message)
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
         }

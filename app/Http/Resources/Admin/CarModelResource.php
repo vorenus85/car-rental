@@ -22,7 +22,7 @@ class CarModelResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'description' => $this->description,
-            'updated_at' => $this->updated_at,
+            'updatedAt' => $this->updated_at,
             'brand' => new BrandResource($this->whenLoaded('brand')),
         ];
     }

@@ -25,4 +25,11 @@ class UpdateCarModelRequest extends FormRequest
             'brand_id' => 'required|int',
         ];
     }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'brand_id' => $this->brandId,
+        ]);
+    }
 }

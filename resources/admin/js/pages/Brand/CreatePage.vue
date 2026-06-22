@@ -50,6 +50,13 @@
                         />
                     </div>
                     <ProgressBar v-if="isUploading" :value="uploadProgress" />
+                    <Message
+                        v-if="$form.file?.invalid"
+                        severity="error"
+                        size="small"
+                        variant="simple"
+                        >{{ $form.file.error?.message }}</Message
+                    >
                 </div>
                 <div class="flex flex-col">
                     <Button
@@ -95,7 +102,7 @@ const onFormSubmit = async ({ valid, values, errors }) => {
             values.image = uploadedImage?.value || null
             await createBrand(values)
 
-            customToast.success('Feature created successfully!')
+            customToast.success('Brand created successfully!')
 
             setTimeout(() => {
                 toBrandsList()

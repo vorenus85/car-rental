@@ -19,7 +19,7 @@ class FeatureController extends Controller
         //
         $features = Feature::orderBy('name', 'asc')->get();
 
-        return FeatureResource::collection($features);
+        return response()->json(FeatureResource::collection($features), 200);
     }
 
     /**
@@ -32,7 +32,7 @@ class FeatureController extends Controller
 
         $feature = Feature::create($validated);
 
-        return response()->json($feature, 201);
+        return response()->json(new FeatureResource($feature), 201);
     }
 
     /**
@@ -41,7 +41,7 @@ class FeatureController extends Controller
     public function show(Feature $feature)
     {
         //
-        return response()->json($feature);
+        return response()->json(new FeatureResource($feature));
     }
 
     /**
@@ -54,7 +54,7 @@ class FeatureController extends Controller
 
         $feature->update($validated);
 
-        return response()->json($feature, 200);
+        return response()->json(new FeatureResource($feature), 200);
     }
 
     /**

@@ -5,8 +5,8 @@ export const carModelValidator = ({ values }) => {
         errors.name = [{ message: 'Car model name is required.' }]
     }
 
-    if (!values.brand_id) {
-        errors.brand_id = [{ message: 'Brand is required.' }]
+    if (!values.brandId) {
+        errors.brandId = [{ message: 'Brand is required.' }]
     }
 
     return {
