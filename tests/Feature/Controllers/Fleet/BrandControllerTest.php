@@ -110,7 +110,7 @@ describe('BrandController', function () {
                 'image' => 'bmw.png',
             ])
             ->assertJsonStructure([
-                'image_url',
+                'imageUrl',
             ]);
     });
 

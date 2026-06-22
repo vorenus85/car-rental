@@ -24,7 +24,7 @@ describe('CarModelController', function () {
 
         $response
             ->assertOk()
-            ->assertJsonCount(3, 'data');
+            ->assertJsonCount(3);
     });
 
     it('can show a single car model', function () {
@@ -37,7 +37,9 @@ describe('CarModelController', function () {
             ->assertOk()
             ->assertJson([
                 'id' => $carModel->id,
-                'brand_id' => $carModel->brand_id,
+                'brand' => [
+                    "id" => $carModel->brand_id
+                ],
                 'name' => $carModel->name,
                 'description' => $carModel->description,
             ]);
@@ -48,7 +50,7 @@ describe('CarModelController', function () {
         $brand = Brand::factory()->create();
 
         $payload = [
-            'brand_id' => $brand->id,
+            'brandId' => $brand->id,
             'name' => 'Corolla',
             'description' => 'Compact family car',
             '_token' => 'test-token',
@@ -91,7 +93,7 @@ describe('CarModelController', function () {
         $carModel = CarModel::factory()->create();
 
         $payload = [
-            'brand_id' => $carModel->brand_id,
+            'brandId' => $carModel->brand_id,
             'name' => 'Updated Model',
             'description' => 'Updated description',
             '_token' => 'test-token',

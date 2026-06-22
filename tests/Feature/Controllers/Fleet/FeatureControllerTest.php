@@ -21,7 +21,7 @@ describe('FeatureController', function () {
 
         $response
             ->assertOk()
-            ->assertJsonCount(3, 'data');
+            ->assertJsonCount(3);
     });
 
     it('can show a single feature', function () {

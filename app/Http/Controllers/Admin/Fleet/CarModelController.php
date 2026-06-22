@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Fleet;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Fleet\CarModel\StoreCarModelRequest;
 use App\Http\Requests\Admin\Fleet\CarModel\UpdateCarModelRequest;
+use App\Http\Resources\Admin\CarModelOptionResource;
 use App\Http\Resources\Admin\CarModelResource;
 use App\Models\Fleet\CarModel;
 use Illuminate\Http\Request;
@@ -25,16 +26,16 @@ class CarModelController extends Controller
             ->orderBy('car_models.name', 'asc')
             ->get();
 
-        return response()->json(CarModelResource::collection($carModels), 201);
+        return response()->json(CarModelResource::collection($carModels), 200);
     }
 
     public function options(Request $request)
     {
         $brand_id = $request->brand_id;
 
-        $carModels = CarModel::select('id', 'name', 'brand_id')->where('brand_id', $brand_id)->orderBy('name', 'asc')->get();
+        $carModels = CarModel::with('brand')->where('brand_id', $brand_id)->orderBy('name', 'asc')->get();
 
-        return response()->json(new CarModelResource($carModels), 200);
+        return response()->json(CarModelOptionResource::collection($carModels), 200);
     }
 
     /**
