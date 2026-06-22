@@ -28,7 +28,6 @@ class VariantSeeder extends Seeder
             Variant::create([
                 'name' => $item['name'],
                 'model_id' => $model['id'],
-                'category' => $item['category'],
                 'description' => $item['description'],
 
                 'body_type' => $item['body_type'],

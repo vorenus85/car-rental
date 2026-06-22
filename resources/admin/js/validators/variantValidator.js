@@ -13,10 +13,6 @@ export const variantValidator = ({ values }) => {
         errors.model_id = [{ message: 'Please select a model.' }]
     }
 
-    if (!values.category) {
-        errors.category = [{ message: 'Please select a category.' }]
-    }
-
     if (!values.body_type) {
         errors.body_type = [{ message: 'Please select a body type.' }]
     }

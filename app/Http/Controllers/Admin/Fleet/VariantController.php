@@ -19,11 +19,11 @@ class VariantController extends Controller
                 'variants.id',
                 'variants.name',
                 'variants.model_id',
-                'variants.category',
                 'variants.fuel',
                 'variants.transmission',
                 'variants.seats',
                 'variants.luggage_count',
+                'variants.body_type',
                 'variants.range_km',
                 'variants.updated_at',
             ])

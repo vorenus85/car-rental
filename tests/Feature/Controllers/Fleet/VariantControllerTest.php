@@ -34,7 +34,6 @@ describe('VariantController', function () {
             'id' => $variant->id,
             'model_id' => $variant->model_id,
             'name' => $variant->name,
-            'category' => $variant->category,
             'description' => $variant->description,
             'body_type' => $variant->body_type,
             'transmission' => $variant->transmission,
@@ -52,7 +51,6 @@ describe('VariantController', function () {
 
         $payload = [
             "name" => "Ultimate roadcaster 1.0",
-            "category" => "economy",
             "description" => "An economical petrol engine with manual transmission, ideal for short city trips and low fuel consumption.",
             "model_id" => $car_model->id,
             "body_type" => "hatchback",
@@ -69,7 +67,6 @@ describe('VariantController', function () {
 
         $response->assertCreated()->assertJsonFragment([
             "name" => "Ultimate roadcaster 1.0",
-            "category" => "economy",
             "description" => "An economical petrol engine with manual transmission, ideal for short city trips and low fuel consumption.",
             "model_id" => $car_model->id,
             "body_type" => "hatchback",
@@ -94,7 +91,6 @@ describe('VariantController', function () {
             ->assertJsonValidationErrors([
                 'name',
                 'model_id',
-                'category',
                 'body_type',
                 'transmission',
                 'fuel',
@@ -102,7 +98,7 @@ describe('VariantController', function () {
                 'doors',
                 'luggage_count',
                 'range_km',
-            ])->assertJsonCount(10, 'errors');
+            ])->assertJsonCount(9, 'errors');
     });
 
     it('can update a variant', function () {
@@ -112,7 +108,6 @@ describe('VariantController', function () {
             'model_id' => $variant->model_id,
             'name' => 'Updated Variant',
             'description' => 'Updated description',
-            'category' => 'business',
             'body_type' => 'sedan',
             'transmission' => 'automatic',
             'fuel' => 'diesel',

@@ -33,7 +33,7 @@ class CarController extends Controller
             ->with('location:id,name,city_id')
             ->with('location.cityModel:id,name')
             ->with([
-                'variant:id,name,model_id,category',
+                'variant:id,name,model_id,body_type',
                 'variant.model:id,name,brand_id',
                 'variant.model.brand:id,name'
             ])
@@ -68,7 +68,7 @@ class CarController extends Controller
     {
         //
         $result = Car::where('id', $car->id)->with([
-            'variant:id,name,model_id,category,body_type,transmission,fuel,seats,doors',
+            'variant:id,name,model_id,body_type,transmission,fuel,seats,doors',
             'variant.model:id,name,brand_id',
             'variant.model.brand:id',
             'features:id,name',

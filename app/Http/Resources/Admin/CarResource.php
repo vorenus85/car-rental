@@ -47,7 +47,7 @@ class CarResource extends JsonResource
                 return [
                     'id' => $this->variant->id,
                     'name' => $this->variant->name,
-                    'category' => $this->variant->category,
+                    'body_type' => $this->variant->body_type,
                     'model' => $this->variant->relationLoaded('model') ? [
                         'id' => $this->variant->model->id,
                         'name' => $this->variant->model->name,

@@ -15,7 +15,6 @@ class Variant extends Model
     protected $fillable = [
         'name',
         'model_id',
-        'category',
         'description',
 
         'body_type',
@@ -46,5 +45,4 @@ class Variant extends Model
     {
         return $this->hasMany(Car::class, 'variant_id', 'id');
     }
-
 }
