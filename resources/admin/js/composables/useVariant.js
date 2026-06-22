@@ -20,7 +20,6 @@ export const useVariant = () => {
         name: '',
         brand_id: '',
         model_id: '',
-        category: '',
         body_type: '',
         transmission: 'manual',
         fuel: 'petrol',
@@ -36,29 +35,6 @@ export const useVariant = () => {
 
     const selectedCarModel = ref({ id: null, name: null })
     const selectedVariant = ref({ id: null, name: null })
-
-    const variantCategories = [
-        {
-            id: 'economy',
-            label: 'Economy',
-        },
-        {
-            id: 'compact',
-            label: 'Compact',
-        },
-        {
-            id: 'suv',
-            label: 'SUV',
-        },
-        {
-            id: 'business',
-            label: 'Business',
-        },
-        {
-            id: 'premium',
-            label: 'Premium',
-        },
-    ]
 
     const bodyTypes = [
         {
@@ -120,7 +96,6 @@ export const useVariant = () => {
             const { data } = await fetchVariant(variantId)
             initialValues.name = data.name
 
-            initialValues.category = data.category
             initialValues.body_type = data.body_type
             initialValues.transmission = data.transmission
             initialValues.fuel = data.fuel
@@ -219,7 +194,6 @@ export const useVariant = () => {
         getVariants,
         deleteVariant,
         getVariantsByCarmodel,
-        variantCategories,
         initialValues,
         bodyTypes,
         transmissions,

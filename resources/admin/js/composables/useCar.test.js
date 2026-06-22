@@ -64,7 +64,6 @@ describe('useCar', () => {
                 features: [],
                 variant: {
                     id: 3,
-                    category: 'premium',
                     body_type: 'sedan',
                     transmission: 'automatic',
                     fuel_type: 'electric',
@@ -91,8 +90,6 @@ describe('useCar', () => {
         expect(car.initialValues.variant_id).toBe(3)
         expect(car.initialValues.licence_plate).toBe('ABC-123')
         expect(car.initialValues.color).toBe('red')
-
-        expect(car.selectedCategory.value).toBe('premium')
 
         expect(car.formKey.value).toBe(1)
         expect(car.loading.value).toBe(false)

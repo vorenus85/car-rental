@@ -108,7 +108,7 @@ class CarController extends Controller
     {
 
         $response = Car::with([
-            'variant:id,name,model_id,category,transmission,fuel,seats,doors,range_km,luggage_count,body_type,description',
+            'variant:id,name,model_id,transmission,fuel,seats,doors,range_km,luggage_count,body_type,description',
             'variant.model:id,name,brand_id',
             'variant.model.brand:id,name',
             'features',
@@ -121,7 +121,7 @@ class CarController extends Controller
     {
         $cars = Car::query()
             ->with([
-                'variant:id,name,model_id,category,transmission,fuel,seats,luggage_count',
+                'variant:id,name,model_id,transmission,fuel,seats,luggage_count',
                 'variant.model:id,name,brand_id',
                 'variant.model.brand:id,name'
             ])

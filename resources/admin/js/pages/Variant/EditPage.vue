@@ -84,32 +84,6 @@
                     >
                 </div>
                 <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
-                    <label for="category">Category</label>
-                    <small class="p-text-secondary">
-                        Select the vehicle category. This determines pricing tier and positioning
-                        (Economy, Compact, SUV, Business, Premium).
-                    </small>
-                    <Select
-                        id="category"
-                        filter
-                        :options="variantCategories"
-                        option-value="id"
-                        option-label="label"
-                        placeholder="Select category"
-                        checkmark
-                        name="category"
-                        :highlight-on-select="false"
-                        class="w-full md:w-56"
-                    />
-                    <Message
-                        v-if="$form.category?.invalid"
-                        severity="error"
-                        size="small"
-                        variant="simple"
-                        >{{ $form.category?.error?.message }}</Message
-                    >
-                </div>
-                <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                     <label for="body_type">Body type</label>
                     <Select
                         id="body_type"
@@ -329,7 +303,6 @@ const { toVariantsList } = useRedirects()
 const { getBrands, brands } = useBrand()
 const { getCarModelsByBrand, carModels } = useCarModel()
 const {
-    variantCategories,
     bodyTypes,
     transmissions,
     fuelTypes,
@@ -338,7 +311,6 @@ const {
     formKey,
     selectedBrand,
     variantId,
-    selectedFeatures,
 } = useVariant()
 const { customToast } = useCustomToast()
 const formRef = ref(null)

@@ -6,7 +6,6 @@ describe('variantValidator', () => {
         name: 'Corolla Comfort',
         brand_id: 1,
         model_id: 1,
-        category: 'economy',
         body_type: 'sedan',
         transmission: 'automatic',
         fuel: 'hybrid',
@@ -53,17 +52,6 @@ describe('variantValidator', () => {
         })
 
         expect(result.errors.model_id).toEqual([{ message: 'Please select a model.' }])
-    })
-
-    it('requires category', () => {
-        const result = variantValidator({
-            values: {
-                ...validValues,
-                category: '',
-            },
-        })
-
-        expect(result.errors.category).toEqual([{ message: 'Please select a category.' }])
     })
 
     it('requires body type', () => {

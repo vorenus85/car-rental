@@ -59,7 +59,7 @@
                         </div>
                     </template>
                 </Column>
-                <Column sortable field="category" header="Category" style="width: 10%"> </Column
+                <Column sortable field="body_type" header="Body type" style="width: 10%"> </Column
                 ><Column sortable field="fuel" header="Fuel" style="width: 10%"> </Column>
                 <Column sortable field="transmission" header="Transmission" style="width: 10%">
                 </Column>

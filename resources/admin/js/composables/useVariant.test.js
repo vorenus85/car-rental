@@ -74,7 +74,6 @@ describe('useVariant', () => {
             data: {
                 id: 2,
                 name: 'Corolla Comfort',
-                category: 'economy',
                 body_type: 'sedan',
                 transmission: 'automatic',
                 fuel: 'hybrid',
@@ -97,7 +96,6 @@ describe('useVariant', () => {
         const result = await variant.getVariantById(2)
 
         expect(result.name).toBe('Corolla Comfort')
-        expect(result.category).toBe('economy')
         expect(result.body_type).toBe('sedan')
         expect(result.transmission).toBe('automatic')
         expect(result.fuel).toBe('hybrid')
@@ -135,7 +133,6 @@ describe('useVariant', () => {
         vi.mocked(fetchVariant).mockResolvedValue({
             data: {
                 name: 'Corolla Comfort',
-                category: 'economy',
                 body_type: 'sedan',
                 transmission: 'automatic',
                 fuel: 'hybrid',
@@ -158,7 +155,6 @@ describe('useVariant', () => {
         await variant.getVariant()
 
         expect(variant.initialValues.name).toBe('Corolla Comfort')
-        expect(variant.initialValues.category).toBe('economy')
         expect(variant.initialValues.body_type).toBe('sedan')
         expect(variant.initialValues.transmission).toBe('automatic')
 

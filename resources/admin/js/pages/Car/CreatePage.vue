@@ -91,31 +91,8 @@
 
                 <div class="mb-4">
                     <div class="font-semibold text-xl mb-2">Variant informations</div>
-                    <Message severity="info" class="mb-5">
-                        Variant specifications are automatically populated based on the selected
-                        Brand, Model, and Variant. These values are read-only on this page.
-                    </Message>
                     <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
-                        <label for="category">Category </label>
-                        <InputText
-                            v-model="selectedCategory"
-                            input-id="category"
-                            name="category"
-                            type="text"
-                            placeholder="Category"
-                            fluid
-                            readonly
-                        />
-                        <Message
-                            v-if="$form.category?.invalid"
-                            severity="error"
-                            size="small"
-                            variant="simple"
-                            >{{ $form.category?.error?.message }}</Message
-                        >
-                    </div>
-                    <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
-                        <label for="category">Body Type </label>
+                        <label for="body_type">Body Type </label>
                         <InputText
                             v-model="selectedBodyType"
                             input-id="body_type"
@@ -496,7 +473,6 @@ const {
     uploadedImage,
     rentalStatuses,
 
-    selectedCategory,
     selectedBodyType,
     selectedTransmission,
     selectedFuelType,
@@ -513,7 +489,6 @@ const { getBrands, brands } = useBrand()
 const { getCarModelsByBrand, carModels } = useCarModel()
 const { groupedFeatures, getFeatures } = useFeature()
 const {
-    variantCategories,
     bodyTypes,
     transmissions,
     fuelTypes,
@@ -528,7 +503,6 @@ const {
 watch(selectedBrand, newValue => {
     selectedCarModel.value = null
     selectedVariant.value = null
-    selectedCategory.value = null
     selectedBodyType.value = null
     selectedTransmission.value = null
     selectedFuelType.value = null
@@ -552,7 +526,6 @@ watch(selectedBrand, newValue => {
 
 watch(selectedCarModel, newValue => {
     selectedVariant.value = null
-    selectedCategory.value = null
     selectedBodyType.value = null
     selectedTransmission.value = null
     selectedFuelType.value = null
@@ -573,7 +546,6 @@ watch(selectedCarModel, newValue => {
 })
 
 watch(selectedVariant, async newValue => {
-    selectedCategory.value = null
     selectedBodyType.value = null
     selectedTransmission.value = null
     selectedFuelType.value = null
@@ -584,9 +556,6 @@ watch(selectedVariant, async newValue => {
 
     if (newValue) {
         const result = await getVariantById(newValue)
-
-        selectedCategory.value =
-            variantCategories.find(item => item.id === result.category)?.label ?? ''
 
         selectedBodyType.value = bodyTypes.find(item => item.id === result.body_type)?.label ?? ''
         selectedTransmission.value =

@@ -17,7 +17,6 @@ class VariantRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'model_id' => ['required', 'integer', 'exists:car_models,id'],
-            'category' => ['required', 'in:economy,compact,suv,business,premium'],
             'description' => ['nullable', 'string'],
             'body_type' => ['required', 'in:suv,sedan,hatchback,coupe,wagon'],
             'transmission' => ['required', 'in:manual,automatic'],

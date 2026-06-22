@@ -19,7 +19,6 @@ export const useCar = () => {
     const uploadProgress = ref(0)
     const uploadedImage = ref(null)
 
-    const selectedCategory = ref(null)
     const selectedBodyType = ref(null)
     const selectedTransmission = ref(null)
     const selectedFuelType = ref(null)
@@ -101,7 +100,6 @@ export const useCar = () => {
 
             initialValues.features = data.features.map(f => f.id)
 
-            selectedCategory.value = data.variant.category
             selectedBodyType.value = data.variant.body_type
             selectedTransmission.value = data.variant.transmission
             selectedFuelType.value = data.variant.fuel_type
@@ -191,7 +189,6 @@ export const useCar = () => {
         deleteCar,
         deleteImage,
         rentalStatuses,
-        selectedCategory,
         selectedBodyType,
         selectedTransmission,
         selectedFuelType,

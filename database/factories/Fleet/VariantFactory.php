@@ -30,14 +30,6 @@ class VariantFactory extends Factory
 
             'model_id' => CarModel::factory(),
 
-            'category' => fake()->randomElement([
-                'economy',
-                'compact',
-                'suv',
-                'business',
-                'premium'
-            ]),
-
             'description' => fake()->sentence(),
 
             'body_type' => fake()->randomElement([

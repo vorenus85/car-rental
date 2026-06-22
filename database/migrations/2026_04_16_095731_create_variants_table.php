@@ -21,7 +21,6 @@ return new class extends Migration {
                 ->restrictOnDelete();
 
             $table->string('name');
-            $table->enum('category', ['economy', 'compact', 'suv', 'business', 'premium']);
             $table->text('description')->nullable();
 
             $table->enum('body_type', ['suv', 'sedan', 'hatchback', 'coupe', 'wagon']);

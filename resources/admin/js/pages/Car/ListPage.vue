@@ -100,10 +100,10 @@
                     </template>
                 </Column>
 
-                <Column sortable field="variant.category" header="Category" style="width: 10%">
+                <Column sortable field="variant.body_type" header="Body" style="width: 10%">
                     <template #body="slotProps">
                         <Tag severity="secondary" class="no-wrap">
-                            {{ slotProps.data.variant.category }}
+                            {{ slotProps.data.variant.body_type }}
                         </Tag>
                     </template>
                 </Column>

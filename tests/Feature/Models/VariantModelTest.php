@@ -16,7 +16,6 @@ describe('Variant model', function () {
             ->toBe([
                 'name',
                 'model_id',
-                'category',
                 'description',
 
                 'body_type',
@@ -59,5 +58,4 @@ describe('Variant model', function () {
             ->each
             ->toBeInstanceOf(Car::class);
     });
-
 });
