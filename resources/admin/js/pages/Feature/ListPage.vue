@@ -46,9 +46,9 @@
                 <Column sortable field="category" header="Category" style="width: 10%"> </Column>
                 <Column sortable field="description" header="Description" style="width: 25%">
                 </Column>
-                <Column sortable field="updated_at" header="Updated at" style="width: 10%">
+                <Column sortable field="updatedAt" header="Updated at" style="width: 10%">
                     <template #body="slotProps">
-                        <FormatedDate :date="slotProps.data.updated_at"></FormatedDate
+                        <FormatedDate :date="slotProps.data.updatedAt"></FormatedDate
                     ></template>
                 </Column>
                 <Column header="Actions" style="width: 10%">

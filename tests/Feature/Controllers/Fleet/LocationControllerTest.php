@@ -42,7 +42,7 @@ describe('LocationController', function () {
     });
 
     it('can create a location', function () {
-        $city = City::factory()->create(['name' => 'Budapest']);
+        $city = City::factory()->create(['name' => 'Budapest test']);
 
         $payload = [
             'name' => 'Budapest Airport',
@@ -91,8 +91,8 @@ describe('LocationController', function () {
 
     it('can update a location', function () {
 
+        $city = City::factory()->create(['name' => 'Vienna test']);
         $location = Location::factory()->create();
-        $city = City::factory()->create(['name' => 'Vienna']);
 
         $payload = [
             'name' => 'Vienna Airport',

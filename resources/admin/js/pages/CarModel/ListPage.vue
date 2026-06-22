@@ -44,7 +44,7 @@
                             <Image
                                 :src="
                                     slotProps.data?.brand.image
-                                        ? `${slotProps.data.brand.image_url}`
+                                        ? `${slotProps.data.brand.imageUrl}`
                                         : '/no-image.jpg'
                                 "
                                 :alt="slotProps.data?.title"
@@ -60,9 +60,9 @@
                 </Column>
                 <Column sortable field="description" header="Description" style="width: 30%">
                 </Column>
-                <Column sortable field="updated_at" header="Updated at" style="width: 10%">
+                <Column sortable field="updatedAt" header="Updated at" style="width: 10%">
                     <template #body="slotProps">
-                        <FormatedDate :date="slotProps.data.updated_at"></FormatedDate
+                        <FormatedDate :date="slotProps.data.updatedAt"></FormatedDate
                     ></template>
                 </Column>
                 <Column header="Actions" style="width: 20%">

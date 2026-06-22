@@ -48,19 +48,17 @@ describe('useCarModel', () => {
 
         expect(model.initialValues).toEqual({
             name: '',
-            brand_id: '',
+            brandId: '',
             description: '',
         })
     })
 
     it('loads car models', async () => {
         vi.mocked(fetchCarModels).mockResolvedValue({
-            data: {
-                data: [
-                    { id: 1, name: 'Corolla' },
-                    { id: 2, name: 'Yaris' },
-                ],
-            },
+            data: [
+                { id: 1, name: 'Corolla' },
+                { id: 2, name: 'Yaris' },
+            ],
         })
 
         const model = useCarModel()
@@ -84,11 +82,11 @@ describe('useCarModel', () => {
         const model = useCarModel()
 
         await model.getCarModelsByBrand({
-            brand_id: 5,
+            brandId: 5,
         })
 
         expect(fetchCarModelsByBrand).toHaveBeenCalledWith({
-            brand_id: 5,
+            brandId: 5,
         })
 
         expect(model.carModels.value).toHaveLength(2)
@@ -99,7 +97,9 @@ describe('useCarModel', () => {
             data: {
                 name: 'Corolla',
                 description: 'Popular compact sedan',
-                brand_id: 1,
+                brand: {
+                    id: 1,
+                },
             },
         })
 
@@ -110,7 +110,7 @@ describe('useCarModel', () => {
         expect(model.initialValues).toEqual({
             name: 'Corolla',
             description: 'Popular compact sedan',
-            brand_id: 1,
+            brandId: 1,
         })
 
         expect(model.formKey.value).toBe(1)
@@ -186,7 +186,7 @@ describe('useCarModel', () => {
 
         const model = useCarModel()
 
-        await expect(model.getCarModelsByBrand({ brand_id: 1 })).resolves.toBeUndefined()
+        await expect(model.getCarModelsByBrand({ brandId: 1 })).resolves.toBeUndefined()
 
         expect(model.loading.value).toBe(false)
     })

@@ -19,7 +19,7 @@ export const useCarModel = () => {
 
     const initialValues = reactive({
         name: '',
-        brand_id: '',
+        brandId: '',
         description: '',
     })
 
@@ -28,7 +28,7 @@ export const useCarModel = () => {
 
         try {
             const { data } = await fetchCarModels()
-            carModels.value = data.data
+            carModels.value = data
         } catch (e) {
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
@@ -58,7 +58,7 @@ export const useCarModel = () => {
             const { data } = await fetchCarModel(modelId)
             initialValues.name = data.name
             initialValues.description = data.description
-            initialValues.brand_id = data.brand_id
+            initialValues.brandId = data.brand.id
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
         } catch (e) {
             void e // to avoid unused variable lint error

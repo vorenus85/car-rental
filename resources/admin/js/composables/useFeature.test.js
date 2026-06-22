@@ -48,12 +48,10 @@ describe('useFeature', () => {
 
     it('loads features', async () => {
         vi.mocked(fetchFeatures).mockResolvedValue({
-            data: {
-                data: [
-                    { id: 1, name: 'ABS', category: 'safety' },
-                    { id: 2, name: 'Bluetooth', category: 'technology' },
-                ],
-            },
+            data: [
+                { id: 1, name: 'ABS', category: 'safety' },
+                { id: 2, name: 'Bluetooth', category: 'technology' },
+            ],
         })
 
         const feature = useFeature()

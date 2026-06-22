@@ -74,7 +74,7 @@ describe('useBrand', () => {
             data: {
                 name: 'Toyota',
                 image: 'toyota.png',
-                image_url: '/storage/toyota.png',
+                imageUrl: '/storage/toyota.png',
             },
         })
 
@@ -84,7 +84,7 @@ describe('useBrand', () => {
 
         expect(brand.initialValues.name).toBe('Toyota')
         expect(brand.initialValues.image).toBe('toyota.png')
-        expect(brand.initialValues.image_url).toBe('/storage/toyota.png')
+        expect(brand.initialValues.imageUrl).toBe('/storage/toyota.png')
         expect(brand.formKey.value).toBe(1)
     })
 

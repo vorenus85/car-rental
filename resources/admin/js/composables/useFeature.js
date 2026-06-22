@@ -47,7 +47,7 @@ export const useFeature = () => {
 
         try {
             const { data } = await fetchFeatures()
-            features.value = data.data
+            features.value = data
         } catch (e) {
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --

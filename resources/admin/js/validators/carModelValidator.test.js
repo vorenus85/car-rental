@@ -3,7 +3,7 @@ import { carModelValidator } from '@admin/validators/carModelValidator'
 
 describe('carModelValidator', () => {
     const validValues = {
-        brand_id: 1,
+        brandId: 1,
         name: 'Crimson',
     }
 
@@ -18,14 +18,14 @@ describe('carModelValidator', () => {
         expect(result.errors.name).toEqual([{ message: 'Car model name is required.' }])
     })
 
-    it('should return error when brand_id is missing', () => {
+    it('should return error when brandId is missing', () => {
         const result = carModelValidator({
             values: {
                 ...validValues,
-                brand_id: '',
+                brandId: '',
             },
         })
 
-        expect(result.errors.brand_id).toEqual([{ message: 'Brand is required.' }])
+        expect(result.errors.brandId).toEqual([{ message: 'Brand is required.' }])
     })
 })

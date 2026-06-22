@@ -43,7 +43,7 @@
                             <Image
                                 :src="
                                     initialValues?.image
-                                        ? `${initialValues.image_url}`
+                                        ? `${initialValues.imageUrl}`
                                         : '/no-image.jpg'
                                 "
                                 :alt="initialValues?.name"
@@ -124,7 +124,7 @@ const onFormSubmit = async ({ valid, values, errors }) => {
             values.image = uploadedImage.value
             await updateBrandById(brandId, values)
 
-            customToast.success('Feature created successfully!')
+            customToast.success('Brand updated successfully!')
 
             setTimeout(() => {
                 toBrandsList()

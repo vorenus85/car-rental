@@ -39,7 +39,7 @@ class BrandController extends Controller
 
         $brand = Brand::create($validated);
 
-        return response()->json($brand, 201);
+        return response()->json(new BrandResource($brand), 201);
     }
 
     /**
@@ -49,7 +49,7 @@ class BrandController extends Controller
     {
         //
         $brand['image_url'] = $brand->image ? Storage::url('/uploads/' . $brand->image) : "";
-        return response()->json($brand);
+        return response()->json(new BrandResource($brand));
     }
 
     /**
@@ -66,7 +66,7 @@ class BrandController extends Controller
 
         $brand->update($validated);
 
-        return response()->json($brand, 200);
+        return response()->json(new BrandResource($brand), 200);
     }
 
     /**
