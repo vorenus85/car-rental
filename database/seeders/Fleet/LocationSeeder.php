@@ -19,7 +19,7 @@ class LocationSeeder extends Seeder
         $data = json_decode(File::get($path), true);
 
         foreach ($data as $item) {
-            $city = City::firstOrCreate(['name' => $item['city']]);
+            $city = City::where('name', $item['city'])->first();
 
             $item['city_id'] = $city->id;
             unset($item['city']);
