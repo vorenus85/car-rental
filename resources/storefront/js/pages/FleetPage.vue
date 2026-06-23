@@ -57,7 +57,7 @@ import PageTitle from '@storefront/components/modules/PageTitle.vue'
 import PaginationModule from '@storefront/components/modules/PaginationModule.vue'
 import SortDropdown from '@storefront/components/modules/SortDropdown.vue'
 import { useFleet } from '@storefront/composables/useFleet'
-import CarCardSkeleton from '@storefront/components/modules/CarCard/CarCardSkeleton.vue'
+import CarCardSkeleton from '@storefront/components/modules/Skeleton/CarCardSkeleton.vue'
 import CarFilter from '@storefront/components/modules/CarFilter.vue'
 import { formatDate } from '@storefront/utils.js'
 

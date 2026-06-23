@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!loadingCars" class="cars-module mx-auto max-w-8xl">
+    <div class="cars-module mx-auto max-w-8xl">
         <div class="module-head p-4">
             <h3 class="module-head-title">{{ title }}</h3>
             <div class="carousel-nav">
@@ -44,7 +44,7 @@ import CarCard from '@storefront/components/modules/CarCard/CarCard.vue'
 import { Button } from 'primevue'
 import IconArrow from '@storefront/components/icons/IconArrow.vue'
 import { ref } from 'vue'
-import CarCardSkeleton from '@storefront/components/modules/CarCard/CarCardSkeleton.vue'
+import CarCardSkeleton from '@storefront/components/modules/Skeleton/CarCardSkeleton.vue'
 
 defineProps({
     title: {
