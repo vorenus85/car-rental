@@ -29,12 +29,20 @@ class CarController extends Controller
             }
         }
 
+        // brand
+        if ($request->filled('brand')) {
+            $query->whereHas('variant.model.brand', function ($query) use ($request) {
+                $query->whereIn('id', (array) $request->brand);
+            });
+        }
+
         // body_type
         if ($request->filled('bodyType')) {
             $query->whereHas('variant', function ($query) use ($request) {
                 $query->whereIn('body_type', (array) $request->bodyType);
             });
         }
+
         // fuel_type
         if ($request->filled('fuel')) {
             $query->whereHas('variant', function ($query) use ($request) {

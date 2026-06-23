@@ -116,7 +116,11 @@ const buildFilters = filters => {
     }
 
     if (filters?.seats) {
-        query.seats = filters.seats
+        query.seat = filters.seats
+    }
+
+    if (filters?.brands) {
+        query.brand = filters.brands
     }
 
     if (filters?.luggageCounts) {
@@ -148,7 +152,8 @@ const onFilter = async filters => {
         'bodyType',
         'transmission',
         'fuel',
-        'seats',
+        'seat',
+        'brand',
         'luggageCount',
     ]
 

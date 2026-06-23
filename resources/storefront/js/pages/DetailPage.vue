@@ -2,14 +2,6 @@
     <PublicLayout class="details-page">
         <div class="mx-auto max-w-8xl px-4 py-4 min-h-[500px]">
             <BreadcrumbModule :items="breadcrumbItems"></BreadcrumbModule>
-            <Button
-                size="small"
-                outlined
-                severity="secondary"
-                icon="pi pi-angle-left"
-                label="Back"
-                @click="goBack"
-            />
             <div class="container mx-auto py-8">
                 <template v-if="loadingCar">
                     <DetailsTopSkeleton />
@@ -393,8 +385,8 @@ const breadcrumbItems = computed(() => [
         route: '/fleet',
     },
     {
-        label: bodyType.value?.label ?? '',
-        route: `/fleet?bodyType=${bodyType.value?.value ?? ''}`,
+        label: bodyType?.value?.label ?? '',
+        route: `/fleet?bodyType=${bodyType?.value?.value ?? ''}`,
     },
 ])
 
@@ -402,14 +394,6 @@ const rentalPeriod = computed(() => {
     const days = getDaysBetween(searchParams.pickUpDate, searchParams.dropOffDate)
     return days === 1 ? days + ' day' : days + ' days'
 })
-
-const goBack = () => {
-    if (globalThis.history.length) {
-        router.back()
-    } else {
-        router.push({ name: 'fleet' })
-    }
-}
 
 watch(
     () => route.params.id,

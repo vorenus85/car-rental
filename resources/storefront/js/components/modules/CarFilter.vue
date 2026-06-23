@@ -101,146 +101,86 @@
                 </div>
             </div>
         </div>
-
         <Accordion :value="openPanels" multiple>
-            <AccordionPanel value="transmission">
-                <AccordionHeader> Transmission </AccordionHeader>
+            <FilterCheckboxGroup
+                title="Brands"
+                panel-value="brand"
+                :items="filterParams.brands"
+                :model-value="filters.brands"
+                id-prefix="seat"
+                @update:model-value="filters.brands = $event"
+            ></FilterCheckboxGroup>
 
-                <AccordionContent>
-                    <div class="space-y-3">
-                        <div
-                            v-for="item in filterParams.transmissions"
-                            :key="item.value"
-                            class="flex items-center gap-3"
-                        >
-                            <Checkbox
-                                v-model="filters.transmissions"
-                                :input-id="item.value"
-                                :value="item.value"
-                            />
+            <FilterCheckboxGroup
+                title="Transmission"
+                panel-value="transmission"
+                :items="filterParams.transmissions"
+                :model-value="filters.transmissions"
+                id-prefix="transmission"
+                @update:model-value="filters.transmissions = $event"
+            ></FilterCheckboxGroup>
 
-                            <label :for="item.value">
-                                {{ item.label }}
-                            </label>
-                        </div>
-                    </div>
-                </AccordionContent>
-            </AccordionPanel>
+            <FilterCheckboxGroup
+                title="Fuel types"
+                panel-value="fuel"
+                :items="filterParams.fuelTypes"
+                :model-value="filters.fuelTypes"
+                id-prefix="fuel"
+                @update:model-value="filters.fuelTypes = $event"
+            ></FilterCheckboxGroup>
+
+            <FilterCheckboxGroup
+                title="Seats"
+                panel-value="seat"
+                :items="filterParams.seats"
+                :model-value="filters.seats"
+                id-prefix="seats"
+                suffix="seats"
+                @update:model-value="filters.seats = $event"
+            ></FilterCheckboxGroup>
+
+            <FilterCheckboxGroup
+                title="Luggage Capacity"
+                panel-value="luggage"
+                :items="filterParams.luggageCounts"
+                :model-value="filters.luggageCounts"
+                id-prefix="luggage"
+                suffix="bags"
+                @update:model-value="filters.luggageCounts = $event"
+            ></FilterCheckboxGroup>
         </Accordion>
-
-        <Accordion :value="openPanels" multiple>
-            <AccordionPanel value="fuel">
-                <AccordionHeader> Fuel Type </AccordionHeader>
-
-                <AccordionContent>
-                    <div class="space-y-3">
-                        <div
-                            v-for="item in filterParams.fuelTypes"
-                            :key="item.value"
-                            class="flex items-center gap-3"
-                        >
-                            <Checkbox
-                                v-model="filters.fuelTypes"
-                                :input-id="item.value"
-                                :value="item.value"
-                            />
-
-                            <label :for="item.value">
-                                {{ item.label }}
-                            </label>
-                        </div>
-                    </div>
-                </AccordionContent>
-            </AccordionPanel>
-        </Accordion>
-
-        <Accordion :value="openPanels" multiple>
-            <AccordionPanel value="seats">
-                <AccordionHeader> Seats </AccordionHeader>
-
-                <AccordionContent
-                    ><div class="space-y-3">
-                        <div
-                            v-for="seat in filterParams.seats"
-                            :key="seat"
-                            class="flex items-center gap-3"
-                        >
-                            <Checkbox
-                                v-model="filters.seats"
-                                :input-id="`seat-${seat}`"
-                                :value="seat"
-                            />
-
-                            <label :for="`seat-${seat}`"> {{ seat }} Seats </label>
-                        </div>
-                    </div></AccordionContent
-                >
-            </AccordionPanel></Accordion
-        >
-
-        <Accordion :value="openPanels" multiple>
-            <AccordionPanel value="luggage">
-                <AccordionHeader> Luggage Capacity </AccordionHeader>
-
-                <AccordionContent>
-                    <div class="space-y-3">
-                        <div
-                            v-for="count in filterParams.luggageCounts"
-                            :key="count"
-                            class="flex items-center gap-3"
-                        >
-                            <Checkbox
-                                v-model="filters.luggageCounts"
-                                :input-id="`luggage-${count}`"
-                                :value="count"
-                            />
-
-                            <label :for="`luggage-${count}`"> {{ count }} Bags </label>
-                        </div>
-                    </div>
-                </AccordionContent>
-            </AccordionPanel>
-        </Accordion>
-
         <!-- Apply -->
         <Button
             class="mt-3"
             severity="contrast"
             outlined
             fluid
-            size="large"
+            size="small"
             :label="`Clear filter`"
             @click="clearFilters"
         />
     </div>
 </template>
 <script setup>
-import {
-    Accordion,
-    AccordionContent,
-    AccordionHeader,
-    AccordionPanel,
-    Button,
-    Checkbox,
-    DatePicker,
-    Select,
-    Slider,
-} from 'primevue'
+import { Accordion, Button, Checkbox, DatePicker, Select, Slider } from 'primevue'
 import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useLocation } from '@storefront/composables/useLocation'
-import { useCars } from '@storefront/composables/useCars.js'
+import { useCarFilters } from '@storefront/composables/useCarFilters'
+import { useBrandStore } from '@storefront/stores/useBrandStore'
+import FilterCheckboxGroup from './FilterCheckboxGroup.vue'
 
-const { filterParams } = useCars()
+const { filterParams } = useCarFilters()
 const { getLocations, groupedLocations } = useLocation()
 const emit = defineEmits(['filter'])
 const route = useRoute()
 const query = route.query
-
+const brandStore = useBrandStore()
 const openPanels = computed(() => {
     const panels = []
 
-    if (query.seats) panels.push('seats')
+    if (query.brand) panels.push('brand')
+    if (query.seat) panels.push('seat')
     if (query.transmission) panels.push('transmission')
     if (query.fuel) panels.push('fuel')
     if (query.luggageCount) panels.push('luggage')
@@ -260,6 +200,7 @@ const filters = reactive({
     pickUpDate: null,
     dropOffDate: null,
     priceRange: [0, 200],
+    brands: [],
     carTypes: [],
     transmissions: [],
     fuelTypes: [],
@@ -288,6 +229,7 @@ const clearFilters = () => {
     filters.pickUpDate = null
     filters.dropOffDate = null
     filters.priceRange = [0, 200]
+    filters.brands = []
     filters.carTypes = []
     filters.transmissions = []
     filters.fuelTypes = []
@@ -307,6 +249,12 @@ const hydrateFiltersFromQuery = query => {
         const dropOffDate = new Date(query.dropOffDate)
         dropOffDate.setHours(0, 0, 0, 0)
         filters.dropOffDate = dropOffDate
+    }
+
+    if (query.brand) {
+        const brands = Array.isArray(query.brand) ? query.brand : [query.brand]
+
+        filters.brands = brands.map(Number)
     }
 
     if (query.location) {
@@ -333,8 +281,8 @@ const hydrateFiltersFromQuery = query => {
         filters.fuelTypes = Array.isArray(query.fuel) ? query.fuel : [query.fuel]
     }
 
-    if (query.seats) {
-        const seats = Array.isArray(query.seats) ? query.seats : [query.seats]
+    if (query.seat) {
+        const seats = Array.isArray(query.seat) ? query.seat : [query.seat]
 
         filters.seats = seats.map(Number)
     }
@@ -354,9 +302,18 @@ onMounted(() => {
     draftPriceRange.value = filters.priceRange
 
     getLocations()
+    brandStore.fetchBrands()
 
     nextTick(() => {
         syncing.value = false
     })
 })
 </script>
+<style>
+.p-accordionheader {
+    --p-accordion-header-padding: 1.125rem 0;
+}
+.p-accordioncontent-content {
+    --p-accordion-content-padding: 0 0 1.125rem 0;
+}
+</style>

@@ -1,15 +1,14 @@
 import { computed, ref } from 'vue'
 import { fetchCar } from '@storefront/services/carService.js'
-import { useCars } from '@storefront/composables/useCars'
-
-const { filterParams } = useCars()
+import { useCarFilters } from '@storefront/composables/useCarFilters'
 
 export const useCar = () => {
+    const { filterParams } = useCarFilters()
     const loadingCar = ref(false)
     const car = ref({})
 
     const bodyType = computed(() => {
-        return filterParams.carTypes?.find(item => car.value.bodyType === item.value)
+        return filterParams.value.carTypes?.find(item => car.value.bodyType === item.value)
     })
 
     const getCar = async id => {
