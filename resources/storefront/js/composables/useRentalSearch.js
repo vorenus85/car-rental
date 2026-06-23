@@ -2,7 +2,6 @@ import { ref, reactive } from 'vue'
 import { useRoute } from 'vue-router'
 export const useRentalSearch = () => {
     const route = useRoute()
-    const SEARCH_KEYS = ['dropOffDate', 'pickUpDate', 'location']
 
     const defaultPickUpDate = new Date()
     const minPickUpDate = new Date()
