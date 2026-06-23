@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('name')->unique();
 
             $table->string('country');
-            $table->string('city');
+            $table->foreignId('city_id')
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('address');
 
             $table->decimal('latitude', 10, 7)->nullable();
@@ -45,7 +47,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->index('country');
-            $table->index('city');
+            $table->index('city_id');
             $table->index('type');
             $table->index('active');
         });
