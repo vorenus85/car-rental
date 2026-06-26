@@ -1,160 +1,157 @@
 <template>
-    <main>
-        <div class="h-screen flex items-center justify-center flex-col p-4">
-            <div class="mb-5"><LogoIcon /></div>
-            <Card class="p-4 py-6 w-full sm:max-w-lg">
-                <template #content>
-                    <div
-                        class="flex flex-col gap-6 md:gap-8 items-center justify-center text-center"
-                    >
-                        <div class="text-xl">
-                            <strong>{{ $t('pages.register.title') }}</strong>
-                        </div>
-                        <div class="text-center">
-                            {{ $t('pages.register.subTitle') }}
-                        </div>
-                        <Form
-                            v-slot="$form"
-                            class="flex flex-col gap-4 w-full"
-                            :resolver="registerValidator"
-                            :validate-on-value-update="true"
-                            :validate-on-blur="true"
-                            @submit="onFormSubmit"
+    <PublicLayout class="register-page">
+        <div class="mx-auto max-w-8xl px-4 py-4 min-h-[500px]">
+            <BreadcrumbModule :items="breadcrumbItems"></BreadcrumbModule>
+            <div class="flex items-center justify-center flex-col mt-5 mb-5">
+                <Card class="p-4 py-6 w-full sm:max-w-lg">
+                    <template #content>
+                        <div
+                            class="flex flex-col gap-6 md:gap-8 items-center justify-center text-center"
                         >
-                            <div class="flex flex-col gap-1 text-left">
-                                <label for="name">{{ $t('form.name') }}</label>
-                                <InputText
-                                    id="name"
-                                    name="name"
-                                    type="name"
-                                    :placeholder="$t('form.name')"
-                                    fluid
-                                />
-                                <Message
-                                    v-if="$form.name?.invalid"
-                                    severity="error"
-                                    size="small"
-                                    variant="simple"
-                                    >{{ $t($form.name.error?.key) }}</Message
-                                >
+                            <div class="text-xl">
+                                <strong>Create an account</strong>
                             </div>
-                            <div class="flex flex-col gap-1 text-left">
-                                <label for="email">{{ $t('form.emailAddress') }}</label>
-                                <InputText
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    :placeholder="$t('form.emailAddress')"
-                                    fluid
-                                />
-                                <Message
-                                    v-if="$form.email?.invalid"
-                                    severity="error"
-                                    size="small"
-                                    variant="simple"
-                                    >{{ $t($form.email.error?.key) }}</Message
-                                >
+                            <div class="text-center">
+                                Enter your details below to create your account
                             </div>
-                            <div class="flex flex-col gap-1 text-left">
-                                <label for="password">{{ $t('form.password') }}</label>
-                                <Password
-                                    input-id="password"
-                                    name="password"
-                                    type="text"
-                                    :placeholder="$t('form.password')"
-                                    min="8"
-                                    :value="password"
-                                    :prompt-label="$t('form.choosePassword')"
-                                    :weak-label="$t('form.passwordSimple')"
-                                    :medium-label="$t('form.passwordAverage')"
-                                    :strong-label="$t('form.passwordComplex')"
-                                    toggle-mask
-                                    fluid
-                                />
-                                <Message
-                                    v-if="$form.password?.invalid"
-                                    severity="error"
-                                    size="small"
-                                    variant="simple"
-                                    >{{ $t($form.password.error?.key) }}</Message
-                                >
-                            </div>
-                            <div class="flex flex-col gap-1 text-left">
-                                <label for="password_confirmation">{{
-                                    $t('form.confirmPassword')
-                                }}</label>
-                                <Password
-                                    input-id="password_confirmation"
-                                    name="password_confirmation"
-                                    type="text"
-                                    :placeholder="$t('form.confirmPassword')"
-                                    min="8"
-                                    :value="password_confirmation"
-                                    :prompt-label="$t('form.choosePassword')"
-                                    :weak-label="$t('form.passwordSimple')"
-                                    :medium-label="$t('form.passwordAverage')"
-                                    :strong-label="$t('form.passwordComplex')"
-                                    toggle-mask
-                                    fluid
-                                />
-                                <Message
-                                    v-if="$form.password_confirmation?.invalid"
-                                    severity="error"
-                                    size="small"
-                                    variant="simple"
-                                    >{{ $t($form.password_confirmation.error?.key) }}</Message
-                                >
-                            </div>
-                            <Button class="mt-4" type="submit" :label="$t('pages.register.btn')" />
-                        </Form>
-                        <div class="text-center">
-                            <span class="text-muted-color mr-1">
-                                {{ $t('pages.register.haveAccount') }}
-                            </span>
-                            <RouterLink to="/" class="font-semibold">
-                                {{ $t('pages.register.logIn') }}</RouterLink
+                            <Form
+                                v-slot="$form"
+                                class="flex flex-col gap-4 w-full"
+                                :resolver="registerValidator"
+                                :validate-on-value-update="true"
+                                :validate-on-blur="true"
+                                @submit="onFormSubmit"
                             >
+                                <div class="flex flex-col gap-1 text-left">
+                                    <label for="name">Name</label>
+                                    <InputText id="name" name="name" :placeholder="'Name'" fluid />
+                                    <Message
+                                        v-if="$form.name?.invalid"
+                                        severity="error"
+                                        size="small"
+                                        variant="simple"
+                                        >{{ $form.name.error?.message }}</Message
+                                    >
+                                </div>
+                                <div class="flex flex-col gap-1 text-left">
+                                    <label for="email">Email address</label>
+                                    <InputText
+                                        id="email"
+                                        name="email"
+                                        type="email"
+                                        :placeholder="'Email address'"
+                                        fluid
+                                    />
+                                    <Message
+                                        v-if="$form.email?.invalid"
+                                        severity="error"
+                                        size="small"
+                                        variant="simple"
+                                        >{{ $form.email.error?.message }}</Message
+                                    >
+                                </div>
+                                <div class="flex flex-col gap-1 text-left">
+                                    <label for="password">Password</label>
+                                    <Password
+                                        input-id="password"
+                                        name="password"
+                                        type="text"
+                                        :placeholder="'Password'"
+                                        min="8"
+                                        :value="password"
+                                        prompt-label="Choose a password"
+                                        weak-label="Too simple"
+                                        medium-label="Average complexity"
+                                        strong-label="Complex password"
+                                        toggle-mask
+                                        fluid
+                                    />
+                                    <Message
+                                        v-if="$form.password?.invalid"
+                                        severity="error"
+                                        size="small"
+                                        variant="simple"
+                                        >{{ $form.password.error?.message }}</Message
+                                    >
+                                </div>
+                                <div class="flex flex-col gap-1 text-left">
+                                    <label for="password_confirmation">Confirm password</label>
+                                    <Password
+                                        input-id="password_confirmation"
+                                        name="password_confirmation"
+                                        type="text"
+                                        :placeholder="'Confirm password'"
+                                        min="8"
+                                        :value="password_confirmation"
+                                        prompt-label="Choose a password"
+                                        weak-label="Too simple"
+                                        medium-label="Average complexity"
+                                        strong-label="Complex password"
+                                        toggle-mask
+                                        fluid
+                                    />
+                                    <Message
+                                        v-if="$form.password_confirmation?.invalid"
+                                        severity="error"
+                                        size="small"
+                                        variant="simple"
+                                        >{{ $form.password_confirmation.error?.message }}</Message
+                                    >
+                                </div>
+                                <Button class="mt-4" type="submit" :label="'Create account'" />
+                            </Form>
+                            <div class="text-center">
+                                <span class="text-muted-color mr-1">
+                                    Already have an account?
+                                </span>
+                                <RouterLink to="/login" class="font-semibold"> Log in</RouterLink>
+                            </div>
                         </div>
-                    </div>
-                </template>
-            </Card>
+                    </template>
+                </Card>
+            </div>
         </div>
-    </main>
+    </PublicLayout>
 </template>
 <script setup>
-import LogoIcon from '@/components/LogoIcon.vue'
+import PublicLayout from '@storefront/layouts/PublicLayout.vue'
+import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
 import { Form } from '@primevue/forms'
 import { Button, Card, InputText, Message, Password } from 'primevue'
-import { useRedirects } from '@/composables/useRedirects'
-import { useCustomToast } from '@/composables/useCustomToast'
-import { registerValidator } from '@/validators/registerValidator'
-import { useAuthStore } from '@/stores/useAuthStore'
-import { registerVisitor } from '@/services/userService'
-import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
+import { useRedirects } from '@storefront/composables/useRedirects'
+import { useCustomToast } from '@storefront/composables/useCustomToast'
+import { registerValidator } from '@storefront/validators/registerValidator'
+import { useAuthStore } from '@storefront/stores/authStore'
+import { registerClient } from '@storefront/services/clientUserService'
+import { computed, ref } from 'vue'
 
-const { t } = useI18n()
+const breadcrumbItems = computed(() => [
+    {
+        label: 'Register',
+    },
+])
+
 const { login } = useAuthStore()
 const { customToast } = useCustomToast()
-const { toDashboard } = useRedirects()
+const { toHome } = useRedirects()
 const password = ref(null)
 const password_confirmation = ref(null)
 
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
         try {
-            await registerVisitor(values)
+            await registerClient(values)
             await login(values.email, values.password)
 
-            customToast.success(t('toast.register.success'))
+            customToast.success('Welcome on Drivengo!')
 
             setTimeout(() => {
-                toDashboard()
+                toHome()
             }, 300)
         } catch (error) {
             console.error(error)
             const msg = error?.response?.data?.message
-            customToast.error(msg || t('toast.tryAgain'))
+            customToast.error(msg || 'Please try again.')
         }
     }
 }

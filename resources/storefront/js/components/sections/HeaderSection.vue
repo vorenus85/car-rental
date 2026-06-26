@@ -24,7 +24,7 @@
 import HeaderLinks from '@storefront/components/modules/HeaderLinks.vue'
 import HeaderLogo from '@storefront/components/modules/HeaderLogo.vue'
 import { Button } from 'primevue'
-import { useMobileMenuStore } from '@storefront/stores/useMobileMenuStore'
+import { useMobileMenuStore } from '@storefront/stores/mobileMenuStore'
 import HamburgerMenu from '@storefront/components/icons/HamburgerMenu.vue'
 import { useRedirects } from '@storefront/composables/useRedirects'
 

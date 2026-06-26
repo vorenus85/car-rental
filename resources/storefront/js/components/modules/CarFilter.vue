@@ -167,7 +167,7 @@ import { computed, nextTick, onMounted, reactive, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { useLocation } from '@storefront/composables/useLocation'
 import { useCarFilters } from '@storefront/composables/useCarFilters'
-import { useBrandStore } from '@storefront/stores/useBrandStore'
+import { useBrandStore } from '@storefront/stores/brandStore'
 import FilterCheckboxGroup from './FilterCheckboxGroup.vue'
 
 const { filterParams } = useCarFilters()

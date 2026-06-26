@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Storefront\RegisterClientRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,8 +34,6 @@ class AuthController extends Controller
             ], 401);
         }
 
-
-
         Auth::login($user);
 
         $request->session()->regenerate();
@@ -42,6 +41,16 @@ class AuthController extends Controller
         return response()->json([
             'user' => Auth::user()
         ]);
+    }
+
+    public function register(RegisterClientRequest $request)
+    {
+        //
+        $validated = $request->validated();
+
+        $user = User::create($validated);
+
+        return response()->json($user, 201);
     }
 
     public function logout(Request $request)

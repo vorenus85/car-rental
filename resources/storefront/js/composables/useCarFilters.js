@@ -1,4 +1,4 @@
-import { useBrandStore } from '@storefront/stores/useBrandStore'
+import { useBrandStore } from '@storefront/stores/brandStore'
 import { computed } from 'vue'
 
 export const useCarFilters = () => {

@@ -24,7 +24,7 @@
     </div>
 </template>
 <script setup>
-import { useMobileMenuStore } from '@storefront/stores/useMobileMenuStore'
+import { useMobileMenuStore } from '@storefront/stores/mobileMenuStore'
 import { useHeaderMenu } from '@storefront/composables/useHeaderMenu'
 import CloseButton from '@storefront/components/icons/CloseButton.vue'
 

@@ -12,6 +12,10 @@ export const fetchUser = async () => {
     return axios.get('/storefront/auth/me', { withCredentials: true })
 }
 
+export const doRegister = async () => {
+    return axios.post('/storefront/auth/register', null)
+}
+
 export const doLogout = async () => {
     return axios.post('/storefront/auth/logout', null, { withCredentials: true })
 }

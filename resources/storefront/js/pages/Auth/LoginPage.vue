@@ -80,12 +80,20 @@
 </template>
 <script setup>
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
+import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
 import { Form, FormField } from '@primevue/forms'
 import { Button, Card, InputText, Message, Password } from 'primevue'
 import { useAuthStore } from '@admin/stores/auth'
 import { loginValidator } from '@storefront/validators/loginValidator'
 import { useRedirects } from '@storefront/composables/useRedirects'
 import { useCustomToast } from '@storefront/composables/useCustomToast'
+import { computed } from 'vue'
+
+const breadcrumbItems = computed(() => [
+    {
+        label: 'Login',
+    },
+])
 
 const { customToast } = useCustomToast()
 const { login } = useAuthStore()
