@@ -7,7 +7,12 @@ export const useRedirects = () => {
         router.push({ name: 'home' })
     }
 
+    const toLogin = () => {
+        router.push({ name: 'login' })
+    }
+
     return {
         toHome,
+        toLogin,
     }
 }

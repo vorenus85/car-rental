@@ -3,6 +3,9 @@
         <div class="max-w-8xl mx-auto px-4 py-4 flex items-center">
             <HeaderLogo />
             <HeaderLinks class="mx-auto items-center"></HeaderLinks>
+            <div class="login-module hidden lg:flex">
+                <Button class="login-cta mr-5" outlined @click="toLogin">Login</Button>
+            </div>
             <Button class="header-cta ml-auto lg:ml-0">Book Now</Button>
             <div class="flex lg:hidden ml-5 p-0">
                 <Button
@@ -23,12 +26,15 @@ import HeaderLogo from '@storefront/components/modules/HeaderLogo.vue'
 import { Button } from 'primevue'
 import { useMobileMenuStore } from '@storefront/stores/useMobileMenuStore'
 import HamburgerMenu from '@storefront/components/icons/HamburgerMenu.vue'
+import { useRedirects } from '@storefront/composables/useRedirects'
 
 const mobileMenuStore = useMobileMenuStore()
 
 function toggle() {
     mobileMenuStore.toggleMenu()
 }
+
+const { toLogin } = useRedirects()
 </script>
 <style scoped lang="scss">
 .header {

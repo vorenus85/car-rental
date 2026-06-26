@@ -1,11 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
 
-import { useAuthStore } from '@storefront/stores/auth'
+import { useAuthStore } from '@admin/stores/auth'
 
-import { getCsrfCookie, fetchUser, doLogout, doLogin } from '@storefront/services/authService'
+import { getCsrfCookie, fetchUser, doLogout, doLogin } from '@admin/services/authService'
 
-vi.mock('@storefront/services/authService', () => ({
+vi.mock('@admin/services/authService', () => ({
     getCsrfCookie: vi.fn(),
     fetchUser: vi.fn(),
     doLogout: vi.fn(),
