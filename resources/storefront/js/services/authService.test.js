@@ -1,7 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import axios from 'axios'
 
-import { checkAuth, getCsrfCookie, fetchUser, doLogout, doLogin } from '@admin/services/authService'
+import {
+    checkAuth,
+    getCsrfCookie,
+    fetchCustomer,
+    doLogout,
+    doLogin,
+} from '@storefront/services/authService'
 
 vi.mock('axios')
 
@@ -11,14 +17,14 @@ describe('authService', () => {
     })
 
     describe('checkAuth', () => {
-        it('should call GET /auth/check', async () => {
+        it('should call GET /storefront/auth/check', async () => {
             axios.get.mockResolvedValue({
                 data: { authenticated: true },
             })
 
             const response = await checkAuth()
 
-            expect(axios.get).toHaveBeenCalledWith('/auth/check')
+            expect(axios.get).toHaveBeenCalledWith('/storefront/auth/check')
             expect(response.data.authenticated).toBe(true)
         })
     })
@@ -37,8 +43,8 @@ describe('authService', () => {
         })
     })
 
-    describe('fetchUser', () => {
-        it('should call GET /auth/me with credentials', async () => {
+    describe('fetchCustomer', () => {
+        it('should call GET /storefront/auth/me with credentials', async () => {
             axios.get.mockResolvedValue({
                 data: {
                     id: 1,
@@ -46,9 +52,9 @@ describe('authService', () => {
                 },
             })
 
-            const response = await fetchUser()
+            const response = await fetchCustomer()
 
-            expect(axios.get).toHaveBeenCalledWith('/auth/me', {
+            expect(axios.get).toHaveBeenCalledWith('/storefront/auth/me', {
                 withCredentials: true,
             })
 
@@ -57,7 +63,7 @@ describe('authService', () => {
     })
 
     describe('doLogout', () => {
-        it('should call POST /auth/logout', async () => {
+        it('should call POST /storefront/auth/logout', async () => {
             axios.post.mockResolvedValue({
                 data: {
                     success: true,
@@ -66,7 +72,7 @@ describe('authService', () => {
 
             const response = await doLogout()
 
-            expect(axios.post).toHaveBeenCalledWith('/auth/logout', null, {
+            expect(axios.post).toHaveBeenCalledWith('/storefront/auth/logout', null, {
                 withCredentials: true,
             })
 
@@ -75,7 +81,7 @@ describe('authService', () => {
     })
 
     describe('doLogin', () => {
-        it('should call POST /auth/login with credentials', async () => {
+        it('should call POST /storefront/auth/login with credentials', async () => {
             axios.post.mockResolvedValue({
                 data: {
                     token: 'fake-token',
@@ -85,7 +91,7 @@ describe('authService', () => {
             const response = await doLogin('john@example.com', 'password123')
 
             expect(axios.post).toHaveBeenCalledWith(
-                '/auth/login',
+                '/storefront/auth/login',
                 {
                     email: 'john@example.com',
                     password: 'password123',

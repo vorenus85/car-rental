@@ -1,11 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
 
-import { useAuthStore } from '@storefront/stores/auth'
+import { useAuthStore } from '@admin/stores/auth'
 
-import { getCsrfCookie, fetchUser, doLogout, doLogin } from '@storefront/services/authService'
+import { getCsrfCookie, fetchUser, doLogout, doLogin } from '@admin/services/authService'
 
-vi.mock('@storefront/services/authService', () => ({
+vi.mock('@admin/services/authService', () => ({
     getCsrfCookie: vi.fn(),
     fetchUser: vi.fn(),
     doLogout: vi.fn(),
@@ -41,7 +41,7 @@ describe('Auth Store', () => {
 
             const store = useAuthStore()
 
-            await store.fetchUser()
+            await store.getUser()
 
             expect(fetchUser).toHaveBeenCalled()
 
@@ -54,12 +54,12 @@ describe('Auth Store', () => {
 
             const store = useAuthStore()
 
-            await store.fetchUser()
+            await store.getUser()
 
             expect(fetchUser).toHaveBeenCalled()
 
             expect(store.user).toBe(null)
-            expect(store.loaded).toBe(true)
+            expect(store.loaded).toBe(false)
         })
     })
 

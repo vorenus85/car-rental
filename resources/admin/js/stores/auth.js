@@ -20,6 +20,7 @@ export const useAuthStore = defineStore('auth', {
         async login(email, password) {
             await getCsrfCookie()
             const res = await doLogin(email, password)
+
             this.user = res.data.user
         },
         async logout() {

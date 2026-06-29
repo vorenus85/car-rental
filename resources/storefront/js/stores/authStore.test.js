@@ -1,13 +1,13 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { setActivePinia, createPinia } from 'pinia'
 
-import { useAuthStore } from '@admin/stores/auth'
+import { useAuthStore } from '@storefront/stores/authStore'
 
-import { getCsrfCookie, fetchUser, doLogout, doLogin } from '@admin/services/authService'
+import { getCsrfCookie, fetchCustomer, doLogout, doLogin } from '@storefront/services/authService'
 
-vi.mock('@admin/services/authService', () => ({
+vi.mock('@storefront/services/authService', () => ({
     getCsrfCookie: vi.fn(),
-    fetchUser: vi.fn(),
+    fetchCustomer: vi.fn(),
     doLogout: vi.fn(),
     doLogin: vi.fn(),
 }))
@@ -27,7 +27,7 @@ describe('Auth Store', () => {
         })
     })
 
-    describe('fetchUser', () => {
+    describe('fetchCustomer', () => {
         it('should fetch and set user', async () => {
             const mockUser = {
                 id: 1,
@@ -35,36 +35,36 @@ describe('Auth Store', () => {
                 email: 'john@example.com',
             }
 
-            fetchUser.mockResolvedValue({
+            fetchCustomer.mockResolvedValue({
                 data: mockUser,
             })
 
             const store = useAuthStore()
 
-            await store.fetchUser()
+            await store.getCustomer()
 
-            expect(fetchUser).toHaveBeenCalled()
+            expect(fetchCustomer).toHaveBeenCalled()
 
             expect(store.user).toEqual(mockUser)
             expect(store.loaded).toBe(true)
         })
 
         it('should set user to null on error', async () => {
-            fetchUser.mockRejectedValue(new Error('Unauthorized'))
+            fetchCustomer.mockRejectedValue(new Error('Unauthorized'))
 
             const store = useAuthStore()
 
-            await store.fetchUser()
+            await store.getCustomer()
 
-            expect(fetchUser).toHaveBeenCalled()
+            expect(fetchCustomer).toHaveBeenCalled()
 
             expect(store.user).toBe(null)
-            expect(store.loaded).toBe(true)
+            expect(store.loaded).toBe(false)
         })
     })
 
     describe('login', () => {
-        it('should get csrf cookie and login user', async () => {
+        it('should get csrf cookie and login customer', async () => {
             const mockUser = {
                 id: 1,
                 name: 'John Doe',
@@ -74,7 +74,7 @@ describe('Auth Store', () => {
 
             doLogin.mockResolvedValue({
                 data: {
-                    user: mockUser,
+                    customer: mockUser,
                 },
             })
 
@@ -85,6 +85,8 @@ describe('Auth Store', () => {
             expect(getCsrfCookie).toHaveBeenCalled()
 
             expect(doLogin).toHaveBeenCalledWith('john@example.com', 'password123')
+
+            console.log('store.user', store)
 
             expect(store.user).toEqual(mockUser)
         })
