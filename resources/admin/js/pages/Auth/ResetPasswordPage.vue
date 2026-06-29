@@ -7,8 +7,10 @@
                     <div
                         class="flex flex-col gap-6 md:gap-8 items-center justify-center text-center"
                     >
-                        <div class="text-xl"><strong>Reset password</strong></div>
-                        <div class="text-center">Please enter your new password below</div>
+                        <div class="text-xl">
+                            <strong>{{ texts[pageType].title }}</strong>
+                        </div>
+                        <div class="text-center">{{ texts[pageType].subtitle }}</div>
                         <Form
                             v-slot="$form"
                             class="flex flex-col gap-4 w-full"
@@ -84,7 +86,7 @@
                                     >{{ $form.password_confirmation.error?.message }}</Message
                                 >
                             </div>
-                            <Button class="mt-4" type="submit" label="Reset password" />
+                            <Button class="mt-4" type="submit" :label="texts[pageType].btn" />
                         </Form>
                     </div>
                 </template>
@@ -96,7 +98,7 @@
 import LogoIcon from '@admin/components/LogoIcon.vue'
 import { Form } from '@primevue/forms'
 import { Button, Card, InputText, Message, Password } from 'primevue'
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { resetPasswordValidator } from '@admin/validators/resetPasswordValidator'
 import { resetPassword } from '@admin/services/authService'
 import { useRoute } from 'vue-router'
@@ -108,6 +110,23 @@ const { toLogin } = useRedirects()
 const route = useRoute()
 const password = ref(null)
 const password_confirmation = ref(null)
+
+const texts = {
+    pwdReset: {
+        title: 'Reset password',
+        subtitle: 'Please enter your new password below',
+        btn: 'Reset password',
+    },
+    firstSetup: {
+        title: 'Set your password',
+        subtitle: 'Welcome! Create a password to activate your administrator account.',
+        btn: 'Set password',
+    },
+}
+
+const pageType = computed(() => {
+    return route.query?.type === 'welcome' ? 'firstSetup' : 'pwdReset'
+})
 
 const initialValues = reactive({
     email: route.query.email,

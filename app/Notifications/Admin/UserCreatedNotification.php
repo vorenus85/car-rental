@@ -42,7 +42,7 @@ class UserCreatedNotification extends Notification
             . $token
             . '&email='
             . urlencode($this->user->email)
-            . 'type=welcome';
+            . '&type=welcome';
 
         return (new MailMessage())
             ->subject('Welcome to DrivenGO')
