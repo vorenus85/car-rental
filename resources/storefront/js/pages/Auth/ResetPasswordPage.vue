@@ -96,11 +96,11 @@ import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import { Form } from '@primevue/forms'
 import { Button, Card, InputText, Message, Password } from 'primevue'
 import { reactive, ref } from 'vue'
-import { resetPasswordValidator } from '@admin/validators/resetPasswordValidator'
-import { resetPassword } from '@admin/services/authService'
+import { resetPasswordValidator } from '@storefront/validators/resetPasswordValidator'
+import { resetPassword } from '@storefront/services/authService'
 import { useRoute } from 'vue-router'
-import { useCustomToast } from '@admin/composables/useCustomToast'
-import { useRedirects } from '@admin/composables/useRedirects'
+import { useCustomToast } from '@storefront/composables/useCustomToast'
+import { useRedirects } from '@storefront/composables/useRedirects'
 
 const { customToast } = useCustomToast()
 const { toLogin } = useRedirects()
