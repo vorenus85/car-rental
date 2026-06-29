@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use App\Notifications\ResetPasswordNotification;
+use App\Notifications\Admin\ResetPasswordNotification;
 
 describe('ResetPasswordNotification', function () {
     it('uses mail channel', function () {

@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Http\Requests\Storefront\RegisterCustomerRequest;
+use App\Models\Customer;
+use App\Notifications\Storefront\CustomerCreatedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -19,32 +21,44 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        $user = User::where('email', $credentials['email'])->first();
+        $customer = Customer::where('email', $credentials['email'])->first();
 
-        if (!$user || !Hash::check($credentials['password'], $user->password)) {
+        if (!$customer || !Hash::check($credentials['password'], $customer->password)) {
             return response()->json([
                 'message' => 'Invalid credentials'
             ], 401);
         }
 
-        if (!$user->active) {
+        if (!$customer->active) {
             return response()->json([
                 'message' => 'Your account has been deactivated. Please contact an administrator.'
             ], 403);
         }
 
-        Auth::guard('admin')->login($user);
+        Auth::guard('customer')->login($customer);
 
         $request->session()->regenerate();
 
         return response()->json([
-            'user' => Auth::guard('admin')->user()
+            'customer' => $customer
         ]);
+    }
+
+    public function register(RegisterCustomerRequest $request)
+    {
+        //
+        $validated = $request->validated();
+
+        $customer = Customer::create($validated);
+
+        $customer->notify(new CustomerCreatedNotification($customer));
+
+        return response()->json($customer, 201);
     }
 
     public function logout(Request $request)
     {
-        Auth::guard('admin')->logout();
+        Auth::guard('customer')->logout();
 
         $request->session()->regenerateToken();
 
@@ -57,7 +71,7 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
         ]);
 
-        Password::sendResetLink(
+        Password::broker('customers')->sendResetLink(
             $request->only('email')
         );
 
@@ -74,10 +88,10 @@ class AuthController extends Controller
             'password' => 'required|min:8|confirmed',
         ]);
 
-        $status = Password::reset(
+        $status = Password::broker('customers')->reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
-            function ($user, $password) {
-                $user->forceFill([
+            function ($customer, $password) {
+                $customer->forceFill([
                     'password' => Hash::make($password),
                 ])->save();
             }

@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\User;
-use App\Notifications\ResetPasswordNotification;
+use App\Notifications\Admin\ResetPasswordNotification;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

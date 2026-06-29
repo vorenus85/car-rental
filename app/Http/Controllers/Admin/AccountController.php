@@ -13,7 +13,7 @@ class AccountController extends Controller
     //
     public function show()
     {
-        $user  = $user = Auth::user();
+        $user  = Auth::guard('admin')->user();
 
         return response()->json($user);
     }
@@ -23,7 +23,7 @@ class AccountController extends Controller
      */
     public function update(UpdateAccountRequest $request)
     {
-        $user = Auth::user();
+        $user = Auth::guard('admin')->user();
 
         $validated = $request->validated();
 
@@ -36,7 +36,7 @@ class AccountController extends Controller
     {
         $request->validated();
 
-        $user = Auth::user();
+        $user = Auth::guard('admin')->user();
 
         $user->update([
             'password' => Hash::make($request->password),

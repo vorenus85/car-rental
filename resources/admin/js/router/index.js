@@ -320,7 +320,7 @@ router.beforeEach(async to => {
 
     if (to.meta.requiresAuth) {
         if (!auth.loaded) {
-            await auth.fetchUser()
+            await auth.getUser()
         }
 
         if (!auth.user?.id) {

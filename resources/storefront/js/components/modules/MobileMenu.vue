@@ -5,11 +5,11 @@
         @click="toggle"
     ></div>
     <div
-        class="mobile-menu fixed top-0 z-50 flex flex-col"
+        class="mobile-menu fixed top-0 z-50 flex flex-col px-4"
         :class="{ active: mobileMenuStore.isOpen }"
     >
         <button class="close-mobile-menu self-end flex items-center justify-center cursor-pointer">
-            <CloseButton @click="toggle" />
+            <CloseButton @click="toggleMobileMenu" />
         </button>
         <div class="mobile-menu-common flex flex-col">
             <RouterLink
@@ -20,17 +20,39 @@
                 >{{ menu.title }}</RouterLink
             >
         </div>
+        <div class="mobile login-menu text-right">
+            <div v-if="authStore?.user?.name" class="layout-topbar-actions flex flex-col gap-3">
+                <div>
+                    <Button primary @click="toAccount">
+                        <i class="pi pi-user"></i>
+                        <span>Profile</span>
+                    </Button>
+                </div>
+
+                <div>
+                    <Button class="login-cta" variant="text" @click="toLogout">Logout</Button>
+                </div>
+            </div>
+            <template v-else
+                ><Button class="login-cta mr-3" primary @click="toLogin">Login</Button>
+            </template>
+        </div>
     </div>
 </template>
 <script setup>
-import { useMobileMenuStore } from '@storefront/stores/useMobileMenuStore'
+import { useMobileMenuStore } from '@storefront/stores/mobileMenuStore'
 import { useHeaderMenu } from '@storefront/composables/useHeaderMenu'
 import CloseButton from '@storefront/components/icons/CloseButton.vue'
+import { useRedirects } from '@storefront/composables/useRedirects'
+import { useAuthStore } from '@storefront/stores/authStore'
+import { Button } from 'primevue'
 
 const { headerMenu } = useHeaderMenu()
 const mobileMenuStore = useMobileMenuStore()
+const { toLogin, toAccount, toLogout } = useRedirects()
+const authStore = useAuthStore()
 
-function toggle() {
+function toggleMobileMenu() {
     mobileMenuStore.toggleMenu()
 }
 </script>
