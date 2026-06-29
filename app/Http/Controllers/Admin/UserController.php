@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Notifications\Admin\UserCreatedNotification;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 
 class UserController extends Controller
 {
@@ -78,5 +79,16 @@ class UserController extends Controller
         $user->save();
 
         return response()->json($user);
+    }
+
+    public function sendPasswordReset(User $user)
+    {
+        Password::sendResetLink([
+            'email' => $user->email,
+        ]);
+
+        return response()->json([
+            'message' => 'Password reset email sent.'
+        ]);
     }
 }

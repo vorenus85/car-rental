@@ -55,6 +55,12 @@
                     <template #body="slotProps">
                         <div class="flex items-center justify-list gap-3">
                             <Button
+                                v-tooltip="'Send reset password'"
+                                icon="pi pi-refresh"
+                                severity="info"
+                                @click="doSendPasswordReset(slotProps.data.id)"
+                            />
+                            <Button
                                 severity="info"
                                 icon="pi pi-eye"
                                 as="router-link"
@@ -101,7 +107,7 @@ import { onMounted, ref } from 'vue'
 const filters = ref()
 const confirm = useConfirm()
 const { confirmAction } = useCustomConfirm()
-const { loading, users, getUsers, deleteUser, toggleActive } = useUser()
+const { loading, users, getUsers, deleteUser, toggleActive, doSendPasswordReset } = useUser()
 const { toCreateUser } = useRedirects()
 
 const initFilters = () => {

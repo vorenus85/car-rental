@@ -7,6 +7,7 @@ import {
 } from '@admin/services/userService'
 import { useCustomToast } from '@admin/composables/useCustomToast'
 import { reactive, ref } from 'vue'
+import { sendPasswordReset } from '../services/userService'
 
 export const useUser = () => {
     const loading = ref(false)
@@ -93,6 +94,18 @@ export const useUser = () => {
         }
     }
 
+    const doSendPasswordReset = async id => {
+        try {
+            const { data } = await sendPasswordReset(id)
+            customToast.success(data.message)
+        } catch (error) {
+            void error // to avoid unused variable lint error
+            // console.error(error) -- IGNORE --
+            const msg = error?.response?.data?.message
+            customToast.error(msg || 'Please try again.')
+        }
+    }
+
     return {
         toggleActive,
         loading,
@@ -104,5 +117,6 @@ export const useUser = () => {
         initialValues,
         formKey,
         userId,
+        doSendPasswordReset,
     }
 }
