@@ -15,7 +15,7 @@ describe('AuthController', function () {
             'password' => bcrypt('password123'),
         ]);
 
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/login', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/admin/auth/login', [
             'email' => 'john@example.com',
             'password' => 'password123',
             '_token' => 'test-token',
@@ -39,7 +39,7 @@ describe('AuthController', function () {
             'password' => bcrypt('password123'),
         ]);
 
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/login', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/admin/auth/login', [
             'email' => 'john@example.com',
             'password' => 'wrong-password',
             '_token' => 'test-token',
@@ -55,7 +55,7 @@ describe('AuthController', function () {
     });
 
     it('requires email when logging in', function () {
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/login', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/admin/auth/login', [
             'password' => 'password123',
             '_token' => 'test-token',
         ]);
@@ -66,7 +66,7 @@ describe('AuthController', function () {
     });
 
     it('requires password when logging in', function () {
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/login', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/admin/auth/login', [
             'email' => 'john@example.com',
             '_token' => 'test-token',
         ]);
@@ -77,7 +77,7 @@ describe('AuthController', function () {
     });
 
     it('requires valid email format when logging in', function () {
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/login', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/admin/auth/login', [
             'email' => 'invalid-email',
             'password' => 'password123',
             '_token' => 'test-token',
@@ -94,7 +94,7 @@ describe('AuthController', function () {
         $response = $this
             ->withSession(['_token' => 'test-token'])
             ->actingAs($user)
-            ->postJson('/auth/logout', [
+            ->postJson('/admin/auth/logout', [
                 '_token' => 'test-token',
             ]);
 
@@ -108,7 +108,7 @@ describe('AuthController', function () {
             ->once()
             ->andReturn(Password::RESET_LINK_SENT);
 
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/forgot-password', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/admin/auth/forgot-password', [
             'email' => 'john@example.com',
             '_token' => 'test-token',
         ]);
@@ -121,7 +121,7 @@ describe('AuthController', function () {
     });
 
     it('requires email when sending reset link', function () {
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/forgot-password', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/admin/auth/forgot-password', [
             '_token' => 'test-token',
         ]);
 
@@ -131,7 +131,7 @@ describe('AuthController', function () {
     });
 
     it('validates email format when sending reset link', function () {
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/forgot-password', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/admin/auth/forgot-password', [
             'email' => 'invalid-email',
             '_token' => 'test-token',
         ]);
@@ -152,7 +152,7 @@ describe('AuthController', function () {
                 return Password::PASSWORD_RESET;
             });
 
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/reset-password', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/admin/auth/reset-password', [
             'token' => 'valid-token',
             '_token' => 'test-token',
             'email' => $user->email,
@@ -179,7 +179,7 @@ describe('AuthController', function () {
             ->once()
             ->andReturn(Password::INVALID_TOKEN);
 
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/reset-password', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/admin/auth/reset-password', [
             '_token' => 'test-token',
             'token' => 'invalid-token',
             'email' => 'john@example.com',
@@ -195,7 +195,7 @@ describe('AuthController', function () {
     });
 
     it('validates password confirmation', function () {
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/reset-password', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/admin/auth/reset-password', [
             '_token' => 'test-token',
             'token' => 'token',
             'email' => 'john@example.com',
@@ -214,7 +214,7 @@ describe('AuthController', function () {
             'password' => bcrypt('password'),
         ]);
 
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/auth/login', [
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/admin/auth/login', [
             'email' => $user->email,
             'password' => 'password',
             '_token' => 'test-token',
