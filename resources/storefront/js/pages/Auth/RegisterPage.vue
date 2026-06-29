@@ -51,6 +51,22 @@
                                     >
                                 </div>
                                 <div class="flex flex-col gap-1 text-left">
+                                    <label for="phone">Phone number</label>
+                                    <InputText
+                                        id="phone"
+                                        name="phone"
+                                        :placeholder="'phone'"
+                                        fluid
+                                    />
+                                    <Message
+                                        v-if="$form.phone?.invalid"
+                                        severity="error"
+                                        size="small"
+                                        variant="simple"
+                                        >{{ $form.phone.error?.message }}</Message
+                                    >
+                                </div>
+                                <div class="flex flex-col gap-1 text-left">
                                     <label for="password">Password</label>
                                     <Password
                                         input-id="password"
@@ -122,8 +138,8 @@ import { useRedirects } from '@storefront/composables/useRedirects'
 import { useCustomToast } from '@storefront/composables/useCustomToast'
 import { registerValidator } from '@storefront/validators/registerValidator'
 import { useAuthStore } from '@storefront/stores/authStore'
-import { registerClient } from '@storefront/services/clientUserService'
-import { computed, ref } from 'vue'
+import { doRegister } from '@storefront/services/authService'
+import { computed, nextTick, ref } from 'vue'
 
 const breadcrumbItems = computed(() => [
     {
@@ -140,14 +156,14 @@ const password_confirmation = ref(null)
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
         try {
-            await registerClient(values)
+            await doRegister(values)
             await login(values.email, values.password)
 
             customToast.success('Welcome on Drivengo!')
 
-            setTimeout(() => {
-                toHome()
-            }, 300)
+            await nextTick()
+
+            await toHome()
         } catch (error) {
             console.error(error)
             const msg = error?.response?.data?.message

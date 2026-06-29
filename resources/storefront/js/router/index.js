@@ -59,14 +59,10 @@ router.beforeEach((to, from, next) => {
 router.beforeEach(async to => {
     const auth = useAuthStore()
 
-    if (to.meta.requiresAuth) {
-        if (!auth.loaded) {
-            await auth.fetchUser()
-        }
+    await auth.init()
 
-        if (!auth.user?.id) {
-            return { name: 'home' }
-        }
+    if (to.meta.requiresAuth && !auth.user) {
+        return { name: 'home' }
     }
 
     if (to.name === 'login' && auth.user?.id) {

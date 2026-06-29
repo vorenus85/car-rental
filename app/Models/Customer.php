@@ -3,15 +3,15 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Notifications\Admin\ResetPasswordNotification;
+use App\Notifications\Storefront\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class Customer extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
+    /** @use HasFactory<\Database\Factories\CustomerFactory> */
     use HasFactory;
     use Notifiable;
     use HasApiTokens;
@@ -23,8 +23,8 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
         'phone',
+        'email',
         'password',
         'active',
     ];
@@ -51,6 +51,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
 
     public function sendPasswordResetNotification($token)
     {

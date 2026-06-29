@@ -83,11 +83,11 @@ import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
 import { Form, FormField } from '@primevue/forms'
 import { Button, Card, InputText, Message, Password } from 'primevue'
-import { useAuthStore } from '@admin/stores/auth'
+import { useAuthStore } from '@storefront/stores/authStore'
 import { loginValidator } from '@storefront/validators/loginValidator'
 import { useRedirects } from '@storefront/composables/useRedirects'
 import { useCustomToast } from '@storefront/composables/useCustomToast'
-import { computed } from 'vue'
+import { computed, nextTick } from 'vue'
 
 const breadcrumbItems = computed(() => [
     {
@@ -103,7 +103,12 @@ const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             await login(values.email, values.password)
-            toHome()
+
+            await nextTick()
+
+            customToast.success('Welcome on Drivengo!')
+
+            await toHome()
         } catch (error) {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')

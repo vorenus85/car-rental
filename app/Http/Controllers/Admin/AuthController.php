@@ -21,34 +21,31 @@ class AuthController extends Controller
 
         $user = User::where('email', $credentials['email'])->first();
 
-        if (!$user->active) {
-            return response()->json([
-                'message' => 'Your account has been deactivated. Please contact an administrator.'
-            ], 403);
-        }
-
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
             return response()->json([
                 'message' => 'Invalid credentials'
             ], 401);
         }
 
+        if (!$user->active) {
+            return response()->json([
+                'message' => 'Your account has been deactivated. Please contact an administrator.'
+            ], 403);
+        }
 
-
-        Auth::login($user);
+        Auth::guard('admin')->login($user);
 
         $request->session()->regenerate();
 
         return response()->json([
-            'user' => Auth::user()
+            'user' => Auth::guard('admin')->user()
         ]);
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('admin')->logout();
 
-        $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return response()->noContent();

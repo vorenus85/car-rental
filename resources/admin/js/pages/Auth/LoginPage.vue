@@ -95,12 +95,13 @@ import { Form, FormField } from '@primevue/forms'
 import { Button, Card, InputText, Message, Password, Tag } from 'primevue'
 import { useAuthStore } from '@admin/stores/auth'
 import { loginValidator } from '@admin/validators/loginValidator'
-import { useRedirects } from '@admin/composables/useRedirects'
 import { useCustomToast } from '@admin/composables/useCustomToast'
+import { nextTick } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const { customToast } = useCustomToast()
 const { login } = useAuthStore()
-const { toDashboard } = useRedirects()
 
 const demoEmail = import.meta.env.VITE_DEMO_EMAIL
 const demoPassword = import.meta.env.VITE_DEMO_PASSWORD
@@ -118,8 +119,11 @@ const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             await login(values.email, values.password)
-            toDashboard()
+            await nextTick()
+
+            await router.push({ name: 'dashboard' })
         } catch (error) {
+            console.error(error)
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }

@@ -14,7 +14,7 @@
                 </router-link>
             </div>
         </div>
-        <div class="layout-topbar-actions">
+        <div v-if="authStore?.user" class="layout-topbar-actions">
             <button
                 type="button"
                 class="layout-topbar-action flex items-start gap-1"
@@ -24,7 +24,7 @@
             >
                 <i class="pi pi-user"></i>
                 <div class="hidden md:flex flex-col items-start leading-tight">
-                    <div>{{ authStore.user.name }}</div>
+                    <div>{{ authStore?.user?.name }}</div>
                     <span class="text-muted-color text-sm">Admin</span>
                 </div>
             </button>

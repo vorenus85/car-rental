@@ -16,7 +16,7 @@ class UpdateAccountRequest extends FormRequest
      */
     public function rules(): array
     {
-        $user = Auth::user();
+        $user = Auth::guard('admin')->user();
 
         return [
             'name' => ['required', 'string'],

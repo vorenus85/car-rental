@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
+use App\Notifications\Admin\UserCreatedNotification;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,8 @@ class UserController extends Controller
         $validated = $request->validated();
 
         $user = User::create($validated);
+
+        $user->notify(new UserCreatedNotification($user));
 
         return response()->json($user, 201);
     }

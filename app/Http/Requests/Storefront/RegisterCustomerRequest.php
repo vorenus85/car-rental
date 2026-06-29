@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class RegisterClientRequest extends FormRequest
+class RegisterCustomerRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -17,14 +17,19 @@ class RegisterClientRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['nullable', 'string', 'max:50'],
+            'phone' => [
+                'required',
+                'string',
+                'max:20',
+            ],
             'email' => [
                 'required',
                 'string',
                 'email',
                 'max:255',
-                Rule::unique('users', 'email'),
+                Rule::unique('customers', 'email'),
             ],
+            "password" => ["required", "string", "min:8", "confirmed"],
         ];
     }
 }

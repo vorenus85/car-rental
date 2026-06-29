@@ -5,6 +5,10 @@ export const registerValidator = ({ values }) => {
         errors.name = [{ message: 'Name is required.' }]
     }
 
+    if (!values.phone) {
+        errors.phone = [{ message: 'Phone number is required.' }]
+    }
+
     if (!values.email) {
         errors.email = [{ message: 'Email is required.' }]
     } else if (!/\S+@\S+\.\S+/.test(values.email)) {

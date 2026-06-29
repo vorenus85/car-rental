@@ -7,25 +7,25 @@ export const useAuthStore = defineStore('auth', {
         loaded: false,
     }),
     actions: {
-        async fetchUser() {
+        async getUser() {
             try {
                 const res = await fetchUser()
                 this.user = res?.data
                 this.loaded = true
             } catch {
                 this.user = null
-                this.loaded = true
+                this.loaded = false
             }
         },
         async login(email, password) {
             await getCsrfCookie()
             const res = await doLogin(email, password)
-
             this.user = res.data.user
         },
         async logout() {
             await doLogout()
             this.user = null
+            this.loaded = false
         },
     },
 })

@@ -1,24 +1,22 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Storefront;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class ResetPasswordNotification extends Notification
+class CustomerCreatedNotification extends Notification
 {
     use Queueable;
-
-    public $user;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(public string $token)
+    public function __construct(public $customer)
     {
         //
+        $this->customer = $customer;
     }
 
     /**
@@ -36,16 +34,13 @@ class ResetPasswordNotification extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $url = config('app.frontend_url')
-            . "/reset-password?token={$this->token}&email={$notifiable->email}";
-
-        return (new MailMessage)
-            ->subject('Reset Your Password')
-            ->greeting('Hello!')
-            ->line('We received a request to reset your password.')
-            ->action('Reset Password', $url)
-            ->line('This password reset link will expire in 60 minutes.')
-            ->line('If you did not request a password reset, no further action is required.');
+        return (new MailMessage())
+            ->subject('Your Account Has Been Created')
+            ->greeting('Welcome to the DrivenGO!')
+            ->line('Your account has been successfully created.')
+            ->line('You can now log in and start using the application.')
+            ->action('Go to Login', config('app.frontend_url') . '/login')
+            ->line('If you did not expect this email, please contact support.');
     }
 
     /**

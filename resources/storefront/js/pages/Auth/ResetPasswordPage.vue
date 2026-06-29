@@ -1,7 +1,6 @@
 <template>
-    <main>
+    <PublicLayout class="reset-password-page">
         <div class="h-screen flex items-center justify-center flex-col">
-            <div class="mb-5"><LogoIcon /></div>
             <Card class="p-4 py-6 w-full sm:max-w-lg">
                 <template #content>
                     <div
@@ -90,10 +89,10 @@
                 </template>
             </Card>
         </div>
-    </main>
+    </PublicLayout>
 </template>
 <script setup>
-import LogoIcon from '@admin/components/LogoIcon.vue'
+import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import { Form } from '@primevue/forms'
 import { Button, Card, InputText, Message, Password } from 'primevue'
 import { reactive, ref } from 'vue'

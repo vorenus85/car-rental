@@ -8,12 +8,12 @@ export const getCsrfCookie = async () => {
     return axios.get('/sanctum/csrf-cookie', { withCredentials: true })
 }
 
-export const fetchUser = async () => {
+export const fetchCustomer = async () => {
     return axios.get('/storefront/auth/me', { withCredentials: true })
 }
 
-export const doRegister = async () => {
-    return axios.post('/storefront/auth/register', null)
+export const doRegister = async params => {
+    return axios.post('/storefront/auth/register', params)
 }
 
 export const doLogout = async () => {
