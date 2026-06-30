@@ -1,14 +1,14 @@
 <template>
     <AppLayout>
-        <PageTitle title="Users">
+        <PageTitle title="Clients">
             <template #actions>
-                <Button icon="pi pi-plus" label="New" primary @click="toCreateUser" />
+                <Button icon="pi pi-plus" label="New" primary @click="toCreateCustomer" />
             </template>
         </PageTitle>
         <div class="card shadow list-page">
             <DataTable
                 v-model:filters="filters"
-                :value="users"
+                :value="customers"
                 paginator
                 :rows="20"
                 :rows-per-page-options="[20, 50]"
@@ -64,7 +64,7 @@
                                 icon="pi pi-eye"
                                 as="router-link"
                                 :to="{
-                                    name: 'users.show',
+                                    name: 'clients.show',
                                     params: {
                                         id: slotProps.data?.id,
                                     },
@@ -98,7 +98,7 @@ import {
     useConfirm,
 } from 'primevue'
 import { useCustomConfirm } from '@admin/composables/useCustomConfirm'
-import { useUser } from '@admin/composables/useUser.js'
+import { useCustomer } from '@admin/composables/useCustomer.js'
 import { useRedirects } from '@admin/composables/useRedirects.js'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
 import { onMounted, ref } from 'vue'
@@ -106,8 +106,9 @@ import { onMounted, ref } from 'vue'
 const filters = ref()
 const confirm = useConfirm()
 const { confirmAction } = useCustomConfirm()
-const { loading, users, getUsers, deleteUser, toggleActive, doSendPasswordReset } = useUser()
-const { toCreateUser } = useRedirects()
+const { loading, customers, getCustomers, deleteCustomer, toggleActive, doSendPasswordReset } =
+    useCustomer()
+const { toCreateCustomer } = useRedirects()
 
 const initFilters = () => {
     filters.value = {
@@ -136,13 +137,13 @@ const clearFilter = () => {
 const deleteConfirm = id => {
     confirmAction(confirm, {
         action: () => {
-            deleteUser(id)
+            deleteCustomer(id)
         },
         acceptLabel: 'Delete',
     })
 }
 
 onMounted(async () => {
-    await getUsers()
+    await getCustomers()
 })
 </script>

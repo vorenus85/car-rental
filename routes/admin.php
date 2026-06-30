@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\Fleet\BrandController;
 use App\Http\Controllers\Admin\Fleet\BrandImageController;
@@ -22,6 +23,16 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('/{user}', [UserController::class, 'destroy']);
         Route::post('{user}/send-password-reset', [UserController::class, 'sendPasswordReset']);
         Route::put('/{user}/toggle-active', [UserController::class, 'toggleActive']);
+    });
+
+    Route::prefix('/api/admin/customers')->group(function () {
+        Route::get('/', [CustomerController::class, 'index']);
+        Route::post('/', [CustomerController::class, 'store']);
+        Route::get('/{customer}', [CustomerController::class, 'show']);
+        Route::put('/{customer}', [CustomerController::class, 'update']);
+        Route::delete('/{customer}', [CustomerController::class, 'destroy']);
+        Route::post('{customer}/send-password-reset', [CustomerController::class, 'sendPasswordReset']);
+        Route::put('/{customer}/toggle-active', [CustomerController::class, 'toggleActive']);
     });
 
     Route::prefix('/api/admin/account')->group(function () {

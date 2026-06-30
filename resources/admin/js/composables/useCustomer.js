@@ -1,21 +1,21 @@
 import { useRoute } from 'vue-router'
 import {
-    fetchUsers,
-    fetchUser,
-    deleteUserById,
-    toggleUserActive,
+    fetchCustomers,
+    fetchCustomer,
+    deleteCustomerById,
+    toggleCustomerActive,
     sendPasswordReset,
-} from '@admin/services/userService'
+} from '@admin/services/customerService'
 import { useCustomToast } from '@admin/composables/useCustomToast'
 import { reactive, ref } from 'vue'
 
-export const useUser = () => {
+export const useCustomer = () => {
     const loading = ref(false)
-    const users = ref([])
-    const allUsers = ref([])
+    const customers = ref([])
+    const allCustomers = ref([])
     const formKey = ref(0)
     const route = useRoute()
-    const userId = route.params.id
+    const customerId = route.params.id
 
     const { customToast } = useCustomToast()
 
@@ -30,9 +30,9 @@ export const useUser = () => {
         //loading.value = true
 
         try {
-            const { data } = await toggleUserActive(id)
-            const userIndex = users.value.findIndex(el => el.id === id)
-            users.value[userIndex].active = data.active
+            const { data } = await toggleCustomerActive(id)
+            const customerIndex = customers.value.findIndex(el => el.id === id)
+            customers.value[customerIndex].active = data.active
             //loading.value = false
         } catch (e) {
             //loading.value = false
@@ -41,13 +41,13 @@ export const useUser = () => {
         }
     }
 
-    const getUsers = async params => {
+    const getCustomers = async params => {
         loading.value = true
 
         try {
-            const { data } = await fetchUsers({ ...params })
-            allUsers.value = data
-            users.value = data
+            const { data } = await fetchCustomers({ ...params })
+            allCustomers.value = data
+            customers.value = data
             loading.value = false
         } catch (e) {
             loading.value = false
@@ -56,11 +56,11 @@ export const useUser = () => {
         }
     }
 
-    const getUser = async params => {
+    const getCustomer = async params => {
         loading.value = true
 
         try {
-            const { data } = await fetchUser(userId, { ...params })
+            const { data } = await fetchCustomer(customerId, { ...params })
             initialValues.name = data.name
             initialValues.phone = data.phone
             initialValues.email = data.email
@@ -74,17 +74,17 @@ export const useUser = () => {
         }
     }
 
-    const deleteUser = async id => {
+    const deleteCustomer = async id => {
         loading.value = true
 
         try {
-            await deleteUserById(id)
-            const idIndex = users.value.findIndex(el => {
+            await deleteCustomerById(id)
+            const idIndex = customers.value.findIndex(el => {
                 return el.id === id
             })
-            users.value.splice(idIndex, 1)
+            customers.value.splice(idIndex, 1)
 
-            customToast.success('User deleted successfully!')
+            customToast.success('Customer deleted successfully!')
 
             loading.value = false
         } catch (e) {
@@ -109,14 +109,14 @@ export const useUser = () => {
     return {
         toggleActive,
         loading,
-        users,
-        allUsers,
-        getUsers,
-        getUser,
-        deleteUser,
+        customers,
+        allCustomers,
+        getCustomers,
+        getCustomer,
+        deleteCustomer,
         initialValues,
         formKey,
-        userId,
+        customerId,
         doSendPasswordReset,
     }
 }

@@ -7,17 +7,17 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Password;
 
-class UserCreatedNotification extends Notification
+class CustomerCreatedNotification extends Notification
 {
     use Queueable;
 
     /**
      * Create a new notification instance.
      */
-    public function __construct(public $user)
+    public function __construct(public $customer)
     {
         //
-        $this->user = $user;
+        $this->customer = $customer;
     }
 
     /**
@@ -37,19 +37,19 @@ class UserCreatedNotification extends Notification
     {
 
         // @phpstan-ignore property.notFound
-        $token = Password::broker('users')->createToken($this->user);
+        $token = Password::broker('customers')->createToken($this->customer);
 
         $passwordSetupUrl = config('app.frontend_url')
-            . '/admin/reset-password?token='
+            . '/reset-password?token='
             . $token
             . '&email='
-            . urlencode($this->user->email)
+            . urlencode($this->customer->email)
             . '&type=welcome';
 
         return (new MailMessage())
-            ->subject('Welcome to DrivenGO')
-            ->greeting('Welcome to the DrivenGO Team!')
-            ->line('An administrator has created your account.')
+            ->subject('Your Account Has Been Created')
+            ->greeting('Welcome to the DrivenGO!')
+            ->line('Your account has been successfully created.')
             ->line('To activate your account, please set your password by clicking the button below.')
             ->action('Set Your Password', $passwordSetupUrl)
             ->line('This link is time-limited for your security.')

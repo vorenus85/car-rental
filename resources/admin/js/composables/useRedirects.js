@@ -75,6 +75,14 @@ export const useRedirects = () => {
         router.push({ name: 'users' })
     }
 
+    const toCreateCustomer = () => {
+        router.push({ name: 'clients.create' })
+    }
+
+    const toCustomersList = () => {
+        router.push({ name: 'clients' })
+    }
+
     const toLocationsList = () => {
         router.push({ name: 'locations' })
     }
@@ -104,5 +112,7 @@ export const useRedirects = () => {
         toUsersList,
         toLocationsList,
         toCreateLocation,
+        toCreateCustomer,
+        toCustomersList,
     }
 }

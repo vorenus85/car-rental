@@ -1,6 +1,6 @@
 <template>
     <AppLayout>
-        <PageTitle title="Add new User">
+        <PageTitle title="Add new Client">
             <template #actions>
                 <Button icon="pi pi-angle-left" label="Back to list" primary @click="toUsersList" />
             </template>
@@ -9,7 +9,7 @@
             <Form
                 v-slot="$form"
                 :initial-values="initialValues"
-                :resolver="userValidator"
+                :resolver="customerValidator"
                 class="flex flex-col gap-4 w-full"
                 :validate-on-value-update="true"
                 :validate-on-blur="true"
@@ -83,24 +83,24 @@ import AppLayout from '@admin/layouts/AppLayout.vue'
 import PageTitle from '@admin/components/PageTitle.vue'
 import { Button, InputText, Message, ToggleSwitch } from 'primevue'
 import { useCustomToast } from '@admin/composables/useCustomToast'
-import { useUser } from '@admin/composables/useUser.js'
+import { useCustomer } from '@admin/composables/useCustomer.js'
 import { useRedirects } from '@admin/composables/useRedirects.js'
 import { Form } from '@primevue/forms'
-import { createUser } from '@admin/services/userService'
-import { userValidator } from '@admin/validators/userValidator'
+import { createCustomer } from '@admin/services/customerService'
+import { customerValidator } from '@admin/validators/customerValidator'
 
-const { toUsersList } = useRedirects()
+const { toCustomersList } = useRedirects()
 const { customToast } = useCustomToast()
-const { initialValues } = useUser()
+const { initialValues } = useCustomer()
 
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
         try {
-            await createUser(values)
+            await createCustomer(values)
 
-            customToast.success('User created successfully!')
+            customToast.success('Client created successfully!')
 
-            toUsersList()
+            toCustomersList()
         } catch (error) {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
