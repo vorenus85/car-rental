@@ -33,7 +33,7 @@ describe('ResetPasswordNotification', function () {
 
         expect($mail->actionUrl)
             ->toBe(
-                'https://frontend.test/reset-password?token=test-token&email=john@example.com'
+                'https://frontend.test/admin/reset-password?token=test-token&email=john@example.com'
             );
     });
 
