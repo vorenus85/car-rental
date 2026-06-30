@@ -6,8 +6,6 @@ import BookingsPage from '@admin/pages/BookingsPage.vue'
 
 import CalendarPage from '@admin/pages/CalendarPage.vue'
 
-import ClientsPage from '@admin/pages/ClientsPage.vue'
-
 import SettingsPage from '@admin/pages/SettingsPage.vue'
 import NotFoundPage from '@admin/pages/NotFoundPage.vue'
 
@@ -46,6 +44,10 @@ import UserListPage from '@admin/pages/User/ListPage.vue'
 import UserCreatePage from '@admin/pages/User/CreatePage.vue'
 import UserEditPage from '@admin/pages/User/EditPage.vue'
 
+import CustomerListPage from '@admin/pages/Customer/ListPage.vue'
+import CustomerCreatePage from '@admin/pages/Customer/CreatePage.vue'
+import CustomerEditPage from '@admin/pages/Customer/EditPage.vue'
+
 import { useAuthStore } from '@admin/stores/auth'
 
 const router = createRouter({
@@ -82,6 +84,32 @@ const router = createRouter({
                 parent: 'settings',
             },
         },
+
+        {
+            path: '/clients',
+            name: 'clients',
+            component: CustomerListPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/clients/create',
+            name: 'clients.create',
+            component: CustomerCreatePage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/clients/:id',
+            name: 'clients.show',
+            component: CustomerEditPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+
         {
             path: '/dashboard',
             name: 'dashboard',
@@ -287,14 +315,6 @@ const router = createRouter({
             path: '/calendar',
             name: 'calendar',
             component: CalendarPage,
-            meta: {
-                requiresAuth: true,
-            },
-        },
-        {
-            path: '/clients',
-            name: 'clients',
-            component: ClientsPage,
             meta: {
                 requiresAuth: true,
             },

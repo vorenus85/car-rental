@@ -1,23 +1,29 @@
 <template>
     <AppLayout>
-        <PageTitle title="Add new User">
+        <PageTitle title="Edit Client">
             <template #actions>
-                <Button icon="pi pi-angle-left" label="Back to list" primary @click="toUsersList" />
+                <Button
+                    icon="pi pi-angle-left"
+                    label="Back to list"
+                    primary
+                    @click="toCustomersList"
+                />
             </template>
         </PageTitle>
-        <div class="card">
+        <div v-if="formKey" class="card">
             <Form
                 v-slot="$form"
                 :initial-values="initialValues"
-                :resolver="userValidator"
+                :resolver="customerValidator"
                 class="flex flex-col gap-4 w-full"
                 :validate-on-value-update="true"
                 :validate-on-blur="true"
+                :validate-on-mount="true"
                 @submit="onFormSubmit"
             >
                 <div class="flex flex-col gap-1 w-full lg:w-1/2">
                     <label for="name">Name</label>
-                    <InputText id="name" name="name" type="text" placeholder="Simon Baker" fluid />
+                    <InputText id="name" name="name" type="text" placeholder="Tóth Béla" fluid />
                     <Message
                         v-if="$form.name?.invalid"
                         severity="error"
@@ -27,12 +33,12 @@
                     >
                 </div>
                 <div class="flex flex-col gap-1 w-full lg:w-1/2">
-                    <label for="email">Email address</label>
+                    <label for="email">Email</label>
                     <InputText
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="simon.baker@example.com"
+                        placeholder="tothbela@example.com"
                         fluid
                     />
                     <Message
@@ -83,24 +89,25 @@ import AppLayout from '@admin/layouts/AppLayout.vue'
 import PageTitle from '@admin/components/PageTitle.vue'
 import { Button, InputText, Message, ToggleSwitch } from 'primevue'
 import { useCustomToast } from '@admin/composables/useCustomToast'
-import { useUser } from '@admin/composables/useUser.js'
+import { useCustomer } from '@admin/composables/useCustomer.js'
 import { useRedirects } from '@admin/composables/useRedirects.js'
 import { Form } from '@primevue/forms'
-import { createUser } from '@admin/services/userService'
-import { userValidator } from '@admin/validators/userValidator'
+import { updateCustomerById } from '@admin/services/customerService'
+import { customerValidator } from '@admin/validators/customerValidator'
+import { onMounted } from 'vue'
 
-const { toUsersList } = useRedirects()
+const { toCustomersList } = useRedirects()
 const { customToast } = useCustomToast()
-const { initialValues } = useUser()
+const { initialValues, customerId, formKey, getCustomer } = useCustomer()
 
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
         try {
-            await createUser(values)
+            await updateCustomerById(customerId, values)
 
-            customToast.success('User created successfully!')
+            customToast.success('Client updated successfully!')
 
-            toUsersList()
+            toCustomersList()
         } catch (error) {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
@@ -109,4 +116,8 @@ const onFormSubmit = async ({ valid, values }) => {
         customToast.error(`${Object.keys(errors).length} field contains errors`)
     }
 }
+
+onMounted(async () => {
+    await getCustomer()
+})
 </script>

@@ -18,7 +18,7 @@
             >
                 <div class="flex flex-col gap-1 w-full lg:w-1/2">
                     <label for="name">Name</label>
-                    <InputText id="name" name="name" type="text" placeholder="Tóth Béla" fluid />
+                    <InputText id="name" name="name" type="text" placeholder="Simon Baker" fluid />
                     <Message
                         v-if="$form.name?.invalid"
                         severity="error"
@@ -33,7 +33,7 @@
                         id="email"
                         name="email"
                         type="email"
-                        placeholder="tothbela@example.com"
+                        placeholder="simon.baker@example.com"
                         fluid
                     />
                     <Message
