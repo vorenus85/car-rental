@@ -104,8 +104,8 @@ import { computed } from 'vue'
 const route = useRoute()
 
 const queryParams = computed(() => {
-    const { location, pickUpDate, dropOffDate } = route.query
-    return { location, pickUpDate, dropOffDate }
+    const { pickUpLocation, dropOffLocation, pickUpDate, dropOffDate } = route.query
+    return { pickUpLocation, dropOffLocation, pickUpDate, dropOffDate }
 })
 
 defineProps({

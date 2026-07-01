@@ -52,13 +52,18 @@ export const useRentalSearch = () => {
             searchParams.dropOffDate = dropOffDate
         }
 
-        if (route.query.location) {
-            searchParams.location = Number(route.query.location)
+        if (route.query.pickUpLocation) {
+            searchParams.pickUpLocation = Number(route.query.pickUpLocation)
+        }
+
+        if (route.query.dropOffLocation) {
+            searchParams.dropOffLocation = Number(route.query.dropOffLocation)
         }
     }
 
     const searchParams = reactive({
-        location: null,
+        pickUpLocation: null,
+        dropOffLocation: null,
         pickUpDate: defaultPickUpDate,
         dropOffDate: defaultDropOffDate,
         pickUpTime: '10:00',

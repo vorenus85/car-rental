@@ -12,7 +12,7 @@
                     </InputGroupAddon>
 
                     <Select
-                        v-model="searchParams.location"
+                        v-model="searchParams.pickUpLocation"
                         :options="groupedLocations"
                         input-id="pick-up-location"
                         option-group-label="label"
@@ -93,7 +93,7 @@ const searchCars = async () => {
     await router.push({
         path: '/fleet',
         query: {
-            location: Number(searchParams.location),
+            pickUpLocation: Number(searchParams.pickUpLocation),
             pickUpDate: formatDate(searchParams.pickUpDate),
             dropOffDate: formatDate(searchParams.dropOffDate),
         },
