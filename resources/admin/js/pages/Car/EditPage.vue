@@ -422,6 +422,7 @@
                     <div class="flex flex-col gap-1 mb-4 w-full lg:w-1/2">
                         <label for="description">Description</label>
                         <Textarea
+                            id="description"
                             name="description"
                             rows="5"
                             cols="30"
