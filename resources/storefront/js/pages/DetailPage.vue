@@ -130,14 +130,17 @@
                                     </div>
 
                                     <div>
-                                        <label class="mb-2 block text-sm font-medium">
+                                        <label
+                                            for="pick-up-location"
+                                            class="mb-2 block text-sm font-medium"
+                                        >
                                             Pick-up Location
                                         </label>
 
                                         <Select
+                                            id="pick-up-location"
                                             v-model="searchParams.location"
                                             :options="groupedLocations"
-                                            input-id="pick-up-location"
                                             option-group-label="label"
                                             option-group-children="items"
                                             option-label="label"
@@ -162,12 +165,16 @@
 
                                     <div class="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label class="mb-2 block text-sm font-medium">
+                                            <label
+                                                for="pick-aup-date"
+                                                class="mb-2 block text-sm font-medium"
+                                            >
                                                 Pick-up Date
                                             </label>
 
                                             <DatePicker
                                                 v-model="searchParams.pickUpDate"
+                                                input-id="pick-aup-date"
                                                 :min-date="minPickUpDate"
                                                 date-format="yy-mm-dd"
                                                 placeholder="Select date"
@@ -175,11 +182,15 @@
                                         </div>
 
                                         <div>
-                                            <label class="mb-2 block text-sm font-medium">
+                                            <label
+                                                for="pick-up-time"
+                                                class="mb-2 block text-sm font-medium"
+                                            >
                                                 Pick-up Time
                                             </label>
 
                                             <Select
+                                                id="pick-up-time"
                                                 v-model="searchParams.pickUpTime"
                                                 :options="timeOptions"
                                                 option-label="label"
@@ -192,12 +203,16 @@
 
                                     <div class="grid grid-cols-2 gap-4">
                                         <div>
-                                            <label class="mb-2 block text-sm font-medium">
+                                            <label
+                                                for="drop-off-date"
+                                                class="mb-2 block text-sm font-medium"
+                                            >
                                                 Drop-off Date
                                             </label>
 
                                             <DatePicker
                                                 v-model="searchParams.dropOffDate"
+                                                input-id="drop-off-date"
                                                 :min-date="minDropOffDate"
                                                 date-format="yy-mm-dd"
                                                 class="w-full"
@@ -206,11 +221,15 @@
                                         </div>
 
                                         <div>
-                                            <label class="mb-2 block text-sm font-medium">
+                                            <label
+                                                for="drop-off-time"
+                                                class="mb-2 block text-sm font-medium"
+                                            >
                                                 Drop-off Time
                                             </label>
 
                                             <Select
+                                                id="drop-off-time"
                                                 v-model="searchParams.dropOffTime"
                                                 :options="timeOptions"
                                                 option-label="label"
@@ -222,11 +241,19 @@
                                     </div>
 
                                     <div>
-                                        <label class="mb-2 block text-sm font-medium">
+                                        <label
+                                            for="rental-period"
+                                            class="mb-2 block text-sm font-medium"
+                                        >
                                             Rental Period
                                         </label>
 
-                                        <InputText :model-value="rentalPeriod" readonly fluid />
+                                        <InputText
+                                            id="rental-period"
+                                            :model-value="rentalPeriod"
+                                            readonly
+                                            fluid
+                                        />
                                     </div>
 
                                     <Button label="Book Now" fluid size="large" />
@@ -359,7 +386,7 @@ import { useRentalSearch } from '@storefront/composables/useRentalSearch'
 import { useCar } from '@storefront/composables/useCar'
 import { useCars } from '@storefront/composables/useCars'
 import { useLocation } from '@storefront/composables/useLocation'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 import ProductionYearV1 from '@storefront/components/icons/ProductionYearV1.vue'
 import DoorsV1 from '@storefront/components/icons/DoorsV1.vue'
 import MilageV1 from '@storefront/components/icons/MilageV1.vue'
@@ -371,7 +398,6 @@ import DetailsTopSkeleton from '@storefront/components/modules/Skeleton/DetailsT
 import DetailsTabSkeleton from '../components/modules/Skeleton/DetailsTabSkeleton.vue'
 
 const route = useRoute()
-const router = useRouter()
 const carId = route.params.id
 const { getLocations, groupedLocations } = useLocation()
 const { minPickUpDate, minDropOffDate, searchParams, hydrateRentalSearchFromQuery, timeOptions } =

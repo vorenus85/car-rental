@@ -515,7 +515,6 @@ const { getBrands, brands } = useBrand()
 const { getCarModelsByBrand, carModels } = useCarModel()
 const { groupedFeatures, getFeatures } = useFeature()
 const {
-    variantCategories,
     bodyTypes,
     transmissions,
     fuelTypes,
