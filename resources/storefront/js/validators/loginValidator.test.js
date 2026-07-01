@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { loginValidator } from '@admin/validators/loginValidator'
+import { loginValidator } from '@storefront/validators/loginValidator'
 
 describe('loginValidator', () => {
     const validValues = {
