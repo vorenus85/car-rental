@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Passwords\PasswordBroker;
 
 class UserCreatedNotification extends Notification
 {
@@ -36,8 +37,10 @@ class UserCreatedNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
 
-        // @phpstan-ignore property.notFound
-        $token = Password::broker('users')->createToken($this->user);
+        /** @var PasswordBroker $broker */
+        $broker = Password::broker('users');
+
+        $token = $broker->createToken($this->user);
 
         $passwordSetupUrl = config('app.frontend_url')
             . '/admin/reset-password?token='

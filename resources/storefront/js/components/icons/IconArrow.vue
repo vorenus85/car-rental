@@ -12,9 +12,7 @@
     </svg>
 </template>
 <script setup>
-import { computed } from 'vue'
-
-const props = defineProps({
+defineProps({
     size: {
         type: Number,
         default: 35,
@@ -30,10 +28,6 @@ const props = defineProps({
             return ['left', 'top', 'right', 'bottom'].includes(value)
         },
     },
-})
-
-const computedSize = computed(() => {
-    return props.size * 0.75
 })
 </script>
 <style lang="scss">

@@ -7,7 +7,7 @@
                 class="flex items-center gap-4 rounded-3xl py-3 px-2 sm:px-0 text-center justify-start sm:justify-center"
             >
                 <div class="flex h-14 w-14 items-center justify-center">
-                    <component class="advantage-icon" :size="80" :is="icons[item.icon]" />
+                    <component :is="icons[item.icon]" class="advantage-icon" :size="80" />
                 </div>
                 <div class="flex flex-col gap-1 text-left">
                     <div class="text-3xl font-semibold text-white">{{ item.title }}</div>
