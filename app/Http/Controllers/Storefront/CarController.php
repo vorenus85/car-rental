@@ -19,12 +19,12 @@ class CarController extends Controller
             ->where('status', 'available');
 
         // location
-        if ($request->filled('location')) {
-            $location = Location::find($request->input('location'));
+        if ($request->filled('pickUpLocation')) {
+            $pickUpLocation = Location::find($request->input('pickUpLocation'));
 
-            if ($location) {
-                $query->whereHas('location', function ($q) use ($location) {
-                    $q->where('city_id', $location->city_id);
+            if ($pickUpLocation) {
+                $query->whereHas('location', function ($q) use ($pickUpLocation) {
+                    $q->where('city_id', $pickUpLocation->city_id);
                 });
             }
         }

@@ -139,7 +139,7 @@
 
                                         <Select
                                             id="pick-up-location"
-                                            v-model="searchParams.location"
+                                            v-model="searchParams.pickUpLocation"
                                             :options="groupedLocations"
                                             option-group-label="label"
                                             option-group-children="items"
@@ -166,7 +166,7 @@
                                     <div class="grid grid-cols-2 gap-4">
                                         <div>
                                             <label
-                                                for="pick-aup-date"
+                                                for="pick-up-date"
                                                 class="mb-2 block text-sm font-medium"
                                             >
                                                 Pick-up Date
@@ -174,7 +174,7 @@
 
                                             <DatePicker
                                                 v-model="searchParams.pickUpDate"
-                                                input-id="pick-aup-date"
+                                                input-id="pick-up-date"
                                                 :min-date="minPickUpDate"
                                                 date-format="yy-mm-dd"
                                                 placeholder="Select date"
@@ -199,6 +199,40 @@
                                                 class="w-full"
                                             />
                                         </div>
+                                    </div>
+
+                                    <div>
+                                        <label
+                                            for="drop-off-location"
+                                            class="mb-2 block text-sm font-medium"
+                                        >
+                                            Drop-off Location
+                                        </label>
+
+                                        <Select
+                                            id="drop-off-location"
+                                            v-model="searchParams.dropOffLocation"
+                                            :options="groupedLocations"
+                                            option-group-label="label"
+                                            option-group-children="items"
+                                            option-label="label"
+                                            option-value="value"
+                                            filter
+                                            placeholder="Select location"
+                                            class="w-full"
+                                        >
+                                            <template #optiongroup="slotProps">
+                                                <div class="flex items-center">
+                                                    <img
+                                                        :alt="slotProps.option.label"
+                                                        src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
+                                                        :class="`mr-2 flag flag-${slotProps?.option?.code?.toLowerCase()}`"
+                                                        style="width: 18px"
+                                                    />
+                                                    <div>{{ slotProps.option.label }}</div>
+                                                </div>
+                                            </template>
+                                        </Select>
                                     </div>
 
                                     <div class="grid grid-cols-2 gap-4">

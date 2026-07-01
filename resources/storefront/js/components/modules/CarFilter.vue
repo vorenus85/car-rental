@@ -10,7 +10,7 @@
         <div class="mb-8">
             <h4 class="font-medium mb-4">Pick-up Location</h4>
             <Select
-                v-model="filters.location"
+                v-model="filters.pickUpLocation"
                 :options="groupedLocations"
                 input-id="pick-up-location"
                 option-group-label="label"
@@ -45,6 +45,34 @@
                 class="w-full"
                 placeholder="Select date"
             />
+        </div>
+
+        <div class="mb-8">
+            <h4 class="font-medium mb-4">Drop-off Location</h4>
+            <Select
+                v-model="filters.dropOffLocation"
+                :options="groupedLocations"
+                input-id="drop-off-location"
+                option-group-label="label"
+                option-group-children="items"
+                option-label="label"
+                option-value="value"
+                filter
+                placeholder="Select location"
+                class="w-full"
+            >
+                <template #optiongroup="slotProps">
+                    <div class="flex items-center">
+                        <img
+                            :alt="slotProps.option.label"
+                            src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
+                            :class="`mr-2 flag flag-${slotProps?.option?.code?.toLowerCase()}`"
+                            style="width: 18px"
+                        />
+                        <div>{{ slotProps.option.label }}</div>
+                    </div>
+                </template>
+            </Select>
         </div>
 
         <div class="mb-8">
@@ -196,7 +224,8 @@ minDropOffDate.setDate(minDropOffDate.getDate() + 1)
 const syncing = ref(true)
 
 const filters = reactive({
-    location: null,
+    pickUpLocation: null,
+    dropOffLocation: null,
     pickUpDate: null,
     dropOffDate: null,
     priceRange: [0, 200],
@@ -225,7 +254,8 @@ watch(
 )
 
 const clearFilters = () => {
-    filters.location = null
+    filters.pickUpLocation = null
+    filters.dropOffLocation = null
     filters.pickUpDate = null
     filters.dropOffDate = null
     filters.priceRange = [0, 200]
@@ -257,8 +287,12 @@ const hydrateFiltersFromQuery = query => {
         filters.brands = brands.map(Number)
     }
 
-    if (query.location) {
-        filters.location = Number(query.location)
+    if (query.pickUpLocation) {
+        filters.pickUpLocation = Number(query.pickUpLocation)
+    }
+
+    if (query.dropOffLocation) {
+        filters.dropOffLocation = Number(query.dropOffLocation)
     }
 
     if (query.bodyType) {

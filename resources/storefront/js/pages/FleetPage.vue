@@ -99,8 +99,12 @@ const buildFilters = filters => {
         query.dropOffDate = formatDate(filters.dropOffDate)
     }
 
-    if (filters?.location) {
-        query.location = filters.location
+    if (filters?.pickUpLocation) {
+        query.pickUpLocation = filters.pickUpLocation
+    }
+
+    if (filters?.dropOffLocation) {
+        query.dropOffLocation = filters.dropOffLocation
     }
 
     if (filters?.carTypes) {
@@ -147,7 +151,8 @@ const onFilter = async filters => {
     const FILTER_KEYS = [
         'dropOffDate',
         'pickUpDate',
-        'location',
+        'pickUpLocation',
+        'dropOffLocation',
         'pricePerDay',
         'bodyType',
         'transmission',
