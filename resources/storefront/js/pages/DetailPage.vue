@@ -290,7 +290,13 @@
                                         />
                                     </div>
 
-                                    <Button label="Book Now" fluid size="large" />
+                                    <Button
+                                        label="Book Now"
+                                        fluid
+                                        size="large"
+                                        :disabled="!canStartBooking"
+                                        @click="startBooking"
+                                    />
                                 </div>
                             </template>
                         </Card>
@@ -309,78 +315,10 @@
                             </TabList>
                             <TabPanels>
                                 <TabPanel value="0">
-                                    <!-- Features -->
-                                    <div class="grid grid-cols-2 gap-y-4">
-                                        <template v-for="feature in car?.features" :key="feature">
-                                            <div class="flex items-center gap-2">
-                                                <i class="pi pi-check-circle text-green-500" />
-                                                <span>{{ feature.name }}</span>
-                                            </div>
-                                        </template>
-                                    </div>
+                                    <FeaturesList :features="car?.features"></FeaturesList>
                                 </TabPanel>
                                 <TabPanel value="1">
-                                    <div class="space-y-4">
-                                        <ul class="space-y-3 text-gray-600">
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span>Minimum driver age is 25 years.</span>
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span
-                                                    >A valid driver's license held for at least 2
-                                                    years is required.</span
-                                                >
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span
-                                                    >Unlimited mileage included in the rental
-                                                    price.</span
-                                                >
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span>Basic insurance coverage is included.</span>
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span
-                                                    >A refundable security deposit may be required
-                                                    at pick-up.</span
-                                                >
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span
-                                                    >Fuel policy: Return the vehicle with the same
-                                                    fuel level as received.</span
-                                                >
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span
-                                                    >Free cancellation up to 24 hours before
-                                                    pick-up.</span
-                                                >
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span
-                                                    >Additional drivers can be added for an extra
-                                                    fee.</span
-                                                >
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <RentalTerms></RentalTerms>
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>
@@ -420,7 +358,7 @@ import { useRentalSearch } from '@storefront/composables/useRentalSearch'
 import { useCar } from '@storefront/composables/useCar'
 import { useCars } from '@storefront/composables/useCars'
 import { useLocation } from '@storefront/composables/useLocation'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import ProductionYearV1 from '@storefront/components/icons/ProductionYearV1.vue'
 import DoorsV1 from '@storefront/components/icons/DoorsV1.vue'
 import MilageV1 from '@storefront/components/icons/MilageV1.vue'
@@ -429,15 +367,48 @@ import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vu
 import { getDaysBetween } from '@storefront/utils.js'
 import CarsModule from '@storefront/components/modules/CarsModule.vue'
 import DetailsTopSkeleton from '@storefront/components/modules/Skeleton/DetailsTopSkeleton.vue'
-import DetailsTabSkeleton from '../components/modules/Skeleton/DetailsTabSkeleton.vue'
+import DetailsTabSkeleton from '@storefront/components/modules/Skeleton/DetailsTabSkeleton.vue'
+import RentalTerms from '@storefront/components/modules/FleetUnit/RentalTerms.vue'
+import FeaturesList from '@storefront/components/modules/FleetUnit/FeaturesList.vue'
 
 const route = useRoute()
+const router = useRouter()
 const carId = route.params.id
 const { getLocations, groupedLocations } = useLocation()
 const { minPickUpDate, minDropOffDate, searchParams, hydrateRentalSearchFromQuery, timeOptions } =
     useRentalSearch()
 const { getCar, car, loadingCar, bodyType } = useCar()
 const { cars, loadingCars, getSimilarCars } = useCars()
+
+const canStartBooking = computed(() => {
+    return (
+        searchParams.pickUpLocation &&
+        searchParams.dropOffLocation &&
+        searchParams.pickUpDate &&
+        searchParams.dropOffDate &&
+        searchParams.pickUpTime &&
+        searchParams.dropOffTime
+    )
+})
+
+const startBooking = () => {
+    if (!canStartBooking.value) {
+        return
+    }
+
+    /*
+    const query = {
+        pickUpLocation: searchParams.pickUpLocation,
+        dropOffLocation: searchParams.dropOffLocation,
+        pickUpDate: searchParams.pickUpDate,
+        dropOffDate: searchParams.dropOffDate,
+        pickUpTime: searchParams.pickUpTime,
+        dropOffTime: searchParams.dropOffTime,
+    }
+        */
+
+    router.push({ name: 'booking-extras-insurance' })
+}
 
 const breadcrumbItems = computed(() => [
     {

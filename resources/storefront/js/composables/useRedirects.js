@@ -19,10 +19,29 @@ export const useRedirects = () => {
         router.push({ name: 'logout' })
     }
 
+    const toBookingStep1 = () => {
+        router.push({ name: 'booking-extras-insurance' })
+    }
+    const toBookingStep2 = () => {
+        router.push({ name: 'booking-driver-info' })
+    }
+
+    const toBookingStep3 = () => {
+        router.push({ name: 'booking-payment' })
+    }
+
+    const toBookingStep4 = () => {
+        router.push({ name: 'booking-success' })
+    }
+
     return {
         toHome,
         toLogin,
         toAccount,
         toLogout,
+        toBookingStep1,
+        toBookingStep2,
+        toBookingStep3,
+        toBookingStep4,
     }
 }
