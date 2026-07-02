@@ -6,7 +6,7 @@
         }"
     >
         <div class="flex items-start gap-3">
-            <i class="pi pi-user text-primary mt-1 text-lg" />
+            <PiIcon :icon="extra.icon" class="text-primary mt-1 text-lg" />
 
             <div>
                 <h4 class="font-semibold text-surface-900">
@@ -37,6 +37,7 @@
 <script setup>
 import { Button } from 'primevue'
 import { computed, ref, watch } from 'vue'
+import PiIcon from '@storefront/components/PiIcon.vue'
 
 const props = defineProps({
     extra: {

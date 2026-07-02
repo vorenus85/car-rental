@@ -330,6 +330,7 @@
         <div class="background-white pt-3">
             <CarsModule :cars="cars" title="Similar cars" :loading-cars="loadingCars"></CarsModule>
         </div>
+        <LoginModal v-model:visible="showLoginModal" @login-submit="onFormSubmit" />
     </PublicLayout>
 </template>
 <script setup>
@@ -353,7 +354,7 @@ import FuelV1 from '@storefront/components/icons/FuelV1.vue'
 import SeatsV1 from '@storefront/components/icons/SeatsV1.vue'
 import TransmissionV1 from '@storefront/components/icons/TransmissionV1.vue'
 import LuggageV1 from '@storefront/components/icons/LuggageV1.vue'
-import { computed, onMounted, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useRentalSearch } from '@storefront/composables/useRentalSearch'
 import { useCar } from '@storefront/composables/useCar'
 import { useCars } from '@storefront/composables/useCars'
@@ -370,15 +371,20 @@ import DetailsTopSkeleton from '@storefront/components/modules/Skeleton/DetailsT
 import DetailsTabSkeleton from '@storefront/components/modules/Skeleton/DetailsTabSkeleton.vue'
 import RentalTerms from '@storefront/components/modules/FleetUnit/RentalTerms.vue'
 import FeaturesList from '@storefront/components/modules/FleetUnit/FeaturesList.vue'
+import LoginModal from '@storefront/components/modules/LoginModal.vue'
+import { useAuthStore } from '@storefront/stores/authStore'
+import { useCustomToast } from '@storefront/composables/useCustomToast'
 
 const route = useRoute()
 const router = useRouter()
 const carId = route.params.id
 const { getLocations, groupedLocations } = useLocation()
+const authStore = useAuthStore()
 const { minPickUpDate, minDropOffDate, searchParams, hydrateRentalSearchFromQuery, timeOptions } =
     useRentalSearch()
 const { getCar, car, loadingCar, bodyType } = useCar()
 const { cars, loadingCars, getSimilarCars } = useCars()
+const { customToast } = useCustomToast()
 
 const canStartBooking = computed(() => {
     return (
@@ -391,21 +397,17 @@ const canStartBooking = computed(() => {
     )
 })
 
+const showLoginModal = ref(false)
+
 const startBooking = () => {
     if (!canStartBooking.value) {
         return
     }
 
-    /*
-    const query = {
-        pickUpLocation: searchParams.pickUpLocation,
-        dropOffLocation: searchParams.dropOffLocation,
-        pickUpDate: searchParams.pickUpDate,
-        dropOffDate: searchParams.dropOffDate,
-        pickUpTime: searchParams.pickUpTime,
-        dropOffTime: searchParams.dropOffTime,
+    if (!authStore.user?.id) {
+        showLoginModal.value = true
+        return
     }
-        */
 
     router.push({ name: 'booking-extras-insurance' })
 }
@@ -432,6 +434,26 @@ watch(
         Promise.all([getCar(id), getSimilarCars(id)])
     }
 )
+
+const onFormSubmit = async ({ valid, values, errors }) => {
+    if (valid) {
+        try {
+            await authStore.login(values.email, values.password)
+
+            await nextTick()
+            showLoginModal.value = false
+
+            customToast.success('Welcome on Drivengo!')
+
+            router.push({ name: 'booking-extras-insurance' })
+        } catch (error) {
+            const msg = error?.response?.data?.message
+            customToast.error(msg || 'Please try again.')
+        }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
+    }
+}
 
 onMounted(async () => {
     Promise.all([getCar(carId), getLocations(), getSimilarCars(carId)])
