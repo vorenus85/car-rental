@@ -1,14 +1,18 @@
 <template>
     <div
-        class="flex items-center justify-between rounded-xl border border-surface-200 bg-white p-4 booking-extra-item mb-3"
+        class="flex flex-col sm:flex-row items-center justify-between rounded-xl border border-surface-200 bg-white p-4 booking-extra-item mb-3 gap-2"
         :class="{
             'border-primary shadow-sm': selected,
         }"
     >
-        <div class="flex items-start gap-3">
-            <PiIcon :icon="extra.icon" class="text-primary mt-1 text-lg" />
+        <div class="flex items-center gap-3 flex-col sm:flex-row">
+            <div
+                class="flex h-11 w-11 items-center justify-center rounded-lg bg-primary-50 text-primary"
+            >
+                <PiIcon :icon="extra.icon" class="text-primary mt-1 text-lg" />
+            </div>
 
-            <div>
+            <div class="flex flex-1 items-start flex-col gap-1">
                 <h4 class="font-semibold text-surface-900">
                     {{ extra.name }}
                 </h4>
@@ -19,7 +23,7 @@
             </div>
         </div>
 
-        <div class="flex items-center gap-4">
+        <div class="flex flex-col sm:flex-row items-center gap-2">
             <span class="font-semibold whitespace-nowrap"> €{{ extra.price }} / day </span>
 
             <div class="flex items-center overflow-hidden rounded-lg border border-surface-300">
@@ -29,7 +33,13 @@
                     {{ quantity }}
                 </span>
 
-                <Button severity="secondary" icon="pi pi-plus" text @click="increase" />
+                <Button
+                    severity="secondary"
+                    icon="pi pi-plus"
+                    text
+                    @click="increase"
+                    :disabled="extra?.maxQuantity === 1 && quantity === 1"
+                />
             </div>
         </div>
     </div>
@@ -44,13 +54,25 @@ const props = defineProps({
         type: Object,
         required: true,
     },
+    selectedExtra: {
+        type: Object,
+        default: null,
+    },
 })
 
 const emit = defineEmits(['select'])
 
 const quantity = ref(0)
 
-const selected = computed(() => quantity.value > 0)
+watch(
+    () => props.selectedExtra,
+    value => {
+        quantity.value = value?.quantity ?? 0
+    },
+    { immediate: true }
+)
+
+const selected = computed(() => props.selectedExtra !== null)
 
 watch(quantity, newValue => {
     emit('select', { id: props.extra.id, quantity: newValue })

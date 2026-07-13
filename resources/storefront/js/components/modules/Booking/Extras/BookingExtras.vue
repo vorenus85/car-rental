@@ -2,14 +2,16 @@
     <div class="booking-extras-module">
         <div class="text-lg font-semibold mb-3">Extras</div>
 
-        <ExtrasList @select="handleSelection" />
+        <ExtrasList v-model:selected-extras="selectedExtras" @select="handleSelection" />
     </div>
 </template>
 <script setup>
+import { onMounted, ref, watch } from 'vue'
 import ExtrasList from '@storefront/components/modules/Booking/Extras/ExtrasList.vue'
-import { ref } from 'vue'
+import { useBookingStore } from '@storefront/stores/bookingStore'
 
-const selectedExtras = ref([])
+const bookingStore = useBookingStore()
+const selectedExtras = ref(bookingStore.extras)
 
 const handleSelection = ({ id, quantity }) => {
     const index = selectedExtras.value.findIndex(extra => extra.id === id)
@@ -28,4 +30,16 @@ const handleSelection = ({ id, quantity }) => {
 
     selectedExtras.value.push({ id, quantity })
 }
+
+watch(
+    () => bookingStore.extras,
+    newValue => {
+        bookingStore.setExtras(newValue)
+    },
+    { deep: true }
+)
+
+onMounted(() => {
+    bookingStore.setExtras(selectedExtras.value)
+})
 </script>

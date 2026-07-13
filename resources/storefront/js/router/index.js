@@ -19,10 +19,10 @@ import SuccessPage from '@storefront/pages/Booking/SuccessPage.vue'
 
 import { useMobileMenuStore } from '@storefront/stores/mobileMenuStore'
 import { useAuthStore } from '@storefront/stores/authStore'
+import { useBookingStore } from '@storefront/stores/bookingStore'
 
 const router = createRouter({
     history: createWebHistory(),
-    /*
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {
             return savedPosition
@@ -33,7 +33,6 @@ const router = createRouter({
             behavior: 'smooth',
         }
     },
-    */
     routes: [
         { path: '/:pathMatch(.*)*', name: 'notFound', component: NotFoundPage },
         { path: '/', name: 'home', component: HomePage },
@@ -78,6 +77,25 @@ const router = createRouter({
         { path: '/services', name: 'services', component: ServicesPage },
         { path: '/services', name: 'services', component: ServicesPage },
     ],
+})
+
+router.beforeEach(to => {
+    const bookingStore = useBookingStore()
+
+    const bookingRoutes = [
+        'booking-extras-insurance',
+        'booking-driver-info',
+        'booking-payment',
+        'booking-success',
+    ]
+
+    if (bookingRoutes.includes(to.name)) {
+        if (!bookingStore.carId) {
+            return {
+                name: 'fleet',
+            }
+        }
+    }
 })
 
 // Register global navigation guard

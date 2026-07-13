@@ -290,13 +290,23 @@
                                         />
                                     </div>
 
+                                    <Message
+                                        v-if="!isRentalPeriodValid"
+                                        severity="error"
+                                        size="small"
+                                        variant="simple"
+                                        >Drop-off date must be after pick-up date.</Message
+                                    >
                                     <Button
                                         label="Book Now"
                                         fluid
                                         size="large"
-                                        :disabled="!canStartBooking"
+                                        :disabled="!canStartBooking || !isRentalPeriodValid"
                                         @click="startBooking"
                                     />
+                                    <Message v-if="!canStartBooking" severity="info" size="small"
+                                        >Please select Pick up and Drop off locations.</Message
+                                    >
                                 </div>
                             </template>
                         </Card>
@@ -330,7 +340,7 @@
         <div class="background-white pt-3">
             <CarsModule :cars="cars" title="Similar cars" :loading-cars="loadingCars"></CarsModule>
         </div>
-        <LoginModal v-model:visible="showLoginModal" @login-submit="onFormSubmit" />
+        <LoginModal v-model:visible="showLoginModal" @login-submit="onLoginSubmit" />
     </PublicLayout>
 </template>
 <script setup>
@@ -342,6 +352,7 @@ import {
     DatePicker,
     Image,
     InputText,
+    Message,
     Select,
     Tab,
     TabList,
@@ -365,7 +376,6 @@ import DoorsV1 from '@storefront/components/icons/DoorsV1.vue'
 import MilageV1 from '@storefront/components/icons/MilageV1.vue'
 import RangeV1 from '@storefront/components/icons/RangeV1.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
-import { getDaysBetween } from '@storefront/utils.js'
 import CarsModule from '@storefront/components/modules/CarsModule.vue'
 import DetailsTopSkeleton from '@storefront/components/modules/Skeleton/DetailsTopSkeleton.vue'
 import DetailsTabSkeleton from '@storefront/components/modules/Skeleton/DetailsTabSkeleton.vue'
@@ -373,13 +383,16 @@ import RentalTerms from '@storefront/components/modules/FleetUnit/RentalTerms.vu
 import FeaturesList from '@storefront/components/modules/FleetUnit/FeaturesList.vue'
 import LoginModal from '@storefront/components/modules/LoginModal.vue'
 import { useAuthStore } from '@storefront/stores/authStore'
+import { useBookingStore } from '@storefront/stores/bookingStore'
 import { useCustomToast } from '@storefront/composables/useCustomToast'
+import { formatDate, getDaysBetween } from '@storefront/utils.js'
 
 const route = useRoute()
 const router = useRouter()
 const carId = route.params.id
 const { getLocations, groupedLocations } = useLocation()
 const authStore = useAuthStore()
+const bookingStore = useBookingStore()
 const { minPickUpDate, minDropOffDate, searchParams, hydrateRentalSearchFromQuery, timeOptions } =
     useRentalSearch()
 const { getCar, car, loadingCar, bodyType } = useCar()
@@ -409,7 +422,23 @@ const startBooking = () => {
         return
     }
 
+    saveBookingToStore()
+
     router.push({ name: 'booking-extras-insurance' })
+}
+
+const saveBookingToStore = () => {
+    const bookingData = {
+        carId: carId,
+        pickUpLocationId: searchParams.pickUpLocation,
+        dropOffLocationId: searchParams.dropOffLocation,
+        pickUpDate: formatDate(searchParams.pickUpDate),
+        dropOffDate: formatDate(searchParams.dropOffDate),
+        pickUpTime: searchParams.pickUpTime,
+        dropOffTime: searchParams.dropOffTime,
+    }
+
+    bookingStore.setBookingData(bookingData)
 }
 
 const breadcrumbItems = computed(() => [
@@ -424,8 +453,14 @@ const breadcrumbItems = computed(() => [
 ])
 
 const rentalPeriod = computed(() => {
-    const days = getDaysBetween(searchParams.pickUpDate, searchParams.dropOffDate)
+    const days = getDaysBetween(searchParams?.pickUpDate, searchParams?.dropOffDate)
     return days === 1 ? days + ' day' : days + ' days'
+})
+
+const isRentalPeriodValid = computed(() => {
+    const days = getDaysBetween(searchParams?.pickUpDate, searchParams?.dropOffDate)
+
+    return days >= 1
 })
 
 watch(
@@ -435,7 +470,7 @@ watch(
     }
 )
 
-const onFormSubmit = async ({ valid, values, errors }) => {
+const onLoginSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {
             await authStore.login(values.email, values.password)

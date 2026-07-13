@@ -18,6 +18,7 @@
             :loading="loading"
             :disabled="disabled"
             class="min-w-52"
+            size="large"
             @click="$emit('next')"
         />
     </div>

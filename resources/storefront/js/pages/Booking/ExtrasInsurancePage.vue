@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-8xl px-4 py-4 min-h-[500px]">
             <BreadcrumbModule :items="breadcrumbItems"></BreadcrumbModule>
             <BookingSteppes :active="1" class="pb-5" />
-            <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3 pt-5">
                 <div class="md:col-span-2">
                     <PageTitle
                         title="Extras and Insurance"
@@ -48,7 +48,7 @@ const breadcrumbItems = [
 ]
 
 const handleBack = () => {
-    // Handle back button click
+    globalThis.history.back()
 }
 
 const handleNext = () => {
