@@ -27,6 +27,16 @@ export const useBookingStore = defineStore('booking', {
                 dropOffTime: state.dropOffTime,
             }
         },
+        getBookingExtras: state => {
+            return {
+                extras: state.extras,
+            }
+        },
+        getBookingInsurance: state => {
+            return {
+                insuranceId: state.insuranceId,
+            }
+        },
     },
     actions: {
         setBookingData(data) {

@@ -8,6 +8,12 @@ export const useBooking = () => {
     const bookingLookupStore = useBookingLookupStore()
     const bookingStore = useBookingStore()
 
+    const maxBirthDate = new Date()
+    maxBirthDate.setFullYear(maxBirthDate.getFullYear() - 25)
+
+    const maxLicenceDate = new Date()
+    maxLicenceDate.setFullYear(maxLicenceDate.getFullYear() - 2)
+
     const calcRentalPeriod = (pickUpDate, dropOffDate) => {
         const days = getDaysBetween(pickUpDate, dropOffDate)
         return days
@@ -99,5 +105,7 @@ export const useBooking = () => {
         insuranceFee,
         extrasFee,
         bookingTotal,
+        maxBirthDate,
+        maxLicenceDate,
     }
 }

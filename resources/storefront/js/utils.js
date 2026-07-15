@@ -1,3 +1,5 @@
+import { countries } from 'countries-list'
+
 export const formatDate = (date, format = 'yyyy-MM-dd') => {
     const year = date.getFullYear()
     const month = String(date.getMonth() + 1).padStart(2, '0')
@@ -34,4 +36,15 @@ export const getDaysBetween = (start, end) => {
 export const getDayName = date => {
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     return days[date.getDay()]
+}
+
+export const countryOptions = Object.entries(countries)
+    .map(([code, country]) => ({
+        code,
+        name: country.name,
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name))
+
+export const getCountryName = code => {
+    return countries[code]?.name ?? ''
 }

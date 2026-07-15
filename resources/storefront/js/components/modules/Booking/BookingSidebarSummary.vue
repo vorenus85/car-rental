@@ -81,8 +81,10 @@
 
                         <span class="font-medium"> {{ insuranceFee }} € </span>
                     </div>
-
-                    <div class="extras-price-row space-y-3">
+                    <div
+                        v-if="bookingLookupStore?.extrasData?.length > 0"
+                        class="extras-price-row space-y-3"
+                    >
                         <div
                             v-for="extra in bookingLookupStore?.extrasData"
                             :key="extra.id"
@@ -181,5 +183,10 @@ const backToCar = () => {
 onMounted(async () => {
     const { carId, pickUpLocationId, dropOffLocationId } = bookingStore.getBookingData
     await loadBookingData({ carId, pickUpLocationId, dropOffLocationId })
+
+    const { extras } = bookingStore.getBookingExtras
+    const { insuranceId } = bookingStore.getBookingInsurance
+    bookingStore.setExtras(extras)
+    bookingStore.setInsurance(insuranceId)
 })
 </script>

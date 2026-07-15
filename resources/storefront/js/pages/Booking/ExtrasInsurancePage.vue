@@ -36,6 +36,9 @@ import BookingNavigation from '@storefront/components/modules/Booking/BookingNav
 import BookingInsurance from '@storefront/components/modules/Booking/Insuarance/BookingInsurance.vue'
 import BookingExtras from '@storefront/components/modules/Booking/Extras/BookingExtras.vue'
 import BookingSidebarSummary from '@storefront/components/modules/Booking/BookingSidebarSummary.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const breadcrumbItems = [
     {
@@ -43,7 +46,7 @@ const breadcrumbItems = [
         route: '/fleet',
     },
     {
-        label: 'Booking',
+        label: 'Booking extras and insurance',
     },
 ]
 
@@ -52,6 +55,6 @@ const handleBack = () => {
 }
 
 const handleNext = () => {
-    // Handle next button click
+    router.push({ name: 'booking-driver-info' })
 }
 </script>

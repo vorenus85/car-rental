@@ -12,6 +12,7 @@
                     </InputGroupAddon>
 
                     <Select
+                        id="pick-up-location"
                         v-model="searchParams.pickUpLocation"
                         :options="groupedLocations"
                         input-id="pick-up-location"
@@ -39,7 +40,7 @@
             </div>
 
             <div class="field">
-                <label class="text-lg">Pick-up Date</label>
+                <label for="pick-up-date" class="text-lg">Pick-up Date</label>
 
                 <InputGroup>
                     <InputGroupAddon>
@@ -57,7 +58,7 @@
             </div>
 
             <div class="field">
-                <label class="text-lg">Drop-off Date</label>
+                <label for="drop-off-date" class="text-lg">Drop-off Date</label>
                 <InputGroup>
                     <InputGroupAddon> <i class="pi pi-calendar" /> </InputGroupAddon
                     ><DatePicker

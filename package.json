@@ -44,6 +44,8 @@
         "@primeuix/themes": "^2.0.2",
         "@primevue/forms": "^4.5.4",
         "chart.js": "^4.5.1",
+        "countries-list": "^3.4.1",
+        "flag-icons": "^7.5.0",
         "pinia": "^3.0.4",
         "pinia-plugin-persistedstate": "^4.7.1",
         "primeicons": "^7.0.0",
