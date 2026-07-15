@@ -6,7 +6,7 @@
                 <h2 class="text-lg font-semibold text-surface-900">Booking Summary</h2>
 
                 <!-- Car -->
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-4 cursor-pointer" @click="backToCar">
                     <img
                         :src="bookingLookupStore?.carData?.imageUrl"
                         :alt="bookingLookupStore?.carData?.name"
@@ -134,7 +134,9 @@ import { computed, onMounted } from 'vue'
 import { useBookingStore } from '@storefront/stores/bookingStore'
 import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
 import { formatDate, getDayName, getDaysBetween } from '@storefront/utils.js'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const { loadBookingData, baseRentalFee, insuranceFee, bookingTotal, calcFee } = useBooking()
 const bookingStore = useBookingStore()
 const bookingLookupStore = useBookingLookupStore()
@@ -159,6 +161,22 @@ const pickUpDay = computed(() => {
 const dropOffDay = computed(() => {
     return getDayName(new Date(bookingLookupStore?.dropOffDate))
 })
+
+const backToCar = () => {
+    // bookingStore.setBookingStep('car')
+    const queryParams = {
+        pickUpLocation: bookingLookupStore?.pickUpLocation?.id,
+        dropOffLocation: bookingLookupStore?.dropOffLocation?.id,
+        pickUpDate: bookingLookupStore?.pickUpDate,
+        dropOffDate: bookingLookupStore?.dropOffDate,
+    }
+
+    router.push({
+        name: 'car',
+        params: { id: bookingLookupStore?.carData.id },
+        query: queryParams,
+    })
+}
 
 onMounted(async () => {
     const { carId, pickUpLocationId, dropOffLocationId } = bookingStore.getBookingData

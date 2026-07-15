@@ -66,10 +66,12 @@ export const useBooking = () => {
             }
 
             const pickUpLocation = {
+                id: data.pickUpLocation.id,
                 name: data.pickUpLocation.name,
                 city: data.pickUpLocation.city,
             }
             const dropOffLocation = {
+                id: data.dropOffLocation.id,
                 name: data.dropOffLocation.name,
                 city: data.dropOffLocation.city,
             }
