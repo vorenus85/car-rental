@@ -68,7 +68,7 @@
                             {{ rentalPeriodWithText }})
                         </span>
 
-                        <span class="font-medium"> {{ baseRentalFee }} € </span>
+                        <span class="font-medium no-wrap"> {{ baseRentalFee }} € </span>
                     </div>
 
                     <div class="flex justify-between insurance-price-row">
@@ -79,8 +79,9 @@
                             € × {{ rentalPeriodWithText }})
                         </span>
 
-                        <span class="font-medium"> {{ insuranceFee }} € </span>
+                        <span class="font-medium no-wrap"> {{ insuranceFee }} € </span>
                     </div>
+
                     <div
                         v-if="bookingLookupStore?.extrasData?.length > 0"
                         class="extras-price-row space-y-3"
@@ -91,11 +92,13 @@
                             class="flex justify-between"
                         >
                             <span class="text-surface-600">
+                                <span v-if="extra.quantity > 1">{{ extra.quantity }} × </span>
                                 {{ extra.name }} ({{ extra.price }} € ×
                                 {{ rentalPeriodWithText }})</span
                             >
 
-                            <span class="font-medium">
+                            <span class="font-medium no-wrap">
+                                <span v-if="extra.quantity > 1">{{ extra.quantity }} × </span>
                                 {{
                                     calcFee({
                                         price: extra.price,

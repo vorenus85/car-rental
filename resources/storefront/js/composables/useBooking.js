@@ -44,11 +44,13 @@ export const useBooking = () => {
         let sum = 0
 
         bookingLookupStore?.extrasData.forEach(element => {
-            sum += calcFee({
-                price: element.price,
-                pickUpDate: bookingLookupStore?.pickUpDate,
-                dropOffDate: bookingLookupStore?.dropOffDate,
-            })
+            sum +=
+                element.quantity *
+                calcFee({
+                    price: element.price,
+                    pickUpDate: bookingLookupStore?.pickUpDate,
+                    dropOffDate: bookingLookupStore?.dropOffDate,
+                })
 
             return sum
         })
