@@ -1,100 +1,160 @@
 <template>
-    <section class="rounded-xl border border-surface-200 bg-white p-6">
-        <h2 class="text-2xl font-semibold text-surface-900">Personal Information</h2>
+    <section class="">
+        <Form
+            v-slot="$form"
+            class="flex flex-col gap-4 w-full"
+            :resolver="personalValidator"
+            @submit="onFormSubmit"
+        >
+            <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
+                <!-- First name -->
+                <div>
+                    <label for="firstName" class="mb-2 block text-sm font-medium">
+                        First name <span class="text-red-500">*</span>
+                    </label>
 
-        <p class="mt-1 text-sm text-surface-500">
-            Please provide the driver's personal information.
-        </p>
+                    <InputText
+                        id="firstName"
+                        v-model="form.firstName"
+                        name="firstName"
+                        class="w-full"
+                        placeholder="Enter first name"
+                    />
+                    <Message
+                        v-if="$form.firstName?.invalid"
+                        severity="error"
+                        size="small"
+                        variant="simple"
+                        >{{ $form.firstName.error?.message }}</Message
+                    >
+                </div>
 
-        <div class="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-            <!-- First name -->
-            <div>
-                <label for="firstName" class="mb-2 block text-sm font-medium">
-                    First name <span class="text-red-500">*</span>
-                </label>
+                <!-- Last name -->
+                <div>
+                    <label for="lastName" class="mb-2 block text-sm font-medium">
+                        Last name <span class="text-red-500">*</span>
+                    </label>
 
-                <InputText
-                    id="firstName"
-                    v-model="form.firstName"
-                    class="w-full"
-                    placeholder="Enter first name"
-                />
+                    <InputText
+                        id="lastName"
+                        v-model="form.lastName"
+                        name="lastName"
+                        class="w-full"
+                        placeholder="Enter last name"
+                    />
+                    <Message
+                        v-if="$form.lastName?.invalid"
+                        severity="error"
+                        size="small"
+                        variant="simple"
+                        >{{ $form.lastName.error?.message }}</Message
+                    >
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="email" class="mb-2 block text-sm font-medium">
+                        Email address <span class="text-red-500">*</span>
+                    </label>
+
+                    <InputText
+                        id="email"
+                        v-model="form.email"
+                        name="email"
+                        type="email"
+                        class="w-full"
+                        placeholder="Enter email address"
+                    />
+                    <Message
+                        v-if="$form.email?.invalid"
+                        severity="error"
+                        size="small"
+                        variant="simple"
+                        >{{ $form.email.error?.message }}</Message
+                    >
+                </div>
+
+                <!-- Phone -->
+                <div>
+                    <label for="phone" class="mb-2 block text-sm font-medium">
+                        Phone number <span class="text-red-500">*</span>
+                    </label>
+
+                    <InputText
+                        id="phone"
+                        v-model="form.phone"
+                        name="phone"
+                        type="text"
+                        class="w-full"
+                        placeholder="+36 30 123 4567"
+                    />
+                    <Message
+                        v-if="$form.phone?.invalid"
+                        severity="error"
+                        size="small"
+                        variant="simple"
+                        >{{ $form.phone.error?.message }}</Message
+                    >
+                </div>
+
+                <!-- Date of birth -->
+                <div>
+                    <label for="birthDate" class="mb-2 block text-sm font-medium">
+                        Date of birth <span class="text-red-500">*</span>
+                    </label>
+
+                    <DatePicker
+                        id="birthDate"
+                        v-model="form.birthDate"
+                        name="birthDate"
+                        class="w-full"
+                        show-icon
+                        date-format="yy. mm. dd."
+                        placeholder="YYYY. MM. DD."
+                        :max-date="maxBirthDate"
+                        :manual-input="false"
+                    />
+                    <Message
+                        v-if="$form.birthDate?.invalid"
+                        severity="error"
+                        size="small"
+                        variant="simple"
+                        >{{ $form.birthDate.error?.message }}</Message
+                    >
+                </div>
             </div>
-
-            <!-- Last name -->
-            <div>
-                <label for="lastName" class="mb-2 block text-sm font-medium">
-                    Last name <span class="text-red-500">*</span>
-                </label>
-
-                <InputText
-                    id="lastName"
-                    v-model="form.lastName"
-                    class="w-full"
-                    placeholder="Enter last name"
-                />
+            <Message severity="info" icon="pi pi-info-circle" class="mt-6">
+                Minimum driver age is 25 years.
+            </Message>
+            <div class="md:col-span-2 flex justify-end mt-5">
+                <Button :label="btnLabel" class="min-w-35" type="submit" />
             </div>
-
-            <!-- Email -->
-            <div>
-                <label for="email" class="mb-2 block text-sm font-medium">
-                    Email address <span class="text-red-500">*</span>
-                </label>
-
-                <InputText
-                    id="email"
-                    v-model="form.email"
-                    type="email"
-                    class="w-full"
-                    placeholder="Enter email address"
-                />
-            </div>
-
-            <!-- Phone -->
-            <div>
-                <label for="phone" class="mb-2 block text-sm font-medium">
-                    Phone number <span class="text-red-500">*</span>
-                </label>
-
-                <InputText
-                    id="phone"
-                    v-model="form.phone"
-                    type="email"
-                    class="w-full"
-                    placeholder="+36 30 123 4567"
-                />
-            </div>
-
-            <!-- Date of birth -->
-            <div>
-                <label for="birthDate" class="mb-2 block text-sm font-medium">
-                    Date of birth <span class="text-red-500">*</span>
-                </label>
-
-                <DatePicker
-                    id="birthDate"
-                    v-model="form.birthDate"
-                    class="w-full"
-                    show-icon
-                    date-format="yy. mm. dd."
-                    placeholder="YYYY. MM. DD."
-                    :max-date="maxBirthDate"
-                    :manual-input="false"
-                />
-            </div>
-        </div>
-        <Message severity="info" icon="pi pi-info-circle" class="mt-6">
-            Minimum driver age is 25 years.
-        </Message>
+        </Form>
     </section>
 </template>
 
 <script setup>
-import { DatePicker, InputText, Message } from 'primevue'
+import { Form } from '@primevue/forms'
+import { Button, DatePicker, InputText, Message } from 'primevue'
 import { useBooking } from '@storefront/composables/useBooking'
+import { personalValidator } from '@storefront/validators/personalValidator'
 import { reactive } from 'vue'
 
+const emit = defineEmits(['save'])
+
+const props = defineProps({
+    btnLabel: {
+        type: String,
+        default: 'Save',
+    },
+    section: {
+        type: String,
+        default: 'default',
+    },
+})
+
 const { maxBirthDate } = useBooking()
+
 const form = reactive({
     firstName: '',
     lastName: '',
@@ -102,4 +162,13 @@ const form = reactive({
     phone: '',
     birthDate: null,
 })
+
+const onFormSubmit = ({ valid, values, errors }) => {
+    emit('save', {
+        section: props.section,
+        valid,
+        values,
+        errors,
+    })
+}
 </script>

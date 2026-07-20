@@ -12,6 +12,7 @@
         <div v-else />
 
         <Button
+            v-if="!hideNext"
             :label="nextLabel"
             icon="pi pi-arrow-right"
             icon-pos="right"
@@ -31,6 +32,10 @@ defineProps({
     showBack: {
         type: Boolean,
         default: true,
+    },
+    hideNext: {
+        type: Boolean,
+        default: false,
     },
     backLabel: {
         type: String,

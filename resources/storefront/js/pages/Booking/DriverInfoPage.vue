@@ -10,21 +10,75 @@
                         subtitle="Please provide the driver's personal information and driver's license details."
                         class="mb-5"
                     ></PageTitle>
-                    <div class="driver-details flex flex-col">
-                        <PersonalInformation class="mb-8"></PersonalInformation>
-                        <AddressInformation class="mb-8"></AddressInformation>
-                        <DrivingLicenceInformation></DrivingLicenceInformation>
+                    <div class="driver-details">
+                        <DriverInfoSection :is-open="activeSection === 'personal'" class="mt-8">
+                            <template #header>
+                                <SectionHeader
+                                    :title="'Personal Information'"
+                                    :sub-title="`Please provide the driver's personal information.`"
+                                />
+                            </template>
+                            <template #body>
+                                <PersonalInformation
+                                    :btn-label="'Next'"
+                                    :section="'personal'"
+                                    @save="handleSectionNext"
+                                ></PersonalInformation>
+                            </template>
+                        </DriverInfoSection>
+
+                        <DriverInfoSection :is-open="activeSection === 'address'" class="mt-8">
+                            <template #header>
+                                <SectionHeader
+                                    :title="'Address Information'"
+                                    :sub-title="`Please provide your residential address.`"
+                                />
+                            </template>
+                            <template #body>
+                                <AddressInformation
+                                    :btn-label="'Next'"
+                                    :section="'address'"
+                                    :back-label="'Back'"
+                                    :show-back="true"
+                                    @back="handleSectionBack"
+                                    @save="handleSectionNext"
+                                ></AddressInformation>
+                            </template>
+                        </DriverInfoSection>
+
+                        <DriverInfoSection
+                            :is-open="activeSection === 'driving-licence'"
+                            class="mt-8"
+                        >
+                            <template #header>
+                                <SectionHeader
+                                    :title="'Driving Licence'"
+                                    :sub-title="`Please provide your driving licence details.`"
+                                />
+                            </template>
+                            <template #body>
+                                <DrivingLicenceInformation
+                                    :section="'driving-licence'"
+                                    :btn-label="'Continue to Payment'"
+                                    :back-label="'Back'"
+                                    :show-back="true"
+                                    @back="handleSectionBack"
+                                    @save="handleSectionNext"
+                                ></DrivingLicenceInformation>
+                            </template>
+                        </DriverInfoSection>
                     </div>
                 </div>
                 <div class="md:col-span-1">
-                    <BookingSidebarSummary class="mt-8"></BookingSidebarSummary>
+                    <BookingSidebarSummary></BookingSidebarSummary>
                 </div>
             </div>
 
             <BookingNavigation
                 class="pt-5"
+                :disabled="driverInfoisInvalid"
+                :hide-next="true"
                 @back="handleBack"
-                @next="handleNext"
             ></BookingNavigation>
         </div>
     </PublicLayout>
@@ -40,8 +94,40 @@ import PersonalInformation from '@storefront/components/modules/Profile/Personal
 import AddressInformation from '@storefront/components/modules/Profile/AddressInformation.vue'
 import DrivingLicenceInformation from '@storefront/components/modules/Profile/DrivingLicenceInformation.vue'
 import { useRouter } from 'vue-router'
+import { computed, ref } from 'vue'
+import DriverInfoSection from '@storefront/components/modules/DriverInfo/DriverInfoSection.vue'
+import SectionHeader from '@storefront/components/modules/SectionHeader.vue'
 
 const router = useRouter()
+
+const activeSection = ref('personal') //personal, address, driving-licence
+
+const handleSectionNext = event => {
+    const { valid, section, errors, values } = event
+    console.log(event)
+    if (!valid) {
+        return
+    }
+
+    if (section === 'personal') {
+        activeSection.value = 'address'
+    }
+
+    if (section === 'address') {
+        activeSection.value = 'driving-licence'
+    }
+}
+
+const handleSectionBack = event => {
+    console.log(event)
+    if (event === 'address') {
+        activeSection.value = 'personal'
+    }
+
+    if (event === 'driving-licence') {
+        activeSection.value = 'address'
+    }
+}
 
 const breadcrumbItems = [
     {
@@ -61,4 +147,8 @@ const handleBack = () => {
 const handleNext = () => {
     router.push({ name: 'booking-payment' })
 }
+
+const driverInfoisInvalid = computed(() => {
+    return true
+})
 </script>

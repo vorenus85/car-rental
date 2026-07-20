@@ -48,7 +48,7 @@
         </Form>
         <div class="text-center">
             <span class="text-muted-color mr-1"> Don't have an account?</span>
-            <RouterLink to="register" class="font-semibold"> Sign Up</RouterLink>
+            <RouterLink to="/register" class="font-semibold"> Sign Up</RouterLink>
         </div>
     </div>
 </template>
