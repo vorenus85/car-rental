@@ -2,6 +2,7 @@
     <section class="">
         <Form
             v-slot="$form"
+            :initial-values="initialValues"
             class="flex flex-col gap-4 w-full"
             :resolver="addressValidator"
             @submit="onFormSubmit"
@@ -15,8 +16,8 @@
 
                     <Select
                         id="country"
+                        v-model="initialValues.country"
                         name="country"
-                        v-model="form.country"
                         :options="countryOptions"
                         option-label="name"
                         option-value="code"
@@ -60,7 +61,7 @@
 
                     <InputText
                         id="city"
-                        v-model="form.city"
+                        v-model="initialValues.city"
                         name="city"
                         class="w-full"
                         placeholder="Enter city"
@@ -82,7 +83,7 @@
 
                     <InputText
                         id="postalCode"
-                        v-model="form.postalCode"
+                        v-model="initialValues.postalCode"
                         name="postalCode"
                         class="w-full"
                         placeholder="Enter postal code"
@@ -104,7 +105,7 @@
 
                     <InputText
                         id="addressLine1"
-                        v-model="form.addressLine1"
+                        v-model="initialValues.addressLine1"
                         name="addressLine1"
                         class="w-full"
                         placeholder="Street name, house number"
@@ -127,7 +128,7 @@
 
                     <InputText
                         id="addressLine2"
-                        v-model="form.addressLine2"
+                        v-model="initialValues.addressLine2"
                         name="addressLine2"
                         class="w-full"
                         placeholder="Apartment, suite, unit, etc."
@@ -154,10 +155,11 @@
 import { Button, InputText, Select, Message } from 'primevue'
 import { countryOptions, getCountryName } from '@storefront/utils.js'
 import { addressValidator } from '@storefront/validators/addressValidator'
-import { onMounted, reactive } from 'vue'
 import { Form } from '@primevue/forms'
+import { useBookingStore } from '@storefront/stores/bookingStore'
 
 const emit = defineEmits(['save', 'back'])
+const bookingStore = useBookingStore()
 
 const props = defineProps({
     btnLabel: {
@@ -178,13 +180,13 @@ const props = defineProps({
     },
 })
 
-const form = reactive({
-    country: null,
-    city: '',
-    postalCode: '',
-    addressLine1: '',
-    addressLine2: '',
-})
+const initialValues = {
+    country: bookingStore.driver.address.country,
+    city: bookingStore.driver.address.city,
+    postalCode: bookingStore.driver.address.postalCode,
+    addressLine1: bookingStore.driver.address.addressLine1,
+    addressLine2: bookingStore.driver.address.addressLine2,
+}
 
 const onFormSubmit = ({ valid, values, errors }) => {
     emit('save', {
@@ -194,8 +196,6 @@ const onFormSubmit = ({ valid, values, errors }) => {
         errors,
     })
 }
-
-onMounted(() => {})
 </script>
 <style>
 @import 'flag-icons/css/flag-icons.min.css';

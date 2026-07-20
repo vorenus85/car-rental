@@ -14,6 +14,30 @@ export const useBookingStore = defineStore('booking', {
         dropOffTime: null,
         extras: [],
         insuranceId: 0,
+        driver: {
+            personal: {
+                firstName: '',
+                lastName: '',
+                email: '',
+                phone: '',
+                birthDate: null,
+            },
+
+            address: {
+                country: null,
+                city: '',
+                postalCode: '',
+                addressLine1: '',
+                addressLine2: '',
+            },
+
+            licence: {
+                licenceNumber: '',
+                issuingCountry: null,
+                issueDate: null,
+                expiryDate: null,
+            },
+        },
     }),
     getters: {
         getBookingData: state => {
@@ -25,6 +49,32 @@ export const useBookingStore = defineStore('booking', {
                 pickUpTime: state.pickUpTime,
                 dropOffDate: state.dropOffDate,
                 dropOffTime: state.dropOffTime,
+            }
+        },
+        getDriverPersonal: state => {
+            return {
+                firstName: state.driver.personal.firstName,
+                lastName: state.driver.personal.lastName,
+                email: state.driver.personal.email,
+                phone: state.driver.personal.phone,
+                birthDate: state.driver.personal.birthDate,
+            }
+        },
+        getDriverAddress: state => {
+            return {
+                country: state.driver.address.country,
+                city: state.driver.address.city,
+                postalCode: state.driver.address.postalCode,
+                addressLine1: state.driver.address.addressLine1,
+                addressLine2: state.driver.address.addressLine2,
+            }
+        },
+        getDriverALicence: state => {
+            return {
+                number: state.driver.licence.number,
+                issuingCountry: state.driver.licence.issuingCountry,
+                issueDate: state.driver.licence.issueDate,
+                expiryDate: state.driver.licence.expiryDate,
             }
         },
         getBookingExtras: state => {
@@ -39,6 +89,26 @@ export const useBookingStore = defineStore('booking', {
         },
     },
     actions: {
+        setDriverPersonal(data) {
+            this.driver.personal.firstName = data.firstName
+            this.driver.personal.lastName = data.lastName
+            this.driver.personal.email = data.email
+            this.driver.personal.phone = data.phone
+            this.driver.personal.birthDate = data.birthDate
+        },
+        setDriverAddress(data) {
+            this.driver.address.country = data.country
+            this.driver.address.city = data.city
+            this.driver.address.postalCode = data.postalCode
+            this.driver.address.addressLine1 = data.addressLine1
+            this.driver.address.addressLine2 = data.addressLine2
+        },
+        setDriverLicence(data) {
+            this.driver.licence.licenceNumber = data.licenceNumber
+            this.driver.licence.issuingCountry = data.issuingCountry
+            this.driver.licence.issueDate = data.issueDate
+            this.driver.licence.expiryDate = data.expiryDate
+        },
         setBookingData(data) {
             this.carId = data.carId
             this.pickUpLocationId = data.pickUpLocationId

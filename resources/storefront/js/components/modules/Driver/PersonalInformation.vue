@@ -2,6 +2,7 @@
     <section class="">
         <Form
             v-slot="$form"
+            :initial-values="initialValues"
             class="flex flex-col gap-4 w-full"
             :resolver="personalValidator"
             @submit="onFormSubmit"
@@ -15,7 +16,6 @@
 
                     <InputText
                         id="firstName"
-                        v-model="form.firstName"
                         name="firstName"
                         class="w-full"
                         placeholder="Enter first name"
@@ -37,7 +37,6 @@
 
                     <InputText
                         id="lastName"
-                        v-model="form.lastName"
                         name="lastName"
                         class="w-full"
                         placeholder="Enter last name"
@@ -59,7 +58,6 @@
 
                     <InputText
                         id="email"
-                        v-model="form.email"
                         name="email"
                         type="email"
                         class="w-full"
@@ -82,7 +80,6 @@
 
                     <InputText
                         id="phone"
-                        v-model="form.phone"
                         name="phone"
                         type="text"
                         class="w-full"
@@ -105,7 +102,7 @@
 
                     <DatePicker
                         id="birthDate"
-                        v-model="form.birthDate"
+                        v-model="initialValues.birthDate"
                         name="birthDate"
                         class="w-full"
                         show-icon
@@ -138,10 +135,10 @@ import { Form } from '@primevue/forms'
 import { Button, DatePicker, InputText, Message } from 'primevue'
 import { useBooking } from '@storefront/composables/useBooking'
 import { personalValidator } from '@storefront/validators/personalValidator'
-import { reactive } from 'vue'
+import { useBookingStore } from '@storefront/stores/bookingStore'
 
 const emit = defineEmits(['save'])
-
+const bookingStore = useBookingStore()
 const props = defineProps({
     btnLabel: {
         type: String,
@@ -155,13 +152,13 @@ const props = defineProps({
 
 const { maxBirthDate } = useBooking()
 
-const form = reactive({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    birthDate: null,
-})
+const initialValues = {
+    firstName: bookingStore.driver.personal.firstName,
+    lastName: bookingStore.driver.personal.lastName,
+    email: bookingStore.driver.personal.email,
+    phone: bookingStore.driver.personal.phone,
+    birthDate: new Date(bookingStore.driver.personal.birthDate),
+}
 
 const onFormSubmit = ({ valid, values, errors }) => {
     emit('save', {

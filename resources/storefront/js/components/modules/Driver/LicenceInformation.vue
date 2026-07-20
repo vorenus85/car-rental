@@ -2,6 +2,7 @@
     <section class="">
         <Form
             v-slot="$form"
+            :initial-values="initialValues"
             class="flex flex-col gap-4 w-full"
             :resolver="drivingLicenceValidator"
             @submit="onFormSubmit"
@@ -16,7 +17,7 @@
 
                     <InputText
                         id="licenceNumber"
-                        v-model="form.licenceNumber"
+                        v-model="initialValues.licenceNumber"
                         name="licenceNumber"
                         class="w-full"
                         placeholder="Enter driving licence number"
@@ -39,7 +40,7 @@
 
                     <Select
                         id="issuingCountry"
-                        v-model="form.issuingCountry"
+                        v-model="initialValues.issuingCountry"
                         name="issuingCountry"
                         :options="countryOptions"
                         option-label="name"
@@ -85,7 +86,7 @@
 
                     <DatePicker
                         id="issueDate"
-                        v-model="form.issueDate"
+                        v-model="initialValues.issueDate"
                         name="issueDate"
                         class="w-full"
                         show-icon
@@ -112,7 +113,7 @@
 
                     <DatePicker
                         id="expiryDate"
-                        v-model="form.expiryDate"
+                        v-model="initialValues.expiryDate"
                         name="expiryDate"
                         class="w-full"
                         show-icon
@@ -161,11 +162,12 @@ import { Button, DatePicker, InputText, Message, Select } from 'primevue'
 import { countryOptions, getCountryName } from '@storefront/utils.js'
 import { drivingLicenceValidator } from '@storefront/validators/drivingLicenceValidator'
 import { useBooking } from '@storefront/composables/useBooking'
+import { useBookingStore } from '@storefront/stores/bookingStore'
 import { reactive } from 'vue'
 import { Form } from '@primevue/forms'
 
 const emit = defineEmits(['save', 'back'])
-
+const bookingStore = useBookingStore()
 const props = defineProps({
     btnLabel: {
         type: String,
@@ -187,12 +189,12 @@ const props = defineProps({
 
 const { maxLicenceDate } = useBooking()
 
-const form = reactive({
-    licenceNumber: '',
-    issuingCountry: null,
-    issueDate: null,
-    expiryDate: null,
-})
+const initialValues = {
+    licenceNumber: bookingStore.driver.licence.licenceNumber,
+    issuingCountry: bookingStore.driver.licence.issuingCountry,
+    issueDate: new Date(bookingStore.driver.licence.issueDate),
+    expiryDate: new Date(bookingStore.driver.licence.expiryDate),
+}
 
 const onFormSubmit = ({ valid, values, errors }) => {
     emit('save', {

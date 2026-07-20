@@ -57,14 +57,14 @@
                                 />
                             </template>
                             <template #body>
-                                <DrivingLicenceInformation
+                                <LicenceInformation
                                     :section="'driving-licence'"
                                     :btn-label="'Continue to Payment'"
                                     :back-label="'Back'"
                                     :show-back="true"
                                     @back="handleSectionBack"
                                     @save="handleSectionNext"
-                                ></DrivingLicenceInformation>
+                                ></LicenceInformation>
                             </template>
                         </DriverInfoSection>
                     </div>
@@ -84,20 +84,23 @@
     </PublicLayout>
 </template>
 <script setup>
+import { useBookingStore } from '@storefront/stores/bookingStore'
+import { formatDate } from '@storefront/utils.js'
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import PageTitle from '@storefront/components/modules/PageTitle.vue'
 import BookingSteppes from '@storefront/components/modules/Booking/BookingSteppes.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
 import BookingNavigation from '@storefront/components/modules/Booking/BookingNavigation.vue'
 import BookingSidebarSummary from '@storefront/components/modules/Booking/BookingSidebarSummary.vue'
-import PersonalInformation from '@storefront/components/modules/Profile/PersonalInformation.vue'
-import AddressInformation from '@storefront/components/modules/Profile/AddressInformation.vue'
-import DrivingLicenceInformation from '@storefront/components/modules/Profile/DrivingLicenceInformation.vue'
+import PersonalInformation from '@storefront/components/modules/Driver/PersonalInformation.vue'
+import AddressInformation from '@storefront/components/modules/Driver/AddressInformation.vue'
+import LicenceInformation from '@storefront/components/modules/Driver/LicenceInformation.vue'
 import { useRouter } from 'vue-router'
 import { computed, ref } from 'vue'
 import DriverInfoSection from '@storefront/components/modules/DriverInfo/DriverInfoSection.vue'
 import SectionHeader from '@storefront/components/modules/SectionHeader.vue'
 
+const bookingStore = useBookingStore()
 const router = useRouter()
 
 const activeSection = ref('personal') //personal, address, driving-licence
@@ -111,11 +114,37 @@ const handleSectionNext = event => {
 
     if (section === 'personal') {
         activeSection.value = 'address'
+        saveDriverPersonal(values)
     }
 
     if (section === 'address') {
         activeSection.value = 'driving-licence'
+        saveDriverAddress(values)
     }
+
+    if (section === 'driving-licence') {
+        activeSection.value = 'driving-licence'
+        saveDriverLicence(values)
+    }
+}
+
+const saveDriverPersonal = data => {
+    const birthDate = new Date(data.birthDate)
+    data.birthDate = formatDate(birthDate)
+    bookingStore.setDriverPersonal(data)
+}
+const saveDriverAddress = data => {
+    bookingStore.setDriverAddress(data)
+}
+const saveDriverLicence = data => {
+    const issueDate = new Date(data.issueDate)
+    data.issueDate = formatDate(issueDate)
+
+    const expiryDate = new Date(data.expiryDate)
+    data.expiryDate = formatDate(expiryDate)
+
+    bookingStore.setDriverLicence(data)
+    router.push({ name: 'booking-payment' })
 }
 
 const handleSectionBack = event => {
@@ -142,10 +171,6 @@ const breadcrumbItems = [
 
 const handleBack = () => {
     globalThis.history.back()
-}
-
-const handleNext = () => {
-    router.push({ name: 'booking-payment' })
 }
 
 const driverInfoisInvalid = computed(() => {
