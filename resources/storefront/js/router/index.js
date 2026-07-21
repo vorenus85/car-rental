@@ -16,6 +16,12 @@ import DriverInfoPage from '@storefront/pages/Booking/DriverInfoPage.vue'
 import ExtrasInsurancePage from '@storefront/pages/Booking/ExtrasInsurancePage.vue'
 import PaymentPage from '@storefront/pages/Booking/PaymentPage.vue'
 import SuccessPage from '@storefront/pages/Booking/SuccessPage.vue'
+import FailurePage from '@storefront/pages/Booking/FailurePage.vue'
+
+import PrivacyPolicyPage from '@storefront/pages/PrivacyPolicyPage.vue'
+import TermsConditionsPage from '@storefront/pages/TermsConditionsPage.vue'
+import CookiePolicyPage from '@storefront/pages/CookiePolicyPage.vue'
+import RefundCancellationPolicyPage from '@storefront/pages/RefundCancellationPolicyPage.vue'
 
 import { useMobileMenuStore } from '@storefront/stores/mobileMenuStore'
 import { useAuthStore } from '@storefront/stores/authStore'
@@ -70,6 +76,36 @@ const router = createRouter({
             name: 'booking-success',
             component: SuccessPage,
             meta: { requiresAuth: true },
+        },
+        {
+            path: '/booking/failure',
+            name: 'booking-failure',
+            component: FailurePage,
+            meta: { requiresAuth: true },
+        },
+
+        {
+            path: '/privacy-policy',
+            name: 'privacy-policy',
+            component: PrivacyPolicyPage,
+        },
+
+        {
+            path: '/terms-and-conditions',
+            name: 'terms-conditions',
+            component: TermsConditionsPage,
+        },
+
+        {
+            path: '/cookie-policy',
+            name: 'cookie-policy',
+            component: CookiePolicyPage,
+        },
+
+        {
+            path: '/refund-and-cancellation-policy',
+            name: 'refund-and-cancellation-policy',
+            component: RefundCancellationPolicyPage,
         },
 
         { path: '/fleet', name: 'fleet', component: FleetPage },
