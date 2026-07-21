@@ -15,7 +15,6 @@
                 severity="secondary"
                 outlined
                 aria-label="Copy booking reference"
-                @click="copyBookingReference"
             />
         </div>
     </div>
