@@ -15,6 +15,7 @@ import NotFoundPage from '@storefront/pages/NotFoundPage.vue'
 import DriverInfoPage from '@storefront/pages/Booking/DriverInfoPage.vue'
 import ExtrasInsurancePage from '@storefront/pages/Booking/ExtrasInsurancePage.vue'
 import PaymentPage from '@storefront/pages/Booking/PaymentPage.vue'
+
 import SuccessPage from '@storefront/pages/Booking/SuccessPage.vue'
 import FailurePage from '@storefront/pages/Booking/FailurePage.vue'
 

@@ -14,8 +14,8 @@
         <Button
             v-if="!hideNext"
             :label="nextLabel"
-            icon="pi pi-arrow-right"
-            icon-pos="right"
+            :icon="`pi pi-${icon}`"
+            :icon-pos="iconPos"
             :loading="loading"
             :disabled="disabled"
             class="min-w-52"
@@ -44,6 +44,14 @@ defineProps({
     nextLabel: {
         type: String,
         default: 'Continue',
+    },
+    icon: {
+        type: String,
+        default: 'arrow-right',
+    },
+    iconPos: {
+        type: String,
+        default: 'right',
     },
     loading: {
         type: Boolean,

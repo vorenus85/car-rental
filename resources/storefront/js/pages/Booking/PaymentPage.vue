@@ -189,7 +189,10 @@
             <BookingNavigation
                 class="pt-5"
                 :back-label="'Back to Driver details'"
+                :next-label="'Complete Booking'"
                 :disabled="!hasAcceptedPolicies"
+                :icon="'lock'"
+                :icon-pos="'left'"
                 @back="handleBack"
                 @next="handleNext"
             ></BookingNavigation>
@@ -205,9 +208,11 @@ import BookingNavigation from '@storefront/components/modules/Booking/BookingNav
 import BookingSidebarSummary from '@storefront/components/modules/Booking/BookingSidebarSummary.vue'
 import BookingDriverSummary from '@storefront/components/modules/Booking/BookingDriverSummary.vue'
 import FreeCancelation from '@storefront/components/modules/FreeCancelation.vue'
+import { useRouter } from 'vue-router'
 import { Checkbox, InputText, Message, RadioButton } from 'primevue'
 import { computed, reactive, ref } from 'vue'
 
+const router = useRouter()
 const paymentMethod = ref('card')
 
 const card = ref({
@@ -241,6 +246,6 @@ const handleBack = () => {
 }
 
 const handleNext = () => {
-    console.log('payment')
+    router.push({ name: 'booking-success' })
 }
 </script>
