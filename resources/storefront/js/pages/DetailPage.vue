@@ -290,7 +290,23 @@
                                         />
                                     </div>
 
-                                    <Button label="Book Now" fluid size="large" />
+                                    <Message
+                                        v-if="!isRentalPeriodValid"
+                                        severity="error"
+                                        size="small"
+                                        variant="simple"
+                                        >Drop-off date must be after pick-up date.</Message
+                                    >
+                                    <Button
+                                        label="Book Now"
+                                        fluid
+                                        size="large"
+                                        :disabled="!canStartBooking || !isRentalPeriodValid"
+                                        @click="startBooking"
+                                    />
+                                    <Message v-if="!canStartBooking" severity="info" size="small"
+                                        >Please select Pick up and Drop off locations.</Message
+                                    >
                                 </div>
                             </template>
                         </Card>
@@ -309,78 +325,10 @@
                             </TabList>
                             <TabPanels>
                                 <TabPanel value="0">
-                                    <!-- Features -->
-                                    <div class="grid grid-cols-2 gap-y-4">
-                                        <template v-for="feature in car?.features" :key="feature">
-                                            <div class="flex items-center gap-2">
-                                                <i class="pi pi-check-circle text-green-500" />
-                                                <span>{{ feature.name }}</span>
-                                            </div>
-                                        </template>
-                                    </div>
+                                    <FeaturesList :features="car?.features"></FeaturesList>
                                 </TabPanel>
                                 <TabPanel value="1">
-                                    <div class="space-y-4">
-                                        <ul class="space-y-3 text-gray-600">
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span>Minimum driver age is 25 years.</span>
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span
-                                                    >A valid driver's license held for at least 2
-                                                    years is required.</span
-                                                >
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span
-                                                    >Unlimited mileage included in the rental
-                                                    price.</span
-                                                >
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span>Basic insurance coverage is included.</span>
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span
-                                                    >A refundable security deposit may be required
-                                                    at pick-up.</span
-                                                >
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span
-                                                    >Fuel policy: Return the vehicle with the same
-                                                    fuel level as received.</span
-                                                >
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span
-                                                    >Free cancellation up to 24 hours before
-                                                    pick-up.</span
-                                                >
-                                            </li>
-
-                                            <li class="flex gap-2">
-                                                <span>•</span>
-                                                <span
-                                                    >Additional drivers can be added for an extra
-                                                    fee.</span
-                                                >
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <RentalTerms></RentalTerms>
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>
@@ -392,6 +340,7 @@
         <div class="background-white pt-3">
             <CarsModule :cars="cars" title="Similar cars" :loading-cars="loadingCars"></CarsModule>
         </div>
+        <LoginModal v-model:visible="showLoginModal" @login-submit="onLoginSubmit" />
     </PublicLayout>
 </template>
 <script setup>
@@ -403,6 +352,7 @@ import {
     DatePicker,
     Image,
     InputText,
+    Message,
     Select,
     Tab,
     TabList,
@@ -415,29 +365,81 @@ import FuelV1 from '@storefront/components/icons/FuelV1.vue'
 import SeatsV1 from '@storefront/components/icons/SeatsV1.vue'
 import TransmissionV1 from '@storefront/components/icons/TransmissionV1.vue'
 import LuggageV1 from '@storefront/components/icons/LuggageV1.vue'
-import { computed, onMounted, watch } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
 import { useRentalSearch } from '@storefront/composables/useRentalSearch'
 import { useCar } from '@storefront/composables/useCar'
 import { useCars } from '@storefront/composables/useCars'
 import { useLocation } from '@storefront/composables/useLocation'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import ProductionYearV1 from '@storefront/components/icons/ProductionYearV1.vue'
 import DoorsV1 from '@storefront/components/icons/DoorsV1.vue'
 import MilageV1 from '@storefront/components/icons/MilageV1.vue'
 import RangeV1 from '@storefront/components/icons/RangeV1.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
-import { getDaysBetween } from '@storefront/utils.js'
 import CarsModule from '@storefront/components/modules/CarsModule.vue'
 import DetailsTopSkeleton from '@storefront/components/modules/Skeleton/DetailsTopSkeleton.vue'
-import DetailsTabSkeleton from '../components/modules/Skeleton/DetailsTabSkeleton.vue'
+import DetailsTabSkeleton from '@storefront/components/modules/Skeleton/DetailsTabSkeleton.vue'
+import RentalTerms from '@storefront/components/modules/FleetUnit/RentalTerms.vue'
+import FeaturesList from '@storefront/components/modules/FleetUnit/FeaturesList.vue'
+import LoginModal from '@storefront/components/modules/LoginModal.vue'
+import { useAuthStore } from '@storefront/stores/authStore'
+import { useBookingStore } from '@storefront/stores/bookingStore'
+import { useCustomToast } from '@storefront/composables/useCustomToast'
+import { formatDate, getDaysBetween } from '@storefront/utils.js'
 
 const route = useRoute()
+const router = useRouter()
 const carId = route.params.id
 const { getLocations, groupedLocations } = useLocation()
+const authStore = useAuthStore()
+const bookingStore = useBookingStore()
 const { minPickUpDate, minDropOffDate, searchParams, hydrateRentalSearchFromQuery, timeOptions } =
     useRentalSearch()
 const { getCar, car, loadingCar, bodyType } = useCar()
 const { cars, loadingCars, getSimilarCars } = useCars()
+const { customToast } = useCustomToast()
+
+const canStartBooking = computed(() => {
+    return (
+        searchParams.pickUpLocation &&
+        searchParams.dropOffLocation &&
+        searchParams.pickUpDate &&
+        searchParams.dropOffDate &&
+        searchParams.pickUpTime &&
+        searchParams.dropOffTime
+    )
+})
+
+const showLoginModal = ref(false)
+
+const startBooking = () => {
+    if (!canStartBooking.value) {
+        return
+    }
+
+    if (!authStore.user?.id) {
+        showLoginModal.value = true
+        return
+    }
+
+    saveBookingToStore()
+
+    router.push({ name: 'booking-extras-insurance' })
+}
+
+const saveBookingToStore = () => {
+    const bookingData = {
+        carId: carId,
+        pickUpLocationId: searchParams.pickUpLocation,
+        dropOffLocationId: searchParams.dropOffLocation,
+        pickUpDate: formatDate(searchParams.pickUpDate),
+        dropOffDate: formatDate(searchParams.dropOffDate),
+        pickUpTime: searchParams.pickUpTime,
+        dropOffTime: searchParams.dropOffTime,
+    }
+
+    bookingStore.setBookingData(bookingData)
+}
 
 const breadcrumbItems = computed(() => [
     {
@@ -451,8 +453,14 @@ const breadcrumbItems = computed(() => [
 ])
 
 const rentalPeriod = computed(() => {
-    const days = getDaysBetween(searchParams.pickUpDate, searchParams.dropOffDate)
+    const days = getDaysBetween(searchParams?.pickUpDate, searchParams?.dropOffDate)
     return days === 1 ? days + ' day' : days + ' days'
+})
+
+const isRentalPeriodValid = computed(() => {
+    const days = getDaysBetween(searchParams?.pickUpDate, searchParams?.dropOffDate)
+
+    return days >= 1
 })
 
 watch(
@@ -461,6 +469,26 @@ watch(
         Promise.all([getCar(id), getSimilarCars(id)])
     }
 )
+
+const onLoginSubmit = async ({ valid, values, errors }) => {
+    if (valid) {
+        try {
+            await authStore.login(values.email, values.password)
+
+            await nextTick()
+            showLoginModal.value = false
+
+            customToast.success('Welcome on Drivengo!')
+
+            router.push({ name: 'booking-extras-insurance' })
+        } catch (error) {
+            const msg = error?.response?.data?.message
+            customToast.error(msg || 'Please try again.')
+        }
+    } else {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
+    }
+}
 
 onMounted(async () => {
     Promise.all([getCar(carId), getLocations(), getSimilarCars(carId)])

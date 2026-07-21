@@ -20,7 +20,7 @@
                 <Button v-else class="login-cta mr-3" outlined @click="toLogin">Login</Button>
             </div>
 
-            <Button class="header-cta ml-auto lg:ml-0">Book Now</Button>
+            <Button class="header-cta ml-auto lg:ml-0" @click="toFleet">Book Now</Button>
             <div class="flex lg:hidden ml-5 p-0">
                 <Button
                     class="btn-mobile-menu"
@@ -51,6 +51,10 @@ const authStore = useAuthStore()
 
 function toggleMobileMenu() {
     mobileMenuStore.toggleMenu()
+}
+
+const toFleet = () => {
+    router.push('/fleet')
 }
 
 const topbarMenuItems = ref([

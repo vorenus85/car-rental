@@ -12,12 +12,24 @@ import DetailPage from '@storefront/pages/DetailPage.vue'
 import ServicesPage from '@storefront/pages/ServicesPage.vue'
 import NotFoundPage from '@storefront/pages/NotFoundPage.vue'
 
+import DriverInfoPage from '@storefront/pages/Booking/DriverInfoPage.vue'
+import ExtrasInsurancePage from '@storefront/pages/Booking/ExtrasInsurancePage.vue'
+import PaymentPage from '@storefront/pages/Booking/PaymentPage.vue'
+
+import SuccessPage from '@storefront/pages/Booking/SuccessPage.vue'
+import FailurePage from '@storefront/pages/Booking/FailurePage.vue'
+
+import PrivacyPolicyPage from '@storefront/pages/PrivacyPolicyPage.vue'
+import TermsConditionsPage from '@storefront/pages/TermsConditionsPage.vue'
+import CookiePolicyPage from '@storefront/pages/CookiePolicyPage.vue'
+import RefundCancellationPolicyPage from '@storefront/pages/RefundCancellationPolicyPage.vue'
+
 import { useMobileMenuStore } from '@storefront/stores/mobileMenuStore'
 import { useAuthStore } from '@storefront/stores/authStore'
+import { useBookingStore } from '@storefront/stores/bookingStore'
 
 const router = createRouter({
     history: createWebHistory(),
-    /*
     scrollBehavior(to, from, savedPosition) {
         if (savedPosition) {
             return savedPosition
@@ -28,10 +40,10 @@ const router = createRouter({
             behavior: 'smooth',
         }
     },
-    */
     routes: [
         { path: '/:pathMatch(.*)*', name: 'notFound', component: NotFoundPage },
         { path: '/', name: 'home', component: HomePage },
+        { path: '/contact', name: 'contact', component: ContactPage },
 
         { path: '/login', name: 'login', component: LoginPage },
         { path: '/register', name: 'register', component: RegisterPage },
@@ -42,11 +54,85 @@ const router = createRouter({
             name: 'logout',
             meta: { requiresAuth: true },
         },
-        { path: '/contact', name: 'contact', component: ContactPage },
+        {
+            path: '/booking/extras-insurance',
+            name: 'booking-extras-insurance',
+            component: ExtrasInsurancePage,
+            meta: { requiresAuth: true },
+        },
+        {
+            path: '/booking/driver-info',
+            name: 'booking-driver-info',
+            component: DriverInfoPage,
+            meta: { requiresAuth: true },
+        },
+        {
+            path: '/booking/payment',
+            name: 'booking-payment',
+            component: PaymentPage,
+            meta: { requiresAuth: true },
+        },
+        {
+            path: '/booking/success',
+            name: 'booking-success',
+            component: SuccessPage,
+            meta: { requiresAuth: true },
+        },
+        {
+            path: '/booking/failure',
+            name: 'booking-failure',
+            component: FailurePage,
+            meta: { requiresAuth: true },
+        },
+
+        {
+            path: '/privacy-policy',
+            name: 'privacy-policy',
+            component: PrivacyPolicyPage,
+        },
+
+        {
+            path: '/terms-and-conditions',
+            name: 'terms-conditions',
+            component: TermsConditionsPage,
+        },
+
+        {
+            path: '/cookie-policy',
+            name: 'cookie-policy',
+            component: CookiePolicyPage,
+        },
+
+        {
+            path: '/refund-and-cancellation-policy',
+            name: 'refund-and-cancellation-policy',
+            component: RefundCancellationPolicyPage,
+        },
+
         { path: '/fleet', name: 'fleet', component: FleetPage },
         { path: '/car/:id', name: 'car', component: DetailPage },
         { path: '/services', name: 'services', component: ServicesPage },
+        { path: '/services', name: 'services', component: ServicesPage },
     ],
+})
+
+router.beforeEach(to => {
+    const bookingStore = useBookingStore()
+
+    const bookingRoutes = [
+        'booking-extras-insurance',
+        'booking-driver-info',
+        'booking-payment',
+        'booking-success',
+    ]
+
+    if (bookingRoutes.includes(to.name)) {
+        if (!bookingStore.carId) {
+            return {
+                name: 'fleet',
+            }
+        }
+    }
 })
 
 // Register global navigation guard
@@ -61,7 +147,8 @@ router.beforeEach(async to => {
 
     await auth.init()
 
-    if (to.meta.requiresAuth && !auth.user) {
+    // is this work?
+    if (to.meta.requiresAuth && !auth.user?.id) {
         return { name: 'home' }
     }
 
