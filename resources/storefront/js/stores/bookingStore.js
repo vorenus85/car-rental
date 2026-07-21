@@ -69,9 +69,9 @@ export const useBookingStore = defineStore('booking', {
                 addressLine2: state.driver.address.addressLine2,
             }
         },
-        getDriverALicence: state => {
+        getDriverLicence: state => {
             return {
-                number: state.driver.licence.number,
+                licenceNumber: state.driver.licence.licenceNumber,
                 issuingCountry: state.driver.licence.issuingCountry,
                 issueDate: state.driver.licence.issueDate,
                 expiryDate: state.driver.licence.expiryDate,

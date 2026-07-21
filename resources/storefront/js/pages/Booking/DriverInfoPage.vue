@@ -38,7 +38,7 @@
                                 <AddressInformation
                                     :btn-label="'Next'"
                                     :section="'address'"
-                                    :back-label="'Back'"
+                                    :back-label="'Back to Personal Informations'"
                                     :show-back="true"
                                     @back="handleSectionBack"
                                     @save="handleSectionNext"
@@ -60,7 +60,7 @@
                                 <LicenceInformation
                                     :section="'driving-licence'"
                                     :btn-label="'Continue to Payment'"
-                                    :back-label="'Back'"
+                                    :back-label="'Back to Address Informations'"
                                     :show-back="true"
                                     @back="handleSectionBack"
                                     @save="handleSectionNext"
@@ -76,8 +76,8 @@
 
             <BookingNavigation
                 class="pt-5"
-                :disabled="driverInfoisInvalid"
                 :hide-next="true"
+                :back-label="'Back to Extras and Insurance'"
                 @back="handleBack"
             ></BookingNavigation>
         </div>
@@ -107,7 +107,6 @@ const activeSection = ref('personal') //personal, address, driving-licence
 
 const handleSectionNext = event => {
     const { valid, section, errors, values } = event
-    console.log(event)
     if (!valid) {
         return
     }
@@ -148,7 +147,6 @@ const saveDriverLicence = data => {
 }
 
 const handleSectionBack = event => {
-    console.log(event)
     if (event === 'address') {
         activeSection.value = 'personal'
     }
@@ -164,8 +162,7 @@ const breadcrumbItems = [
         route: '/fleet',
     },
     {
-        label: 'Booking extras and insurance',
-        route: '/booking-driver-info',
+        label: 'Driver Information',
     },
 ]
 

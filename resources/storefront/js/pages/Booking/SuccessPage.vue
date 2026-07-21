@@ -1,3 +1,3 @@
 <template>
-    <PublicLayout class="booking-page-4"></PublicLayout>
+    <PublicLayout class="booking-success-page"></PublicLayout>
 </template>
