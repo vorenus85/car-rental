@@ -3,7 +3,7 @@
         <div class="mx-auto max-w-8xl px-4 py-4 min-h-[500px]">
             <BreadcrumbModule :items="breadcrumbItems"></BreadcrumbModule>
             <BookingSteppes :active="4" class="pb-5" />
-            <div class="rounded-2xl p-10">
+            <div class="rounded-2xl p-5">
                 <!-- Success Icon -->
                 <div class="flex justify-center">
                     <ConfettiEffect></ConfettiEffect>
