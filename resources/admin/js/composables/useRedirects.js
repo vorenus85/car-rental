@@ -7,10 +7,6 @@ export const useRedirects = () => {
         router.push({ name: 'dashboard' })
     }
 
-    const toBookingsList = () => {
-        router.push({ name: 'bookings' })
-    }
-
     const toCarsList = () => {
         router.push({ name: 'cars' })
     }
@@ -55,10 +51,6 @@ export const useRedirects = () => {
         router.push({ name: 'calendar' })
     }
 
-    const toClientsList = () => {
-        router.push({ name: 'clients' })
-    }
-
     const toSettings = () => {
         router.push({ name: 'settings' })
     }
@@ -91,9 +83,24 @@ export const useRedirects = () => {
         router.push({ name: 'locations.create' })
     }
 
+    const toBookingsList = () => {
+        router.push({ name: 'bookings' })
+    }
+
+    const toCreateBooking = () => {
+        router.push({ name: 'bookings.create' })
+    }
+
+    const toExtrasList = () => {
+        router.push({ name: 'extras' })
+    }
+
+    const toCreateExtra = () => {
+        router.push({ name: 'extras.create' })
+    }
+
     return {
         toDashboard,
-        toBookingsList,
         toCarsList,
         toCreateCar,
         toBrandsList,
@@ -105,7 +112,6 @@ export const useRedirects = () => {
         toFeaturesList,
         toCreateFeature,
         toCalendar,
-        toClientsList,
         toSettings,
         toLogin,
         toCreateUser,
@@ -114,5 +120,9 @@ export const useRedirects = () => {
         toCreateLocation,
         toCreateCustomer,
         toCustomersList,
+        toBookingsList,
+        toCreateBooking,
+        toExtrasList,
+        toCreateExtra,
     }
 }

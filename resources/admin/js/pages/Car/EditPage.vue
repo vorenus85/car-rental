@@ -2,7 +2,15 @@
     <AppLayout>
         <PageTitle title="Edit Car">
             <template #actions>
-                <Button icon="pi pi-angle-left" label="Back to list" primary @click="toCarsList" />
+                <Button
+                    icon="pi pi-angle-left"
+                    label="Back to list"
+                    severity="secondary"
+                    outlined
+                    link
+                    size="small"
+                    @click="toCarsList"
+                />
             </template>
         </PageTitle>
         <div v-if="formKey" class="card">

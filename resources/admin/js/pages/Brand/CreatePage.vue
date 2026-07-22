@@ -5,7 +5,10 @@
                 <Button
                     icon="pi pi-angle-left"
                     label="Back to list"
-                    primary
+                    severity="secondary"
+                    outlined
+                    link
+                    size="small"
                     @click="toBrandsList"
                 />
             </template>

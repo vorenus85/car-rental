@@ -52,10 +52,39 @@ const menus = [
         title: 'Dashboard',
     },
     {
-        icon: 'clock',
-        routeName: 'bookings',
-        title: 'Bookings',
+        icon: 'calendar',
+        routeName: 'reservations',
+        title: 'Reservations',
+        items: [
+            {
+                icon: 'calendar',
+                routeName: 'calendar',
+                title: 'Calendar',
+                parent: 'reservations',
+            },
+            {
+                icon: 'clock',
+                routeName: 'bookings',
+                title: 'Bookings',
+                parent: 'reservations',
+            },
+            {
+                icon: 'plus-circle',
+                routeName: 'extras',
+                title: 'Extras',
+                parent: 'reservations',
+            },
+            /*
+            {
+                icon: 'shield',
+                routeName: 'insurances',
+                title: 'Insurances',
+                parent: 'reservations',
+            },
+            */
+        ],
     },
+
     {
         icon: 'list',
         routeName: 'fleet',
@@ -97,11 +126,6 @@ const menus = [
         icon: 'map-marker',
         routeName: 'locations',
         title: 'Locations',
-    },
-    {
-        icon: 'calendar',
-        routeName: 'calendar',
-        title: 'Calendar',
     },
     {
         icon: 'users',
