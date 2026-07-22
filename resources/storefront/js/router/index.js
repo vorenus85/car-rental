@@ -19,10 +19,11 @@ import PaymentPage from '@storefront/pages/Booking/PaymentPage.vue'
 import SuccessPage from '@storefront/pages/Booking/SuccessPage.vue'
 import FailurePage from '@storefront/pages/Booking/FailurePage.vue'
 
-import PrivacyPolicyPage from '@storefront/pages/PrivacyPolicyPage.vue'
-import TermsConditionsPage from '@storefront/pages/TermsConditionsPage.vue'
-import CookiePolicyPage from '@storefront/pages/CookiePolicyPage.vue'
-import RefundCancellationPolicyPage from '@storefront/pages/RefundCancellationPolicyPage.vue'
+import PrivacyPolicyPage from '@storefront/pages/Support/PrivacyPolicyPage.vue'
+import TermsConditionsPage from '@storefront/pages/Support/TermsConditionsPage.vue'
+import CookiePolicyPage from '@storefront/pages/Support/CookiePolicyPage.vue'
+import RefundCancellationPolicyPage from '@storefront/pages/Support/RefundCancellationPolicyPage.vue'
+import RentalRequirementsPage from '@storefront/pages/Support/RentalRequirementsPage.vue'
 
 import { useMobileMenuStore } from '@storefront/stores/mobileMenuStore'
 import { useAuthStore } from '@storefront/stores/authStore'
@@ -107,6 +108,12 @@ const router = createRouter({
             path: '/refund-and-cancellation-policy',
             name: 'refund-and-cancellation-policy',
             component: RefundCancellationPolicyPage,
+        },
+
+        {
+            path: '/rental-requirements',
+            name: 'rental-requirements',
+            component: RentalRequirementsPage,
         },
 
         { path: '/fleet', name: 'fleet', component: FleetPage },
