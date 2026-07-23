@@ -2,7 +2,15 @@
     <AppLayout>
         <PageTitle title="Add new Client">
             <template #actions>
-                <Button icon="pi pi-angle-left" label="Back to list" primary @click="toUsersList" />
+                <Button
+                    icon="pi pi-angle-left"
+                    label="Back to list"
+                    severity="secondary"
+                    outlined
+                    link
+                    size="small"
+                    @click="toCustomersList"
+                />
             </template>
         </PageTitle>
         <div class="card">

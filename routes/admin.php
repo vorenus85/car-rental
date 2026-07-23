@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\Fleet\BrandController;
 use App\Http\Controllers\Admin\Fleet\BrandImageController;
 use App\Http\Controllers\Admin\Fleet\CarController;
@@ -47,6 +48,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{feature}', [FeatureController::class, 'show']);
         Route::put('/{feature}', [FeatureController::class, 'update']);
         Route::delete('/{feature}', [FeatureController::class, 'destroy']);
+    });
+
+    Route::prefix('/api/admin/extras')->group(function () {
+        Route::get('/', [ExtraController::class, 'index']);
+        Route::post('/', [ExtraController::class, 'store']);
+        Route::get('/{extra}', [ExtraController::class, 'show']);
+        Route::put('/{extra}', [ExtraController::class, 'update']);
+        Route::delete('/{extra}', [ExtraController::class, 'destroy']);
     });
 
     Route::prefix('/api/admin/brands')->group(function () {

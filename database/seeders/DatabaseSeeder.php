@@ -10,6 +10,7 @@ use Database\Seeders\Fleet\FeatureSeeder;
 use Database\Seeders\Fleet\LocationSeeder;
 use Database\Seeders\Fleet\VariantSeeder;
 use Database\Seeders\CustomerSeeder;
+use Database\Seeders\ExtraSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -33,6 +34,7 @@ class DatabaseSeeder extends Seeder
             VariantSeeder::class,
             CarSeeder::class,
             CustomerSeeder::class,
+            ExtraSeeder::class,
         ]);
 
         $this->command->info('All data seeded successfully!');

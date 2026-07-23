@@ -2,8 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import DashboardPage from '@admin/pages/DashboardPage.vue'
 
-import BookingsPage from '@admin/pages/BookingsPage.vue'
-
 import CalendarPage from '@admin/pages/CalendarPage.vue'
 
 import SettingsPage from '@admin/pages/SettingsPage.vue'
@@ -47,6 +45,14 @@ import UserEditPage from '@admin/pages/User/EditPage.vue'
 import CustomerListPage from '@admin/pages/Customer/ListPage.vue'
 import CustomerCreatePage from '@admin/pages/Customer/CreatePage.vue'
 import CustomerEditPage from '@admin/pages/Customer/EditPage.vue'
+
+import BookingListPage from '@admin/pages/Booking/ListPage.vue'
+import BookingCreatePage from '@admin/pages/Booking/CreatePage.vue'
+import BookingEditPage from '@admin/pages/Booking/EditPage.vue'
+
+import ExtraListPage from '@admin/pages/Extra/ListPage.vue'
+import ExtraCreatePage from '@admin/pages/Extra/CreatePage.vue'
+import ExtraEditPage from '@admin/pages/Extra/EditPage.vue'
 
 import { useAuthStore } from '@admin/stores/auth'
 
@@ -143,13 +149,69 @@ const router = createRouter({
                 requiresAuth: true,
             },
         },
-
         {
-            path: '/bookings',
-            name: 'bookings',
-            component: BookingsPage,
+            path: '/reservations',
+            name: 'reservations',
+            redirect: () => {
+                return { path: '/reservations/bookings' }
+            },
             meta: {
                 requiresAuth: true,
+            },
+        },
+
+        {
+            path: '/reservations/bookings',
+            name: 'bookings',
+            component: BookingListPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+        {
+            path: '/reservations/bookings/create',
+            name: 'bookings.create',
+            component: BookingCreatePage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+        {
+            path: '/reservations/bookings/:id',
+            name: 'bookings.edit',
+            component: BookingEditPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+        {
+            path: '/reservations/extras',
+            name: 'extras',
+            component: ExtraListPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+        {
+            path: '/reservations/extras/create',
+            name: 'extras.create',
+            component: ExtraCreatePage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+        {
+            path: '/reservations/extras/:id',
+            name: 'extras.show',
+            component: ExtraEditPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
             },
         },
         {
@@ -317,6 +379,7 @@ const router = createRouter({
             component: CalendarPage,
             meta: {
                 requiresAuth: true,
+                parent: 'reservations',
             },
         },
         {

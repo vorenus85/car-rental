@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "name": "Professional Chauffeur",
+        "description": "Travel comfortably with a professional chauffeur available throughout your rental period.",
+        "price": 180,
+        "icon": "user",
+        "maxQuantity": 1
+    },
+    {
+        "id": 2,
+        "name": "Child Seat",
+        "description": "Safety seat for children under 12 years old.",
+        "price": 10,
+        "icon": "heart",
+        "maxQuantity": 4
+    },
+    {
+        "id": 3,
+        "name": "Wi-Fi Hotspot",
+        "description": "Stay connected on the road with unlimited high-speed mobile internet for all your devices.",
+        "price": 7,
+        "icon": "wifi",
+        "maxQuantity": 1
+    },
+    {
+        "id": 4,
+        "name": "GPS Navigation",
+        "description": "Dedicated GPS navigation system with up-to-date maps.",
+        "price": 8,
+        "icon": "map",
+        "maxQuantity": 1
+    },
+    {
+        "id": 5,
+        "name": "Pet Travel Kit",
+        "description": "Includes a protective seat cover and safety harness for your pet.",
+        "price": 9,
+        "icon": "star",
+        "maxQuantity": 2
+    }
+]
