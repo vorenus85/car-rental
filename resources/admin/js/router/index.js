@@ -52,7 +52,7 @@ import BookingEditPage from '@admin/pages/Booking/EditPage.vue'
 
 import ExtraListPage from '@admin/pages/Extra/ListPage.vue'
 import ExtraCreatePage from '@admin/pages/Extra/CreatePage.vue'
-import ExtraEditPage from '@admin/pages/Booking/EditPage.vue'
+import ExtraEditPage from '@admin/pages/Extra/EditPage.vue'
 
 import { useAuthStore } from '@admin/stores/auth'
 

@@ -43,6 +43,7 @@
                 <div class="flex flex-col gap-1 mb-4">
                     <label for="category">Feature category</label>
                     <Select
+                        id="category"
                         input-id="category"
                         name="category"
                         :options="featureCategories"
@@ -64,6 +65,7 @@
                 <div class="flex flex-col gap-1 mb-4">
                     <label for="description">Feature description</label>
                     <Textarea
+                        id="description"
                         name="description"
                         rows="5"
                         cols="30"

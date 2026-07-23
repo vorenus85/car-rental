@@ -1,0 +1,71 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Extra\StoreExtraRequest;
+use App\Http\Requests\Admin\Extra\UpdateExtraRequest;
+use App\Http\Resources\Admin\ExtraResource;
+use Illuminate\Http\Response;
+use App\Models\Extra;
+
+class ExtraController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+        $extras = Extra::orderBy('name', 'asc')->get();
+
+        return response()->json(ExtraResource::collection($extras), 200);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreExtraRequest $request)
+    {
+        //
+        $validated = $request->validated();
+
+        $extra = Extra::create($validated);
+
+        return response()->json(new ExtraResource($extra), 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Extra $extra)
+    {
+        //
+        return response()->json(new ExtraResource($extra));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdateExtraRequest $request, Extra $extra)
+    {
+        //
+        $validated = $request->validated();
+
+        $extra->update($validated);
+
+
+        return response()->json(new ExtraResource($extra), 200);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Extra $extra): Response
+    {
+        // todo check booking
+        $extra->delete();
+
+        return response()->noContent();
+    }
+}
