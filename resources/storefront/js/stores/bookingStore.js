@@ -1,7 +1,10 @@
 import { defineStore } from 'pinia'
 import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
-import { extras as availableExtras } from '@storefront/data/extras.js'
-import { insurances } from '@storefront/data/insurances.js'
+import { fetchInsurances } from '@storefront/services/insuranceService'
+import { fetchExtras } from '@storefront/services/extraService'
+
+// import { extras as availableExtras } from '@storefront/data/extras.js'
+// import { insurances } from '@storefront/data/insurances.js'
 
 export const useBookingStore = defineStore('booking', {
     state: () => ({
@@ -13,7 +16,7 @@ export const useBookingStore = defineStore('booking', {
         dropOffDate: null,
         dropOffTime: null,
         extras: [],
-        insuranceId: 0,
+        insuranceId: 3,
         driver: {
             personal: {
                 firstName: '',
@@ -118,14 +121,13 @@ export const useBookingStore = defineStore('booking', {
             this.dropOffDate = data.dropOffDate
             this.dropOffTime = data.dropOffTime
         },
-        setExtras(selectedExtras) {
+        async setExtras(selectedExtras) {
+            const availableExtras = await fetchExtras()
             const lookupStore = useBookingLookupStore()
-
-            this.extras = selectedExtras
 
             const extrasWithDetails = selectedExtras
                 .map(extra => {
-                    const extraData = availableExtras.find(item => item.id === extra.id)
+                    const extraData = availableExtras.data.data.find(item => item.id === extra.id)
 
                     if (!extraData) {
                         console.error(`Extra with ID ${extra.id} not found.`)
@@ -141,11 +143,12 @@ export const useBookingStore = defineStore('booking', {
 
             lookupStore.setExtras(extrasWithDetails)
         },
-        setInsurance(insurance) {
+        async setInsurance(insurance) {
+            const insurances = await fetchInsurances()
             const lookupStore = useBookingLookupStore()
             this.insuranceId = insurance
 
-            const selectedInsurance = insurances.find(item => item.id === insurance)
+            const selectedInsurance = insurances.data.data.find(item => item.id === insurance)
             if (!selectedInsurance) {
                 console.error(`Insurance with ID ${insurance} not found.`)
                 return

@@ -10,7 +10,7 @@ class ExtraController extends Controller
 {
     public function index()
     {
-        $extras = Extra::orderBy('name', 'asc')->get();
+        $extras = Extra::orderBy('price', 'desc')->get();
 
         return ExtraResource::collection($extras);
     }
