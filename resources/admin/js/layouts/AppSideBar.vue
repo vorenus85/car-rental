@@ -74,14 +74,13 @@ const menus = [
                 title: 'Extras',
                 parent: 'reservations',
             },
-            /*
+
             {
                 icon: 'shield',
                 routeName: 'insurances',
                 title: 'Insurances',
                 parent: 'reservations',
             },
-            */
         ],
     },
 

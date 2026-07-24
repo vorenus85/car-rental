@@ -3,7 +3,7 @@ export const extras = [
         id: 1,
         name: 'Professional Chauffeur',
         description:
-            'Travel comfortably with a professional chauffeur available throughout your rental period.',
+            'Travel in comfort with a licensed professional chauffeur. Ideal for business trips, special occasions, or a more relaxing journey.',
         price: 180,
         icon: 'user',
         maxQuantity: 1,
@@ -11,15 +11,17 @@ export const extras = [
     {
         id: 2,
         name: 'Child Seat',
-        description: 'Safety seat for children under 12 years old.',
+        description:
+            'Approved child safety seat for children up to 12 years old. Installed and ready before vehicle collection.',
         price: 10,
         icon: 'heart',
+        maxQuantity: 4,
     },
     {
         id: 3,
         name: 'Wi-Fi Hotspot',
         description:
-            'Stay connected on the road with unlimited high-speed mobile internet for all your devices.',
+            'Unlimited high-speed mobile internet for your trip. Connect multiple devices and stay online wherever you travel.',
         price: 7,
         icon: 'wifi',
         maxQuantity: 1,
@@ -27,7 +29,8 @@ export const extras = [
     {
         id: 4,
         name: 'GPS Navigation',
-        description: 'Dedicated GPS navigation system with up-to-date maps.',
+        description:
+            'Dedicated GPS navigation with up-to-date maps and voice guidance for reliable route planning.',
         price: 8,
         icon: 'map',
         maxQuantity: 1,
@@ -35,8 +38,10 @@ export const extras = [
     {
         id: 5,
         name: 'Pet Travel Kit',
-        description: 'Includes a protective seat cover and safety harness for your pet.',
+        description:
+            'Everything you need to travel safely with your pet, including a seat cover and safety harness.',
         price: 9,
         icon: 'star',
+        maxQuantity: 2,
     },
 ]

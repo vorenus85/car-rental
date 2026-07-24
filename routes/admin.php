@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ExtraController;
+use App\Http\Controllers\Admin\InsuranceController;
 use App\Http\Controllers\Admin\Fleet\BrandController;
 use App\Http\Controllers\Admin\Fleet\BrandImageController;
 use App\Http\Controllers\Admin\Fleet\CarController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\Admin\Fleet\CarModelController;
 use App\Http\Controllers\Admin\Fleet\FeatureController;
 use App\Http\Controllers\Admin\Fleet\LocationController;
 use App\Http\Controllers\Admin\Fleet\VariantController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->group(function () {
@@ -56,6 +58,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{extra}', [ExtraController::class, 'show']);
         Route::put('/{extra}', [ExtraController::class, 'update']);
         Route::delete('/{extra}', [ExtraController::class, 'destroy']);
+    });
+
+    Route::prefix('/api/admin/insurances')->group(function () {
+        Route::get('/', [InsuranceController::class, 'index']);
+        Route::post('/', [InsuranceController::class, 'store']);
+        Route::get('/{insurance}', [InsuranceController::class, 'show']);
+        Route::put('/{insurance}', [InsuranceController::class, 'update']);
+        Route::delete('/{insurance}', [InsuranceController::class, 'destroy']);
     });
 
     Route::prefix('/api/admin/brands')->group(function () {

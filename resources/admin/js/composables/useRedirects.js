@@ -99,6 +99,14 @@ export const useRedirects = () => {
         router.push({ name: 'extras.create' })
     }
 
+    const toInsurancesList = () => {
+        router.push({ name: 'insurances' })
+    }
+
+    const toCreateInsurance = () => {
+        router.push({ name: 'insurances.create' })
+    }
+
     return {
         toDashboard,
         toCarsList,
@@ -124,5 +132,7 @@ export const useRedirects = () => {
         toCreateBooking,
         toExtrasList,
         toCreateExtra,
+        toInsurancesList,
+        toCreateInsurance,
     }
 }
