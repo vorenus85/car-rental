@@ -12,7 +12,6 @@
 <script setup>
 import ExtraItem from '@storefront/components/modules/Booking/Extras/ExtraItem.vue'
 import { useExtra } from '@storefront/composables/useExtra'
-// import { extras } from '@storefront/data/extras.js'
 import { onMounted, ref } from 'vue'
 
 const extras = ref([])

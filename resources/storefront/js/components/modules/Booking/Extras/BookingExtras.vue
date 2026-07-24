@@ -39,7 +39,7 @@ watch(
     { deep: true }
 )
 
-onMounted(() => {
-    bookingStore.setExtras(selectedExtras.value)
+onMounted(async () => {
+    await bookingStore.setExtras(selectedExtras.value)
 })
 </script>

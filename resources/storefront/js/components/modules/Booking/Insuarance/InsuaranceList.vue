@@ -11,7 +11,11 @@
 </template>
 <script setup>
 import InsuranceItem from '@storefront/components/modules/Booking/Insuarance/InsuranceItem.vue'
-import { insurances } from '@storefront/data/insurances.js'
+import { useInsurance } from '@storefront/composables/useInsurance'
+import { onMounted, ref } from 'vue'
+
+const insurances = ref([])
+const { getInsurances } = useInsurance()
 
 defineProps({
     modelValue: {
@@ -25,4 +29,8 @@ const emit = defineEmits(['update:modelValue'])
 const handleSelect = insuranceId => {
     emit('update:modelValue', insuranceId)
 }
+
+onMounted(async () => {
+    insurances.value = await getInsurances()
+})
 </script>
