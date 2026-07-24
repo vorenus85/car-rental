@@ -480,7 +480,7 @@ const onLoginSubmit = async ({ valid, values, errors }) => {
 
             customToast.success('Welcome on Drivengo!')
 
-            router.push({ name: 'booking-extras-insurance' })
+            startBooking()
         } catch (error) {
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
