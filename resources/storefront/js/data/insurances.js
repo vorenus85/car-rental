@@ -1,16 +1,26 @@
 export const insurances = [
     {
         id: 1,
-        name: 'Full Coverage',
-        description: 'Excess reduction to 0 €. Covers theft and accidental damage.',
-        price: 10,
-        recommended: true,
-    },
-    {
-        id: 0,
         name: 'Basic Coverage',
-        description: 'Included in your booking.',
+        description:
+            'Included with every rental at no extra cost. Covers damage and theft with a standard excess payable by the renter.',
         price: 0,
         recommended: false,
+    },
+    {
+        id: 2,
+        name: 'Premium Coverage',
+        description:
+            'Reduces your excess and provides extra protection against accidental damage and theft during your rental.',
+        price: 6,
+        recommended: false,
+    },
+    {
+        id: 3,
+        name: 'Full Coverage',
+        description:
+            'Our highest level of protection. Reduces your excess to €0 for covered incidents, so you can travel with complete peace of mind.',
+        price: 10,
+        recommended: true,
     },
 ]

@@ -1,14 +1,14 @@
 <template>
     <AppLayout>
-        <PageTitle title="Extras">
+        <PageTitle title="Insurances">
             <template #actions>
-                <Button icon="pi pi-plus" label="New" primary @click="toCreateExtra" />
+                <Button icon="pi pi-plus" label="New" primary @click="toCreateInsurance" />
             </template>
         </PageTitle>
         <div class="card shadow list-page">
             <DataTable
                 v-model:filters="filters"
-                :value="extras"
+                :value="insurances"
                 paginator
                 :rows="20"
                 :rows-per-page-options="[20, 50]"
@@ -63,7 +63,7 @@
                                 icon="pi pi-eye"
                                 as="router-link"
                                 :to="{
-                                    name: 'extras.show',
+                                    name: 'insurances.show',
                                     params: {
                                         id: slotProps.data?.id,
                                     },
@@ -100,12 +100,12 @@ import {
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
 import FormatedDate from '@admin/components/Table/FormatedDate.vue'
 import { useCustomConfirm } from '@admin/composables/useCustomConfirm'
-import { useExtra } from '@admin/composables/useExtra'
+import { useInsurance } from '@admin/composables/useInsurance'
 import { onMounted, ref } from 'vue'
-import PriceTag from '../../components/Table/PriceTag.vue'
+import PriceTag from '@admin//components/Table/PriceTag.vue'
 
-const { getExtras, extras, loading, deleteExtra } = useExtra()
-const { toCreateExtra } = useRedirects()
+const { getInsurances, insurances, loading, deleteInsurance } = useInsurance()
+const { toCreateInsurance } = useRedirects()
 const confirm = useConfirm()
 const { confirmAction } = useCustomConfirm()
 const filters = ref()
@@ -133,13 +133,13 @@ const clearFilter = () => {
 const deleteConfirm = id => {
     confirmAction(confirm, {
         action: () => {
-            deleteExtra(id)
+            deleteInsurance(id)
         },
         acceptLabel: 'Delete',
     })
 }
 
 onMounted(() => {
-    getExtras()
+    getInsurances()
 })
 </script>

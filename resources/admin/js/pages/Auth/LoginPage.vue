@@ -103,8 +103,8 @@ const router = useRouter()
 const { customToast } = useCustomToast()
 const { login } = useAuthStore()
 
-const demoEmail = import.meta.env.VITE_DEMO_EMAIL
-const demoPassword = import.meta.env.VITE_DEMO_PASSWORD
+const demoEmail = import.meta.env.VITE_ADMIN_DEMO_EMAIL
+const demoPassword = import.meta.env.VITE_ADMIN_DEMO_PASSWORD
 
 const setClipboard = async text => {
     const type = 'text/plain'

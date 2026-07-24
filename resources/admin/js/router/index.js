@@ -54,6 +54,10 @@ import ExtraListPage from '@admin/pages/Extra/ListPage.vue'
 import ExtraCreatePage from '@admin/pages/Extra/CreatePage.vue'
 import ExtraEditPage from '@admin/pages/Extra/EditPage.vue'
 
+import InsuranceListPage from '@admin/pages/Insurance/ListPage.vue'
+import InsuranceCreatePage from '@admin/pages/Insurance/CreatePage.vue'
+import InsuranceEditPage from '@admin/pages/Insurance/EditPage.vue'
+
 import { useAuthStore } from '@admin/stores/auth'
 
 const router = createRouter({
@@ -214,6 +218,35 @@ const router = createRouter({
                 parent: 'reservations',
             },
         },
+
+        {
+            path: '/reservations/insurances',
+            name: 'insurances',
+            component: InsuranceListPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+        {
+            path: '/reservations/insurances/create',
+            name: 'insurances.create',
+            component: InsuranceCreatePage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+        {
+            path: '/reservations/insurances/:id',
+            name: 'insurances.show',
+            component: InsuranceEditPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+
         {
             path: '/fleet/cars',
             name: 'cars',
