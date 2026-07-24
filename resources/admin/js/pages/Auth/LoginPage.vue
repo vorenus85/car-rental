@@ -123,7 +123,6 @@ const onFormSubmit = async ({ valid, values, errors }) => {
 
             await router.push({ name: 'dashboard' })
         } catch (error) {
-            console.error(error)
             const msg = error?.response?.data?.message
             customToast.error(msg || 'Please try again.')
         }

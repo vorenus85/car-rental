@@ -3,6 +3,26 @@
         <div class="text-xl"><strong>Log in</strong></div>
         <div class="text-center">Enter your email and password below to log in</div>
 
+        <div>
+            <strong>Demo Access</strong><br />
+            Use the credentials below to log in:
+            <br />
+            <Tag
+                v-tooltip.top="'Copy to clipboard'"
+                class="mb-2 mt-3 cursor-pointer"
+                severity="info"
+                @click="setClipboard(demoEmail)"
+                >{{ demoEmail }} <PiIcon icon="clipboard"></PiIcon></Tag
+            ><br />
+            <Tag
+                v-tooltip.top="'Copy to clipboard'"
+                class="cursor-pointer"
+                severity="info"
+                @click="setClipboard(demoPassword)"
+                >{{ demoPassword }} <PiIcon icon="clipboard"></PiIcon
+            ></Tag>
+        </div>
+
         <Form
             v-slot="$form"
             class="flex flex-col gap-4 w-full"
@@ -54,10 +74,23 @@
 </template>
 <script setup>
 import { Form, FormField } from '@primevue/forms'
-import { Button, InputText, Message, Password } from 'primevue'
+import { Button, InputText, Message, Password, Tag } from 'primevue'
 import { loginValidator } from '@storefront/validators/loginValidator'
+import PiIcon from '@storefront/components/PiIcon.vue'
 
 const emit = defineEmits(['login-submit'])
+
+const demoEmail = import.meta.env.VITE_USER_DEMO_EMAIL
+const demoPassword = import.meta.env.VITE_USER_DEMO_PASSWORD
+
+const setClipboard = async text => {
+    const type = 'text/plain'
+    const clipboardItemData = {
+        [type]: text,
+    }
+    const clipboardItem = new ClipboardItem(clipboardItemData)
+    await navigator.clipboard.write([clipboardItem])
+}
 
 const onFormSubmit = ({ valid, values, errors }) => {
     emit('login-submit', { valid, values, errors })
