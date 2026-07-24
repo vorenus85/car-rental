@@ -11,7 +11,12 @@
 </template>
 <script setup>
 import ExtraItem from '@storefront/components/modules/Booking/Extras/ExtraItem.vue'
-import { extras } from '@storefront/data/extras.js'
+import { useExtra } from '@storefront/composables/useExtra'
+// import { extras } from '@storefront/data/extras.js'
+import { onMounted, ref } from 'vue'
+
+const extras = ref([])
+const { getExtras } = useExtra()
 
 defineProps({
     selectedExtras: {
@@ -29,4 +34,8 @@ const emit = defineEmits(['select'])
 const handleSelect = ({ id, quantity }) => {
     emit('select', { id, quantity })
 }
+
+onMounted(async () => {
+    extras.value = await getExtras()
+})
 </script>

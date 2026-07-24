@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Storefront\BookingController;
 use App\Http\Controllers\Storefront\BrandController;
+use App\Http\Controllers\Storefront\ExtraController;
 use App\Http\Controllers\Storefront\CarController;
 use App\Http\Controllers\Storefront\LocationController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,10 @@ Route::prefix('/api/storefront/locations')->group(function () {
 
 Route::prefix('/api/storefront/brands')->group(function () {
     Route::get('/', [BrandController::class, 'index']);
+});
+
+Route::prefix('/api/storefront/extras')->group(function () {
+    Route::get('/', [ExtraController::class, 'index']);
 });
 
 Route::prefix('/api/storefront/booking')->group(function () {
