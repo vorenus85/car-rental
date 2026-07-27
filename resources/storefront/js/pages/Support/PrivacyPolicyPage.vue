@@ -157,7 +157,7 @@
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-semibold text-slate-900 mb-4">8. Your Rights</h2>
+                    <h2 class="text-2xl font-semibold text-slate-900 mb-4">9. Your Rights</h2>
 
                     <p class="mb-3">Depending on your location, you may have the right to:</p>
 
@@ -173,7 +173,7 @@
 
                 <section>
                     <h2 class="text-2xl font-semibold text-slate-900 mb-4">
-                        9. Children's Privacy
+                        10. Children's Privacy
                     </h2>
 
                     <p>
@@ -184,7 +184,7 @@
 
                 <section>
                     <h2 class="text-2xl font-semibold text-slate-900 mb-4">
-                        10. Changes to This Privacy Policy
+                        11. Changes to This Privacy Policy
                     </h2>
 
                     <p>
@@ -194,7 +194,7 @@
                 </section>
 
                 <section>
-                    <h2 class="text-2xl font-semibold text-slate-900 mb-4">11. Contact</h2>
+                    <h2 class="text-2xl font-semibold text-slate-900 mb-4">12. Contact</h2>
 
                     <p>
                         If you have any questions regarding this Privacy Policy, please contact us:

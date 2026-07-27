@@ -25,6 +25,8 @@ import CookiePolicyPage from '@storefront/pages/Support/CookiePolicyPage.vue'
 import RefundCancellationPolicyPage from '@storefront/pages/Support/RefundCancellationPolicyPage.vue'
 import RentalRequirementsPage from '@storefront/pages/Support/RentalRequirementsPage.vue'
 
+import FaqPage from '@storefront/pages/FaqPage.vue'
+
 import { useMobileMenuStore } from '@storefront/stores/mobileMenuStore'
 import { useAuthStore } from '@storefront/stores/authStore'
 import { useBookingStore } from '@storefront/stores/bookingStore'
@@ -108,6 +110,12 @@ const router = createRouter({
             path: '/refund-and-cancellation-policy',
             name: 'refund-and-cancellation-policy',
             component: RefundCancellationPolicyPage,
+        },
+
+        {
+            path: '/faq',
+            name: 'faq',
+            component: FaqPage,
         },
 
         {

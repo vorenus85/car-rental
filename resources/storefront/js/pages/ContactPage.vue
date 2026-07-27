@@ -11,7 +11,7 @@
         </section>
         <section class="relative pt-15">
             <!-- Mobile card -->
-            <div class="block lg:hidden px-5 mb-10">
+            <div class="block lg:hidden px-5 mb-10 max-w-xl m-auto">
                 <VisitOfficeCard />
             </div>
 
