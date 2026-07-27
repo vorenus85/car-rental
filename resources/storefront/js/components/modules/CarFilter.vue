@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white rounded-xl p-6">
+    <div class="bg-white rounded-xl p-6 shadow-xl">
         <!-- Header -->
         <div class="flex items-center justify-between mb-6">
             <h3 class="text-xl font-semibold">Filters</h3>
