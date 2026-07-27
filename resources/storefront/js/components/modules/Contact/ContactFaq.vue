@@ -22,23 +22,9 @@
             </div>
 
             <!-- FAQ -->
-            <div id="contact-accordion" class="grid lg:grid-cols-2 gap-5">
-                <Accordion :multiple="true">
-                    <AccordionPanel v-for="faq in leftFaqs" :key="faq.id" :value="faq.id">
-                        <AccordionHeader>
-                            {{ faq.question }}
-                        </AccordionHeader>
-
-                        <AccordionContent>
-                            <p class="text-slate-600 leading-7">
-                                {{ faq.answer }}
-                            </p>
-                        </AccordionContent>
-                    </AccordionPanel>
-                </Accordion>
-
-                <Accordion :multiple="true">
-                    <AccordionPanel v-for="faq in rightFaqs" :key="faq.id" :value="faq.id">
+            <div id="contact-accordion">
+                <Accordion :multiple="true" class="flex flex-col gap-5">
+                    <AccordionPanel v-for="faq in contactFaqs" :key="faq.id" :value="faq.id">
                         <AccordionHeader>
                             {{ faq.question }}
                         </AccordionHeader>
@@ -56,55 +42,10 @@
 </template>
 <script setup>
 import { Accordion, AccordionContent, AccordionHeader, AccordionPanel, Button } from 'primevue'
-
-const leftFaqs = [
-    {
-        id: 1,
-        question: 'What documents do I need to rent a car?',
-        answer: "A valid driving licence, passport or ID card and a credit card in the main driver's name.",
-    },
-
-    {
-        id: 2,
-        question: 'Is there a mileage limit on rentals?',
-        answer: 'Most rentals include unlimited mileage. Some special vehicles may have restrictions.',
-    },
-
-    {
-        id: 3,
-        question: 'Can I modify or cancel my reservation?',
-        answer: 'Yes. Reservations can usually be modified or cancelled before pick-up.',
-    },
-]
-
-const rightFaqs = [
-    {
-        id: 4,
-        question: 'What payment methods do you accept?',
-        answer: 'Visa, Mastercard and major debit cards are accepted.',
-    },
-
-    {
-        id: 5,
-        question: 'Is insurance included in the rental price?',
-        answer: 'Basic insurance is included. Additional protection packages are available.',
-    },
-
-    {
-        id: 6,
-        question: 'Can I return the car to a different location?',
-        answer: 'Yes, one-way rentals are available between selected locations.',
-    },
-]
+import { contactFaqs } from '@storefront/data/faqs.js'
 </script>
 <style>
 #contact-accordion {
-    .p-accordion {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
     .p-accordionpanel {
         border: 1px solid rgb(226 232 240);
 

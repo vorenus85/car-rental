@@ -110,6 +110,17 @@
                     </div>
                 </div>
             </section>
+
+            <section class="rounded-xl border-l-4 border-amber-500 bg-amber-50 p-6 mb-5">
+                <h2 class="text-xl font-semibold text-slate-900 mb-3">Portfolio Project Notice</h2>
+
+                <p>
+                    This page is part of a portfolio demonstration project. All driver requirements,
+                    rental policies, and booking conditions shown are fictional and have been
+                    created solely to demonstrate the functionality and user experience of a modern
+                    car rental platform.
+                </p>
+            </section>
         </div></PublicLayout
     >
 </template>
