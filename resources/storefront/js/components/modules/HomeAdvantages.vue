@@ -1,21 +1,23 @@
 <template>
-    <div class="py-4 sm:px-4 px-10 home-advantages mx-auto max-w-8xl">
-        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <div
-                v-for="item in advantages"
-                :key="item.icon"
-                class="flex items-center gap-3 rounded-3xl py-3 text-center justify-start"
-            >
-                <div class="flex h-14 w-14 items-center justify-center home-advantages-icon">
-                    <component :is="icons[item.icon]" class="advantage-icon" :size="40" />
-                </div>
-                <div class="flex flex-col gap-1 text-left">
-                    <div class="text-l font-semibold">{{ item.title }}</div>
-                    <div class="text-sm">{{ item.subTitle }}</div>
+    <section class="my-10">
+        <div class="py-4 sm:px-4 px-10 home-advantages mx-auto max-w-8xl">
+            <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <div
+                    v-for="item in advantages"
+                    :key="item.icon"
+                    class="flex items-center gap-3 rounded-3xl py-3 text-center justify-start"
+                >
+                    <div class="flex h-14 w-14 items-center justify-center home-advantages-icon">
+                        <component :is="icons[item.icon]" class="advantage-icon" :size="40" />
+                    </div>
+                    <div class="flex flex-col gap-1 text-left">
+                        <div class="text-l font-semibold">{{ item.title }}</div>
+                        <div class="text-sm">{{ item.subTitle }}</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 <script setup>
 import InsuaranceV1 from '@storefront/components/icons/InsuaranceV1.vue'

@@ -3,15 +3,15 @@
         <section class="relative overflow-hidden">
             <ContactHero></ContactHero>
         </section>
-        <section class="py-24 bg-slate-50">
+        <section class="pt-15 bg-slate-50">
             <ContactForm></ContactForm>
         </section>
-        <section class="py-24 bg-slate-50">
+        <section class="pt-15 bg-slate-50">
             <ContactFaq></ContactFaq>
         </section>
-        <section class="relative">
+        <section class="relative pt-15">
             <!-- Mobile card -->
-            <div class="block lg:hidden px-5 pt-8 mb-10">
+            <div class="block lg:hidden px-5 mb-10">
                 <VisitOfficeCard />
             </div>
 

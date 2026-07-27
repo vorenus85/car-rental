@@ -1,81 +1,83 @@
 <template>
-    <div
-        class="car-search rounded-xl border p-6 border-gray-200 bg-white shadow-sm mx-auto max-w-8xl"
-    >
-        <div class="search-panel-grid">
-            <div class="field">
-                <label for="pick-up-location" class="text-lg">Pick-up Location</label>
+    <section class="mx-5">
+        <div
+            class="car-search mx-auto max-w-8xl rounded-xl border p-6 border-gray-200 bg-white shadow-sm"
+        >
+            <div class="search-panel-grid">
+                <div class="field">
+                    <label for="pick-up-location" class="text-lg">Pick-up Location</label>
 
-                <InputGroup>
-                    <InputGroupAddon>
-                        <i class="pi pi-map-marker" />
-                    </InputGroupAddon>
+                    <InputGroup>
+                        <InputGroupAddon>
+                            <i class="pi pi-map-marker" />
+                        </InputGroupAddon>
 
-                    <Select
-                        id="pick-up-location"
-                        v-model="searchParams.pickUpLocation"
-                        :options="groupedLocations"
-                        input-id="pick-up-location"
-                        option-group-label="label"
-                        option-group-children="items"
-                        option-label="label"
-                        option-value="value"
-                        filter
-                        placeholder="Select location"
-                        class="w-full"
-                    >
-                        <template #optiongroup="slotProps">
-                            <div class="flex items-center">
-                                <img
-                                    :alt="slotProps.option.label"
-                                    src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
-                                    :class="`mr-2 flag flag-${slotProps?.option?.code?.toLowerCase()}`"
-                                    style="width: 18px"
-                                />
-                                <div>{{ slotProps.option.label }}</div>
-                            </div>
-                        </template>
-                    </Select>
-                </InputGroup>
-            </div>
+                        <Select
+                            id="pick-up-location"
+                            v-model="searchParams.pickUpLocation"
+                            :options="groupedLocations"
+                            input-id="pick-up-location"
+                            option-group-label="label"
+                            option-group-children="items"
+                            option-label="label"
+                            option-value="value"
+                            filter
+                            placeholder="Select location"
+                            class="w-full"
+                        >
+                            <template #optiongroup="slotProps">
+                                <div class="flex items-center">
+                                    <img
+                                        :alt="slotProps.option.label"
+                                        src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png"
+                                        :class="`mr-2 flag flag-${slotProps?.option?.code?.toLowerCase()}`"
+                                        style="width: 18px"
+                                    />
+                                    <div>{{ slotProps.option.label }}</div>
+                                </div>
+                            </template>
+                        </Select>
+                    </InputGroup>
+                </div>
 
-            <div class="field">
-                <label for="pick-up-date" class="text-lg">Pick-up Date</label>
+                <div class="field">
+                    <label for="pick-up-date" class="text-lg">Pick-up Date</label>
 
-                <InputGroup>
-                    <InputGroupAddon>
-                        <i class="pi pi-calendar" />
-                    </InputGroupAddon>
-                    <DatePicker
-                        v-model="searchParams.pickUpDate"
-                        :min-date="minPickUpDate"
-                        icon-display="input"
-                        date-format="yy-mm-dd"
-                        class="w-full"
-                        placeholder="Select date"
-                    />
-                </InputGroup>
-            </div>
+                    <InputGroup>
+                        <InputGroupAddon>
+                            <i class="pi pi-calendar" />
+                        </InputGroupAddon>
+                        <DatePicker
+                            v-model="searchParams.pickUpDate"
+                            :min-date="minPickUpDate"
+                            icon-display="input"
+                            date-format="yy-mm-dd"
+                            class="w-full"
+                            placeholder="Select date"
+                        />
+                    </InputGroup>
+                </div>
 
-            <div class="field">
-                <label for="drop-off-date" class="text-lg">Drop-off Date</label>
-                <InputGroup>
-                    <InputGroupAddon> <i class="pi pi-calendar" /> </InputGroupAddon
-                    ><DatePicker
-                        v-model="searchParams.dropOffDate"
-                        :min-date="minDropOffDate"
-                        icon-display="input"
-                        date-format="yy-mm-dd"
-                        class="w-full"
-                        placeholder="Select date"
-                /></InputGroup>
-            </div>
+                <div class="field">
+                    <label for="drop-off-date" class="text-lg">Drop-off Date</label>
+                    <InputGroup>
+                        <InputGroupAddon> <i class="pi pi-calendar" /> </InputGroupAddon
+                        ><DatePicker
+                            v-model="searchParams.dropOffDate"
+                            :min-date="minDropOffDate"
+                            icon-display="input"
+                            date-format="yy-mm-dd"
+                            class="w-full"
+                            placeholder="Select date"
+                    /></InputGroup>
+                </div>
 
-            <div class="field button-wrapper ml-auto">
-                <Button label="Search Cars" size="large" class="w-full" @click="searchCars" />
+                <div class="field button-wrapper ml-auto">
+                    <Button label="Search Cars" size="large" class="w-full" @click="searchCars" />
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 </template>
 
 <script setup>

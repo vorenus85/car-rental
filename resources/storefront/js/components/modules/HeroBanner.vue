@@ -38,7 +38,7 @@
                     Best cars. Best prices. Best experience.
                 </p>
 
-                <div class="mb-10 flex gap-4">
+                <div class="mb-10 flex flex-col sm:flex-row gap-4">
                     <div class="flex items-center gap-3 hero-advantages">
                         <CarV2 :size="30" class="hero-advantages-icon" />
 

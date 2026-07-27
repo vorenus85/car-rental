@@ -30,7 +30,8 @@
             href="https://www.google.com/maps/search/?api=1&query=Westend+City+Center,+1062+Budapest,+Váci+út+1-3"
             label="Get Directions"
             icon="pi pi-send"
-            iconPos="right"
+            icon-pos="right"
+            class="w-full sm:w-50"
         />
     </div>
 </template>
