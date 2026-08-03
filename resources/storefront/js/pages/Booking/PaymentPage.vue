@@ -14,23 +14,25 @@
                         <div class="space-y-4">
                             <h2 class="text-lg font-semibold">Payment method</h2>
 
-                            <!-- Card -->
+                            <!-- stripe -->
                             <div
                                 class="border border-surface-200 background-white rounded-xl p-5"
-                                :class="paymentMethod === 'card' ? 'border-primary' : ''"
+                                :class="paymentMethod === 'stripe' ? 'border-primary' : ''"
                             >
                                 <div class="flex justify-between items-center">
                                     <div class="flex items-center gap-3">
                                         <RadioButton
                                             v-model="paymentMethod"
-                                            input-id="card"
-                                            value="card"
+                                            input-id="stripe"
+                                            value="stripe"
                                         />
 
                                         <label
-                                            for="card"
+                                            for="stripe"
                                             class="cursor-pointer"
-                                            :class="paymentMethod === 'card' ? 'font-semibold' : ''"
+                                            :class="
+                                                paymentMethod === 'stripe' ? 'font-semibold' : ''
+                                            "
                                         >
                                             Credit / Debit Card
                                         </label>
@@ -55,7 +57,7 @@
                                     </div>
                                 </div>
 
-                                <div v-if="paymentMethod === 'card'" class="mt-5 space-y-4">
+                                <div v-if="paymentMethod === 'stripe'" class="mt-5 space-y-4">
                                     <div>
                                         <label for="card" class="text-sm text-gray-600">
                                             Card Number
@@ -213,16 +215,18 @@ import { useRouter } from 'vue-router'
 import { Checkbox, InputText, Message, RadioButton } from 'primevue'
 import { computed, reactive, ref } from 'vue'
 import { useBookingStore } from '@storefront/stores/bookingStore'
+import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
 import { useAuthStore } from '@storefront/stores/authStore'
 import { createBooking } from '@storefront/services/bookingService'
 import { useCustomToast } from '@storefront/composables/useCustomToast'
 
 const router = useRouter()
 const bookingStore = useBookingStore()
+const bookingLookupStore = useBookingLookupStore()
 const authStore = useAuthStore()
 const { customToast } = useCustomToast()
 
-const paymentMethod = ref('card')
+const paymentMethod = ref('stripe')
 const submitting = ref(false)
 
 const card = ref({
@@ -271,6 +275,7 @@ const buildBookingPayload = () => {
 
     return {
         carId,
+        payment_method: paymentMethod.value,
         customerId: authStore.user?.id,
         pickUpLocationId,
         dropOffLocationId,
@@ -309,6 +314,10 @@ const handleNext = async () => {
         const booking = data?.booking
 
         customToast.success('Booking completed successfully.')
+
+        // delete booking data from store
+        bookingStore.clearBookingData()
+        bookingLookupStore.clearBookingData()
 
         router.push({
             name: 'booking-success',

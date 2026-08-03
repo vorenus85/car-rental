@@ -3,9 +3,6 @@ import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
 import { fetchInsurances } from '@storefront/services/insuranceService'
 import { fetchExtras } from '@storefront/services/extraService'
 
-// import { extras as availableExtras } from '@storefront/data/extras.js'
-// import { insurances } from '@storefront/data/insurances.js'
-
 export const useBookingStore = defineStore('booking', {
     state: () => ({
         carId: null,
@@ -120,6 +117,35 @@ export const useBookingStore = defineStore('booking', {
             this.pickUpTime = data.pickUpTime
             this.dropOffDate = data.dropOffDate
             this.dropOffTime = data.dropOffTime
+        },
+        clearBookingData() {
+            this.carId = null
+            this.pickUpLocationId = null
+            this.dropOffLocationId = null
+            this.pickUpDate = null
+            this.pickUpTime = null
+            this.dropOffDate = null
+            this.dropOffTime = null
+            this.extras = []
+            this.insuranceId = 3
+
+            // Clear driver data
+            this.driver.personal.firstName = ''
+            this.driver.personal.lastName = ''
+            this.driver.personal.email = ''
+            this.driver.personal.phone = ''
+            this.driver.personal.birthDate = null
+
+            this.driver.address.country = null
+            this.driver.address.city = ''
+            this.driver.address.postalCode = ''
+            this.driver.address.addressLine1 = ''
+            this.driver.address.addressLine2 = ''
+
+            this.driver.licence.licenceNumber = ''
+            this.driver.licence.issuingCountry = null
+            this.driver.licence.issueDate = null
+            this.driver.licence.expiryDate = null
         },
         async setExtras(selectedExtras) {
             const availableExtras = await fetchExtras()

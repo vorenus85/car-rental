@@ -33,8 +33,8 @@ class BookingController extends Controller
         $dropoff = $request->pickUpLocationId == $request->dropOffLocationId
             ? $pickup
             : Location::select(['id', 'name', 'city_id'])
-                ->with('cityModel:id,name')
-                ->findOrFail($request->dropOffLocationId);
+            ->with('cityModel:id,name')
+            ->findOrFail($request->dropOffLocationId);
 
         $car = Car::with([
             'variant:id,name,model_id',
@@ -78,14 +78,15 @@ class BookingController extends Controller
         $extraModels = $selectedExtras->isEmpty()
             ? collect()
             : Extra::query()
-                ->whereIn('id', $selectedExtras->pluck('id')->all())
-                ->get()
-                ->keyBy('id');
+            ->whereIn('id', $selectedExtras->pluck('id')->all())
+            ->get()
+            ->keyBy('id');
 
-        $days = $pickupAt->diffInDays($dropoffAt);
+        $days =  (int) $pickupAt->diffInDays($dropoffAt);
         $dailyRate = (float) $car->price_per_day;
         $subtotal = $days * $dailyRate;
         $insuranceTotal = $days * (float) $insurance->price;
+
         $extrasTotal = $selectedExtras->reduce(function (float $carry, array $extra) use ($days, $extraModels) {
             $extraModel = $extraModels->get($extra['id']);
 
@@ -113,7 +114,7 @@ class BookingController extends Controller
             $extraModels
         ) {
             $booking = Booking::create([
-                'booking_number' => 'TMP-'.now()->format('YmdHisv'),
+                'booking_number' => 'TMP-' . now()->format('YmdHisv'),
 
                 'customer_id' => $validated['customerId'],
                 'car_id' => $validated['carId'],
@@ -141,6 +142,8 @@ class BookingController extends Controller
                 'driver_licence_country' => $validated['driver_licence_country'],
                 'driver_licence_issue_date' => $validated['driver_licence_issue_date'],
                 'driver_licence_expiry_date' => $validated['driver_licence_expiry_date'],
+
+                'payment_method' => $validated['payment_method'],
 
                 'currency' => 'EUR',
                 'daily_rate' => $dailyRate,

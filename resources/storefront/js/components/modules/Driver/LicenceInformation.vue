@@ -190,10 +190,14 @@ const props = defineProps({
 const { maxLicenceDate } = useBooking()
 
 const initialValues = {
-    licenceNumber: bookingStore.driver.licence.licenceNumber,
-    issuingCountry: bookingStore.driver.licence.issuingCountry,
-    issueDate: new Date(bookingStore.driver.licence.issueDate),
-    expiryDate: new Date(bookingStore.driver.licence.expiryDate),
+    licenceNumber: bookingStore.driver.licence.licenceNumber ?? '',
+    issuingCountry: bookingStore.driver.licence.issuingCountry ?? '',
+    issueDate: bookingStore.driver.licence.issueDate
+        ? new Date(bookingStore.driver.licence.issueDate)
+        : null,
+    expiryDate: bookingStore.driver.licence.expiryDate
+        ? new Date(bookingStore.driver.licence.expiryDate)
+        : null,
 }
 
 const onFormSubmit = ({ valid, values, errors }) => {
