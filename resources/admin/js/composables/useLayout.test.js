@@ -11,7 +11,16 @@ describe('useLayout', () => {
             value: 800,
         })
 
-        const { isMobile } = useLayout()
+        let isMobile
+
+        const TestComponent = defineComponent({
+            setup() {
+                ;({ isMobile } = useLayout())
+                return () => null
+            },
+        })
+
+        mount(TestComponent)
 
         expect(isMobile.value).toBe(true)
     })
@@ -21,7 +30,17 @@ describe('useLayout', () => {
 
         const classToggleSpy = vi.spyOn(document.documentElement.classList, 'toggle')
 
-        const { toggleDarkMode, darkTheme } = useLayout()
+        let toggleDarkMode
+        let darkTheme
+
+        const TestComponent = defineComponent({
+            setup() {
+                ;({ toggleDarkMode, darkTheme } = useLayout())
+                return () => null
+            },
+        })
+
+        mount(TestComponent)
 
         toggleDarkMode()
 
@@ -34,7 +53,16 @@ describe('useLayout', () => {
 
         document.startViewTransition = mockTransition
 
-        const { toggleDarkMode } = useLayout()
+        let toggleDarkMode
+
+        const TestComponent = defineComponent({
+            setup() {
+                ;({ toggleDarkMode } = useLayout())
+                return () => null
+            },
+        })
+
+        mount(TestComponent)
 
         toggleDarkMode()
 

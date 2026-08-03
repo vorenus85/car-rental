@@ -22,7 +22,7 @@ describe('Auth Store', () => {
         it('should have default state', () => {
             const store = useAuthStore()
 
-            expect(store.user).toBe(null)
+            expect(store.user).toBeNull()
             expect(store.loaded).toBe(false)
         })
     })
@@ -58,7 +58,7 @@ describe('Auth Store', () => {
 
             expect(fetchCustomer).toHaveBeenCalled()
 
-            expect(store.user).toBe(null)
+            expect(store.user).toBeNull()
             expect(store.loaded).toBe(false)
         })
     })
@@ -86,8 +86,6 @@ describe('Auth Store', () => {
 
             expect(doLogin).toHaveBeenCalledWith('john@example.com', 'password123')
 
-            console.log('store.user', store)
-
             expect(store.user).toEqual(mockUser)
         })
     })
@@ -107,7 +105,7 @@ describe('Auth Store', () => {
 
             expect(doLogout).toHaveBeenCalled()
 
-            expect(store.user).toBe(null)
+            expect(store.user).toBeNull()
         })
     })
 })

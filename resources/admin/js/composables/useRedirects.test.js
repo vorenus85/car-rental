@@ -117,10 +117,10 @@ describe('useRedirects', () => {
         expect(pushMock).toHaveBeenCalledWith({ name: 'calendar' })
     })
 
-    it('redirects to clients list', () => {
-        const { toClientsList } = useRedirects()
+    it('redirects to customers list', () => {
+        const { toCustomersList } = useRedirects()
 
-        toClientsList()
+        toCustomersList()
 
         expect(pushMock).toHaveBeenCalledWith({ name: 'clients' })
     })

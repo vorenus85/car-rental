@@ -112,7 +112,7 @@ export const useCar = () => {
 
             loading.value = false
         } catch (e) {
-            console.error(e)
+            // console.error(e)
             loading.value = false
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
