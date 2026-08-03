@@ -61,7 +61,7 @@ describe('FeatureController', function () {
     });
 
     it('validates required fields when creating feature', function () {
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/api/admin/features', ['_token' => 'test-token',]);
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/api/admin/features', ['_token' => 'test-token']);
 
         $response
             ->assertUnprocessable()
@@ -103,7 +103,7 @@ describe('FeatureController', function () {
 
         $response = $this->withSession(['_token' => 'test-token'])->deleteJson(
             "/api/admin/features/{$feature->id}",
-            ['_token' => 'test-token',]
+            ['_token' => 'test-token']
         );
 
         $response->assertNoContent();

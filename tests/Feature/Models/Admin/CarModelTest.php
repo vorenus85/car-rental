@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\Fleet\Brand;
 use App\Models\Fleet\Car;
-use App\Models\Fleet\CarModel;
 use App\Models\Fleet\Feature;
 use App\Models\Fleet\Variant;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -12,7 +10,7 @@ uses(RefreshDatabase::class);
 
 describe('Car model', function () {
     it('has fillable attributes', function () {
-        $carModel = new Car();
+        $carModel = new Car;
 
         expect($carModel->getFillable())
             ->toBe([

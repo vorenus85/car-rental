@@ -37,7 +37,7 @@ class CarFactory extends Factory
                 'reserved',
                 'rented',
                 'maintenance',
-                'inactive'
+                'inactive',
             ]),
 
             'production_year' => fake()->numberBetween(2015, now()->year),

@@ -19,7 +19,7 @@ class UpdateCarModelRequest extends FormRequest
             'name' => [
                 'required',
                 'string',
-                Rule::unique('car_models', 'name')->ignore($this->carModel)
+                Rule::unique('car_models', 'name')->ignore($this->carModel),
             ],
             'description' => 'nullable|string',
             'brand_id' => 'required|int',

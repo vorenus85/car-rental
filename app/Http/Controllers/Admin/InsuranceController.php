@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Insurance\StoreInsuranceRequest;
 use App\Http\Requests\Admin\Insurance\UpdateInsuranceRequest;
 use App\Http\Resources\Admin\InsuranceResource;
-use Illuminate\Http\Response;
 use App\Models\Insurance;
+use Illuminate\Http\Response;
 
 class InsuranceController extends Controller
 {
@@ -53,7 +53,6 @@ class InsuranceController extends Controller
         $validated = $request->validated();
 
         $insurance->update($validated);
-
 
         return response()->json(new InsuranceResource($insurance), 200);
     }

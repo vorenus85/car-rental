@@ -35,10 +35,11 @@ class LocationController extends Controller
                 },
                 'cars as maintenance_cars_count' => function ($query) {
                     $query->where('status', 'maintenance');
-                }
+                },
             ])
             ->orderBy('name')
             ->get();
+
         return response()->json($locations);
     }
 
@@ -49,6 +50,7 @@ class LocationController extends Controller
     {
         //
         $location = Location::create($request->validated());
+
         return response()->json($location->load('cityModel:id,name'), 201);
     }
 
@@ -67,13 +69,13 @@ class LocationController extends Controller
     {
         //
         $location->update($request->validated());
+
         return response()->json($location->load('cityModel:id,name'));
     }
 
     /**
      * Use for location select on car crud pages
      */
-
     public function options()
     {
         $locations = Location::query()
@@ -90,12 +92,13 @@ class LocationController extends Controller
     {
         //
         $location->delete();
+
         return response()->noContent();
     }
 
     public function toggleActive(Location $location)
     {
-        $location->active = !$location->active;
+        $location->active = ! $location->active;
         $location->save();
 
         return response()->json($location);

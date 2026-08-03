@@ -27,7 +27,7 @@ class CarSeeder extends Seeder
             $model = CarModel::where('name', $item['model'])->first();
             $variant = Variant::where('name', $item['variant'])->where('model_id', $model['id'])->first();
 
-            if (!$variant) {
+            if (! $variant) {
                 dd([
                     'error' => 'Variant not found',
                     'index' => $index,

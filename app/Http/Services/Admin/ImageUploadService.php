@@ -15,7 +15,7 @@ class ImageUploadService
     ): array {
         $disk ??= config('filesystems.default');
 
-        $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+        $filename = Str::uuid().'.'.$file->getClientOriginalExtension();
 
         $path = $file->storeAs(
             $directory,

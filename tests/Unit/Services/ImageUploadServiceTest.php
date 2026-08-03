@@ -2,8 +2,8 @@
 
 use App\Http\Services\Admin\ImageUploadService;
 use App\Models\User;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 uses(RefreshDatabase::class);
@@ -20,7 +20,7 @@ describe('ImageUploadService', function () {
 
         Storage::fake('public');
 
-        $service = new ImageUploadService();
+        $service = new ImageUploadService;
 
         $file = UploadedFile::fake()->image('brand.jpg');
 
@@ -52,7 +52,7 @@ describe('ImageUploadService', function () {
 
         Storage::fake('public');
 
-        $service = new ImageUploadService();
+        $service = new ImageUploadService;
 
         $file = UploadedFile::fake()->image('brand.jpg');
 
@@ -77,7 +77,7 @@ describe('ImageUploadService', function () {
 
         Storage::fake('public');
 
-        $service = new ImageUploadService();
+        $service = new ImageUploadService;
 
         $result = $service->delete(
             'uploads/missing.jpg',

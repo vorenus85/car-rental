@@ -4,17 +4,21 @@ import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
     plugins: [
-        laravel({
-            input: [
-                'resources/admin/css/app.css',
-                'resources/admin/js/app.js',
-                'resources/storefront/css/app.css',
-                'resources/storefront/js/app.js',
-            ],
-            refresh: true,
-        }),
+        ...(mode === 'test'
+            ? []
+            : [
+                  laravel({
+                      input: [
+                          'resources/admin/css/app.css',
+                          'resources/admin/js/app.js',
+                          'resources/storefront/css/app.css',
+                          'resources/storefront/js/app.js',
+                      ],
+                      refresh: true,
+                  }),
+              ]),
         vue(),
         tailwindcss(),
     ],
@@ -63,4 +67,4 @@ export default defineConfig({
             host: 'localhost',
         },
     },
-})
+}))

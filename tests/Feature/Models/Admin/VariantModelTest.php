@@ -10,7 +10,7 @@ uses(RefreshDatabase::class);
 describe('Variant model', function () {
 
     it('has fillable attributes', function () {
-        $variant = new Variant();
+        $variant = new Variant;
 
         expect($variant->getFillable())
             ->toBe([

@@ -58,6 +58,7 @@ class CarModelController extends Controller
     {
         //
         $carModel->load('brand');
+
         return response()->json(new CarModelResource($carModel));
     }
 

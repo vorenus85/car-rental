@@ -20,7 +20,7 @@ class FeatureFactory extends Factory
         return [
             'name' => fake()->words(3, true),
             'category' => fake()->word(),
-            'description' => fake()->sentence(6)
+            'description' => fake()->sentence(6),
         ];
     }
 }

@@ -17,7 +17,6 @@ class Brand extends Model
     ];
 
     /**
-     *
      * @return HasMany<CarModel, $this>
      */
     public function models(): HasMany

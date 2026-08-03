@@ -9,7 +9,6 @@ use App\Models\Fleet\Car;
 
 class CarImageController extends Controller
 {
-
     public function __construct(
         protected ImageUploadService $imageUploadService
     ) {}
@@ -43,7 +42,7 @@ class CarImageController extends Controller
             }
 
             $this->imageUploadService->delete(
-                'uploads/' . $car->image
+                'uploads/'.$car->image
             );
 
             $car->update([

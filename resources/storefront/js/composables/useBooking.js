@@ -95,7 +95,8 @@ export const useBooking = () => {
             }
             bookingLookupStore.setBookingData(bookingData)
         } catch (error) {
-            console.error('Error loading booking data:', error)
+            // console.error('Error loading booking data:', error)
+            void error
         }
     }
 

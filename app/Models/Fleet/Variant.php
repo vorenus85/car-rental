@@ -29,7 +29,6 @@ class Variant extends Model
     ];
 
     /**
-     *
      * @return BelongsTo<CarModel, $this>
      */
     public function model(): BelongsTo
@@ -38,7 +37,6 @@ class Variant extends Model
     }
 
     /**
-     *
      * @return HasMany<Car, $this>
      */
     public function cars(): HasMany

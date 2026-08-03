@@ -37,7 +37,7 @@ class VariantFactory extends Factory
                 'sedan',
                 'hatchback',
                 'coupe',
-                'wagon'
+                'wagon',
             ]),
 
             'transmission' => fake()->randomElement([

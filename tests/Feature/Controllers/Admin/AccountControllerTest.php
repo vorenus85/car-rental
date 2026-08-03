@@ -30,9 +30,9 @@ describe('AccountController', function () {
 
     it('can update account details', function () {
         $payload = [
-            "name" => "John Doe",
-            "phone" => "123-456-7890",
-            "email" => "john.doe@example.com",
+            'name' => 'John Doe',
+            'phone' => '123-456-7890',
+            'email' => 'john.doe@example.com',
             '_token' => 'test-token',
         ];
 
@@ -48,9 +48,9 @@ describe('AccountController', function () {
 
     it('can change password', function () {
         $payload = [
-            "current_password" => "password123",
-            "password" => "newpassword456",
-            "password_confirmation" => "newpassword456",
+            'current_password' => 'password123',
+            'password' => 'newpassword456',
+            'password_confirmation' => 'newpassword456',
             '_token' => 'test-token',
         ];
 
@@ -59,7 +59,7 @@ describe('AccountController', function () {
         $response
             ->assertCreated()
             ->assertJson([
-                "message" => "Password changed successfully."
+                'message' => 'Password changed successfully.',
             ]);
 
         // Verify that the password was actually changed

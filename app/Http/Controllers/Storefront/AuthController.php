@@ -23,15 +23,15 @@ class AuthController extends Controller
 
         $customer = Customer::where('email', $credentials['email'])->first();
 
-        if (!$customer || !Hash::check($credentials['password'], $customer->password)) {
+        if (! $customer || ! Hash::check($credentials['password'], $customer->password)) {
             return response()->json([
-                'message' => 'Invalid credentials'
+                'message' => 'Invalid credentials',
             ], 401);
         }
 
-        if (!$customer->active) {
+        if (! $customer->active) {
             return response()->json([
-                'message' => 'Your account has been deactivated. Please contact an administrator.'
+                'message' => 'Your account has been deactivated. Please contact an administrator.',
             ], 403);
         }
 
@@ -40,7 +40,7 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         return response()->json([
-            'customer' => $customer
+            'customer' => $customer,
         ]);
     }
 
@@ -76,7 +76,7 @@ class AuthController extends Controller
         );
 
         return response()->json([
-            'message' => 'We have emailed your password reset link.'
+            'message' => 'We have emailed your password reset link.',
         ]);
     }
 
@@ -102,7 +102,7 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            'message' => 'Invalid token'
+            'message' => 'Invalid token',
         ], 400);
     }
 }

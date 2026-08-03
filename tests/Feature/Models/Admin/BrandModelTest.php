@@ -9,7 +9,7 @@ uses(RefreshDatabase::class);
 describe('Brand model', function () {
 
     it('has fillable attributes', function () {
-        $feature = new Brand();
+        $feature = new Brand;
 
         expect($feature->getFillable())
             ->toBe([

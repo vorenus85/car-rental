@@ -29,7 +29,7 @@ class RegisterCustomerRequest extends FormRequest
                 'max:255',
                 Rule::unique('customers', 'email'),
             ],
-            "password" => ["required", "string", "min:8", "confirmed"],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
 }

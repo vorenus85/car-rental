@@ -8,7 +8,7 @@ describe('ResetPasswordNotification', function () {
         $notification = new ResetPasswordNotification('test-token');
 
         expect(
-            $notification->via(new User())
+            $notification->via(new User)
         )->toBe(['mail']);
     });
 
@@ -41,7 +41,7 @@ describe('ResetPasswordNotification', function () {
         $notification = new ResetPasswordNotification('token');
 
         expect(
-            $notification->toArray(new User())
+            $notification->toArray(new User)
         )->toBe([]);
     });
 });

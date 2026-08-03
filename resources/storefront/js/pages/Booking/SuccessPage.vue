@@ -38,7 +38,9 @@
                                 <p class="text-sm text-surface-500">Vehicle</p>
 
                                 <p class="font-semibold">
-                                    {{ bookingLookupStore?.carData?.name || 'Your selected vehicle' }}
+                                    {{
+                                        bookingLookupStore?.carData?.name || 'Your selected vehicle'
+                                    }}
                                 </p>
                             </div>
                         </div>
@@ -131,16 +133,17 @@ const bookingNumber = computed(() => {
 
 const bookingTotal = computed(() => {
     const dailyRate = bookingLookupStore?.carData?.pricePerDay || 0
-    const days = bookingLookupStore?.pickUpDate && bookingLookupStore?.dropOffDate
-        ? Math.max(
-              1,
-              Math.ceil(
-                  (new Date(bookingLookupStore.dropOffDate).setHours(0, 0, 0, 0) -
-                      new Date(bookingLookupStore.pickUpDate).setHours(0, 0, 0, 0)) /
-                      (1000 * 60 * 60 * 24)
+    const days =
+        bookingLookupStore?.pickUpDate && bookingLookupStore?.dropOffDate
+            ? Math.max(
+                  1,
+                  Math.ceil(
+                      (new Date(bookingLookupStore.dropOffDate).setHours(0, 0, 0, 0) -
+                          new Date(bookingLookupStore.pickUpDate).setHours(0, 0, 0, 0)) /
+                          (1000 * 60 * 60 * 24)
+                  )
               )
-          )
-        : 0
+            : 0
     const insurance = (bookingLookupStore?.insuranceData?.price || 0) * days
     const extras = (bookingLookupStore?.extrasData || []).reduce((sum, extra) => {
         return sum + (extra.quantity || 0) * (extra.price || 0) * days

@@ -7,7 +7,7 @@ uses(RefreshDatabase::class);
 
 describe('Location model', function () {
     it('has correct fillable attributes', function () {
-        $user = new Location();
+        $user = new Location;
 
         expect($user->getFillable())
             ->toBe([
@@ -29,7 +29,7 @@ describe('Location model', function () {
                 'image',
                 'description',
 
-                'active'
+                'active',
             ]);
     });
 });

@@ -46,7 +46,7 @@ class CustomerController extends Controller
     public function show(Customer $customer)
     {
         //
-        $query = Customer::where("id", $customer->id);
+        $query = Customer::where('id', $customer->id);
 
         return response()->json($query->first());
     }
@@ -70,12 +70,13 @@ class CustomerController extends Controller
     public function destroy(Customer $customer)
     {
         $customer->delete();
+
         return response()->noContent();
     }
 
     public function toggleActive(Customer $customer)
     {
-        $customer->active = !$customer->active;
+        $customer->active = ! $customer->active;
         $customer->save();
 
         return response()->json($customer);
@@ -88,7 +89,7 @@ class CustomerController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Password reset email sent.'
+            'message' => 'Password reset email sent.',
         ]);
     }
 }

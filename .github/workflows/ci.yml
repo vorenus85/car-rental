@@ -7,7 +7,7 @@ on:
 
 jobs:
     backend:
-        name: PHPStan
+        name: Backend
         runs-on: ubuntu-latest
 
         steps:
@@ -18,15 +18,34 @@ jobs:
               with:
                   php-version: '8.3'
                   coverage: none
+                  tools: composer:v2
+
+            - name: Get Composer cache directory
+              id: composer-cache
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+            - name: Cache Composer dependencies
+              uses: actions/cache@v4
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-composer-
 
             - name: Install Composer dependencies
-              run: composer install --no-interaction --prefer-dist
+              run: composer install --no-interaction --prefer-dist --no-progress
+
+            - name: Run Pint
+              run: vendor/bin/pint --test --version
 
             - name: Run PHPStan
               run: vendor/bin/phpstan analyse
 
+            - name: Run Tests
+              run: php artisan test
+
     frontend:
-        name: ESLint + Prettier
+        name: Frontend
         runs-on: ubuntu-latest
 
         steps:
@@ -36,6 +55,7 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: '20'
+                  cache: npm
 
             - name: Install NPM dependencies
               run: npm ci
@@ -45,3 +65,11 @@ jobs:
 
             - name: Run Prettier check
               run: npm run format:check
+
+            - name: Run Tests
+              run: npm run test
+              env:
+                  LARAVEL_BYPASS_ENV_CHECK: 1
+
+            - name: Build
+              run: npm run build

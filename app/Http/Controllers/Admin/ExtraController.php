@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Extra\StoreExtraRequest;
 use App\Http\Requests\Admin\Extra\UpdateExtraRequest;
 use App\Http\Resources\Admin\ExtraResource;
-use Illuminate\Http\Response;
 use App\Models\Extra;
+use Illuminate\Http\Response;
 
 class ExtraController extends Controller
 {
@@ -53,7 +53,6 @@ class ExtraController extends Controller
         $validated = $request->validated();
 
         $extra->update($validated);
-
 
         return response()->json(new ExtraResource($extra), 200);
     }

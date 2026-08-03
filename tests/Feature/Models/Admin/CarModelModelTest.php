@@ -7,10 +7,9 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
-
 describe('CarModel model', function () {
     it('has fillable attributes', function () {
-        $carModel = new CarModel();
+        $carModel = new CarModel;
 
         expect($carModel->getFillable())
             ->toBe([
@@ -20,11 +19,10 @@ describe('CarModel model', function () {
             ]);
     });
 
-
     it('belongs to a brand', function () {
         $brand = Brand::factory()->create();
 
-        $carModel = CarModel::factory()->create(["brand_id" => $brand->id]);
+        $carModel = CarModel::factory()->create(['brand_id' => $brand->id]);
 
         expect($carModel->brand)
             ->toBeInstanceOf(Brand::class)

@@ -16,7 +16,7 @@ class Extra extends Model
         'description',
         'price',
         'icon',
-        'maxQuantity'
+        'maxQuantity',
     ];
 
     public function bookings(): BelongsToMany

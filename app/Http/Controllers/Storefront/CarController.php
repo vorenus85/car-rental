@@ -108,7 +108,6 @@ class CarController extends Controller
             $request->integer('per_page', 12)
         );
 
-
         return CarListResource::collection($cars);
     }
 
@@ -119,7 +118,7 @@ class CarController extends Controller
             'variant:id,name,model_id,transmission,fuel,seats,doors,range_km,luggage_count,body_type,description',
             'variant.model:id,name,brand_id',
             'variant.model.brand:id,name',
-            'features' => fn($query) => $query->orderBy('name'),
+            'features' => fn ($query) => $query->orderBy('name'),
         ])->findOrFail($car->id);
 
         return new CarUnitResource($response);
@@ -131,7 +130,7 @@ class CarController extends Controller
             ->with([
                 'variant:id,name,model_id,transmission,fuel,seats,luggage_count',
                 'variant.model:id,name,brand_id',
-                'variant.model.brand:id,name'
+                'variant.model.brand:id,name',
             ])
             ->where('status', 'available')
             ->inRandomOrder()

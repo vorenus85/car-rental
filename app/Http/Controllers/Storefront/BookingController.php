@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Storefront\BookingStoreRequest;
+use App\Http\Resources\Storefront\CarBookingResource;
 use App\Models\Booking;
 use App\Models\BookingExtra;
-use App\Http\Resources\Storefront\CarBookingResource;
 use App\Models\Extra;
-use App\Models\Insurance;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
+use App\Models\Insurance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -26,7 +26,6 @@ class BookingController extends Controller
             'dropOffLocationId' => ['required', 'integer', 'exists:locations,id'],
         ]);
 
-
         $pickup = Location::select(['id', 'name', 'city_id'])
             ->with('cityModel:id,name')
             ->findOrFail($request->pickUpLocationId);
@@ -34,8 +33,8 @@ class BookingController extends Controller
         $dropoff = $request->pickUpLocationId == $request->dropOffLocationId
             ? $pickup
             : Location::select(['id', 'name', 'city_id'])
-            ->with('cityModel:id,name')
-            ->findOrFail($request->dropOffLocationId);
+                ->with('cityModel:id,name')
+                ->findOrFail($request->dropOffLocationId);
 
         $car = Car::with([
             'variant:id,name,model_id',
@@ -79,9 +78,9 @@ class BookingController extends Controller
         $extraModels = $selectedExtras->isEmpty()
             ? collect()
             : Extra::query()
-            ->whereIn('id', $selectedExtras->pluck('id')->all())
-            ->get()
-            ->keyBy('id');
+                ->whereIn('id', $selectedExtras->pluck('id')->all())
+                ->get()
+                ->keyBy('id');
 
         $days = $pickupAt->diffInDays($dropoffAt);
         $dailyRate = (float) $car->price_per_day;
@@ -90,7 +89,7 @@ class BookingController extends Controller
         $extrasTotal = $selectedExtras->reduce(function (float $carry, array $extra) use ($days, $extraModels) {
             $extraModel = $extraModels->get($extra['id']);
 
-            if (!$extraModel) {
+            if (! $extraModel) {
                 return $carry;
             }
 
@@ -114,7 +113,7 @@ class BookingController extends Controller
             $extraModels
         ) {
             $booking = Booking::create([
-                'booking_number' => 'TMP-' . now()->format('YmdHisv'),
+                'booking_number' => 'TMP-'.now()->format('YmdHisv'),
 
                 'customer_id' => $validated['customerId'],
                 'car_id' => $validated['carId'],
@@ -171,7 +170,7 @@ class BookingController extends Controller
             foreach ($selectedExtras as $selectedExtra) {
                 $extraModel = $extraModels->get($selectedExtra['id']);
 
-                if (!$extraModel) {
+                if (! $extraModel) {
                     continue;
                 }
 

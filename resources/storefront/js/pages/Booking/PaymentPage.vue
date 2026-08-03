@@ -256,8 +256,15 @@ const handleBack = () => {
 }
 
 const buildBookingPayload = () => {
-    const { carId, pickUpLocationId, dropOffLocationId, pickUpDate, pickUpTime, dropOffDate, dropOffTime } =
-        bookingStore.getBookingData
+    const {
+        carId,
+        pickUpLocationId,
+        dropOffLocationId,
+        pickUpDate,
+        pickUpTime,
+        dropOffDate,
+        dropOffTime,
+    } = bookingStore.getBookingData
     const { firstName, lastName, email, phone, birthDate } = bookingStore.getDriverPersonal
     const address = bookingStore.getDriverAddress
     const licence = bookingStore.getDriverLicence

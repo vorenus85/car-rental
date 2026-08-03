@@ -29,7 +29,7 @@ class CarListResource extends JsonResource
             'transmission' => $this->variant?->transmission,
             'fuel' => $this->variant?->fuel,
             'luggageCount' => $this->variant?->luggage_count,
-            'name' => $this->variant?->model?->brand?->name . ' ' . $this->variant?->model?->name,
+            'name' => $this->variant?->model?->brand?->name.' '.$this->variant?->model?->name,
             'variantName' => $this->variant?->name,
             'modelName' => $this->variant?->model?->name,
             'brandName' => $this->variant?->model?->brand?->name,

@@ -33,7 +33,7 @@ class CarUnitResource extends JsonResource
             'fuel' => $this->variant?->fuel,
             'rangeKm' => $this->variant?->range_km,
             'luggageCount' => $this->variant?->luggage_count,
-            'name' => $this->variant?->model?->brand?->name . ' ' . $this->variant?->model?->name,
+            'name' => $this->variant?->model?->brand?->name.' '.$this->variant?->model?->name,
             'variantName' => $this->variant?->name,
             'variantDesc' => $this->variant?->description,
             'modelName' => $this->variant?->model?->name,

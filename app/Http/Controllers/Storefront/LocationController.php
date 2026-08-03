@@ -12,7 +12,7 @@ class LocationController extends Controller
         $locations = Location::query()
             ->select(['id', 'name', 'city_id', 'country'])
             ->with('cityModel:id,name')
-            ->where("active", true)
+            ->where('active', true)
             ->orderBy('country', 'asc')
             ->orderBy('name', 'asc')
             ->get();

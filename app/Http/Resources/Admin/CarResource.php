@@ -5,7 +5,6 @@ namespace App\Http\Resources\Admin;
 use App\Models\Fleet\Car;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Illuminate\Support\Facades\Storage;
 
 /**
  * @mixin Car
@@ -37,7 +36,7 @@ class CarResource extends JsonResource
                 ];
             }),
             'features' => $this->whenLoaded('features', function () {
-                return $this->features->map(fn($feature) => [
+                return $this->features->map(fn ($feature) => [
                     'id' => $feature->id,
                     'name' => $feature->name,
                     'category' => $feature->category,
