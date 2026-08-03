@@ -49,15 +49,18 @@ class Booking extends Model
         'daily_rate',
         'subtotal',
         'extras_total',
+        'insurance_id',
+        'insurance_name',
+        'insurance_price',
         'insurance_total',
-        'discount_total',
         'tax_total',
         'deposit_amount',
         'total_amount',
 
         // Payment
-        'stripe_payment_intent_id',
-        'stripe_payment_method',
+        // External payment provider's payment intent identifier (e.g. Stripe)
+        'payment_intent_id',
+        'payment_method',
         'payment_status',
         'paid_at',
 
@@ -91,9 +94,9 @@ class Booking extends Model
             'daily_rate' => 'decimal:2',
             'subtotal' => 'decimal:2',
             'extras_total' => 'decimal:2',
+            'insurance_price' => 'decimal:2',
 
             'insurance_total' => 'decimal:2',
-            'discount_total' => 'decimal:2',
             'tax_total' => 'decimal:2',
             'deposit_amount' => 'decimal:2',
             'total_amount' => 'decimal:2',

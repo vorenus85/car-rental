@@ -5,3 +5,7 @@ export const getBookingData = ({ carId, pickUpLocationId, dropOffLocationId }) =
         params: { carId, pickUpLocationId, dropOffLocationId },
     })
 }
+
+export const createBooking = payload => {
+    return axios.post('/api/storefront/booking', payload)
+}

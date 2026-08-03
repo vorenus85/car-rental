@@ -19,11 +19,14 @@
 
                     <p class="mt-1 text-surface-600">
                         A confirmation email has been sent to
-                        <span class="font-semibold"> john.sinclair@email.com </span>.
+                        <span class="font-semibold">
+                            {{ bookingStore?.driver?.personal?.email || 'your email address' }}
+                        </span>
+                        .
                     </p>
                 </div>
 
-                <BookingNumber :booking-id="'CR-20260720-07-15-0012'" class="mt-5"></BookingNumber>
+                <BookingNumber :booking-id="bookingNumber" class="mt-5"></BookingNumber>
 
                 <div class="mt-10 rounded-xl border border-surface-200 bg-white">
                     <div class="grid gap-8 p-6 md:grid-cols-4">
@@ -34,7 +37,9 @@
                             <div>
                                 <p class="text-sm text-surface-500">Vehicle</p>
 
-                                <p class="font-semibold">Volkswagen Golf 8</p>
+                                <p class="font-semibold">
+                                    {{ bookingLookupStore?.carData?.name || 'Your selected vehicle' }}
+                                </p>
                             </div>
                         </div>
 
@@ -45,7 +50,9 @@
                             <div>
                                 <p class="text-sm text-surface-500">Pickup</p>
 
-                                <p class="font-semibold">Jul 15, 2026 • 10:00</p>
+                                <p class="font-semibold">
+                                    {{ pickUpLabel }}
+                                </p>
 
                                 <p class="text-sm text-surface-600">Vienna Central Station</p>
                             </div>
@@ -58,7 +65,9 @@
                             <div>
                                 <p class="text-sm text-surface-500">Drop-off</p>
 
-                                <p class="font-semibold">Jul 18, 2026 • 10:00</p>
+                                <p class="font-semibold">
+                                    {{ dropOffLabel }}
+                                </p>
 
                                 <p class="text-sm text-surface-600">Vienna Airport</p>
                             </div>
@@ -71,7 +80,9 @@
                             <div>
                                 <p class="text-sm text-surface-500">Total</p>
 
-                                <p class="text-2xl font-bold text-primary">€1,131</p>
+                                <p class="text-2xl font-bold text-primary">
+                                    €{{ bookingTotal || '0' }}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -104,6 +115,59 @@ import FreeCancelation from '@storefront/components/modules/FreeCancelation.vue'
 import SupportPhone from '@storefront/components/modules/SupportPhone.vue'
 import BookingNumber from '@storefront/components/modules/Booking/BookingNumber.vue'
 import ConfettiEffect from '../../components/modules/Booking/ConfettiEffect.vue'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { useBookingStore } from '@storefront/stores/bookingStore'
+import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
+import { formatDate } from '@storefront/utils.js'
+
+const route = useRoute()
+const bookingStore = useBookingStore()
+const bookingLookupStore = useBookingLookupStore()
+
+const bookingNumber = computed(() => {
+    return route.query.bookingNumber || 'Booking reference'
+})
+
+const bookingTotal = computed(() => {
+    const dailyRate = bookingLookupStore?.carData?.pricePerDay || 0
+    const days = bookingLookupStore?.pickUpDate && bookingLookupStore?.dropOffDate
+        ? Math.max(
+              1,
+              Math.ceil(
+                  (new Date(bookingLookupStore.dropOffDate).setHours(0, 0, 0, 0) -
+                      new Date(bookingLookupStore.pickUpDate).setHours(0, 0, 0, 0)) /
+                      (1000 * 60 * 60 * 24)
+              )
+          )
+        : 0
+    const insurance = (bookingLookupStore?.insuranceData?.price || 0) * days
+    const extras = (bookingLookupStore?.extrasData || []).reduce((sum, extra) => {
+        return sum + (extra.quantity || 0) * (extra.price || 0) * days
+    }, 0)
+
+    return (dailyRate * days + insurance + extras).toFixed(0)
+})
+
+const pickUpLabel = computed(() => {
+    if (!bookingLookupStore?.pickUpDate) {
+        return 'Pickup details'
+    }
+
+    return `${formatDate(new Date(bookingLookupStore.pickUpDate), 'yyyy.MM.dd')} • ${
+        bookingLookupStore.pickUpTime
+    }`
+})
+
+const dropOffLabel = computed(() => {
+    if (!bookingLookupStore?.dropOffDate) {
+        return 'Drop-off details'
+    }
+
+    return `${formatDate(new Date(bookingLookupStore.dropOffDate), 'yyyy.MM.dd')} • ${
+        bookingLookupStore.dropOffTime
+    }`
+})
 
 const breadcrumbItems = [
     {

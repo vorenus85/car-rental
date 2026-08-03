@@ -138,7 +138,7 @@
                     </div>
                     <div class="space-y-4 mt-5 pt-5 pb-5 mb-5">
                         <div class="flex items-start gap-3">
-                            <Checkbox v-model="form.acceptTerms" inputId="terms" binary />
+                            <Checkbox v-model="form.acceptTerms" input-id="terms" binary />
 
                             <label
                                 for="terms"
@@ -157,7 +157,7 @@
                         </div>
 
                         <div class="flex items-start gap-3">
-                            <Checkbox v-model="form.acceptPrivacy" inputId="privacy" binary />
+                            <Checkbox v-model="form.acceptPrivacy" input-id="privacy" binary />
 
                             <label
                                 for="privacy"
@@ -191,6 +191,7 @@
                 :back-label="'Back to Driver details'"
                 :next-label="'Complete Booking'"
                 :disabled="!hasAcceptedPolicies"
+                :loading="submitting"
                 :icon="'lock'"
                 :icon-pos="'left'"
                 @back="handleBack"
@@ -211,9 +212,18 @@ import FreeCancelation from '@storefront/components/modules/FreeCancelation.vue'
 import { useRouter } from 'vue-router'
 import { Checkbox, InputText, Message, RadioButton } from 'primevue'
 import { computed, reactive, ref } from 'vue'
+import { useBookingStore } from '@storefront/stores/bookingStore'
+import { useAuthStore } from '@storefront/stores/authStore'
+import { createBooking } from '@storefront/services/bookingService'
+import { useCustomToast } from '@storefront/composables/useCustomToast'
 
 const router = useRouter()
+const bookingStore = useBookingStore()
+const authStore = useAuthStore()
+const { customToast } = useCustomToast()
+
 const paymentMethod = ref('card')
+const submitting = ref(false)
 
 const card = ref({
     number: '',
@@ -245,7 +255,67 @@ const handleBack = () => {
     globalThis.history.back()
 }
 
-const handleNext = () => {
-    router.push({ name: 'booking-success' })
+const buildBookingPayload = () => {
+    const { carId, pickUpLocationId, dropOffLocationId, pickUpDate, pickUpTime, dropOffDate, dropOffTime } =
+        bookingStore.getBookingData
+    const { firstName, lastName, email, phone, birthDate } = bookingStore.getDriverPersonal
+    const address = bookingStore.getDriverAddress
+    const licence = bookingStore.getDriverLicence
+
+    return {
+        carId,
+        customerId: authStore.user?.id,
+        pickUpLocationId,
+        dropOffLocationId,
+        pickUpDate,
+        dropOffDate,
+        pickUpTime,
+        dropOffTime,
+        driver_first_name: firstName,
+        driver_last_name: lastName,
+        driver_email: email,
+        driver_phone: phone,
+        driver_birth_date: birthDate,
+        driver_country: address.country,
+        driver_city: address.city,
+        driver_postal_code: address.postalCode,
+        driver_address_line_1: address.addressLine1,
+        driver_address_line_2: address.addressLine2,
+        driver_licence_number: licence.licenceNumber,
+        driver_licence_country: licence.issuingCountry,
+        driver_licence_issue_date: licence.issueDate,
+        driver_licence_expiry_date: licence.expiryDate,
+        insurance_id: bookingStore.insuranceId,
+        extras: bookingStore.extras,
+    }
+}
+
+const handleNext = async () => {
+    if (submitting.value || !hasAcceptedPolicies.value) {
+        return
+    }
+
+    submitting.value = true
+
+    try {
+        const { data } = await createBooking(buildBookingPayload())
+        const booking = data?.booking
+
+        customToast.success('Booking completed successfully.')
+
+        router.push({
+            name: 'booking-success',
+            query: {
+                bookingNumber: booking?.booking_number,
+                bookingId: booking?.id,
+            },
+        })
+    } catch (error) {
+        const message = error?.response?.data?.message || 'We could not complete the booking.'
+        customToast.error(message)
+        router.push({ name: 'booking-failure' })
+    } finally {
+        submitting.value = false
+    }
 }
 </script>

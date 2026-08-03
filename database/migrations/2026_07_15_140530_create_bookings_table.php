@@ -67,10 +67,8 @@ return new class extends Migration
             $table->decimal('insurance_price', 10, 2)->nullable();
             $table->decimal('insurance_total', 10, 2)->default(0);
 
-            $table->decimal('discount_total', 10, 2)->default(0);
             $table->decimal('tax_total', 10, 2)->default(0);
 
-            $table->decimal('deposit_amount', 10, 2)->default(0);
             $table->decimal('total_amount', 10, 2);
 
             /*
@@ -79,8 +77,9 @@ return new class extends Migration
              |--------------------------------------------------------------------------
              */
 
-            $table->string('stripe_payment_intent_id')->nullable();
-            $table->string('stripe_payment_method')->nullable();
+            // External payment provider's payment intent identifier (e.g. Stripe)
+            $table->string('payment_intent_id')->nullable();
+            $table->string('payment_method')->nullable();
 
             $table->string('payment_status')->default('pending');
 
