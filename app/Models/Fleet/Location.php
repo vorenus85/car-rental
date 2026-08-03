@@ -30,7 +30,7 @@ class Location extends Model
         'image',
         'description',
 
-        'active'
+        'active',
     ];
 
     protected $appends = [

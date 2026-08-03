@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\Storefront\ResetPasswordNotification;
+use Database\Factories\CustomerFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,10 +12,11 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Customer extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\CustomerFactory> */
+    use HasApiTokens;
+
+    /** @use HasFactory<CustomerFactory> */
     use HasFactory;
     use Notifiable;
-    use HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -51,7 +53,6 @@ class Customer extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
 
     public function sendPasswordResetNotification($token)
     {

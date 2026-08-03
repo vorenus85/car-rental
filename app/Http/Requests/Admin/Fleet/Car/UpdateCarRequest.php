@@ -24,7 +24,7 @@ class UpdateCarRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                Rule::unique('cars', 'licence_plate')->ignore($this->car)
+                Rule::unique('cars', 'licence_plate')->ignore($this->car),
             ],
 
             'price_per_day' => [
@@ -47,7 +47,7 @@ class UpdateCarRequest extends FormRequest
                 'required',
                 'integer',
                 'min:1900',
-                'max:' . (date('Y') + 1),
+                'max:'.(date('Y') + 1),
             ],
 
             'mileage' => [

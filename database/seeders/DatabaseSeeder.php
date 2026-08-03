@@ -9,9 +9,6 @@ use Database\Seeders\Fleet\CitySeeder;
 use Database\Seeders\Fleet\FeatureSeeder;
 use Database\Seeders\Fleet\LocationSeeder;
 use Database\Seeders\Fleet\VariantSeeder;
-use Database\Seeders\CustomerSeeder;
-use Database\Seeders\ExtraSeeder;
-use Database\Seeders\InsuranceSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 

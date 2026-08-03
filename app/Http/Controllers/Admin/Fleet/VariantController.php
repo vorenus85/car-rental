@@ -53,7 +53,7 @@ class VariantController extends Controller
 
         return response()->json([
             'message' => 'Variant created successfully.',
-            'data' => $variant
+            'data' => $variant,
         ], 201);
     }
 

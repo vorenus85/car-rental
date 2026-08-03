@@ -13,7 +13,7 @@ class AccountController extends Controller
     //
     public function show()
     {
-        $user  = Auth::guard('admin')->user();
+        $user = Auth::guard('admin')->user();
 
         return response()->json($user);
     }
@@ -43,7 +43,7 @@ class AccountController extends Controller
         ]);
 
         return response()->json([
-            "message" => "Password changed successfully."
+            'message' => 'Password changed successfully.',
         ], 201);
     }
 }

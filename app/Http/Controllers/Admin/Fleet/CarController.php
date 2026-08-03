@@ -35,7 +35,7 @@ class CarController extends Controller
             ->with([
                 'variant:id,name,model_id,body_type',
                 'variant.model:id,name,brand_id',
-                'variant.model.brand:id,name'
+                'variant.model.brand:id,name',
             ])
             ->with('features:id,name,category')
             ->get();
@@ -74,7 +74,7 @@ class CarController extends Controller
             'features:id,name',
         ])->first();
 
-        $result['image_url'] = $result->image ? Storage::url('/uploads/' . $result->image) : "";
+        $result['image_url'] = $result->image ? Storage::url('/uploads/'.$result->image) : '';
 
         return response()->json($result);
     }
@@ -109,7 +109,7 @@ class CarController extends Controller
     {
 
         if ($car->image) {
-            Storage::delete('uploads/' . $car->image);
+            Storage::delete('uploads/'.$car->image);
         }
 
         $car->delete();

@@ -38,7 +38,7 @@ describe('CarModelController', function () {
             ->assertJson([
                 'id' => $carModel->id,
                 'brand' => [
-                    "id" => $carModel->brand_id
+                    'id' => $carModel->brand_id,
                 ],
                 'name' => $carModel->name,
                 'description' => $carModel->description,

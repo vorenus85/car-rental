@@ -24,7 +24,7 @@ class CarModelSeeder extends Seeder
                 continue;
             }
 
-            $carModels = $item["models"];
+            $carModels = $item['models'];
 
             foreach ($carModels as $carModel) {
                 CarModel::create([

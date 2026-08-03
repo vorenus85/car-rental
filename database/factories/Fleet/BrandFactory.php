@@ -31,7 +31,7 @@ class BrandFactory extends Factory
                 'audi.jpg',
                 'bmw.jpg',
                 'mercedes.jpg',
-            ])
+            ]),
         ];
     }
 }

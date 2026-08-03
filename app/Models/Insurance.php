@@ -15,7 +15,7 @@ class Insurance extends Model
         'name',
         'description',
         'price',
-        'recommended'
+        'recommended',
     ];
 
     public function bookings(): BelongsToMany

@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Customer;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -29,7 +28,7 @@ class CustomerSeeder extends Seeder
             ->count(100)
             ->create([
                 'created_at' => fake()->dateTimeBetween('-3 months', 'now'),
-                'updated_at' => fn(array $attributes) => $attributes['created_at'],
+                'updated_at' => fn (array $attributes) => $attributes['created_at'],
             ]);
 
         $this->command->info('Customers data seeded successfully!');

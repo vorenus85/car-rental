@@ -18,7 +18,6 @@ class Feature extends Model
     ];
 
     /**
-     *
      * @return BelongsToMany<Car, $this>
      */
     public function cars(): BelongsToMany

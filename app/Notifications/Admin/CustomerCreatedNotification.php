@@ -2,11 +2,11 @@
 
 namespace App\Notifications\Admin;
 
+use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Password;
-use Illuminate\Auth\Passwords\PasswordBroker;
 
 class CustomerCreatedNotification extends Notification
 {
@@ -43,13 +43,13 @@ class CustomerCreatedNotification extends Notification
         $token = $broker->createToken($this->customer);
 
         $passwordSetupUrl = config('app.frontend_url')
-            . '/reset-password?token='
-            . $token
-            . '&email='
-            . urlencode($this->customer->email)
-            . '&type=welcome';
+            .'/reset-password?token='
+            .$token
+            .'&email='
+            .urlencode($this->customer->email)
+            .'&type=welcome';
 
-        return (new MailMessage())
+        return (new MailMessage)
             ->subject('Your Account Has Been Created')
             ->greeting('Welcome to the DrivenGO!')
             ->line('Your account has been successfully created.')

@@ -3,7 +3,6 @@
 namespace App\Notifications\Storefront;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -35,7 +34,7 @@ class ResetPasswordNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $url = config('app.frontend_url')
-            . "/reset-password?token={$this->token}&email={$notifiable->email}";
+            ."/reset-password?token={$this->token}&email={$notifiable->email}";
 
         return (new MailMessage)
             ->subject('Reset Your Password')

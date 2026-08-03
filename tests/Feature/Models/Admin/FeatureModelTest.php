@@ -10,7 +10,7 @@ uses(RefreshDatabase::class);
 describe('Feature model', function () {
 
     it('has fillable attributes', function () {
-        $feature = new Feature();
+        $feature = new Feature;
 
         expect($feature->getFillable())
             ->toBe([
@@ -21,7 +21,7 @@ describe('Feature model', function () {
     });
 
     it('has many cars relationship', function () {
-        $feature = new Feature();
+        $feature = new Feature;
 
         expect($feature->cars())
             ->toBeInstanceOf(BelongsToMany::class);

@@ -10,7 +10,7 @@ class LocationFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->company() . ' Location',
+            'name' => fake()->company().' Location',
 
             'country' => fake()->country(),
             'city_id' => City::factory(),

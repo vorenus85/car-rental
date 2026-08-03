@@ -16,7 +16,7 @@ class UpdateLocationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', Rule::unique('locations', 'name')->ignore($this->location),],
+            'name' => ['required', 'string', 'max:255', Rule::unique('locations', 'name')->ignore($this->location)],
 
             'country' => ['required', 'string', 'max:255'],
             'city_id' => ['required', Rule::exists('cities', 'id')],

@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
-use App\Notifications\Admin\UserCreatedNotification;
 use App\Models\User;
+use App\Notifications\Admin\UserCreatedNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
@@ -46,7 +46,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         //
-        $query = User::where("id", $user->id);
+        $query = User::where('id', $user->id);
 
         return response()->json($query->first());
     }
@@ -70,12 +70,13 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
         return response()->noContent();
     }
 
     public function toggleActive(User $user)
     {
-        $user->active = !$user->active;
+        $user->active = ! $user->active;
         $user->save();
 
         return response()->json($user);
@@ -88,7 +89,7 @@ class UserController extends Controller
         ]);
 
         return response()->json([
-            'message' => 'Password reset email sent.'
+            'message' => 'Password reset email sent.',
         ]);
     }
 }

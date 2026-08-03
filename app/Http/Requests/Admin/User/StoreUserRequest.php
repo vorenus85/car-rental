@@ -8,7 +8,6 @@ use Illuminate\Validation\Rule;
 
 class StoreUserRequest extends FormRequest
 {
-
     // Password validation is intentionally omitted.
     // User accounts are created without a password, and a password setup email
     // is sent immediately after creation. This allows users to securely set

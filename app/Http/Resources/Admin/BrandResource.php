@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Resources\Admin;
 
 use App\Models\Fleet\Brand;
@@ -28,7 +27,7 @@ class BrandResource extends JsonResource
             'image' => $this->whenHas('image'),
             'imageUrl' => $this->whenHas('image', function () {
                 return $this->image
-                    ? Storage::url('/uploads/' . $this->image)
+                    ? Storage::url('/uploads/'.$this->image)
                     : null;
             }),
         ];

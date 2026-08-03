@@ -80,7 +80,7 @@ describe('UserController', function () {
     it('can delete a user', function () {
         $user = User::factory()->create();
 
-        $response = $this->withSession(['_token' => 'test-token'])->deleteJson("/api/admin/users/{$user->id}", ['_token' => 'test-token',]);
+        $response = $this->withSession(['_token' => 'test-token'])->deleteJson("/api/admin/users/{$user->id}", ['_token' => 'test-token']);
 
         $response->assertNoContent();
 
@@ -94,7 +94,7 @@ describe('UserController', function () {
             'active' => false,
         ]);
 
-        $response = $this->withSession(['_token' => 'test-token'])->putJson("/api/admin/users/{$user->id}/toggle-active", ['_token' => 'test-token',]);
+        $response = $this->withSession(['_token' => 'test-token'])->putJson("/api/admin/users/{$user->id}/toggle-active", ['_token' => 'test-token']);
 
         $response
             ->assertOk()

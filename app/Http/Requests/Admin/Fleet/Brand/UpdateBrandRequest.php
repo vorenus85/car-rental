@@ -19,7 +19,7 @@ class UpdateBrandRequest extends FormRequest
             'name' => [
                 'required',
                 'string',
-                Rule::unique('brands', 'name')->ignore($this->brand)
+                Rule::unique('brands', 'name')->ignore($this->brand),
             ],
             'image' => 'nullable|string',
         ];

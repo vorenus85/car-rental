@@ -31,7 +31,6 @@ class Car extends Model
     ];
 
     /**
-     *
      * @return BelongsTo<Variant, $this>
      */
     public function variant(): BelongsTo
@@ -40,7 +39,6 @@ class Car extends Model
     }
 
     /**
-     *
      * @return BelongsTo<Location, $this>
      */
     public function location(): BelongsTo
@@ -49,7 +47,6 @@ class Car extends Model
     }
 
     /**
-     *
      * @return BelongsToMany<Feature, $this>
      */
     public function features(): BelongsToMany
@@ -60,7 +57,7 @@ class Car extends Model
     public function getImageUrlAttribute(): ?string
     {
         return $this->image
-            ? Storage::url('/uploads/' . $this->image)
+            ? Storage::url('/uploads/'.$this->image)
             : null;
     }
 }

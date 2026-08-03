@@ -23,7 +23,7 @@ class CarBookingResource extends JsonResource
             'pricePerDay' => $this->price_per_day,
             'image' => $this->whenHas('image'),
             'imageUrl' => $this->image_url,
-            'name' => $this->variant?->model?->brand?->name . ' ' . $this->variant?->model?->name,
+            'name' => $this->variant?->model?->brand?->name.' '.$this->variant?->model?->name,
             'variantName' => $this->variant?->name,
             'modelName' => $this->variant?->model?->name,
             'brandName' => $this->variant?->model?->brand?->name,

@@ -50,41 +50,41 @@ describe('VariantController', function () {
         $car_model = CarModel::factory()->create();
 
         $payload = [
-            "name" => "Ultimate roadcaster 1.0",
-            "description" => "An economical petrol engine with manual transmission, ideal for short city trips and low fuel consumption.",
-            "model_id" => $car_model->id,
-            "body_type" => "hatchback",
-            "transmission" => "manual",
-            "fuel" => "petrol",
-            "seats" => 5,
-            "doors" => 5,
-            "luggage_count" => 3,
-            "range_km" => 1000,
+            'name' => 'Ultimate roadcaster 1.0',
+            'description' => 'An economical petrol engine with manual transmission, ideal for short city trips and low fuel consumption.',
+            'model_id' => $car_model->id,
+            'body_type' => 'hatchback',
+            'transmission' => 'manual',
+            'fuel' => 'petrol',
+            'seats' => 5,
+            'doors' => 5,
+            'luggage_count' => 3,
+            'range_km' => 1000,
             '_token' => 'test-token',
         ];
 
         $response = $this->withSession(['_token' => 'test-token'])->postJson('/api/admin/variants', $payload);
 
         $response->assertCreated()->assertJsonFragment([
-            "name" => "Ultimate roadcaster 1.0",
-            "description" => "An economical petrol engine with manual transmission, ideal for short city trips and low fuel consumption.",
-            "model_id" => $car_model->id,
-            "body_type" => "hatchback",
-            "transmission" => "manual",
-            "fuel" => "petrol",
-            "seats" => 5,
-            "doors" => 5,
-            "luggage_count" => 3,
-            "range_km" => 1000,
+            'name' => 'Ultimate roadcaster 1.0',
+            'description' => 'An economical petrol engine with manual transmission, ideal for short city trips and low fuel consumption.',
+            'model_id' => $car_model->id,
+            'body_type' => 'hatchback',
+            'transmission' => 'manual',
+            'fuel' => 'petrol',
+            'seats' => 5,
+            'doors' => 5,
+            'luggage_count' => 3,
+            'range_km' => 1000,
         ]);
 
         $this->assertDataBaseHas('variants', [
-            "name" => $payload["name"],
+            'name' => $payload['name'],
         ]);
     });
 
     it('validates required fields when creating feature', function () {
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/api/admin/variants', ['_token' => 'test-token',]);
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/api/admin/variants', ['_token' => 'test-token']);
 
         $response
             ->assertUnprocessable()
@@ -113,8 +113,8 @@ describe('VariantController', function () {
             'fuel' => 'diesel',
             'seats' => 5,
             'doors' => 4,
-            "luggage_count" => 3,
-            "range_km" => 1000,
+            'luggage_count' => 3,
+            'range_km' => 1000,
             '_token' => 'test-token',
         ];
 
@@ -188,7 +188,7 @@ describe('VariantController', function () {
 
         $response = $this->withSession(['_token' => 'test-token'])->deleteJson(
             "/api/admin/variants/{$variant->id}",
-            ['_token' => 'test-token',]
+            ['_token' => 'test-token']
         );
 
         $response->assertNoContent();

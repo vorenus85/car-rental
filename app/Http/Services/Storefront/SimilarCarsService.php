@@ -3,7 +3,6 @@
 namespace App\Http\Services\Storefront;
 
 use App\Models\Fleet\Car;
-use App\Models\Fleet\Location;
 use Illuminate\Support\Collection;
 
 class SimilarCarsService

@@ -21,15 +21,15 @@ class AuthController extends Controller
 
         $user = User::where('email', $credentials['email'])->first();
 
-        if (!$user || !Hash::check($credentials['password'], $user->password)) {
+        if (! $user || ! Hash::check($credentials['password'], $user->password)) {
             return response()->json([
-                'message' => 'Invalid credentials'
+                'message' => 'Invalid credentials',
             ], 401);
         }
 
-        if (!$user->active) {
+        if (! $user->active) {
             return response()->json([
-                'message' => 'Your account has been deactivated. Please contact an administrator.'
+                'message' => 'Your account has been deactivated. Please contact an administrator.',
             ], 403);
         }
 
@@ -38,7 +38,7 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         return response()->json([
-            'user' => Auth::guard('admin')->user()
+            'user' => Auth::guard('admin')->user(),
         ]);
     }
 
@@ -62,7 +62,7 @@ class AuthController extends Controller
         );
 
         return response()->json([
-            'message' => 'We have emailed your password reset link.'
+            'message' => 'We have emailed your password reset link.',
         ]);
     }
 
@@ -88,7 +88,7 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            'message' => 'Invalid token'
+            'message' => 'Invalid token',
         ], 400);
     }
 }

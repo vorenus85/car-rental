@@ -82,7 +82,7 @@ describe('BrandController', function () {
 
     it('validates required fields when creating brand', function () {
 
-        $response = $this->withSession(['_token' => 'test-token'])->postJson('/api/admin/brands', ['_token' => 'test-token',]);
+        $response = $this->withSession(['_token' => 'test-token'])->postJson('/api/admin/brands', ['_token' => 'test-token']);
 
         $response
             ->assertUnprocessable()
@@ -161,7 +161,7 @@ describe('BrandController', function () {
             ->assertUnprocessable()
             ->assertJsonValidationErrors([
                 'name',
-            ])->assertJsonCount(1, 'errors');;
+            ])->assertJsonCount(1, 'errors');
     });
 
     // destroy

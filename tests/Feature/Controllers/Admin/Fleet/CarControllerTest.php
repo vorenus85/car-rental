@@ -8,7 +8,6 @@ use App\Models\Fleet\Location;
 use App\Models\Fleet\Variant;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 uses(RefreshDatabase::class);
