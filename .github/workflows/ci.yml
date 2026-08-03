@@ -36,7 +36,7 @@ jobs:
               run: composer install --no-interaction --prefer-dist --no-progress
 
             - name: Run Pint
-              run: vendor/bin/pint --test
+              run: vendor/bin/pint --test --version
 
             - name: Run PHPStan
               run: vendor/bin/phpstan analyse
