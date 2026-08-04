@@ -61,9 +61,8 @@
 
                 <!-- Buttons -->
                 <div class="mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
-                    <Button label="Try Again" icon="pi pi-refresh" size="large" @click="tryAgain" />
-
                     <Button
+                        as-link
                         label="Back to Search"
                         icon="pi pi-arrow-left"
                         severity="secondary"
@@ -74,6 +73,7 @@
                 </div>
 
                 <!-- Support -->
+                <!--
                 <div class="mt-10 rounded-2xl bg-surface-100 p-6">
                     <h3 class="font-semibold text-surface-900">Need assistance?</h3>
 
@@ -90,8 +90,10 @@
                         text
                     />
                 </div>
+            -->
 
                 <!-- Error Reference -->
+                <!--
                 <div class="mt-8">
                     <p class="text-sm text-surface-500">Error Reference</p>
 
@@ -103,19 +105,21 @@
                         Please include this reference when contacting support.
                     </p>
                 </div>
-            </div>
+            --></div>
         </div>
     </PublicLayout>
 </template>
 <script setup>
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import { Button } from 'primevue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const tryAgain = () => {
     // Retry booking / payment
 }
 
 const backToSearch = () => {
-    // Navigate back to search page
+    router.push({ name: 'fleet' })
 }
 </script>
