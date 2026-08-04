@@ -16,6 +16,7 @@ class Customer extends Authenticatable
 
     /** @use HasFactory<CustomerFactory> */
     use HasFactory;
+
     use Notifiable;
 
     /**
