@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Admin\Fleet;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Fleet\Variant\VariantRequest;
 use App\Models\Fleet\Variant;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class VariantController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $car_variants = Variant::query()
             ->select([
@@ -44,7 +46,7 @@ class VariantController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(VariantRequest $request)
+    public function store(VariantRequest $request): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -60,7 +62,7 @@ class VariantController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Variant $variant)
+    public function show(Variant $variant): JsonResponse
     {
         //
         return response()->json(
@@ -71,7 +73,7 @@ class VariantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(VariantRequest $request, Variant $variant)
+    public function update(VariantRequest $request, Variant $variant): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -81,7 +83,7 @@ class VariantController extends Controller
         return response()->json($variant, 200);
     }
 
-    public function options(Request $request)
+    public function options(Request $request): JsonResponse
     {
         $model_id = $request->model_id;
 
@@ -97,7 +99,7 @@ class VariantController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Variant $variant)
+    public function destroy(Variant $variant): Response|JsonResponse
     {
         //
 

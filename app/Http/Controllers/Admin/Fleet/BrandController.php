@@ -7,7 +7,9 @@ use App\Http\Requests\Admin\Fleet\Brand\StoreBrandRequest;
 use App\Http\Requests\Admin\Fleet\Brand\UpdateBrandRequest;
 use App\Http\Resources\Admin\BrandResource;
 use App\Models\Fleet\Brand;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class BrandController extends Controller
@@ -15,7 +17,7 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse
     {
         //
         $query = Brand::query()->select('id', 'name', 'updated_at')->orderBy('name', 'asc');
@@ -32,7 +34,7 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreBrandRequest $request)
+    public function store(StoreBrandRequest $request): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -45,10 +47,10 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Brand $brand)
+    public function show(Brand $brand): JsonResponse
     {
         //
-        $brand['image_url'] = $brand->image ? Storage::url('/uploads/'.$brand->image) : '';
+        $brand['image_url'] = $brand->image ? Storage::url('/uploads/' . $brand->image) : '';
 
         return response()->json(new BrandResource($brand));
     }
@@ -56,7 +58,7 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBrandRequest $request, Brand $brand)
+    public function update(UpdateBrandRequest $request, Brand $brand): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -73,7 +75,7 @@ class BrandController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Brand $brand)
+    public function destroy(Brand $brand): Response|JsonResponse
     {
         //
         if ($brand->models()->exists()) {
@@ -83,7 +85,7 @@ class BrandController extends Controller
         }
 
         if ($brand->image) {
-            Storage::delete('uploads/'.$brand->image);
+            Storage::delete('uploads/' . $brand->image);
         }
 
         $brand->delete();

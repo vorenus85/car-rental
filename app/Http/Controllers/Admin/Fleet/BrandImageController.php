@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UploadImageRequest;
 use App\Http\Services\Admin\ImageUploadService;
 use App\Models\Fleet\Brand;
+use Illuminate\Http\JsonResponse;
 
 class BrandImageController extends Controller
 {
@@ -13,7 +14,7 @@ class BrandImageController extends Controller
         protected ImageUploadService $imageUploadService
     ) {}
 
-    public function store(UploadImageRequest $request)
+    public function store(UploadImageRequest $request): JsonResponse
     {
         try {
             $result = $this->imageUploadService->upload(
@@ -31,7 +32,7 @@ class BrandImageController extends Controller
         }
     }
 
-    public function delete(Brand $brand)
+    public function delete(Brand $brand): JsonResponse
     {
         try {
 
@@ -42,7 +43,7 @@ class BrandImageController extends Controller
             }
 
             $this->imageUploadService->delete(
-                'uploads/'.$brand->image
+                'uploads/' . $brand->image
             );
 
             $brand->update([

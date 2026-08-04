@@ -8,14 +8,16 @@ use App\Http\Requests\Admin\Fleet\CarModel\UpdateCarModelRequest;
 use App\Http\Resources\Admin\CarModelOptionResource;
 use App\Http\Resources\Admin\CarModelResource;
 use App\Models\Fleet\CarModel;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CarModelController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         //
         $carModels = CarModel::query()
@@ -29,7 +31,7 @@ class CarModelController extends Controller
         return response()->json(CarModelResource::collection($carModels), 200);
     }
 
-    public function options(Request $request)
+    public function options(Request $request): JsonResponse
     {
         $brand_id = $request->brand_id;
 
@@ -41,7 +43,7 @@ class CarModelController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCarModelRequest $request)
+    public function store(StoreCarModelRequest $request): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -54,7 +56,7 @@ class CarModelController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CarModel $carModel)
+    public function show(CarModel $carModel): JsonResponse
     {
         //
         $carModel->load('brand');
@@ -65,7 +67,7 @@ class CarModelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCarModelRequest $request, CarModel $carModel)
+    public function update(UpdateCarModelRequest $request, CarModel $carModel): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -78,7 +80,7 @@ class CarModelController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CarModel $carModel)
+    public function destroy(CarModel $carModel): Response|JsonResponse
     {
         //
         if ($carModel->variants()->exists()) {

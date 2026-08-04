@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Insurance\StoreInsuranceRequest;
 use App\Http\Requests\Admin\Insurance\UpdateInsuranceRequest;
 use App\Http\Resources\Admin\InsuranceResource;
 use App\Models\Insurance;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class InsuranceController extends Controller
@@ -14,7 +15,7 @@ class InsuranceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         //
         $insurances = Insurance::orderBy('name', 'asc')->get();
@@ -25,7 +26,7 @@ class InsuranceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreInsuranceRequest $request)
+    public function store(StoreInsuranceRequest $request): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -38,7 +39,7 @@ class InsuranceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Insurance $insurance)
+    public function show(Insurance $insurance): JsonResponse
     {
         //
         return response()->json(new InsuranceResource($insurance));
@@ -47,7 +48,7 @@ class InsuranceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateInsuranceRequest $request, Insurance $insurance)
+    public function update(UpdateInsuranceRequest $request, Insurance $insurance): JsonResponse
     {
         //
         $validated = $request->validated();
