@@ -68,11 +68,11 @@ export const useRedirects = () => {
     }
 
     const toCreateCustomer = () => {
-        router.push({ name: 'clients.create' })
+        router.push({ name: 'customers.create' })
     }
 
     const toCustomersList = () => {
-        router.push({ name: 'clients' })
+        router.push({ name: 'customers' })
     }
 
     const toLocationsList = () => {

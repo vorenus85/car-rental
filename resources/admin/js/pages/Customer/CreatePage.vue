@@ -1,6 +1,6 @@
 <template>
     <AppLayout>
-        <PageTitle title="Add new Client">
+        <PageTitle title="Add new Customer">
             <template #actions>
                 <Button
                     icon="pi pi-angle-left"
@@ -106,7 +106,7 @@ const onFormSubmit = async ({ valid, values }) => {
         try {
             await createCustomer(values)
 
-            customToast.success('Client created successfully!')
+            customToast.success('Customer created successfully!')
 
             toCustomersList()
         } catch (error) {
