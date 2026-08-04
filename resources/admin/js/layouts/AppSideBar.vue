@@ -128,8 +128,8 @@ const menus = [
     },
     {
         icon: 'users',
-        routeName: 'clients',
-        title: 'Clients',
+        routeName: 'customers',
+        title: 'Customers',
     },
     {
         icon: 'cog',

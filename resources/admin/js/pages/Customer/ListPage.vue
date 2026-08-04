@@ -1,6 +1,6 @@
 <template>
     <AppLayout>
-        <PageTitle title="Clients">
+        <PageTitle title="Customers">
             <template #actions>
                 <Button icon="pi pi-plus" label="New" primary @click="toCreateCustomer" />
             </template>
@@ -64,7 +64,7 @@
                                 icon="pi pi-eye"
                                 as="router-link"
                                 :to="{
-                                    name: 'clients.show',
+                                    name: 'customers.show',
                                     params: {
                                         id: slotProps.data?.id,
                                     },
