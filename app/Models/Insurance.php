@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Insurance extends Model
 {
     //
-    use HasFactory;
 
     protected $fillable = [
         'name',
@@ -18,6 +16,9 @@ class Insurance extends Model
         'recommended',
     ];
 
+    /**
+     * @return BelongsToMany<Booking, $this>
+     */
     public function bookings(): BelongsToMany
     {
         return $this->belongsToMany(Booking::class);

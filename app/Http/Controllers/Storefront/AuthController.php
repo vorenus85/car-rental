@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Storefront\RegisterCustomerRequest;
 use App\Models\Customer;
 use App\Notifications\Storefront\CustomerCreatedNotification;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -14,7 +16,7 @@ use Illuminate\Support\Facades\Password;
 class AuthController extends Controller
 {
     //
-    public function login(Request $request)
+    public function login(Request $request): JsonResponse
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -44,7 +46,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function register(RegisterCustomerRequest $request)
+    public function register(RegisterCustomerRequest $request): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -56,7 +58,7 @@ class AuthController extends Controller
         return response()->json($customer, 201);
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request): Response
     {
         Auth::guard('customer')->logout();
 
@@ -65,7 +67,7 @@ class AuthController extends Controller
         return response()->noContent();
     }
 
-    public function sendResetLink(Request $request)
+    public function sendResetLink(Request $request): JsonResponse
     {
         $request->validate([
             'email' => ['required', 'email'],
@@ -80,7 +82,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function reset(Request $request)
+    public function reset(Request $request): JsonResponse
     {
         $request->validate([
             'token' => 'required',

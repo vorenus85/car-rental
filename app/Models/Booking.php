@@ -109,26 +109,41 @@ class Booking extends Model
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * @return BelongsTo<Customer, $this>
+     */
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
     }
 
+    /**
+     * @return BelongsTo<Car, $this>
+     */
     public function car(): BelongsTo
     {
         return $this->belongsTo(Car::class);
     }
 
+    /**
+     * @return BelongsTo<Location, $this>
+     */
     public function pickupLocation(): BelongsTo
     {
         return $this->belongsTo(Location::class, 'pickup_location_id');
     }
 
+    /**
+     * @return BelongsTo<Location, $this>
+     */
     public function dropoffLocation(): BelongsTo
     {
         return $this->belongsTo(Location::class, 'dropoff_location_id');
     }
 
+    /**
+     * @return HasMany<BookingExtra, $this>
+     */
     public function extras(): HasMany
     {
         return $this->hasMany(BookingExtra::class);

@@ -10,7 +10,7 @@ export const extraValidator = ({ values }) => {
     }
 
     if (!values.maxQuantity) {
-        errors.maxQuantity = [{ message: 'May qunatity is required.' }]
+        errors.maxQuantity = [{ message: 'Max quantity is required.' }]
     }
 
     return {

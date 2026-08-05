@@ -2,6 +2,7 @@
 
 namespace App\Notifications\Admin;
 
+use App\Models\Customer;
 use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -15,11 +16,7 @@ class CustomerCreatedNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(public $customer)
-    {
-        //
-        $this->customer = $customer;
-    }
+    public function __construct(public Customer $customer) {}
 
     /**
      * Get the notification's delivery channels.

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -12,7 +14,7 @@ use Illuminate\Support\Facades\Password;
 class AuthController extends Controller
 {
     //
-    public function login(Request $request)
+    public function login(Request $request): JsonResponse
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -42,7 +44,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(Request $request)
+    public function logout(Request $request): Response
     {
         Auth::guard('admin')->logout();
 
@@ -51,7 +53,7 @@ class AuthController extends Controller
         return response()->noContent();
     }
 
-    public function sendResetLink(Request $request)
+    public function sendResetLink(Request $request): JsonResponse
     {
         $request->validate([
             'email' => ['required', 'email'],
@@ -66,7 +68,7 @@ class AuthController extends Controller
         ]);
     }
 
-    public function reset(Request $request)
+    public function reset(Request $request): JsonResponse
     {
         $request->validate([
             'token' => 'required',

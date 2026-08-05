@@ -1,9 +1,22 @@
-import { describe, it, expect, vi } from 'vitest'
+import { afterEach, describe, it, expect, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { defineComponent } from 'vue'
 import { useLayout } from './useLayout'
 
+const TestComponent = defineComponent({
+    setup() {
+        return { ...useLayout() }
+    },
+    render() {
+        return null
+    },
+})
+
 describe('useLayout', () => {
+    afterEach(() => {
+        document.startViewTransition = undefined
+    })
+
     it('sets isMobile based on window width', () => {
         Object.defineProperty(window, 'innerWidth', {
             writable: true,
@@ -11,40 +24,19 @@ describe('useLayout', () => {
             value: 800,
         })
 
-        let isMobile
+        const wrapper = mount(TestComponent)
 
-        const TestComponent = defineComponent({
-            setup() {
-                ;({ isMobile } = useLayout())
-                return () => null
-            },
-        })
-
-        mount(TestComponent)
-
-        expect(isMobile.value).toBe(true)
+        expect(wrapper.vm.isMobile).toBe(true)
     })
 
     it('toggles dark mode without view transition support', () => {
-        document.startViewTransition = undefined
-
         const classToggleSpy = vi.spyOn(document.documentElement.classList, 'toggle')
 
-        let toggleDarkMode
-        let darkTheme
+        const wrapper = mount(TestComponent)
 
-        const TestComponent = defineComponent({
-            setup() {
-                ;({ toggleDarkMode, darkTheme } = useLayout())
-                return () => null
-            },
-        })
+        wrapper.vm.toggleDarkMode()
 
-        mount(TestComponent)
-
-        toggleDarkMode()
-
-        expect(darkTheme.value).toBe(true)
+        expect(wrapper.vm.darkTheme).toBe(true)
         expect(classToggleSpy).toHaveBeenCalledWith('app-dark')
     })
 
@@ -53,31 +45,15 @@ describe('useLayout', () => {
 
         document.startViewTransition = mockTransition
 
-        let toggleDarkMode
+        const wrapper = mount(TestComponent)
 
-        const TestComponent = defineComponent({
-            setup() {
-                ;({ toggleDarkMode } = useLayout())
-                return () => null
-            },
-        })
-
-        mount(TestComponent)
-
-        toggleDarkMode()
+        wrapper.vm.toggleDarkMode()
 
         expect(mockTransition).toHaveBeenCalled()
     })
 
     it('adds resize event listener on mount', () => {
         const addSpy = vi.spyOn(window, 'addEventListener')
-
-        const TestComponent = defineComponent({
-            setup() {
-                useLayout()
-                return () => null
-            },
-        })
 
         mount(TestComponent)
 

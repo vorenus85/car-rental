@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Fleet\Location\StoreLocationRequest;
 use App\Http\Requests\Admin\Fleet\Location\UpdateLocationRequest;
 use App\Models\Fleet\Location;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class LocationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         //
         $locations = Location::select(
@@ -46,7 +48,7 @@ class LocationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLocationRequest $request)
+    public function store(StoreLocationRequest $request): JsonResponse
     {
         //
         $location = Location::create($request->validated());
@@ -57,7 +59,7 @@ class LocationController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Location $location)
+    public function show(Location $location): JsonResponse
     {
         return response()->json($location->load('cityModel:id,name'));
     }
@@ -65,7 +67,7 @@ class LocationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateLocationRequest $request, Location $location)
+    public function update(UpdateLocationRequest $request, Location $location): JsonResponse
     {
         //
         $location->update($request->validated());
@@ -76,7 +78,7 @@ class LocationController extends Controller
     /**
      * Use for location select on car crud pages
      */
-    public function options()
+    public function options(): JsonResponse
     {
         $locations = Location::query()
             ->select(['id', 'name'])
@@ -88,7 +90,7 @@ class LocationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Location $location)
+    public function destroy(Location $location): Response
     {
         //
         $location->delete();
@@ -96,7 +98,7 @@ class LocationController extends Controller
         return response()->noContent();
     }
 
-    public function toggleActive(Location $location)
+    public function toggleActive(Location $location): JsonResponse
     {
         $location->active = ! $location->active;
         $location->save();

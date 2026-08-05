@@ -96,7 +96,6 @@ import PersonalInformation from '@storefront/components/modules/Driver/PersonalI
 import AddressInformation from '@storefront/components/modules/Driver/AddressInformation.vue'
 import LicenceInformation from '@storefront/components/modules/Driver/LicenceInformation.vue'
 import { useRouter } from 'vue-router'
-import { computed, ref } from 'vue'
 import DriverInfoSection from '@storefront/components/modules/DriverInfo/DriverInfoSection.vue'
 import SectionHeader from '@storefront/components/modules/SectionHeader.vue'
 
@@ -106,7 +105,7 @@ const router = useRouter()
 const activeSection = ref('personal') //personal, address, driving-licence
 
 const handleSectionNext = event => {
-    const { valid, section, errors, values } = event
+    const { valid, section, values } = event
     if (!valid) {
         return
     }
@@ -169,8 +168,4 @@ const breadcrumbItems = [
 const handleBack = () => {
     globalThis.history.back()
 }
-
-const driverInfoisInvalid = computed(() => {
-    return true
-})
 </script>

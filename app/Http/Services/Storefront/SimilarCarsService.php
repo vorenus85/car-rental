@@ -7,6 +7,9 @@ use Illuminate\Support\Collection;
 
 class SimilarCarsService
 {
+    /**
+     * @return Collection<int, Car>
+     */
     public function getSimilarCars(Car $car, int $limit = 8): Collection
     {
         $car->loadMissing([
@@ -39,6 +42,9 @@ class SimilarCarsService
             ->values();
     }
 
+    /**
+     * Calculates the similarity score between two cars.
+     */
     private function calculateScore(Car $candidate, Car $car): int
     {
         $score = 0;

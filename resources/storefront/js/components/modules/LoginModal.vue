@@ -8,6 +8,7 @@ import { Dialog } from 'primevue'
 import LoginPanel from '@storefront/components/modules/LoginPanel.vue'
 
 const visible = defineModel({
+    type: Boolean,
     default: false,
 })
 

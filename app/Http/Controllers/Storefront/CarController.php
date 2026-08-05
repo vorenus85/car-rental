@@ -9,10 +9,11 @@ use App\Http\Services\Storefront\SimilarCarsService;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class CarController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): AnonymousResourceCollection
     {
         $query = Car::query()
             ->with(['variant', 'variant.model', 'variant.model.brand', 'location'])
@@ -111,7 +112,7 @@ class CarController extends Controller
         return CarListResource::collection($cars);
     }
 
-    public function show(Car $car)
+    public function show(Car $car): CarUnitResource
     {
 
         $response = Car::with([
@@ -124,7 +125,7 @@ class CarController extends Controller
         return new CarUnitResource($response);
     }
 
-    public function randomCars()
+    public function randomCars(): AnonymousResourceCollection
     {
         $cars = Car::query()
             ->with([
@@ -143,7 +144,7 @@ class CarController extends Controller
     public function similarCars(
         Car $car,
         SimilarCarsService $similarCarsService
-    ) {
+    ): AnonymousResourceCollection {
         $similarCars = $similarCarsService->getSimilarCars($car);
 
         return CarListResource::collection($similarCars);

@@ -7,7 +7,8 @@ use App\Http\Requests\Admin\User\StoreUserRequest;
 use App\Http\Requests\Admin\User\UpdateUserRequest;
 use App\Models\User;
 use App\Notifications\Admin\UserCreatedNotification;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Password;
 
 class UserController extends Controller
@@ -15,7 +16,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(): JsonResponse
     {
         //
         $query = User::query()->orderBy('name', 'asc');
@@ -28,7 +29,7 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreUserRequest $request)
+    public function store(StoreUserRequest $request): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -43,7 +44,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(User $user): JsonResponse
     {
         //
         $query = User::where('id', $user->id);
@@ -54,7 +55,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateUserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -67,14 +68,14 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(User $user): Response
     {
         $user->delete();
 
         return response()->noContent();
     }
 
-    public function toggleActive(User $user)
+    public function toggleActive(User $user): JsonResponse
     {
         $user->active = ! $user->active;
         $user->save();
@@ -82,7 +83,7 @@ class UserController extends Controller
         return response()->json($user);
     }
 
-    public function sendPasswordReset(User $user)
+    public function sendPasswordReset(User $user): JsonResponse
     {
         Password::sendResetLink([
             'email' => $user->email,

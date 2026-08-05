@@ -2,6 +2,7 @@
 
 namespace App\Models\Fleet;
 
+use Database\Factories\Fleet\FeatureFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -9,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Feature extends Model
 {
     //
+    /** @use HasFactory<FeatureFactory> */
     use HasFactory;
 
     protected $fillable = [

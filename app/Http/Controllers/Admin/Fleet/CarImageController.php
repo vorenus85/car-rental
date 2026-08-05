@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UploadImageRequest;
 use App\Http\Services\Admin\ImageUploadService;
 use App\Models\Fleet\Car;
+use Illuminate\Http\JsonResponse;
 
 class CarImageController extends Controller
 {
@@ -13,7 +14,7 @@ class CarImageController extends Controller
         protected ImageUploadService $imageUploadService
     ) {}
 
-    public function store(UploadImageRequest $request)
+    public function store(UploadImageRequest $request): JsonResponse
     {
         try {
             $result = $this->imageUploadService->upload(
@@ -31,7 +32,7 @@ class CarImageController extends Controller
         }
     }
 
-    public function delete(Car $car)
+    public function delete(Car $car): JsonResponse
     {
         try {
 

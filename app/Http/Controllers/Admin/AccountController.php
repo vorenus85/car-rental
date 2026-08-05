@@ -5,23 +5,23 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Account\ChangePasswordRequest;
 use App\Http\Requests\Admin\Account\UpdateAccountRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
-    //
-    public function show()
+    public function show(): JsonResponse
     {
         $user = Auth::guard('admin')->user();
 
-        return response()->json($user);
+        return response()->json($user?->toArray() ?? []);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAccountRequest $request)
+    public function update(UpdateAccountRequest $request): JsonResponse
     {
         $user = Auth::guard('admin')->user();
 
@@ -32,7 +32,7 @@ class AccountController extends Controller
         return response()->json($user);
     }
 
-    public function changePassword(ChangePasswordRequest $request)
+    public function changePassword(ChangePasswordRequest $request): JsonResponse
     {
         $request->validated();
 

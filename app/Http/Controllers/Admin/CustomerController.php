@@ -7,7 +7,8 @@ use App\Http\Requests\Admin\Customer\StoreCustomerRequest;
 use App\Http\Requests\Admin\Customer\UpdateCustomerRequest;
 use App\Models\Customer;
 use App\Notifications\Admin\CustomerCreatedNotification;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Password;
 
 class CustomerController extends Controller
@@ -15,7 +16,7 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(): JsonResponse
     {
         //
         $query = Customer::query()->orderBy('name', 'asc');
@@ -28,7 +29,7 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCustomerRequest $request)
+    public function store(StoreCustomerRequest $request): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -43,7 +44,7 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Customer $customer)
+    public function show(Customer $customer): JsonResponse
     {
         //
         $query = Customer::where('id', $customer->id);
@@ -54,7 +55,7 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCustomerRequest $request, Customer $customer)
+    public function update(UpdateCustomerRequest $request, Customer $customer): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -67,14 +68,14 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Customer $customer)
+    public function destroy(Customer $customer): Response
     {
         $customer->delete();
 
         return response()->noContent();
     }
 
-    public function toggleActive(Customer $customer)
+    public function toggleActive(Customer $customer): JsonResponse
     {
         $customer->active = ! $customer->active;
         $customer->save();
@@ -82,7 +83,7 @@ class CustomerController extends Controller
         return response()->json($customer);
     }
 
-    public function sendPasswordReset(Customer $customer)
+    public function sendPasswordReset(Customer $customer): JsonResponse
     {
         Password::broker('customers')->sendResetLink([
             'email' => $customer->email,

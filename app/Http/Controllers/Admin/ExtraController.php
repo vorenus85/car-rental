@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Extra\StoreExtraRequest;
 use App\Http\Requests\Admin\Extra\UpdateExtraRequest;
 use App\Http\Resources\Admin\ExtraResource;
 use App\Models\Extra;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class ExtraController extends Controller
@@ -14,7 +15,7 @@ class ExtraController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         //
         $extras = Extra::orderBy('name', 'asc')->get();
@@ -25,7 +26,7 @@ class ExtraController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreExtraRequest $request)
+    public function store(StoreExtraRequest $request): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -38,7 +39,7 @@ class ExtraController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Extra $extra)
+    public function show(Extra $extra): JsonResponse
     {
         //
         return response()->json(new ExtraResource($extra));
@@ -47,7 +48,7 @@ class ExtraController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateExtraRequest $request, Extra $extra)
+    public function update(UpdateExtraRequest $request, Extra $extra): JsonResponse
     {
         //
         $validated = $request->validated();

@@ -7,6 +7,8 @@ use App\Http\Requests\Admin\Fleet\Car\StoreCarRequest;
 use App\Http\Requests\Admin\Fleet\Car\UpdateCarRequest;
 use App\Http\Resources\Admin\CarResource;
 use App\Models\Fleet\Car;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
 class CarController extends Controller
@@ -14,7 +16,7 @@ class CarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         //
         $cars = Car::query()
@@ -46,7 +48,7 @@ class CarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCarRequest $request)
+    public function store(StoreCarRequest $request): JsonResponse
     {
         $validated = $request->validated();
         $featureIds = $validated['features'] ?? null;
@@ -64,7 +66,7 @@ class CarController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Car $car)
+    public function show(Car $car): JsonResponse
     {
         //
         $result = Car::where('id', $car->id)->with([
@@ -82,7 +84,7 @@ class CarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCarRequest $request, Car $car)
+    public function update(UpdateCarRequest $request, Car $car): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -105,7 +107,7 @@ class CarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Car $car)
+    public function destroy(Car $car): Response
     {
 
         if ($car->image) {

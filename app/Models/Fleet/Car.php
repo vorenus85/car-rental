@@ -2,6 +2,7 @@
 
 namespace App\Models\Fleet;
 
+use Database\Factories\Fleet\CarFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class Car extends Model
 {
     //
+    /** @use HasFactory<CarFactory> */
     use HasFactory;
 
     protected $fillable = [
