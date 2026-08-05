@@ -43,7 +43,7 @@ class BrandImageController extends Controller
             }
 
             $this->imageUploadService->delete(
-                'uploads/' . $brand->image
+                'uploads/'.$brand->image
             );
 
             $brand->update([

@@ -43,7 +43,7 @@ class CarImageController extends Controller
             }
 
             $this->imageUploadService->delete(
-                'uploads/' . $car->image
+                'uploads/'.$car->image
             );
 
             $car->update([

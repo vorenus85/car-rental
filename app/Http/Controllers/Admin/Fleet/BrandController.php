@@ -50,7 +50,7 @@ class BrandController extends Controller
     public function show(Brand $brand): JsonResponse
     {
         //
-        $brand['image_url'] = $brand->image ? Storage::url('/uploads/' . $brand->image) : '';
+        $brand['image_url'] = $brand->image ? Storage::url('/uploads/'.$brand->image) : '';
 
         return response()->json(new BrandResource($brand));
     }
@@ -85,7 +85,7 @@ class BrandController extends Controller
         }
 
         if ($brand->image) {
-            Storage::delete('uploads/' . $brand->image);
+            Storage::delete('uploads/'.$brand->image);
         }
 
         $brand->delete();

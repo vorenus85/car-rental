@@ -2,12 +2,12 @@
 
 namespace App\Models\Fleet;
 
+use Database\Factories\Fleet\CarFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Storage;
-use Database\Factories\Fleet\CarFactory;
 
 class Car extends Model
 {
@@ -59,7 +59,7 @@ class Car extends Model
     public function getImageUrlAttribute(): ?string
     {
         return $this->image
-            ? Storage::url('/uploads/' . $this->image)
+            ? Storage::url('/uploads/'.$this->image)
             : null;
     }
 }

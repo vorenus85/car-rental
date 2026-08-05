@@ -11,8 +11,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AccountController extends Controller
 {
-
-
     public function show(): JsonResponse
     {
         $user = Auth::guard('admin')->user();

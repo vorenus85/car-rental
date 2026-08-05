@@ -21,7 +21,7 @@ class ImageUploadService
     ): array {
         $disk ??= config('filesystems.default');
 
-        $filename = Str::uuid() . '.' . $file->getClientOriginalExtension();
+        $filename = Str::uuid().'.'.$file->getClientOriginalExtension();
 
         $path = $file->storeAs($directory, $filename, $disk);
 
@@ -37,8 +37,6 @@ class ImageUploadService
 
     /**
      * Deletes an image file.
-     *
-     * @return bool
      */
     public function delete(
         string $path,

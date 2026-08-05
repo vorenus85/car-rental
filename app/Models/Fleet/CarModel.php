@@ -2,11 +2,11 @@
 
 namespace App\Models\Fleet;
 
+use Database\Factories\Fleet\CarModelFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Database\Factories\Fleet\CarModelFactory;
 
 class CarModel extends Model
 {

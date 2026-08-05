@@ -8,7 +8,7 @@ use Illuminate\Support\Collection;
 class SimilarCarsService
 {
     /**
-     * @return Collection<int, \App\Models\Fleet\Car>
+     * @return Collection<int, Car>
      */
     public function getSimilarCars(Car $car, int $limit = 8): Collection
     {
@@ -44,8 +44,6 @@ class SimilarCarsService
 
     /**
      * Calculates the similarity score between two cars.
-     *
-     * @return int
      */
     private function calculateScore(Car $candidate, Car $car): int
     {

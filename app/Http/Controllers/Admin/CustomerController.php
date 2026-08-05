@@ -8,7 +8,6 @@ use App\Http\Requests\Admin\Customer\UpdateCustomerRequest;
 use App\Models\Customer;
 use App\Notifications\Admin\CustomerCreatedNotification;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Password;
 

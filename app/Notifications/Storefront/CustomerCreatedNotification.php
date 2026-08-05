@@ -36,7 +36,7 @@ class CustomerCreatedNotification extends Notification
             ->greeting('Welcome to the DrivenGO!')
             ->line('Your account has been successfully created.')
             ->line('You can now log in and start using the application.')
-            ->action('Go to Login', config('app.frontend_url') . '/login')
+            ->action('Go to Login', config('app.frontend_url').'/login')
             ->line('If you did not expect this email, please contact support.');
     }
 

@@ -14,6 +14,7 @@ use App\Models\Insurance;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 
@@ -34,8 +35,8 @@ class BookingController extends Controller
         $dropoff = $request->pickUpLocationId == $request->dropOffLocationId
             ? $pickup
             : Location::select(['id', 'name', 'city_id'])
-            ->with('cityModel:id,name')
-            ->findOrFail($request->dropOffLocationId);
+                ->with('cityModel:id,name')
+                ->findOrFail($request->dropOffLocationId);
 
         $car = Car::with([
             'variant:id,name,model_id',
@@ -97,16 +98,16 @@ class BookingController extends Controller
          *   extras?: array<int, array{id: int, quantity: int}>
          * } $validated
          */
-        /** @var \Illuminate\Support\Collection<int, array{id:int, quantity:int}> $selectedExtras */
+        /** @var Collection<int, array{id:int, quantity:int}> $selectedExtras */
         $selectedExtras = collect($validated['extras'] ?? []);
 
-        /** @var \Illuminate\Support\Collection<int, \App\Models\Extra> $extraModels */
+        /** @var Collection<int, Extra> $extraModels */
         $extraModels = $selectedExtras->isEmpty()
             ? collect()
             : Extra::query()
-            ->whereIn('id', $selectedExtras->pluck('id')->all())
-            ->get()
-            ->keyBy('id');
+                ->whereIn('id', $selectedExtras->pluck('id')->all())
+                ->get()
+                ->keyBy('id');
 
         $days = $pickupAt->diffInDays($dropoffAt);
         $dailyRate = (float) $car->price_per_day;
@@ -139,7 +140,7 @@ class BookingController extends Controller
             $extraModels
         ) {
             $booking = Booking::create([
-                'booking_number' => 'TMP-' . now()->format('YmdHisv'),
+                'booking_number' => 'TMP-'.now()->format('YmdHisv'),
 
                 'customer_id' => $validated['customerId'],
                 'car_id' => $validated['carId'],
