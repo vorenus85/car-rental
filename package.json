@@ -6,6 +6,7 @@
     "scripts": {
         "build": "vite build",
         "lint": "eslint resources/admin resources/storefront --ext .js,.vue --max-warnings=0",
+        "lint:fix": "eslint resources --fix",
         "format": "prettier --write \"resources/admin/**/*.{js,vue}\" \"resources/storefront/**/*.{js,vue}\"",
         "format:check": "prettier --check \"resources/admin/**/*.{js,vue}\" \"resources/storefront/**/*.{js,vue}\"",
         "dev": "vite",
