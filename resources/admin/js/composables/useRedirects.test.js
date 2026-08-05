@@ -122,7 +122,7 @@ describe('useRedirects', () => {
 
         toCustomersList()
 
-        expect(pushMock).toHaveBeenCalledWith({ name: 'clients' })
+        expect(pushMock).toHaveBeenCalledWith({ name: 'customers' })
     })
 
     it('redirects to settings', () => {

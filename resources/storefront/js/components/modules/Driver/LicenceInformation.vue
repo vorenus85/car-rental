@@ -163,7 +163,6 @@ import { countryOptions, getCountryName } from '@storefront/utils.js'
 import { drivingLicenceValidator } from '@storefront/validators/drivingLicenceValidator'
 import { useBooking } from '@storefront/composables/useBooking'
 import { useBookingStore } from '@storefront/stores/bookingStore'
-import { reactive } from 'vue'
 import { Form } from '@primevue/forms'
 
 const emit = defineEmits(['save', 'back'])

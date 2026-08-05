@@ -1,6 +1,6 @@
 <template>
     <AppLayout>
-        <PageTitle title="Edit Client">
+        <PageTitle title="Edit Customer">
             <template #actions>
                 <Button
                     icon="pi pi-angle-left"
@@ -108,7 +108,7 @@ const onFormSubmit = async ({ valid, values }) => {
         try {
             await updateCustomerById(customerId, values)
 
-            customToast.success('Client updated successfully!')
+            customToast.success('Customer updated successfully!')
 
             toCustomersList()
         } catch (error) {

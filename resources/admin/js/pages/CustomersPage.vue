@@ -1,6 +1,6 @@
 <template>
     <AppLayout>
-        <PageTitle title="Clients"> </PageTitle>
+        <PageTitle title="Customers"> </PageTitle>
     </AppLayout>
 </template>
 <script setup>

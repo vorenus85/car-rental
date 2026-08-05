@@ -37,8 +37,8 @@
                     severity="secondary"
                     icon="pi pi-plus"
                     text
-                    @click="increase"
                     :disabled="extra?.maxQuantity === 1 && quantity === 1"
+                    @click="increase"
                 />
             </div>
         </div>

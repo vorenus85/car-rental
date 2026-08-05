@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Fleet\Feature\StoreFeatureRequest;
 use App\Http\Requests\Admin\Fleet\Feature\UpdateFeatureRequest;
 use App\Http\Resources\Admin\FeatureResource;
 use App\Models\Fleet\Feature;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 
 class FeatureController extends Controller
@@ -14,7 +15,7 @@ class FeatureController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): JsonResponse
     {
         //
         $features = Feature::orderBy('name', 'asc')->get();
@@ -25,7 +26,7 @@ class FeatureController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFeatureRequest $request)
+    public function store(StoreFeatureRequest $request): JsonResponse
     {
         //
         $validated = $request->validated();
@@ -38,7 +39,7 @@ class FeatureController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Feature $feature)
+    public function show(Feature $feature): JsonResponse
     {
         //
         return response()->json(new FeatureResource($feature));
@@ -47,7 +48,7 @@ class FeatureController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFeatureRequest $request, Feature $feature)
+    public function update(UpdateFeatureRequest $request, Feature $feature): JsonResponse
     {
         //
         $validated = $request->validated();

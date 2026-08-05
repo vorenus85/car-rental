@@ -36,10 +36,10 @@ jobs:
               run: composer install --no-interaction --prefer-dist --no-progress
 
             - name: Run Pint
-              run: vendor/bin/pint --test --version
+              run: vendor/bin/pint --test
 
             - name: Run PHPStan
-              run: vendor/bin/phpstan analyse
+              run: vendor/bin/phpstan analyse --level=6
 
             - name: Run Tests
               run: php artisan test
@@ -60,6 +60,9 @@ jobs:
             - name: Install NPM dependencies
               run: npm ci
 
+            - name: NPM audit
+              run: npm audit --audit-level=high
+
             - name: Run ESLint
               run: npm run lint
 
@@ -67,7 +70,7 @@ jobs:
               run: npm run format:check
 
             - name: Run Tests
-              run: npm run test
+              run: npm run test:coverage
               env:
                   LARAVEL_BYPASS_ENV_CHECK: 1
 

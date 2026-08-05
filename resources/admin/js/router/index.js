@@ -96,24 +96,24 @@ const router = createRouter({
         },
 
         {
-            path: '/clients',
-            name: 'clients',
+            path: '/customers',
+            name: 'customers',
             component: CustomerListPage,
             meta: {
                 requiresAuth: true,
             },
         },
         {
-            path: '/clients/create',
-            name: 'clients.create',
+            path: '/customers/create',
+            name: 'customers.create',
             component: CustomerCreatePage,
             meta: {
                 requiresAuth: true,
             },
         },
         {
-            path: '/clients/:id',
-            name: 'clients.show',
+            path: '/customers/:id',
+            name: 'customers.show',
             component: CustomerEditPage,
             meta: {
                 requiresAuth: true,

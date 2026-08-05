@@ -2,6 +2,7 @@
 
 namespace App\Notifications\Admin;
 
+use App\Models\User;
 use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -15,11 +16,7 @@ class UserCreatedNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(public $user)
-    {
-        //
-        $this->user = $user;
-    }
+    public function __construct(public User $user) {}
 
     /**
      * Get the notification's delivery channels.
