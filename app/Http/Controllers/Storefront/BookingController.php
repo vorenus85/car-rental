@@ -11,6 +11,7 @@ use App\Models\Extra;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
 use App\Models\Insurance;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,7 @@ use Illuminate\Validation\ValidationException;
 
 class BookingController extends Controller
 {
-    public function bookingData(Request $request)
+    public function bookingData(Request $request): JsonResponse
     {
         $request->validate([
             'carId' => ['required', 'integer', 'exists:cars,id'],
@@ -33,8 +34,8 @@ class BookingController extends Controller
         $dropoff = $request->pickUpLocationId == $request->dropOffLocationId
             ? $pickup
             : Location::select(['id', 'name', 'city_id'])
-                ->with('cityModel:id,name')
-                ->findOrFail($request->dropOffLocationId);
+            ->with('cityModel:id,name')
+            ->findOrFail($request->dropOffLocationId);
 
         $car = Car::with([
             'variant:id,name,model_id',
@@ -49,7 +50,7 @@ class BookingController extends Controller
         ]);
     }
 
-    public function store(BookingStoreRequest $request)
+    public function store(BookingStoreRequest $request): JsonResponse
     {
         $validated = $request->validated();
 
@@ -73,14 +74,39 @@ class BookingController extends Controller
 
         $insurance = Insurance::query()->findOrFail($validated['insurance_id']);
 
+        /**
+         * @var array{
+         *   customerId: int,
+         *   carId: int,
+         *   pickUpLocationId: int,
+         *   dropOffLocationId: int,
+         *   driver_first_name: string,
+         *   driver_last_name: string,
+         *   driver_email: string,
+         *   driver_phone: string,
+         *   driver_birth_date: string,
+         *   driver_country: string,
+         *   driver_city: string,
+         *   driver_postal_code: string,
+         *   driver_address_line_1: string,
+         *   driver_address_line_2: string|null,
+         *   driver_licence_number: string,
+         *   driver_licence_country: string,
+         *   driver_licence_issue_date: string,
+         *   driver_licence_expiry_date: string,
+         *   extras?: array<int, array{id: int, quantity: int}>
+         * } $validated
+         */
+        /** @var \Illuminate\Support\Collection<int, array{id:int, quantity:int}> $selectedExtras */
         $selectedExtras = collect($validated['extras'] ?? []);
 
+        /** @var \Illuminate\Support\Collection<int, \App\Models\Extra> $extraModels */
         $extraModels = $selectedExtras->isEmpty()
             ? collect()
             : Extra::query()
-                ->whereIn('id', $selectedExtras->pluck('id')->all())
-                ->get()
-                ->keyBy('id');
+            ->whereIn('id', $selectedExtras->pluck('id')->all())
+            ->get()
+            ->keyBy('id');
 
         $days = $pickupAt->diffInDays($dropoffAt);
         $dailyRate = (float) $car->price_per_day;
@@ -113,7 +139,7 @@ class BookingController extends Controller
             $extraModels
         ) {
             $booking = Booking::create([
-                'booking_number' => 'TMP-'.now()->format('YmdHisv'),
+                'booking_number' => 'TMP-' . now()->format('YmdHisv'),
 
                 'customer_id' => $validated['customerId'],
                 'car_id' => $validated['carId'],
