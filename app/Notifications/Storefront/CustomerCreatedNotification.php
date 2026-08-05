@@ -2,6 +2,7 @@
 
 namespace App\Notifications\Storefront;
 
+use App\Models\Customer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -13,11 +14,7 @@ class CustomerCreatedNotification extends Notification
     /**
      * Create a new notification instance.
      */
-    public function __construct(public $customer)
-    {
-        //
-        $this->customer = $customer;
-    }
+    public function __construct(public Customer $customer) {}
 
     /**
      * Get the notification's delivery channels.
@@ -39,7 +36,7 @@ class CustomerCreatedNotification extends Notification
             ->greeting('Welcome to the DrivenGO!')
             ->line('Your account has been successfully created.')
             ->line('You can now log in and start using the application.')
-            ->action('Go to Login', config('app.frontend_url').'/login')
+            ->action('Go to Login', config('app.frontend_url') . '/login')
             ->line('If you did not expect this email, please contact support.');
     }
 
