@@ -250,9 +250,7 @@ describe('useBookingStore', () => {
             { id: 99, quantity: 2 },
         ])
 
-        expect(lookupStore.extrasData).toEqual([
-            { id: 1, name: 'GPS', price: 10, quantity: 1 },
-        ])
+        expect(lookupStore.extrasData).toEqual([{ id: 1, name: 'GPS', price: 10, quantity: 1 }])
         expect(errorSpy).toHaveBeenCalledWith('Extra with ID 99 not found.')
 
         errorSpy.mockRestore()
