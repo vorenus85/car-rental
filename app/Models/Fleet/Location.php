@@ -6,9 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Database\Factories\Fleet\LocationFactory;
 
 class Location extends Model
 {
+    /** @use HasFactory<LocationFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -47,8 +49,6 @@ class Location extends Model
     ];
 
     /**
-     * Undocumented function
-     *
      * @return HasMany<Car, $this>
      */
     public function cars(): HasMany

@@ -20,6 +20,9 @@ class Extra extends Model
         'maxQuantity',
     ];
 
+    /**
+     * @return BelongsToMany<Booking, $this>
+     */
     public function bookings(): BelongsToMany
     {
         return $this->belongsToMany(Booking::class);

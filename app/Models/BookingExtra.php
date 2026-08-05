@@ -36,11 +36,17 @@ class BookingExtra extends Model
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * @return BelongsTo<Booking, $this>
+     */
     public function booking(): BelongsTo
     {
         return $this->belongsTo(Booking::class);
     }
 
+    /**
+     * @return BelongsTo<Extra, $this>
+     */
     public function extra(): BelongsTo
     {
         return $this->belongsTo(Extra::class);
