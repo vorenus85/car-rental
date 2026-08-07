@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Storefront\BookingStoreRequest;
+use App\Http\Resources\Storefront\BookingOrderResource;
 use App\Http\Resources\Storefront\CarBookingResource;
 use App\Models\Booking;
 use App\Models\BookingExtra;
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class BookingController extends Controller
@@ -49,6 +51,23 @@ class BookingController extends Controller
             'pickUpLocation' => $pickup,
             'dropOffLocation' => $dropoff,
         ]);
+    }
+
+    public function order(Request $request): BookingOrderResource
+    {
+        $validated = $request->validate([
+            'publicId' => ['required', 'string', 'exists:bookings,public_id'],
+        ]);
+
+        $booking = Booking::with([
+            'customer:id,name,email',
+            'car.variant.model.brand',
+            'pickupLocation.cityModel',
+            'dropoffLocation.cityModel',
+            'extras',
+        ])->where('public_id', $validated['publicId'])->firstOrFail();
+
+        return new BookingOrderResource($booking);
     }
 
     public function store(BookingStoreRequest $request): JsonResponse
@@ -95,6 +114,7 @@ class BookingController extends Controller
          *   driver_licence_country: string,
          *   driver_licence_issue_date: string,
          *   driver_licence_expiry_date: string,
+         *   payment_method: string,
          *   extras?: array<int, array{id: int, quantity: int}>
          * } $validated
          */
@@ -109,10 +129,11 @@ class BookingController extends Controller
                 ->get()
                 ->keyBy('id');
 
-        $days = $pickupAt->diffInDays($dropoffAt);
+        $days = (int) $pickupAt->diffInDays($dropoffAt);
         $dailyRate = (float) $car->price_per_day;
         $subtotal = $days * $dailyRate;
         $insuranceTotal = $days * (float) $insurance->price;
+
         $extrasTotal = $selectedExtras->reduce(function (float $carry, array $extra) use ($days, $extraModels) {
             $extraModel = $extraModels->get($extra['id']);
 
@@ -139,9 +160,11 @@ class BookingController extends Controller
             $selectedExtras,
             $extraModels
         ) {
+            $random = Str::upper(Str::random(16));
+
             $booking = Booking::create([
                 'booking_number' => 'TMP-'.now()->format('YmdHisv'),
-
+                'public_id' => 'BKG-'.implode('-', str_split($random, 4)),
                 'customer_id' => $validated['customerId'],
                 'car_id' => $validated['carId'],
 
@@ -168,6 +191,8 @@ class BookingController extends Controller
                 'driver_licence_country' => $validated['driver_licence_country'],
                 'driver_licence_issue_date' => $validated['driver_licence_issue_date'],
                 'driver_licence_expiry_date' => $validated['driver_licence_expiry_date'],
+
+                'payment_method' => $validated['payment_method'],
 
                 'currency' => 'EUR',
                 'daily_rate' => $dailyRate,

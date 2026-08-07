@@ -28,5 +28,16 @@ export const useBookingLookupStore = defineStore('bookingLookup', {
         setInsurance(insurance) {
             this.insuranceData = insurance
         },
+        clearBookingData() {
+            this.carData = null
+            this.pickUpLocation = null
+            this.dropOffLocation = null
+            this.pickUpDate = null
+            this.pickUpTime = null
+            this.dropOffDate = null
+            this.dropOffTime = null
+            this.extrasData = []
+            this.insuranceData = 0
+        },
     },
 })

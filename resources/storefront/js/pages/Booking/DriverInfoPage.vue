@@ -31,7 +31,7 @@
                             <template #header>
                                 <SectionHeader
                                     :title="'Address Information'"
-                                    :sub-title="`Please provide your residential address.`"
+                                    :sub-title="`Please provide driver's residential address.`"
                                 />
                             </template>
                             <template #body>
@@ -53,7 +53,7 @@
                             <template #header>
                                 <SectionHeader
                                     :title="'Driving Licence'"
-                                    :sub-title="`Please provide your driving licence details.`"
+                                    :sub-title="`Please provide driver's licence details.`"
                                 />
                             </template>
                             <template #body>

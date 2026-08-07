@@ -134,12 +134,7 @@ const router = createRouter({
 router.beforeEach(to => {
     const bookingStore = useBookingStore()
 
-    const bookingRoutes = [
-        'booking-extras-insurance',
-        'booking-driver-info',
-        'booking-payment',
-        'booking-success',
-    ]
+    const bookingRoutes = ['booking-extras-insurance', 'booking-driver-info', 'booking-payment']
 
     if (bookingRoutes.includes(to.name)) {
         if (!bookingStore.carId) {
@@ -176,5 +171,22 @@ router.beforeEach(async to => {
         return { name: 'home' }
     }
 })
+
+// for debugging purposes, log the route changes
+/*
+router.beforeEach((to, from, next) => {
+    console.log('---------------------')
+    console.log('FROM:', from.fullPath)
+    console.log('TO:', to.fullPath)
+    console.log('HISTORY STATE:', window.history.state)
+    next()
+})
+
+router.afterEach((to, from) => {
+    console.log('AFTER')
+    console.log('FROM:', from.fullPath)
+    console.log('TO:', to.fullPath)
+})
+*/
 
 export default router

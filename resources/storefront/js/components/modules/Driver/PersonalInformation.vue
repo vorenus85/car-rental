@@ -157,7 +157,7 @@ const initialValues = {
     lastName: bookingStore.driver.personal.lastName,
     email: bookingStore.driver.personal.email,
     phone: bookingStore.driver.personal.phone,
-    birthDate: new Date(bookingStore.driver.personal.birthDate),
+    birthDate: new Date(bookingStore.driver.personal.birthDate ?? '1990-01-01'),
 }
 
 const onFormSubmit = ({ valid, values, errors }) => {

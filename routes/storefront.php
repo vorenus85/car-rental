@@ -33,5 +33,6 @@ Route::prefix('/api/storefront/insurances')->group(function () {
 
 Route::prefix('/api/storefront/booking')->group(function () {
     Route::get('/', [BookingController::class, 'bookingData']);
+    Route::get('/order/', [BookingController::class, 'order']);
     Route::post('/', [BookingController::class, 'store']);
 });
