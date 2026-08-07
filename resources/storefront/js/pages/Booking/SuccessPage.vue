@@ -29,65 +29,11 @@
                 <BookingNumber :booking-id="bookingNumber" class="mt-5"></BookingNumber>
 
                 <div class="mt-10 rounded-xl border border-surface-200 bg-white">
-                    <div class="grid gap-8 p-6 md:grid-cols-4">
-                        <!-- Vehicle -->
-                        <div class="flex gap-3">
-                            <i class="pi pi-car text-xl text-primary mt-1"></i>
-
-                            <div>
-                                <p class="text-sm text-surface-500">Vehicle</p>
-
-                                <p class="font-semibold">
-                                    {{
-                                        bookingLookupStore?.carData?.name || 'Your selected vehicle'
-                                    }}
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Pickup -->
-                        <div class="flex gap-3">
-                            <i class="pi pi-calendar text-xl text-primary mt-1"></i>
-
-                            <div>
-                                <p class="text-sm text-surface-500">Pickup</p>
-
-                                <p class="font-semibold">
-                                    {{ pickUpLabel }}
-                                </p>
-
-                                <p class="text-sm text-surface-600">Vienna Central Station</p>
-                            </div>
-                        </div>
-
-                        <!-- Dropoff -->
-                        <div class="flex gap-3">
-                            <i class="pi pi-map-marker text-xl text-primary mt-1"></i>
-
-                            <div>
-                                <p class="text-sm text-surface-500">Drop-off</p>
-
-                                <p class="font-semibold">
-                                    {{ dropOffLabel }}
-                                </p>
-
-                                <p class="text-sm text-surface-600">Vienna Airport</p>
-                            </div>
-                        </div>
-
-                        <!-- Price -->
-                        <div class="flex gap-3">
-                            <i class="pi pi-wallet text-xl text-primary mt-1"></i>
-
-                            <div>
-                                <p class="text-sm text-surface-500">Total</p>
-
-                                <p class="text-2xl font-bold text-primary">
-                                    €{{ bookingTotal || '0' }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <BookingInfos
+                        :booking-total="bookingTotal"
+                        :pick-up-label="pickUpLabel"
+                        :drop-off-label="dropOffLabel"
+                    ></BookingInfos>
                 </div>
 
                 <div class="grid gap-5 md:grid-cols-2 mt-5">
@@ -96,13 +42,8 @@
                 </div>
 
                 <!-- Buttons -->
-
                 <div class="mt-10 flex flex-col justify-between gap-4 sm:flex-row">
-                    <Button label="Download Confirmation" icon="pi pi-download" outlined />
-
-                    <Button label="View My Bookings" icon="pi pi-list" />
-
-                    <Button label="Back to Home" icon="pi pi-home" severity="secondary" text />
+                    <SuccessActions class="mt-10" />
                 </div>
             </div>
         </div>
@@ -112,11 +53,12 @@
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import BookingSteppes from '@storefront/components/modules/Booking/BookingSteppes.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
-import { Button } from 'primevue'
 import FreeCancelation from '@storefront/components/modules/FreeCancelation.vue'
 import SupportPhone from '@storefront/components/modules/SupportPhone.vue'
-import BookingNumber from '@storefront/components/modules/Booking/BookingNumber.vue'
-import ConfettiEffect from '../../components/modules/Booking/ConfettiEffect.vue'
+import BookingNumber from '@storefront/components/modules/Booking/Success/BookingNumber.vue'
+import ConfettiEffect from '@storefront/components/modules/Booking/Success/ConfettiEffect.vue'
+import SuccessActions from '@storefront/components/modules/Booking/Success/SuccessActions.vue'
+import BookingInfos from '@storefront/components/modules/Booking/Success/BookingInfos.vue'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useBookingStore } from '@storefront/stores/bookingStore'
@@ -124,6 +66,7 @@ import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
 import { formatDate } from '@storefront/utils.js'
 
 const route = useRoute()
+
 const bookingStore = useBookingStore()
 const bookingLookupStore = useBookingLookupStore()
 

@@ -11,6 +11,7 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->string('public_id', 23)->unique();
 
             $table->string('booking_number')->unique();
 

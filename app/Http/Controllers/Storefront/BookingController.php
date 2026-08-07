@@ -17,6 +17,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Str;
 
 class BookingController extends Controller
 {
@@ -48,6 +49,25 @@ class BookingController extends Controller
             'car' => new CarBookingResource($car),
             'pickUpLocation' => $pickup,
             'dropOffLocation' => $dropoff,
+        ]);
+    }
+
+    public function order(Request $request): JsonResponse
+    {
+        $request->validate([
+            'bookingId' => ['required', 'integer', 'exists:bookings,id'],
+        ]);
+
+        $booking = Booking::with([
+            'customer:id,name,email',
+            'car.variant.model.brand',
+            'pickupLocation.cityModel',
+            'dropoffLocation.cityModel',
+            'extras',
+        ])->findOrFail($request->bookingId);
+
+        return response()->json([
+            'booking' => $booking,
         ]);
     }
 
@@ -95,6 +115,7 @@ class BookingController extends Controller
          *   driver_licence_country: string,
          *   driver_licence_issue_date: string,
          *   driver_licence_expiry_date: string,
+         *   payment_method: string,
          *   extras?: array<int, array{id: int, quantity: int}>
          * } $validated
          */
@@ -140,9 +161,11 @@ class BookingController extends Controller
             $selectedExtras,
             $extraModels
         ) {
+            $random = Str::upper(Str::random(16));
+
             $booking = Booking::create([
                 'booking_number' => 'TMP-' . now()->format('YmdHisv'),
-
+                'public_id' => 'BKG-' . implode('-', str_split($random, 4)),
                 'customer_id' => $validated['customerId'],
                 'car_id' => $validated['carId'],
 

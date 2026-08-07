@@ -322,8 +322,7 @@ const handleNext = async () => {
         router.push({
             name: 'booking-success',
             query: {
-                bookingNumber: booking?.booking_number,
-                bookingId: booking?.id,
+                publicId: booking?.public_id,
             },
         })
     } catch (error) {
