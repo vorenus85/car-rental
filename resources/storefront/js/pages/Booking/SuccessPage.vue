@@ -46,7 +46,7 @@
 
                 <!-- Buttons -->
                 <div class="mt-10 flex flex-col justify-between gap-4 sm:flex-row">
-                    <SuccessActions class="mt-10" />
+                    <SuccessActions />
                 </div>
             </div>
         </div>
@@ -73,6 +73,7 @@ const publicId = computed(() => {
 
 const {
     loadBookingOrder,
+    vehicle,
     bookingNumber,
     customerEmail,
     pickUpLabel,

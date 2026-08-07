@@ -5,13 +5,13 @@ import { formatDate, formatTime } from '@storefront/utils.js'
 export const useBookingOrder = () => {
     const bookingOrderInfo = ref({})
     const customerEmail = computed(() => {
-        return bookingOrderInfo.value?.customer?.email || 'your email address'
+        return bookingOrderInfo.value?.customerEmail || 'your email address'
     })
     const bookingNumber = computed(() => {
-        return bookingOrderInfo.value?.booking_number || 'Booking reference'
+        return bookingOrderInfo.value?.bookingNumber || 'Booking reference'
     })
     const pickUpLabel = computed(() => {
-        const pickUpAt = bookingOrderInfo.value?.pickup_at
+        const pickUpAt = bookingOrderInfo.value?.pickupAt
         if (!pickUpAt) {
             return 'Pick-up details'
         }
@@ -19,7 +19,7 @@ export const useBookingOrder = () => {
         return `${formatDate(new Date(pickUpAt), 'yyyy.MM.dd')} • ${formatTime(new Date(pickUpAt))}`
     })
     const dropOffLabel = computed(() => {
-        const dropOffAt = bookingOrderInfo.value?.dropoff_at
+        const dropOffAt = bookingOrderInfo.value?.dropoffAt
         if (!dropOffAt) {
             return 'Drop-off details'
         }
@@ -27,29 +27,29 @@ export const useBookingOrder = () => {
         return `${formatDate(new Date(dropOffAt), 'yyyy.MM.dd')} • ${formatTime(new Date(dropOffAt))}`
     })
     const pickUpLocation = computed(() => {
-        if (!bookingOrderInfo.value?.pickup_location?.city) {
+        if (!bookingOrderInfo.value?.pickUpCity) {
             return 'Pick-up location'
         }
-        return `${bookingOrderInfo.value?.pickup_location?.city}, ${bookingOrderInfo.value?.pickup_location?.name}`
+        return `${bookingOrderInfo.value?.pickUpCity}, ${bookingOrderInfo.value?.pickUpLocation}`
     })
     const dropOffLocation = computed(() => {
-        if (!bookingOrderInfo.value?.dropoff_location?.city) {
+        if (!bookingOrderInfo.value?.dropOffCity) {
             return 'Drop-off location'
         }
-        return `${bookingOrderInfo.value?.dropoff_location?.city}, ${bookingOrderInfo.value?.dropoff_location?.name}`
+        return `${bookingOrderInfo.value?.dropOffCity}, ${bookingOrderInfo.value?.dropOffLocation}`
     })
     const vehicle = computed(() => {
         return bookingOrderInfo.value?.vehicle || 'Vehicle'
     })
     const bookingTotal = computed(() => {
-        return Math.trunc(Number(bookingOrderInfo.value?.total_amount ?? 0))
+        return Math.trunc(Number(bookingOrderInfo.value?.bookingTotal ?? 0))
     })
 
     const loadBookingOrder = async publicId => {
         try {
             const { data } = await getBookingOrder({ publicId })
             console.log(data)
-            bookingOrderInfo.value = data
+            bookingOrderInfo.value = data.data
         } catch (error) {
             console.error('Error loading booking order:', error)
         }

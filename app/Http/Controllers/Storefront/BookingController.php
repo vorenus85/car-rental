@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Storefront\BookingStoreRequest;
+use App\Http\Resources\Storefront\BookingOrderResource;
 use App\Http\Resources\Storefront\CarBookingResource;
 use App\Models\Booking;
 use App\Models\BookingExtra;
@@ -52,7 +53,7 @@ class BookingController extends Controller
         ]);
     }
 
-    public function order(Request $request): JsonResponse
+    public function order(Request $request): BookingOrderResource
     {
         $validated = $request->validate([
             'publicId' => ['required', 'string', 'exists:bookings,public_id'],
@@ -66,7 +67,7 @@ class BookingController extends Controller
             'extras',
         ])->where('public_id', $validated['publicId'])->firstOrFail();
 
-        return response()->json($booking);
+        return new BookingOrderResource($booking);
     }
 
     public function store(BookingStoreRequest $request): JsonResponse
