@@ -54,8 +54,8 @@ class BookingController extends Controller
 
     public function order(Request $request): JsonResponse
     {
-        $request->validate([
-            'bookingId' => ['required', 'integer', 'exists:bookings,id'],
+        $validated = $request->validate([
+            'publicId' => ['required', 'string', 'exists:bookings,public_id'],
         ]);
 
         $booking = Booking::with([
@@ -64,11 +64,9 @@ class BookingController extends Controller
             'pickupLocation.cityModel',
             'dropoffLocation.cityModel',
             'extras',
-        ])->findOrFail($request->bookingId);
+        ])->where('public_id', $validated['publicId'])->firstOrFail();
 
-        return response()->json([
-            'booking' => $booking,
-        ]);
+        return response()->json($booking);
     }
 
     public function store(BookingStoreRequest $request): JsonResponse

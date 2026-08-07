@@ -20,7 +20,7 @@
                     <p class="mt-1 text-surface-600">
                         A confirmation email has been sent to
                         <span class="font-semibold">
-                            {{ bookingStore?.driver?.personal?.email || 'your email address' }}
+                            {{ customerEmail }}
                         </span>
                         .
                     </p>
@@ -29,11 +29,14 @@
                 <BookingNumber :booking-id="bookingNumber" class="mt-5"></BookingNumber>
 
                 <div class="mt-10 rounded-xl border border-surface-200 bg-white">
-                    <BookingInfos
+                    <BookingOrderInfos
+                        :vehicle="vehicle"
                         :booking-total="bookingTotal"
                         :pick-up-label="pickUpLabel"
                         :drop-off-label="dropOffLabel"
-                    ></BookingInfos>
+                        :pick-up-location="pickUpLocation"
+                        :drop-off-location="dropOffLocation"
+                    ></BookingOrderInfos>
                 </div>
 
                 <div class="grid gap-5 md:grid-cols-2 mt-5">
@@ -50,6 +53,11 @@
     </PublicLayout>
 </template>
 <script setup>
+import { computed, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+import { useBookingStore } from '@storefront/stores/bookingStore'
+import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
+import { formatDate } from '@storefront/utils.js'
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import BookingSteppes from '@storefront/components/modules/Booking/BookingSteppes.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
@@ -58,21 +66,28 @@ import SupportPhone from '@storefront/components/modules/SupportPhone.vue'
 import BookingNumber from '@storefront/components/modules/Booking/Success/BookingNumber.vue'
 import ConfettiEffect from '@storefront/components/modules/Booking/Success/ConfettiEffect.vue'
 import SuccessActions from '@storefront/components/modules/Booking/Success/SuccessActions.vue'
-import BookingInfos from '@storefront/components/modules/Booking/Success/BookingInfos.vue'
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useBookingStore } from '@storefront/stores/bookingStore'
-import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
-import { formatDate } from '@storefront/utils.js'
+import BookingOrderInfos from '@storefront/components/modules/Booking/Success/BookingOrderInfos.vue'
+import { useBookingOrder } from '@storefront/composables/useBookingOrder.js'
 
 const route = useRoute()
+const publicId = computed(() => {
+    return route.query.publicId || null
+})
 
+const {
+    loadBookingOrder,
+    bookingNumber,
+    customerEmail,
+    pickUpLabel,
+    dropOffLabel,
+    pickUpLocation,
+    dropOffLocation,
+    bookingTotal,
+} = useBookingOrder()
+
+/*
 const bookingStore = useBookingStore()
 const bookingLookupStore = useBookingLookupStore()
-
-const bookingNumber = computed(() => {
-    return route.query.bookingNumber || 'Booking reference'
-})
 
 const bookingTotal = computed(() => {
     const dailyRate = bookingLookupStore?.carData?.pricePerDay || 0
@@ -95,26 +110,7 @@ const bookingTotal = computed(() => {
     return (dailyRate * days + insurance + extras).toFixed(0)
 })
 
-const pickUpLabel = computed(() => {
-    if (!bookingLookupStore?.pickUpDate) {
-        return 'Pickup details'
-    }
-
-    return `${formatDate(new Date(bookingLookupStore.pickUpDate), 'yyyy.MM.dd')} • ${
-        bookingLookupStore.pickUpTime
-    }`
-})
-
-const dropOffLabel = computed(() => {
-    if (!bookingLookupStore?.dropOffDate) {
-        return 'Drop-off details'
-    }
-
-    return `${formatDate(new Date(bookingLookupStore.dropOffDate), 'yyyy.MM.dd')} • ${
-        bookingLookupStore.dropOffTime
-    }`
-})
-
+*/
 const breadcrumbItems = [
     {
         label: 'Fleet',
@@ -124,4 +120,8 @@ const breadcrumbItems = [
         label: 'Successful booking',
     },
 ]
+
+onMounted(async () => {
+    await loadBookingOrder(publicId.value)
+})
 </script>

@@ -8,7 +8,7 @@
                 <p class="text-sm text-surface-500">Vehicle</p>
 
                 <p class="font-semibold">
-                    {{ bookingLookupStore?.carData?.name || 'Your selected vehicle' }}
+                    {{ vehicle || 'Your selected vehicle' }}
                 </p>
             </div>
         </div>
@@ -55,3 +55,31 @@
         </div>
     </div>
 </template>
+<script setup>
+defineProps({
+    vehicle: {
+        type: String,
+        default: '',
+    },
+    pickUpLabel: {
+        type: String,
+        default: '',
+    },
+    dropOffLabel: {
+        type: String,
+        default: '',
+    },
+    pickUpLocation: {
+        type: String,
+        default: '',
+    },
+    dropOffLocation: {
+        type: String,
+        default: '',
+    },
+    bookingTotal: {
+        type: Number,
+        default: 0,
+    },
+})
+</script>
