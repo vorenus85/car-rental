@@ -55,9 +55,6 @@
 <script setup>
 import { computed, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { useBookingStore } from '@storefront/stores/bookingStore'
-import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
-import { formatDate } from '@storefront/utils.js'
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import BookingSteppes from '@storefront/components/modules/Booking/BookingSteppes.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
@@ -85,32 +82,6 @@ const {
     bookingTotal,
 } = useBookingOrder()
 
-/*
-const bookingStore = useBookingStore()
-const bookingLookupStore = useBookingLookupStore()
-
-const bookingTotal = computed(() => {
-    const dailyRate = bookingLookupStore?.carData?.pricePerDay || 0
-    const days =
-        bookingLookupStore?.pickUpDate && bookingLookupStore?.dropOffDate
-            ? Math.max(
-                  1,
-                  Math.ceil(
-                      (new Date(bookingLookupStore.dropOffDate).setHours(0, 0, 0, 0) -
-                          new Date(bookingLookupStore.pickUpDate).setHours(0, 0, 0, 0)) /
-                          (1000 * 60 * 60 * 24)
-                  )
-              )
-            : 0
-    const insurance = (bookingLookupStore?.insuranceData?.price || 0) * days
-    const extras = (bookingLookupStore?.extrasData || []).reduce((sum, extra) => {
-        return sum + (extra.quantity || 0) * (extra.price || 0) * days
-    }, 0)
-
-    return (dailyRate * days + insurance + extras).toFixed(0)
-})
-
-*/
 const breadcrumbItems = [
     {
         label: 'Fleet',

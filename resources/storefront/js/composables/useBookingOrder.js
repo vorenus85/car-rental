@@ -26,9 +26,21 @@ export const useBookingOrder = () => {
 
         return `${formatDate(new Date(dropOffAt), 'yyyy.MM.dd')} • ${formatTime(new Date(dropOffAt))}`
     })
-    const pickUpLocation = ''
-    const dropOffLocation = ''
-    const vehicle = ''
+    const pickUpLocation = computed(() => {
+        if (!bookingOrderInfo.value?.pickup_location?.city) {
+            return 'Pick-up location'
+        }
+        return `${bookingOrderInfo.value?.pickup_location?.city}, ${bookingOrderInfo.value?.pickup_location?.name}`
+    })
+    const dropOffLocation = computed(() => {
+        if (!bookingOrderInfo.value?.dropoff_location?.city) {
+            return 'Drop-off location'
+        }
+        return `${bookingOrderInfo.value?.dropoff_location?.city}, ${bookingOrderInfo.value?.dropoff_location?.name}`
+    })
+    const vehicle = computed(() => {
+        return bookingOrderInfo.value?.vehicle || 'Vehicle'
+    })
     const bookingTotal = computed(() => {
         return Math.trunc(Number(bookingOrderInfo.value?.total_amount ?? 0))
     })
