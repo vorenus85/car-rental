@@ -98,6 +98,7 @@ import LicenceInformation from '@storefront/components/modules/Driver/LicenceInf
 import { useRouter } from 'vue-router'
 import DriverInfoSection from '@storefront/components/modules/DriverInfo/DriverInfoSection.vue'
 import SectionHeader from '@storefront/components/modules/SectionHeader.vue'
+import { ref } from 'vue'
 
 const bookingStore = useBookingStore()
 const router = useRouter()
