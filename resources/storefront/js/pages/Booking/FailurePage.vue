@@ -115,9 +115,11 @@ import { Button } from 'primevue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
+/*
 const tryAgain = () => {
     // Retry booking / payment
 }
+    */
 
 const backToSearch = () => {
     router.push({ name: 'fleet' })
