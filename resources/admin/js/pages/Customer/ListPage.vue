@@ -14,7 +14,7 @@
                 :rows-per-page-options="[20, 50]"
                 table-style="min-width: 50rem"
                 :loading="loading"
-                :global-filter-fields="['name', 'email', 'phone']"
+                :global-filter-fields="['firstName', 'lastName', 'email', 'phone']"
                 data-key="id"
                 ><template #header>
                     <div class="flex justify-start gap-5">
@@ -39,7 +39,8 @@
                     </div>
                 </template>
                 <template #empty> No results found. </template>
-                <Column sortable field="name" header="Name" style="width: 20%"> </Column>
+                <Column sortable field="firstName" header="First Name" style="width: 20%"> </Column>
+                <Column sortable field="lastName" header="Last Name" style="width: 20%"> </Column>
                 <Column sortable field="email" header="Email" style="width: 25%"> </Column>
                 <Column sortable field="phone" header="Phone" style="width: 25%"> </Column>
                 <Column sortable field="active" header="Active" style="width: 5%">
@@ -53,12 +54,6 @@
                 <Column header="Actions" style="width: 10%">
                     <template #body="slotProps">
                         <div class="flex items-center justify-list gap-3">
-                            <Button
-                                v-tooltip="'Send reset password'"
-                                icon="pi pi-refresh"
-                                severity="info"
-                                @click="doSendPasswordReset(slotProps.data.id)"
-                            />
                             <Button
                                 severity="info"
                                 icon="pi pi-eye"
@@ -106,8 +101,7 @@ import { onMounted, ref } from 'vue'
 const filters = ref()
 const confirm = useConfirm()
 const { confirmAction } = useCustomConfirm()
-const { loading, customers, getCustomers, deleteCustomer, toggleActive, doSendPasswordReset } =
-    useCustomer()
+const { loading, customers, getCustomers, deleteCustomer, toggleActive } = useCustomer()
 const { toCreateCustomer } = useRedirects()
 
 const initFilters = () => {

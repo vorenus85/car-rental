@@ -1,7 +1,7 @@
 <template>
     <AppLayout>
         <PageTitle title="Edit Model">
-            <template #actions>
+            <template #back>
                 <Button
                     icon="pi pi-angle-left"
                     label="Back to list"

@@ -2,7 +2,7 @@
     <AppLayout>
         <PageTitle title="Account">
             <template #actions>
-                <Menubar class="mb-4" :model="accountMenu" />
+                <Menubar :model="accountMenu" />
             </template>
         </PageTitle>
         <div class="card">
@@ -113,17 +113,10 @@ import { useCustomToast } from '@admin/composables/useCustomToast'
 import { updatePassword } from '@admin/services/accountService'
 import { changePasswordValidator } from '@admin/validators/changePasswordValidator'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 
-const router = useRouter()
 const { accountMenu, password, password_confirmation } = useAccount()
 const { customToast } = useCustomToast()
 const formRef = ref(null)
-
-accountMenu.value = accountMenu.value.map(item => ({
-    ...item,
-    command: () => router.push(item.route),
-}))
 
 const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {

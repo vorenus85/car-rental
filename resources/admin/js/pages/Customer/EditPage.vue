@@ -3,17 +3,28 @@
         <PageTitle title="Edit Customer">
             <template #actions>
                 <Button
+                    icon="pi pi-refresh"
+                    severity="info"
+                    label="Send Reset Password"
+                    @click="doSendPasswordReset(customerId)"
+                />
+            </template>
+            <template #back
+                ><Button
                     icon="pi pi-angle-left"
-                    label="Back to list"
                     severity="secondary"
                     outlined
                     link
-                    size="small"
+                    size="large"
                     @click="toCustomersList"
-                />
-            </template>
+            /></template>
+            <template #menu><Menubar :model="customerMenu" /></template>
         </PageTitle>
         <div v-if="formKey" class="card">
+            <div class="mb-4">
+                <div class="font-semibold text-xl">Customer Details</div>
+                <div class="text-muted-color">Update name, phone number, and email address</div>
+            </div>
             <Form
                 v-slot="$form"
                 :initial-values="initialValues"
@@ -25,14 +36,37 @@
                 @submit="onFormSubmit"
             >
                 <div class="flex flex-col gap-1 w-full lg:w-1/2">
-                    <label for="name">Name</label>
-                    <InputText id="name" name="name" type="text" placeholder="Tóth Béla" fluid />
+                    <label for="firstName">First Name</label>
+                    <InputText
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        placeholder="Simon"
+                        fluid
+                    />
                     <Message
-                        v-if="$form.name?.invalid"
+                        v-if="$form.firstName?.invalid"
                         severity="error"
                         size="small"
                         variant="simple"
-                        >{{ $form.name.error?.message }}</Message
+                        >{{ $form.firstName.error?.message }}</Message
+                    >
+                </div>
+                <div class="flex flex-col gap-1 w-full lg:w-1/2">
+                    <label for="lastName">Last Name</label>
+                    <InputText
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        placeholder="Baker"
+                        fluid
+                    />
+                    <Message
+                        v-if="$form.lastName?.invalid"
+                        severity="error"
+                        size="small"
+                        variant="simple"
+                        >{{ $form.lastName.error?.message }}</Message
                     >
                 </div>
                 <div class="flex flex-col gap-1 w-full lg:w-1/2">
@@ -90,7 +124,7 @@
 <script setup>
 import AppLayout from '@admin/layouts/AppLayout.vue'
 import PageTitle from '@admin/components/PageTitle.vue'
-import { Button, InputText, Message, ToggleSwitch } from 'primevue'
+import { Button, InputText, Menubar, Message, ToggleSwitch } from 'primevue'
 import { useCustomToast } from '@admin/composables/useCustomToast'
 import { useCustomer } from '@admin/composables/useCustomer.js'
 import { useRedirects } from '@admin/composables/useRedirects.js'
@@ -101,7 +135,8 @@ import { onMounted } from 'vue'
 
 const { toCustomersList } = useRedirects()
 const { customToast } = useCustomToast()
-const { initialValues, customerId, formKey, getCustomer } = useCustomer()
+const { initialValues, customerId, formKey, getCustomer, doSendPasswordReset, customerMenu } =
+    useCustomer()
 
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {

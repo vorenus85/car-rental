@@ -3,15 +3,21 @@
         <PageTitle title="Edit User">
             <template #actions>
                 <Button
+                    label="Send reset password"
+                    icon="pi pi-refresh"
+                    severity="info"
+                    @click="doSendPasswordReset(userId)"
+                />
+            </template>
+            <template #back
+                ><Button
                     icon="pi pi-angle-left"
-                    label="Back to list"
                     severity="secondary"
                     outlined
                     link
-                    size="small"
+                    size="large"
                     @click="toUsersList"
-                />
-            </template>
+            /></template>
         </PageTitle>
         <div v-if="formKey" class="card">
             <Form
@@ -101,7 +107,7 @@ import { onMounted } from 'vue'
 
 const { toUsersList } = useRedirects()
 const { customToast } = useCustomToast()
-const { initialValues, userId, formKey, getUser } = useUser()
+const { initialValues, userId, formKey, getUser, doSendPasswordReset } = useUser()
 
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {

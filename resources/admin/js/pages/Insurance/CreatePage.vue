@@ -1,14 +1,13 @@
 <template>
     <AppLayout>
         <PageTitle title="Add new Insurance">
-            <template #actions>
+            <template #back>
                 <Button
                     icon="pi pi-angle-left"
-                    label="Back to list"
                     severity="secondary"
                     outlined
                     link
-                    size="small"
+                    size="large"
                     @click="toInsurancesList"
                 />
             </template>
