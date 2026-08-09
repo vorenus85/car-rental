@@ -32,6 +32,6 @@ describe('insuranceValidator', () => {
             },
         })
 
-        expect(result.errors.price).toEqual([{ message: 'Insurance price is required.' }])
+        expect(result.errors.price).toEqual([{ message: 'Price per day must be greater than 0.' }])
     })
 })

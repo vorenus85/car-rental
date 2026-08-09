@@ -131,13 +131,25 @@ import { useRedirects } from '@admin/composables/useRedirects.js'
 import { Form } from '@primevue/forms'
 import { updateCustomerById } from '@admin/services/customerService'
 import { customerValidator } from '@admin/validators/customerValidator'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const { toCustomersList } = useRedirects()
 const { customToast } = useCustomToast()
-const { initialValues, customerId, formKey, getCustomer, doSendPasswordReset, customerMenu } =
-    useCustomer()
-
+const { initialValues, customerId, formKey, getCustomer, doSendPasswordReset } = useCustomer()
+const customerMenu = ref([
+    {
+        label: 'Customer Details',
+        route: '/customers/:id',
+        command: () => router.push(`/customers/${customerId}`),
+    },
+    {
+        label: 'Billing Information',
+        route: '/customers/:id/billing',
+        command: () => router.push(`/customers/${customerId}/billing`),
+    },
+])
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
         try {

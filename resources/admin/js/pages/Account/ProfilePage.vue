@@ -97,10 +97,15 @@ import { useAccount } from '@admin/composables/useAccount'
 import { updateMe } from '@admin/services/accountService'
 import { profileValidator } from '@admin/validators/profileValidator'
 import { useCustomToast } from '@admin/composables/useCustomToast'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const { customToast } = useCustomToast()
 const { accountMenu, getProfile, initialValues, formKey } = useAccount()
-
+accountMenu.value = accountMenu.value.map(item => ({
+    ...item,
+    command: () => router.push(item.route),
+}))
 const onFormSubmit = async ({ valid, values, errors }) => {
     if (valid) {
         try {

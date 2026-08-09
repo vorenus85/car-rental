@@ -204,20 +204,31 @@ import AppLayout from '@admin/layouts/AppLayout.vue'
 import PageTitle from '@admin/components/PageTitle.vue'
 import { countryOptions, getCountryName } from '@admin/utils.js'
 import { Button, InputText, Menubar, Message, Select } from 'primevue'
-import { useCustomer } from '@admin/composables/useCustomer.js'
 import { useCustomToast } from '@admin/composables/useCustomToast'
 import { useCustomerBillingInfo } from '@admin/composables/useCustomerBillingInfo.js'
 import { useRedirects } from '@admin/composables/useRedirects.js'
 import { customerBillingInfoValidator } from '@admin/validators/customerBillingInfoValidator.js'
 import { updateCustomerBillingInfoById } from '@admin/services/customerBillingInfoService.js'
 import { Form } from '@primevue/forms'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const { toCustomersList } = useRedirects()
-const { customerMenu } = useCustomer()
 const { customToast } = useCustomToast()
 const { formKey, customerId, getCustomerBillingInfo, initialValues } = useCustomerBillingInfo()
-
+const customerMenu = ref([
+    {
+        label: 'Customer Details',
+        route: '/customers/:id',
+        command: () => router.push(`/customers/${customerId}`),
+    },
+    {
+        label: 'Billing Information',
+        route: '/customers/:id/billing',
+        command: () => router.push(`/customers/${customerId}/billing`),
+    },
+])
 const onFormSubmit = async ({ valid, values }) => {
     if (valid) {
         try {

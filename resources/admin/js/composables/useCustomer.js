@@ -1,4 +1,4 @@
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 
 import {
     fetchCustomers,
@@ -16,23 +16,9 @@ export const useCustomer = () => {
     const allCustomers = ref([])
     const formKey = ref(0)
     const route = useRoute()
-    const router = useRouter()
     const customerId = route.params.id
 
     const { customToast } = useCustomToast()
-
-    const customerMenu = ref([
-        {
-            label: 'Customer Details',
-            route: '/customers/:id',
-            command: () => router.push(`/customers/${customerId}`),
-        },
-        {
-            label: 'Billing Information',
-            route: '/customers/:id/billing',
-            command: () => router.push(`/customers/${customerId}/billing`),
-        },
-    ])
 
     const initialValues = reactive({
         firstName: null,
@@ -135,6 +121,5 @@ export const useCustomer = () => {
         formKey,
         customerId,
         doSendPasswordReset,
-        customerMenu,
     }
 }
