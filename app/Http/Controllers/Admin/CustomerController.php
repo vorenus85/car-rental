@@ -19,7 +19,7 @@ class CustomerController extends Controller
     public function index(): JsonResponse
     {
         //
-        $query = Customer::query()->orderBy('name', 'asc');
+        $query = Customer::query()->orderBy('lastName', 'asc');
 
         $customers = $query->get();
 

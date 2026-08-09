@@ -45,6 +45,7 @@ import UserEditPage from '@admin/pages/User/EditPage.vue'
 import CustomerListPage from '@admin/pages/Customer/ListPage.vue'
 import CustomerCreatePage from '@admin/pages/Customer/CreatePage.vue'
 import CustomerEditPage from '@admin/pages/Customer/EditPage.vue'
+import CustomerBillingInfoPage from '@admin/pages/Customer/BillingInfoPage.vue'
 
 import BookingListPage from '@admin/pages/Booking/ListPage.vue'
 import BookingCreatePage from '@admin/pages/Booking/CreatePage.vue'
@@ -115,6 +116,14 @@ const router = createRouter({
             path: '/customers/:id',
             name: 'customers.show',
             component: CustomerEditPage,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/customers/:id/billing',
+            name: 'customers.billing.show',
+            component: CustomerBillingInfoPage,
             meta: {
                 requiresAuth: true,
             },

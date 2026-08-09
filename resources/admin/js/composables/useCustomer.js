@@ -1,4 +1,5 @@
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+
 import {
     fetchCustomers,
     fetchCustomer,
@@ -15,12 +16,27 @@ export const useCustomer = () => {
     const allCustomers = ref([])
     const formKey = ref(0)
     const route = useRoute()
+    const router = useRouter()
     const customerId = route.params.id
 
     const { customToast } = useCustomToast()
 
+    const customerMenu = ref([
+        {
+            label: 'Customer Details',
+            route: '/customers/:id',
+            command: () => router.push(`/customers/${customerId}`),
+        },
+        {
+            label: 'Billing Information',
+            route: '/customers/:id/billing',
+            command: () => router.push(`/customers/${customerId}/billing`),
+        },
+    ])
+
     const initialValues = reactive({
-        name: null,
+        firstName: null,
+        lastName: null,
         phone: '',
         email: null,
         active: true,
@@ -61,7 +77,8 @@ export const useCustomer = () => {
 
         try {
             const { data } = await fetchCustomer(customerId, { ...params })
-            initialValues.name = data.name
+            initialValues.firstName = data.firstName
+            initialValues.lastName = data.lastName
             initialValues.phone = data.phone
             initialValues.email = data.email
             initialValues.active = Boolean(data.active)
@@ -118,5 +135,6 @@ export const useCustomer = () => {
         formKey,
         customerId,
         doSendPasswordReset,
+        customerMenu,
     }
 }

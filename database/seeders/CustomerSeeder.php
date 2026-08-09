@@ -17,7 +17,8 @@ class CustomerSeeder extends Seeder
 
         // demo admin user
         Customer::factory()->create([
-            'name' => 'John Doe',
+            'firstName' => 'John',
+            'lastName' => 'Doe',
             'email' => env('USER_EMAIL'),
             'phone' => '123-456-7890',
             'password' => Hash::make(env('USER_PWD')),
@@ -28,7 +29,7 @@ class CustomerSeeder extends Seeder
             ->count(100)
             ->create([
                 'created_at' => fake()->dateTimeBetween('-3 months', 'now'),
-                'updated_at' => fn (array $attributes) => $attributes['created_at'],
+                'updated_at' => fn(array $attributes) => $attributes['created_at'],
             ]);
 
         $this->command->info('Customers data seeded successfully!');
