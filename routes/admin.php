@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AccountController;
-use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\CustomerBillingController;
+use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\Fleet\BrandController;
 use App\Http\Controllers\Admin\Fleet\BrandImageController;

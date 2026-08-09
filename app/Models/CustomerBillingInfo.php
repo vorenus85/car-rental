@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use Database\Factories\CustomerBillingInfoFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Database\Factories\CustomerBillingInfoFactory;
 
 class CustomerBillingInfo extends Model
 {
