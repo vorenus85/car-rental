@@ -18,14 +18,18 @@ class CustomerBillingInfoFactory extends Factory
 
         return [
             'name' => fake()->name(),
-            'country' => 'HU',
+            'country' => fake()->randomElement([
+                'HU',
+                'AT',
+                'CZ',
+            ]),
             'postcode' => fake()->postcode(),
             'city' => fake()->city(),
             'address' => fake()->streetAddress(),
 
             'company_name' => $company ? fake()->company() : null,
             'tax_number' => $company ? fake()->numerify('########-#-##') : null,
-            'eu_vat_number' => $company ? 'HU' . fake()->numerify('########') : null,
+            'eu_vat_number' => $company ? fake()->randomElement(['HU', 'AT', 'CZ']) . fake()->numerify('########') : null,
         ];
     }
 }

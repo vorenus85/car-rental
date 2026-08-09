@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Customer;
+use App\Models\CustomerBillingInfo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,7 +17,7 @@ class CustomerSeeder extends Seeder
         //
 
         // demo admin user
-        Customer::factory()->create([
+        Customer::factory()->has(CustomerBillingInfo::factory(), 'billingInfo')->create([
             'firstName' => 'John',
             'lastName' => 'Doe',
             'email' => env('USER_EMAIL'),
@@ -27,6 +28,7 @@ class CustomerSeeder extends Seeder
 
         Customer::factory()
             ->count(100)
+            ->has(CustomerBillingInfo::factory(), 'billingInfo')
             ->create([
                 'created_at' => fake()->dateTimeBetween('-3 months', 'now'),
                 'updated_at' => fn(array $attributes) => $attributes['created_at'],

@@ -22,7 +22,7 @@ return new class extends Migration
 
             // Billing
             $table->string('name');
-            $table->char('country', 2)->default('HU');
+            $table->char('country', 3)->default('HU');
             $table->string('postcode');
             $table->string('city');
             $table->string('address');
