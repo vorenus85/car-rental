@@ -2,7 +2,7 @@
     <AppLayout>
         <PageTitle title="Account">
             <template #actions>
-                <Menubar class="mb-4" :model="accountMenu" />
+                <Menubar :model="accountMenu" />
             </template>
         </PageTitle>
         <div class="card">

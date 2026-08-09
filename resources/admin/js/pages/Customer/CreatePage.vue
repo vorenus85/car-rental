@@ -1,19 +1,22 @@
 <template>
     <AppLayout>
         <PageTitle title="Add new Customer">
-            <template #actions>
+            <template #back>
                 <Button
                     icon="pi pi-angle-left"
-                    label="Back to list"
                     severity="secondary"
                     outlined
                     link
-                    size="small"
+                    size="large"
                     @click="toCustomersList"
                 />
             </template>
         </PageTitle>
         <div class="card">
+            <div class="mb-4">
+                <div class="font-semibold text-xl">Customer Details</div>
+                <div class="text-muted-color">Update name, phone number, and email address</div>
+            </div>
             <Form
                 v-slot="$form"
                 :initial-values="initialValues"
@@ -24,14 +27,37 @@
                 @submit="onFormSubmit"
             >
                 <div class="flex flex-col gap-1 w-full lg:w-1/2">
-                    <label for="name">Name</label>
-                    <InputText id="name" name="name" type="text" placeholder="Simon Baker" fluid />
+                    <label for="firstName">First Name</label>
+                    <InputText
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        placeholder="Simon"
+                        fluid
+                    />
                     <Message
-                        v-if="$form.name?.invalid"
+                        v-if="$form.firstName?.invalid"
                         severity="error"
                         size="small"
                         variant="simple"
-                        >{{ $form.name.error?.message }}</Message
+                        >{{ $form.firstName.error?.message }}</Message
+                    >
+                </div>
+                <div class="flex flex-col gap-1 w-full lg:w-1/2">
+                    <label for="lastName">Last Name</label>
+                    <InputText
+                        id="lastName"
+                        name="lastName"
+                        type="text"
+                        placeholder="Baker"
+                        fluid
+                    />
+                    <Message
+                        v-if="$form.lastName?.invalid"
+                        severity="error"
+                        size="small"
+                        variant="simple"
+                        >{{ $form.lastName.error?.message }}</Message
                     >
                 </div>
                 <div class="flex flex-col gap-1 w-full lg:w-1/2">

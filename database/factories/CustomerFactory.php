@@ -24,9 +24,13 @@ class CustomerFactory extends Factory
      */
     public function definition(): array
     {
+        $firstName = fake()->firstName();
+        $lastName = fake()->lastName();
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'firstName' => $firstName,
+            'lastName' => $lastName,
+            'email' => strtolower("{$firstName}.{$lastName}".fake()->numberBetween(1, 50).'@example.test'),
             'phone' => fake()->phoneNumber(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),

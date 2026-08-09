@@ -46,7 +46,8 @@ describe('useCustomer', () => {
 
         expect(customer.customerId).toBe(123)
         expect(customer.initialValues).toEqual({
-            name: null,
+            firstName: null,
+            lastName: null,
             phone: '',
             email: null,
             active: true,
@@ -59,8 +60,8 @@ describe('useCustomer', () => {
 
     it('loads customers', async () => {
         const customersData = [
-            { id: 1, name: 'John Doe', active: true },
-            { id: 2, name: 'Jane Doe', active: false },
+            { id: 1, firstName: 'John', lastName: 'Doe', active: true },
+            { id: 2, firstName: 'Jane', lastName: 'Doe', active: false },
         ]
 
         vi.mocked(fetchCustomers).mockResolvedValue({
@@ -86,7 +87,8 @@ describe('useCustomer', () => {
     it('loads customer details', async () => {
         vi.mocked(fetchCustomer).mockResolvedValue({
             data: {
-                name: 'John Doe',
+                firstName: 'John',
+                lastName: 'Doe',
                 phone: '+36123456789',
                 email: 'john@example.com',
                 active: 1,
@@ -103,7 +105,8 @@ describe('useCustomer', () => {
             include: 'bookings',
         })
         expect(customer.initialValues).toEqual({
-            name: 'John Doe',
+            firstName: 'John',
+            lastName: 'Doe',
             phone: '+36123456789',
             email: 'john@example.com',
             active: true,
@@ -115,7 +118,8 @@ describe('useCustomer', () => {
     it('converts active flag to boolean', async () => {
         vi.mocked(fetchCustomer).mockResolvedValue({
             data: {
-                name: 'John Doe',
+                firstName: 'John',
+                lastName: 'Doe',
                 phone: '',
                 email: 'john@example.com',
                 active: 0,
@@ -155,14 +159,14 @@ describe('useCustomer', () => {
         const customer = useCustomer()
 
         customer.customers.value = [
-            { id: 1, name: 'John' },
-            { id: 2, name: 'Jane' },
+            { id: 1, firstName: 'John', lastName: 'Doe' },
+            { id: 2, firstName: 'Jane', lastName: 'Doe' },
         ]
 
         await customer.deleteCustomer(1)
 
         expect(deleteCustomerById).toHaveBeenCalledWith(1)
-        expect(customer.customers.value).toEqual([{ id: 2, name: 'Jane' }])
+        expect(customer.customers.value).toEqual([{ id: 2, firstName: 'Jane', lastName: 'Doe' }])
         expect(successMock).toHaveBeenCalledWith('Customer deleted successfully!')
     })
 

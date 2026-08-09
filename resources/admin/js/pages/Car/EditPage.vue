@@ -1,14 +1,13 @@
 <template>
     <AppLayout>
         <PageTitle title="Edit Car">
-            <template #actions>
+            <template #back>
                 <Button
                     icon="pi pi-angle-left"
-                    label="Back to list"
                     severity="secondary"
                     outlined
                     link
-                    size="small"
+                    size="large"
                     @click="toCarsList"
                 />
             </template>
@@ -29,6 +28,7 @@
                     <div class="flex flex-col gap-1 mb-4">
                         <label for="brand">Brand</label>
                         <Select
+                            id="brand"
                             v-model="selectedBrand"
                             input-id="brand"
                             filter

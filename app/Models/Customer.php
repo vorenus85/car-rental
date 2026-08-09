@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Notifications\Storefront\ResetPasswordNotification;
 use Database\Factories\CustomerFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -25,7 +26,8 @@ class Customer extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'firstName',
+        'lastName',
         'phone',
         'email',
         'password',
@@ -58,5 +60,13 @@ class Customer extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPasswordNotification($token));
+    }
+
+    /**
+     * @return HasOne<CustomerBillingInfo, $this>
+     */
+    public function billingInfo(): HasOne
+    {
+        return $this->hasOne(CustomerBillingInfo::class);
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\CustomerBillingController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\ExtraController;
 use App\Http\Controllers\Admin\Fleet\BrandController;
@@ -31,6 +32,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/', [CustomerController::class, 'index']);
         Route::post('/', [CustomerController::class, 'store']);
         Route::get('/{customer}', [CustomerController::class, 'show']);
+        Route::get('/{customer}/billing', [CustomerBillingController::class, 'show']);
+        Route::post('/{customer}/billing', [CustomerBillingController::class, 'update']);
         Route::put('/{customer}', [CustomerController::class, 'update']);
         Route::delete('/{customer}', [CustomerController::class, 'destroy']);
         Route::post('{customer}/send-password-reset', [CustomerController::class, 'sendPasswordReset']);

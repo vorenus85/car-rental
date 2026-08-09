@@ -1,4 +1,5 @@
 import { useRoute } from 'vue-router'
+
 import {
     fetchCustomers,
     fetchCustomer,
@@ -20,7 +21,8 @@ export const useCustomer = () => {
     const { customToast } = useCustomToast()
 
     const initialValues = reactive({
-        name: null,
+        firstName: null,
+        lastName: null,
         phone: '',
         email: null,
         active: true,
@@ -61,7 +63,8 @@ export const useCustomer = () => {
 
         try {
             const { data } = await fetchCustomer(customerId, { ...params })
-            initialValues.name = data.name
+            initialValues.firstName = data.firstName
+            initialValues.lastName = data.lastName
             initialValues.phone = data.phone
             initialValues.email = data.email
             initialValues.active = Boolean(data.active)

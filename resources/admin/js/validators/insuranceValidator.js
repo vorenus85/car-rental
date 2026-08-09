@@ -5,8 +5,8 @@ export const insuranceValidator = ({ values }) => {
         errors.name = [{ message: 'Insurance name is required.' }]
     }
 
-    if (!values.price) {
-        errors.price = [{ message: 'Insurance price is required.' }]
+    if (values.price === '' || values.price === null || values.price === undefined) {
+        errors.price = [{ message: 'Price per day must be greater than 0.' }]
     }
 
     return {
