@@ -26,30 +26,10 @@ return new class extends Migration
 
             $table->unsignedSmallInteger('days');
 
-            /*
-             |--------------------------------------------------------------------------
-             | Driver Snapshot
-             |--------------------------------------------------------------------------
-             */
-
-            $table->string('driver_first_name');
-            $table->string('driver_last_name');
-
-            $table->string('driver_email');
-            $table->string('driver_phone');
-
-            $table->date('driver_birth_date');
-
-            $table->char('driver_country', 2);
-            $table->string('driver_city');
-            $table->string('driver_postal_code', 20);
-            $table->string('driver_address_line_1');
-            $table->string('driver_address_line_2')->nullable();
-
-            $table->string('driver_licence_number');
-            $table->char('driver_licence_country', 2);
-            $table->date('driver_licence_issue_date');
-            $table->date('driver_licence_expiry_date');
+            $table->foreignId('driver_id')
+                ->nullable()
+                ->constrained('car_drivers')
+                ->nullOnDelete();
 
             /*
              |--------------------------------------------------------------------------

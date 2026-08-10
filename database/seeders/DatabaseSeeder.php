@@ -10,6 +10,7 @@ use Database\Seeders\Fleet\FeatureSeeder;
 use Database\Seeders\Fleet\LocationSeeder;
 use Database\Seeders\Fleet\VariantSeeder;
 use Database\Seeders\Booking\CustomerSeeder;
+use Database\Seeders\Booking\CarDriverSeeder;
 use Database\Seeders\Booking\ExtraSeeder;
 use Database\Seeders\Booking\InsuranceSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -35,6 +36,7 @@ class DatabaseSeeder extends Seeder
             VariantSeeder::class,
             CarSeeder::class,
             CustomerSeeder::class,
+            CarDriverSeeder::class,
             ExtraSeeder::class,
             InsuranceSeeder::class,
         ]);
