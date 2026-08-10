@@ -1,14 +1,14 @@
 <template>
     <AppLayout>
-        <PageTitle title="Customers">
+        <PageTitle title="Drivers">
             <template #actions>
-                <Button icon="pi pi-plus" label="New" primary @click="toCreateCustomer" />
+                <Button icon="pi pi-plus" label="New" primary @click="toCreateCarDriver" />
             </template>
         </PageTitle>
         <div class="card shadow list-page">
             <DataTable
                 v-model:filters="filters"
-                :value="customers"
+                :value="carDrivers"
                 paginator
                 :rows="20"
                 :rows-per-page-options="[20, 50]"
@@ -41,20 +41,11 @@
                 <template #empty> No results found. </template>
                 <Column sortable field="firstName" header="First Name" style="width: 20%"> </Column>
                 <Column sortable field="lastName" header="Last Name" style="width: 20%"> </Column>
-                <Column sortable field="email" header="Email" style="width: 25%"> </Column>
                 <Column sortable field="phone" header="Phone" style="width: 25%"> </Column>
-                <Column sortable field="updated_at" header="Updated at" style="width: 10%">
+                <Column sortable field="updatedAt" header="Updated at" style="width: 10%">
                     <template #body="slotProps">
-                        <FormatedDate :date="slotProps.data.updated_at"></FormatedDate
+                        <FormatedDate :date="slotProps.data.updatedAt"></FormatedDate
                     ></template>
-                </Column>
-                <Column sortable field="active" header="Active" style="width: 5%">
-                    <template #body="slotProps">
-                        <ToggleSwitch
-                            :model-value="Boolean(slotProps.data.active)"
-                            @change="toggleActive(slotProps.data.id)"
-                        />
-                    </template>
                 </Column>
                 <Column header="Actions" style="width: 10%">
                     <template #body="slotProps">
@@ -64,7 +55,7 @@
                                 icon="pi pi-eye"
                                 as="router-link"
                                 :to="{
-                                    name: 'customers.show',
+                                    name: 'carDrivers.show',
                                     params: {
                                         id: slotProps.data?.id,
                                     },
@@ -87,28 +78,19 @@
 <script setup>
 import AppLayout from '@admin/layouts/AppLayout.vue'
 import PageTitle from '@admin/components/PageTitle.vue'
-import {
-    Button,
-    Column,
-    DataTable,
-    IconField,
-    InputIcon,
-    InputText,
-    ToggleSwitch,
-    useConfirm,
-} from 'primevue'
-import { useCustomConfirm } from '@admin/composables/useCustomConfirm'
-import { useCustomer } from '@admin/composables/useCustomer.js'
 import { useRedirects } from '@admin/composables/useRedirects.js'
+import { useCarDriver } from '@admin/composables/useCarDriver.js'
+import { Button, Column, DataTable, IconField, InputIcon, InputText, useConfirm } from 'primevue'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
+import { useCustomConfirm } from '@admin/composables/useCustomConfirm'
 import { onMounted, ref } from 'vue'
 import FormatedDate from '@admin/components/Table/FormatedDate.vue'
 
+const { toCreateCarDriver } = useRedirects()
 const filters = ref()
 const confirm = useConfirm()
+const { loading, carDrivers, getCarDrivers, deleteCarDriver } = useCarDriver()
 const { confirmAction } = useCustomConfirm()
-const { loading, customers, getCustomers, deleteCustomer, toggleActive } = useCustomer()
-const { toCreateCustomer } = useRedirects()
 
 const initFilters = () => {
     filters.value = {
@@ -141,13 +123,13 @@ const clearFilter = () => {
 const deleteConfirm = id => {
     confirmAction(confirm, {
         action: () => {
-            deleteCustomer(id)
+            deleteCarDriver(id)
         },
         acceptLabel: 'Delete',
     })
 }
 
 onMounted(async () => {
-    await getCustomers()
+    await getCarDrivers()
 })
 </script>

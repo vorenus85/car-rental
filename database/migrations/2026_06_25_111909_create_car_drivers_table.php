@@ -14,24 +14,16 @@ return new class extends Migration
         //
         Schema::create('car_drivers', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-
-            $table->string('email');
+            $table->string('firstName');
+            $table->string('lastName');
             $table->string('phone');
 
-            $table->date('birth_date');
+            $table->date('birthDate');
 
-            $table->char('country', 2);
-            $table->string('city');
-            $table->string('postal_code', 20);
-            $table->string('address_line_1');
-            $table->string('address_line_2')->nullable();
-
-            $table->string('licence_number');
-            $table->char('licence_country', 2);
-            $table->date('licence_issue_date');
-            $table->date('licence_expiry_date');
+            $table->string('licenceNumber');
+            $table->char('licenceCountry', 2);
+            $table->date('licenceIssueDate');
+            $table->date('licenceExpiryDate');
 
             $table->timestamps();
         });

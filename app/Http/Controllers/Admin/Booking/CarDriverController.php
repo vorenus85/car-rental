@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin\Booking;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Booking\StoreCarDriverRequest;
-use App\Http\Requests\Admin\Booking\UpdateCarDriverRequest;
+use App\Http\Requests\Admin\CarDriver\StoreCarDriverRequest;
+use App\Http\Requests\Admin\CarDriver\UpdateCarDriverRequest;
 use App\Http\Resources\Admin\CarDriverResource;
 use App\Models\Booking\CarDriver;
 use Illuminate\Http\JsonResponse;
@@ -17,7 +17,7 @@ class CarDriverController extends Controller
      */
     public function index(): JsonResponse
     {
-        $carDrivers = CarDriver::orderBy('last_name', 'asc')->get();
+        $carDrivers = CarDriver::orderBy('lastName', 'asc')->get();
 
         return response()->json(CarDriverResource::collection($carDrivers), 200);
     }

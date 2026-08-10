@@ -211,22 +211,18 @@ import { customerBillingInfoValidator } from '@admin/validators/customerBillingI
 import { updateCustomerBillingInfoById } from '@admin/services/customerBillingInfoService.js'
 import { Form } from '@primevue/forms'
 import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
 
-const router = useRouter()
-const { toCustomersList } = useRedirects()
+const { toCustomersList, toCustomerDetails, toCustomerBillingInfo } = useRedirects()
 const { customToast } = useCustomToast()
 const { formKey, customerId, getCustomerBillingInfo, initialValues } = useCustomerBillingInfo()
 const customerMenu = ref([
     {
         label: 'Customer Details',
-        route: '/customers/:id',
-        command: () => router.push(`/customers/${customerId}`),
+        command: () => toCustomerDetails(customerId),
     },
     {
         label: 'Billing Information',
-        route: '/customers/:id/billing',
-        command: () => router.push(`/customers/${customerId}/billing`),
+        command: () => toCustomerBillingInfo(customerId),
     },
 ])
 const onFormSubmit = async ({ valid, values }) => {

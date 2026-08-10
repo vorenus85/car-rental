@@ -12,20 +12,14 @@ class CarDriver extends Model
     use HasFactory;
 
     protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',
+        'firstName',
+        'lastName',
         'phone',
-        'birth_date',
-        'country',
-        'city',
-        'postal_code',
-        'address_line_1',
-        'address_line_2',
-        'licence_number',
-        'licence_country',
-        'licence_issue_date',
-        'licence_expiry_date'
+        'birthDate',
+        'licenceNumber',
+        'licenceCountry',
+        'licenceIssueDate',
+        'licenceExpiryDate'
     ];
 
     /**
@@ -36,9 +30,9 @@ class CarDriver extends Model
     protected function casts(): array
     {
         return [
-            'birth_date' => 'date',
-            'licence_issue_date' => 'date',
-            'licence_expiry_date' => 'date',
+            'birthDate' => 'date',
+            'licenceIssueDate' => 'date',
+            'licenceExpiryDate' => 'date',
         ];
     }
 }
