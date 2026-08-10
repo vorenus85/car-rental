@@ -1,9 +1,9 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Booking;
 
-use App\Models\Customer;
-use App\Models\CustomerBillingInfo;
+use App\Models\Booking\Customer;
+use App\Models\Booking\CustomerBillingInfo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,9 +31,9 @@ class CustomerSeeder extends Seeder
             ->has(CustomerBillingInfo::factory(), 'billingInfo')
             ->create([
                 'created_at' => fake()->dateTimeBetween('-3 months', 'now'),
-                'updated_at' => fn (array $attributes) => $attributes['created_at'],
+                'updated_at' => fn(array $attributes) => $attributes['created_at'],
             ]);
 
-        $this->command->info('Customers data seeded successfully!');
+        $this->command->info('Customers data seeded with Customer Billing Information successfully!');
     }
 }

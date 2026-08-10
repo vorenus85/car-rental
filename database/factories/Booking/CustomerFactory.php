@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Booking;
 
-use App\Models\Customer;
+use App\Models\Booking\Customer;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -30,7 +30,7 @@ class CustomerFactory extends Factory
         return [
             'firstName' => $firstName,
             'lastName' => $lastName,
-            'email' => strtolower("{$firstName}.{$lastName}".fake()->numberBetween(1, 50).'@example.test'),
+            'email' => strtolower("{$firstName}.{$lastName}" . fake()->numberBetween(1, 50) . '@example.test'),
             'phone' => fake()->phoneNumber(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
@@ -43,7 +43,7 @@ class CustomerFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }
