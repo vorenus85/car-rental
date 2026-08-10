@@ -2,7 +2,7 @@
 
 namespace App\Notifications\Admin;
 
-use App\Models\Customer;
+use App\Models\Booking\Customer;
 use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -40,11 +40,11 @@ class CustomerCreatedNotification extends Notification
         $token = $broker->createToken($this->customer);
 
         $passwordSetupUrl = config('app.frontend_url')
-            .'/reset-password?token='
-            .$token
-            .'&email='
-            .urlencode($this->customer->email)
-            .'&type=welcome';
+            . '/reset-password?token='
+            . $token
+            . '&email='
+            . urlencode($this->customer->email)
+            . '&type=welcome';
 
         return (new MailMessage)
             ->subject('Your Account Has Been Created')

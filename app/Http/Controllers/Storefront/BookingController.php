@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Storefront\BookingStoreRequest;
 use App\Http\Resources\Storefront\BookingOrderResource;
 use App\Http\Resources\Storefront\CarBookingResource;
-use App\Models\Booking;
-use App\Models\BookingExtra;
-use App\Models\Extra;
+use App\Models\Booking\Booking;
+use App\Models\Booking\BookingExtra;
+use App\Models\Booking\Extra;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
-use App\Models\Insurance;
+use App\Models\Booking\Insurance;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -37,8 +37,8 @@ class BookingController extends Controller
         $dropoff = $request->pickUpLocationId == $request->dropOffLocationId
             ? $pickup
             : Location::select(['id', 'name', 'city_id'])
-                ->with('cityModel:id,name')
-                ->findOrFail($request->dropOffLocationId);
+            ->with('cityModel:id,name')
+            ->findOrFail($request->dropOffLocationId);
 
         $car = Car::with([
             'variant:id,name,model_id',
@@ -125,9 +125,9 @@ class BookingController extends Controller
         $extraModels = $selectedExtras->isEmpty()
             ? collect()
             : Extra::query()
-                ->whereIn('id', $selectedExtras->pluck('id')->all())
-                ->get()
-                ->keyBy('id');
+            ->whereIn('id', $selectedExtras->pluck('id')->all())
+            ->get()
+            ->keyBy('id');
 
         $days = (int) $pickupAt->diffInDays($dropoffAt);
         $dailyRate = (float) $car->price_per_day;
@@ -163,8 +163,8 @@ class BookingController extends Controller
             $random = Str::upper(Str::random(16));
 
             $booking = Booking::create([
-                'booking_number' => 'TMP-'.now()->format('YmdHisv'),
-                'public_id' => 'BKG-'.implode('-', str_split($random, 4)),
+                'booking_number' => 'TMP-' . now()->format('YmdHisv'),
+                'public_id' => 'BKG-' . implode('-', str_split($random, 4)),
                 'customer_id' => $validated['customerId'],
                 'car_id' => $validated['carId'],
 

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Booking;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Customer\CustomerBillingRequest;
-use App\Models\Customer;
+use App\Models\Booking\Customer;
 use Illuminate\Http\JsonResponse;
 
 class CustomerBillingController extends Controller

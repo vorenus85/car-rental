@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Booking;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Customer\StoreCustomerRequest;
 use App\Http\Requests\Admin\Customer\UpdateCustomerRequest;
-use App\Models\Customer;
+use App\Models\Booking\Customer;
 use App\Notifications\Admin\CustomerCreatedNotification;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;

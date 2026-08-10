@@ -1,23 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Booking;
 
-use Database\Factories\ExtraFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Extra extends Model
+class Insurance extends Model
 {
-    /** @use HasFactory<ExtraFactory> */
-    use HasFactory;
+    //
 
     protected $fillable = [
         'name',
         'description',
         'price',
-        'icon',
-        'maxQuantity',
+        'recommended',
     ];
 
     /**

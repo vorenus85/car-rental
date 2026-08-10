@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Booking;
 
 use App\Enums\BookingStatus;
 use App\Enums\PaymentStatus;

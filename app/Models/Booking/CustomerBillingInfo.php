@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Booking;
 
 use Database\Factories\CustomerBillingInfoFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
