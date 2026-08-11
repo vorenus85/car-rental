@@ -3,7 +3,8 @@ import { customerValidator } from '@admin/validators/customerValidator'
 
 describe('customerValidator', () => {
     const validValues = {
-        name: 'John Doe',
+        firstName: 'John',
+        lastName: 'Doe',
         email: 'john.doe@example.com',
     }
 
@@ -13,12 +14,20 @@ describe('customerValidator', () => {
         expect(result.errors).toEqual({})
     })
 
-    it('should return error when name is missing', () => {
+    it('should return error when firstName is missing', () => {
         const result = customerValidator({
             values: {},
         })
 
-        expect(result.errors.name).toEqual([{ message: 'Name is required.' }])
+        expect(result.errors.firstName).toEqual([{ message: 'First name is required.' }])
+    })
+
+    it('should return error when lastName is missing', () => {
+        const result = customerValidator({
+            values: {},
+        })
+
+        expect(result.errors.lastName).toEqual([{ message: 'Last name is required.' }])
     })
 
     it('should return error when email is missing', () => {
