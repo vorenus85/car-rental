@@ -18,6 +18,11 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained()->cascadeOnDelete();
             $table->foreignId('car_id')->constrained()->cascadeOnDelete();
 
+            $table->foreignId('driver_id')
+                ->nullable()
+                ->constrained('car_drivers')
+                ->nullOnDelete();
+
             $table->foreignId('pickup_location_id')->constrained('locations');
             $table->foreignId('dropoff_location_id')->constrained('locations');
 
@@ -26,10 +31,7 @@ return new class extends Migration
 
             $table->unsignedSmallInteger('days');
 
-            $table->foreignId('driver_id')
-                ->nullable()
-                ->constrained('car_drivers')
-                ->nullOnDelete();
+
 
             /*
              |--------------------------------------------------------------------------

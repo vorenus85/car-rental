@@ -23,14 +23,14 @@ class CarDriverFactory extends Factory
         $lastName = fake()->lastName();
 
         return [
-            'firstName' => $firstName,
-            'lastName' => $lastName,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
             'phone' => fake()->phoneNumber(),
-            'birthDate' => fake()->dateTimeBetween('-70 years', '-21 years'),
-            'licenceNumber' => strtoupper(fake()->bothify('??######')),
-            'licenceCountry' => fake()->randomElement(['HU', 'AT', 'CZ']),
-            'licenceIssueDate' => fake()->dateTimeBetween('-20 years', '-1 year'),
-            'licenceExpiryDate' => fake()->dateTimeBetween('+1 year', '+10 years'),
+            'birth_date' => fake()->dateTimeBetween('-70 years', '-21 years'),
+            'licence_number' => strtoupper(fake()->bothify('??######')),
+            'licence_country' => fake()->randomElement(['HU', 'AT', 'CZ']),
+            'licence_issue_date' => fake()->dateTimeBetween('-20 years', '-1 year'),
+            'licence_expiry_date' => fake()->dateTimeBetween('+1 year', '+10 years'),
         ];
     }
 }

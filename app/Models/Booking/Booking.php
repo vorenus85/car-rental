@@ -28,22 +28,7 @@ class Booking extends Model
         'days',
 
         // Driver
-        'driver_first_name',
-        'driver_last_name',
-        'driver_email',
-        'driver_phone',
-        'driver_birth_date',
-
-        'driver_country',
-        'driver_city',
-        'driver_postal_code',
-        'driver_address_line_1',
-        'driver_address_line_2',
-
-        'driver_licence_number',
-        'driver_licence_country',
-        'driver_licence_issue_date',
-        'driver_licence_expiry_date',
+        'driver_id',
 
         // Pricing
         'currency',

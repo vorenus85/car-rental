@@ -20,15 +20,15 @@ class CarDriverResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'firstName' => $this->firstName,
-            'lastName' => $this->lastName,
+            'firstName' => $this->first_name,
+            'lastName' => $this->last_name,
             'phone' => $this->phone,
-            'birthDate' => $this->birthDate,
+            'birthDate' => $this->birth_date,
 
-            'licenceNumber' => $this->licenceNumber,
-            'licenceCountry' => $this->licenceCountry,
-            'licenceIssueDate' => $this->licenceIssueDate,
-            'licenceExpiryDate' => $this->licenceExpiryDate,
+            'licenceNumber' => $this->licence_number,
+            'licenceCountry' => $this->licence_country,
+            'licenceIssueDate' => $this->licence_issue_date,
+            'licenceExpiryDate' => $this->licence_expiry_date,
             'updatedAt' => $this->updated_at,
         ];
     }

@@ -37,16 +37,8 @@ describe('useBookingStore', () => {
             personal: {
                 firstName: '',
                 lastName: '',
-                email: '',
                 phone: '',
                 birthDate: null,
-            },
-            address: {
-                country: null,
-                city: '',
-                postalCode: '',
-                addressLine1: '',
-                addressLine2: '',
             },
             licence: {
                 licenceNumber: '',
@@ -72,15 +64,8 @@ describe('useBookingStore', () => {
 
         store.driver.personal.firstName = 'John'
         store.driver.personal.lastName = 'Doe'
-        store.driver.personal.email = 'john@example.com'
         store.driver.personal.phone = '+36123456789'
         store.driver.personal.birthDate = '1995-01-01'
-
-        store.driver.address.country = 'hu'
-        store.driver.address.city = 'Budapest'
-        store.driver.address.postalCode = '1111'
-        store.driver.address.addressLine1 = 'Main street 1'
-        store.driver.address.addressLine2 = '2nd floor'
 
         store.driver.licence.licenceNumber = 'ABC12345'
         store.driver.licence.issuingCountry = 'hu'
@@ -100,17 +85,8 @@ describe('useBookingStore', () => {
         expect(store.getDriverPersonal).toEqual({
             firstName: 'John',
             lastName: 'Doe',
-            email: 'john@example.com',
             phone: '+36123456789',
             birthDate: '1995-01-01',
-        })
-
-        expect(store.getDriverAddress).toEqual({
-            country: 'hu',
-            city: 'Budapest',
-            postalCode: '1111',
-            addressLine1: 'Main street 1',
-            addressLine2: '2nd floor',
         })
 
         expect(store.getDriverLicence).toEqual({
@@ -135,7 +111,6 @@ describe('useBookingStore', () => {
         store.setDriverPersonal({
             firstName: 'John',
             lastName: 'Doe',
-            email: 'john@example.com',
             phone: '+36123456789',
             birthDate: '1995-01-01',
         })
@@ -143,29 +118,8 @@ describe('useBookingStore', () => {
         expect(store.driver.personal).toEqual({
             firstName: 'John',
             lastName: 'Doe',
-            email: 'john@example.com',
             phone: '+36123456789',
             birthDate: '1995-01-01',
-        })
-    })
-
-    it('should set driver address data', () => {
-        const store = useBookingStore()
-
-        store.setDriverAddress({
-            country: 'hu',
-            city: 'Budapest',
-            postalCode: '1111',
-            addressLine1: 'Main street 1',
-            addressLine2: '2nd floor',
-        })
-
-        expect(store.driver.address).toEqual({
-            country: 'hu',
-            city: 'Budapest',
-            postalCode: '1111',
-            addressLine1: 'Main street 1',
-            addressLine2: '2nd floor',
         })
     })
 

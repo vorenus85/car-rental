@@ -17,7 +17,7 @@ class CarDriverController extends Controller
      */
     public function index(): JsonResponse
     {
-        $carDrivers = CarDriver::orderBy('lastName', 'asc')->get();
+        $carDrivers = CarDriver::orderBy('last_name', 'asc')->get();
 
         return response()->json(CarDriverResource::collection($carDrivers), 200);
     }

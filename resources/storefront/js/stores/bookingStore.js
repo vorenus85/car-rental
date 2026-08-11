@@ -18,17 +18,8 @@ export const useBookingStore = defineStore('booking', {
             personal: {
                 firstName: '',
                 lastName: '',
-                email: '',
                 phone: '',
                 birthDate: null,
-            },
-
-            address: {
-                country: null,
-                city: '',
-                postalCode: '',
-                addressLine1: '',
-                addressLine2: '',
             },
 
             licence: {
@@ -55,18 +46,8 @@ export const useBookingStore = defineStore('booking', {
             return {
                 firstName: state.driver.personal.firstName,
                 lastName: state.driver.personal.lastName,
-                email: state.driver.personal.email,
                 phone: state.driver.personal.phone,
                 birthDate: state.driver.personal.birthDate,
-            }
-        },
-        getDriverAddress: state => {
-            return {
-                country: state.driver.address.country,
-                city: state.driver.address.city,
-                postalCode: state.driver.address.postalCode,
-                addressLine1: state.driver.address.addressLine1,
-                addressLine2: state.driver.address.addressLine2,
             }
         },
         getDriverLicence: state => {
@@ -92,16 +73,8 @@ export const useBookingStore = defineStore('booking', {
         setDriverPersonal(data) {
             this.driver.personal.firstName = data.firstName
             this.driver.personal.lastName = data.lastName
-            this.driver.personal.email = data.email
             this.driver.personal.phone = data.phone
             this.driver.personal.birthDate = data.birthDate
-        },
-        setDriverAddress(data) {
-            this.driver.address.country = data.country
-            this.driver.address.city = data.city
-            this.driver.address.postalCode = data.postalCode
-            this.driver.address.addressLine1 = data.addressLine1
-            this.driver.address.addressLine2 = data.addressLine2
         },
         setDriverLicence(data) {
             this.driver.licence.licenceNumber = data.licenceNumber
@@ -132,15 +105,8 @@ export const useBookingStore = defineStore('booking', {
             // Clear driver data
             this.driver.personal.firstName = ''
             this.driver.personal.lastName = ''
-            this.driver.personal.email = ''
             this.driver.personal.phone = ''
             this.driver.personal.birthDate = null
-
-            this.driver.address.country = null
-            this.driver.address.city = ''
-            this.driver.address.postalCode = ''
-            this.driver.address.addressLine1 = ''
-            this.driver.address.addressLine2 = ''
 
             this.driver.licence.licenceNumber = ''
             this.driver.licence.issuingCountry = null
