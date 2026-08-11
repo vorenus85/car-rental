@@ -269,8 +269,7 @@ const buildBookingPayload = () => {
         dropOffDate,
         dropOffTime,
     } = bookingStore.getBookingData
-    const { firstName, lastName, email, phone, birthDate } = bookingStore.getDriverPersonal
-    const address = bookingStore.getDriverAddress
+    const { firstName, lastName, phone, birthDate } = bookingStore.getDriverPersonal
     const licence = bookingStore.getDriverLicence
 
     return {
