@@ -1,8 +1,12 @@
 export const customerValidator = ({ values }) => {
     const errors = {}
 
-    if (!values.name) {
-        errors.name = [{ message: 'Name is required.' }]
+    if (!values.firstName) {
+        errors.firstName = [{ message: 'First name is required.' }]
+    }
+
+    if (!values.lastName) {
+        errors.lastName = [{ message: 'Last name is required.' }]
     }
 
     if (!values.email) {

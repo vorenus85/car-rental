@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Booking;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Extra\StoreExtraRequest;
 use App\Http\Requests\Admin\Extra\UpdateExtraRequest;
 use App\Http\Resources\Admin\ExtraResource;
-use App\Models\Extra;
+use App\Models\Booking\Extra;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 

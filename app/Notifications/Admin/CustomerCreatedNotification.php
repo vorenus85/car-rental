@@ -2,7 +2,7 @@
 
 namespace App\Notifications\Admin;
 
-use App\Models\Customer;
+use App\Models\Booking\Customer;
 use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;

@@ -1,12 +1,12 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Booking;
 
-use App\Models\Insurance;
+use App\Models\Booking\Extra;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 
-class InsuranceSeeder extends Seeder
+class ExtraSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,19 +14,20 @@ class InsuranceSeeder extends Seeder
     public function run(): void
     {
         //
-        $json = File::get(database_path('data/insurances.json'));
+        $json = File::get(database_path('data/extras.json'));
         $data = json_decode($json, true);
 
         // Populate with data
         foreach ($data as $index => $item) {
-            Insurance::create([
+            Extra::create([
                 'name' => $item['name'],
                 'description' => $item['description'],
                 'price' => $item['price'],
-                'recommended' => $item['recommended'],
+                'icon' => $item['icon'],
+                'maxQuantity' => $item['maxQuantity'],
             ]);
         }
 
-        $this->command->info('Insurances data seeded successfully!');
+        $this->command->info('Extras data seeded successfully!');
     }
 }

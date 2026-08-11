@@ -47,6 +47,10 @@ import CustomerCreatePage from '@admin/pages/Customer/CreatePage.vue'
 import CustomerEditPage from '@admin/pages/Customer/EditPage.vue'
 import CustomerBillingInfoPage from '@admin/pages/Customer/BillingInfoPage.vue'
 
+import CarDriverListPage from '@admin/pages/CarDriver/ListPage.vue'
+import CarDriverCreatePage from '@admin/pages/CarDriver/CreatePage.vue'
+import CarDriverEditPage from '@admin/pages/CarDriver/EditPage.vue'
+
 import BookingListPage from '@admin/pages/Booking/ListPage.vue'
 import BookingCreatePage from '@admin/pages/Booking/CreatePage.vue'
 import BookingEditPage from '@admin/pages/Booking/EditPage.vue'
@@ -93,39 +97,6 @@ const router = createRouter({
             meta: {
                 requiresAuth: true,
                 parent: 'settings',
-            },
-        },
-
-        {
-            path: '/customers',
-            name: 'customers',
-            component: CustomerListPage,
-            meta: {
-                requiresAuth: true,
-            },
-        },
-        {
-            path: '/customers/create',
-            name: 'customers.create',
-            component: CustomerCreatePage,
-            meta: {
-                requiresAuth: true,
-            },
-        },
-        {
-            path: '/customers/:id',
-            name: 'customers.show',
-            component: CustomerEditPage,
-            meta: {
-                requiresAuth: true,
-            },
-        },
-        {
-            path: '/customers/:id/billing',
-            name: 'customers.billing.show',
-            component: CustomerBillingInfoPage,
-            meta: {
-                requiresAuth: true,
             },
         },
 
@@ -257,6 +228,71 @@ const router = createRouter({
         },
 
         {
+            path: '/reservations/car-drivers',
+            name: 'carDrivers',
+            component: CarDriverListPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+        {
+            path: '/reservations/car-drivers/create',
+            name: 'carDrivers.create',
+            component: CarDriverCreatePage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+        {
+            path: '/reservations/car-drivers/:id',
+            name: 'carDrivers.show',
+            component: CarDriverEditPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+
+        {
+            path: '/reservations/customers',
+            name: 'customers',
+            component: CustomerListPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+        {
+            path: '/reservations/customers/create',
+            name: 'customers.create',
+            component: CustomerCreatePage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+        {
+            path: '/reservations/customers/:id',
+            name: 'customers.show',
+            component: CustomerEditPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+        {
+            path: '/reservations/customers/:id/billing',
+            name: 'customers.billing.show',
+            component: CustomerBillingInfoPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'reservations',
+            },
+        },
+
+        {
             path: '/fleet/cars',
             name: 'cars',
             component: CarListPage,
@@ -283,6 +319,7 @@ const router = createRouter({
                 parent: 'fleet',
             },
         },
+
         {
             path: '/locations',
             name: 'locations',

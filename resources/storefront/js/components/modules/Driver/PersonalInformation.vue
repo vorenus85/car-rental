@@ -50,28 +50,6 @@
                     >
                 </div>
 
-                <!-- Email -->
-                <div>
-                    <label for="email" class="mb-2 block text-sm font-medium">
-                        Email address <span class="text-red-500">*</span>
-                    </label>
-
-                    <InputText
-                        id="email"
-                        name="email"
-                        type="email"
-                        class="w-full"
-                        placeholder="Enter email address"
-                    />
-                    <Message
-                        v-if="$form.email?.invalid"
-                        severity="error"
-                        size="small"
-                        variant="simple"
-                        >{{ $form.email.error?.message }}</Message
-                    >
-                </div>
-
                 <!-- Phone -->
                 <div>
                     <label for="phone" class="mb-2 block text-sm font-medium">

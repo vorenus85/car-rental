@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Booking;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Insurance\StoreInsuranceRequest;
 use App\Http\Requests\Admin\Insurance\UpdateInsuranceRequest;
 use App\Http\Resources\Admin\InsuranceResource;
-use App\Models\Insurance;
+use App\Models\Booking\Insurance;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 

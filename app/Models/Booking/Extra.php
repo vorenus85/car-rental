@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Booking;
 
-use Database\Factories\ExtraFactory;
+use Database\Factories\Booking\ExtraFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Booking;
 
-use App\Models\CustomerBillingInfo;
+use App\Models\Booking\CustomerBillingInfo;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

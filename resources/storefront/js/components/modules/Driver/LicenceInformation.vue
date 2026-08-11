@@ -208,3 +208,6 @@ const onFormSubmit = ({ valid, values, errors }) => {
     })
 }
 </script>
+<style scoped>
+@import 'flag-icons/css/flag-icons.min.css';
+</style>

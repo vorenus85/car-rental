@@ -28,15 +28,8 @@ class BookingStoreRequest extends FormRequest
 
             'driver_first_name' => ['required', 'string'],
             'driver_last_name' => ['required', 'string'],
-            'driver_email' => ['required', 'email'],
             'driver_phone' => ['required', 'string'],
             'driver_birth_date' => ['required', 'date_format:Y-m-d'],
-
-            'driver_country' => ['required', 'string', 'size:2'],
-            'driver_city' => ['required', 'string'],
-            'driver_postal_code' => ['required', 'string'],
-            'driver_address_line_1' => ['required', 'string'],
-            'driver_address_line_2' => ['string'],
 
             'driver_licence_number' => ['required', 'string'],
             'driver_licence_country' => ['required', 'string', 'size:2'],

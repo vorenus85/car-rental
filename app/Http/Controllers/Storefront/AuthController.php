@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Storefront\RegisterCustomerRequest;
-use App\Models\Customer;
+use App\Models\Booking\Customer;
 use App\Notifications\Storefront\CustomerCreatedNotification;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;

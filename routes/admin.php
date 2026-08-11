@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AccountController;
-use App\Http\Controllers\Admin\CustomerBillingController;
-use App\Http\Controllers\Admin\CustomerController;
-use App\Http\Controllers\Admin\ExtraController;
+use App\Http\Controllers\Admin\Booking\CarDriverController;
+use App\Http\Controllers\Admin\Booking\CustomerBillingController;
+use App\Http\Controllers\Admin\Booking\CustomerController;
+use App\Http\Controllers\Admin\Booking\ExtraController;
+use App\Http\Controllers\Admin\Booking\InsuranceController;
 use App\Http\Controllers\Admin\Fleet\BrandController;
 use App\Http\Controllers\Admin\Fleet\BrandImageController;
 use App\Http\Controllers\Admin\Fleet\CarController;
@@ -12,7 +14,6 @@ use App\Http\Controllers\Admin\Fleet\CarModelController;
 use App\Http\Controllers\Admin\Fleet\FeatureController;
 use App\Http\Controllers\Admin\Fleet\LocationController;
 use App\Http\Controllers\Admin\Fleet\VariantController;
-use App\Http\Controllers\Admin\InsuranceController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,14 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/me', [AccountController::class, 'show']);
         Route::put('/me', [AccountController::class, 'update']);
         Route::put('/password', [AccountController::class, 'changePassword']);
+    });
+
+    Route::prefix('/api/admin/car-drivers')->group(function () {
+        Route::get('/', [CarDriverController::class, 'index']);
+        Route::post('/', [CarDriverController::class, 'store']);
+        Route::get('/{carDriver}', [CarDriverController::class, 'show']);
+        Route::put('/{carDriver}', [CarDriverController::class, 'update']);
+        Route::delete('/{carDriver}', [CarDriverController::class, 'destroy']);
     });
 
     Route::prefix('/api/admin/features')->group(function () {

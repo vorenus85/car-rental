@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources\Storefront;
 
-use App\Models\Booking;
+use App\Models\Booking\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 

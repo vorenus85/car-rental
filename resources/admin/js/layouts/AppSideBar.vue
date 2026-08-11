@@ -69,6 +69,18 @@ const menus = [
                 parent: 'reservations',
             },
             {
+                icon: 'users',
+                routeName: 'customers',
+                title: 'Customers',
+                parent: 'reservations',
+            },
+            {
+                icon: 'id-card',
+                routeName: 'carDrivers',
+                title: 'Car Drivers',
+                parent: 'reservations',
+            },
+            {
                 icon: 'plus-circle',
                 routeName: 'extras',
                 title: 'Extras',
@@ -125,11 +137,6 @@ const menus = [
         icon: 'map-marker',
         routeName: 'locations',
         title: 'Locations',
-    },
-    {
-        icon: 'users',
-        routeName: 'customers',
-        title: 'Customers',
     },
     {
         icon: 'cog',

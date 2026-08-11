@@ -2,7 +2,7 @@
 
 namespace App\Notifications\Storefront;
 
-use App\Models\Customer;
+use App\Models\Booking\Customer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;

@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Storefront\BookingStoreRequest;
 use App\Http\Resources\Storefront\BookingOrderResource;
 use App\Http\Resources\Storefront\CarBookingResource;
-use App\Models\Booking;
-use App\Models\BookingExtra;
-use App\Models\Extra;
+use App\Models\Booking\Booking;
+use App\Models\Booking\BookingExtra;
+use App\Models\Booking\CarDriver;
+use App\Models\Booking\Extra;
+use App\Models\Booking\Insurance;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
-use App\Models\Insurance;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -60,7 +61,7 @@ class BookingController extends Controller
         ]);
 
         $booking = Booking::with([
-            'customer:id,name,email',
+            'customer:id,email',
             'car.variant.model.brand',
             'pickupLocation.cityModel',
             'dropoffLocation.cityModel',
@@ -105,11 +106,6 @@ class BookingController extends Controller
          *   driver_email: string,
          *   driver_phone: string,
          *   driver_birth_date: string,
-         *   driver_country: string,
-         *   driver_city: string,
-         *   driver_postal_code: string,
-         *   driver_address_line_1: string,
-         *   driver_address_line_2: string|null,
          *   driver_licence_number: string,
          *   driver_licence_country: string,
          *   driver_licence_issue_date: string,
@@ -162,6 +158,17 @@ class BookingController extends Controller
         ) {
             $random = Str::upper(Str::random(16));
 
+            $carDriver = CarDriver::create([
+                'first_name' => $validated['driver_first_name'],
+                'last_name' => $validated['driver_last_name'],
+                'phone' => $validated['driver_phone'],
+                'birth_date' => $validated['driver_birth_date'],
+                'licence_number' => $validated['driver_licence_number'],
+                'licence_country' => $validated['driver_licence_country'],
+                'licence_issue_date' => $validated['driver_licence_issue_date'],
+                'licence_expiry_date' => $validated['driver_licence_expiry_date'],
+            ]);
+
             $booking = Booking::create([
                 'booking_number' => 'TMP-'.now()->format('YmdHisv'),
                 'public_id' => 'BKG-'.implode('-', str_split($random, 4)),
@@ -174,23 +181,6 @@ class BookingController extends Controller
                 'pickup_at' => $pickupAt,
                 'dropoff_at' => $dropoffAt,
                 'days' => $days,
-
-                'driver_first_name' => $validated['driver_first_name'],
-                'driver_last_name' => $validated['driver_last_name'],
-                'driver_email' => $validated['driver_email'],
-                'driver_phone' => $validated['driver_phone'],
-                'driver_birth_date' => $validated['driver_birth_date'],
-
-                'driver_country' => $validated['driver_country'],
-                'driver_city' => $validated['driver_city'],
-                'driver_postal_code' => $validated['driver_postal_code'],
-                'driver_address_line_1' => $validated['driver_address_line_1'],
-                'driver_address_line_2' => $validated['driver_address_line_2'] ?? null,
-
-                'driver_licence_number' => $validated['driver_licence_number'],
-                'driver_licence_country' => $validated['driver_licence_country'],
-                'driver_licence_issue_date' => $validated['driver_licence_issue_date'],
-                'driver_licence_expiry_date' => $validated['driver_licence_expiry_date'],
 
                 'payment_method' => $validated['payment_method'],
 
@@ -208,6 +198,7 @@ class BookingController extends Controller
 
             $booking->update([
                 'booking_number' => $this->generateBookingNumber($booking),
+                'driver_id' => $carDriver->id,
             ]);
 
             DB::table('booking_insurance')->insert([
@@ -241,7 +232,7 @@ class BookingController extends Controller
 
         return response()->json([
             'booking' => $booking->load([
-                'customer:id,name,email',
+                'customer:id,firstName,lastName,email',
                 'car.variant.model.brand',
                 'pickupLocation.cityModel',
                 'dropoffLocation.cityModel',

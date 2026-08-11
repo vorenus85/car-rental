@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Booking;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\Storefront\ResetPasswordNotification;
-use Database\Factories\CustomerFactory;
+use Database\Factories\Booking\CustomerFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;

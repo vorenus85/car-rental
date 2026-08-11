@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Booking;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Customer\StoreCustomerRequest;
 use App\Http\Requests\Admin\Customer\UpdateCustomerRequest;
-use App\Models\Customer;
+use App\Http\Resources\Admin\CustomerResource;
+use App\Models\Booking\Customer;
 use App\Notifications\Admin\CustomerCreatedNotification;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
@@ -19,11 +20,11 @@ class CustomerController extends Controller
     public function index(): JsonResponse
     {
         //
-        $query = Customer::query()->orderBy('lastName', 'asc');
+        $query = Customer::query()->orderBy('last_name', 'asc');
 
         $customers = $query->get();
 
-        return response()->json($customers);
+        return response()->json(CustomerResource::collection($customers));
     }
 
     /**
@@ -38,7 +39,7 @@ class CustomerController extends Controller
 
         $customer->notify(new CustomerCreatedNotification($customer));
 
-        return response()->json($customer, 201);
+        return response()->json(new CustomerResource($customer), 201);
     }
 
     /**
@@ -47,9 +48,7 @@ class CustomerController extends Controller
     public function show(Customer $customer): JsonResponse
     {
         //
-        $query = Customer::where('id', $customer->id);
-
-        return response()->json($query->first());
+        return response()->json(new CustomerResource($customer));
     }
 
     /**
@@ -62,7 +61,7 @@ class CustomerController extends Controller
 
         $customer->update($validated);
 
-        return response()->json($customer);
+        return response()->json(new CustomerResource($customer));
     }
 
     /**
@@ -80,7 +79,7 @@ class CustomerController extends Controller
         $customer->active = ! $customer->active;
         $customer->save();
 
-        return response()->json($customer);
+        return response()->json(new CustomerResource($customer));
     }
 
     public function sendPasswordReset(Customer $customer): JsonResponse

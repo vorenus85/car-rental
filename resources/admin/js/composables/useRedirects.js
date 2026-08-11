@@ -75,6 +75,20 @@ export const useRedirects = () => {
         router.push({ name: 'customers' })
     }
 
+    const toCustomerDetails = customerId => {
+        router.push({
+            name: 'customers.show',
+            params: { id: customerId },
+        })
+    }
+
+    const toCustomerBillingInfo = customerId => {
+        router.push({
+            name: 'customers.billing.show',
+            params: { id: customerId },
+        })
+    }
+
     const toLocationsList = () => {
         router.push({ name: 'locations' })
     }
@@ -107,6 +121,14 @@ export const useRedirects = () => {
         router.push({ name: 'insurances.create' })
     }
 
+    const toCarDriversList = () => {
+        router.push({ name: 'carDrivers' })
+    }
+
+    const toCreateCarDriver = () => {
+        router.push({ name: 'carDrivers.create' })
+    }
+
     return {
         toDashboard,
         toCarsList,
@@ -134,5 +156,9 @@ export const useRedirects = () => {
         toCreateExtra,
         toInsurancesList,
         toCreateInsurance,
+        toCustomerDetails,
+        toCustomerBillingInfo,
+        toCarDriversList,
+        toCreateCarDriver,
     }
 }

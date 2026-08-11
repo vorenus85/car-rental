@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Booking\CarDriverSeeder;
+use Database\Seeders\Booking\CustomerSeeder;
+use Database\Seeders\Booking\ExtraSeeder;
+use Database\Seeders\Booking\InsuranceSeeder;
 use Database\Seeders\Fleet\BrandSeeder;
 use Database\Seeders\Fleet\CarModelSeeder;
 use Database\Seeders\Fleet\CarSeeder;
@@ -32,6 +36,7 @@ class DatabaseSeeder extends Seeder
             VariantSeeder::class,
             CarSeeder::class,
             CustomerSeeder::class,
+            CarDriverSeeder::class,
             ExtraSeeder::class,
             InsuranceSeeder::class,
         ]);

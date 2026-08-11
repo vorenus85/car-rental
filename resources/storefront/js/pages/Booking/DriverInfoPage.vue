@@ -27,25 +27,6 @@
                             </template>
                         </DriverInfoSection>
 
-                        <DriverInfoSection :is-open="activeSection === 'address'" class="mt-8">
-                            <template #header>
-                                <SectionHeader
-                                    :title="'Address Information'"
-                                    :sub-title="`Please provide driver's residential address.`"
-                                />
-                            </template>
-                            <template #body>
-                                <AddressInformation
-                                    :btn-label="'Next'"
-                                    :section="'address'"
-                                    :back-label="'Back to Personal Informations'"
-                                    :show-back="true"
-                                    @back="handleSectionBack"
-                                    @save="handleSectionNext"
-                                ></AddressInformation>
-                            </template>
-                        </DriverInfoSection>
-
                         <DriverInfoSection
                             :is-open="activeSection === 'driving-licence'"
                             class="mt-8"
@@ -93,7 +74,6 @@ import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vu
 import BookingNavigation from '@storefront/components/modules/Booking/BookingNavigation.vue'
 import BookingSidebarSummary from '@storefront/components/modules/Booking/BookingSidebarSummary.vue'
 import PersonalInformation from '@storefront/components/modules/Driver/PersonalInformation.vue'
-import AddressInformation from '@storefront/components/modules/Driver/AddressInformation.vue'
 import LicenceInformation from '@storefront/components/modules/Driver/LicenceInformation.vue'
 import { useRouter } from 'vue-router'
 import DriverInfoSection from '@storefront/components/modules/DriverInfo/DriverInfoSection.vue'
@@ -103,7 +83,7 @@ import { ref } from 'vue'
 const bookingStore = useBookingStore()
 const router = useRouter()
 
-const activeSection = ref('personal') //personal, address, driving-licence
+const activeSection = ref('personal') //personal, driving-licence
 
 const handleSectionNext = event => {
     const { valid, section, values } = event
@@ -112,13 +92,8 @@ const handleSectionNext = event => {
     }
 
     if (section === 'personal') {
-        activeSection.value = 'address'
-        saveDriverPersonal(values)
-    }
-
-    if (section === 'address') {
         activeSection.value = 'driving-licence'
-        saveDriverAddress(values)
+        saveDriverPersonal(values)
     }
 
     if (section === 'driving-licence') {
@@ -132,9 +107,6 @@ const saveDriverPersonal = data => {
     data.birthDate = formatDate(birthDate)
     bookingStore.setDriverPersonal(data)
 }
-const saveDriverAddress = data => {
-    bookingStore.setDriverAddress(data)
-}
 const saveDriverLicence = data => {
     const issueDate = new Date(data.issueDate)
     data.issueDate = formatDate(issueDate)
@@ -147,12 +119,8 @@ const saveDriverLicence = data => {
 }
 
 const handleSectionBack = event => {
-    if (event === 'address') {
-        activeSection.value = 'personal'
-    }
-
     if (event === 'driving-licence') {
-        activeSection.value = 'address'
+        activeSection.value = 'personal'
     }
 }
 
