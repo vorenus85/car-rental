@@ -31,7 +31,7 @@ class CustomerSeeder extends Seeder
             ->has(CustomerBillingInfo::factory(), 'billingInfo')
             ->create([
                 'created_at' => fake()->dateTimeBetween('-3 months', 'now'),
-                'updated_at' => fn(array $attributes) => $attributes['created_at'],
+                'updated_at' => fn (array $attributes) => $attributes['created_at'],
             ]);
 
         $this->command->info('Customers data seeded with Customer Billing Information successfully!');

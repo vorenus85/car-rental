@@ -29,7 +29,7 @@ class CustomerBillingInfoFactory extends Factory
 
             'company_name' => $company ? fake()->company() : null,
             'tax_number' => $company ? fake()->numerify('########-#-##') : null,
-            'eu_vat_number' => $company ? fake()->randomElement(['HU', 'AT', 'CZ']) . fake()->numerify('########') : null,
+            'eu_vat_number' => $company ? fake()->randomElement(['HU', 'AT', 'CZ']).fake()->numerify('########') : null,
         ];
     }
 }

@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Booking\CarDriverController;
 use App\Http\Controllers\Admin\Booking\CustomerBillingController;
 use App\Http\Controllers\Admin\Booking\CustomerController;
 use App\Http\Controllers\Admin\Booking\ExtraController;
+use App\Http\Controllers\Admin\Booking\InsuranceController;
 use App\Http\Controllers\Admin\Fleet\BrandController;
 use App\Http\Controllers\Admin\Fleet\BrandImageController;
 use App\Http\Controllers\Admin\Fleet\CarController;
@@ -13,7 +14,6 @@ use App\Http\Controllers\Admin\Fleet\CarModelController;
 use App\Http\Controllers\Admin\Fleet\FeatureController;
 use App\Http\Controllers\Admin\Fleet\LocationController;
 use App\Http\Controllers\Admin\Fleet\VariantController;
-use App\Http\Controllers\Admin\Booking\InsuranceController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
