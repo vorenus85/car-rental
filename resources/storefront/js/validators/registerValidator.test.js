@@ -3,22 +3,34 @@ import { registerValidator } from '@storefront/validators/registerValidator'
 
 describe('registerValidator', () => {
     const validValues = {
-        name: 'Test User',
+        firstName: 'John',
+        lastName: 'Doe',
         phone: '123 456 789',
         email: 'test@example.com',
         password: 'password123',
         password_confirmation: 'password123',
     }
 
-    it('should return error when name is missing', () => {
+    it('should return error when firstName is missing', () => {
         const result = registerValidator({
             values: {
                 ...validValues,
-                name: '',
+                firstName: '',
             },
         })
 
-        expect(result.errors.name).toEqual([{ message: 'Name is required.' }])
+        expect(result.errors.firstName).toEqual([{ message: 'First Name is required.' }])
+    })
+
+    it('should return error when lastName is missing', () => {
+        const result = registerValidator({
+            values: {
+                ...validValues,
+                lastName: '',
+            },
+        })
+
+        expect(result.errors.lastName).toEqual([{ message: 'Last Name is required.' }])
     })
 
     it('should return error when phone is missing', () => {

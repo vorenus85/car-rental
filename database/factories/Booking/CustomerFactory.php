@@ -28,8 +28,8 @@ class CustomerFactory extends Factory
         $lastName = fake()->lastName();
 
         return [
-            'firstName' => $firstName,
-            'lastName' => $lastName,
+            'first_name' => $firstName,
+            'last_name' => $lastName,
             'email' => strtolower("{$firstName}.{$lastName}".fake()->numberBetween(1, 50).'@example.test'),
             'phone' => fake()->phoneNumber(),
             'email_verified_at' => now(),

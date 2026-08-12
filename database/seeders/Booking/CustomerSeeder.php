@@ -18,8 +18,8 @@ class CustomerSeeder extends Seeder
 
         // demo admin user
         Customer::factory()->has(CustomerBillingInfo::factory(), 'billingInfo')->create([
-            'firstName' => 'John',
-            'lastName' => 'Doe',
+            'first_name' => 'John',
+            'last_name' => 'Doe',
             'email' => env('USER_EMAIL'),
             'phone' => '123-456-7890',
             'password' => Hash::make(env('USER_PWD')),

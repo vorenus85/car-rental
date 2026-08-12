@@ -16,7 +16,8 @@ class RegisterCustomerRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
             'phone' => [
                 'required',
                 'string',
@@ -31,5 +32,13 @@ class RegisterCustomerRequest extends FormRequest
             ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
+    }
+
+    protected function prepareForValidation(): void
+    {
+        $this->merge([
+            'first_name' => $this->firstName,
+            'last_name' => $this->lastName,
+        ]);
     }
 }

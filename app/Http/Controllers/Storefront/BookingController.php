@@ -232,7 +232,7 @@ class BookingController extends Controller
 
         return response()->json([
             'booking' => $booking->load([
-                'customer:id,firstName,lastName,email',
+                'customer:id,first_name,last_name,email',
                 'car.variant.model.brand',
                 'pickupLocation.cityModel',
                 'dropoffLocation.cityModel',

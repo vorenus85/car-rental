@@ -23,14 +23,35 @@
                                 @submit="onFormSubmit"
                             >
                                 <div class="flex flex-col gap-1 text-left">
-                                    <label for="name">Name</label>
-                                    <InputText id="name" name="name" :placeholder="'Name'" fluid />
+                                    <label for="name">First Name</label>
+                                    <InputText
+                                        id="firstName"
+                                        name="firstName"
+                                        :placeholder="'John'"
+                                        fluid
+                                    />
                                     <Message
-                                        v-if="$form.name?.invalid"
+                                        v-if="$form.firstName?.invalid"
                                         severity="error"
                                         size="small"
                                         variant="simple"
-                                        >{{ $form.name.error?.message }}</Message
+                                        >{{ $form.firstName.error?.message }}</Message
+                                    >
+                                </div>
+                                <div class="flex flex-col gap-1 text-left">
+                                    <label for="lastName">Name</label>
+                                    <InputText
+                                        id="lastName"
+                                        name="lastName"
+                                        :placeholder="'Doe'"
+                                        fluid
+                                    />
+                                    <Message
+                                        v-if="$form.lastName?.invalid"
+                                        severity="error"
+                                        size="small"
+                                        variant="simple"
+                                        >{{ $form.lastName.error?.message }}</Message
                                     >
                                 </div>
                                 <div class="flex flex-col gap-1 text-left">
