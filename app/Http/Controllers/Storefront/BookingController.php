@@ -38,8 +38,8 @@ class BookingController extends Controller
         $dropoff = $request->pickUpLocationId == $request->dropOffLocationId
             ? $pickup
             : Location::select(['id', 'name', 'city_id'])
-            ->with('cityModel:id,name')
-            ->findOrFail($request->dropOffLocationId);
+                ->with('cityModel:id,name')
+                ->findOrFail($request->dropOffLocationId);
 
         $car = Car::with([
             'variant:id,name,model_id',
@@ -121,9 +121,9 @@ class BookingController extends Controller
         $extraModels = $selectedExtras->isEmpty()
             ? collect()
             : Extra::query()
-            ->whereIn('id', $selectedExtras->pluck('id')->all())
-            ->get()
-            ->keyBy('id');
+                ->whereIn('id', $selectedExtras->pluck('id')->all())
+                ->get()
+                ->keyBy('id');
 
         $days = (int) $pickupAt->diffInDays($dropoffAt);
         $dailyRate = (float) $car->price_per_day;
@@ -170,8 +170,8 @@ class BookingController extends Controller
             ]);
 
             $booking = Booking::create([
-                'booking_number' => 'TMP-' . now()->format('YmdHisv'),
-                'public_id' => 'BKG-' . implode('-', str_split($random, 4)),
+                'booking_number' => 'TMP-'.now()->format('YmdHisv'),
+                'public_id' => 'BKG-'.implode('-', str_split($random, 4)),
                 'customer_id' => $validated['customerId'],
                 'car_id' => $validated['carId'],
 
