@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\Storefront\BookingController;
-use App\Http\Controllers\Storefront\ContactController;
 use App\Http\Controllers\Storefront\BrandController;
 use App\Http\Controllers\Storefront\CarController;
+use App\Http\Controllers\Storefront\ContactController;
 use App\Http\Controllers\Storefront\ExtraController;
 use App\Http\Controllers\Storefront\InsuranceController;
 use App\Http\Controllers\Storefront\LocationController;
