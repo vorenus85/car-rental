@@ -20,21 +20,13 @@ class CustomerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
+            'firstName' => $this->first_name,
+            'lastName' => $this->last_name,
             'phone' => $this->phone,
             'email' => $this->email,
             'active' => $this->active,
             'updatedAt' => $this->updated_at,
             'updated_at' => $this->updated_at,
         ];
-    }
-
-    protected function prepareForValidation(): void
-    {
-        $this->merge([
-            'first_name' => $this->firstName,
-            'last_name' => $this->lastName,
-        ]);
     }
 }

@@ -28,9 +28,9 @@ class CustomerFactory extends Factory
         $lastName = fake()->lastName();
 
         return [
-            'firstName' => $firstName,
-            'lastName' => $lastName,
-            'email' => strtolower("{$firstName}.{$lastName}".fake()->numberBetween(1, 50).'@example.test'),
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'email' => strtolower("{$firstName}.{$lastName}" . fake()->numberBetween(1, 50) . '@example.test'),
             'phone' => fake()->phoneNumber(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
@@ -43,7 +43,7 @@ class CustomerFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }
