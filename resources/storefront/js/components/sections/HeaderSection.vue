@@ -4,7 +4,7 @@
             <HeaderLogo />
             <HeaderLinks class="mx-auto items-center"></HeaderLinks>
             <div class="login-module hidden lg:flex">
-                <div v-if="authStore?.user?.firstName" class="layout-topbar-actions">
+                <div v-if="authStore?.user?.first_name" class="layout-topbar-actions">
                     <Button
                         outlined
                         class="layout-topbar-action flex items-start gap-1 mr-3"
@@ -14,7 +14,8 @@
                     >
                         <i class="pi pi-user"></i>
                         <span
-                            >{{ authStore?.user?.firstName }} {{ authStore?.user?.lastName }}</span
+                            >{{ authStore?.user?.first_name }}
+                            {{ authStore?.user?.last_name }}</span
                         >
                     </Button>
                     <Menu id="profile_menu" ref="menu" :model="topbarMenuItems" :popup="true" />

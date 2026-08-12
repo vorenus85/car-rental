@@ -1,8 +1,12 @@
 export const registerValidator = ({ values }) => {
     const errors = {}
 
-    if (!values.name) {
-        errors.name = [{ message: 'Name is required.' }]
+    if (!values.firstName) {
+        errors.firstName = [{ message: 'First Name is required.' }]
+    }
+
+    if (!values.lastName) {
+        errors.lastName = [{ message: 'Last Name is required.' }]
     }
 
     if (!values.phone) {
