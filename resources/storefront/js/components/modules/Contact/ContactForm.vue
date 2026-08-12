@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto px-6">
-        <div class="grid gap-6 items-start xl:grid-cols-2 xl:grid-cols-3">
+        <div class="grid gap-6 items-start xl:grid-cols-3">
             <div
                 class="lg:col-span-1 xl:col-span-1 space-y-10 rounded-3xl bg-white p-8 lg:p-10 shadow-xl border border-slate-200 h-full"
             >
@@ -123,8 +123,16 @@
                     </p>
                 </div>
 
-                <form class="space-y-6">
-                    <div class="grid gap-6 gid-cols-1 md:grid-cols-2">
+                <Form
+                    ref="formRef"
+                    v-slot="$form"
+                    class="space-y-6"
+                    :resolver="contactValidator"
+                    :validate-on-value-update="true"
+                    :validate-on-blur="true"
+                    @submit="onFormSubmit"
+                >
+                    <div class="grid gap-6 grid-cols-1 md:grid-cols-2">
                         <!-- Name -->
                         <div>
                             <label
@@ -134,7 +142,20 @@
                                 Full Name
                             </label>
 
-                            <InputText id="fullName" class="w-full" placeholder="John Doe" />
+                            <InputText
+                                id="fullName"
+                                name="name"
+                                class="w-full"
+                                placeholder="John Doe"
+                                fluid
+                            />
+                            <Message
+                                v-if="$form.name?.invalid"
+                                severity="error"
+                                size="small"
+                                variant="simple"
+                                >{{ $form.name.error?.message }}</Message
+                            >
                         </div>
 
                         <!-- Email -->
@@ -148,14 +169,23 @@
 
                             <InputText
                                 id="email"
+                                name="email"
                                 type="email"
                                 class="w-full"
                                 placeholder="john@example.com"
+                                fluid
                             />
+                            <Message
+                                v-if="$form.email?.invalid"
+                                severity="error"
+                                size="small"
+                                variant="simple"
+                                >{{ $form.email.error?.message }}</Message
+                            >
                         </div>
                     </div>
 
-                    <div class="grid gap-6 gid-cols-1 md:grid-cols-2">
+                    <div class="grid gap-6 grid-cols-1 md:grid-cols-2">
                         <!-- Phone -->
                         <div>
                             <label
@@ -165,7 +195,20 @@
                                 Phone Number
                             </label>
 
-                            <InputText id="phone" class="w-full" placeholder="+36 30 123 4567" />
+                            <InputText
+                                id="phone"
+                                name="phone"
+                                class="w-full"
+                                placeholder="+36 30 123 4567"
+                                fluid
+                            />
+                            <Message
+                                v-if="$form.phone?.invalid"
+                                severity="error"
+                                size="small"
+                                variant="simple"
+                                >{{ $form.phone.error?.message }}</Message
+                            >
                         </div>
 
                         <!-- Subject -->
@@ -177,7 +220,20 @@
                                 Subject
                             </label>
 
-                            <InputText id="subject" class="w-full" placeholder="How can we help?" />
+                            <InputText
+                                id="subject"
+                                name="subject"
+                                class="w-full"
+                                placeholder="How can we help?"
+                                fluid
+                            />
+                            <Message
+                                v-if="$form.subject?.invalid"
+                                severity="error"
+                                size="small"
+                                variant="simple"
+                                >{{ $form.subject.error?.message }}</Message
+                            >
                         </div>
                     </div>
 
@@ -192,26 +248,69 @@
 
                         <Textarea
                             id="message"
+                            name="message"
                             rows="6"
                             auto-resize
                             class="w-full"
                             placeholder="Write your message here..."
+                            fluid
                         />
+                        <Message
+                            v-if="$form.message?.invalid"
+                            severity="error"
+                            size="small"
+                            variant="simple"
+                            >{{ $form.message.error?.message }}</Message
+                        >
                     </div>
 
                     <!-- Submit -->
                     <Button
+                        type="submit"
                         label="Send Message"
                         icon="pi pi-send"
                         icon-pos="right"
                         class="w-full lg:w-auto px-8 py-4"
                         size="large"
+                        :loading="isSubmitting"
                     />
-                </form>
+                </Form>
             </div>
         </div>
     </div>
 </template>
 <script setup>
-import { Button, InputText, Textarea } from 'primevue'
+import { ref } from 'vue'
+import { Form } from '@primevue/forms'
+import { Button, InputText, Message, Textarea } from 'primevue'
+import { useCustomToast } from '@storefront/composables/useCustomToast'
+import { sendContactMessage } from '@storefront/services/contactService'
+import { contactValidator } from '@storefront/validators/contactValidator'
+
+const { customToast } = useCustomToast()
+const formRef = ref(null)
+const isSubmitting = ref(false)
+
+const onFormSubmit = async ({ valid, values, errors }) => {
+    if (!valid) {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
+
+        return
+    }
+
+    try {
+        isSubmitting.value = true
+
+        const { data } = await sendContactMessage(values)
+
+        formRef.value?.reset()
+
+        customToast.success(data?.message || 'Your message has been sent.')
+    } catch (error) {
+        const msg = error?.response?.data?.message
+        customToast.error(msg || 'Please try again.')
+    } finally {
+        isSubmitting.value = false
+    }
+}
 </script>
