@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Storefront\BookingController;
+use App\Http\Controllers\Storefront\ContactController;
 use App\Http\Controllers\Storefront\BrandController;
 use App\Http\Controllers\Storefront\CarController;
 use App\Http\Controllers\Storefront\ExtraController;
@@ -35,4 +36,8 @@ Route::prefix('/api/storefront/booking')->group(function () {
     Route::get('/', [BookingController::class, 'bookingData']);
     Route::get('/order/', [BookingController::class, 'order']);
     Route::post('/', [BookingController::class, 'store']);
+});
+
+Route::prefix('/api/storefront/contact')->group(function () {
+    Route::post('/', [ContactController::class, 'store']);
 });

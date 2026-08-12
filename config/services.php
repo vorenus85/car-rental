@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'contact' => [
+        'email' => env('CONTACT_EMAIL', 'info@drivengo.com'),
+    ],
+
 ];
