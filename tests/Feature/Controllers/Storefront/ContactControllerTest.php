@@ -1,11 +1,11 @@
 <?php
 
-use App\Mail\Storefront\ContactMessageMail;
-use Illuminate\Support\Facades\Mail;
+use App\Notifications\Storefront\ContactMessageNotification;
+use Illuminate\Support\Facades\Notification;
 
 describe('ContactController', function () {
     it('sends contact form message', function () {
-        Mail::fake();
+        Notification::fake();
 
         $payload = [
             'name' => 'John Doe',
@@ -26,10 +26,29 @@ describe('ContactController', function () {
                 'message' => 'Thanks! Your message has been sent.',
             ]);
 
-        Mail::assertSent(ContactMessageMail::class, function (ContactMessageMail $mail) use ($payload) {
-            return $mail->hasTo(config('services.contact.email'))
-                && $mail->envelope()->subject === 'Contact form: '.$payload['subject'];
-        });
+        Notification::assertSentOnDemand(
+            ContactMessageNotification::class,
+            function (ContactMessageNotification $notification, array $channels, object $notifiable) use ($payload) {
+                return $channels === ['mail']
+                    && $notifiable->routes['mail'] === config('services.contact.email')
+                    && $notification->messageData === $payload;
+            }
+        );
+    });
+
+    it('builds contact notification', function () {
+        $notification = new ContactMessageNotification([
+            'name' => 'John Doe',
+            'email' => 'john@example.com',
+            'phone' => '+36 30 123 4567',
+            'subject' => 'Reservation question',
+            'message' => 'Hello, I would like to ask about a booking.',
+        ]);
+
+        $mail = $notification->toMail((object) []);
+
+        expect($mail->subject)
+            ->toBe('New contact form message: Reservation question');
     });
 
     it('validates required fields', function () {

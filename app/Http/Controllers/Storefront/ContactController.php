@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Storefront\ContactFormRequest;
-use App\Mail\Storefront\ContactMessageMail;
+use App\Notifications\Storefront\ContactMessageNotification;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class ContactController extends Controller
 {
@@ -14,8 +14,8 @@ class ContactController extends Controller
     {
         $validated = $request->validated();
 
-        Mail::to(config('services.contact.email'))
-            ->send(new ContactMessageMail($validated));
+        Notification::route('mail', config('services.contact.email'))
+            ->notify(new ContactMessageNotification($validated));
 
         return response()->json([
             'message' => 'Thanks! Your message has been sent.',
