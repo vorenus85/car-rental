@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Storefront;
 
+use App\Http\Resources\Storefront\CustomerBillingInfoResource;
 use App\Models\Booking\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -24,6 +25,9 @@ class CustomerResource extends JsonResource
             'lastName' => $this->last_name,
             'phone' => $this->phone,
             'email' => $this->email,
+            'billingInfo' => $this->billingInfo
+                ? new CustomerBillingInfoResource($this->billingInfo)
+                : null,
             'updatedAt' => $this->updated_at,
         ];
     }

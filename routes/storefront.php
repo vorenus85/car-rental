@@ -50,4 +50,5 @@ Route::prefix('/api/storefront/profile')
     ->group(function () {
         Route::patch('/basic-details', [ProfileController::class, 'editBasicDetails']);
         Route::patch('/password', [ProfileController::class, 'changePassword']);
+        Route::patch('/billing-info', [ProfileController::class, 'billingInfo']);
     });
