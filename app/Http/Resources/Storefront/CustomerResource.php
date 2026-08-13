@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\Storefront;
 
-use App\Http\Resources\Storefront\CustomerBillingInfoResource;
 use App\Models\Booking\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

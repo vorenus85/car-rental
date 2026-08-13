@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Booking\CustomerBillingInfo;
 use App\Models\Booking\Customer;
+use App\Models\Booking\CustomerBillingInfo;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 
@@ -107,7 +107,7 @@ it('updates the authenticated customer billing info', function () {
         ->assertJsonPath('billingInfo.taxNumber', '12345678-1-42')
         ->assertJsonPath('billingInfo.euVatNumber', 'HU12345678');
 
-    $this->assertDatabaseHas((new CustomerBillingInfo())->getTable(), [
+    $this->assertDatabaseHas((new CustomerBillingInfo)->getTable(), [
         'customer_id' => $customer->id,
         'name' => 'ACME Ltd.',
         'country' => 'HU',
