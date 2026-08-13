@@ -31,12 +31,13 @@ describe('Auth Store', () => {
         it('should fetch and set user', async () => {
             const mockUser = {
                 id: 1,
-                name: 'John Doe',
+                firstName: 'John',
+                lastName: 'Doe',
                 email: 'john@example.com',
             }
 
             fetchCustomer.mockResolvedValue({
-                data: mockUser,
+                data: { customer: mockUser },
             })
 
             const store = useAuthStore()
@@ -67,7 +68,8 @@ describe('Auth Store', () => {
         it('should get csrf cookie and login customer', async () => {
             const mockUser = {
                 id: 1,
-                name: 'John Doe',
+                firstName: 'John',
+                firstName: 'Doe',
             }
 
             getCsrfCookie.mockResolvedValue({})
@@ -98,7 +100,8 @@ describe('Auth Store', () => {
 
             store.user = {
                 id: 1,
-                name: 'John Doe',
+                firstName: 'John',
+                lastName: 'Doe',
             }
 
             await store.logout()
