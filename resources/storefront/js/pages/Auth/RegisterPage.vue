@@ -39,7 +39,7 @@
                                     >
                                 </div>
                                 <div class="flex flex-col gap-1 text-left">
-                                    <label for="lastName">Name</label>
+                                    <label for="lastName">Last Name</label>
                                     <InputText
                                         id="lastName"
                                         name="lastName"
@@ -76,7 +76,7 @@
                                     <InputText
                                         id="phone"
                                         name="phone"
-                                        :placeholder="'phone'"
+                                        :placeholder="'+36-30-1234567'"
                                         fluid
                                     />
                                     <Message

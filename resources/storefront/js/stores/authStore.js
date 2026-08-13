@@ -10,7 +10,7 @@ export const useAuthStore = defineStore('customerAuth', {
         async getCustomer() {
             try {
                 const res = await fetchCustomer()
-                this.user = res?.data
+                this.user = res?.data?.customer
                 this.loaded = true
             } catch {
                 this.user = null

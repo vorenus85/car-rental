@@ -28,6 +28,12 @@ export const doLogin = async (email, password) => {
     )
 }
 
+export const editBasicDetails = async values => {
+    return axios.patch('/api/storefront/profile/basic-details', values, {
+        withCredentials: true,
+    })
+}
+
 export const forgotPassword = async email => {
     return axios.post('/storefront/auth/forgot-password', { email })
 }

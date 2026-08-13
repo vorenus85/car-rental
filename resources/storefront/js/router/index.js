@@ -25,6 +25,8 @@ import CookiePolicyPage from '@storefront/pages/Support/CookiePolicyPage.vue'
 import RefundCancellationPolicyPage from '@storefront/pages/Support/RefundCancellationPolicyPage.vue'
 import RentalRequirementsPage from '@storefront/pages/Support/RentalRequirementsPage.vue'
 
+import ProfileBasicDetailsPage from '@storefront/pages/Profile/BasicDetailsPage.vue'
+
 import FaqPage from '@storefront/pages/FaqPage.vue'
 
 import { useMobileMenuStore } from '@storefront/stores/mobileMenuStore'
@@ -128,6 +130,25 @@ const router = createRouter({
         { path: '/car/:id', name: 'car', component: DetailPage },
         { path: '/services', name: 'services', component: ServicesPage },
         { path: '/services', name: 'services', component: ServicesPage },
+
+        {
+            path: '/profile',
+            name: 'profile',
+            redirect: () => {
+                return { path: '/profile/basic-details' }
+            },
+            meta: {
+                requiresAuth: true,
+            },
+        },
+
+        {
+            path: '/profile/basic-details',
+            name: 'basic-details',
+            component: ProfileBasicDetailsPage,
+            parent: 'profile',
+            meta: { requiresAuth: true },
+        },
     ],
 })
 

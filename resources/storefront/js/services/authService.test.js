@@ -7,6 +7,7 @@ import {
     fetchCustomer,
     doLogout,
     doLogin,
+    editBasicDetails,
 } from '@storefront/services/authService'
 
 vi.mock('axios')
@@ -47,8 +48,12 @@ describe('authService', () => {
         it('should call GET /storefront/auth/me with credentials', async () => {
             axios.get.mockResolvedValue({
                 data: {
-                    id: 1,
-                    name: 'John Doe',
+                    customer: {
+                        id: 1,
+                        firstName: 'John',
+                        lastName: 'Doe',
+                        email: 'john@example.com',
+                    },
                 },
             })
 
@@ -58,7 +63,7 @@ describe('authService', () => {
                 withCredentials: true,
             })
 
-            expect(response.data.name).toBe('John Doe')
+            expect(response.data.customer.firstName).toBe('John')
         })
     })
 
@@ -102,6 +107,38 @@ describe('authService', () => {
             )
 
             expect(response.data.token).toBe('fake-token')
+        })
+    })
+
+    describe('editBasicDetails', () => {
+        it('should call PATCH /api/storefront/profile/basic-details with credentials', async () => {
+            axios.patch.mockResolvedValue({
+                data: {
+                    message: 'Basic details updated successfully.',
+                },
+            })
+
+            const response = await editBasicDetails({
+                firstName: 'Jane',
+                lastName: 'Smith',
+                phone: '+36 20 987 6543',
+                email: 'jane@example.com',
+            })
+
+            expect(axios.patch).toHaveBeenCalledWith(
+                '/api/storefront/profile/basic-details',
+                {
+                    firstName: 'Jane',
+                    lastName: 'Smith',
+                    phone: '+36 20 987 6543',
+                    email: 'jane@example.com',
+                },
+                {
+                    withCredentials: true,
+                }
+            )
+
+            expect(response.data.message).toBe('Basic details updated successfully.')
         })
     })
 })

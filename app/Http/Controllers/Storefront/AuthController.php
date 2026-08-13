@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Storefront\RegisterCustomerRequest;
+use App\Http\Resources\Storefront\CustomerResource;
 use App\Models\Booking\Customer;
 use App\Notifications\Storefront\CustomerCreatedNotification;
 use Illuminate\Http\JsonResponse;
@@ -42,7 +43,7 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         return response()->json([
-            'customer' => $customer,
+            'customer' => new CustomerResource($customer),
         ]);
     }
 
@@ -55,7 +56,9 @@ class AuthController extends Controller
 
         $customer->notify(new CustomerCreatedNotification($customer));
 
-        return response()->json($customer, 201);
+        return response()->json([
+            'customer' => new CustomerResource($customer),
+        ], 201);
     }
 
     public function logout(Request $request): Response
