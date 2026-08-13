@@ -9,7 +9,7 @@
             <div class="mb-4">
                 <div class="font-semibold text-xl">Update password</div>
                 <div class="text-muted-color">
-                    Ensure your account is using a long, random password to stay secure
+                    Ensure your account is using a long, random password to stay secure.
                 </div>
             </div>
             <Form

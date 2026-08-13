@@ -33,11 +33,13 @@ Route::prefix('/api/storefront/insurances')->group(function () {
     Route::get('/', [InsuranceController::class, 'index']);
 });
 
-Route::prefix('/api/storefront/booking')->group(function () {
-    Route::get('/', [BookingController::class, 'bookingData']);
-    Route::get('/order/', [BookingController::class, 'order']);
-    Route::post('/', [BookingController::class, 'store']);
-});
+Route::prefix('/api/storefront/booking')
+    ->middleware('auth:customer')
+    ->group(function () {
+        Route::get('/', [BookingController::class, 'bookingData']);
+        Route::get('/order/', [BookingController::class, 'order']);
+        Route::post('/', [BookingController::class, 'store']);
+    });
 
 Route::prefix('/api/storefront/contact')->group(function () {
     Route::post('/', [ContactController::class, 'store']);
@@ -47,4 +49,5 @@ Route::prefix('/api/storefront/profile')
     ->middleware('auth:customer')
     ->group(function () {
         Route::patch('/basic-details', [ProfileController::class, 'editBasicDetails']);
+        Route::patch('/password', [ProfileController::class, 'changePassword']);
     });

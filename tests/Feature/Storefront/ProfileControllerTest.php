@@ -59,3 +59,21 @@ it('rejects duplicate customer email addresses', function () {
     $response->assertUnprocessable()
         ->assertJsonValidationErrors(['email']);
 });
+
+it('changes the authenticated customer password', function () {
+    $customer = Customer::factory()->create([
+        'password' => Hash::make('password123'),
+    ]);
+
+    $response = $this->actingAs($customer, 'customer')
+        ->patchJson('/api/storefront/profile/password', [
+            'current_password' => 'password123',
+            'password' => 'newpassword456',
+            'password_confirmation' => 'newpassword456',
+        ]);
+
+    $response->assertOk()
+        ->assertJsonPath('message', 'Password changed successfully.');
+
+    $this->assertTrue(Hash::check('newpassword456', $customer->fresh()->password));
+});
