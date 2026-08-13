@@ -7,6 +7,7 @@ use App\Http\Controllers\Storefront\ContactController;
 use App\Http\Controllers\Storefront\ExtraController;
 use App\Http\Controllers\Storefront\InsuranceController;
 use App\Http\Controllers\Storefront\LocationController;
+use App\Http\Controllers\Storefront\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/api/storefront/cars')->group(function () {
@@ -41,3 +42,9 @@ Route::prefix('/api/storefront/booking')->group(function () {
 Route::prefix('/api/storefront/contact')->group(function () {
     Route::post('/', [ContactController::class, 'store']);
 });
+
+Route::prefix('/api/storefront/profile')
+    ->middleware('auth:customer')
+    ->group(function () {
+        Route::patch('/basic-details', [ProfileController::class, 'editBasicDetails']);
+    });
