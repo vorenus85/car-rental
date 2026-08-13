@@ -9,76 +9,88 @@
                     number.
                 </p>
             </div>
-            <div
-                class="flex flex-col gap-6 md:gap-8 items-center justify-center text-center mt-5 mb-5"
-            >
-                <div v-if="isReady" class="w-full">
-                    <Form
-                        v-slot="$form"
-                        class="flex flex-col gap-4 w-full"
-                        :initial-values="initialValues"
-                        :resolver="basicDetailsValidator"
-                        :validate-on-value-update="true"
-                        :validate-on-blur="true"
-                        @submit="onFormSubmit"
-                    >
-                        <div class="flex flex-col gap-1 text-left">
-                            <label for="name">First Name</label>
-                            <InputText id="firstName" name="firstName" placeholder="John" fluid />
-                            <Message
-                                v-if="$form.firstName?.invalid"
-                                severity="error"
-                                size="small"
-                                variant="simple"
-                                >{{ $form.firstName.error?.message }}</Message
-                            >
-                        </div>
-                        <div class="flex flex-col gap-1 text-left">
-                            <label for="lastName">Name</label>
-                            <InputText id="lastName" name="lastName" placeholder="Doe" fluid />
-                            <Message
-                                v-if="$form.lastName?.invalid"
-                                severity="error"
-                                size="small"
-                                variant="simple"
-                                >{{ $form.lastName.error?.message }}</Message
-                            >
-                        </div>
-                        <div class="flex flex-col gap-1 text-left">
-                            <label for="email">Email address</label>
-                            <InputText
-                                id="email"
-                                name="email"
-                                type="email"
-                                placeholder="Email address"
-                                fluid
-                            />
-                            <Message
-                                v-if="$form.email?.invalid"
-                                severity="error"
-                                size="small"
-                                variant="simple"
-                                >{{ $form.email.error?.message }}</Message
-                            >
-                        </div>
-                        <div class="flex flex-col gap-1 text-left">
-                            <label for="phone">Phone number</label>
-                            <InputText id="phone" name="phone" placeholder="Phone number" fluid />
-                            <Message
-                                v-if="$form.phone?.invalid"
-                                severity="error"
-                                size="small"
-                                variant="simple"
-                                >{{ $form.phone.error?.message }}</Message
-                            >
-                        </div>
-                        <div class="flex gap-1 text-left">
-                            <Button class="mt-4 w-32" type="submit" :label="'Save'" />
-                        </div>
-                    </Form>
-                </div>
-                <div v-else class="w-full text-center text-muted-color">
-                    Loading profile details...
+            <div class="mt-5 grid grid-cols-1 gap-8 lg:grid-cols-[280px_minmax(0,1fr)] items-start">
+                <ProfileSidebar />
+
+                <div class="mb-10">
+                    <div v-if="isReady" class="w-full">
+                        <Form
+                            v-slot="$form"
+                            class="flex flex-col gap-4 w-full"
+                            :initial-values="initialValues"
+                            :resolver="basicDetailsValidator"
+                            :validate-on-value-update="true"
+                            :validate-on-blur="true"
+                            @submit="onFormSubmit"
+                        >
+                            <div class="flex flex-col gap-1 text-left">
+                                <label for="name">First Name</label>
+                                <InputText
+                                    id="firstName"
+                                    name="firstName"
+                                    placeholder="John"
+                                    fluid
+                                />
+                                <Message
+                                    v-if="$form.firstName?.invalid"
+                                    severity="error"
+                                    size="small"
+                                    variant="simple"
+                                    >{{ $form.firstName.error?.message }}</Message
+                                >
+                            </div>
+                            <div class="flex flex-col gap-1 text-left">
+                                <label for="lastName">Name</label>
+                                <InputText id="lastName" name="lastName" placeholder="Doe" fluid />
+                                <Message
+                                    v-if="$form.lastName?.invalid"
+                                    severity="error"
+                                    size="small"
+                                    variant="simple"
+                                    >{{ $form.lastName.error?.message }}</Message
+                                >
+                            </div>
+                            <div class="flex flex-col gap-1 text-left">
+                                <label for="email">Email address</label>
+                                <InputText
+                                    id="email"
+                                    name="email"
+                                    type="email"
+                                    placeholder="Email address"
+                                    fluid
+                                />
+                                <Message
+                                    v-if="$form.email?.invalid"
+                                    severity="error"
+                                    size="small"
+                                    variant="simple"
+                                    >{{ $form.email.error?.message }}</Message
+                                >
+                            </div>
+                            <div class="flex flex-col gap-1 text-left">
+                                <label for="phone">Phone number</label>
+                                <InputText
+                                    id="phone"
+                                    name="phone"
+                                    placeholder="Phone number"
+                                    fluid
+                                />
+                                <Message
+                                    v-if="$form.phone?.invalid"
+                                    severity="error"
+                                    size="small"
+                                    variant="simple"
+                                    >{{ $form.phone.error?.message }}</Message
+                                >
+                            </div>
+                            <div class="flex gap-1 text-left">
+                                <Button class="mt-4 w-32" type="submit" :label="'Save'" />
+                            </div>
+                        </Form>
+                    </div>
+                    <div v-else class="w-full text-center text-muted-color">
+                        Loading profile details...
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,6 +100,7 @@
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import PageTitle from '@storefront/components/modules/PageTitle.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
+import ProfileSidebar from '@storefront/components/modules/ProfileSidebar.vue'
 import { useAuthStore } from '@storefront/stores/authStore'
 import { useCustomToast } from '@storefront/composables/useCustomToast'
 import { editBasicDetails } from '@storefront/services/authService'
