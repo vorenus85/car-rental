@@ -2,7 +2,13 @@
     <PublicLayout class="profile-basic-details-page">
         <div class="mx-auto max-w-8xl px-4 py-4 min-h-[500px]">
             <BreadcrumbModule :items="breadcrumbItems"></BreadcrumbModule>
-            <PageTitle title="Profile / Basic Details"></PageTitle>
+            <PageTitle title="Basic Details"></PageTitle>
+            <div class="mb-10">
+                <p class="mt-2 text-sm text-slate-500">
+                    Update your personal details, including your name, email address, and phone
+                    number.
+                </p>
+            </div>
             <div
                 class="flex flex-col gap-6 md:gap-8 items-center justify-center text-center mt-5 mb-5"
             >
@@ -103,7 +109,11 @@ const initialValues = computed(() => ({
 
 const breadcrumbItems = [
     {
-        label: 'Profile / Basic details',
+        label: 'Profile',
+        route: '/profile',
+    },
+    {
+        label: 'Basic details',
     },
 ]
 

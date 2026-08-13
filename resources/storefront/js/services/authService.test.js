@@ -8,6 +8,7 @@ import {
     doLogout,
     doLogin,
     editBasicDetails,
+    editPassword,
 } from '@storefront/services/authService'
 
 vi.mock('axios')
@@ -139,6 +140,36 @@ describe('authService', () => {
             )
 
             expect(response.data.message).toBe('Basic details updated successfully.')
+        })
+    })
+
+    describe('editPassword', () => {
+        it('should call PATCH /api/storefront/profile/password with credentials', async () => {
+            axios.patch.mockResolvedValue({
+                data: {
+                    message: 'Password changed successfully.',
+                },
+            })
+
+            const response = await editPassword({
+                current_password: 'oldpassword',
+                password: 'newpassword123',
+                password_confirmation: 'newpassword123',
+            })
+
+            expect(axios.patch).toHaveBeenCalledWith(
+                '/api/storefront/profile/password',
+                {
+                    current_password: 'oldpassword',
+                    password: 'newpassword123',
+                    password_confirmation: 'newpassword123',
+                },
+                {
+                    withCredentials: true,
+                }
+            )
+
+            expect(response.data.message).toBe('Password changed successfully.')
         })
     })
 })

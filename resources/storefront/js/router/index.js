@@ -26,6 +26,7 @@ import RefundCancellationPolicyPage from '@storefront/pages/Support/RefundCancel
 import RentalRequirementsPage from '@storefront/pages/Support/RentalRequirementsPage.vue'
 
 import ProfileBasicDetailsPage from '@storefront/pages/Profile/BasicDetailsPage.vue'
+import PasswordPage from '@storefront/pages/Profile/PasswordPage.vue'
 
 import FaqPage from '@storefront/pages/FaqPage.vue'
 
@@ -146,6 +147,14 @@ const router = createRouter({
             path: '/profile/basic-details',
             name: 'basic-details',
             component: ProfileBasicDetailsPage,
+            parent: 'profile',
+            meta: { requiresAuth: true },
+        },
+
+        {
+            path: '/profile/password',
+            name: 'password',
+            component: PasswordPage,
             parent: 'profile',
             meta: { requiresAuth: true },
         },
