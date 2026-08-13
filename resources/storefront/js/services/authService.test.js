@@ -9,6 +9,7 @@ import {
     doLogin,
     editBasicDetails,
     editPassword,
+    editBillingInfo,
 } from '@storefront/services/authService'
 
 vi.mock('axios')
@@ -170,6 +171,46 @@ describe('authService', () => {
             )
 
             expect(response.data.message).toBe('Password changed successfully.')
+        })
+    })
+
+    describe('editBillingInfo', () => {
+        it('should call PATCH /api/storefront/profile/billing-info with credentials', async () => {
+            axios.patch.mockResolvedValue({
+                data: {
+                    message: 'Billing info updated successfully.',
+                },
+            })
+
+            const response = await editBillingInfo({
+                name: 'ACME Ltd.',
+                country: 'HU',
+                postcode: '1051',
+                city: 'Budapest',
+                address: 'Kossuth Lajos utca 1.',
+                company_name: 'ACME Ltd.',
+                tax_number: '12345678-1-42',
+                eu_vat_number: 'HU12345678',
+            })
+
+            expect(axios.patch).toHaveBeenCalledWith(
+                '/api/storefront/profile/billing-info',
+                {
+                    name: 'ACME Ltd.',
+                    country: 'HU',
+                    postcode: '1051',
+                    city: 'Budapest',
+                    address: 'Kossuth Lajos utca 1.',
+                    company_name: 'ACME Ltd.',
+                    tax_number: '12345678-1-42',
+                    eu_vat_number: 'HU12345678',
+                },
+                {
+                    withCredentials: true,
+                }
+            )
+
+            expect(response.data.message).toBe('Billing info updated successfully.')
         })
     })
 })

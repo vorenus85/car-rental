@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Storefront\BillingInfoRequest;
 use App\Http\Requests\Storefront\ChangePasswordRequest;
 use App\Http\Requests\Storefront\EditBasicDetailsRequest;
+use App\Http\Resources\Storefront\CustomerBillingInfoResource;
 use App\Http\Resources\Storefront\CustomerResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
@@ -38,6 +40,20 @@ class ProfileController extends Controller
 
         return response()->json([
             'message' => 'Password changed successfully.',
+        ]);
+    }
+
+    public function billingInfo(BillingInfoRequest $request): JsonResponse
+    {
+        $validated = $request->validated();
+
+        $customer = Auth::guard('customer')->user();
+
+        $billingInfo = $customer->billingInfo()->updateOrCreate([], $validated);
+
+        return response()->json([
+            'message' => 'Billing info updated successfully.',
+            'billingInfo' => new CustomerBillingInfoResource($billingInfo->refresh()),
         ]);
     }
 }

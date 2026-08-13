@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Booking\Customer;
+use App\Models\Booking\CustomerBillingInfo;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 
@@ -76,4 +77,45 @@ it('changes the authenticated customer password', function () {
         ->assertJsonPath('message', 'Password changed successfully.');
 
     $this->assertTrue(Hash::check('newpassword456', $customer->fresh()->password));
+});
+
+it('updates the authenticated customer billing info', function () {
+    $customer = Customer::factory()->create([
+        'password' => Hash::make('password123'),
+    ]);
+
+    $response = $this->actingAs($customer, 'customer')
+        ->patchJson('/api/storefront/profile/billing-info', [
+            'name' => 'ACME Ltd.',
+            'country' => 'HU',
+            'postcode' => '1051',
+            'city' => 'Budapest',
+            'address' => 'Kossuth Lajos utca 1.',
+            'company_name' => 'ACME Ltd.',
+            'tax_number' => '12345678-1-42',
+            'eu_vat_number' => 'HU12345678',
+        ]);
+
+    $response->assertOk()
+        ->assertJsonPath('message', 'Billing info updated successfully.')
+        ->assertJsonPath('billingInfo.name', 'ACME Ltd.')
+        ->assertJsonPath('billingInfo.country', 'HU')
+        ->assertJsonPath('billingInfo.postcode', '1051')
+        ->assertJsonPath('billingInfo.city', 'Budapest')
+        ->assertJsonPath('billingInfo.address', 'Kossuth Lajos utca 1.')
+        ->assertJsonPath('billingInfo.companyName', 'ACME Ltd.')
+        ->assertJsonPath('billingInfo.taxNumber', '12345678-1-42')
+        ->assertJsonPath('billingInfo.euVatNumber', 'HU12345678');
+
+    $this->assertDatabaseHas((new CustomerBillingInfo)->getTable(), [
+        'customer_id' => $customer->id,
+        'name' => 'ACME Ltd.',
+        'country' => 'HU',
+        'postcode' => '1051',
+        'city' => 'Budapest',
+        'address' => 'Kossuth Lajos utca 1.',
+        'company_name' => 'ACME Ltd.',
+        'tax_number' => '12345678-1-42',
+        'eu_vat_number' => 'HU12345678',
+    ]);
 });

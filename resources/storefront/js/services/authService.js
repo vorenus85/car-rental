@@ -40,6 +40,12 @@ export const editPassword = async values => {
     })
 }
 
+export const editBillingInfo = async values => {
+    return axios.patch('/api/storefront/profile/billing-info', values, {
+        withCredentials: true,
+    })
+}
+
 export const forgotPassword = async email => {
     return axios.post('/storefront/auth/forgot-password', { email })
 }

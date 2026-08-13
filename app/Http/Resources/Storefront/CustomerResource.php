@@ -24,6 +24,9 @@ class CustomerResource extends JsonResource
             'lastName' => $this->last_name,
             'phone' => $this->phone,
             'email' => $this->email,
+            'billingInfo' => $this->billingInfo
+                ? new CustomerBillingInfoResource($this->billingInfo)
+                : null,
             'updatedAt' => $this->updated_at,
         ];
     }
