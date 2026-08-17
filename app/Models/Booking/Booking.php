@@ -4,7 +4,7 @@ namespace App\Models\Booking;
 
 use App\Enums\BookingStatus;
 use App\Enums\PaymentStatus;
-use App\Enums\PaymentType;
+use App\Enums\PaymentMethod;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
 use Database\Factories\Booking\BookingFactory;
@@ -13,6 +13,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property BookingStatus $status
+ * @property PaymentStatus $payment_status
+ * @property PaymentMethod $payment_method
+ */
 class Booking extends Model
 {
     /** @use HasFactory<BookingFactory> */
@@ -70,7 +75,7 @@ class Booking extends Model
         return [
             'status' => BookingStatus::class,
             'payment_status' => PaymentStatus::class,
-            'payment_method' => PaymentType::class,
+            'payment_method' => PaymentMethod::class,
 
             'pickup_at' => 'datetime',
             'dropoff_at' => 'datetime',
