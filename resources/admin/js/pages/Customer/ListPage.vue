@@ -14,7 +14,7 @@
                 :rows-per-page-options="[20, 50]"
                 table-style="min-width: 50rem"
                 :loading="loading"
-                :global-filter-fields="['firstName', 'lastName', 'email', 'phone']"
+                :global-filter-fields="['name', 'email', 'phone']"
                 data-key="id"
                 ><template #header>
                     <div class="flex justify-start gap-5">
@@ -39,8 +39,7 @@
                     </div>
                 </template>
                 <template #empty> No results found. </template>
-                <Column sortable field="firstName" header="First Name" style="width: 20%"> </Column>
-                <Column sortable field="lastName" header="Last Name" style="width: 20%"> </Column>
+                <Column sortable field="name" header="Name" style="width: 20%"> </Column>
                 <Column sortable field="email" header="Email" style="width: 25%"> </Column>
                 <Column sortable field="phone" header="Phone" style="width: 25%"> </Column>
                 <Column sortable field="updated_at" header="Updated at" style="width: 10%">
@@ -113,11 +112,7 @@ const { toCreateCustomer } = useRedirects()
 const initFilters = () => {
     filters.value = {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        firstName: {
-            operator: FilterOperator.AND,
-            constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
-        },
-        lastName: {
+        name: {
             operator: FilterOperator.AND,
             constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
         },
