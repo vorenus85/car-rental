@@ -6,12 +6,17 @@ use App\Enums\BookingStatus;
 use App\Enums\PaymentStatus;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
+use Database\Factories\Booking\BookingFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Booking extends Model
 {
+    /** @use HasFactory<BookingFactory> */
+    use HasFactory;
+
     protected $fillable = [
         'booking_number',
         'public_id',
@@ -72,10 +77,6 @@ class Booking extends Model
             'confirmed_at' => 'datetime',
             'cancelled_at' => 'datetime',
             'completed_at' => 'datetime',
-
-            'driver_birth_date' => 'date',
-            'driver_licence_issue_date' => 'date',
-            'driver_licence_expiry_date' => 'date',
 
             'daily_rate' => 'decimal:2',
             'subtotal' => 'decimal:2',

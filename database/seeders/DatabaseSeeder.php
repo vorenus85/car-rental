@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Database\Seeders\Booking\BookingSeeder;
 use Database\Seeders\Booking\CarDriverSeeder;
 use Database\Seeders\Booking\CustomerSeeder;
 use Database\Seeders\Booking\ExtraSeeder;
@@ -39,6 +40,7 @@ class DatabaseSeeder extends Seeder
             CarDriverSeeder::class,
             ExtraSeeder::class,
             InsuranceSeeder::class,
+            BookingSeeder::class,
         ]);
 
         $this->command->info('All data seeded successfully!');
