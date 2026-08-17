@@ -121,7 +121,7 @@
                     </template>
                 </Column>
 
-                <Column sortable field="paymentMethod" header="Payment Status" style="width: 10%">
+                <Column sortable field="paymentMethod" header="Payment Method" style="width: 10%">
                     <template #body="slotProps">
                         <PaymentMethodTag :status="slotProps.data.paymentMethod"></PaymentMethodTag>
                     </template>
