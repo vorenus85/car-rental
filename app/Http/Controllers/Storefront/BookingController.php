@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
 use App\Http\Requests\Storefront\BookingStoreRequest;
 use App\Http\Resources\Storefront\BookingOrderResource;
 use App\Http\Resources\Storefront\CarBookingResource;
@@ -14,11 +15,14 @@ use App\Models\Booking\Insurance;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
 use App\Notifications\Storefront\BookingInvoiceNotification;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
@@ -39,8 +43,8 @@ class BookingController extends Controller
         $dropoff = $request->pickUpLocationId == $request->dropOffLocationId
             ? $pickup
             : Location::select(['id', 'name', 'city_id'])
-                ->with('cityModel:id,name')
-                ->findOrFail($request->dropOffLocationId);
+            ->with('cityModel:id,name')
+            ->findOrFail($request->dropOffLocationId);
 
         $car = Car::with([
             'variant:id,name,model_id',
@@ -70,6 +74,37 @@ class BookingController extends Controller
         ])->where('public_id', $validated['publicId'])->firstOrFail();
 
         return new BookingOrderResource($booking);
+    }
+
+    public function invoice(Request $request): Response
+    {
+        $validated = $request->validate([
+            'publicId' => ['required', 'string', 'exists:bookings,public_id'],
+        ]);
+
+        $customer = $request->user('customer');
+
+        $booking = Booking::query()
+            ->with([
+                'customer:id,first_name,last_name,email',
+                'car.variant.model.brand',
+                'pickupLocation.cityModel',
+                'dropoffLocation.cityModel',
+                'insurance:id,name,price',
+                'extras',
+            ])
+            ->where('public_id', $validated['publicId'])
+            ->where('customer_id', $customer?->id)
+            ->firstOrFail();
+
+        $imageSrc = $this->resolveCarImageSrc($booking);
+        $fileName = sprintf('%s-invoice.pdf', $booking->booking_number);
+
+        return Pdf::setOption(['isRemoteEnabled' => true])
+            ->loadView('pdf.storefront.booking-invoice', [
+                'booking' => $booking,
+                'carImageSrc' => $imageSrc,
+            ])->download($fileName);
     }
 
     public function store(BookingStoreRequest $request): JsonResponse
@@ -122,9 +157,9 @@ class BookingController extends Controller
         $extraModels = $selectedExtras->isEmpty()
             ? collect()
             : Extra::query()
-                ->whereIn('id', $selectedExtras->pluck('id')->all())
-                ->get()
-                ->keyBy('id');
+            ->whereIn('id', $selectedExtras->pluck('id')->all())
+            ->get()
+            ->keyBy('id');
 
         $days = (int) $pickupAt->diffInDays($dropoffAt);
         $dailyRate = (float) $car->price_per_day;
@@ -171,8 +206,8 @@ class BookingController extends Controller
             ]);
 
             $booking = Booking::create([
-                'booking_number' => 'TMP-'.now()->format('YmdHisv'),
-                'public_id' => 'BKG-'.implode('-', str_split($random, 4)),
+                'booking_number' => 'TMP-' . now()->format('YmdHisv'),
+                'public_id' => 'BKG-' . implode('-', str_split($random, 4)),
                 'customer_id' => $validated['customerId'],
                 'car_id' => $validated['carId'],
 
@@ -257,5 +292,36 @@ class BookingController extends Controller
     private function generateBookingNumber(Booking $booking): string
     {
         return sprintf('CR-%s-%06d', $booking->created_at->format('Ymd'), $booking->id);
+    }
+
+    private function resolveCarImageSrc(Booking $booking): ?string
+    {
+        $url = $booking->car?->image_url;
+
+        if (! $url) {
+            return null;
+        }
+
+        $path = parse_url($url, PHP_URL_PATH);
+
+        if (! $path) {
+            return null;
+        }
+
+        $path = ltrim($path, '/');
+        $path = preg_replace('#^storage/#', '', $path);
+
+        if (! $path || ! Storage::disk('public')->exists($path)) {
+            return null;
+        }
+
+        $content = Storage::disk('public')->get($path);
+        $mimeType = Storage::disk('public')->mimeType($path);
+
+        return sprintf(
+            'data:%s;base64,%s',
+            $mimeType,
+            base64_encode($content)
+        );
     }
 }

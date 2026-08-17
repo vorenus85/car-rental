@@ -1,6 +1,6 @@
 FROM php:8.4-fpm
 
-# 1. Install system packages + GD with JPEG and FreeType support
+# Install system packages + GD with JPEG, WebP and FreeType support
 RUN apt-get update && apt-get install -y \
     $PHPIZE_DEPS \
     git \
@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
+    libwebp-dev \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -24,7 +25,7 @@ RUN git clone https://github.com/xdebug/xdebug.git \
 
 
 # PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp
 RUN docker-php-ext-install pdo pdo_mysql zip gd
 
 COPY docker/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
