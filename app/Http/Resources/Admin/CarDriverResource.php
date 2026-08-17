@@ -20,6 +20,7 @@ class CarDriverResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'name' => $this->first_name.' '.$this->last_name,
             'firstName' => $this->first_name,
             'lastName' => $this->last_name,
             'phone' => $this->phone,

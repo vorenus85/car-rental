@@ -39,8 +39,7 @@
                     </div>
                 </template>
                 <template #empty> No results found. </template>
-                <Column sortable field="firstName" header="First Name" style="width: 20%"> </Column>
-                <Column sortable field="lastName" header="Last Name" style="width: 20%"> </Column>
+                <Column sortable field="name" header="Name" style="width: 20%"> </Column>
                 <Column sortable field="phone" header="Phone" style="width: 25%"> </Column>
                 <Column sortable field="updatedAt" header="Updated at" style="width: 10%">
                     <template #body="slotProps">
@@ -95,11 +94,7 @@ const { confirmAction } = useCustomConfirm()
 const initFilters = () => {
     filters.value = {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        firstName: {
-            operator: FilterOperator.AND,
-            constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
-        },
-        lastName: {
+        name: {
             operator: FilterOperator.AND,
             constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
         },
