@@ -13,6 +13,7 @@ use App\Models\Booking\Extra;
 use App\Models\Booking\Insurance;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
+use App\Notifications\Storefront\BookingInvoiceNotification;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -230,12 +231,24 @@ class BookingController extends Controller
             return $booking;
         });
 
+        $booking->load([
+            'customer',
+            'car.variant.model.brand',
+            'pickupLocation.cityModel',
+            'dropoffLocation.cityModel',
+            'insurance:id,name,price',
+            'extras',
+        ]);
+
+        $booking->customer?->notify(new BookingInvoiceNotification($booking));
+
         return response()->json([
             'booking' => $booking->load([
                 'customer:id,first_name,last_name,email',
                 'car.variant.model.brand',
                 'pickupLocation.cityModel',
                 'dropoffLocation.cityModel',
+                'insurance:id,name,price',
                 'extras',
             ]),
         ], 201);
