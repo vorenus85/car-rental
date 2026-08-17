@@ -1,6 +1,6 @@
 <template>
-    <span class="payment-method-tag font-medium no-wrap" :class="`type-${status}`">
-        {{ statusLabel }}
+    <span class="payment-method-tag font-medium no-wrap" :class="`type-${normalizedStatus}`">
+        {{ status }}
     </span>
 </template>
 
@@ -14,15 +14,7 @@ const props = defineProps({
     },
 })
 
-const typeLabels = {
-    stripe: 'Stripe',
-    paypal: 'PayPal',
-    cash: 'Cash',
-}
-
-const statusLabel = computed(() => {
-    return typeLabels[props.status] ?? props.status
-})
+const normalizedStatus = computed(() => props.status.toLowerCase().replace(/\s+/g, '-'))
 </script>
 
 <style scoped>

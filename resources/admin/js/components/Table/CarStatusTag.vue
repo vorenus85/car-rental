@@ -1,15 +1,19 @@
 <template>
-    <span class="car-status-tag font-medium no-wrap" :class="`status-${status}`">
+    <span class="car-status-tag font-medium no-wrap" :class="`status-${normalizedStatus}`">
         {{ status }}
     </span>
 </template>
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
     status: {
         type: String,
         default: 'available',
     },
 })
+
+const normalizedStatus = computed(() => props.status.toLowerCase().replace(/\s+/g, '-'))
 </script>
 <style scoped>
 .car-status-tag {

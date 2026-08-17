@@ -2,6 +2,7 @@
 
 namespace App\Models\Fleet;
 
+use App\Enums\CarStatus;
 use Database\Factories\Fleet\CarFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,6 +33,13 @@ class Car extends Model
         'image_url',
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'status' => CarStatus::class
+        ];
+    }
+
     /**
      * @return BelongsTo<Variant, $this>
      */
@@ -59,7 +67,7 @@ class Car extends Model
     public function getImageUrlAttribute(): ?string
     {
         return $this->image
-            ? Storage::url('/uploads/'.$this->image)
+            ? Storage::url('/uploads/' . $this->image)
             : null;
     }
 }

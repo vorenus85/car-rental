@@ -22,7 +22,7 @@ class CarResource extends JsonResource
             'id' => $this->id,
             'licence_plate' => $this->licence_plate,
             'price_per_day' => $this->price_per_day,
-            'status' => $this->status,
+            'status' => $this->status->label(),
             'updated_at' => $this->updated_at,
             'mileage' => $this->mileage,
             'production_year' => $this->production_year,
@@ -36,7 +36,7 @@ class CarResource extends JsonResource
                 ];
             }),
             'features' => $this->whenLoaded('features', function () {
-                return $this->features->map(fn ($feature) => [
+                return $this->features->map(fn($feature) => [
                     'id' => $feature->id,
                     'name' => $feature->name,
                     'category' => $feature->category,

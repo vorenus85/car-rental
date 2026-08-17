@@ -1,6 +1,6 @@
 <template>
-    <span class="payment-status-tag font-medium no-wrap" :class="`status-${status}`">
-        {{ statusLabel }}
+    <span class="payment-status-tag font-medium no-wrap" :class="`status-${normalizedStatus}`">
+        {{ status }}
     </span>
 </template>
 
@@ -14,18 +14,7 @@ const props = defineProps({
     },
 })
 
-const statusLabels = {
-    pending: 'Pending',
-    paid: 'Paid',
-    failed: 'Failed',
-    refunded: 'Refunded',
-    partially_refunded: 'Partially Refunded',
-    cancelled: 'Cancelled',
-}
-
-const statusLabel = computed(() => {
-    return statusLabels[props.status] ?? props.status
-})
+const normalizedStatus = computed(() => props.status.toLowerCase().replace(/\s+/g, '-'))
 </script>
 
 <style scoped>
