@@ -36,7 +36,7 @@ class CarResource extends JsonResource
                 ];
             }),
             'features' => $this->whenLoaded('features', function () {
-                return $this->features->map(fn($feature) => [
+                return $this->features->map(fn ($feature) => [
                     'id' => $feature->id,
                     'name' => $feature->name,
                     'category' => $feature->category,

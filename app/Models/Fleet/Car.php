@@ -39,7 +39,7 @@ class Car extends Model
     protected function casts(): array
     {
         return [
-            'status' => CarStatus::class
+            'status' => CarStatus::class,
         ];
     }
 
@@ -70,7 +70,7 @@ class Car extends Model
     public function getImageUrlAttribute(): ?string
     {
         return $this->image
-            ? Storage::url('/uploads/' . $this->image)
+            ? Storage::url('/uploads/'.$this->image)
             : null;
     }
 }

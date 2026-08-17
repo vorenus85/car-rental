@@ -3,8 +3,8 @@
 namespace App\Models\Booking;
 
 use App\Enums\BookingStatus;
-use App\Enums\PaymentStatus;
 use App\Enums\PaymentMethod;
+use App\Enums\PaymentStatus;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
 use Database\Factories\Booking\BookingFactory;
