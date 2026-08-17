@@ -1,5 +1,5 @@
 <template>
-    <span class="status-tag font-medium no-wrap" :class="`status-${status}`">
+    <span class="car-status-tag font-medium no-wrap" :class="`status-${status}`">
         {{ status }}
     </span>
 </template>
@@ -12,7 +12,7 @@ defineProps({
 })
 </script>
 <style scoped>
-.status-tag {
+.car-status-tag {
     display: inline-flex;
     gap: 5px;
     padding: 5px 10px;
@@ -22,7 +22,7 @@ defineProps({
     font-size: 0.75rem;
 }
 
-.status-tag:before {
+.car-status-tag:before {
     content: '';
     display: inline-block;
     width: 8px;

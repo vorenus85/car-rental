@@ -62,7 +62,7 @@
                 </Column>
                 <Column sortable field="updatedAt" header="Updated at" style="width: 10%">
                     <template #body="slotProps">
-                        <FormatedDate :date="slotProps.data.updatedAt"></FormatedDate
+                        <FormatedDateTime :date="slotProps.data.updatedAt"></FormatedDateTime
                     ></template>
                 </Column>
                 <Column header="Actions" style="width: 20%">
@@ -112,7 +112,7 @@ import { useRedirects } from '@admin/composables/useRedirects.js'
 import { useCarModel } from '@admin/composables/useCarModel'
 import { useCustomConfirm } from '@admin/composables/useCustomConfirm'
 import { onMounted, ref } from 'vue'
-import FormatedDate from '@admin/components/Table/FormatedDate.vue'
+import FormatedDateTime from '@admin/components/Table/FormatedDateTime.vue'
 
 const { toCreateModel } = useRedirects()
 const confirm = useConfirm()

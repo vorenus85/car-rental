@@ -113,6 +113,22 @@ class Booking extends Model
     }
 
     /**
+     * @return BelongsTo<CarDriver, $this>
+     */
+    public function driver(): BelongsTo
+    {
+        return $this->belongsTo(CarDriver::class);
+    }
+
+    /**
+     * @return BelongsTo<Insurance, $this>
+     */
+    public function insurance(): BelongsTo
+    {
+        return $this->belongsTo(Insurance::class);
+    }
+
+    /**
      * @return BelongsTo<Location, $this>
      */
     public function pickupLocation(): BelongsTo

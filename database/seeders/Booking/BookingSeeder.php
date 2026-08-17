@@ -57,9 +57,10 @@ class BookingSeeder extends Seeder
             $pickupAt = $startDate->copy()->addSeconds(
                 $startDate->diffInSeconds($endDate) * $progress
             );
+            $pickupAt = $this->normalizeToBusinessHoursHalfHour($pickupAt);
 
             $days = fake()->numberBetween(1, 14);
-            $dropoffAt = (clone $pickupAt)->modify("+{$days} days");
+            $dropoffAt = $this->normalizeToBusinessHoursHalfHour((clone $pickupAt)->modify("+{$days} days"));
             $createdAt = (clone $pickupAt)->modify('-7 days');
 
             $car = Car::query()->findOrFail($cars->random());
@@ -177,5 +178,20 @@ class BookingSeeder extends Seeder
         }
 
         $this->command->info('Bookings data seeded successfully!');
+    }
+
+    private function normalizeToBusinessHoursHalfHour(\DateTimeInterface $dateTime): \DateTimeInterface
+    {
+        $hour = fake()->numberBetween(10, 20);
+        $minute = $hour === 20 ? 0 : fake()->randomElement([0, 30]);
+
+        if ($dateTime instanceof \DateTimeImmutable) {
+            return $dateTime->setTime($hour, $minute, 0);
+        }
+
+        $normalized = clone $dateTime;
+        $normalized->setTime($hour, $minute, 0);
+
+        return $normalized;
     }
 }
