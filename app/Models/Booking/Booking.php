@@ -4,10 +4,10 @@ namespace App\Models\Booking;
 
 use App\Enums\BookingStatus;
 use App\Enums\PaymentStatus;
-use Database\Factories\Booking\BookingFactory;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
+use Database\Factories\Booking\BookingFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;

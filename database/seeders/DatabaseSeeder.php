@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\Booking\CarDriverSeeder;
 use Database\Seeders\Booking\BookingSeeder;
+use Database\Seeders\Booking\CarDriverSeeder;
 use Database\Seeders\Booking\CustomerSeeder;
 use Database\Seeders\Booking\ExtraSeeder;
 use Database\Seeders\Booking\InsuranceSeeder;
