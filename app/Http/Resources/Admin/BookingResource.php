@@ -25,8 +25,8 @@ class BookingResource extends JsonResource
 
             'status' => $this->status,
 
-            'paymentStatus' => $this->payment_status?->value,
-            'paymentStatusLabel' => $this->payment_status?->label(),
+            'paymentStatus' => $this->payment_status,
+
             'paymentMethod' => $this->payment_method,
 
             'pickupAt' => $this->pickup_at,

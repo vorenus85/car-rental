@@ -95,8 +95,11 @@
                     </template>
                 </Column>
 
-                <Column sortable field="pickupAt" header="Pick-up" style="width: 14%">
+                <Column field="pickupLocation.name" header="Pick-up Location" style="width: 13%">
                     <template #body="slotProps">
+                        <span class="no-wrap font-medium">
+                            {{ slotProps.data.pickupLocation.name }}
+                        </span>
                         <div class="flex flex-col">
                             <div class="flex flex-col">
                                 <FormatedDate :date="slotProps.data.pickupAt"></FormatedDate>
@@ -106,34 +109,21 @@
                     </template>
                 </Column>
 
-                <Column sortable field="dropoffAt" header="Drop-off" style="width: 14%">
-                    <template #body="slotProps">
-                        <div class="flex flex-col">
-                            <FormatedDate :date="slotProps.data.dropoffAt"></FormatedDate>
-                            <FormatedTime :date="slotProps.data.dropoffAt"></FormatedTime>
-                        </div>
-                    </template>
-                </Column>
-
-                <Column field="pickupLocation.name" header="Pick-up Location" style="width: 13%">
-                    <template #body="slotProps">
-                        <span>
-                            {{ slotProps.data.pickupLocation.name }}
-                        </span>
-                    </template>
-                </Column>
-
-                <Column field="dropoffLocation.name" header="Drop-off Location" style="width: 13%">
-                    <template #body="slotProps">
-                        <span>
-                            {{ slotProps.data.dropoffLocation.name }}
-                        </span>
-                    </template>
-                </Column>
-
                 <Column sortable field="status" header="Status" style="width: 10%">
                     <template #body="slotProps">
                         <BookingStatusTag :status="slotProps.data.status"></BookingStatusTag>
+                    </template>
+                </Column>
+
+                <Column sortable field="paymentStatus" header="Payment Status" style="width: 10%">
+                    <template #body="slotProps">
+                        <PaymentStatusTag :status="slotProps.data.paymentStatus"></PaymentStatusTag>
+                    </template>
+                </Column>
+
+                <Column sortable field="paymentMethod" header="Payment Status" style="width: 10%">
+                    <template #body="slotProps">
+                        <PaymentMethodTag :status="slotProps.data.paymentMethod"></PaymentMethodTag>
                     </template>
                 </Column>
 
@@ -173,6 +163,8 @@ import FormatedDate from '@admin/components/Table/FormatedDate.vue'
 import FormatedTime from '@admin/components/Table/FormatedTime.vue'
 import PriceTag from '@admin/components/Table/PriceTag.vue'
 import BookingStatusTag from '@admin/components/Table/BookingStatusTag.vue'
+import PaymentStatusTag from '@admin/components/Table/PaymentStatusTag.vue'
+import PaymentMethodTag from '@admin/components/Table/PaymentMethodTag.vue'
 import { useBooking } from '@admin/composables/useBooking'
 import { Button, Column, DataTable, IconField, InputIcon, InputText, Tag } from 'primevue'
 import { onMounted, ref } from 'vue'
