@@ -2,7 +2,7 @@
 
 namespace App\Enums;
 
-enum PaymentType: string
+enum PaymentMethod: string
 {
     case Stripe = 'stripe';
     case PayPal = 'paypal';

@@ -2,6 +2,7 @@
 
 namespace App\Models\Fleet;
 
+use App\Enums\CarStatus;
 use Database\Factories\Fleet\CarFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,6 +10,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @property CarStatus $status
+ */
 class Car extends Model
 {
     //
@@ -31,6 +35,13 @@ class Car extends Model
     protected $appends = [
         'image_url',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'status' => CarStatus::class,
+        ];
+    }
 
     /**
      * @return BelongsTo<Variant, $this>

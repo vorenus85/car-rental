@@ -1,6 +1,6 @@
 <template>
-    <span class="booking-status-tag font-medium no-wrap" :class="`status-${status}`">
-        {{ statusLabel }}
+    <span class="booking-status-tag font-medium no-wrap" :class="`status-${normalizedStatus}`">
+        {{ status }}
     </span>
 </template>
 
@@ -14,17 +14,7 @@ const props = defineProps({
     },
 })
 
-const statusLabels = {
-    pending: 'Pending',
-    confirmed: 'Confirmed',
-    picked_up: 'Picked Up',
-    returned: 'Returned',
-    cancelled: 'Cancelled',
-}
-
-const statusLabel = computed(() => {
-    return statusLabels[props.status] ?? props.status
-})
+const normalizedStatus = computed(() => props.status.toLowerCase().replace(/\s+/g, '-'))
 </script>
 
 <style scoped>
@@ -65,11 +55,11 @@ const statusLabel = computed(() => {
 }
 
 /* Picked Up */
-.status-picked_up {
+.status-picked-up {
     background: #dbeafe;
 }
 
-.status-picked_up::before {
+.status-picked-up::before {
     background: #2563eb;
 }
 

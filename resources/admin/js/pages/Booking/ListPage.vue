@@ -14,7 +14,7 @@
                 :rows-per-page-options="[20, 50]"
                 table-style="min-width: 50rem"
                 :loading="loading"
-                :global-filter-fields="['booking_number']"
+                :global-filter-fields="['bookingNumber', 'customer.name']"
                 data-key="id"
             >
                 <template #header>
@@ -40,7 +40,10 @@
                 <template #empty> No results found. </template>
                 <Column sortable field="bookingNumber" header="Booking Number" style="width: 25%">
                     <template #body="slotProps">
-                        <Tag :value="slotProps.data.bookingNumber" severity="primary"
+                        <Tag
+                            class="no-wrap"
+                            :value="slotProps.data.bookingNumber"
+                            severity="primary"
                     /></template>
                 </Column>
                 <Column sortable field="customer.name" header="Customer" style="width: 15%">
@@ -177,6 +180,10 @@ const initFilters = () => {
     filters.value = {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         bookingNumber: {
+            operator: FilterOperator.AND,
+            constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
+        },
+        'customer.name': {
             operator: FilterOperator.AND,
             constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }],
         },

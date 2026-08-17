@@ -23,11 +23,11 @@ class BookingResource extends JsonResource
             'bookingNumber' => $this->booking_number,
             'publicId' => $this->public_id,
 
-            'status' => $this->status,
+            'status' => $this->status->label(),
 
-            'paymentStatus' => $this->payment_status,
+            'paymentStatus' => $this->payment_status->label(),
 
-            'paymentMethod' => $this->payment_method,
+            'paymentMethod' => $this->payment_method->label(),
 
             'pickupAt' => $this->pickup_at,
             'dropoffAt' => $this->dropoff_at,
