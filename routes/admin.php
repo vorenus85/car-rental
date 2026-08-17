@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\Booking\BookingController;
 use App\Http\Controllers\Admin\Booking\CarDriverController;
 use App\Http\Controllers\Admin\Booking\CustomerBillingController;
 use App\Http\Controllers\Admin\Booking\CustomerController;
@@ -45,6 +46,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/me', [AccountController::class, 'show']);
         Route::put('/me', [AccountController::class, 'update']);
         Route::put('/password', [AccountController::class, 'changePassword']);
+    });
+
+    Route::prefix('/api/admin/bookings')->group(function () {
+        Route::get('/', [BookingController::class, 'index']);
     });
 
     Route::prefix('/api/admin/car-drivers')->group(function () {

@@ -4,13 +4,13 @@ namespace App\Models\Booking;
 
 use App\Enums\BookingStatus;
 use App\Enums\PaymentStatus;
-use App\Models\Fleet\Car;
-use App\Models\Fleet\Location;
 use Database\Factories\Booking\BookingFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Fleet\Car;
+use App\Models\Fleet\Location;
 
 class Booking extends Model
 {
@@ -110,6 +110,22 @@ class Booking extends Model
     public function car(): BelongsTo
     {
         return $this->belongsTo(Car::class);
+    }
+
+    /**
+     * @return BelongsTo<CarDriver, $this>
+     */
+    public function driver(): BelongsTo
+    {
+        return $this->belongsTo(CarDriver::class);
+    }
+
+    /**
+     * @return BelongsTo<Insurance, $this>
+     */
+    public function insurance(): BelongsTo
+    {
+        return $this->belongsTo(Insurance::class);
     }
 
     /**
