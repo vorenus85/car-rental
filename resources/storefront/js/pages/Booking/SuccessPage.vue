@@ -72,7 +72,9 @@ const publicId = computed(() => {
 })
 
 const invoiceUrl = computed(() => {
-    return publicId.value ? `/api/storefront/booking/invoice?publicId=${encodeURIComponent(publicId.value)}` : ''
+    return publicId.value
+        ? `/api/storefront/booking/invoice?publicId=${encodeURIComponent(publicId.value)}`
+        : ''
 })
 
 const {
