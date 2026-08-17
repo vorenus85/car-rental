@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Booking\Booking;
 use App\Models\Booking\Customer;
 use App\Models\Booking\Insurance;
 use App\Models\Fleet\Car;
@@ -59,5 +60,24 @@ describe('BookingController', function () {
             ->assertJsonPath('booking.customer_id', $customer->id);
 
         Notification::assertSentTo($customer, BookingInvoiceNotification::class);
+    });
+
+    it('downloads booking invoice as pdf', function () {
+        $customer = Customer::factory()->create();
+        $pickupLocation = Location::factory()->create();
+        $dropoffLocation = Location::factory()->create();
+        $car = Car::factory()->create(['image' => null]);
+        $booking = Booking::factory()->create([
+            'customer_id' => $customer->id,
+            'car_id' => $car->id,
+            'pickup_location_id' => $pickupLocation->id,
+            'dropoff_location_id' => $dropoffLocation->id,
+        ]);
+
+        $response = $this->actingAs($customer, 'customer')
+            ->get('/api/storefront/booking/invoice?publicId='.$booking->public_id);
+
+        $response->assertOk();
+        $response->assertDownload($booking->booking_number.'-invoice.pdf');
     });
 });

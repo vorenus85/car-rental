@@ -46,7 +46,7 @@
 
                 <!-- Buttons -->
                 <div class="mt-10 flex flex-col justify-between gap-4 sm:flex-row">
-                    <SuccessActions />
+                    <SuccessActions :download-url="invoiceUrl" />
                 </div>
             </div>
         </div>
@@ -69,6 +69,12 @@ import { useBookingOrder } from '@storefront/composables/useBookingOrder.js'
 const route = useRoute()
 const publicId = computed(() => {
     return route.query.publicId || null
+})
+
+const invoiceUrl = computed(() => {
+    return publicId.value
+        ? `/api/storefront/booking/invoice?publicId=${encodeURIComponent(publicId.value)}`
+        : ''
 })
 
 const {
