@@ -52,7 +52,7 @@
                 </Column>
                 <Column sortable field="updatedAt" header="Updated at" style="width: 10%">
                     <template #body="slotProps">
-                        <FormatedDate :date="slotProps.data.updatedAt"></FormatedDate
+                        <FormatedDateTime :date="slotProps.data.updatedAt"></FormatedDateTime
                     ></template>
                 </Column>
                 <Column header="Actions" style="width: 10%">
@@ -98,7 +98,7 @@ import {
     useConfirm,
 } from 'primevue'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
-import FormatedDate from '@admin/components/Table/FormatedDate.vue'
+import FormatedDateTime from '@admin/components/Table/FormatedDateTime.vue'
 import { useCustomConfirm } from '@admin/composables/useCustomConfirm'
 import { useExtra } from '@admin/composables/useExtra'
 import { onMounted, ref } from 'vue'

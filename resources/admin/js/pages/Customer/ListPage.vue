@@ -45,7 +45,7 @@
                 <Column sortable field="phone" header="Phone" style="width: 25%"> </Column>
                 <Column sortable field="updated_at" header="Updated at" style="width: 10%">
                     <template #body="slotProps">
-                        <FormatedDate :date="slotProps.data.updated_at"></FormatedDate
+                        <FormatedDateTime :date="slotProps.data.updated_at"></FormatedDateTime
                     ></template>
                 </Column>
                 <Column sortable field="active" header="Active" style="width: 5%">
@@ -102,7 +102,7 @@ import { useCustomer } from '@admin/composables/useCustomer.js'
 import { useRedirects } from '@admin/composables/useRedirects.js'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
 import { onMounted, ref } from 'vue'
-import FormatedDate from '@admin/components/Table/FormatedDate.vue'
+import FormatedDateTime from '@admin/components/Table/FormatedDateTime.vue'
 
 const filters = ref()
 const confirm = useConfirm()

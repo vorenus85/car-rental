@@ -164,7 +164,7 @@ const router = createRouter({
         },
         {
             path: '/reservations/bookings/:id',
-            name: 'bookings.edit',
+            name: 'bookings.show',
             component: BookingEditPage,
             meta: {
                 requiresAuth: true,

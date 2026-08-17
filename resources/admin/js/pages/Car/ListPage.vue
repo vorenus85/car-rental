@@ -128,13 +128,13 @@
 
                 <Column sortable field="status" header="Status" style="width: 10%">
                     <template #body="slotProps">
-                        <StatusTag :status="slotProps.data.status"></StatusTag>
+                        <CarStatusTag :status="slotProps.data.status"></CarStatusTag>
                     </template>
                 </Column>
 
                 <Column sortable field="updated_at" header="Updated at" style="width: 10%">
                     <template #body="slotProps">
-                        <FormatedDate :date="slotProps.data.updated_at"></FormatedDate
+                        <FormatedDateTime :date="slotProps.data.updated_at"></FormatedDateTime
                     ></template>
                 </Column>
                 <Column header="Actions" style="width: 10%">
@@ -184,9 +184,9 @@ import { useCustomConfirm } from '@admin/composables/useCustomConfirm'
 import { useRedirects } from '@admin/composables/useRedirects.js'
 import { onMounted, ref } from 'vue'
 import { useCar } from '@admin/composables/useCar'
-import FormatedDate from '@admin/components/Table/FormatedDate.vue'
-import StatusTag from '../../components/Table/StatusTag.vue'
-import PriceTag from '../../components/Table/PriceTag.vue'
+import FormatedDateTime from '@admin/components/Table/FormatedDateTime.vue'
+import CarStatusTag from '@admin/components/Table/CarStatusTag.vue'
+import PriceTag from '@admin/components/Table/PriceTag.vue'
 
 const { loading, getCars, cars, deleteCar } = useCar()
 const { toCreateCar } = useRedirects()

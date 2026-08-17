@@ -23,8 +23,7 @@ class BookingResource extends JsonResource
             'bookingNumber' => $this->booking_number,
             'publicId' => $this->public_id,
 
-            'status' => $this->status?->value,
-            'statusLabel' => $this->status?->label(),
+            'status' => $this->status,
 
             'paymentStatus' => $this->payment_status?->value,
             'paymentStatusLabel' => $this->payment_status?->label(),
@@ -37,6 +36,7 @@ class BookingResource extends JsonResource
             'customer' => $this->whenLoaded('customer', function () {
                 return [
                     'id' => $this->customer->id,
+                    'name' => $this->customer->first_name . ' ' . $this->customer->last_name,
                     'firstName' => $this->customer->first_name,
                     'lastName' => $this->customer->last_name,
                     'email' => $this->customer->email,
@@ -97,7 +97,6 @@ class BookingResource extends JsonResource
             'subtotal' => $this->subtotal,
             'extrasTotal' => $this->extras_total,
             'taxTotal' => $this->tax_total,
-            'depositAmount' => $this->deposit_amount,
             'totalAmount' => $this->total_amount,
 
             'paidAt' => $this->paid_at,
@@ -108,7 +107,7 @@ class BookingResource extends JsonResource
             'notes' => $this->notes,
 
             'extras' => $this->whenLoaded('extras', function () {
-                return $this->extras->map(fn ($extra) => [
+                return $this->extras->map(fn($extra) => [
                     'id' => $extra->id,
                     'extraId' => $extra->extra_id,
                     'name' => $extra->name,
