@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\BookingStatus;
 use App\Http\Controllers\Controller;
+use App\Models\Booking\Booking;
 use App\Models\Fleet\Car;
 use Illuminate\Http\JsonResponse;
 
@@ -13,5 +15,18 @@ class DashboardController extends Controller
         $availableCars = Car::where('status', 'available')->count();
 
         return response()->json($availableCars);
+    }
+
+    public function todayDropoffsKpi(): JsonResponse
+    {
+        $todayDropoffs = Booking::query()
+            ->whereDate('dropoff_at', today())
+            ->whereIn('status', [
+                BookingStatus::Confirmed->value,
+                BookingStatus::PickedUp->value,
+            ])
+            ->count();
+
+        return response()->json($todayDropoffs);
     }
 }

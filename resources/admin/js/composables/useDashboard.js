@@ -1,20 +1,33 @@
-import { fetchAvailableCarsKpi } from '@admin/services/dashboardService'
-import { ref } from 'vue'
+import { fetchAvailableCarsKpi, fetchTodayDropoffsKpi } from '@admin/services/dashboardService'
+import { reactive } from 'vue'
 
 export const useDashboard = () => {
-    const availableCarsKpi = ref()
+    const dashboardKpis = reactive({
+        availableCarsKpi: 0,
+        todayDroppOffsKpi: 0,
+    })
 
     const getAvailableCarsKpi = async () => {
         try {
             const { data } = await fetchAvailableCarsKpi()
-            availableCarsKpi.value = data
+            dashboardKpis.availableCarsKpi = data
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const getTodayDropoffsKpi = async () => {
+        try {
+            const { data } = await fetchTodayDropoffsKpi()
+            dashboardKpis.todayDroppOffsKpi = data
         } catch (error) {
             console.error(error)
         }
     }
 
     return {
-        availableCarsKpi,
+        dashboardKpis,
         getAvailableCarsKpi,
+        getTodayDropoffsKpi,
     }
 }
