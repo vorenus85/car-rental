@@ -7,3 +7,7 @@ export const fetchAvailableCarsKpi = async () => {
 export const fetchTodayDropoffsKpi = async () => {
     return axios.get('/api/admin/dashboard/today-dropoffs')
 }
+
+export const fetchTodayPickupsKpi = async () => {
+    return axios.get('/api/admin/dashboard/today-pickups')
+}
