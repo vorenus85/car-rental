@@ -30,9 +30,7 @@
                         {{ bookingLookupStore?.pickUpLocation?.city }}
                     </p>
 
-                    <p class="text-sm text-surface-600">
-                        {{ pickUpDate }}, {{ bookingLookupStore?.pickUpTime }} ({{ pickUpDay }})
-                    </p>
+                    <BookingTime :date="pickUpAt"></BookingTime>
                 </div>
 
                 <!-- Dropoff -->
@@ -44,9 +42,7 @@
                         {{ bookingLookupStore?.dropOffLocation?.city }}
                     </p>
 
-                    <p class="text-sm text-surface-600">
-                        {{ dropOffDate }}, {{ bookingLookupStore?.dropOffTime }} ({{ dropOffDay }})
-                    </p>
+                    <BookingTime :date="dropOffAt"></BookingTime>
                 </div>
 
                 <!-- Duration -->
@@ -99,14 +95,13 @@
 
                             <span class="font-medium no-wrap">
                                 <span v-if="extra.quantity > 1">{{ extra.quantity }} × </span>
-                                {{
+                                €{{
                                     calcFee({
                                         price: extra.price,
                                         pickUpDate: bookingLookupStore?.pickUpDate,
                                         dropOffDate: bookingLookupStore?.dropOffDate,
                                     })
                                 }}
-                                €
                             </span>
                         </div>
                     </div>
@@ -138,8 +133,9 @@ import { useBooking } from '@storefront/composables/useBooking'
 import { computed, onMounted } from 'vue'
 import { useBookingStore } from '@storefront/stores/bookingStore'
 import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
-import { formatDate, getDayName, getDaysBetween } from '@storefront/utils.js'
+import { getDaysBetween } from '@storefront/utils.js'
 import { useRouter } from 'vue-router'
+import BookingTime from '@storefront/components/modules/Booking/BookingTime.vue'
 
 const router = useRouter()
 const { loadBookingData, baseRentalFee, insuranceFee, bookingTotal, calcFee } = useBooking()
@@ -151,20 +147,12 @@ const rentalPeriodWithText = computed(() => {
     return days === 1 ? days + ' day' : days + ' days'
 })
 
-const pickUpDate = computed(() => {
-    return formatDate(new Date(bookingLookupStore?.pickUpDate), 'yyyy.MM.dd')
+const pickUpAt = computed(() => {
+    return new Date(`${bookingLookupStore?.pickUpDate} ${bookingLookupStore?.pickUpTime}`)
 })
 
-const dropOffDate = computed(() => {
-    return formatDate(new Date(bookingLookupStore?.dropOffDate), 'yyyy.MM.dd')
-})
-
-const pickUpDay = computed(() => {
-    return getDayName(new Date(bookingLookupStore?.pickUpDate))
-})
-
-const dropOffDay = computed(() => {
-    return getDayName(new Date(bookingLookupStore?.dropOffDate))
+const dropOffAt = computed(() => {
+    return new Date(`${bookingLookupStore?.dropOffDate} ${bookingLookupStore?.dropOffTime}`)
 })
 
 const backToCar = () => {

@@ -8,6 +8,8 @@ use App\Http\Requests\Storefront\ChangePasswordRequest;
 use App\Http\Requests\Storefront\EditBasicDetailsRequest;
 use App\Http\Resources\Storefront\CustomerBillingInfoResource;
 use App\Http\Resources\Storefront\CustomerResource;
+use App\Http\Resources\Storefront\ProfileBookingResource;
+use App\Models\Booking\Booking;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -55,5 +57,25 @@ class ProfileController extends Controller
             'message' => 'Billing info updated successfully.',
             'billingInfo' => new CustomerBillingInfoResource($billingInfo->refresh()),
         ]);
+    }
+
+    public function bookings(): JsonResponse
+    {
+        $customer = Auth::guard('customer')->user();
+
+        $userBookings = Booking::query()
+            ->with([
+                'customer:id,first_name,last_name,email',
+                'driver:id,first_name,last_name,phone',
+                'car.variant.model.brand',
+                'pickupLocation.cityModel',
+                'dropoffLocation.cityModel',
+            ])
+            ->where('customer_id', $customer->id)
+            ->orderByDesc('pickup_at')
+            ->orderByDesc('created_at')
+            ->get();
+
+        return response()->json(ProfileBookingResource::collection($userBookings));
     }
 }

@@ -106,7 +106,7 @@
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import PageTitle from '@storefront/components/modules/PageTitle.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
-import ProfileSidebar from '@storefront/components/modules/ProfileSidebar.vue'
+import ProfileSidebar from '@storefront/components/modules/Profile/ProfileSidebar.vue'
 import { useCustomToast } from '@storefront/composables/useCustomToast'
 import { editPassword } from '@storefront/services/authService'
 import { Form } from '@primevue/forms'
