@@ -15,6 +15,12 @@
                 unit="Returns scheduled today"
                 icon="sign-out"
             ></DashboardKpi>
+            <DashboardKpi
+                :value="dashboardKpis?.todayPickupsKpi"
+                title="Today Pick ups"
+                unit="Pick ups scheduled today"
+                icon="sign-in"
+            ></DashboardKpi>
         </div>
     </AppLayout>
 </template>
@@ -25,9 +31,10 @@ import DashboardKpi from '@admin/components/DashboardKpi.vue'
 import { useDashboard } from '@admin/composables/useDashboard'
 import { onMounted } from 'vue'
 
-const { dashboardKpis, getAvailableCarsKpi, getTodayDropoffsKpi } = useDashboard()
+const { dashboardKpis, getAvailableCarsKpi, getTodayDropoffsKpi, getTodayPickupsKpi } =
+    useDashboard()
 
 onMounted(() => {
-    Promise.allSettled([getAvailableCarsKpi(), getTodayDropoffsKpi()])
+    Promise.allSettled([getAvailableCarsKpi(), getTodayDropoffsKpi(), getTodayPickupsKpi()])
 })
 </script>

@@ -42,17 +42,23 @@ class BookingSeeder extends Seeder
             return;
         }
 
-        $bookingStatuses = array_map(fn (BookingStatus $status) => $status->value, BookingStatus::cases());
-        $paymentStatuses = array_map(fn (PaymentStatus $status) => $status->value, PaymentStatus::cases());
+        $bookingStatuses = array_map(fn(BookingStatus $status) => $status->value, BookingStatus::cases());
+        $paymentStatuses = array_map(fn(PaymentStatus $status) => $status->value, PaymentStatus::cases());
         $paymentMethods = ['stripe', 'paypal', 'cash'];
 
         $totalIterations = 100;
+        $todayPickupBookings = 3;
         $todayDropoffBookings = 3;
 
         for ($i = 1; $i <= $totalIterations; $i++) {
+            $isTodayPickupBooking = $i <= $todayPickupBookings;
             $isTodayDropoffBooking = $i > $totalIterations - $todayDropoffBookings;
 
-            if ($isTodayDropoffBooking) {
+            if ($isTodayPickupBooking) {
+                $days = $i;
+                $pickupAt = $this->normalizeToBusinessHoursHalfHour(now());
+                $dropoffAt = $this->normalizeToBusinessHoursHalfHour(now()->addDays($days));
+            } elseif ($isTodayDropoffBooking) {
                 $daysBeforeToday = $totalIterations - $i + 1;
                 $pickupAt = $this->normalizeToBusinessHoursHalfHour(now()->subDays($daysBeforeToday));
                 $days = $daysBeforeToday;
@@ -78,7 +84,7 @@ class BookingSeeder extends Seeder
             $insurance = $insurances->random();
             $pickupLocationId = $locations->random();
             $dropoffLocationId = fake()->boolean(35) && $locations->count() > 1
-                ? $locations->reject(fn ($locationId) => $locationId === $pickupLocationId)->random()
+                ? $locations->reject(fn($locationId) => $locationId === $pickupLocationId)->random()
                 : $pickupLocationId;
 
             $extraCount = $extras->isEmpty() ? 0 : fake()->numberBetween(0, min(3, $extras->count()));
@@ -106,16 +112,18 @@ class BookingSeeder extends Seeder
             $taxTotal = round(($subtotal + $insuranceTotal + $extrasTotal) * 0.21, 2);
             $totalAmount = round($subtotal + $insuranceTotal + $extrasTotal + $taxTotal, 2);
 
-            $status = fake()->randomElement($bookingStatuses);
+            $status = $isTodayPickupBooking
+                ? fake()->randomElement([BookingStatus::Pending->value, BookingStatus::Confirmed->value])
+                : fake()->randomElement($bookingStatuses);
             $paymentStatus = fake()->randomElement($paymentStatuses);
             $paymentMethod = fake()->randomElement($paymentMethods);
             $paidAt = in_array($paymentStatus, [PaymentStatus::Paid->value, PaymentStatus::PartiallyRefunded->value, PaymentStatus::Refunded->value], true)
-                ? fake()->dateTimeBetween($pickupAt, 'now')
+                ? fake()->dateTimeBetween($createdAt, 'now')
                 : null;
 
             $booking = Booking::factory()->create([
                 'booking_number' => sprintf('CR-%s-%04d', $createdAt->format('Ymd'), $i + 1),
-                'public_id' => 'BKG-'.implode('-', str_split(Str::upper(Str::random(16)), 4)),
+                'public_id' => 'BKG-' . implode('-', str_split(Str::upper(Str::random(16)), 4)),
 
                 'customer_id' => $customers->random(),
                 'car_id' => $car->id,
@@ -139,7 +147,7 @@ class BookingSeeder extends Seeder
                 'tax_total' => $taxTotal,
                 'total_amount' => $totalAmount,
 
-                'payment_intent_id' => $paymentMethod === 'stripe' ? 'pi_'.Str::lower(Str::random(24)) : null,
+                'payment_intent_id' => $paymentMethod === 'stripe' ? 'pi_' . Str::lower(Str::random(24)) : null,
                 'payment_method' => $paymentMethod,
                 'payment_status' => $paymentStatus,
                 'paid_at' => $paidAt,
@@ -152,7 +160,7 @@ class BookingSeeder extends Seeder
                     BookingStatus::PickedUp->value,
                     BookingStatus::Returned->value,
                 ], true)
-                    ? fake()->dateTimeBetween($pickupAt, 'now')
+                    ? fake()->dateTimeBetween($createdAt, 'now')
                     : null,
                 'cancelled_at' => $status === BookingStatus::Cancelled->value
                     ? fake()->dateTimeBetween($pickupAt, 'now')

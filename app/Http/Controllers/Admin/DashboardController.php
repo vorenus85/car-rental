@@ -29,4 +29,16 @@ class DashboardController extends Controller
 
         return response()->json($todayDropoffs);
     }
+
+    public function todayPickupKpi(): JsonResponse
+    {
+        $todayPickups = Booking::query()
+            ->whereDate('pickup_at', today())
+            ->whereIn('status', [
+                BookingStatus::Confirmed->value,
+            ])
+            ->count();
+
+        return response()->json($todayPickups);
+    }
 }
