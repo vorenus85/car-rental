@@ -1,4 +1,6 @@
 #!/bin/sh
 echo "pre-commit hook run!"
+vendor/bin/pint
+git add $(git diff --name-only --diff-filter=ACM)
 npx lint-staged
 echo "pre-commit hook end!"
