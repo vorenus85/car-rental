@@ -35,7 +35,7 @@ class UpdateCarRequest extends FormRequest
 
             'status' => [
                 'required',
-                'in:available,reserved,rented,maintenance,inactive',
+                'in:available,rented,maintenance,inactive',
             ],
 
             'color' => [
@@ -47,7 +47,7 @@ class UpdateCarRequest extends FormRequest
                 'required',
                 'integer',
                 'min:1900',
-                'max:'.(date('Y') + 1),
+                'max:' . (date('Y') + 1),
             ],
 
             'mileage' => [
