@@ -146,6 +146,7 @@ class BookingController extends Controller
          *   driver_licence_issue_date: string,
          *   driver_licence_expiry_date: string,
          *   payment_method: string,
+         *   notes: string,
          *   extras?: array<int, array{id: int, quantity: int}>
          * } $validated
          */
@@ -216,6 +217,7 @@ class BookingController extends Controller
                 'pickup_at' => $pickupAt,
                 'dropoff_at' => $dropoffAt,
                 'days' => $days,
+                'notes' => $validated['notes'],
 
                 'payment_method' => $validated['payment_method'],
 

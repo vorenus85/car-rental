@@ -138,6 +138,21 @@
                             </label>
                         </div>
                     </div>
+                    <div class="booking-notes mb-5">
+                        <div class="space-y-4">
+                            <h2 class="text-lg font-semibold">Notes for booking</h2>
+                            <label for="notes" class="hidden">Notes for booking</label>
+                            <Textarea
+                                id="notes"
+                                v-model="notes"
+                                name="notes"
+                                rows="5"
+                                style="resize: none"
+                                placeholder=""
+                                class="w-full"
+                            />
+                        </div>
+                    </div>
                     <div class="space-y-4 mt-5 pt-5 pb-5 mb-5">
                         <div class="flex items-start gap-3">
                             <Checkbox v-model="form.acceptTerms" input-id="terms" binary />
@@ -212,7 +227,7 @@ import BookingSidebarSummary from '@storefront/components/modules/Booking/Bookin
 import BookingDriverSummary from '@storefront/components/modules/Booking/BookingDriverSummary.vue'
 import FreeCancelation from '@storefront/components/modules/FreeCancelation.vue'
 import { useRouter } from 'vue-router'
-import { Checkbox, InputText, Message, RadioButton } from 'primevue'
+import { Checkbox, InputText, Message, RadioButton, Textarea } from 'primevue'
 import { computed, reactive, ref } from 'vue'
 import { useBookingStore } from '@storefront/stores/bookingStore'
 import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
@@ -227,6 +242,7 @@ const authStore = useAuthStore()
 const { customToast } = useCustomToast()
 
 const paymentMethod = ref('stripe')
+const notes = ref(null)
 const submitting = ref(false)
 
 const card = ref({
@@ -282,6 +298,7 @@ const buildBookingPayload = () => {
         dropOffDate,
         pickUpTime,
         dropOffTime,
+        notes: notes.value,
         driver_first_name: firstName,
         driver_last_name: lastName,
         driver_phone: phone,
