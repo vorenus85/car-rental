@@ -137,7 +137,6 @@
 
 <script setup>
 import Card from 'primevue/card'
-import Button from 'primevue/button'
 import Tag from 'primevue/tag'
 import Divider from 'primevue/divider'
 import Image from 'primevue/image'
