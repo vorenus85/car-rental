@@ -47,20 +47,31 @@ class BookingSeeder extends Seeder
         $paymentMethods = ['stripe', 'paypal', 'cash'];
 
         $totalIterations = 100;
+        $todayDropoffBookings = 3;
 
         for ($i = 1; $i <= $totalIterations; $i++) {
-            $startDate = now()->subMonths(3);
-            $endDate = now()->subDay();
+            $isTodayDropoffBooking = $i > $totalIterations - $todayDropoffBookings;
 
-            $progress = ($i - 1) / ($totalIterations - 1);
+            if ($isTodayDropoffBooking) {
+                $daysBeforeToday = $totalIterations - $i + 1;
+                $pickupAt = $this->normalizeToBusinessHoursHalfHour(now()->subDays($daysBeforeToday));
+                $days = $daysBeforeToday;
+                $dropoffAt = $this->normalizeToBusinessHoursHalfHour(now());
+            } else {
+                $startDate = now()->subMonths(3);
+                $endDate = now()->subDay();
 
-            $pickupAt = $startDate->copy()->addSeconds(
-                $startDate->diffInSeconds($endDate) * $progress
-            );
-            $pickupAt = $this->normalizeToBusinessHoursHalfHour($pickupAt);
+                $progress = ($i - 1) / ($totalIterations - 1);
 
-            $days = fake()->numberBetween(1, 14);
-            $dropoffAt = $this->normalizeToBusinessHoursHalfHour((clone $pickupAt)->modify("+{$days} days"));
+                $pickupAt = $startDate->copy()->addSeconds(
+                    $startDate->diffInSeconds($endDate) * $progress
+                );
+                $pickupAt = $this->normalizeToBusinessHoursHalfHour($pickupAt);
+
+                $days = fake()->numberBetween(1, 14);
+                $dropoffAt = $this->normalizeToBusinessHoursHalfHour((clone $pickupAt)->modify("+{$days} days"));
+            }
+
             $createdAt = (clone $pickupAt)->modify('-7 days');
 
             $car = Car::query()->findOrFail($cars->random());
