@@ -1,8 +1,8 @@
 <?php
 
 use App\Notifications\Storefront\ContactMessageNotification;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
 
 uses(RefreshDatabase::class);
 

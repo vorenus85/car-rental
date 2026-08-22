@@ -76,9 +76,9 @@ describe('BookingController', function () {
         ]);
 
         $response = $this->actingAs($customer, 'customer')
-            ->get('/api/storefront/booking/invoice?publicId=' . $booking->public_id);
+            ->get('/api/storefront/booking/invoice?publicId='.$booking->public_id);
 
         $response->assertOk();
-        $response->assertDownload($booking->booking_number . '-invoice.pdf');
+        $response->assertDownload($booking->booking_number.'-invoice.pdf');
     });
 });
