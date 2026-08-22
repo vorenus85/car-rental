@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\Booking\CustomerBillingController;
 use App\Http\Controllers\Admin\Booking\CustomerController;
 use App\Http\Controllers\Admin\Booking\ExtraController;
 use App\Http\Controllers\Admin\Booking\InsuranceController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Fleet\BrandController;
 use App\Http\Controllers\Admin\Fleet\BrandImageController;
 use App\Http\Controllers\Admin\Fleet\CarController;
@@ -50,6 +51,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('/api/admin/bookings')->group(function () {
         Route::get('/', [BookingController::class, 'index']);
+    });
+
+    Route::prefix('/api/admin/dashboard')->group(function () {
+        Route::get('/available-cars', [DashboardController::class, 'availableCarsKpi']);
     });
 
     Route::prefix('/api/admin/car-drivers')->group(function () {
