@@ -42,8 +42,8 @@ class BookingSeeder extends Seeder
             return;
         }
 
-        $bookingStatuses = array_map(fn(BookingStatus $status) => $status->value, BookingStatus::cases());
-        $paymentStatuses = array_map(fn(PaymentStatus $status) => $status->value, PaymentStatus::cases());
+        $bookingStatuses = array_map(fn (BookingStatus $status) => $status->value, BookingStatus::cases());
+        $paymentStatuses = array_map(fn (PaymentStatus $status) => $status->value, PaymentStatus::cases());
         $paymentMethods = ['stripe', 'paypal', 'cash'];
 
         $totalIterations = 100;
@@ -84,7 +84,7 @@ class BookingSeeder extends Seeder
             $insurance = $insurances->random();
             $pickupLocationId = $locations->random();
             $dropoffLocationId = fake()->boolean(35) && $locations->count() > 1
-                ? $locations->reject(fn($locationId) => $locationId === $pickupLocationId)->random()
+                ? $locations->reject(fn ($locationId) => $locationId === $pickupLocationId)->random()
                 : $pickupLocationId;
 
             $extraCount = $extras->isEmpty() ? 0 : fake()->numberBetween(0, min(3, $extras->count()));
@@ -123,7 +123,7 @@ class BookingSeeder extends Seeder
 
             $booking = Booking::factory()->create([
                 'booking_number' => sprintf('CR-%s-%04d', $createdAt->format('Ymd'), $i + 1),
-                'public_id' => 'BKG-' . implode('-', str_split(Str::upper(Str::random(16)), 4)),
+                'public_id' => 'BKG-'.implode('-', str_split(Str::upper(Str::random(16)), 4)),
 
                 'customer_id' => $customers->random(),
                 'car_id' => $car->id,
@@ -147,7 +147,7 @@ class BookingSeeder extends Seeder
                 'tax_total' => $taxTotal,
                 'total_amount' => $totalAmount,
 
-                'payment_intent_id' => $paymentMethod === 'stripe' ? 'pi_' . Str::lower(Str::random(24)) : null,
+                'payment_intent_id' => $paymentMethod === 'stripe' ? 'pi_'.Str::lower(Str::random(24)) : null,
                 'payment_method' => $paymentMethod,
                 'payment_status' => $paymentStatus,
                 'paid_at' => $paidAt,
