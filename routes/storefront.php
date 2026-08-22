@@ -52,4 +52,5 @@ Route::prefix('/api/storefront/profile')
         Route::patch('/basic-details', [ProfileController::class, 'editBasicDetails']);
         Route::patch('/password', [ProfileController::class, 'changePassword']);
         Route::patch('/billing-info', [ProfileController::class, 'billingInfo']);
+        Route::get('/bookings', [ProfileController::class, 'bookings']);
     });

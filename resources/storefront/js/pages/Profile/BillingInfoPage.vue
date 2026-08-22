@@ -210,7 +210,7 @@
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import PageTitle from '@storefront/components/modules/PageTitle.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
-import ProfileSidebar from '@storefront/components/modules/ProfileSidebar.vue'
+import ProfileSidebar from '@storefront/components/modules/Profile/ProfileSidebar.vue'
 import { useAuthStore } from '@storefront/stores/authStore'
 import { useCustomToast } from '@storefront/composables/useCustomToast'
 import { editBillingInfo } from '@storefront/services/authService'

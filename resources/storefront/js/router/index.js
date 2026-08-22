@@ -28,6 +28,7 @@ import RentalRequirementsPage from '@storefront/pages/Support/RentalRequirements
 import ProfileBasicDetailsPage from '@storefront/pages/Profile/BasicDetailsPage.vue'
 import PasswordPage from '@storefront/pages/Profile/PasswordPage.vue'
 import BillingInfoPage from '@storefront/pages/Profile/BillingInfoPage.vue'
+import BookingsListPage from '@storefront/pages/Profile/BookingsListPage.vue'
 
 import FaqPage from '@storefront/pages/FaqPage.vue'
 
@@ -162,6 +163,13 @@ const router = createRouter({
             path: '/profile/billing-info',
             name: 'billing-info',
             component: BillingInfoPage,
+            parent: 'profile',
+            meta: { requiresAuth: true },
+        },
+        {
+            path: '/profile/bookings',
+            name: 'profile-bookings',
+            component: BookingsListPage,
             parent: 'profile',
             meta: { requiresAuth: true },
         },

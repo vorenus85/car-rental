@@ -43,5 +43,9 @@ const menuItems = [
         label: 'Billing Info',
         to: '/profile/billing-info',
     },
+    {
+        label: 'Bookings',
+        to: '/profile/bookings',
+    },
 ]
 </script>

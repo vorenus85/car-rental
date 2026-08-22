@@ -7,7 +7,7 @@
         @click="downloadConfirmation"
     />
 
-    <Button label="View My Bookings" icon="pi pi-list" />
+    <Button label="View My Bookings" icon="pi pi-list" @click="toProfileBookings" />
 
     <Button label="Back to Home" icon="pi pi-home" severity="secondary" text @click="toHome" />
 </template>
@@ -22,7 +22,7 @@ const props = defineProps({
     },
 })
 
-const { toHome } = useRedirects()
+const { toHome, toProfileBookings } = useRedirects()
 
 const downloadConfirmation = () => {
     if (!props.downloadUrl) {

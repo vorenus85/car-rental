@@ -53,3 +53,9 @@ export const forgotPassword = async email => {
 export const resetPassword = async values => {
     return axios.post('/storefront/auth/reset-password', values)
 }
+
+export const fetchCustomerBookings = () => {
+    return axios.get('/api/storefront/profile/bookings', {
+        withCredentials: true,
+    })
+}
