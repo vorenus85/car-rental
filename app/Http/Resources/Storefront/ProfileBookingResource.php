@@ -50,10 +50,10 @@ class ProfileBookingResource extends JsonResource
 
             'driver' => $this->whenLoaded('driver', function () {
                 return [
-                    'name' => $this->driver->first_name . ' ' . $this->driver->last_name,
+                    'name' => $this->driver->first_name.' '.$this->driver->last_name,
                     'phone' => $this->driver->phone,
                 ];
-            })
+            }),
         ];
     }
 }
