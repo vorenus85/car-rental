@@ -44,6 +44,7 @@ describe('BookingController', function () {
             'driver_licence_issue_date' => '2015-01-01',
             'driver_licence_expiry_date' => '2030-01-01',
             'payment_method' => 'stripe',
+            'notes' => 'Test booking',
             'insurance_id' => $insurance->id,
             'extras' => [],
         ];

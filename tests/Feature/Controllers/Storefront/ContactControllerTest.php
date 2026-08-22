@@ -1,7 +1,10 @@
 <?php
 
 use App\Notifications\Storefront\ContactMessageNotification;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
+
+uses(RefreshDatabase::class);
 
 describe('ContactController', function () {
     it('sends contact form message', function () {

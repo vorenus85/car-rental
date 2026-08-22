@@ -26,6 +26,8 @@ class BookingStoreRequest extends FormRequest
             'pickUpTime' => ['required', 'date_format:H:i'],
             'dropOffTime' => ['required', 'date_format:H:i'],
 
+            'notes' => ['nullable', 'string'],
+
             'driver_first_name' => ['required', 'string'],
             'driver_last_name' => ['required', 'string'],
             'driver_phone' => ['required', 'string'],
