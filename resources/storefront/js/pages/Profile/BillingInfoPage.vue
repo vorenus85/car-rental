@@ -10,193 +10,11 @@
                 <ProfileSidebar />
                 <div class="mb-10">
                     <div v-if="isReady" class="w-full">
-                        <Form
-                            ref="formRef"
-                            v-slot="$form"
+                        <BillingInfoForm
                             :initial-values="initialValues"
                             :resolver="billingInfoValidator"
-                            class="flex flex-col gap-4 w-full"
-                            :validate-on-value-update="true"
-                            :validate-on-blur="true"
-                            :validate-on-mount="true"
                             @submit="onFormSubmit"
-                        >
-                            <div class="flex flex-col gap-1 text-left">
-                                <label for="name">Name</label>
-                                <InputText
-                                    id="name"
-                                    name="name"
-                                    type="text"
-                                    placeholder="Simon Parker's company"
-                                    fluid
-                                />
-                                <Message
-                                    v-if="$form.name?.invalid"
-                                    severity="error"
-                                    size="small"
-                                    variant="simple"
-                                    >{{ $form.name.error?.message }}</Message
-                                >
-                            </div>
-                            <div class="flex flex-col gap-1 text-left">
-                                <label for="country">Country</label>
-                                <Select
-                                    id="country"
-                                    name="country"
-                                    :options="countryOptions"
-                                    option-label="name"
-                                    option-value="code"
-                                    filter
-                                    class="w-full"
-                                    placeholder="Select issuing country"
-                                >
-                                    <template #option="{ option }">
-                                        <div class="flex items-center gap-3">
-                                            <span
-                                                :class="`fi fi-${option.code.toLowerCase()}`"
-                                                style="border-radius: 2px"
-                                            />
-                                            {{ option.name }}
-                                        </div>
-                                    </template>
-
-                                    <template #value="{ value }">
-                                        <div v-if="value" class="flex items-center gap-3">
-                                            <span :class="`fi fi-${value.toLowerCase()}`" />
-                                            {{ getCountryName(value) }}
-                                        </div>
-
-                                        <span v-else>Select country</span>
-                                    </template>
-                                </Select>
-                                <Message
-                                    v-if="$form.country?.invalid"
-                                    severity="error"
-                                    size="small"
-                                    variant="simple"
-                                    >{{ $form.country.error?.message }}</Message
-                                >
-                            </div>
-                            <div class="flex flex-col gap-1 text-left">
-                                <label for="postcode">Postcode</label>
-                                <InputText
-                                    id="postcode"
-                                    name="postcode"
-                                    type="text"
-                                    placeholder="Postcode"
-                                    fluid
-                                />
-                                <Message
-                                    v-if="$form.postcode?.invalid"
-                                    severity="error"
-                                    size="small"
-                                    variant="simple"
-                                    >{{ $form.postcode.error?.message }}</Message
-                                >
-                            </div>
-                            <div class="flex flex-col gap-1 text-left">
-                                <label for="city">City</label>
-                                <InputText
-                                    id="city"
-                                    name="city"
-                                    type="text"
-                                    placeholder="City"
-                                    fluid
-                                />
-                                <Message
-                                    v-if="$form.city?.invalid"
-                                    severity="error"
-                                    size="small"
-                                    variant="simple"
-                                    >{{ $form.city.error?.message }}</Message
-                                >
-                            </div>
-                            <div class="flex flex-col gap-1 text-left">
-                                <label for="address">Address</label>
-                                <InputText
-                                    id="address"
-                                    name="address"
-                                    type="text"
-                                    placeholder="Address"
-                                    fluid
-                                />
-                                <Message
-                                    v-if="$form.address?.invalid"
-                                    severity="error"
-                                    size="small"
-                                    variant="simple"
-                                    >{{ $form.address.error?.message }}</Message
-                                >
-                            </div>
-                            <div class="flex flex-col gap-1 text-left">
-                                <label for="company_name"
-                                    >Company Name
-                                    <small class="text-muted-color">(Optional)</small></label
-                                >
-                                <InputText
-                                    id="company_name"
-                                    name="company_name"
-                                    type="text"
-                                    placeholder="Company Name"
-                                    fluid
-                                />
-                                <Message
-                                    v-if="$form.company_name?.invalid"
-                                    severity="error"
-                                    size="small"
-                                    variant="simple"
-                                    >{{ $form.company_name.error?.message }}</Message
-                                >
-                            </div>
-                            <div class="flex flex-col gap-1 text-left">
-                                <label for="tax_number"
-                                    >Tax Number
-                                    <small class="text-muted-color">(Optional)</small></label
-                                >
-                                <InputText
-                                    id="tax_number"
-                                    name="tax_number"
-                                    type="text"
-                                    placeholder="Tax Number"
-                                    fluid
-                                />
-                                <Message
-                                    v-if="$form.tax_number?.invalid"
-                                    severity="error"
-                                    size="small"
-                                    variant="simple"
-                                    >{{ $form.tax_number.error?.message }}</Message
-                                >
-                            </div>
-                            <div class="flex flex-col gap-1 text-left">
-                                <label for="eu_vat_number"
-                                    >EU VAT Number
-                                    <small class="text-muted-color">(Optional)</small></label
-                                >
-                                <InputText
-                                    id="eu_vat_number"
-                                    name="eu_vat_number"
-                                    type="text"
-                                    placeholder="EU VAT Number"
-                                    fluid
-                                />
-                                <Message
-                                    v-if="$form.eu_vat_number?.invalid"
-                                    severity="error"
-                                    size="small"
-                                    variant="simple"
-                                    >{{ $form.eu_vat_number.error?.message }}</Message
-                                >
-                            </div>
-                            <div class="flex flex-col text-left">
-                                <Button
-                                    type="submit"
-                                    severity="primary"
-                                    label="Save"
-                                    class="mt-4 w-32"
-                                />
-                            </div>
-                        </Form>
+                        />
                     </div>
                     <div v-else class="w-full text-center text-muted-color">
                         Loading billing details...
@@ -211,18 +29,15 @@ import PublicLayout from '@storefront/layouts/PublicLayout.vue'
 import PageTitle from '@storefront/components/modules/PageTitle.vue'
 import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vue'
 import ProfileSidebar from '@storefront/components/modules/Profile/ProfileSidebar.vue'
+import BillingInfoForm from '@storefront/components/modules/Profile/BillingInfoForm.vue'
 import { useAuthStore } from '@storefront/stores/authStore'
 import { useCustomToast } from '@storefront/composables/useCustomToast'
 import { editBillingInfo } from '@storefront/services/authService'
 import { billingInfoValidator } from '@storefront/validators/billingInfoValidator.js'
-import { countryOptions, getCountryName } from '@storefront/utils.js'
-import { Button, InputText, Message, Select } from 'primevue'
-import { Form } from '@primevue/forms'
 import { computed, onMounted, ref } from 'vue'
 
 const authStore = useAuthStore()
 const { customToast } = useCustomToast()
-const formRef = ref(null)
 const isReady = ref(false)
 
 const initialValues = computed(() => ({
@@ -274,6 +89,3 @@ const onFormSubmit = async ({ valid, values, errors }) => {
     }
 }
 </script>
-<style>
-@import 'flag-icons/css/flag-icons.min.css';
-</style>

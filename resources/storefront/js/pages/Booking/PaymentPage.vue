@@ -10,188 +10,19 @@
                         subtitle="Select your payment method and complete your order."
                         class="mb-5"
                     ></PageTitle>
-                    <div class="payment-types mb-5">
-                        <div class="space-y-4">
-                            <h2 class="text-lg font-semibold">Payment method</h2>
-
-                            <!-- stripe -->
-                            <div
-                                class="border border-surface-200 background-white rounded-xl p-5"
-                                :class="paymentMethod === 'stripe' ? 'border-primary' : ''"
-                            >
-                                <div class="flex justify-between items-center">
-                                    <div class="flex items-center gap-3">
-                                        <RadioButton
-                                            v-model="paymentMethod"
-                                            input-id="stripe"
-                                            value="stripe"
-                                        />
-
-                                        <label
-                                            for="stripe"
-                                            class="cursor-pointer"
-                                            :class="
-                                                paymentMethod === 'stripe' ? 'font-semibold' : ''
-                                            "
-                                        >
-                                            Credit / Debit Card
-                                        </label>
-                                    </div>
-
-                                    <div class="flex gap-2">
-                                        <img
-                                            :src="'/images/payment/visa.svg'"
-                                            class="h-7"
-                                            alt="visa"
-                                        />
-                                        <img
-                                            :src="'/images/payment/mastercard.svg'"
-                                            class="h-7"
-                                            alt="mastercard"
-                                        />
-                                        <img
-                                            :src="'/images/payment/maestro.svg'"
-                                            class="h-7"
-                                            alt="maestro"
-                                        />
-                                    </div>
-                                </div>
-
-                                <div v-if="paymentMethod === 'stripe'" class="mt-5 space-y-4">
-                                    <div>
-                                        <label for="card" class="text-sm text-gray-600">
-                                            Card Number
-                                        </label>
-
-                                        <InputText
-                                            v-model="card.number"
-                                            input-id="card"
-                                            class="w-full mt-1"
-                                            placeholder="1234 5678 9012 3456"
-                                        />
-                                    </div>
-
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label for="expire-date" class="text-sm text-gray-600">
-                                                Expiry Date
-                                            </label>
-
-                                            <InputText
-                                                v-model="card.expiry"
-                                                input-id="expire-date"
-                                                class="w-full mt-1"
-                                                placeholder="MM / YY"
-                                            />
-                                        </div>
-
-                                        <div>
-                                            <label for="ccv" class="text-sm text-gray-600">
-                                                CVC / CVV
-                                            </label>
-
-                                            <InputText
-                                                v-model="card.cvc"
-                                                input-id="ccv"
-                                                class="w-full mt-1"
-                                                placeholder="123"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label for="holder" class="text-sm text-gray-600">
-                                            Cardholder Name
-                                        </label>
-
-                                        <InputText
-                                            v-model="card.holder"
-                                            input-id="holder"
-                                            class="w-full mt-1"
-                                            placeholder="JOHN SINCLAIR"
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Cash -->
-                            <label
-                                for="cash"
-                                class="border rounded-xl p-4 cursor-pointer block border-surface-200 background-white"
-                                :class="paymentMethod === 'cash' ? 'border-primary' : ''"
-                            >
-                                <div class="flex items-center gap-3">
-                                    <RadioButton
-                                        v-model="paymentMethod"
-                                        input-id="cash"
-                                        value="cash"
-                                    />
-
-                                    <span :class="paymentMethod === 'cash' ? 'font-semibold' : ''"
-                                        >Pay cash on Pickup</span
-                                    >
-                                </div>
-
-                                <p class="text-sm text-gray-500 mt-2 ml-8">
-                                    The full amount is payable in cash when you pick up the vehicle.
-                                </p>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="booking-notes mb-5">
-                        <div class="space-y-4">
-                            <h2 class="text-lg font-semibold">Notes for booking</h2>
-                            <label for="notes" class="hidden">Notes for booking</label>
-                            <Textarea
-                                id="notes"
-                                v-model="notes"
-                                name="notes"
-                                rows="5"
-                                style="resize: none"
-                                placeholder=""
-                                class="w-full"
-                            />
-                        </div>
-                    </div>
-                    <div class="space-y-4 mt-5 pt-5 pb-5 mb-5">
-                        <div class="flex items-start gap-3">
-                            <Checkbox v-model="form.acceptTerms" input-id="terms" binary />
-
-                            <label
-                                for="terms"
-                                class="text-sm text-surface-700 leading-5 cursor-pointer"
-                            >
-                                I accept the
-                                <a
-                                    href="/terms-and-conditions"
-                                    target="_blank"
-                                    class="font-medium text-secondary hover:underline"
-                                >
-                                    Terms &amp; Conditions
-                                </a>
-                                <span class="text-red-500">*</span>
-                            </label>
-                        </div>
-
-                        <div class="flex items-start gap-3">
-                            <Checkbox v-model="form.acceptPrivacy" input-id="privacy" binary />
-
-                            <label
-                                for="privacy"
-                                class="text-sm text-surface-700 leading-5 cursor-pointer"
-                            >
-                                I accept the
-                                <a
-                                    href="/privacy-policy"
-                                    target="_blank"
-                                    class="font-medium text-secondary hover:underline"
-                                >
-                                    Privacy Policy
-                                </a>
-                                <span class="text-red-500">*</span>
-                            </label>
-                        </div>
-                    </div>
+                    <BillingInfoForm
+                        ref="billingInfoFormRef"
+                        :initial-values="billingInitialValues"
+                        :resolver="billingInfoValidator"
+                        :show-submit-button="false"
+                        @submit="onBillingInfoSubmit"
+                    />
+                    <PaymentMethod v-model="paymentMethod"></PaymentMethod>
+                    <BookingNotes v-model="notes"></BookingNotes>
+                    <BookingAccepts
+                        v-model:accept-terms="acceptTerms"
+                        v-model:accept-privacy="acceptPrivacy"
+                    ></BookingAccepts>
                     <Message v-if="!hasAcceptedPolicies" severity="info" size="small"
                         >Please accept the Terms & Conditions and Privacy Policy to
                         continue.</Message
@@ -225,41 +56,55 @@ import BreadcrumbModule from '@storefront/components/modules/BreadcrumbModule.vu
 import BookingNavigation from '@storefront/components/modules/Booking/BookingNavigation.vue'
 import BookingSidebarSummary from '@storefront/components/modules/Booking/BookingSidebarSummary.vue'
 import BookingDriverSummary from '@storefront/components/modules/Booking/BookingDriverSummary.vue'
+import PaymentMethod from '@storefront/components/modules/Payment/PaymentMethod.vue'
+import BookingNotes from '@storefront/components/modules/Payment/BookingNotes.vue'
+import BillingInfoForm from '@storefront/components/modules/Profile/BillingInfoForm.vue'
+import BookingAccepts from '@storefront/components/modules/Payment/BookingAccepts.vue'
 import FreeCancelation from '@storefront/components/modules/FreeCancelation.vue'
 import { useRouter } from 'vue-router'
-import { Checkbox, InputText, Message, RadioButton, Textarea } from 'primevue'
-import { computed, reactive, ref } from 'vue'
+import { Message } from 'primevue'
+import { computed, onMounted, ref } from 'vue'
 import { useBookingStore } from '@storefront/stores/bookingStore'
 import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
 import { useAuthStore } from '@storefront/stores/authStore'
 import { createBooking } from '@storefront/services/bookingService'
 import { useCustomToast } from '@storefront/composables/useCustomToast'
+import { billingInfoValidator } from '@storefront/validators/billingInfoValidator'
+import { editBillingInfo } from '@storefront/services/authService'
 
 const router = useRouter()
 const bookingStore = useBookingStore()
 const bookingLookupStore = useBookingLookupStore()
 const authStore = useAuthStore()
 const { customToast } = useCustomToast()
+const billingInfoFormRef = ref(null)
 
-const paymentMethod = ref('stripe')
-const notes = ref(null)
 const submitting = ref(false)
 
-const card = ref({
-    number: '',
-    expiry: '',
-    cvc: '',
-    holder: '',
-})
-
-const form = reactive({
-    acceptTerms: false,
-    acceptPrivacy: false,
-})
+const paymentMethod = ref('stripe')
+const notes = ref('')
+const acceptTerms = ref(false)
+const acceptPrivacy = ref(false)
 
 const hasAcceptedPolicies = computed(() => {
-    return form.acceptTerms && form.acceptPrivacy
+    return acceptTerms.value && acceptPrivacy.value
 })
+
+const billingInitialValues = computed(() => ({
+    name: authStore.user?.billingInfo?.name ?? '',
+    country: authStore.user?.billingInfo?.country ?? '',
+    postcode: authStore.user?.billingInfo?.postcode ?? '',
+    city: authStore.user?.billingInfo?.city ?? '',
+    address: authStore.user?.billingInfo?.address ?? '',
+    company_name:
+        authStore.user?.billingInfo?.companyName ?? authStore.user?.billingInfo?.company_name ?? '',
+    tax_number:
+        authStore.user?.billingInfo?.taxNumber ?? authStore.user?.billingInfo?.tax_number ?? '',
+    eu_vat_number:
+        authStore.user?.billingInfo?.euVatNumber ??
+        authStore.user?.billingInfo?.eu_vat_number ??
+        '',
+}))
 
 const breadcrumbItems = [
     {
@@ -274,6 +119,10 @@ const breadcrumbItems = [
 const handleBack = () => {
     globalThis.history.back()
 }
+
+onMounted(async () => {
+    await authStore.init()
+})
 
 const buildBookingPayload = () => {
     const {
@@ -298,7 +147,7 @@ const buildBookingPayload = () => {
         dropOffDate,
         pickUpTime,
         dropOffTime,
-        notes: notes.value,
+        notes: notes.value || null,
         driver_first_name: firstName,
         driver_last_name: lastName,
         driver_phone: phone,
@@ -310,38 +159,58 @@ const buildBookingPayload = () => {
         driver_licence_expiry_date: licence.expiryDate,
         insurance_id: bookingStore.insuranceId,
         extras: bookingStore.extras,
+        accept_terms: acceptTerms.value,
+        accept_privacy: acceptPrivacy.value,
     }
 }
 
-const handleNext = async () => {
-    if (submitting.value || !hasAcceptedPolicies.value) {
+const completeBooking = async () => {
+    const { data } = await createBooking(buildBookingPayload())
+    const booking = data?.booking
+
+    customToast.success('Booking completed successfully.')
+
+    // delete booking data from store
+    bookingStore.clearBookingData()
+    bookingLookupStore.clearBookingData()
+
+    router.push({
+        name: 'booking-success',
+        query: {
+            publicId: booking?.public_id,
+        },
+    })
+}
+
+const onBillingInfoSubmit = async ({ valid, values, errors }) => {
+    if (!valid) {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
         return
     }
 
     submitting.value = true
 
     try {
-        const { data } = await createBooking(buildBookingPayload())
-        const booking = data?.booking
+        const response = await editBillingInfo(values)
 
-        customToast.success('Booking completed successfully.')
+        authStore.user.billingInfo = response.data.billingInfo
 
-        // delete booking data from store
-        bookingStore.clearBookingData()
-        bookingLookupStore.clearBookingData()
-
-        router.push({
-            name: 'booking-success',
-            query: {
-                publicId: booking?.public_id,
-            },
-        })
+        await completeBooking()
     } catch (error) {
+        console.error(error)
         const message = error?.response?.data?.message || 'We could not complete the booking.'
         customToast.error(message)
         router.push({ name: 'booking-failure' })
     } finally {
         submitting.value = false
     }
+}
+
+const handleNext = () => {
+    if (submitting.value || !hasAcceptedPolicies.value) {
+        return
+    }
+
+    billingInfoFormRef.value?.submit()
 }
 </script>
