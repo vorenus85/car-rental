@@ -1,5 +1,6 @@
 <template>
     <Form
+        ref="formRef"
         v-slot="$form"
         :initial-values="initialValues"
         :resolver="resolver"
@@ -202,7 +203,7 @@
             </div>
         </div>
 
-        <div class="flex flex-col text-left">
+        <div v-if="showSubmitButton" class="flex flex-col text-left">
             <Button type="submit" severity="primary" :label="submitLabel" class="mt-4 w-32" />
         </div>
     </Form>
@@ -211,6 +212,7 @@
 <script setup>
 import { Form } from '@primevue/forms'
 import { Button, InputText, Message, Select } from 'primevue'
+import { ref } from 'vue'
 import { countryOptions, getCountryName } from '@storefront/utils.js'
 
 defineProps({
@@ -226,9 +228,23 @@ defineProps({
         type: String,
         default: 'Save',
     },
+    showSubmitButton: {
+        type: Boolean,
+        default: true,
+    },
 })
 
 defineEmits(['submit'])
+
+const formRef = ref(null)
+
+const submit = () => {
+    formRef.value?.submit?.()
+}
+
+defineExpose({
+    submit,
+})
 </script>
 
 <style>

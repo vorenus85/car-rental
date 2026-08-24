@@ -1,5 +1,7 @@
 <template>
-    <div class="booking-notes pb-5 mb-5">
+    <div
+        class="booking-notes rounded-2xl border border-surface-200 bg-white p-5 md:p-6 space-y-5 mt-5"
+    >
         <div class="space-y-4">
             <h2 class="text-lg font-semibold">Notes for booking</h2>
             <label for="notes" class="hidden">Notes for booking</label>

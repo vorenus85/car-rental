@@ -10,6 +10,13 @@
                         subtitle="Select your payment method and complete your order."
                         class="mb-5"
                     ></PageTitle>
+                    <BillingInfoForm
+                        ref="billingInfoFormRef"
+                        :initial-values="billingInitialValues"
+                        :resolver="billingInfoValidator"
+                        :show-submit-button="false"
+                        @submit="onBillingInfoSubmit"
+                    />
                     <PaymentMethod v-model="paymentMethod"></PaymentMethod>
                     <BookingNotes v-model="notes"></BookingNotes>
                     <BookingAccepts
@@ -51,22 +58,26 @@ import BookingSidebarSummary from '@storefront/components/modules/Booking/Bookin
 import BookingDriverSummary from '@storefront/components/modules/Booking/BookingDriverSummary.vue'
 import PaymentMethod from '@storefront/components/modules/Payment/PaymentMethod.vue'
 import BookingNotes from '@storefront/components/modules/Payment/BookingNotes.vue'
+import BillingInfoForm from '@storefront/components/modules/Profile/BillingInfoForm.vue'
 import BookingAccepts from '@storefront/components/modules/Payment/BookingAccepts.vue'
 import FreeCancelation from '@storefront/components/modules/FreeCancelation.vue'
 import { useRouter } from 'vue-router'
 import { Message } from 'primevue'
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { useBookingStore } from '@storefront/stores/bookingStore'
 import { useBookingLookupStore } from '@storefront/stores/bookingLookupStore'
 import { useAuthStore } from '@storefront/stores/authStore'
 import { createBooking } from '@storefront/services/bookingService'
 import { useCustomToast } from '@storefront/composables/useCustomToast'
+import { billingInfoValidator } from '@storefront/validators/billingInfoValidator'
+import { editBillingInfo } from '@storefront/services/authService'
 
 const router = useRouter()
 const bookingStore = useBookingStore()
 const bookingLookupStore = useBookingLookupStore()
 const authStore = useAuthStore()
 const { customToast } = useCustomToast()
+const billingInfoFormRef = ref(null)
 
 const submitting = ref(false)
 
@@ -78,6 +89,22 @@ const acceptPrivacy = ref(false)
 const hasAcceptedPolicies = computed(() => {
     return acceptTerms.value && acceptPrivacy.value
 })
+
+const billingInitialValues = computed(() => ({
+    name: authStore.user?.billingInfo?.name ?? '',
+    country: authStore.user?.billingInfo?.country ?? '',
+    postcode: authStore.user?.billingInfo?.postcode ?? '',
+    city: authStore.user?.billingInfo?.city ?? '',
+    address: authStore.user?.billingInfo?.address ?? '',
+    company_name:
+        authStore.user?.billingInfo?.companyName ?? authStore.user?.billingInfo?.company_name ?? '',
+    tax_number:
+        authStore.user?.billingInfo?.taxNumber ?? authStore.user?.billingInfo?.tax_number ?? '',
+    eu_vat_number:
+        authStore.user?.billingInfo?.euVatNumber ??
+        authStore.user?.billingInfo?.eu_vat_number ??
+        '',
+}))
 
 const breadcrumbItems = [
     {
@@ -92,6 +119,10 @@ const breadcrumbItems = [
 const handleBack = () => {
     globalThis.history.back()
 }
+
+onMounted(async () => {
+    await authStore.init()
+})
 
 const buildBookingPayload = () => {
     const {
@@ -133,35 +164,53 @@ const buildBookingPayload = () => {
     }
 }
 
-const handleNext = async () => {
-    if (submitting.value || !hasAcceptedPolicies.value) {
+const completeBooking = async () => {
+    const { data } = await createBooking(buildBookingPayload())
+    const booking = data?.booking
+
+    customToast.success('Booking completed successfully.')
+
+    // delete booking data from store
+    bookingStore.clearBookingData()
+    bookingLookupStore.clearBookingData()
+
+    router.push({
+        name: 'booking-success',
+        query: {
+            publicId: booking?.public_id,
+        },
+    })
+}
+
+const onBillingInfoSubmit = async ({ valid, values, errors }) => {
+    if (!valid) {
+        customToast.error(`${Object.keys(errors).length} field contains errors`)
         return
     }
 
     submitting.value = true
 
     try {
-        const { data } = await createBooking(buildBookingPayload())
-        const booking = data?.booking
+        const response = await editBillingInfo(values)
 
-        customToast.success('Booking completed successfully.')
+        authStore.user.billingInfo = response.data.billingInfo
 
-        // delete booking data from store
-        bookingStore.clearBookingData()
-        bookingLookupStore.clearBookingData()
-
-        router.push({
-            name: 'booking-success',
-            query: {
-                publicId: booking?.public_id,
-            },
-        })
+        await completeBooking()
     } catch (error) {
+        console.error(error)
         const message = error?.response?.data?.message || 'We could not complete the booking.'
         customToast.error(message)
         router.push({ name: 'booking-failure' })
     } finally {
         submitting.value = false
     }
+}
+
+const handleNext = () => {
+    if (submitting.value || !hasAcceptedPolicies.value) {
+        return
+    }
+
+    billingInfoFormRef.value?.submit()
 }
 </script>

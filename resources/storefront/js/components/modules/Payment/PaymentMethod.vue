@@ -1,5 +1,7 @@
 <template>
-    <div class="payment-types pb-5 mb-5 pt-5">
+    <div
+        class="payment-types rounded-2xl border border-surface-200 bg-white p-5 md:p-6 space-y-5 mt-5"
+    >
         <div class="space-y-4">
             <h2 class="text-lg font-semibold">Payment method</h2>
 
@@ -10,11 +12,7 @@
             >
                 <div class="flex justify-between items-center">
                     <div class="flex items-center gap-3">
-                        <RadioButton
-                            v-model="paymentMethod"
-                            input-id="stripe"
-                            value="stripe"
-                        />
+                        <RadioButton v-model="paymentMethod" input-id="stripe" value="stripe" />
 
                         <label
                             for="stripe"
@@ -90,7 +88,7 @@
                 :class="paymentMethod === 'cash' ? 'border-primary' : ''"
             >
                 <div class="flex items-center gap-3">
-                        <RadioButton v-model="paymentMethod" input-id="cash" value="cash" />
+                    <RadioButton v-model="paymentMethod" input-id="cash" value="cash" />
 
                     <span :class="paymentMethod === 'cash' ? 'font-semibold' : ''"
                         >Pay cash on Pickup</span
