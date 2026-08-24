@@ -10,9 +10,6 @@
                         {{ personalData.lastName }}
                     </p>
                     <p class="text-sm text-surface-600">
-                        <strong class="text-surface-900">Email:</strong> {{ personalData.email }}
-                    </p>
-                    <p class="text-sm text-surface-600">
                         <strong class="text-surface-900">Phone:</strong> {{ personalData.phone }}
                     </p>
                 </div>

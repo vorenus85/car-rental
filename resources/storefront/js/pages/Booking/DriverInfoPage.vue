@@ -11,7 +11,7 @@
                         class="mb-5"
                     ></PageTitle>
                     <div class="driver-details">
-                        <DriverInfoSection :is-open="activeSection === 'personal'" class="mt-8">
+                        <DriverSection :is-open="activeSection === 'personal'" class="mt-8">
                             <template #header>
                                 <SectionHeader
                                     :title="'Personal Information'"
@@ -25,12 +25,9 @@
                                     @save="handleSectionNext"
                                 ></PersonalInformation>
                             </template>
-                        </DriverInfoSection>
+                        </DriverSection>
 
-                        <DriverInfoSection
-                            :is-open="activeSection === 'driving-licence'"
-                            class="mt-8"
-                        >
+                        <DriverSection :is-open="activeSection === 'driving-licence'" class="mt-8">
                             <template #header>
                                 <SectionHeader
                                     :title="'Driving Licence'"
@@ -47,7 +44,7 @@
                                     @save="handleSectionNext"
                                 ></LicenceInformation>
                             </template>
-                        </DriverInfoSection>
+                        </DriverSection>
                     </div>
                 </div>
                 <div class="md:col-span-1">
@@ -76,7 +73,7 @@ import BookingSidebarSummary from '@storefront/components/modules/Booking/Bookin
 import PersonalInformation from '@storefront/components/modules/Driver/PersonalInformation.vue'
 import LicenceInformation from '@storefront/components/modules/Driver/LicenceInformation.vue'
 import { useRouter } from 'vue-router'
-import DriverInfoSection from '@storefront/components/modules/DriverInfo/DriverInfoSection.vue'
+import DriverSection from '@storefront/components/modules/Driver/DriverSection.vue'
 import SectionHeader from '@storefront/components/modules/SectionHeader.vue'
 import { ref } from 'vue'
 
