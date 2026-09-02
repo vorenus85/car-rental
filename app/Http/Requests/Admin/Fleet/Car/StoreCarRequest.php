@@ -34,7 +34,7 @@ class StoreCarRequest extends FormRequest
 
             'status' => [
                 'required',
-                'in:available,rented,maintenance,inactive',
+                'in:available,maintenance,inactive',
             ],
 
             'color' => [
@@ -46,7 +46,7 @@ class StoreCarRequest extends FormRequest
                 'required',
                 'integer',
                 'min:1900',
-                'max:'.(date('Y') + 1),
+                'max:' . (date('Y') + 1),
             ],
 
             'mileage' => [

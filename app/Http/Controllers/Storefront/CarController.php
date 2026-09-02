@@ -8,8 +8,10 @@ use App\Http\Resources\Storefront\CarUnitResource;
 use App\Http\Services\Storefront\SimilarCarsService;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Carbon;
 
 class CarController extends Controller
 {
@@ -18,6 +20,8 @@ class CarController extends Controller
         $query = Car::query()
             ->with(['variant', 'variant.model', 'variant.model.brand', 'location'])
             ->where('status', 'available');
+
+        $this->filterByAvailability($query, $request);
 
         // location
         if ($request->filled('pickUpLocation')) {
@@ -112,6 +116,27 @@ class CarController extends Controller
         return CarListResource::collection($cars);
     }
 
+    private function filterByAvailability(Builder $query, Request $request): void
+    {
+        if (!$request->filled('pickUpDate') && !$request->filled('dropOffDate')) {
+            return;
+        }
+
+        $validated = $request->validate([
+            'pickUpDate' => ['required', 'date_format:Y-m-d'],
+            'dropOffDate' => ['required', 'date_format:Y-m-d', 'after_or_equal:pickUpDate'],
+        ]);
+
+        $pickupAt = Carbon::createFromFormat('!Y-m-d', $validated['pickUpDate'])->startOfDay();
+        $dropoffAt = Carbon::createFromFormat('!Y-m-d', $validated['dropOffDate'])->endOfDay();
+
+        $query->whereDoesntHave('bookings', function (Builder $bookingQuery) use ($pickupAt, $dropoffAt) {
+            $bookingQuery
+                ->where('pickup_at', '<=', $dropoffAt)
+                ->where('dropoff_at', '>=', $pickupAt);
+        });
+    }
+
     public function show(Car $car): CarUnitResource
     {
 
@@ -119,7 +144,7 @@ class CarController extends Controller
             'variant:id,name,model_id,transmission,fuel,seats,doors,range_km,luggage_count,body_type,description',
             'variant.model:id,name,brand_id',
             'variant.model.brand:id,name',
-            'features' => fn ($query) => $query->orderBy('name'),
+            'features' => fn($query) => $query->orderBy('name'),
         ])->findOrFail($car->id);
 
         return new CarUnitResource($response);
