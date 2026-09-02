@@ -82,11 +82,6 @@
                         {{ slotProps.data.available_cars_count }}
                     </template>
                 </Column>
-                <Column sortable field="rented_cars_count" header="Rented" style="width: 5%">
-                    <template #body="slotProps">
-                        {{ slotProps.data.rented_cars_count }}
-                    </template>
-                </Column>
                 <Column sortable field="maintenance_cars_count" header="Service " style="width: 5%">
                     <template #body="slotProps">
                         {{ slotProps.data.maintenance_cars_count }}

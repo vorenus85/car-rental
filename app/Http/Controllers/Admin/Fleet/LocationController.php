@@ -32,9 +32,6 @@ class LocationController extends Controller
                 'cars as available_cars_count' => function ($query) {
                     $query->where('status', 'available');
                 },
-                'cars as rented_cars_count' => function ($query) {
-                    $query->where('status', 'rented');
-                },
                 'cars as maintenance_cars_count' => function ($query) {
                     $query->where('status', 'maintenance');
                 },

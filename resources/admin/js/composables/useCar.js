@@ -46,7 +46,6 @@ export const useCar = () => {
 
     const rentalStatuses = [
         { id: 'available', name: 'Available' },
-        { id: 'rented', name: 'Rented' },
         { id: 'maintenance', name: 'Maintenance' },
         { id: 'inactive', name: 'inactive' },
     ]

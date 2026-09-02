@@ -42,14 +42,6 @@ const normalizedStatus = computed(() => props.status.toLowerCase().replace(/\s+/
     background: #15803d;
 }
 
-.status-rented {
-    background: #ffedd5;
-}
-
-.status-rented:before {
-    background: #c2410c;
-}
-
 .status-maintenance {
     background: #fee2e2;
 }
