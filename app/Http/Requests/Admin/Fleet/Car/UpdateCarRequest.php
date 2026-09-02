@@ -35,7 +35,7 @@ class UpdateCarRequest extends FormRequest
 
             'status' => [
                 'required',
-                'in:available,rented,maintenance,inactive',
+                'in:available,maintenance,inactive',
             ],
 
             'color' => [

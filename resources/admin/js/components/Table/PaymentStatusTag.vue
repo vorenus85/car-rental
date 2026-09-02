@@ -28,30 +28,13 @@ const normalizedStatus = computed(() => props.status.toLowerCase().replace(/\s+/
     font-size: 0.75rem;
 }
 
-.payment-status-tag::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-}
-
 /* Pending */
 .status-pending {
     background: #fef3c7;
 }
-
-.status-pending::before {
-    background: #d97706;
-}
-
 /* Paid */
 .status-paid {
     background: #dcfce7;
-}
-
-.status-paid::before {
-    background: #15803d;
 }
 
 /* Failed */
@@ -59,34 +42,18 @@ const normalizedStatus = computed(() => props.status.toLowerCase().replace(/\s+/
     background: #fee2e2;
 }
 
-.status-failed::before {
-    background: #b91c1c;
-}
-
 /* Refunded */
 .status-refunded {
     background: #f1f5f9;
 }
 
-.status-refunded::before {
-    background: #475569;
-}
-
 /* Partially Refunded */
-.status-partially_refunded {
+.status-partially-refunded {
     background: #ffedd5;
-}
-
-.status-partially_refunded::before {
-    background: #c2410c;
 }
 
 /* Cancelled */
 .status-cancelled {
     background: #f3f4f6;
-}
-
-.status-cancelled::before {
-    background: #6b7280;
 }
 </style>

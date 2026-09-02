@@ -5,7 +5,6 @@ namespace App\Enums;
 enum CarStatus: string
 {
     case Available = 'available';
-    case Rented = 'rented';
     case Maintenance = 'maintenance';
     case Inactive = 'inactive';
 
@@ -13,7 +12,6 @@ enum CarStatus: string
     {
         return match ($this) {
             self::Available => 'Available',
-            self::Rented => 'Rented',
             self::Maintenance => 'Maintenance',
             self::Inactive => 'Inactive',
         };

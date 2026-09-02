@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Storefront\BookingController;
 use App\Http\Controllers\Storefront\BrandController;
+use App\Http\Controllers\Storefront\CarAvailabilityController;
 use App\Http\Controllers\Storefront\CarController;
 use App\Http\Controllers\Storefront\ContactController;
 use App\Http\Controllers\Storefront\ExtraController;
@@ -14,6 +15,7 @@ Route::prefix('/api/storefront/cars')->group(function () {
     Route::get('/', [CarController::class, 'index']);
     Route::get('/similars/{car}', [CarController::class, 'similarCars']);
     Route::get('/randoms', [CarController::class, 'randomCars']);
+    Route::get('/{car}/availability', [CarAvailabilityController::class, 'availability']);
     Route::get('/{car}', [CarController::class, 'show']);
 });
 

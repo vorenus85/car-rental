@@ -28,21 +28,9 @@ const normalizedStatus = computed(() => props.status.toLowerCase().replace(/\s+/
     font-size: 0.75rem;
 }
 
-.payment-method-tag::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-}
-
 /* Stripe */
 .type-stripe {
     background: #e0e7ff;
-}
-
-.type-stripe::before {
-    background: #4f46e5;
 }
 
 /* PayPal */
@@ -50,16 +38,8 @@ const normalizedStatus = computed(() => props.status.toLowerCase().replace(/\s+/
     background: #dbeafe;
 }
 
-.type-paypal::before {
-    background: #2563eb;
-}
-
 /* Cash */
 .type-cash {
     background: #dcfce7;
-}
-
-.type-cash::before {
-    background: #15803d;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <span class="text-sm text-surface-500">{{ formatDateTime(date) }}</span>
+    <span class="text-sm">{{ formatDateTime(date) }}</span>
 </template>
 <script setup>
 defineProps({

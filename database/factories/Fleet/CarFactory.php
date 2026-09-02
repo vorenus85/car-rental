@@ -34,7 +34,6 @@ class CarFactory extends Factory
 
             'status' => fake()->randomElement([
                 'available',
-                'rented',
                 'maintenance',
                 'inactive',
             ]),

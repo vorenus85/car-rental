@@ -17,3 +17,7 @@ export const fetchCars = params => {
 export const fetchCar = id => {
     return axios.get(`/api/storefront/cars/${id}`)
 }
+
+export const fetchAvailability = id => {
+    return axios.get(`/api/storefront/cars/${id}/availability`)
+}
