@@ -28,7 +28,7 @@ export const useCar = () => {
         loadingCar.value = true
         try {
             const { data } = await fetchAvailability(id)
-            availability.value = data.data
+            availability.value = data.days
         } catch (error) {
             console.log(error)
         } finally {

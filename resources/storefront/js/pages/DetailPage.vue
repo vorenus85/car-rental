@@ -474,8 +474,7 @@ const isRentalPeriodValid = computed(() => {
 })
 
 const disabledDates = computed(() => {
-    //return availability.value.map(date => new Date(date))
-    return []
+    return availability.value.map(date => new Date(date))
 })
 
 watch(

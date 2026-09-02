@@ -22,8 +22,24 @@ class CarAvailabilityController extends Controller
                 'dropoff_at',
             ]);
 
+        $days = $bookings
+            ->flatMap(function ($booking) {
+                $currentDay = $booking->pickup_at->copy()->startOfDay();
+                $lastDay = $booking->dropoff_at->copy()->startOfDay();
+                $bookingDays = [];
+
+                while ($currentDay->lte($lastDay)) {
+                    $bookingDays[] = $currentDay->toDateString();
+                    $currentDay->addDay();
+                }
+
+                return $bookingDays;
+            })
+            ->unique()
+            ->values();
+
         return response()->json([
-            'bookings' => $bookings,
+            'days' => $days,
         ]);
     }
 }

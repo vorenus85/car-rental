@@ -46,8 +46,8 @@ class BookingSeeder extends Seeder
         $paymentStatuses = array_map(fn(PaymentStatus $status) => $status->value, PaymentStatus::cases());
         $paymentMethods = ['stripe', 'paypal', 'cash'];
 
-        $pastBookingCount = 200;
-        $futureBookingCount = 100;
+        $pastBookingCount = 250;
+        $futureBookingCount = 150;
 
         $pastPickupStart = now()->subMonths(6);
         $pastPickupEnd = now()->subDays(15);
@@ -108,7 +108,7 @@ class BookingSeeder extends Seeder
             );
         }
 
-        $todayPickupCount = fake()->numberBetween(1, 3);
+        $todayPickupCount = fake()->numberBetween(2, 3);
         for ($i = 1; $i <= $todayPickupCount; $i++) {
             $pickupAt = $this->randomBusinessHoursDateBetween(
                 now()->startOfDay(),
@@ -122,7 +122,7 @@ class BookingSeeder extends Seeder
             $this->createBooking(
                 index: $pastBookingCount + $futureBookingCount + $i,
                 pickupAt: $pickupAt,
-                dropoffAt: (clone $pickupAt)->modify('+'.fake()->numberBetween(1, 14).' days'),
+                dropoffAt: (clone $pickupAt)->modify('+' . fake()->numberBetween(1, 14) . ' days'),
                 createdAt: $createdAt,
                 customers: $customers,
                 cars: $cars,
@@ -138,13 +138,13 @@ class BookingSeeder extends Seeder
             );
         }
 
-        $todayDropoffCount = fake()->numberBetween(1, 3);
+        $todayDropoffCount = fake()->numberBetween(2, 3);
         for ($i = 1; $i <= $todayDropoffCount; $i++) {
             $dropoffAt = $this->randomBusinessHoursDateBetween(
                 now()->startOfDay(),
                 now()->endOfDay()
             );
-            $pickupAt = (clone $dropoffAt)->modify('-'.fake()->numberBetween(1, 14).' days');
+            $pickupAt = (clone $dropoffAt)->modify('-' . fake()->numberBetween(1, 14) . ' days');
             $createdAt = $this->randomBusinessHoursDateBetween(
                 now()->subMonths(3),
                 (clone $pickupAt)->modify('-1 day')
