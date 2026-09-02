@@ -2,13 +2,13 @@
 
 use App\Http\Controllers\Storefront\BookingController;
 use App\Http\Controllers\Storefront\BrandController;
+use App\Http\Controllers\Storefront\CarAvailabilityController;
 use App\Http\Controllers\Storefront\CarController;
 use App\Http\Controllers\Storefront\ContactController;
 use App\Http\Controllers\Storefront\ExtraController;
 use App\Http\Controllers\Storefront\InsuranceController;
 use App\Http\Controllers\Storefront\LocationController;
 use App\Http\Controllers\Storefront\ProfileController;
-use App\Http\Controllers\Storefront\CarAvailabilityController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/api/storefront/cars')->group(function () {

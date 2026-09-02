@@ -72,7 +72,7 @@ class Car extends Model
     public function getImageUrlAttribute(): ?string
     {
         return $this->image
-            ? Storage::url('/uploads/' . $this->image)
+            ? Storage::url('/uploads/'.$this->image)
             : null;
     }
 
