@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Storefront;
 
 use App\Http\Controllers\Controller;
 use App\Models\Fleet\Car;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 
 class CarAvailabilityController extends Controller
@@ -24,8 +25,8 @@ class CarAvailabilityController extends Controller
 
         $days = $bookings
             ->flatMap(function ($booking) {
-                $currentDay = $booking->pickup_at->copy()->startOfDay();
-                $lastDay = $booking->dropoff_at->copy()->startOfDay();
+                $currentDay = Carbon::parse($booking->pickup_at)->startOfDay();
+                $lastDay = Carbon::parse($booking->dropoff_at)->startOfDay();
                 $bookingDays = [];
 
                 while ($currentDay->lte($lastDay)) {

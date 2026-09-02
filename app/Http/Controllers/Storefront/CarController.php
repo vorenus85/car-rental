@@ -116,6 +116,9 @@ class CarController extends Controller
         return CarListResource::collection($cars);
     }
 
+    /**
+     * @param  Builder<Car>  $query
+     */
     private function filterByAvailability(Builder $query, Request $request): void
     {
         if (! $request->filled('pickUpDate') && ! $request->filled('dropOffDate')) {
