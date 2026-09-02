@@ -1,5 +1,5 @@
 <template>
-    <span class="font-medium">{{ formatDate(date) }}</span>
+    <span class="font-small">{{ formatDate(date) }}</span>
 </template>
 <script setup>
 defineProps({

@@ -38,15 +38,27 @@
                     </div>
                 </template>
                 <template #empty> No results found. </template>
+                <Column sortable field="id" header="#Id" style="width: 2%">
+                    <template #body="slotProps">
+                        <strong>{{ slotProps.data.id }}</strong>
+                    </template>
+                </Column>
                 <Column sortable field="bookingNumber" header="Booking Number" style="width: 25%">
                     <template #body="slotProps">
-                        <Tag
+                        <Button
+                            as="router-link"
+                            :to="{
+                                name: 'bookings.show',
+                                params: {
+                                    id: slotProps.data?.id,
+                                },
+                            }"
                             class="no-wrap"
-                            :value="slotProps.data.bookingNumber"
+                            :label="slotProps.data.bookingNumber"
                             severity="primary"
                     /></template>
                 </Column>
-                <Column sortable field="customer.name" header="Customer" style="width: 15%">
+                <Column sortable field="customer.name" header="Customer" style="width: 10%">
                     <template #body="slotProps">
                         <div class="">
                             <Button
@@ -61,29 +73,21 @@
                                         id: slotProps.data?.customer.id,
                                     },
                                 }"
-                                class="mb-2"
+                                class="no-wrap"
                             >
                             </Button>
-
-                            <span class="text-sm text-surface-500">
-                                {{ slotProps.data.customer.email }}
-                            </span>
                         </div>
                     </template>
                 </Column>
 
-                <Column sortable field="car.name" header="Car" style="width: 14%">
+                <Column sortable field="car.name" header="Car" style="width: 10%">
                     <template #body="slotProps">
                         <div class="flex flex-col">
-                            <span class="font-medium no-wrap">
-                                {{ slotProps.data.car.name }}
-                            </span>
-
                             <Button
                                 outlined
                                 severity="info"
                                 as="router-link"
-                                :label="slotProps.data.car.licencePlate"
+                                :label="slotProps.data.car.name"
                                 size="small"
                                 :to="{
                                     name: 'cars.show',
@@ -91,23 +95,34 @@
                                         id: slotProps.data?.car.id,
                                     },
                                 }"
-                                class="w-32 mt-3"
+                                class="no-wrap"
                             >
                             </Button>
                         </div>
                     </template>
                 </Column>
 
-                <Column field="pickupLocation.name" header="Pick-up Location" style="width: 13%">
+                <Column sortable field="pickupAt" header="Pick-up" style="width: 13%">
                     <template #body="slotProps">
-                        <span class="no-wrap font-medium">
+                        <span class="no-wrap font-small">
                             {{ slotProps.data.pickupLocation.name }}
                         </span>
                         <div class="flex flex-col">
-                            <div class="flex flex-col">
-                                <FormatedDate :date="slotProps.data.pickupAt"></FormatedDate>
-                                <FormatedTime :date="slotProps.data.pickupAt"></FormatedTime>
-                            </div>
+                            <FormatedDate :date="slotProps.data.pickupAt"></FormatedDate>
+                            <FormatedTime :date="slotProps.data.pickupAt"></FormatedTime>
+                        </div>
+                    </template>
+                </Column>
+
+                <Column sortable field="dropoffAt" header="Drop-off" style="width: 13%">
+                    <template #body="slotProps">
+                        <span class="no-wrap font-small">
+                            {{ slotProps.data.dropoffLocation.name }}
+                        </span>
+                        <div class="flex flex-col">
+                            <FormatedDate :date="slotProps.data.dropoffAt"></FormatedDate>
+
+                            <FormatedTime :date="slotProps.data.dropoffAt"></FormatedTime>
                         </div>
                     </template>
                 </Column>
@@ -118,15 +133,17 @@
                     </template>
                 </Column>
 
-                <Column sortable field="paymentStatus" header="Payment Status" style="width: 10%">
+                <Column sortable field="paymentStatus" header="Payment" style="width: 10%">
                     <template #body="slotProps">
-                        <PaymentStatusTag :status="slotProps.data.paymentStatus"></PaymentStatusTag>
-                    </template>
-                </Column>
-
-                <Column sortable field="paymentMethod" header="Payment Method" style="width: 10%">
-                    <template #body="slotProps">
-                        <PaymentMethodTag :status="slotProps.data.paymentMethod"></PaymentMethodTag>
+                        <div class="flex gap-2 align-center">
+                            <PaymentMethodTag
+                                :status="slotProps.data.paymentMethod"
+                            ></PaymentMethodTag>
+                            <span class="dot"></span>
+                            <PaymentStatusTag
+                                :status="slotProps.data.paymentStatus"
+                            ></PaymentStatusTag>
+                        </div>
                     </template>
                 </Column>
 
@@ -200,3 +217,13 @@ onMounted(() => {
     getBookings()
 })
 </script>
+<style>
+.dot {
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    background-color: #ccc;
+    border-radius: 100%;
+    margin: auto 5px;
+}
+</style>
