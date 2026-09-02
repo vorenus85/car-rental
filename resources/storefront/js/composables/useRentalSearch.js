@@ -11,6 +11,7 @@ export const useRentalSearch = () => {
 
     const dropOffDate = new Date()
     dropOffDate.setDate(dropOffDate.getDate() + 3)
+    const maxDate = ref(new Date(new Date().setMonth(new Date().getMonth() + 6)))
 
     const defaultDropOffDate = ref(dropOffDate)
     defaultDropOffDate.value.setHours(0, 0, 0, 0)
@@ -75,6 +76,7 @@ export const useRentalSearch = () => {
         defaultPickUpDate,
         minDropOffDate,
         defaultDropOffDate,
+        maxDate,
         searchParams,
         hydrateRentalSearchFromQuery,
         timeOptions,

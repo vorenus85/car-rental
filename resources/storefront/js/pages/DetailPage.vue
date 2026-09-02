@@ -176,6 +176,8 @@
                                                 v-model="searchParams.pickUpDate"
                                                 input-id="pick-up-date"
                                                 :min-date="minPickUpDate"
+                                                :max-date="maxDate"
+                                                :disabled-dates="disabledDates"
                                                 date-format="yy-mm-dd"
                                                 placeholder="Select date"
                                             />
@@ -248,6 +250,8 @@
                                                 v-model="searchParams.dropOffDate"
                                                 input-id="drop-off-date"
                                                 :min-date="minDropOffDate"
+                                                :max-date="maxDate"
+                                                :disabled-dates="disabledDates"
                                                 date-format="yy-mm-dd"
                                                 class="w-full"
                                                 placeholder="Select date"
@@ -393,9 +397,15 @@ const carId = route.params.id
 const { getLocations, groupedLocations } = useLocation()
 const authStore = useAuthStore()
 const bookingStore = useBookingStore()
-const { minPickUpDate, minDropOffDate, searchParams, hydrateRentalSearchFromQuery, timeOptions } =
-    useRentalSearch()
-const { getCar, car, loadingCar, bodyType } = useCar()
+const {
+    minPickUpDate,
+    minDropOffDate,
+    maxDate,
+    searchParams,
+    hydrateRentalSearchFromQuery,
+    timeOptions,
+} = useRentalSearch()
+const { getCar, car, loadingCar, bodyType, availability, getAvailability } = useCar()
 const { cars, loadingCars, getSimilarCars } = useCars()
 const { customToast } = useCustomToast()
 
@@ -463,6 +473,11 @@ const isRentalPeriodValid = computed(() => {
     return days >= 1
 })
 
+const disabledDates = computed(() => {
+    //return availability.value.map(date => new Date(date))
+    return []
+})
+
 watch(
     () => route.params.id,
     async id => {
@@ -491,7 +506,7 @@ const onLoginSubmit = async ({ valid, values, errors }) => {
 }
 
 onMounted(async () => {
-    Promise.all([getCar(carId), getLocations(), getSimilarCars(carId)])
+    Promise.all([getCar(carId), getLocations(), getSimilarCars(carId), getAvailability(carId)])
     hydrateRentalSearchFromQuery()
 })
 </script>

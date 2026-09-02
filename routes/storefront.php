@@ -8,12 +8,14 @@ use App\Http\Controllers\Storefront\ExtraController;
 use App\Http\Controllers\Storefront\InsuranceController;
 use App\Http\Controllers\Storefront\LocationController;
 use App\Http\Controllers\Storefront\ProfileController;
+use App\Http\Controllers\Storefront\CarAvailabilityController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/api/storefront/cars')->group(function () {
     Route::get('/', [CarController::class, 'index']);
     Route::get('/similars/{car}', [CarController::class, 'similarCars']);
     Route::get('/randoms', [CarController::class, 'randomCars']);
+    Route::get('/{car}/availability', [CarAvailabilityController::class, 'availability']);
     Route::get('/{car}', [CarController::class, 'show']);
 });
 

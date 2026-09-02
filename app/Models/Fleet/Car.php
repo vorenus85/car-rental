@@ -3,11 +3,13 @@
 namespace App\Models\Fleet;
 
 use App\Enums\CarStatus;
+use App\Models\Booking\Booking;
 use Database\Factories\Fleet\CarFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 
 /**
@@ -70,7 +72,15 @@ class Car extends Model
     public function getImageUrlAttribute(): ?string
     {
         return $this->image
-            ? Storage::url('/uploads/'.$this->image)
+            ? Storage::url('/uploads/' . $this->image)
             : null;
+    }
+
+    /**
+     * @return HasMany<Booking, $this>
+     */
+    public function bookings(): HasMany
+    {
+        return $this->hasMany(Booking::class);
     }
 }
