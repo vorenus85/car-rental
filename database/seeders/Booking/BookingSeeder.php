@@ -172,7 +172,11 @@ class BookingSeeder extends Seeder
             );
         }
 
-        $this->command->info('Bookings data seeded successfully!');
+        $reassignedBookings = $this->repairBookingOverlaps();
+
+        $this->command->info(
+            "Bookings data seeded successfully! {$reassignedBookings} overlapping bookings reassigned."
+        );
     }
 
     /**
@@ -369,5 +373,58 @@ class BookingSeeder extends Seeder
         $normalized->setTime($hour, $minute, 0);
 
         return $normalized;
+    }
+
+    private function repairBookingOverlaps(): int
+    {
+        $carIds = Car::query()->pluck('id');
+        $occupiedByCar = $carIds->mapWithKeys(fn($carId) => [$carId => []])->all();
+        $reassignedBookings = 0;
+
+        $bookings = Booking::query()
+            ->orderBy('pickup_at')
+            ->orderBy('id')
+            ->get([
+                'id',
+                'car_id',
+                'pickup_at',
+                'dropoff_at',
+            ]);
+
+        foreach ($bookings as $booking) {
+            $candidateCarIds = $carIds->sortBy(
+                fn($carId) => (int) $carId === (int) $booking->car_id ? 0 : 1
+            );
+            $availableCarId = $candidateCarIds->first(function ($carId) use ($booking, $occupiedByCar) {
+                foreach ($occupiedByCar[$carId] as $reservation) {
+                    $overlaps = $booking->pickup_at->lt($reservation['dropoff_at'])
+                        && $booking->dropoff_at->gt($reservation['pickup_at']);
+
+                    if ($overlaps) {
+                        return false;
+                    }
+                }
+
+                return true;
+            });
+
+            if ($availableCarId === null) {
+                throw new \RuntimeException(
+                    "Unable to repair booking overlap for booking {$booking->id}: no car is available."
+                );
+            }
+
+            if ((int) $booking->car_id !== (int) $availableCarId) {
+                $booking->updateQuietly(['car_id' => $availableCarId]);
+                $reassignedBookings++;
+            }
+
+            $occupiedByCar[$availableCarId][] = [
+                'pickup_at' => $booking->pickup_at,
+                'dropoff_at' => $booking->dropoff_at,
+            ];
+        }
+
+        return $reassignedBookings;
     }
 }
