@@ -186,7 +186,7 @@ import BookingStatusTag from '@admin/components/Table/BookingStatusTag.vue'
 import PaymentStatusTag from '@admin/components/Table/PaymentStatusTag.vue'
 import PaymentMethodTag from '@admin/components/Table/PaymentMethodTag.vue'
 import { useBooking } from '@admin/composables/useBooking'
-import { Button, Column, DataTable, IconField, InputIcon, InputText, Tag } from 'primevue'
+import { Button, Column, DataTable, IconField, InputIcon, InputText } from 'primevue'
 import { onMounted, ref } from 'vue'
 
 const { toCreateBooking } = useRedirects()
