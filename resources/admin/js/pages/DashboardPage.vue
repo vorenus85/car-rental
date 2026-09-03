@@ -1,12 +1,19 @@
 <template>
     <AppLayout>
         <PageTitle title="Dashboard"> </PageTitle>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <DashboardKpi
                 :value="dashboardKpis?.availableCarsKpi"
                 title="Available Cars"
                 unit="cars"
                 icon="car"
+            ></DashboardKpi>
+
+            <DashboardKpi
+                :value="dashboardKpis?.monthlyRevenueKpi"
+                title="Monthly Revenue"
+                unit="€ this month"
+                icon="euro"
             ></DashboardKpi>
 
             <DashboardKpi
@@ -31,10 +38,20 @@ import DashboardKpi from '@admin/components/DashboardKpi.vue'
 import { useDashboard } from '@admin/composables/useDashboard'
 import { onMounted } from 'vue'
 
-const { dashboardKpis, getAvailableCarsKpi, getTodayDropoffsKpi, getTodayPickupsKpi } =
-    useDashboard()
+const {
+    dashboardKpis,
+    getAvailableCarsKpi,
+    getMonthlyRevenueKpi,
+    getTodayDropoffsKpi,
+    getTodayPickupsKpi,
+} = useDashboard()
 
 onMounted(() => {
-    Promise.allSettled([getAvailableCarsKpi(), getTodayDropoffsKpi(), getTodayPickupsKpi()])
+    Promise.allSettled([
+        getAvailableCarsKpi(),
+        getMonthlyRevenueKpi(),
+        getTodayDropoffsKpi(),
+        getTodayPickupsKpi(),
+    ])
 })
 </script>

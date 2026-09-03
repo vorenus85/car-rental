@@ -11,3 +11,7 @@ export const fetchTodayDropoffsKpi = async () => {
 export const fetchTodayPickupsKpi = async () => {
     return axios.get('/api/admin/dashboard/today-pickups')
 }
+
+export const fetchMonthlyRevenueKpi = async () => {
+    return axios.get('/api/admin/dashboard/monthly-revenue')
+}

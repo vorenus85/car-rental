@@ -41,4 +41,21 @@ class DashboardController extends Controller
 
         return response()->json($todayPickups);
     }
+
+    public function monthlyRevenueKpi(): JsonResponse
+    {
+        $monthlyRevenue = Booking::query()
+            ->whereBetween('pickup_at', [
+                now()->startOfMonth(),
+                now()->endOfMonth(),
+            ])
+            ->whereIn('status', [
+                BookingStatus::Confirmed->value,
+                BookingStatus::PickedUp->value,
+                BookingStatus::Returned->value,
+            ])
+            ->sum('total_amount');
+
+        return response()->json((float) $monthlyRevenue);
+    }
 }
