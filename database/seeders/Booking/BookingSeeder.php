@@ -42,12 +42,12 @@ class BookingSeeder extends Seeder
             return;
         }
 
-        $bookingStatuses = array_map(fn (BookingStatus $status) => $status->value, BookingStatus::cases());
-        $paymentStatuses = array_map(fn (PaymentStatus $status) => $status->value, PaymentStatus::cases());
+        $bookingStatuses = array_map(fn(BookingStatus $status) => $status->value, BookingStatus::cases());
+        $paymentStatuses = array_map(fn(PaymentStatus $status) => $status->value, PaymentStatus::cases());
         $paymentMethods = ['stripe', 'paypal', 'cash'];
 
-        $pastBookingCount = 250;
-        $futureBookingCount = 150;
+        $pastBookingCount = 500;
+        $futureBookingCount = 200;
 
         $pastPickupStart = now()->subMonths(6);
         $pastPickupEnd = now()->subDays(15);
@@ -108,7 +108,7 @@ class BookingSeeder extends Seeder
             );
         }
 
-        $todayPickupCount = fake()->numberBetween(2, 3);
+        $todayPickupCount = fake()->numberBetween(2, 5);
         for ($i = 1; $i <= $todayPickupCount; $i++) {
             $pickupAt = $this->randomBusinessHoursDateBetween(
                 now()->startOfDay(),
@@ -122,7 +122,7 @@ class BookingSeeder extends Seeder
             $this->createBooking(
                 index: $pastBookingCount + $futureBookingCount + $i,
                 pickupAt: $pickupAt,
-                dropoffAt: (clone $pickupAt)->modify('+'.fake()->numberBetween(1, 14).' days'),
+                dropoffAt: (clone $pickupAt)->modify('+' . fake()->numberBetween(1, 14) . ' days'),
                 createdAt: $createdAt,
                 customers: $customers,
                 cars: $cars,
@@ -138,13 +138,13 @@ class BookingSeeder extends Seeder
             );
         }
 
-        $todayDropoffCount = fake()->numberBetween(2, 3);
+        $todayDropoffCount = fake()->numberBetween(2, 5);
         for ($i = 1; $i <= $todayDropoffCount; $i++) {
             $dropoffAt = $this->randomBusinessHoursDateBetween(
                 now()->startOfDay(),
                 now()->endOfDay()
             );
-            $pickupAt = (clone $dropoffAt)->modify('-'.fake()->numberBetween(1, 14).' days');
+            $pickupAt = (clone $dropoffAt)->modify('-' . fake()->numberBetween(1, 14) . ' days');
             $createdAt = $this->randomBusinessHoursDateBetween(
                 now()->subMonths(3),
                 (clone $pickupAt)->modify('-1 day')
@@ -207,7 +207,7 @@ class BookingSeeder extends Seeder
         $insurance = $insurances->random();
         $pickupLocationId = $locations->random();
         $dropoffLocationId = fake()->boolean(35) && $locations->count() > 1
-            ? $locations->reject(fn ($locationId) => $locationId === $pickupLocationId)->random()
+            ? $locations->reject(fn($locationId) => $locationId === $pickupLocationId)->random()
             : $pickupLocationId;
 
         $extraCount = $extras->isEmpty() ? 0 : fake()->numberBetween(0, min(3, $extras->count()));
@@ -254,7 +254,7 @@ class BookingSeeder extends Seeder
 
         $booking = Booking::factory()->create([
             'booking_number' => sprintf('CR-%s-%04d', $createdAt->format('Ymd'), $index),
-            'public_id' => 'BKG-'.implode('-', str_split(Str::upper(Str::random(16)), 4)),
+            'public_id' => 'BKG-' . implode('-', str_split(Str::upper(Str::random(16)), 4)),
 
             'customer_id' => $customers->random(),
             'car_id' => $car->id,
@@ -278,7 +278,7 @@ class BookingSeeder extends Seeder
             'tax_total' => $taxTotal,
             'total_amount' => $totalAmount,
 
-            'payment_intent_id' => $paymentMethod === 'stripe' ? 'pi_'.Str::lower(Str::random(24)) : null,
+            'payment_intent_id' => $paymentMethod === 'stripe' ? 'pi_' . Str::lower(Str::random(24)) : null,
             'payment_method' => $paymentMethod,
             'payment_status' => $paymentStatus,
             'paid_at' => $paidAt,
@@ -378,7 +378,7 @@ class BookingSeeder extends Seeder
     private function repairBookingOverlaps(): int
     {
         $carIds = Car::query()->pluck('id');
-        $occupiedByCar = $carIds->mapWithKeys(fn ($carId) => [$carId => []])->all();
+        $occupiedByCar = $carIds->mapWithKeys(fn($carId) => [$carId => []])->all();
         $reassignedBookings = 0;
 
         $bookings = Booking::query()
@@ -393,7 +393,7 @@ class BookingSeeder extends Seeder
 
         foreach ($bookings as $booking) {
             $candidateCarIds = $carIds->sortBy(
-                fn ($carId) => (int) $carId === (int) $booking->car_id ? 0 : 1
+                fn($carId) => (int) $carId === (int) $booking->car_id ? 0 : 1
             );
             $availableCarId = $candidateCarIds->first(function ($carId) use ($booking, $occupiedByCar) {
                 foreach ($occupiedByCar[$carId] as $reservation) {
