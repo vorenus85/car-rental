@@ -21,6 +21,30 @@ afterEach(function () {
 });
 
 describe('DashboardController', function () {
+    it('returns the number of pending bookings', function () {
+        Booking::factory()->create([
+            'status' => BookingStatus::Pending->value,
+        ]);
+
+        Booking::factory()->create([
+            'status' => BookingStatus::Pending->value,
+        ]);
+
+        Booking::factory()->create([
+            'status' => BookingStatus::Confirmed->value,
+        ]);
+
+        Booking::factory()->create([
+            'status' => BookingStatus::Cancelled->value,
+        ]);
+
+        $response = $this->getJson('/api/admin/dashboard/pending-bookings');
+
+        $response->assertOk();
+
+        expect($response->json())->toBe(2);
+    });
+
     it('returns current month revenue for active rental bookings by pickup date', function () {
         Booking::factory()->create([
             'pickup_at' => '2026-09-01 10:00:00',
