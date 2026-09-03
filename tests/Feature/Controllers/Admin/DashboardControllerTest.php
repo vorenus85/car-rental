@@ -45,6 +45,30 @@ describe('DashboardController', function () {
         expect($response->json())->toBe(2);
     });
 
+    it('returns the number of active rentals', function () {
+        Booking::factory()->create([
+            'status' => BookingStatus::PickedUp->value,
+        ]);
+
+        Booking::factory()->create([
+            'status' => BookingStatus::PickedUp->value,
+        ]);
+
+        Booking::factory()->create([
+            'status' => BookingStatus::Confirmed->value,
+        ]);
+
+        Booking::factory()->create([
+            'status' => BookingStatus::Returned->value,
+        ]);
+
+        $response = $this->getJson('/api/admin/dashboard/active-rentals');
+
+        $response->assertOk();
+
+        expect($response->json())->toBe(2);
+    });
+
     it('returns current month revenue for active rental bookings by pickup date', function () {
         Booking::factory()->create([
             'pickup_at' => '2026-09-01 10:00:00',

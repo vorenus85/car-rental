@@ -1,4 +1,5 @@
 import {
+    fetchActiveRentalsKpi,
     fetchAvailableCarsKpi,
     fetchMonthlyRevenueKpi,
     fetchPendingBookingsKpi,
@@ -10,6 +11,7 @@ import { reactive } from 'vue'
 export const useDashboard = () => {
     const dashboardKpis = reactive({
         availableCarsKpi: 0,
+        activeRentalsKpi: 0,
         pendingBookingsKpi: 0,
         monthlyRevenueKpi: 0,
         todayDroppOffsKpi: 0,
@@ -29,6 +31,15 @@ export const useDashboard = () => {
         try {
             const { data } = await fetchPendingBookingsKpi()
             dashboardKpis.pendingBookingsKpi = data
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const getActiveRentalsKpi = async () => {
+        try {
+            const { data } = await fetchActiveRentalsKpi()
+            dashboardKpis.activeRentalsKpi = data
         } catch (error) {
             console.error(error)
         }
@@ -63,6 +74,7 @@ export const useDashboard = () => {
 
     return {
         dashboardKpis,
+        getActiveRentalsKpi,
         getAvailableCarsKpi,
         getPendingBookingsKpi,
         getMonthlyRevenueKpi,

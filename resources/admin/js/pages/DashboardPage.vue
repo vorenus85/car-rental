@@ -10,6 +10,13 @@
             ></DashboardKpi>
 
             <DashboardKpi
+                :value="dashboardKpis?.activeRentalsKpi"
+                title="Active Rentals"
+                unit="rentals"
+                icon="car"
+            ></DashboardKpi>
+
+            <DashboardKpi
                 :value="dashboardKpis?.pendingBookingsKpi"
                 title="Pending Bookings"
                 unit="bookings"
@@ -47,6 +54,7 @@ import { onMounted } from 'vue'
 
 const {
     dashboardKpis,
+    getActiveRentalsKpi,
     getAvailableCarsKpi,
     getPendingBookingsKpi,
     getMonthlyRevenueKpi,
@@ -56,6 +64,7 @@ const {
 
 onMounted(() => {
     Promise.allSettled([
+        getActiveRentalsKpi(),
         getAvailableCarsKpi(),
         getPendingBookingsKpi(),
         getMonthlyRevenueKpi(),
