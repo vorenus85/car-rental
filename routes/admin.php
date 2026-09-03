@@ -55,6 +55,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('/api/admin/dashboard')->group(function () {
         Route::get('/available-cars', [DashboardController::class, 'availableCarsKpi']);
+        Route::get('/pending-bookings', [DashboardController::class, 'pendingBookingsKpi']);
         Route::get('/today-dropoffs', [DashboardController::class, 'todayDropoffsKpi']);
         Route::get('/today-pickups', [DashboardController::class, 'todayPickupKpi']);
         Route::get('/monthly-revenue', [DashboardController::class, 'monthlyRevenueKpi']);

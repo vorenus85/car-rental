@@ -17,6 +17,15 @@ class DashboardController extends Controller
         return response()->json($availableCars);
     }
 
+    public function pendingBookingsKpi(): JsonResponse
+    {
+        $pendingBookings = Booking::query()
+            ->where('status', BookingStatus::Pending->value)
+            ->count();
+
+        return response()->json($pendingBookings);
+    }
+
     public function todayDropoffsKpi(): JsonResponse
     {
         $todayDropoffs = Booking::query()

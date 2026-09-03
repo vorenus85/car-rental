@@ -1,6 +1,7 @@
 import {
     fetchAvailableCarsKpi,
     fetchMonthlyRevenueKpi,
+    fetchPendingBookingsKpi,
     fetchTodayDropoffsKpi,
     fetchTodayPickupsKpi,
 } from '@admin/services/dashboardService'
@@ -9,6 +10,7 @@ import { reactive } from 'vue'
 export const useDashboard = () => {
     const dashboardKpis = reactive({
         availableCarsKpi: 0,
+        pendingBookingsKpi: 0,
         monthlyRevenueKpi: 0,
         todayDroppOffsKpi: 0,
         todayPickupsKpi: 0,
@@ -18,6 +20,15 @@ export const useDashboard = () => {
         try {
             const { data } = await fetchAvailableCarsKpi()
             dashboardKpis.availableCarsKpi = data
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const getPendingBookingsKpi = async () => {
+        try {
+            const { data } = await fetchPendingBookingsKpi()
+            dashboardKpis.pendingBookingsKpi = data
         } catch (error) {
             console.error(error)
         }
@@ -53,6 +64,7 @@ export const useDashboard = () => {
     return {
         dashboardKpis,
         getAvailableCarsKpi,
+        getPendingBookingsKpi,
         getMonthlyRevenueKpi,
         getTodayDropoffsKpi,
         getTodayPickupsKpi,
