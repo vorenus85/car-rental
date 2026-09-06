@@ -54,6 +54,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/active-rentals', [BookingController::class, 'activeRentals']);
         Route::get('/upcoming-rentals', [BookingController::class, 'upcomingRentals']);
         Route::get('/pending-rentals', [BookingController::class, 'pendingRentals']);
+        Route::get('/overdue-rentals', [BookingController::class, 'overdueRentals']);
     });
 
     Route::prefix('/api/admin/dashboard')->group(function () {

@@ -192,4 +192,15 @@ class Booking extends Model
         return $query
             ->where('status', BookingStatus::Pending->value);
     }
+
+    /**
+     * @param  Builder<Booking>  $query
+     * @return Builder<Booking>
+     */
+    public function scopeOverdueRental(Builder $query): Builder
+    {
+        return $query
+            ->where('status', BookingStatus::Confirmed->value)
+            ->where('dropoff_at', '<', now());
+    }
 }

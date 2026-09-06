@@ -15,3 +15,7 @@ export const fetchUpcomingRentals = async () => {
 export const fetchPendingRentals = async () => {
     return axios.get('/api/admin/bookings/pending-rentals')
 }
+
+export const fetchOverdueRentals = async () => {
+    return axios.get('/api/admin/bookings/overdue-rentals')
+}

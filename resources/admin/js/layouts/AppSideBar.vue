@@ -86,6 +86,12 @@ const menus = [
                 title: 'Pending Rentals',
                 parent: 'rentals',
             },
+            {
+                icon: 'list',
+                routeName: 'overdueRentals',
+                title: 'Overdue Rentals',
+                parent: 'rentals',
+            },
         ],
     },
     {

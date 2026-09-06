@@ -51,6 +51,7 @@ import CarDriverListPage from '@admin/pages/CarDriver/ListPage.vue'
 import CarDriverCreatePage from '@admin/pages/CarDriver/CreatePage.vue'
 import CarDriverEditPage from '@admin/pages/CarDriver/EditPage.vue'
 
+import OverdueRentalsPage from '@admin/pages/Booking/OverdueRentalsPage.vue'
 import UpcomingRentalsPage from '@admin/pages/Booking/UpcomingRentalsPage.vue'
 import ActiveRentalsPage from '@admin/pages/Booking/ActiveRentalsPage.vue'
 import PendingRentalsPage from '@admin/pages/Booking/PendingRentalsPage.vue'
@@ -188,6 +189,15 @@ const router = createRouter({
             path: '/rentals/pending-rentals',
             name: 'pendingRentals',
             component: PendingRentalsPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'rentals',
+            },
+        },
+        {
+            path: '/rentals/overdue-rentals',
+            name: 'overdueRentals',
+            component: OverdueRentalsPage,
             meta: {
                 requiresAuth: true,
                 parent: 'rentals',
