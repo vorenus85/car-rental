@@ -2,6 +2,7 @@ import {
     fetchBookings,
     fetchActiveRentals,
     fetchUpcomingRentals,
+    fetchPendingRentals,
 } from '@admin/services/bookingService'
 import { ref } from 'vue'
 
@@ -10,6 +11,7 @@ export const useBooking = () => {
     const bookings = ref([])
     const activeRentals = ref([])
     const upcomingRentals = ref([])
+    const pendingRentals = ref([])
 
     const getBookings = async () => {
         loading.value = true
@@ -53,13 +55,29 @@ export const useBooking = () => {
         }
     }
 
+    const getPendingRentals = async () => {
+        loading.value = true
+
+        try {
+            const { data } = await fetchPendingRentals()
+            pendingRentals.value = data
+        } catch (e) {
+            void e // to avoid unused variable lint error
+            // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
+        }
+    }
+
     return {
         getBookings,
         getActiveRentals,
         getUpcomingRentals,
+        getPendingRentals,
         bookings,
         activeRentals,
         upcomingRentals,
+        pendingRentals,
         loading,
     }
 }

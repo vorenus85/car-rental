@@ -39,6 +39,15 @@ class BookingController extends Controller
         return response()->json(BookingResource::collection($bookings), 200);
     }
 
+    public function pendingRentals(): JsonResponse
+    {
+        $bookings = $this->bookingListQuery()
+            ->pendingRental()
+            ->get();
+
+        return response()->json(BookingResource::collection($bookings), 200);
+    }
+
     /**
      * @return Builder<Booking>
      */
