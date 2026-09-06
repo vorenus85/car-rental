@@ -284,6 +284,6 @@ watch(
         syncSelectedCarStatusFromQuery()
         await getCars()
     },
-    { deep: true },
+    { deep: true }
 )
 </script>
