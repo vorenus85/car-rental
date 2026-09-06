@@ -95,16 +95,7 @@
 <script setup>
 import AppLayout from '@admin/layouts/AppLayout.vue'
 import PageTitle from '@admin/components/PageTitle.vue'
-import {
-    Button,
-    Column,
-    DataTable,
-    IconField,
-    InputIcon,
-    InputText,
-    Tag,
-    useConfirm,
-} from 'primevue'
+import { Button, Column, DataTable, IconField, InputIcon, InputText, useConfirm } from 'primevue'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
 import { useRedirects } from '@admin/composables/useRedirects.js'
 import { useFeature } from '@admin/composables/useFeature'
