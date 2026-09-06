@@ -182,4 +182,14 @@ class Booking extends Model
             ->where('status', BookingStatus::Confirmed->value)
             ->where('pickup_at', '>', now());
     }
+
+    /**
+     * @param  Builder<Booking>  $query
+     * @return Builder<Booking>
+     */
+    public function scopePendingRental(Builder $query): Builder
+    {
+        return $query
+            ->where('status', BookingStatus::Pending->value);
+    }
 }

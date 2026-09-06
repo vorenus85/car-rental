@@ -80,6 +80,12 @@ const menus = [
                 title: 'Upcoming Rentals',
                 parent: 'rentals',
             },
+            {
+                icon: 'list',
+                routeName: 'pendingRentals',
+                title: 'Pending Rentals',
+                parent: 'rentals',
+            },
         ],
     },
     {

@@ -23,6 +23,7 @@
                 title="Pending Bookings"
                 unit="bookings"
                 icon="clock"
+                :link="showPendingRentals"
             ></DashboardKpi>
 
             <DashboardKpi
@@ -79,6 +80,12 @@ const showAvailableCars = () => {
 const showActiveRentals = () => {
     router.push({
         name: 'activeRentals',
+    })
+}
+
+const showPendingRentals = () => {
+    router.push({
+        name: 'pendingRentals',
     })
 }
 
