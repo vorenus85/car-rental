@@ -52,50 +52,42 @@ const menus = [
         title: 'Dashboard',
     },
     {
-        icon: 'calendar',
-        routeName: 'reservations',
-        title: 'Reservations',
+        icon: 'list',
+        routeName: 'rentals',
+        title: 'Rentals',
         items: [
             {
                 icon: 'calendar',
                 routeName: 'calendar',
                 title: 'Calendar',
-                parent: 'reservations',
+                parent: 'rentals',
             },
             {
                 icon: 'clock',
                 routeName: 'bookings',
                 title: 'Bookings',
-                parent: 'reservations',
+                parent: 'rentals',
             },
+            /*
             {
-                icon: 'users',
-                routeName: 'customers',
-                title: 'Customers',
-                parent: 'reservations',
+                icon: 'list',
+                routeName: 'activeRentals',
+                title: 'Active Rentals',
+                parent: 'rentals',
             },
-            {
-                icon: 'id-card',
-                routeName: 'carDrivers',
-                title: 'Car Drivers',
-                parent: 'reservations',
-            },
-            {
-                icon: 'plus-circle',
-                routeName: 'extras',
-                title: 'Extras',
-                parent: 'reservations',
-            },
-
-            {
-                icon: 'shield',
-                routeName: 'insurances',
-                title: 'Insurances',
-                parent: 'reservations',
-            },
+            */
         ],
     },
-
+    {
+        icon: 'users',
+        routeName: 'customers',
+        title: 'Customers',
+    },
+    {
+        icon: 'id-card',
+        routeName: 'carDrivers',
+        title: 'Car Drivers',
+    },
     {
         icon: 'list',
         routeName: 'fleet',
@@ -138,6 +130,27 @@ const menus = [
         routeName: 'locations',
         title: 'Locations',
     },
+    {
+        icon: 'list',
+        routeName: 'services',
+        title: 'Services',
+        items: [
+            {
+                icon: 'plus-circle',
+                routeName: 'extras',
+                title: 'Extras',
+                parent: 'services',
+            },
+
+            {
+                icon: 'shield',
+                routeName: 'insurances',
+                title: 'Insurances',
+                parent: 'services',
+            },
+        ],
+    },
+
     {
         icon: 'cog',
         routeName: 'settings',
