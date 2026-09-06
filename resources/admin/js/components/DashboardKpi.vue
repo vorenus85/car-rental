@@ -1,5 +1,8 @@
 <template>
-    <div class="rounded-xl border border-surface-200 bg-white p-5 shadow-sm">
+    <div
+        class="rounded-xl border border-surface-200 bg-white p-5 shadow-sm hover:shadow-md cursor-pointer transition hover:bg-primary-100"
+        @click="link"
+    >
         <div class="flex items-start justify-between">
             <div class="flex items-start justify-between gap-4">
                 <div
@@ -21,17 +24,14 @@
             </div>
 
             <!-- Icon -->
-            <div
-                class="flex h-11 w-11 items-center justify-center rounded-lg bg-blue-50 text-primary-500"
-                @click="link"
-            >
-                <i class="pi pi-external-link"></i>
-            </div>
+            <Button icon="pi pi-external-link" severity="primary" outlined text rounded />
         </div>
     </div>
 </template>
 
 <script setup>
+import { Button } from 'primevue'
+
 defineProps({
     value: {
         type: Number,

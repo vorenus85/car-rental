@@ -8,6 +8,7 @@ use App\Enums\PaymentStatus;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
 use Database\Factories\Booking\BookingFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -157,5 +158,17 @@ class Booking extends Model
     public function extras(): HasMany
     {
         return $this->hasMany(BookingExtra::class);
+    }
+
+    /**
+     * @param  Builder<Booking>  $query
+     * @return Builder<Booking>
+     */
+    public function scopeActiveRental(Builder $query): Builder
+    {
+        return $query
+            ->where('status', BookingStatus::Confirmed->value)
+            ->where('pickup_at', '<=', now())
+            ->where('dropoff_at', '>=', now());
     }
 }

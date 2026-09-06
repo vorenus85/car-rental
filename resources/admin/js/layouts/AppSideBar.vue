@@ -68,14 +68,12 @@ const menus = [
                 title: 'Bookings',
                 parent: 'rentals',
             },
-            /*
             {
                 icon: 'list',
                 routeName: 'activeRentals',
                 title: 'Active Rentals',
                 parent: 'rentals',
             },
-            */
         ],
     },
     {

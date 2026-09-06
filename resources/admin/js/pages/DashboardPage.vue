@@ -15,6 +15,7 @@
                 title="Active Rentals"
                 unit="rentals"
                 icon="car"
+                :link="showActiveRentals"
             ></DashboardKpi>
 
             <DashboardKpi
@@ -72,6 +73,12 @@ const showAvailableCars = () => {
         query: {
             status: 'available',
         },
+    })
+}
+
+const showActiveRentals = () => {
+    router.push({
+        name: 'activeRentals',
     })
 }
 

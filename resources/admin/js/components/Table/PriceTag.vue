@@ -6,7 +6,7 @@ import { Tag } from 'primevue'
 
 defineProps({
     price: {
-        type: Number,
+        type: [Number, String],
         default: null,
     },
 })

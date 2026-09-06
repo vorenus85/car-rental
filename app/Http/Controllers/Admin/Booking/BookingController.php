@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Booking;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\BookingResource;
 use App\Models\Booking\Booking;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 
 class BookingController extends Controller
@@ -14,7 +15,27 @@ class BookingController extends Controller
      */
     public function index(): JsonResponse
     {
-        $bookings = Booking::query()
+        $bookings = $this->bookingListQuery()
+            ->get();
+
+        return response()->json(BookingResource::collection($bookings), 200);
+    }
+
+    public function activeRentals(): JsonResponse
+    {
+        $bookings = $this->bookingListQuery()
+            ->activeRental()
+            ->get();
+
+        return response()->json(BookingResource::collection($bookings), 200);
+    }
+
+    /**
+     * @return Builder<Booking>
+     */
+    private function bookingListQuery(): Builder
+    {
+        return Booking::query()
             ->with([
                 'customer:id,first_name,last_name,email',
                 'driver:id,first_name,last_name,phone',
@@ -25,9 +46,6 @@ class BookingController extends Controller
                 'extras',
             ])
             ->orderByDesc('pickup_at')
-            ->orderByDesc('created_at')
-            ->get();
-
-        return response()->json(BookingResource::collection($bookings), 200);
+            ->orderByDesc('created_at');
     }
 }

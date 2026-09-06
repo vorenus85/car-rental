@@ -47,19 +47,33 @@ describe('DashboardController', function () {
 
     it('returns the number of active rentals', function () {
         Booking::factory()->create([
-            'status' => BookingStatus::PickedUp->value,
-        ]);
-
-        Booking::factory()->create([
-            'status' => BookingStatus::PickedUp->value,
+            'status' => BookingStatus::Confirmed->value,
+            'pickup_at' => '2026-09-15 10:00:00',
+            'dropoff_at' => '2026-09-16 10:00:00',
         ]);
 
         Booking::factory()->create([
             'status' => BookingStatus::Confirmed->value,
+            'pickup_at' => '2026-09-14 10:00:00',
+            'dropoff_at' => '2026-09-15 12:00:00',
         ]);
 
         Booking::factory()->create([
-            'status' => BookingStatus::Returned->value,
+            'status' => BookingStatus::Confirmed->value,
+            'pickup_at' => '2026-09-15 12:00:01',
+            'dropoff_at' => '2026-09-16 10:00:00',
+        ]);
+
+        Booking::factory()->create([
+            'status' => BookingStatus::Confirmed->value,
+            'pickup_at' => '2026-09-14 10:00:00',
+            'dropoff_at' => '2026-09-15 11:59:59',
+        ]);
+
+        Booking::factory()->create([
+            'status' => BookingStatus::Cancelled->value,
+            'pickup_at' => '2026-09-15 10:00:00',
+            'dropoff_at' => '2026-09-16 10:00:00',
         ]);
 
         $response = $this->getJson('/api/admin/dashboard/active-rentals');
