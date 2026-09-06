@@ -51,6 +51,7 @@ import CarDriverListPage from '@admin/pages/CarDriver/ListPage.vue'
 import CarDriverCreatePage from '@admin/pages/CarDriver/CreatePage.vue'
 import CarDriverEditPage from '@admin/pages/CarDriver/EditPage.vue'
 
+import UpcomingRentalsPage from '@admin/pages/Booking/UpcomingRentalsPage.vue'
 import ActiveRentalsPage from '@admin/pages/Booking/ActiveRentalsPage.vue'
 import BookingListPage from '@admin/pages/Booking/ListPage.vue'
 import BookingCreatePage from '@admin/pages/Booking/CreatePage.vue'
@@ -168,6 +169,15 @@ const router = createRouter({
             path: '/rentals/active-rentals',
             name: 'activeRentals',
             component: ActiveRentalsPage,
+            meta: {
+                requiresAuth: true,
+                parent: 'rentals',
+            },
+        },
+        {
+            path: '/rentals/upcoming-rentals',
+            name: 'upcomingRentals',
+            component: UpcomingRentalsPage,
             meta: {
                 requiresAuth: true,
                 parent: 'rentals',

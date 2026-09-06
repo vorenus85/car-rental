@@ -52,6 +52,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('/api/admin/bookings')->group(function () {
         Route::get('/', [BookingController::class, 'index']);
         Route::get('/active-rentals', [BookingController::class, 'activeRentals']);
+        Route::get('/upcoming-rentals', [BookingController::class, 'upcomingRentals']);
     });
 
     Route::prefix('/api/admin/dashboard')->group(function () {

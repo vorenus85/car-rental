@@ -74,6 +74,12 @@ const menus = [
                 title: 'Active Rentals',
                 parent: 'rentals',
             },
+            {
+                icon: 'list',
+                routeName: 'upcomingRentals',
+                title: 'Upcoming Rentals',
+                parent: 'rentals',
+            },
         ],
     },
     {
