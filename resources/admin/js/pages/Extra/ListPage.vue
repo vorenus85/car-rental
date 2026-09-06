@@ -38,10 +38,23 @@
                     </div>
                 </template>
                 <template #empty> No results found. </template>
-                <Column sortable field="name" header="Name" style="width: 25%">
+                <Column sortable field="name" header="Name" style="width: 15%">
                     <template #body="slotProps">
-                        <Tag :value="slotProps.data.name" severity="secondary"
-                    /></template>
+                        <Button
+                            as="router-link"
+                            class="no-wrap"
+                            severity="info"
+                            outlined
+                            :label="slotProps.data.name"
+                            :to="{
+                                name: 'extras.show',
+                                params: {
+                                    id: slotProps.data?.id,
+                                },
+                            }"
+                        >
+                        </Button>
+                    </template>
                 </Column>
                 <Column sortable field="price" header="Price / Day" style="width: 10%">
                     <template #body="slotProps">
@@ -87,22 +100,13 @@
 import AppLayout from '@admin/layouts/AppLayout.vue'
 import PageTitle from '@admin/components/PageTitle.vue'
 import { useRedirects } from '@admin/composables/useRedirects.js'
-import {
-    Button,
-    Column,
-    DataTable,
-    IconField,
-    InputIcon,
-    InputText,
-    Tag,
-    useConfirm,
-} from 'primevue'
+import { Button, Column, DataTable, IconField, InputIcon, InputText, useConfirm } from 'primevue'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
 import FormatedDateTime from '@admin/components/Table/FormatedDateTime.vue'
 import { useCustomConfirm } from '@admin/composables/useCustomConfirm'
 import { useExtra } from '@admin/composables/useExtra'
 import { onMounted, ref } from 'vue'
-import PriceTag from '../../components/Table/PriceTag.vue'
+import PriceTag from '@admin/components/Table/PriceTag.vue'
 
 const { getExtras, extras, loading, deleteExtra } = useExtra()
 const { toCreateExtra } = useRedirects()

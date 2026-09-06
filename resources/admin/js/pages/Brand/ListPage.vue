@@ -40,7 +40,15 @@
                 <template #empty> No results found. </template>
                 <Column sortable field="name" header="Name" style="width: 25%">
                     <template #body="slotProps">
-                        <div class="flex gap-1 items-center">
+                        <RouterLink
+                            class="flex gap-1 items-center"
+                            :to="{
+                                name: 'brands.show',
+                                params: {
+                                    id: slotProps.data?.id,
+                                },
+                            }"
+                        >
                             <Image
                                 :src="
                                     slotProps.data?.image
@@ -50,7 +58,7 @@
                                 :alt="slotProps.data?.title"
                             />
                             <Tag :value="slotProps.data.name" severity="secondary" />
-                        </div>
+                        </RouterLink>
                     </template>
                 </Column>
                 <Column sortable field="updated_at" header="Updated at" style="width: 10%">

@@ -39,7 +39,24 @@
                     </div>
                 </template>
                 <template #empty> No results found. </template>
-                <Column sortable field="name" header="Name" style="width: 20%"> </Column>
+                <Column sortable field="name" header="Name" style="width: 15%">
+                    <template #body="slotProps">
+                        <Button
+                            as="router-link"
+                            class="no-wrap"
+                            severity="info"
+                            outlined
+                            :label="slotProps.data.name"
+                            :to="{
+                                name: 'customers.show',
+                                params: {
+                                    id: slotProps.data?.id,
+                                },
+                            }"
+                        >
+                        </Button>
+                    </template>
+                </Column>
                 <Column sortable field="email" header="Email" style="width: 25%"> </Column>
                 <Column sortable field="phone" header="Phone" style="width: 25%"> </Column>
                 <Column sortable field="updated_at" header="Updated at" style="width: 10%">

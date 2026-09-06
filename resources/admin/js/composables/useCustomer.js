@@ -50,11 +50,11 @@ export const useCustomer = () => {
             const { data } = await fetchCustomers({ ...params })
             allCustomers.value = data
             customers.value = data
-            loading.value = false
         } catch (e) {
-            loading.value = false
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
         }
     }
 
@@ -69,11 +69,11 @@ export const useCustomer = () => {
             initialValues.email = data.email
             initialValues.active = Boolean(data.active)
             formKey.value++ // to remount primevue/form to trigger form resolver/validation https://github.com/primefaces/primevue/issues/7792
-            loading.value = false
         } catch (e) {
-            loading.value = false
             void e // to avoid unused variable lint error
             // console.error(e) -- IGNORE --
+        } finally {
+            loading.value = false
         }
     }
 

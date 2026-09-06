@@ -40,8 +40,21 @@
                 <template #empty> No results found. </template>
                 <Column sortable field="name" header="Name" style="width: 25%">
                     <template #body="slotProps">
-                        <Tag :value="slotProps.data.name" severity="secondary"
-                    /></template>
+                        <Button
+                            as="router-link"
+                            class="no-wrap"
+                            severity="info"
+                            outlined
+                            :label="slotProps.data.name"
+                            :to="{
+                                name: 'features.show',
+                                params: {
+                                    id: slotProps.data?.id,
+                                },
+                            }"
+                        >
+                        </Button>
+                    </template>
                 </Column>
                 <Column sortable field="category" header="Category" style="width: 10%"> </Column>
                 <Column sortable field="description" header="Description" style="width: 25%">

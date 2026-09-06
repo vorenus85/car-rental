@@ -40,8 +40,21 @@
                 <template #empty> No results found. </template>
                 <Column sortable field="name" header="Name" style="width: 10%">
                     <template #body="slotProps">
-                        <Tag :value="slotProps.data.name" severity="secondary" class="no-wrap"
-                    /></template>
+                        <Button
+                            as="router-link"
+                            class="no-wrap"
+                            severity="info"
+                            outlined
+                            :label="slotProps.data.name"
+                            :to="{
+                                name: 'locations.show',
+                                params: {
+                                    id: slotProps.data?.id,
+                                },
+                            }"
+                        >
+                        </Button>
+                    </template>
                 </Column>
                 <Column sortable field="phone" header="Phone" style="width: 5%">
                     <template #body="slotProps">
@@ -123,16 +136,7 @@
 <script setup>
 import AppLayout from '@admin/layouts/AppLayout.vue'
 import PageTitle from '@admin/components/PageTitle.vue'
-import {
-    Button,
-    Column,
-    DataTable,
-    IconField,
-    InputIcon,
-    InputText,
-    Tag,
-    useConfirm,
-} from 'primevue'
+import { Button, Column, DataTable, IconField, InputIcon, InputText, useConfirm } from 'primevue'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
 import { useRedirects } from '@admin/composables/useRedirects.js'
 import { useLocation } from '@admin/composables/useLocation'
