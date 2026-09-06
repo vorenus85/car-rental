@@ -7,6 +7,7 @@
                 title="Available Cars"
                 unit="cars"
                 icon="car"
+                :link="showAvailableCars"
             ></DashboardKpi>
 
             <DashboardKpi
@@ -50,7 +51,10 @@ import AppLayout from '@admin/layouts/AppLayout.vue'
 import PageTitle from '@admin/components/PageTitle.vue'
 import DashboardKpi from '@admin/components/DashboardKpi.vue'
 import { useDashboard } from '@admin/composables/useDashboard'
+import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
+
+const router = useRouter()
 
 const {
     dashboardKpis,
@@ -61,6 +65,15 @@ const {
     getTodayDropoffsKpi,
     getTodayPickupsKpi,
 } = useDashboard()
+
+const showAvailableCars = () => {
+    router.push({
+        name: 'cars',
+        query: {
+            status: 'available',
+        },
+    })
+}
 
 onMounted(() => {
     Promise.allSettled([
