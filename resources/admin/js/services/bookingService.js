@@ -7,3 +7,7 @@ export const fetchBookings = async () => {
 export const fetchActiveRentals = async () => {
     return axios.get('/api/admin/bookings/active-rentals')
 }
+
+export const fetchUpcomingRentals = async () => {
+    return axios.get('/api/admin/bookings/upcoming-rentals')
+}
