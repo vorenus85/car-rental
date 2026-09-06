@@ -60,11 +60,11 @@ export const useCar = () => {
         uploadProgress.value = 0
     }
 
-    const getCars = async () => {
+    const getCars = async (params = route.query ?? {}) => {
         loading.value = true
 
         try {
-            const { data } = await fetchCars()
+            const { data } = await fetchCars({ ...params })
             cars.value = data
         } catch (e) {
             void e // to avoid unused variable lint error

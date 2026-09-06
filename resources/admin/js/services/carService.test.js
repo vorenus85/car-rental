@@ -20,9 +20,11 @@ describe('carService', () => {
     it('fetchCars calls correct endpoint', async () => {
         axios.get.mockResolvedValue({ data: [] })
 
-        await fetchCars()
+        await fetchCars({ status: 'available' })
 
-        expect(axios.get).toHaveBeenCalledWith('/api/admin/cars')
+        expect(axios.get).toHaveBeenCalledWith('/api/admin/cars', {
+            params: { status: 'available' },
+        })
     })
 
     it('fetchCar calls correct endpoint', async () => {

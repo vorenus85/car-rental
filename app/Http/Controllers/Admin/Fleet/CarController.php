@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\Fleet\Car\UpdateCarRequest;
 use App\Http\Resources\Admin\CarResource;
 use App\Models\Fleet\Car;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,10 +17,10 @@ class CarController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
         //
-        $cars = Car::query()
+        $query = Car::query()
             ->select([
                 'id',
                 'licence_plate',
@@ -39,8 +40,13 @@ class CarController extends Controller
                 'variant.model:id,name,brand_id',
                 'variant.model.brand:id,name',
             ])
-            ->with('features:id,name,category')
-            ->get();
+            ->with('features:id,name,category');
+
+        if ($request->filled('status')) {
+            $query->where('status', $request->query('status'));
+        }
+
+        $cars = $query->get();
 
         return response()->json(CarResource::collection($cars), 200);
     }

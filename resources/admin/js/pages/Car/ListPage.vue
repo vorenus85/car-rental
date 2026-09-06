@@ -18,8 +18,10 @@
                 data-key="id"
             >
                 <template #header>
-                    <div class="flex justify-between">
+                    <div class="flex justify-start gap-5">
                         <Button
+                            class="mr-auto"
+                            width="80px"
                             type="button"
                             icon="pi pi-filter-slash"
                             label="Clear"
@@ -35,6 +37,18 @@
                                 placeholder="Keyword Search"
                             />
                         </IconField>
+                        <div class="max-sm:hidden">
+                            <Select
+                                v-model="selectedCarStatus"
+                                filter
+                                :options="rentalStatuses"
+                                option-label="name"
+                                placeholder="Select a Status"
+                                show-clear
+                                @change="changeCarStatusFilter"
+                            >
+                            </Select>
+                        </div>
                     </div>
                 </template>
                 <template #empty> No results found. </template>
@@ -182,23 +196,28 @@ import {
     Image,
     InputIcon,
     InputText,
+    Select,
     Tag,
     useConfirm,
 } from 'primevue'
 import { FilterMatchMode, FilterOperator } from '@primevue/core/api'
 import { useCustomConfirm } from '@admin/composables/useCustomConfirm'
 import { useRedirects } from '@admin/composables/useRedirects.js'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useCar } from '@admin/composables/useCar'
+import { useRoute, useRouter } from 'vue-router'
 import FormatedDateTime from '@admin/components/Table/FormatedDateTime.vue'
 import CarStatusTag from '@admin/components/Table/CarStatusTag.vue'
 import PriceTag from '@admin/components/Table/PriceTag.vue'
 
-const { loading, getCars, cars, deleteCar } = useCar()
+const { loading, getCars, cars, deleteCar, rentalStatuses } = useCar()
+const route = useRoute()
+const router = useRouter()
 const { toCreateCar } = useRedirects()
 const confirm = useConfirm()
 const { confirmAction } = useCustomConfirm()
 const filters = ref()
+const selectedCarStatus = ref(null)
 
 const initFilters = () => {
     filters.value = {
@@ -218,6 +237,31 @@ initFilters()
 
 const clearFilter = () => {
     initFilters()
+    selectedCarStatus.value = null
+
+    const query = { ...route.query }
+    delete query.status
+
+    router.push({ query })
+}
+
+const syncSelectedCarStatusFromQuery = () => {
+    const status = route.query.status
+    selectedCarStatus.value = rentalStatuses.find(item => item.id === status) || null
+}
+
+const changeCarStatusFilter = event => {
+    const status = event?.value?.id ?? null
+    selectedCarStatus.value = event?.value ?? null
+    const query = { ...route.query }
+
+    if (status) {
+        query.status = status
+    } else {
+        delete query.status
+    }
+
+    router.push({ query })
 }
 
 const deleteConfirm = id => {
@@ -230,6 +274,16 @@ const deleteConfirm = id => {
 }
 
 onMounted(async () => {
+    syncSelectedCarStatusFromQuery()
     await getCars()
 })
+
+watch(
+    () => route.query,
+    async () => {
+        syncSelectedCarStatusFromQuery()
+        await getCars()
+    },
+    { deep: true },
+)
 </script>

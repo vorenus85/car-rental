@@ -1,6 +1,8 @@
 import axios from 'axios'
-export const fetchCars = () => {
-    return axios.get('/api/admin/cars')
+export const fetchCars = (params = {}) => {
+    return axios.get('/api/admin/cars', {
+        params,
+    })
 }
 
 export const fetchCar = id => {
