@@ -134,10 +134,20 @@ const router = createRouter({
             },
         },
         {
-            path: '/reservations',
-            name: 'reservations',
+            path: '/services',
+            name: 'services',
             redirect: () => {
-                return { path: '/reservations/bookings' }
+                return { path: '/services/extras' }
+            },
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: '/rentals',
+            name: 'rentals',
+            redirect: () => {
+                return { path: '/rentals/bookings' }
             },
             meta: {
                 requiresAuth: true,
@@ -145,150 +155,143 @@ const router = createRouter({
         },
 
         {
-            path: '/reservations/bookings',
+            path: '/rentals/bookings',
             name: 'bookings',
             component: BookingListPage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
+                parent: 'rentals',
             },
         },
         {
-            path: '/reservations/bookings/create',
+            path: '/rentals/bookings/create',
             name: 'bookings.create',
             component: BookingCreatePage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
+                parent: 'rentals',
             },
         },
         {
-            path: '/reservations/bookings/:id',
+            path: '/rentals/bookings/:id',
             name: 'bookings.show',
             component: BookingEditPage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
+                parent: 'rentals',
             },
         },
         {
-            path: '/reservations/extras',
+            path: '/services/extras',
             name: 'extras',
             component: ExtraListPage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
+                parent: 'services',
             },
         },
         {
-            path: '/reservations/extras/create',
+            path: '/services/extras/create',
             name: 'extras.create',
             component: ExtraCreatePage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
+                parent: 'services',
             },
         },
         {
-            path: '/reservations/extras/:id',
+            path: '/services/extras/:id',
             name: 'extras.show',
             component: ExtraEditPage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
+                parent: 'services',
             },
         },
 
         {
-            path: '/reservations/insurances',
+            path: '/services/insurances',
             name: 'insurances',
             component: InsuranceListPage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
+                parent: 'services',
             },
         },
         {
-            path: '/reservations/insurances/create',
+            path: '/services/insurances/create',
             name: 'insurances.create',
             component: InsuranceCreatePage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
+                parent: 'services',
             },
         },
         {
-            path: '/reservations/insurances/:id',
+            path: '/services/insurances/:id',
             name: 'insurances.show',
             component: InsuranceEditPage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
+                parent: 'services',
             },
         },
 
         {
-            path: '/reservations/car-drivers',
+            path: '/car-drivers',
             name: 'carDrivers',
             component: CarDriverListPage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
             },
         },
         {
-            path: '/reservations/car-drivers/create',
+            path: '/car-drivers/create',
             name: 'carDrivers.create',
             component: CarDriverCreatePage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
             },
         },
         {
-            path: '/reservations/car-drivers/:id',
+            path: '/car-drivers/:id',
             name: 'carDrivers.show',
             component: CarDriverEditPage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
             },
         },
 
         {
-            path: '/reservations/customers',
+            path: '/customers',
             name: 'customers',
             component: CustomerListPage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
             },
         },
         {
-            path: '/reservations/customers/create',
+            path: '/customers/create',
             name: 'customers.create',
             component: CustomerCreatePage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
             },
         },
         {
-            path: '/reservations/customers/:id',
+            path: '/customers/:id',
             name: 'customers.show',
             component: CustomerEditPage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
             },
         },
         {
-            path: '/reservations/customers/:id/billing',
+            path: '/customers/:id/billing',
             name: 'customers.billing.show',
             component: CustomerBillingInfoPage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
             },
         },
 
@@ -453,12 +456,12 @@ const router = createRouter({
             },
         },
         {
-            path: '/calendar',
+            path: '/rentals/calendar',
             name: 'calendar',
             component: CalendarPage,
             meta: {
                 requiresAuth: true,
-                parent: 'reservations',
+                parent: 'rentals',
             },
         },
         {
