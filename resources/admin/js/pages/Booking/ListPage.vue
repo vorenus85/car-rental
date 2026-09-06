@@ -190,7 +190,7 @@ import { Button, Column, DataTable, IconField, InputIcon, InputText } from 'prim
 import { onMounted, ref } from 'vue'
 
 const { toCreateBooking } = useRedirects()
-const { getBookings, bookings } = useBooking()
+const { getBookings, bookings, loading } = useBooking()
 const filters = ref()
 
 const initFilters = () => {

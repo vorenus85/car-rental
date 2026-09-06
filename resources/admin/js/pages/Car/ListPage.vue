@@ -40,7 +40,14 @@
                 <template #empty> No results found. </template>
                 <Column sortable field="image" header="Image" style="width: 5%">
                     <template #body="slotProps">
-                        <div class="flex gap-1 items-center">
+                        <RouterLink
+                            :to="{
+                                name: 'cars.show',
+                                params: {
+                                    id: slotProps.data?.id,
+                                },
+                            }"
+                        >
                             <Image
                                 :src="
                                     slotProps.data?.image
@@ -48,9 +55,8 @@
                                         : '/no-image.jpg'
                                 "
                                 :alt="slotProps.data?.title"
-                                preview
                             />
-                        </div>
+                        </RouterLink>
                     </template>
                 </Column>
 

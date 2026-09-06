@@ -38,7 +38,25 @@
                     </div>
                 </template>
                 <template #empty> No results found. </template>
-                <Column sortable field="brand.name" header="Brand" style="width: 20%">
+                <Column sortable field="name" header="Name" style="width: 5%">
+                    <template #body="slotProps">
+                        <Button
+                            as="router-link"
+                            class="no-wrap"
+                            severity="info"
+                            outlined
+                            :label="slotProps.data.name"
+                            :to="{
+                                name: 'models.show',
+                                params: {
+                                    id: slotProps.data?.id,
+                                },
+                            }"
+                        >
+                        </Button>
+                    </template>
+                </Column>
+                <Column sortable field="brand.name" header="Brand" style="width: 10%">
                     <template #body="slotProps">
                         <div class="flex gap-1 items-center">
                             <Image
@@ -53,11 +71,7 @@
                         </div>
                     </template>
                 </Column>
-                <Column sortable field="name" header="Name" style="width: 10%">
-                    <template #body="slotProps">
-                        <Tag severity="secondary" :value="slotProps.data.name"
-                    /></template>
-                </Column>
+
                 <Column sortable field="description" header="Description" style="width: 30%">
                 </Column>
                 <Column sortable field="updatedAt" header="Updated at" style="width: 10%">

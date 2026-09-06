@@ -41,6 +41,26 @@
                 <Column sortable field="name" header="Name" style="width: 10%">
                     <template #body="slotProps">
                         <div class="flex gap-1">
+                            <Button
+                                as="router-link"
+                                class="no-wrap"
+                                severity="info"
+                                outlined
+                                :label="slotProps.data.name"
+                                :to="{
+                                    name: 'variants.show',
+                                    params: {
+                                        id: slotProps.data?.id,
+                                    },
+                                }"
+                            >
+                            </Button>
+                        </div>
+                    </template>
+                </Column>
+                <Column sortable field="model.brand.name" header="Brand / Model" style="width: 10%">
+                    <template #body="slotProps">
+                        <div class="flex gap-1">
                             <Tag
                                 :value="slotProps.data.model.brand.name"
                                 severity="secondary"
@@ -51,14 +71,8 @@
                                 severity="secondary"
                                 class="no-wrap"
                             />
-                            <Tag
-                                :value="slotProps.data.name"
-                                severity="secondary"
-                                class="no-wrap"
-                            />
-                        </div>
-                    </template>
-                </Column>
+                        </div> </template
+                ></Column>
                 <Column sortable field="body_type" header="Body type" style="width: 10%"> </Column
                 ><Column sortable field="fuel" header="Fuel" style="width: 10%"> </Column>
                 <Column sortable field="transmission" header="Transmission" style="width: 10%">
