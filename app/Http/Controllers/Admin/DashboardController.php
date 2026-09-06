@@ -29,7 +29,7 @@ class DashboardController extends Controller
     public function activeRentalsKpi(): JsonResponse
     {
         $activeRentals = Booking::query()
-            ->where('status', BookingStatus::PickedUp->value)
+            ->activeRental()
             ->count();
 
         return response()->json($activeRentals);
