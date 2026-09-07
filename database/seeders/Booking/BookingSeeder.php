@@ -153,7 +153,7 @@ class BookingSeeder extends Seeder
 
             /*
             * COMPLETED RENTAL + REFUNDS
-*/
+            */
 
             [
                 'name' => 'completed_partially_refunded',

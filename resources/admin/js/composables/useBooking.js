@@ -95,6 +95,7 @@ export const useBooking = () => {
         activeRentals,
         upcomingRentals,
         pendingRentals,
+        overdueRentals,
         loading,
     }
 }
