@@ -47,13 +47,13 @@ describe('DashboardController', function () {
 
     it('returns the number of active rentals', function () {
         Booking::factory()->create([
-            'status' => BookingStatus::Confirmed->value,
+            'status' => BookingStatus::PickedUp->value,
             'pickup_at' => '2026-09-15 10:00:00',
             'dropoff_at' => '2026-09-16 10:00:00',
         ]);
 
         Booking::factory()->create([
-            'status' => BookingStatus::Confirmed->value,
+            'status' => BookingStatus::PickedUp->value,
             'pickup_at' => '2026-09-14 10:00:00',
             'dropoff_at' => '2026-09-15 12:00:00',
         ]);

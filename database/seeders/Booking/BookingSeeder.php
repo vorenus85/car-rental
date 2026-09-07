@@ -3,6 +3,7 @@
 namespace Database\Seeders\Booking;
 
 use App\Enums\BookingStatus;
+use App\Enums\PaymentMethod;
 use App\Enums\PaymentStatus;
 use App\Models\Booking\Booking;
 use App\Models\Booking\BookingExtra;
@@ -37,139 +38,189 @@ class BookingSeeder extends Seeder
             || $drivers->isEmpty()
             || $insurances->isEmpty()
         ) {
-            $this->command->warn('Skipping bookings seeding because required booking data is missing.');
+            $this->command->warn(
+                'Skipping bookings seeding because required booking data is missing.'
+            );
 
             return;
         }
 
-        $bookingStatuses = array_map(fn (BookingStatus $status) => $status->value, BookingStatus::cases());
-        $paymentStatuses = array_map(fn (PaymentStatus $status) => $status->value, PaymentStatus::cases());
-        $paymentMethods = ['stripe', 'paypal', 'cash'];
+        $scenarios = [
+            /*
+            * HAPPY PATH
+            */
 
-        $pastBookingCount = 500;
-        $futureBookingCount = 200;
+            // Booking is pending because payment has not been completed yet and the rental period is in the future.
 
-        $pastPickupStart = now()->subMonths(6);
-        $pastPickupEnd = now()->subDays(15);
-        $futurePickupStart = now()->addDay();
-        $futurePickupEnd = now()->addMonthsNoOverflow(2)->subDays(14);
+            [
+                'name' => 'pending_payment',
+                'booking_status' => BookingStatus::Pending->value,
+                'payment_status' => PaymentStatus::Pending->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'future',
+                'count' => 20,
+            ],
+            [
+                'name' => 'confirmed_paid',
+                'booking_status' => BookingStatus::Confirmed->value,
+                'payment_status' => PaymentStatus::Paid->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'future',
+                'count' => 30,
+            ],
+            [
+                'name' => 'active_rental',
+                'booking_status' => BookingStatus::PickedUp->value,
+                'payment_status' => PaymentStatus::Paid->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'active',
+                'count' => 20,
+            ],
+            [
+                'name' => 'completed_rental',
+                'booking_status' => BookingStatus::Returned->value,
+                'payment_status' => PaymentStatus::Paid->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'past',
+                'count' => 300,
+            ],
 
-        for ($i = 1; $i <= $pastBookingCount; $i++) {
-            $pickupAt = $this->randomBusinessHoursDateBetween($pastPickupStart, $pastPickupEnd);
-            $days = fake()->numberBetween(1, 14);
-            $dropoffAt = (clone $pickupAt)->modify("+{$days} days");
-            $createdAt = $this->randomBusinessHoursDateBetween(
-                (clone $pickupAt)->modify('-30 days'),
-                (clone $pickupAt)->modify('-1 day')
-            );
+            /*
+            * PAYMENT EXCEPTIONS
+            */
 
-            $this->createBooking(
-                index: $i,
-                pickupAt: $pickupAt,
-                dropoffAt: $dropoffAt,
-                createdAt: $createdAt,
-                customers: $customers,
-                cars: $cars,
-                locations: $locations,
-                drivers: $drivers,
-                insurances: $insurances,
-                extras: $extras,
-                bookingStatuses: $bookingStatuses,
-                paymentStatuses: $paymentStatuses,
-                paymentMethods: $paymentMethods,
-                futureBooking: false
-            );
-        }
+            [
+                'name' => 'payment_failed',
+                'booking_status' => BookingStatus::Pending->value,
+                'payment_status' => PaymentStatus::Failed->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'past',
+                'count' => 30,
+            ],
+            [
+                'name' => 'payment_failed',
+                'booking_status' => BookingStatus::Pending->value,
+                'payment_status' => PaymentStatus::Failed->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'future',
+                'count' => 10,
+            ],
+            [
+                'name' => 'payment_cancelled',
+                'booking_status' => BookingStatus::Pending->value,
+                'payment_status' => PaymentStatus::Cancelled->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'past',
+                'count' => 20,
+            ],
+            [
+                'name' => 'payment_cancelled',
+                'booking_status' => BookingStatus::Pending->value,
+                'payment_status' => PaymentStatus::Cancelled->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'future',
+                'count' => 10,
+            ],
 
-        for ($i = 1; $i <= $futureBookingCount; $i++) {
-            $pickupAt = $this->randomBusinessHoursDateBetween($futurePickupStart, $futurePickupEnd);
-            $days = fake()->numberBetween(1, 14);
-            $dropoffAt = (clone $pickupAt)->modify("+{$days} days");
-            $createdAt = $this->randomBusinessHoursDateBetween(
-                now()->subMonths(3),
-                now()->subDay()
-            );
+            /*
+            * CANCELLATION / REFUND
+            */
 
-            $this->createBooking(
-                index: $pastBookingCount + $i,
-                pickupAt: $pickupAt,
-                dropoffAt: $dropoffAt,
-                createdAt: $createdAt,
-                customers: $customers,
-                cars: $cars,
-                locations: $locations,
-                drivers: $drivers,
-                insurances: $insurances,
-                extras: $extras,
-                bookingStatuses: $bookingStatuses,
-                paymentStatuses: $paymentStatuses,
-                paymentMethods: $paymentMethods,
-                futureBooking: true
-            );
-        }
+            [
+                'name' => 'cancelled_unpaid',
+                'booking_status' => BookingStatus::Cancelled->value,
+                'payment_status' => PaymentStatus::Cancelled->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'past',
+                'count' => 30,
+            ],
+            [
+                'name' => 'cancelled_refunded',
+                'booking_status' => BookingStatus::Cancelled->value,
+                'payment_status' => PaymentStatus::Refunded->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'past',
+                'count' => 30,
+            ],
+            [
+                'name' => 'cancelled_partially_refunded',
+                'booking_status' => BookingStatus::Cancelled->value,
+                'payment_status' => PaymentStatus::PartiallyRefunded->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'past',
+                'count' => 20,
+            ],
 
-        $todayPickupCount = fake()->numberBetween(2, 5);
-        for ($i = 1; $i <= $todayPickupCount; $i++) {
-            $pickupAt = $this->randomBusinessHoursDateBetween(
-                now()->startOfDay(),
-                now()->endOfDay()
-            );
-            $createdAt = $this->randomBusinessHoursDateBetween(
-                now()->subMonths(3),
-                (clone $pickupAt)->modify('-1 day')
-            );
+            /*
+            * COMPLETED RENTAL + REFUNDS
+*/
 
-            $this->createBooking(
-                index: $pastBookingCount + $futureBookingCount + $i,
-                pickupAt: $pickupAt,
-                dropoffAt: (clone $pickupAt)->modify('+'.fake()->numberBetween(1, 14).' days'),
-                createdAt: $createdAt,
-                customers: $customers,
-                cars: $cars,
-                locations: $locations,
-                drivers: $drivers,
-                insurances: $insurances,
-                extras: $extras,
-                bookingStatuses: $bookingStatuses,
-                paymentStatuses: $paymentStatuses,
-                paymentMethods: $paymentMethods,
-                futureBooking: true,
-                forcedStatus: BookingStatus::Confirmed->value
-            );
-        }
+            [
+                'name' => 'completed_partially_refunded',
+                'booking_status' => BookingStatus::Returned->value,
+                'payment_status' => PaymentStatus::PartiallyRefunded->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'past',
+                'count' => 30,
+            ],
 
-        $todayDropoffCount = fake()->numberBetween(2, 5);
-        for ($i = 1; $i <= $todayDropoffCount; $i++) {
-            $dropoffAt = $this->randomBusinessHoursDateBetween(
-                now()->startOfDay(),
-                now()->endOfDay()
-            );
-            $pickupAt = (clone $dropoffAt)->modify('-'.fake()->numberBetween(1, 14).' days');
-            $createdAt = $this->randomBusinessHoursDateBetween(
-                now()->subMonths(3),
-                (clone $pickupAt)->modify('-1 day')
-            );
+            [
+                'name' => 'completed_refunded',
+                'booking_status' => BookingStatus::Returned->value,
+                'payment_status' => PaymentStatus::Refunded->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'past',
+                'count' => 10,
+            ],
 
-            $this->createBooking(
-                index: $pastBookingCount + $futureBookingCount + $todayPickupCount + $i,
-                pickupAt: $pickupAt,
-                dropoffAt: $dropoffAt,
-                createdAt: $createdAt,
-                customers: $customers,
-                cars: $cars,
-                locations: $locations,
-                drivers: $drivers,
-                insurances: $insurances,
-                extras: $extras,
-                bookingStatuses: $bookingStatuses,
-                paymentStatuses: $paymentStatuses,
-                paymentMethods: $paymentMethods,
-                futureBooking: false,
-                forcedStatus: fake()->randomElement([
-                    BookingStatus::Confirmed->value,
-                    BookingStatus::PickedUp->value,
-                ])
-            );
+            /*
+            * OPERATIONAL / DASHBOARD SCENARIOS
+            */
+
+            [
+                'name' => 'overdue_rental',
+                'booking_status' => BookingStatus::PickedUp->value,
+                'payment_status' => PaymentStatus::Paid->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'overdue',
+                'count' => 30,
+            ],
+
+            [
+                'name' => 'pickup_today',
+                'booking_status' => BookingStatus::Confirmed->value,
+                'payment_status' => PaymentStatus::Paid->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'pickup_today',
+                'count' => 10,
+            ],
+
+            [
+                'name' => 'dropoff_today',
+                'booking_status' => BookingStatus::PickedUp->value,
+                'payment_status' => PaymentStatus::Paid->value,
+                'payment_method' => [PaymentMethod::Stripe->value, PaymentMethod::PayPal->value, PaymentMethod::Cash->value],
+                'period' => 'dropoff_today',
+                'count' => 10,
+            ],
+
+        ];
+
+        $index = 1;
+
+        foreach ($scenarios as $scenario) {
+            for ($i = 0; $i < $scenario['count']; $i++) {
+                $this->createScenarioBooking(
+                    index: $index++,
+                    scenario: $scenario,
+                    customers: $customers,
+                    cars: $cars,
+                    locations: $locations,
+                    drivers: $drivers,
+                    insurances: $insurances,
+                    extras: $extras,
+                );
+            }
         }
 
         $reassignedBookings = $this->repairBookingOverlaps();
@@ -180,9 +231,171 @@ class BookingSeeder extends Seeder
     }
 
     /**
-     * @param  array<int, string>  $bookingStatuses
-     * @param  array<int, string>  $paymentStatuses
-     * @param  array<int, string>  $paymentMethods
+     * Create a booking from a business scenario.
+     */
+    private function createScenarioBooking(
+        int $index,
+        array $scenario,
+        $customers,
+        $cars,
+        $locations,
+        $drivers,
+        $insurances,
+        $extras,
+    ): void {
+        [$pickupAt, $dropoffAt, $createdAt] = $this->generateDates(
+            $scenario['period']
+        );
+
+        $this->createBooking(
+            index: $index,
+            pickupAt: $pickupAt,
+            dropoffAt: $dropoffAt,
+            createdAt: $createdAt,
+            customers: $customers,
+            cars: $cars,
+            locations: $locations,
+            drivers: $drivers,
+            insurances: $insurances,
+            extras: $extras,
+            scenario: $scenario,
+        );
+    }
+
+    /**
+     * Generate dates according to the rental scenario.
+     *
+     * @return array{
+     *     0: \DateTimeInterface,
+     *     1: \DateTimeInterface,
+     *     2: \DateTimeInterface
+     * }
+     */
+    private function generateDates(string $period): array
+    {
+        $days = fake()->numberBetween(1, 14);
+
+        switch ($period) {
+            case 'overdue':
+                // Overdue rental: the rental has started and the expected
+                // drop-off time has already passed.
+                $dropoffAt = $this->randomBusinessHoursDateBetween(
+                    now()->subDays(14),
+                    now()->subDay()
+                );
+
+                $pickupAt = $this->randomBusinessHoursDateBetween(
+                    (clone $dropoffAt)->modify('-14 days'),
+                    (clone $dropoffAt)->modify('-1 day')
+                );
+
+                $createdAt = $this->randomBusinessHoursDateBetween(
+                    (clone $pickupAt)->modify('-30 days'),
+                    (clone $pickupAt)->modify('-1 day')
+                );
+
+                break;
+
+            case 'past':
+                $pickupAt = $this->randomBusinessHoursDateBetween(
+                    now()->subMonths(6),
+                    now()->subDays(15)
+                );
+
+                $dropoffAt = (clone $pickupAt)->modify("+{$days} days");
+
+                $createdAt = $this->randomBusinessHoursDateBetween(
+                    (clone $pickupAt)->modify('-30 days'),
+                    (clone $pickupAt)->modify('-1 day')
+                );
+
+                break;
+
+            case 'active':
+                $pickupAt = $this->randomBusinessHoursDateBetween(
+                    now()->subDays(7),
+                    now()->subDay()
+                );
+
+                $dropoffAt = now()->addDays(
+                    fake()->numberBetween(1, 7)
+                );
+
+                $createdAt = $this->randomBusinessHoursDateBetween(
+                    (clone $pickupAt)->modify('-30 days'),
+                    (clone $pickupAt)->modify('-1 day')
+                );
+
+                break;
+
+            case 'future':
+                $pickupAt = $this->randomBusinessHoursDateBetween(
+                    now()->addDay(),
+                    now()->addMonthsNoOverflow(2)
+                );
+
+                $dropoffAt = (clone $pickupAt)->modify("+{$days} days");
+
+                $createdAt = $this->randomBusinessHoursDateBetween(
+                    now()->subMonths(3),
+                    now()->subDay()
+                );
+
+                break;
+
+            case 'pickup_today':
+                // Pickup is scheduled for today.
+                // The rental has not started yet and the drop-off is in the future.
+                $pickupAt = $this->randomBusinessHoursDateBetween(
+                    now()->startOfDay(),
+                    now()
+                );
+
+                $dropoffAt = (clone $pickupAt)->modify(
+                    '+'.fake()->numberBetween(1, 14).' days'
+                );
+
+                $createdAt = $this->randomBusinessHoursDateBetween(
+                    now()->subMonths(3),
+                    now()->subDay()
+                );
+
+                break;
+
+            case 'dropoff_today':
+                // Drop-off is scheduled for today.
+                // The rental has already started and is still active.
+                $pickupAt = $this->randomBusinessHoursDateBetween(
+                    now()->subDays(14),
+                    now()->subDay()
+                );
+
+                $dropoffAt = now()->addHours(
+                    fake()->numberBetween(1, 6)
+                );
+
+                $createdAt = $this->randomBusinessHoursDateBetween(
+                    (clone $pickupAt)->modify('-30 days'),
+                    (clone $pickupAt)->modify('-1 day')
+                );
+
+                break;
+
+            default:
+                throw new \InvalidArgumentException(
+                    "Unknown booking period: {$period}"
+                );
+        }
+
+        return [
+            $pickupAt,
+            $dropoffAt,
+            $createdAt,
+        ];
+    }
+
+    /**
+     * @param  array<string, mixed>  $scenario
      */
     private function createBooking(
         int $index,
@@ -195,66 +408,105 @@ class BookingSeeder extends Seeder
         $drivers,
         $insurances,
         $extras,
-        array $bookingStatuses,
-        array $paymentStatuses,
-        array $paymentMethods,
-        bool $futureBooking,
-        ?string $forcedStatus = null,
+        array $scenario,
     ): void {
         $days = max(1, $pickupAt->diff($dropoffAt)->days);
 
         $car = Car::query()->findOrFail($cars->random());
         $insurance = $insurances->random();
+
         $pickupLocationId = $locations->random();
+
         $dropoffLocationId = fake()->boolean(35) && $locations->count() > 1
-            ? $locations->reject(fn ($locationId) => $locationId === $pickupLocationId)->random()
+            ? $locations
+                ->reject(fn ($locationId) => $locationId === $pickupLocationId)
+                ->random()
             : $pickupLocationId;
 
-        $extraCount = $extras->isEmpty() ? 0 : fake()->numberBetween(0, min(3, $extras->count()));
+        $extraCount = $extras->isEmpty()
+            ? 0
+            : fake()->numberBetween(0, min(3, $extras->count()));
 
         $selectedExtras = $extraCount === 0
             ? collect()
             : collect($extras->random($extraCount))->values();
 
-        $extraSnapshots = $selectedExtras->map(function (Extra $extra) use ($days) {
-            $quantity = fake()->numberBetween(1, 3);
+        $extraSnapshots = $selectedExtras->map(
+            function (Extra $extra) use ($days) {
+                $quantity = fake()->numberBetween(1, 3);
 
-            return [
-                'extra' => $extra,
-                'quantity' => $quantity,
-                'total_price' => round($quantity * $days * (float) $extra->price, 2),
-            ];
-        });
+                return [
+                    'extra' => $extra,
+                    'quantity' => $quantity,
+                    'total_price' => round(
+                        $quantity * $days * (float) $extra->price,
+                        2
+                    ),
+                ];
+            }
+        );
 
         $dailyRate = (float) $car->price_per_day;
-        $subtotal = round($dailyRate * $days, 2);
-        $insuranceTotal = round($days * (float) $insurance->price, 2);
-        $extrasTotal = round($extraSnapshots->sum('total_price'), 2);
-        $taxTotal = round(($subtotal + $insuranceTotal + $extrasTotal) * 0.21, 2);
-        $totalAmount = round($subtotal + $insuranceTotal + $extrasTotal + $taxTotal, 2);
 
-        $status = $forcedStatus ?? ($futureBooking
-            ? fake()->randomElement([
-                BookingStatus::Pending->value,
-                BookingStatus::Confirmed->value,
-                BookingStatus::Cancelled->value,
-            ])
-            : fake()->randomElement($bookingStatuses));
+        $subtotal = round(
+            $dailyRate * $days,
+            2
+        );
 
-        $paymentStatus = fake()->randomElement($paymentStatuses);
-        $paymentMethod = fake()->randomElement($paymentMethods);
+        $insuranceTotal = round(
+            $days * (float) $insurance->price,
+            2
+        );
 
-        $paidAt = in_array($paymentStatus, [
-            PaymentStatus::Paid->value,
-            PaymentStatus::PartiallyRefunded->value,
-            PaymentStatus::Refunded->value,
-        ], true)
-            ? fake()->dateTimeBetween($createdAt, 'now')
+        $extrasTotal = round(
+            $extraSnapshots->sum('total_price'),
+            2
+        );
+
+        $taxTotal = round(
+            ($subtotal + $insuranceTotal + $extrasTotal) * 0.21,
+            2
+        );
+
+        $totalAmount = round(
+            $subtotal
+                + $insuranceTotal
+                + $extrasTotal
+                + $taxTotal,
+            2
+        );
+
+        /*
+         * The scenario is the single source of truth
+         * for booking/payment state.
+         */
+        $status = $scenario['booking_status'];
+        $paymentStatus = $scenario['payment_status'];
+        $paymentMethod = $scenario['payment_method'][array_rand($scenario['payment_method'])];
+
+        $paidAt = in_array(
+            $paymentStatus,
+            [
+                PaymentStatus::Paid->value,
+                PaymentStatus::PartiallyRefunded->value,
+                PaymentStatus::Refunded->value,
+            ],
+            true
+        )
+            ? fake()->dateTimeBetween($createdAt, $pickupAt)
             : null;
 
         $booking = Booking::factory()->create([
-            'booking_number' => sprintf('CR-%s-%04d', $createdAt->format('Ymd'), $index),
-            'public_id' => 'BKG-'.implode('-', str_split(Str::upper(Str::random(16)), 4)),
+            'booking_number' => sprintf(
+                'CR-%s-%04d',
+                $createdAt->format('Ymd'),
+                $index
+            ),
+
+            'public_id' => 'BKG-'.implode(
+                '-',
+                str_split(Str::upper(Str::random(16)), 4)
+            ),
 
             'customer_id' => $customers->random(),
             'car_id' => $car->id,
@@ -270,27 +522,45 @@ class BookingSeeder extends Seeder
             'currency' => 'EUR',
             'daily_rate' => $dailyRate,
             'subtotal' => $subtotal,
+
             'extras_total' => $extrasTotal,
+
             'insurance_id' => $insurance->id,
             'insurance_name' => $insurance->name,
             'insurance_price' => $insurance->price,
             'insurance_total' => $insuranceTotal,
+
             'tax_total' => $taxTotal,
             'total_amount' => $totalAmount,
 
-            'payment_intent_id' => $paymentMethod === 'stripe' ? 'pi_'.Str::lower(Str::random(24)) : null,
+            'payment_intent_id' => $paymentMethod === PaymentMethod::Stripe->value
+                ? 'pi_'.Str::lower(Str::random(24))
+                : null,
+
             'payment_method' => $paymentMethod,
             'payment_status' => $paymentStatus,
             'paid_at' => $paidAt,
 
             'status' => $status,
+
             'notes' => fake()->optional()->paragraph(),
 
-            'confirmed_at' => $this->makeConfirmedAt($status, $createdAt, $pickupAt, $futureBooking),
-            'cancelled_at' => $this->makeCancelledAt($status, $createdAt, $pickupAt, $futureBooking),
-            'completed_at' => $status === BookingStatus::Returned->value && ! $futureBooking
-                ? fake()->dateTimeBetween($pickupAt, 'now')
+            'confirmed_at' => $this->makeConfirmedAt(
+                status: $status,
+                createdAt: $createdAt,
+                pickupAt: $pickupAt,
+            ),
+
+            'cancelled_at' => $this->makeCancelledAt(
+                status: $status,
+                createdAt: $createdAt,
+                pickupAt: $pickupAt,
+            ),
+
+            'completed_at' => $status === BookingStatus::Returned->value
+                ? fake()->dateTimeBetween($pickupAt, $dropoffAt)
                 : null,
+
             'created_at' => $createdAt,
             'updated_at' => $createdAt,
         ]);
@@ -323,54 +593,83 @@ class BookingSeeder extends Seeder
         string $status,
         \DateTimeInterface $createdAt,
         \DateTimeInterface $pickupAt,
-        bool $futureBooking,
     ): ?\DateTimeInterface {
-        if (! in_array($status, [
-            BookingStatus::Confirmed->value,
-            BookingStatus::PickedUp->value,
-            BookingStatus::Returned->value,
-        ], true)) {
+        if (! in_array(
+            $status,
+            [
+                BookingStatus::Confirmed->value,
+                BookingStatus::PickedUp->value,
+                BookingStatus::Returned->value,
+            ],
+            true
+        )) {
             return null;
         }
 
-        $endDate = $futureBooking ? $pickupAt : now();
-
-        return fake()->dateTimeBetween($createdAt, $endDate);
+        return fake()->dateTimeBetween(
+            $createdAt,
+            $pickupAt
+        );
     }
 
     private function makeCancelledAt(
         string $status,
         \DateTimeInterface $createdAt,
         \DateTimeInterface $pickupAt,
-        bool $futureBooking,
     ): ?\DateTimeInterface {
-        if ($status !== BookingStatus::Cancelled->value) {
+        if (! in_array(
+            $status,
+            [
+                BookingStatus::Cancelled->value,
+            ],
+            true
+        )) {
             return null;
         }
 
-        $endDate = $futureBooking ? now() : $pickupAt;
-
-        return fake()->dateTimeBetween($createdAt, $endDate);
+        return fake()->dateTimeBetween(
+            $createdAt,
+            $pickupAt
+        );
     }
 
-    private function randomBusinessHoursDateBetween(\DateTimeInterface $startDate, \DateTimeInterface $endDate): \DateTimeInterface
-    {
-        $dateTime = fake()->dateTimeBetween($startDate, $endDate);
+    private function randomBusinessHoursDateBetween(
+        \DateTimeInterface $startDate,
+        \DateTimeInterface $endDate
+    ): \DateTimeInterface {
+        $dateTime = fake()->dateTimeBetween(
+            $startDate,
+            $endDate
+        );
 
-        return $this->normalizeToBusinessHoursHalfHour($dateTime);
+        return $this->normalizeToBusinessHoursHalfHour(
+            $dateTime
+        );
     }
 
-    private function normalizeToBusinessHoursHalfHour(\DateTimeInterface $dateTime): \DateTimeInterface
-    {
+    private function normalizeToBusinessHoursHalfHour(
+        \DateTimeInterface $dateTime
+    ): \DateTimeInterface {
         $hour = fake()->numberBetween(10, 20);
-        $minute = $hour === 20 ? 0 : fake()->randomElement([0, 30]);
+        $minute = $hour === 20
+            ? 0
+            : fake()->randomElement([0, 30]);
 
         if ($dateTime instanceof \DateTimeImmutable) {
-            return $dateTime->setTime($hour, $minute, 0);
+            return $dateTime->setTime(
+                $hour,
+                $minute,
+                0
+            );
         }
 
         $normalized = clone $dateTime;
-        $normalized->setTime($hour, $minute, 0);
+
+        $normalized->setTime(
+            $hour,
+            $minute,
+            0
+        );
 
         return $normalized;
     }
@@ -378,7 +677,11 @@ class BookingSeeder extends Seeder
     private function repairBookingOverlaps(): int
     {
         $carIds = Car::query()->pluck('id');
-        $occupiedByCar = $carIds->mapWithKeys(fn ($carId) => [$carId => []])->all();
+
+        $occupiedByCar = $carIds
+            ->mapWithKeys(fn ($carId) => [$carId => []])
+            ->all();
+
         $reassignedBookings = 0;
 
         $bookings = Booking::query()
@@ -393,20 +696,33 @@ class BookingSeeder extends Seeder
 
         foreach ($bookings as $booking) {
             $candidateCarIds = $carIds->sortBy(
-                fn ($carId) => (int) $carId === (int) $booking->car_id ? 0 : 1
+                fn ($carId) => (int) $carId === (int) $booking->car_id
+                    ? 0
+                    : 1
             );
-            $availableCarId = $candidateCarIds->first(function ($carId) use ($booking, $occupiedByCar) {
-                foreach ($occupiedByCar[$carId] as $reservation) {
-                    $overlaps = $booking->pickup_at->lt($reservation['dropoff_at'])
-                        && $booking->dropoff_at->gt($reservation['pickup_at']);
 
-                    if ($overlaps) {
-                        return false;
+            $availableCarId = $candidateCarIds->first(
+                function ($carId) use (
+                    $booking,
+                    $occupiedByCar
+                ) {
+                    foreach ($occupiedByCar[$carId] as $reservation) {
+                        $overlaps =
+                            $booking->pickup_at->lt(
+                                $reservation['dropoff_at']
+                            )
+                            && $booking->dropoff_at->gt(
+                                $reservation['pickup_at']
+                            );
+
+                        if ($overlaps) {
+                            return false;
+                        }
                     }
-                }
 
-                return true;
-            });
+                    return true;
+                }
+            );
 
             if ($availableCarId === null) {
                 throw new \RuntimeException(
@@ -414,8 +730,13 @@ class BookingSeeder extends Seeder
                 );
             }
 
-            if ((int) $booking->car_id !== (int) $availableCarId) {
-                $booking->updateQuietly(['car_id' => $availableCarId]);
+            if (
+                (int) $booking->car_id !== (int) $availableCarId
+            ) {
+                $booking->updateQuietly([
+                    'car_id' => $availableCarId,
+                ]);
+
                 $reassignedBookings++;
             }
 

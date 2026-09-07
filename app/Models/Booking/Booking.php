@@ -167,7 +167,7 @@ class Booking extends Model
     public function scopeActiveRental(Builder $query): Builder
     {
         return $query
-            ->where('status', BookingStatus::Confirmed->value)
+            ->where('status', BookingStatus::PickedUp->value)
             ->where('pickup_at', '<=', now())
             ->where('dropoff_at', '>=', now());
     }
