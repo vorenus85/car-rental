@@ -54,37 +54,48 @@ describe('BookingController', function () {
     });
 
     it('returns only active rentals', function () {
+        Carbon::setTestNow('2026-09-15 12:00:00');
+
         $activeRental = Booking::factory()->create([
-            'status' => BookingStatus::Confirmed->value,
+            'status' => BookingStatus::PickedUp->value,
             'pickup_at' => '2026-09-15 10:00:00',
             'dropoff_at' => '2026-09-16 10:00:00',
         ]);
 
         $pickupBoundaryRental = Booking::factory()->create([
-            'status' => BookingStatus::Confirmed->value,
+            'status' => BookingStatus::PickedUp->value,
             'pickup_at' => '2026-09-15 12:00:00',
             'dropoff_at' => '2026-09-16 10:00:00',
         ]);
 
         $dropoffBoundaryRental = Booking::factory()->create([
-            'status' => BookingStatus::Confirmed->value,
+            'status' => BookingStatus::PickedUp->value,
             'pickup_at' => '2026-09-14 10:00:00',
-            'dropoff_at' => '2026-09-15 12:00:00',
+            'dropoff_at' => '2026-09-15 12:00:01',
         ]);
 
+        // Not active because the booking has not been picked up yet.
         Booking::factory()->create([
             'status' => BookingStatus::Confirmed->value,
             'pickup_at' => '2026-09-15 12:00:01',
             'dropoff_at' => '2026-09-16 10:00:00',
         ]);
 
+        // Not active because the rental has already ended.
         Booking::factory()->create([
             'status' => BookingStatus::Confirmed->value,
             'pickup_at' => '2026-09-14 10:00:00',
             'dropoff_at' => '2026-09-15 11:59:59',
         ]);
 
-        foreach ([BookingStatus::Pending, BookingStatus::PickedUp, BookingStatus::Returned, BookingStatus::Cancelled] as $status) {
+        // Not active because of their booking status.
+        foreach (
+            [
+                BookingStatus::Pending,
+                BookingStatus::Returned,
+                BookingStatus::Cancelled,
+            ] as $status
+        ) {
             Booking::factory()->create([
                 'status' => $status->value,
                 'pickup_at' => '2026-09-15 10:00:00',
@@ -100,5 +111,7 @@ describe('BookingController', function () {
             ->assertJsonPath('0.id', $pickupBoundaryRental->id)
             ->assertJsonPath('1.id', $activeRental->id)
             ->assertJsonPath('2.id', $dropoffBoundaryRental->id);
+
+        Carbon::setTestNow();
     });
 });
