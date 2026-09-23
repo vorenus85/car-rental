@@ -76,25 +76,9 @@
                     </template>
                 </Column>
 
-                <Column sortable field="car.name" header="Car" style="width: 10%">
+                <Column sortable field="status" header="Status" style="width: 10%">
                     <template #body="slotProps">
-                        <div class="flex flex-col">
-                            <Button
-                                outlined
-                                severity="info"
-                                as="router-link"
-                                :label="slotProps.data.car.name"
-                                size="small"
-                                :to="{
-                                    name: 'cars.show',
-                                    params: {
-                                        id: slotProps.data?.car.id,
-                                    },
-                                }"
-                                class="no-wrap"
-                            >
-                            </Button>
-                        </div>
+                        <BookingStatusTag :status="slotProps.data.status"></BookingStatusTag>
                     </template>
                 </Column>
 
@@ -120,12 +104,6 @@
 
                             <FormatedTime :date="slotProps.data.dropoffAt"></FormatedTime>
                         </div>
-                    </template>
-                </Column>
-
-                <Column sortable field="status" header="Status" style="width: 10%">
-                    <template #body="slotProps">
-                        <BookingStatusTag :status="slotProps.data.status"></BookingStatusTag>
                     </template>
                 </Column>
 
