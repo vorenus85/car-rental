@@ -62,7 +62,7 @@ describe('BookingController', function () {
             'dropoff_at' => '2026-09-20 18:30:00',
         ]);
 
-        $otherDayBooking = Booking::factory()->create([
+        Booking::factory()->create([
             'dropoff_at' => '2026-09-21 10:00:00',
         ]);
 
@@ -70,10 +70,12 @@ describe('BookingController', function () {
 
         $response
             ->assertOk()
-            ->assertJsonCount(2)
-            ->assertJsonFragment(['id' => $matchingBooking->id])
-            ->assertJsonFragment(['id' => $sameDayBooking->id])
-            ->assertJsonMissing(['id' => $otherDayBooking->id]);
+            ->assertJsonCount(2);
+
+        $this->assertEqualsCanonicalizing(
+            [$matchingBooking->id, $sameDayBooking->id],
+            array_column($response->json(), 'id')
+        );
     });
 
     it('returns only active rentals', function () {
