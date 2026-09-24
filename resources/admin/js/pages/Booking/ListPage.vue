@@ -18,7 +18,7 @@
                 data-key="id"
             >
                 <template #header>
-                    <div class="flex justify-between">
+                    <div class="flex justify-between gap-3">
                         <Button
                             type="button"
                             icon="pi pi-filter-slash"
@@ -26,6 +26,16 @@
                             variant="outlined"
                             @click="clearFilter()"
                         />
+                        <FloatLabel variant="on" class="ml-auto">
+                            <DatePicker
+                                v-model="dropOffDate"
+                                input-id="on_label"
+                                show-icon
+                                icon-display="input"
+                                date-format="yy. mm. dd."
+                            />
+                            <label for="on_label">Drop-off Date</label>
+                        </FloatLabel>
                         <IconField>
                             <InputIcon>
                                 <i class="pi pi-search" />
@@ -164,12 +174,49 @@ import BookingStatusTag from '@admin/components/Table/BookingStatusTag.vue'
 import PaymentStatusTag from '@admin/components/Table/PaymentStatusTag.vue'
 import PaymentMethodTag from '@admin/components/Table/PaymentMethodTag.vue'
 import { useBooking } from '@admin/composables/useBooking'
-import { Button, Column, DataTable, IconField, InputIcon, InputText } from 'primevue'
-import { onMounted, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import {
+    Button,
+    Column,
+    DataTable,
+    DatePicker,
+    FloatLabel,
+    IconField,
+    InputIcon,
+    InputText,
+} from 'primevue'
+import { onMounted, ref, watch } from 'vue'
+import { formatDate } from '@admin/utils.js'
 
+const route = useRoute()
+const router = useRouter()
 const { toCreateBooking } = useRedirects()
 const { getBookings, bookings, loading } = useBooking()
 const filters = ref()
+const dropOffDate = ref(null)
+
+const syncParamsFromQuery = () => {
+    const dropOffDateParam = route.query.dropOffDate
+    if (dropOffDateParam) {
+        const queryDropOffDate = new Date(dropOffDateParam)
+        queryDropOffDate.setHours(0, 0, 0, 0)
+        dropOffDate.value = queryDropOffDate
+    } else {
+        dropOffDate.value = null
+    }
+}
+
+const updateDropOffDateQuery = date => {
+    const query = { ...route.query }
+
+    if (date) {
+        query.dropOffDate = formatDate(date)
+    } else {
+        delete query.dropOffDate
+    }
+
+    router.push({ query })
+}
 
 const initFilters = () => {
     filters.value = {
@@ -189,10 +236,32 @@ initFilters()
 
 const clearFilter = () => {
     initFilters()
+    dropOffDate.value = null
 }
 
-onMounted(() => {
+onMounted(async () => {
+    syncParamsFromQuery()
     getBookings()
+})
+
+watch(
+    () => route.query,
+    async () => {
+        syncParamsFromQuery()
+        await getBookings()
+    },
+    { deep: true }
+)
+
+watch(dropOffDate, date => {
+    const queryDropOffDate = route.query.dropOffDate ?? null
+    const selectedDropOffDate = date ? formatDate(date) : null
+
+    if (queryDropOffDate === selectedDropOffDate) {
+        return
+    }
+
+    updateDropOffDateQuery(date)
 })
 </script>
 <style>
