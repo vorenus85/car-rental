@@ -38,6 +38,7 @@
                 title="Today Dropoffs"
                 unit="Returns scheduled today"
                 icon="sign-out"
+                :link="showTodayDropoffs"
             ></DashboardKpi>
             <DashboardKpi
                 :value="dashboardKpis?.todayPickupsKpi"
@@ -55,6 +56,7 @@ import DashboardKpi from '@admin/components/DashboardKpi.vue'
 import { useDashboard } from '@admin/composables/useDashboard'
 import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
+import { formatDate } from '@admin/utils.js'
 
 const router = useRouter()
 
@@ -86,6 +88,15 @@ const showActiveRentals = () => {
 const showPendingRentals = () => {
     router.push({
         name: 'pendingRentals',
+    })
+}
+
+const showTodayDropoffs = () => {
+    router.push({
+        name: 'bookings',
+        query: {
+            dropOffDate: formatDate(new Date()),
+        },
     })
 }
 
