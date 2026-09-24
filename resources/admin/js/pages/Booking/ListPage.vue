@@ -241,14 +241,14 @@ const clearFilter = () => {
 
 onMounted(async () => {
     syncParamsFromQuery()
-    getBookings()
+    await getBookings()
 })
 
 watch(
     () => route.query,
     async () => {
         syncParamsFromQuery()
-        await getBookings()
+        await getBookings(route.query)
     },
     { deep: true }
 )

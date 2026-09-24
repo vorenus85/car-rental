@@ -7,16 +7,22 @@ use App\Http\Resources\Admin\BookingResource;
 use App\Models\Booking\Booking;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        $bookings = $this->bookingListQuery()
-            ->get();
+        $query = $this->bookingListQuery();
+
+        if ($request->filled('dropOffDate')) {
+            $query->whereDate('dropoff_at', $request->query('dropOffDate'));
+        }
+
+        $bookings = $query->get();
 
         return response()->json(BookingResource::collection($bookings), 200);
     }

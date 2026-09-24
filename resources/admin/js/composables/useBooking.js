@@ -6,20 +6,22 @@ import {
     fetchOverdueRentals,
 } from '@admin/services/bookingService'
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 export const useBooking = () => {
     const loading = ref(false)
+    const route = useRoute()
     const bookings = ref([])
     const activeRentals = ref([])
     const upcomingRentals = ref([])
     const pendingRentals = ref([])
     const overdueRentals = ref([])
 
-    const getBookings = async () => {
+    const getBookings = async (params = route.query ?? {}) => {
         loading.value = true
 
         try {
-            const { data } = await fetchBookings()
+            const { data } = await fetchBookings({ ...params })
             bookings.value = data
         } catch (e) {
             void e // to avoid unused variable lint error
