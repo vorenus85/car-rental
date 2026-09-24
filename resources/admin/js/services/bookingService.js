@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-export const fetchBookings = async () => {
-    return axios.get('/api/admin/bookings')
+export const fetchBookings = async (params = {}) => {
+    return axios.get('/api/admin/bookings', { params })
 }
 
 export const fetchActiveRentals = async () => {

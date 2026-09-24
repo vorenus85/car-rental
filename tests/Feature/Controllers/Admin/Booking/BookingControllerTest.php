@@ -53,6 +53,31 @@ describe('BookingController', function () {
             ]);
     });
 
+    it('filters bookings by drop-off date', function () {
+        $matchingBooking = Booking::factory()->create([
+            'dropoff_at' => '2026-09-20 10:00:00',
+        ]);
+
+        $sameDayBooking = Booking::factory()->create([
+            'dropoff_at' => '2026-09-20 18:30:00',
+        ]);
+
+        Booking::factory()->create([
+            'dropoff_at' => '2026-09-21 10:00:00',
+        ]);
+
+        $response = $this->getJson('/api/admin/bookings?dropOffDate=2026-09-20');
+
+        $response
+            ->assertOk()
+            ->assertJsonCount(2);
+
+        $this->assertEqualsCanonicalizing(
+            [$matchingBooking->id, $sameDayBooking->id],
+            array_column($response->json(), 'id')
+        );
+    });
+
     it('returns only active rentals', function () {
         Carbon::setTestNow('2026-09-15 12:00:00');
 
