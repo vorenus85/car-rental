@@ -25,9 +25,20 @@
                             icon="pi pi-filter-slash"
                             variant="outlined"
                             severity="info"
+                            class="mr-auto"
                             @click="clearFilter()"
                         />
-                        <FloatLabel variant="on" class="ml-auto w-40">
+                        <FloatLabel variant="on" class="w-40">
+                            <DatePicker
+                                v-model="pickUpDate"
+                                input-id="on_label"
+                                show-icon
+                                icon-display="input"
+                                date-format="yy. mm. dd."
+                            />
+                            <label for="on_label">Pick-up Date</label>
+                        </FloatLabel>
+                        <FloatLabel variant="on" class="w-40">
                             <DatePicker
                                 v-model="dropOffDate"
                                 input-id="on_label"
@@ -192,15 +203,26 @@ const { toCreateBooking } = useRedirects()
 const { getBookings, bookings, loading } = useBooking()
 const filters = ref()
 const dropOffDate = ref(null)
+const pickUpDate = ref(null)
 
 const syncParamsFromQuery = () => {
     const dropOffDateParam = route.query.dropOffDate
+    const pickUpDateParam = route.query.pickUpDate
+
     if (dropOffDateParam) {
         const queryDropOffDate = new Date(dropOffDateParam)
         queryDropOffDate.setHours(0, 0, 0, 0)
         dropOffDate.value = queryDropOffDate
     } else {
         dropOffDate.value = null
+    }
+
+    if (pickUpDateParam) {
+        const queryPickUpDate = new Date(pickUpDateParam)
+        queryPickUpDate.setHours(0, 0, 0, 0)
+        pickUpDate.value = queryPickUpDate
+    } else {
+        pickUpDate.value = null
     }
 }
 
@@ -211,6 +233,18 @@ const updateDropOffDateQuery = date => {
         query.dropOffDate = formatDate(date)
     } else {
         delete query.dropOffDate
+    }
+
+    router.push({ query })
+}
+
+const updatePickUpDateQuery = date => {
+    const query = { ...route.query }
+
+    if (date) {
+        query.pickUpDate = formatDate(date)
+    } else {
+        delete query.pickUpDate
     }
 
     router.push({ query })
@@ -235,6 +269,7 @@ initFilters()
 const clearFilter = () => {
     initFilters()
     dropOffDate.value = null
+    pickUpDate.value = null
 }
 
 onMounted(async () => {
@@ -260,6 +295,17 @@ watch(dropOffDate, date => {
     }
 
     updateDropOffDateQuery(date)
+})
+
+watch(pickUpDate, date => {
+    const queryPickUpDate = route.query.pickUpDate ?? null
+    const selectedPickUpDate = date ? formatDate(date) : null
+
+    if (queryPickUpDate === selectedPickUpDate) {
+        return
+    }
+
+    updatePickUpDateQuery(date)
 })
 </script>
 <style>

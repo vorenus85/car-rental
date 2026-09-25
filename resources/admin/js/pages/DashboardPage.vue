@@ -45,6 +45,7 @@
                 title="Today Pick ups"
                 unit="Pick ups scheduled today"
                 icon="sign-in"
+                :link="showTodayPickups"
             ></DashboardKpi>
         </div>
     </AppLayout>
@@ -88,6 +89,15 @@ const showActiveRentals = () => {
 const showPendingRentals = () => {
     router.push({
         name: 'pendingRentals',
+    })
+}
+
+const showTodayPickups = () => {
+    router.push({
+        name: 'bookings',
+        query: {
+            pickUpDate: formatDate(new Date()),
+        },
     })
 }
 
