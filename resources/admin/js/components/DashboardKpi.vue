@@ -1,6 +1,7 @@
 <template>
     <div
-        class="rounded-xl border border-surface-200 bg-white p-5 shadow-sm hover:shadow-md cursor-pointer transition hover:bg-primary-100"
+        class="rounded-xl border border-surface-200 bg-white p-5 transition"
+        :class="link ? 'shadow-sm hover:shadow-md cursor-pointer hover:bg-primary-100' : null"
         @click="link"
     >
         <div class="flex items-start justify-between">
@@ -24,7 +25,14 @@
             </div>
 
             <!-- Icon -->
-            <Button icon="pi pi-external-link" severity="primary" outlined text rounded />
+            <Button
+                v-if="link"
+                icon="pi pi-external-link"
+                severity="primary"
+                outlined
+                text
+                rounded
+            />
         </div>
     </div>
 </template>
@@ -51,7 +59,7 @@ defineProps({
     },
     link: {
         type: Function,
-        default: () => {},
+        default: null,
     },
 })
 </script>
