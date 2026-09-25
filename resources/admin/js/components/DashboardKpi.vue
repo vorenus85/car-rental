@@ -15,8 +15,8 @@
                     <span class="text-sm font-medium text-surface-500"> {{ title }} </span>
 
                     <div class="mt-2 flex items-baseline gap-2">
-                        <span class="text-3xl font-bold text-surface-900">
-                            {{ value }}
+                        <span class="text-2xl font-bold text-surface-900">
+                            {{ currency ? formatEuro(value) : value }}
                         </span>
 
                         <span class="text-sm text-surface-500"> {{ unit }} </span>
@@ -61,5 +61,16 @@ defineProps({
         type: Function,
         default: null,
     },
+    currency: {
+        type: Boolean,
+        default: false,
+    },
 })
+
+function formatEuro(value) {
+    return new Intl.NumberFormat('en-EN', {
+        style: 'currency',
+        currency: 'EUR',
+    }).format(Number(value))
+}
 </script>
