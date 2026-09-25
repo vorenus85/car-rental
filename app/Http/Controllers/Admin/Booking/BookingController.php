@@ -26,7 +26,6 @@ class BookingController extends Controller
             $query->whereDate('pickup_at', $request->query('pickUpDate'));
         }
 
-
         $bookings = $query->get();
 
         return response()->json(BookingResource::collection($bookings), 200);
