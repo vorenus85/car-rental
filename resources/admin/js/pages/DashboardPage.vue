@@ -29,8 +29,9 @@
             <DashboardKpi
                 :value="dashboardKpis?.monthlyRevenueKpi"
                 title="Monthly Revenue"
-                unit="€ this month"
+                unit="this month"
                 icon="euro"
+                :currency="true"
             ></DashboardKpi>
 
             <DashboardKpi
