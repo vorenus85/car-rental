@@ -50,7 +50,7 @@ defineProps({
         default: '',
     },
     link: {
-        type: Object,
+        type: Function,
         default: () => {},
     },
 })
