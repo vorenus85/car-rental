@@ -20,13 +20,14 @@
                 <template #header>
                     <div class="flex justify-between gap-3">
                         <Button
+                            v-tooltip="'Clear filter'"
                             type="button"
                             icon="pi pi-filter-slash"
-                            label="Clear"
                             variant="outlined"
+                            severity="info"
                             @click="clearFilter()"
                         />
-                        <FloatLabel variant="on" class="ml-auto">
+                        <FloatLabel variant="on" class="ml-auto w-40">
                             <DatePicker
                                 v-model="dropOffDate"
                                 input-id="on_label"
@@ -36,14 +37,11 @@
                             />
                             <label for="on_label">Drop-off Date</label>
                         </FloatLabel>
-                        <IconField>
+                        <IconField class="w-40">
                             <InputIcon>
                                 <i class="pi pi-search" />
                             </InputIcon>
-                            <InputText
-                                v-model="filters['global'].value"
-                                placeholder="Keyword Search"
-                            />
+                            <InputText v-model="filters['global'].value" placeholder="Search" />
                         </IconField>
                     </div>
                 </template>

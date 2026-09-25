@@ -18,37 +18,34 @@
                 data-key="id"
             >
                 <template #header>
-                    <div class="flex justify-start gap-5">
+                    <div class="flex justify-between gap-2">
                         <Button
-                            class="mr-auto"
-                            width="80px"
+                            v-tooltip="'Clear filter'"
                             type="button"
                             icon="pi pi-filter-slash"
-                            label="Clear"
                             variant="outlined"
+                            severity="info"
+                            class="mr-auto"
                             @click="clearFilter()"
                         />
-                        <IconField>
-                            <InputIcon>
-                                <i class="pi pi-search" />
-                            </InputIcon>
-                            <InputText
-                                v-model="filters['global'].value"
-                                placeholder="Keyword Search"
-                            />
-                        </IconField>
                         <div class="max-sm:hidden">
                             <Select
                                 v-model="selectedCarStatus"
                                 filter
                                 :options="rentalStatuses"
                                 option-label="name"
-                                placeholder="Select a Status"
+                                placeholder="Status"
                                 show-clear
                                 @change="changeCarStatusFilter"
                             >
                             </Select>
                         </div>
+                        <IconField class="w-40">
+                            <InputIcon>
+                                <i class="pi pi-search" />
+                            </InputIcon>
+                            <InputText v-model="filters['global'].value" placeholder="Search" />
+                        </IconField>
                     </div>
                 </template>
                 <template #empty> No results found. </template>
