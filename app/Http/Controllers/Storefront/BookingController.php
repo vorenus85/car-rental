@@ -42,8 +42,8 @@ class BookingController extends Controller
         $dropoff = $request->pickUpLocationId == $request->dropOffLocationId
             ? $pickup
             : Location::select(['id', 'name', 'city_id'])
-            ->with('cityModel:id,name')
-            ->findOrFail($request->dropOffLocationId);
+                ->with('cityModel:id,name')
+                ->findOrFail($request->dropOffLocationId);
 
         $car = Car::with([
             'variant:id,name,model_id',
@@ -158,9 +158,9 @@ class BookingController extends Controller
         $extraModels = $selectedExtras->isEmpty()
             ? collect()
             : Extra::query()
-            ->whereIn('id', $selectedExtras->pluck('id')->all())
-            ->get()
-            ->keyBy('id');
+                ->whereIn('id', $selectedExtras->pluck('id')->all())
+                ->get()
+                ->keyBy('id');
 
         $days = (int) $pickupAt->diffInDays($dropoffAt);
         $dailyRate = (float) $car->price_per_day;
@@ -207,8 +207,8 @@ class BookingController extends Controller
             ]);
 
             $booking = Booking::create([
-                'booking_number' => 'TMP-' . now()->format('YmdHisv'),
-                'public_id' => 'BKG-' . implode('-', str_split($random, 4)),
+                'booking_number' => 'TMP-'.now()->format('YmdHisv'),
+                'public_id' => 'BKG-'.implode('-', str_split($random, 4)),
                 'customer_id' => $validated['customerId'],
                 'car_id' => $validated['carId'],
 
@@ -298,45 +298,38 @@ class BookingController extends Controller
 
     private function resolveCarImageSrc(Booking $booking): ?string
     {
-        $url = $booking->car?->image_url;
+        $image = $booking->car?->image;
 
-        if (! $url) {
-            logger()->warning('PDF autókép: nincs image_url', [
+        if (! $image) {
+            logger()->warning('PDF autókép: nincs kép megadva', [
                 'booking_id' => $booking->id,
             ]);
 
             return null;
         }
 
-        $path = parse_url($url, PHP_URL_PATH);
+        $path = 'uploads/'.ltrim($image, '/');
 
-        if (! $path) {
-            logger()->warning('PDF autókép: nem sikerült útvonalat kinyerni', [
+        $diskName = config('filesystems.default');
+        $disk = Storage::disk($diskName);
+
+        if (! $disk->exists($path)) {
+            logger()->warning('PDF autókép: a fájl nem található', [
                 'booking_id' => $booking->id,
+                'disk' => $diskName,
+                'path' => $path,
             ]);
 
-            return null;
-        }
-
-        $path = ltrim($path, '/');
-        $path = preg_replace('#^storage/#', '', $path);
-
-        $disk = Storage::disk('public');
-        $exists = $path && $disk->exists($path);
-
-        logger()->info('PDF autókép útvonalának ellenőrzése', [
-            'booking_id' => $booking->id,
-            'path' => $path,
-            'exists_on_public_disk' => (bool) $exists,
-        ]);
-
-        if (! $exists) {
             return null;
         }
 
         $content = $disk->get($path);
-        $mimeType = $disk->mimeType($path);
+        $mimeType = $disk->mimeType($path) ?: 'image/jpeg';
 
-        return sprintf('data:%s;base64,%s', $mimeType, base64_encode($content));
+        return sprintf(
+            'data:%s;base64,%s',
+            $mimeType,
+            base64_encode($content)
+        );
     }
 }
