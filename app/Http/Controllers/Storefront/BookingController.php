@@ -300,6 +300,13 @@ class BookingController extends Controller
     {
         $image = $booking->car?->image;
 
+        logger()->debug('PDF autókép feldolgozás indul', [
+            'booking_id' => $booking->id,
+            'car_id' => $booking->car?->id,
+            'image' => $image,
+            'filesystem_default' => config('filesystems.default'),
+        ]);
+
         if (! $image) {
             logger()->warning('PDF autókép: nincs kép megadva', [
                 'booking_id' => $booking->id,
@@ -313,6 +320,12 @@ class BookingController extends Controller
         $diskName = config('filesystems.default');
         $disk = Storage::disk($diskName);
 
+        logger()->debug('PDF autókép útvonal előkészítve', [
+            'booking_id' => $booking->id,
+            'disk' => $diskName,
+            'path' => $path,
+        ]);
+
         if (! $disk->exists($path)) {
             logger()->warning('PDF autókép: a fájl nem található', [
                 'booking_id' => $booking->id,
@@ -323,8 +336,22 @@ class BookingController extends Controller
             return null;
         }
 
+        logger()->debug('PDF autókép fájl megtalálva', [
+            'booking_id' => $booking->id,
+            'disk' => $diskName,
+            'path' => $path,
+        ]);
+
         $content = $disk->get($path);
         $mimeType = $disk->mimeType($path) ?: 'image/jpeg';
+
+        logger()->debug('PDF autókép fájl beolvasva', [
+            'booking_id' => $booking->id,
+            'disk' => $diskName,
+            'path' => $path,
+            'mime_type' => $mimeType,
+            'content_size' => strlen($content),
+        ]);
 
         return sprintf(
             'data:%s;base64,%s',
