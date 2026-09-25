@@ -42,8 +42,8 @@ class BookingController extends Controller
         $dropoff = $request->pickUpLocationId == $request->dropOffLocationId
             ? $pickup
             : Location::select(['id', 'name', 'city_id'])
-                ->with('cityModel:id,name')
-                ->findOrFail($request->dropOffLocationId);
+            ->with('cityModel:id,name')
+            ->findOrFail($request->dropOffLocationId);
 
         $car = Car::with([
             'variant:id,name,model_id',
@@ -97,6 +97,7 @@ class BookingController extends Controller
             ->firstOrFail();
 
         $imageSrc = $this->resolveCarImageSrc($booking);
+
         $fileName = sprintf('%s-invoice.pdf', $booking->booking_number);
 
         return Pdf::setOption(['isRemoteEnabled' => true])
@@ -157,9 +158,9 @@ class BookingController extends Controller
         $extraModels = $selectedExtras->isEmpty()
             ? collect()
             : Extra::query()
-                ->whereIn('id', $selectedExtras->pluck('id')->all())
-                ->get()
-                ->keyBy('id');
+            ->whereIn('id', $selectedExtras->pluck('id')->all())
+            ->get()
+            ->keyBy('id');
 
         $days = (int) $pickupAt->diffInDays($dropoffAt);
         $dailyRate = (float) $car->price_per_day;
@@ -206,8 +207,8 @@ class BookingController extends Controller
             ]);
 
             $booking = Booking::create([
-                'booking_number' => 'TMP-'.now()->format('YmdHisv'),
-                'public_id' => 'BKG-'.implode('-', str_split($random, 4)),
+                'booking_number' => 'TMP-' . now()->format('YmdHisv'),
+                'public_id' => 'BKG-' . implode('-', str_split($random, 4)),
                 'customer_id' => $validated['customerId'],
                 'car_id' => $validated['carId'],
 
@@ -300,29 +301,42 @@ class BookingController extends Controller
         $url = $booking->car?->image_url;
 
         if (! $url) {
+            logger()->warning('PDF autókép: nincs image_url', [
+                'booking_id' => $booking->id,
+            ]);
+
             return null;
         }
 
         $path = parse_url($url, PHP_URL_PATH);
 
         if (! $path) {
+            logger()->warning('PDF autókép: nem sikerült útvonalat kinyerni', [
+                'booking_id' => $booking->id,
+            ]);
+
             return null;
         }
 
         $path = ltrim($path, '/');
         $path = preg_replace('#^storage/#', '', $path);
 
-        if (! $path || ! Storage::disk('public')->exists($path)) {
+        $disk = Storage::disk('public');
+        $exists = $path && $disk->exists($path);
+
+        logger()->info('PDF autókép útvonalának ellenőrzése', [
+            'booking_id' => $booking->id,
+            'path' => $path,
+            'exists_on_public_disk' => (bool) $exists,
+        ]);
+
+        if (! $exists) {
             return null;
         }
 
-        $content = Storage::disk('public')->get($path);
-        $mimeType = Storage::disk('public')->mimeType($path);
+        $content = $disk->get($path);
+        $mimeType = $disk->mimeType($path);
 
-        return sprintf(
-            'data:%s;base64,%s',
-            $mimeType,
-            base64_encode($content)
-        );
+        return sprintf('data:%s;base64,%s', $mimeType, base64_encode($content));
     }
 }
