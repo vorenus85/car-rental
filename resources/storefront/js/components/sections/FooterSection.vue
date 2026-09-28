@@ -178,9 +178,9 @@
                         +36 1 234 5678
                     </a>
 
-                    <a href="mailto:info@drivengo.com">
+                    <a href="mailto:info@janosperge.dev">
                         <i class="pi pi-envelope"></i>
-                        info@drivengo.com
+                        info@janosperge.dev
                     </a>
                 </div>
                 <div class="payment-logos flex gap-2 items-center justify-center lg:justify-end">

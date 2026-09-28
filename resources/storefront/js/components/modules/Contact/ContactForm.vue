@@ -56,10 +56,10 @@
                             <p class="mt-1 text-slate-600">Send us your inquiry.</p>
 
                             <a
-                                href="mailto:info@drivengo.com"
+                                href="mailto:info@janosperge.dev"
                                 class="mt-2 inline-block text-[#061324] hover:text-[#fcb102]"
                             >
-                                info@drivengo.com
+                                info@janosperge.dev
                             </a>
                         </div>
                     </div>
