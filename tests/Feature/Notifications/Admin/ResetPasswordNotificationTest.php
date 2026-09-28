@@ -14,7 +14,7 @@ describe('ResetPasswordNotification', function () {
 
     it('builds reset password email', function () {
         config([
-            'app.frontend_url' => 'https://frontend.test',
+            'app.url' => 'http://localhost',
         ]);
 
         $user = User::factory()->make([
@@ -33,7 +33,7 @@ describe('ResetPasswordNotification', function () {
 
         expect($mail->actionUrl)
             ->toBe(
-                'https://frontend.test/admin/reset-password?token=test-token&email=john@example.com'
+                'http://localhost/admin/reset-password?token=test-token&email=john@example.com'
             );
     });
 
