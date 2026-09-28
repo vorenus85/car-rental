@@ -1,32 +1,40 @@
 <template>
     <div
         class="rounded-xl border border-surface-200 bg-white p-5 transition"
-        :class="link ? 'shadow-sm hover:shadow-md cursor-pointer hover:bg-primary-100' : null"
-        @click="link"
+        :class="
+            link && !loading
+                ? 'shadow-sm hover:shadow-md cursor-pointer hover:bg-primary-100'
+                : null
+        "
+        @click="!loading && link?.()"
     >
         <div class="flex items-start justify-between">
             <div class="flex items-start justify-between gap-4">
                 <div
                     class="flex h-18 w-18 items-center justify-center rounded-lg bg-primary-50 text-primary-500"
                 >
-                    <i class="pi pi-car" :class="`pi-${icon}`" style="font-size: 1.5rem"></i>
+                    <Skeleton v-if="loading" shape="circle" size="2.25rem" />
+                    <i v-else class="pi pi-car" :class="`pi-${icon}`" style="font-size: 1.5rem"></i>
                 </div>
                 <div>
-                    <span class="text-sm font-medium text-surface-500"> {{ title }} </span>
+                    <Skeleton v-if="loading" width="8rem" height="1rem" />
+                    <span v-else class="text-sm font-medium text-surface-500"> {{ title }} </span>
 
                     <div class="mt-2 flex items-baseline gap-2">
-                        <span class="text-2xl font-bold text-surface-900">
+                        <Skeleton v-if="loading" width="4.5rem" height="2rem" />
+                        <span v-else class="text-2xl font-bold text-surface-900">
                             {{ currency ? formatEuro(value) : value }}
                         </span>
 
-                        <span class="text-sm text-surface-500"> {{ unit }} </span>
+                        <Skeleton v-if="loading" width="3.5rem" height="1rem" />
+                        <span v-else class="text-sm text-surface-500"> {{ unit }} </span>
                     </div>
                 </div>
             </div>
 
             <!-- Icon -->
             <Button
-                v-if="link"
+                v-if="link && !loading"
                 icon="pi pi-external-link"
                 severity="primary"
                 outlined
@@ -39,8 +47,13 @@
 
 <script setup>
 import { Button } from 'primevue'
+import Skeleton from 'primevue/skeleton'
 
 defineProps({
+    loading: {
+        type: Boolean,
+        default: false,
+    },
     value: {
         type: Number,
         default: 0,
