@@ -14,6 +14,7 @@ use App\Models\Booking\Insurance;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
 use App\Notifications\Storefront\BookingInvoiceNotification;
+use App\Notifications\Storefront\BookingInvoiceNotificationAdmin;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -278,6 +280,23 @@ class BookingController extends Controller
         ]);
 
         $booking->customer?->notify(new BookingInvoiceNotification($booking));
+
+        $adminEmail = config('mail.admin_booking_notification_email');
+
+        logger()->debug('Admin booking invoice notification sending', [
+            'booking_id' => $booking->id,
+            'booking_number' => $booking->booking_number,
+            'admin_email' => $adminEmail,
+        ]);
+
+        Notification::route('mail', $adminEmail)
+            ->notify(new BookingInvoiceNotificationAdmin($booking));
+
+        logger()->debug('Admin booking invoice notification sent', [
+            'booking_id' => $booking->id,
+            'booking_number' => $booking->booking_number,
+            'admin_email' => $adminEmail,
+        ]);
 
         return response()->json([
             'booking' => $booking->load([

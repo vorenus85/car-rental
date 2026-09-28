@@ -6,6 +6,7 @@ use App\Models\Booking\Insurance;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
 use App\Notifications\Storefront\BookingInvoiceNotification;
+use App\Notifications\Storefront\BookingInvoiceNotificationAdmin;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
 
@@ -14,6 +15,7 @@ uses(RefreshDatabase::class);
 describe('BookingController', function () {
     it('sends booking invoice email after creating a booking', function () {
         Notification::fake();
+        config(['mail.admin_booking_notification_email' => 'admin-bookings@example.com']);
 
         $customer = Customer::factory()->create();
         $pickupLocation = Location::factory()->create();
@@ -61,6 +63,14 @@ describe('BookingController', function () {
             ->assertJsonPath('booking.customer_id', $customer->id);
 
         Notification::assertSentTo($customer, BookingInvoiceNotification::class);
+        Notification::assertSentOnDemand(
+            BookingInvoiceNotificationAdmin::class,
+            function (BookingInvoiceNotificationAdmin $notification, array $channels, object $notifiable) {
+                return $channels === ['mail']
+                    && $notifiable->routeNotificationFor('mail') === 'admin-bookings@example.com'
+                    && $notification->booking->customer_id === $notification->booking->customer?->id;
+            }
+        );
     });
 
     it('downloads booking invoice as pdf', function () {
