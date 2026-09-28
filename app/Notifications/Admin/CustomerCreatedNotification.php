@@ -39,12 +39,12 @@ class CustomerCreatedNotification extends Notification
 
         $token = $broker->createToken($this->customer);
 
-        $passwordSetupUrl = config('app.frontend_url')
-            .'/reset-password?token='
-            .$token
-            .'&email='
-            .urlencode($this->customer->email)
-            .'&type=welcome';
+        $passwordSetupUrl = config('app.app_url')
+            . '/reset-password?token='
+            . $token
+            . '&email='
+            . urlencode($this->customer->email)
+            . '&type=welcome';
 
         return (new MailMessage)
             ->subject('Your Account Has Been Created')
