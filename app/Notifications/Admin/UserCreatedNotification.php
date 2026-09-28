@@ -40,11 +40,11 @@ class UserCreatedNotification extends Notification
         $token = $broker->createToken($this->user);
 
         $passwordSetupUrl = config('app.url')
-            . '/admin/reset-password?token='
-            . $token
-            . '&email='
-            . urlencode($this->user->email)
-            . '&type=welcome';
+            .'/admin/reset-password?token='
+            .$token
+            .'&email='
+            .urlencode($this->user->email)
+            .'&type=welcome';
 
         return (new MailMessage)
             ->subject('Welcome to DrivenGO')
