@@ -1,8 +1,9 @@
 <template>
     <AppLayout>
         <PageTitle title="Dashboard"> </PageTitle>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
             <DashboardKpi
+                :loading="isLoading"
                 :value="dashboardKpis?.availableCarsKpi"
                 title="Available Cars"
                 unit="cars"
@@ -11,6 +12,7 @@
             ></DashboardKpi>
 
             <DashboardKpi
+                :loading="isLoading"
                 :value="dashboardKpis?.activeRentalsKpi"
                 title="Active Rentals"
                 unit="rentals"
@@ -19,6 +21,7 @@
             ></DashboardKpi>
 
             <DashboardKpi
+                :loading="isLoading"
                 :value="dashboardKpis?.pendingBookingsKpi"
                 title="Pending Bookings"
                 unit="bookings"
@@ -27,6 +30,7 @@
             ></DashboardKpi>
 
             <DashboardKpi
+                :loading="isLoading"
                 :value="dashboardKpis?.monthlyRevenueKpi"
                 title="Monthly Revenue"
                 unit="this month"
@@ -35,6 +39,7 @@
             ></DashboardKpi>
 
             <DashboardKpi
+                :loading="isLoading"
                 :value="dashboardKpis?.todayDroppOffsKpi"
                 title="Today Dropoffs"
                 unit="Returns scheduled today"
@@ -42,6 +47,7 @@
                 :link="showTodayDropoffs"
             ></DashboardKpi>
             <DashboardKpi
+                :loading="isLoading"
                 :value="dashboardKpis?.todayPickupsKpi"
                 title="Today Pick ups"
                 unit="Pick ups scheduled today"
@@ -57,10 +63,11 @@ import PageTitle from '@admin/components/PageTitle.vue'
 import DashboardKpi from '@admin/components/DashboardKpi.vue'
 import { useDashboard } from '@admin/composables/useDashboard'
 import { useRouter } from 'vue-router'
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { formatDate } from '@admin/utils.js'
 
 const router = useRouter()
+const isLoading = ref(true)
 
 const {
     dashboardKpis,
@@ -111,8 +118,10 @@ const showTodayDropoffs = () => {
     })
 }
 
-onMounted(() => {
-    Promise.allSettled([
+onMounted(async () => {
+    isLoading.value = true
+
+    await Promise.allSettled([
         getActiveRentalsKpi(),
         getAvailableCarsKpi(),
         getPendingBookingsKpi(),
@@ -120,5 +129,7 @@ onMounted(() => {
         getTodayDropoffsKpi(),
         getTodayPickupsKpi(),
     ])
+
+    isLoading.value = false
 })
 </script>
