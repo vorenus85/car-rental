@@ -43,6 +43,10 @@ const router = createRouter({
             return savedPosition
         }
 
+        if (to.name === 'fleet' && from.name === 'fleet') {
+            return false
+        }
+
         return {
             top: 0,
             behavior: 'smooth',

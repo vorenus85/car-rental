@@ -2,9 +2,20 @@
     <div class="bg-white rounded-xl p-6 shadow-xl">
         <!-- Header -->
         <div class="flex items-center justify-between mb-6">
-            <h3 class="text-xl font-semibold">Filters</h3>
+            <h3 id="fleet-filter-title" class="text-xl font-semibold">Filters</h3>
 
-            <Button label="Clear filters" link size="small" @click="clearFilters" />
+            <div class="flex items-center gap-2">
+                <Button label="Clear filters" link size="small" @click="clearFilters" />
+                <Button
+                    v-if="showCloseButton"
+                    icon="pi pi-times"
+                    text
+                    rounded
+                    severity="secondary"
+                    aria-label="Close filters"
+                    @click="emit('close')"
+                />
+            </div>
         </div>
 
         <div class="mb-8">
@@ -200,7 +211,14 @@ import FilterCheckboxGroup from './FilterCheckboxGroup.vue'
 
 const { filterParams } = useCarFilters()
 const { getLocations, groupedLocations } = useLocation()
-const emit = defineEmits(['filter'])
+defineProps({
+    showCloseButton: {
+        type: Boolean,
+        default: false,
+    },
+})
+
+const emit = defineEmits(['filter', 'close'])
 const route = useRoute()
 const query = route.query
 const brandStore = useBrandStore()
