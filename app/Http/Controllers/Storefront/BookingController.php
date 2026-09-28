@@ -14,6 +14,7 @@ use App\Models\Booking\Insurance;
 use App\Models\Fleet\Car;
 use App\Models\Fleet\Location;
 use App\Notifications\Storefront\BookingInvoiceNotification;
+use App\Notifications\Storefront\BookingInvoiceNotificationAdmin;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -21,6 +22,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -42,8 +44,8 @@ class BookingController extends Controller
         $dropoff = $request->pickUpLocationId == $request->dropOffLocationId
             ? $pickup
             : Location::select(['id', 'name', 'city_id'])
-                ->with('cityModel:id,name')
-                ->findOrFail($request->dropOffLocationId);
+            ->with('cityModel:id,name')
+            ->findOrFail($request->dropOffLocationId);
 
         $car = Car::with([
             'variant:id,name,model_id',
@@ -158,9 +160,9 @@ class BookingController extends Controller
         $extraModels = $selectedExtras->isEmpty()
             ? collect()
             : Extra::query()
-                ->whereIn('id', $selectedExtras->pluck('id')->all())
-                ->get()
-                ->keyBy('id');
+            ->whereIn('id', $selectedExtras->pluck('id')->all())
+            ->get()
+            ->keyBy('id');
 
         $days = (int) $pickupAt->diffInDays($dropoffAt);
         $dailyRate = (float) $car->price_per_day;
@@ -207,8 +209,8 @@ class BookingController extends Controller
             ]);
 
             $booking = Booking::create([
-                'booking_number' => 'TMP-'.now()->format('YmdHisv'),
-                'public_id' => 'BKG-'.implode('-', str_split($random, 4)),
+                'booking_number' => 'TMP-' . now()->format('YmdHisv'),
+                'public_id' => 'BKG-' . implode('-', str_split($random, 4)),
                 'customer_id' => $validated['customerId'],
                 'car_id' => $validated['carId'],
 
@@ -279,6 +281,23 @@ class BookingController extends Controller
 
         $booking->customer?->notify(new BookingInvoiceNotification($booking));
 
+        $adminEmail = config('mail.admin_booking_notification_email');
+
+        logger()->debug('Admin booking invoice notification sending', [
+            'booking_id' => $booking->id,
+            'booking_number' => $booking->booking_number,
+            'admin_email' => $adminEmail,
+        ]);
+
+        Notification::route('mail', $adminEmail)
+            ->notify(new BookingInvoiceNotificationAdmin($booking));
+
+        logger()->debug('Admin booking invoice notification sent', [
+            'booking_id' => $booking->id,
+            'booking_number' => $booking->booking_number,
+            'admin_email' => $adminEmail,
+        ]);
+
         return response()->json([
             'booking' => $booking->load([
                 'customer:id,first_name,last_name,email',
@@ -315,7 +334,7 @@ class BookingController extends Controller
             return null;
         }
 
-        $path = 'uploads/'.ltrim($image, '/');
+        $path = 'uploads/' . ltrim($image, '/');
 
         $diskName = config('filesystems.default');
         $disk = Storage::disk($diskName);
