@@ -39,7 +39,7 @@ class UserCreatedNotification extends Notification
 
         $token = $broker->createToken($this->user);
 
-        $passwordSetupUrl = config('app.frontend_url')
+        $passwordSetupUrl = config('app.url')
             .'/admin/reset-password?token='
             .$token
             .'&email='
