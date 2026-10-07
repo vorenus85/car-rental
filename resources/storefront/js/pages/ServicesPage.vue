@@ -16,6 +16,11 @@
         </section>
         <section class="relative z-10 px-4">
             <div class="container mx-auto px-6 py-7">
+                <InsuranceOptions></InsuranceOptions>
+            </div>
+        </section>
+        <section class="relative z-10 px-4">
+            <div class="container mx-auto px-6 py-7">
                 <ServiceFleetCTA></ServiceFleetCTA>
             </div>
         </section>
@@ -27,4 +32,5 @@ import ServicesHero from '@storefront/components/modules/Services/ServicesHero.v
 import ServiceBenefits from '@storefront/components/modules/Services/ServiceBenefits.vue'
 import ServicesList from '@storefront/components/modules/Services/ServicesList.vue'
 import ServiceFleetCTA from '@storefront/components/modules/Services/ServiceFleetCTA.vue'
+import InsuranceOptions from '@storefront/components/modules/Services/InsuranceOptions.vue'
 </script>
