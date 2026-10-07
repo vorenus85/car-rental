@@ -62,7 +62,7 @@ const benefits = [
                     :class="{ 'lg:border-r-0': index === benefits.length - 1 }"
                 >
                     <div
-                        class="mb-4 flex h-20 items-center justify-center text-2xl font-semibold text-[#f5a000]"
+                        class="mb-4 flex h-20 items-center justify-center text-2xl font-semibold text-primary"
                     >
                         <component :is="icons[benefit.icon]" :size="80" />
                     </div>
