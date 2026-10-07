@@ -1,10 +1,13 @@
 <template>
     <PublicLayout>
-        <div class="mx-auto max-w-8xl px-4 py-4 min-h-[500px]">
-            <PageTitle title="Services"></PageTitle></div
-    ></PublicLayout>
+        <section class="relative overflow-hidden">
+            <ServicesHero></ServicesHero>
+        </section>
+        <ServiceBenefits></ServiceBenefits>
+    </PublicLayout>
 </template>
 <script setup>
 import PublicLayout from '@storefront/layouts/PublicLayout.vue'
-import PageTitle from '@storefront/components/modules/PageTitle.vue'
+import ServicesHero from '@storefront/components/modules/Services/ServicesHero.vue'
+import ServiceBenefits from '@storefront/components/modules/Services/ServiceBenefits.vue'
 </script>
