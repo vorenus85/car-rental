@@ -37,12 +37,15 @@ class ContactMessageNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('New contact form message: '.$this->messageData['subject'])
+            ->subject('New contact form message: ' . $this->messageData['subject'])
+            ->markdown('emails.branded-notification', [
+                'logoUrl' => url('/images/logo.png'),
+            ])
             ->greeting('You have a new contact form message')
-            ->line('Name: '.$this->messageData['name'])
-            ->line('Email: '.$this->messageData['email'])
-            ->line('Phone: '.($this->messageData['phone'] ?: 'Not provided'))
-            ->line('Subject: '.$this->messageData['subject'])
+            ->line('Name: ' . $this->messageData['name'])
+            ->line('Email: ' . $this->messageData['email'])
+            ->line('Phone: ' . ($this->messageData['phone'] ?: 'Not provided'))
+            ->line('Subject: ' . $this->messageData['subject'])
             ->line('Message:')
             ->line($this->messageData['message'])
             ->replyTo($this->messageData['email'], $this->messageData['name']);
