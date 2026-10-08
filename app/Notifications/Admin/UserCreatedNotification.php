@@ -48,6 +48,9 @@ class UserCreatedNotification extends Notification
 
         return (new MailMessage)
             ->subject('Welcome to DrivenGO')
+            ->markdown('emails.branded-notification', [
+                'logoUrl' => url('/images/logo.png'),
+            ])
             ->greeting('Welcome to the DrivenGO Team!')
             ->line('An administrator has created your account.')
             ->line('To activate your account, please set your password by clicking the button below.')

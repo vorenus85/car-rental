@@ -48,6 +48,9 @@ class CustomerCreatedNotification extends Notification
 
         return (new MailMessage)
             ->subject('Your Account Has Been Created')
+            ->markdown('emails.branded-notification', [
+                'logoUrl' => url('/images/logo.png'),
+            ])
             ->greeting('Welcome to the DrivenGO!')
             ->line('Your account has been successfully created.')
             ->line('To activate your account, please set your password by clicking the button below.')

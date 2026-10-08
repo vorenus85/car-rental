@@ -30,6 +30,9 @@ class BookingInvoiceNotificationAdmin extends Notification
     {
         return (new MailMessage)
             ->subject('New storefront booking - '.$this->booking->booking_number)
+            ->markdown('emails.branded-notification', [
+                'logoUrl' => url('/images/logo.png'),
+            ])
             ->greeting('New storefront booking created')
             ->line('Booking number: '.$this->booking->booking_number)
             ->line('Pickup at: '.$this->formatDate($this->booking->pickup_at))

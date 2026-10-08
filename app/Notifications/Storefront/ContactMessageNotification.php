@@ -38,6 +38,9 @@ class ContactMessageNotification extends Notification
     {
         return (new MailMessage)
             ->subject('New contact form message: '.$this->messageData['subject'])
+            ->markdown('emails.branded-notification', [
+                'logoUrl' => url('/images/logo.png'),
+            ])
             ->greeting('You have a new contact form message')
             ->line('Name: '.$this->messageData['name'])
             ->line('Email: '.$this->messageData['email'])

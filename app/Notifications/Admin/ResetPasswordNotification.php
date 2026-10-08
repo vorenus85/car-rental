@@ -38,6 +38,9 @@ class ResetPasswordNotification extends Notification
 
         return (new MailMessage)
             ->subject('Reset Your Password')
+            ->markdown('emails.branded-notification', [
+                'logoUrl' => url('/images/logo.png'),
+            ])
             ->greeting('Hello!')
             ->line('We received a request to reset your password.')
             ->action('Reset Password', $url)

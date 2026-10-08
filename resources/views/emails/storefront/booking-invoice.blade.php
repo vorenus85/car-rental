@@ -9,6 +9,20 @@
     <div style="max-width:720px; margin:0 auto; padding:32px 16px;">
         <div style="background:#ffffff; border-radius:0; overflow:hidden; box-shadow:0 10px 30px rgba(15, 23, 42, 0.08);">
             <div style="padding:24px 28px; background:linear-gradient(135deg, #111827 0%, #334155 100%); color:#fff;">
+                <table cellpadding="0" cellspacing="0" style="margin-bottom:18px;">
+                    <tr>
+                        <td style="vertical-align:middle; padding-right:10px;">
+                            <img
+                                src="{{ $logoUrl }}"
+                                alt="{{ config('app.name') }} Logo"
+                                style="display:block; height:40px; max-height:40px; width:40px;"
+                            >
+                        </td>
+                        <td style="vertical-align:middle; color:#ffffff; font-size:20px; font-weight:700; line-height:40px;">
+                            {{ config('app.name') }}
+                        </td>
+                    </tr>
+                </table>
                 <div style="font-size:14px; opacity:0.85; letter-spacing:0.08em; text-transform:uppercase;">Booking invoice</div>
                 <h1 style="margin:8px 0 0; font-size:28px; line-height:1.2;">{{ $booking->booking_number }}</h1>
 
