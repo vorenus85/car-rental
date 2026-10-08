@@ -19,7 +19,7 @@ import { Button } from 'primevue'
             <Button
                 label="Browse Cars"
                 icon="pi pi-arrow-right"
-                iconPos="right"
+                icon-pos="right"
                 class="!border-0 !bg-[#fcb102] !px-6 !py-3 !font-semibold !text-slate-950 hover:!bg-[#e6a000] no-wrap"
             />
         </div>
