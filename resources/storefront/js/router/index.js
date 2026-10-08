@@ -18,6 +18,10 @@ import ChildSeatsPage from '@storefront/pages/Services/ChildSeats.vue'
 import GpsNavigationPage from '@storefront/pages/Services/GpsNavigation.vue'
 import WifiHotspotPage from '@storefront/pages/Services/WifiHotspot.vue'
 import PetTravelKitPage from '@storefront/pages/Services/PetTravelKit.vue'
+import ProfessionalChauffeurPage from '@storefront/pages/Services/ProfessionalChauffeur.vue'
+import CorporateSolutionsPage from '@storefront/pages/Services/CorporateSolutions.vue'
+import LongTermRentalsPage from '@storefront/pages/Services/LongTermRentals.vue'
+import LuxuryPremiumFleetPage from '@storefront/pages/Services/LuxuryPremiumFleet.vue'
 import NotFoundPage from '@storefront/pages/NotFoundPage.vue'
 
 import DriverInfoPage from '@storefront/pages/Booking/DriverInfoPage.vue'
@@ -183,6 +187,26 @@ const router = createRouter({
             path: '/services/pet-travel-kit',
             name: 'services-pet-travel-kit',
             component: PetTravelKitPage,
+        },
+        {
+            path: '/services/professional-chauffeur',
+            name: 'services-professional-chauffeur',
+            component: ProfessionalChauffeurPage,
+        },
+        {
+            path: '/services/corporate-solutions',
+            name: 'services-corporate-solutions',
+            component: CorporateSolutionsPage,
+        },
+        {
+            path: '/services/long-term-rentals',
+            name: 'services-long-term-rentals',
+            component: LongTermRentalsPage,
+        },
+        {
+            path: '/services/luxury-premium-fleet',
+            name: 'services-luxury-premium-fleet',
+            component: LuxuryPremiumFleetPage,
         },
 
         {

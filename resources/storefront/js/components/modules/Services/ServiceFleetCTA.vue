@@ -17,6 +17,8 @@ import { Button } from 'primevue'
             </div>
 
             <Button
+                as="RouterLink"
+                :to="{ name: 'fleet' }"
                 label="Browse Cars"
                 icon="pi pi-arrow-right"
                 icon-pos="right"
