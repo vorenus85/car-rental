@@ -29,20 +29,23 @@ class BookingInvoiceNotificationAdmin extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('New storefront booking - '.$this->booking->booking_number)
+            ->subject('New storefront booking - ' . $this->booking->booking_number)
+            ->markdown('emails.branded-notification', [
+                'logoUrl' => url('/images/logo.png'),
+            ])
             ->greeting('New storefront booking created')
-            ->line('Booking number: '.$this->booking->booking_number)
-            ->line('Pickup at: '.$this->formatDate($this->booking->pickup_at))
-            ->line('Dropoff at: '.$this->formatDate($this->booking->dropoff_at))
-            ->line('Pickup location: '.$this->formatLocation($this->booking->pickupLocation))
-            ->line('Dropoff location: '.$this->formatLocation($this->booking->dropoffLocation))
-            ->line('Customer name: '.$this->formatCustomerName())
-            ->line('Customer email: '.($this->booking->customer?->email ?: 'Not provided'))
-            ->line('Total amount: '.$this->formatAmount())
-            ->line('Payment method: '.$this->formatPaymentMethod())
-            ->line('Days: '.$this->booking->days)
-            ->line('Notes: '.($this->booking->notes ?: 'Not provided'))
-            ->line('Car name: '.$this->formatCarName());
+            ->line('Booking number: ' . $this->booking->booking_number)
+            ->line('Pickup at: ' . $this->formatDate($this->booking->pickup_at))
+            ->line('Dropoff at: ' . $this->formatDate($this->booking->dropoff_at))
+            ->line('Pickup location: ' . $this->formatLocation($this->booking->pickupLocation))
+            ->line('Dropoff location: ' . $this->formatLocation($this->booking->dropoffLocation))
+            ->line('Customer name: ' . $this->formatCustomerName())
+            ->line('Customer email: ' . ($this->booking->customer?->email ?: 'Not provided'))
+            ->line('Total amount: ' . $this->formatAmount())
+            ->line('Payment method: ' . $this->formatPaymentMethod())
+            ->line('Days: ' . $this->booking->days)
+            ->line('Notes: ' . ($this->booking->notes ?: 'Not provided'))
+            ->line('Car name: ' . $this->formatCarName());
     }
 
     /**
@@ -86,7 +89,7 @@ class BookingInvoiceNotificationAdmin extends Notification
 
     private function formatAmount(): string
     {
-        return number_format((float) $this->booking->total_amount, 2).' '.$this->booking->currency;
+        return number_format((float) $this->booking->total_amount, 2) . ' ' . $this->booking->currency;
     }
 
     private function formatPaymentMethod(): string
