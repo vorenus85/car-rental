@@ -10,6 +10,10 @@ import ResetPasswordPage from '@storefront/pages/Auth/ResetPasswordPage.vue'
 import FleetPage from '@storefront/pages/FleetPage.vue'
 import DetailPage from '@storefront/pages/DetailPage.vue'
 import ServicesPage from '@storefront/pages/ServicesPage.vue'
+import AirportTransfersPage from '@storefront/pages/Services/AirportTransfers.vue'
+import OneWayRentalsPage from '@storefront/pages/Services/OneWayRentals.vue'
+import AdditionalDriversPage from '@storefront/pages/Services/AdditionalDrivers.vue'
+import RoadsideAssistancePage from '@storefront/pages/Services/RoadsideAssistance.vue'
 import NotFoundPage from '@storefront/pages/NotFoundPage.vue'
 
 import DriverInfoPage from '@storefront/pages/Booking/DriverInfoPage.vue'
@@ -136,7 +140,26 @@ const router = createRouter({
         { path: '/fleet', name: 'fleet', component: FleetPage },
         { path: '/car/:id', name: 'car', component: DetailPage },
         { path: '/services', name: 'services', component: ServicesPage },
-        { path: '/services', name: 'services', component: ServicesPage },
+        {
+            path: '/services/airport-transfers',
+            name: 'services-airport-transfers',
+            component: AirportTransfersPage,
+        },
+        {
+            path: '/services/one-way-rentals',
+            name: 'services-one-way-rentals',
+            component: OneWayRentalsPage,
+        },
+        {
+            path: '/services/additional-drivers',
+            name: 'services-additional-drivers',
+            component: AdditionalDriversPage,
+        },
+        {
+            path: '/services/roadside-assistance',
+            name: 'services-roadside-assistance',
+            component: RoadsideAssistancePage,
+        },
 
         {
             path: '/profile',
