@@ -33,6 +33,9 @@ class CustomerCreatedNotification extends Notification
     {
         return (new MailMessage)
             ->subject('Your Account Has Been Created')
+            ->markdown('emails.customer-created', [
+                'logoUrl' => url('/images/logo.png'),
+            ])
             ->greeting('Welcome to the DrivenGO!')
             ->line('Your account has been successfully created.')
             ->line('You can now log in and start using the application.')
