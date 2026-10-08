@@ -14,6 +14,10 @@ import AirportTransfersPage from '@storefront/pages/Services/AirportTransfers.vu
 import OneWayRentalsPage from '@storefront/pages/Services/OneWayRentals.vue'
 import AdditionalDriversPage from '@storefront/pages/Services/AdditionalDrivers.vue'
 import RoadsideAssistancePage from '@storefront/pages/Services/RoadsideAssistance.vue'
+import ChildSeatsPage from '@storefront/pages/Services/ChildSeats.vue'
+import GpsNavigationPage from '@storefront/pages/Services/GpsNavigation.vue'
+import WifiHotspotPage from '@storefront/pages/Services/WifiHotspot.vue'
+import PetTravelKitPage from '@storefront/pages/Services/PetTravelKit.vue'
 import NotFoundPage from '@storefront/pages/NotFoundPage.vue'
 
 import DriverInfoPage from '@storefront/pages/Booking/DriverInfoPage.vue'
@@ -159,6 +163,26 @@ const router = createRouter({
             path: '/services/roadside-assistance',
             name: 'services-roadside-assistance',
             component: RoadsideAssistancePage,
+        },
+        {
+            path: '/services/child-seats',
+            name: 'services-child-seats',
+            component: ChildSeatsPage,
+        },
+        {
+            path: '/services/gps-navigation',
+            name: 'services-gps-navigation',
+            component: GpsNavigationPage,
+        },
+        {
+            path: '/services/wifi-hotspot',
+            name: 'services-wifi-hotspot',
+            component: WifiHotspotPage,
+        },
+        {
+            path: '/services/pet-travel-kit',
+            name: 'services-pet-travel-kit',
+            component: PetTravelKitPage,
         },
 
         {
