@@ -38,6 +38,7 @@ class BookingInvoiceNotification extends Notification
                 'booking' => $this->booking,
                 'notifiable' => $notifiable,
                 'carImageUrl' => $carImageUrl,
+                'logoUrl' => url('/images/logo.png'),
             ]);
     }
 
