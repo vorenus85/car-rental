@@ -10,6 +10,18 @@ import ResetPasswordPage from '@storefront/pages/Auth/ResetPasswordPage.vue'
 import FleetPage from '@storefront/pages/FleetPage.vue'
 import DetailPage from '@storefront/pages/DetailPage.vue'
 import ServicesPage from '@storefront/pages/ServicesPage.vue'
+import AirportTransfersPage from '@storefront/pages/Services/AirportTransfers.vue'
+import OneWayRentalsPage from '@storefront/pages/Services/OneWayRentals.vue'
+import AdditionalDriversPage from '@storefront/pages/Services/AdditionalDrivers.vue'
+import RoadsideAssistancePage from '@storefront/pages/Services/RoadsideAssistance.vue'
+import ChildSeatsPage from '@storefront/pages/Services/ChildSeats.vue'
+import GpsNavigationPage from '@storefront/pages/Services/GpsNavigation.vue'
+import WifiHotspotPage from '@storefront/pages/Services/WifiHotspot.vue'
+import PetTravelKitPage from '@storefront/pages/Services/PetTravelKit.vue'
+import ProfessionalChauffeurPage from '@storefront/pages/Services/ProfessionalChauffeur.vue'
+import CorporateSolutionsPage from '@storefront/pages/Services/CorporateSolutions.vue'
+import LongTermRentalsPage from '@storefront/pages/Services/LongTermRentals.vue'
+import LuxuryPremiumFleetPage from '@storefront/pages/Services/LuxuryPremiumFleet.vue'
 import NotFoundPage from '@storefront/pages/NotFoundPage.vue'
 
 import DriverInfoPage from '@storefront/pages/Booking/DriverInfoPage.vue'
@@ -136,7 +148,66 @@ const router = createRouter({
         { path: '/fleet', name: 'fleet', component: FleetPage },
         { path: '/car/:id', name: 'car', component: DetailPage },
         { path: '/services', name: 'services', component: ServicesPage },
-        { path: '/services', name: 'services', component: ServicesPage },
+        {
+            path: '/services/airport-transfers',
+            name: 'services-airport-transfers',
+            component: AirportTransfersPage,
+        },
+        {
+            path: '/services/one-way-rentals',
+            name: 'services-one-way-rentals',
+            component: OneWayRentalsPage,
+        },
+        {
+            path: '/services/additional-drivers',
+            name: 'services-additional-drivers',
+            component: AdditionalDriversPage,
+        },
+        {
+            path: '/services/roadside-assistance',
+            name: 'services-roadside-assistance',
+            component: RoadsideAssistancePage,
+        },
+        {
+            path: '/services/child-seats',
+            name: 'services-child-seats',
+            component: ChildSeatsPage,
+        },
+        {
+            path: '/services/gps-navigation',
+            name: 'services-gps-navigation',
+            component: GpsNavigationPage,
+        },
+        {
+            path: '/services/wifi-hotspot',
+            name: 'services-wifi-hotspot',
+            component: WifiHotspotPage,
+        },
+        {
+            path: '/services/pet-travel-kit',
+            name: 'services-pet-travel-kit',
+            component: PetTravelKitPage,
+        },
+        {
+            path: '/services/professional-chauffeur',
+            name: 'services-professional-chauffeur',
+            component: ProfessionalChauffeurPage,
+        },
+        {
+            path: '/services/corporate-solutions',
+            name: 'services-corporate-solutions',
+            component: CorporateSolutionsPage,
+        },
+        {
+            path: '/services/long-term-rentals',
+            name: 'services-long-term-rentals',
+            component: LongTermRentalsPage,
+        },
+        {
+            path: '/services/luxury-premium-fleet',
+            name: 'services-luxury-premium-fleet',
+            component: LuxuryPremiumFleetPage,
+        },
 
         {
             path: '/profile',

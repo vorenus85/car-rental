@@ -3,7 +3,7 @@
         <section class="relative overflow-hidden">
             <ServicesHero></ServicesHero>
         </section>
-        <ServiceBenefits></ServiceBenefits>
+        <ServiceBenefits class="mb-10"></ServiceBenefits>
         <section class="relative z-10 px-4">
             <div class="container mx-auto px-6 py-7">
                 <h2
