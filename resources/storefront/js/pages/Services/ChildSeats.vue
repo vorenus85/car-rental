@@ -4,7 +4,7 @@
             <ServicesArticleHero
                 title="Child Seats"
                 intro="Add a child seat to your rental and make every family journey safer, easier, and more comfortable."
-                image="/images/services/child-seats.webp"
+                image="/images/services/large/child-seats.webp"
             ></ServicesArticleHero>
         </section>
         <article class="container mx-auto px-6 py-12 text-slate-700">

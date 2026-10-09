@@ -11,7 +11,7 @@
                 @click="navigate"
             >
                 <img
-                    :src="`/images/services/${service.img}.webp`"
+                    :src="`/images/services/small/${service.img}.webp`"
                     :alt="service.title"
                     class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
                 />

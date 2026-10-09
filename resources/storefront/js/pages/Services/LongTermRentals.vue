@@ -4,7 +4,7 @@
             <ServicesArticleHero
                 title="Long-Term Rentals"
                 intro="Get special rates for long-term rentals, perfect for extended stays, business travel, temporary projects, and flexible mobility needs."
-                image="/images/services/long-term-rentals.webp"
+                image="/images/services/large/long-term-rentals.webp"
             ></ServicesArticleHero>
         </section>
         <article class="container mx-auto px-6 py-12 text-slate-700">

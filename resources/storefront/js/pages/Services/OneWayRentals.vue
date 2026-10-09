@@ -4,7 +4,7 @@
             <ServicesArticleHero
                 title="One Way Rentals"
                 intro="Pick up your rental car in one location and return it in another. Travel your way, without unnecessary detours or fixed round-trip plans."
-                image="/images/services/one-way-rentals.webp"
+                image="/images/services/large/one-way-rentals.webp"
             ></ServicesArticleHero>
         </section>
         <article class="container mx-auto px-6 py-12 text-slate-700">

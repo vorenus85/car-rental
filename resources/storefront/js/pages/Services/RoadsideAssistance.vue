@@ -5,7 +5,7 @@
                 title="Roadside Assistance"
                 intro="Travel with confidence knowing that 24/7 support is available in case of breakdowns,
                 tire issues, or unexpected situations."
-                image="/images/services/roadside-assistance.webp"
+                image="/images/services/large/roadside-assistance.webp"
             ></ServicesArticleHero>
         </section>
         <article class="container mx-auto px-6 py-12 text-slate-700">
