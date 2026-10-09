@@ -4,7 +4,7 @@
             <ServicesArticleHero
                 title="Wi-Fi Hotspot"
                 intro="Add a Wi-Fi hotspot to your rental and enjoy high-speed internet for your devices wherever the road takes you."
-                image="/images/services/wifi-hotspot.webp"
+                image="/images/services/large/wifi-hotspot.webp"
             ></ServicesArticleHero>
         </section>
         <article class="container mx-auto px-6 py-12 text-slate-700">

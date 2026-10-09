@@ -4,7 +4,7 @@
             <ServicesArticleHero
                 title="Additional Drivers"
                 intro="Add another driver to your rental and make every trip more flexible, comfortable, and relaxed."
-                image="/images/services/additional-drivers.webp"
+                image="/images/services/large/additional-drivers.webp"
             ></ServicesArticleHero>
         </section>
         <article class="container mx-auto px-6 py-12 text-slate-700">

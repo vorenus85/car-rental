@@ -4,7 +4,7 @@
             <ServicesArticleHero
                 title="Pet Travel Kit"
                 intro="Add a pet travel kit to your rental and make every trip safer, cleaner, and more comfortable for your four-legged companion."
-                image="/images/services/pet-travel-kit.webp"
+                image="/images/services/large/pet-travel-kit.webp"
             ></ServicesArticleHero>
         </section>
         <article class="container mx-auto px-6 py-12 text-slate-700">

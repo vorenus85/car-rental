@@ -4,7 +4,7 @@
             <ServicesArticleHero
                 title="Corporate Solutions"
                 intro="Tailored rental solutions for businesses with flexible terms, reliable vehicles, and great benefits."
-                image="/images/services/corporate-solutions.webp"
+                image="/images/services/large/corporate-solutions.webp"
             ></ServicesArticleHero>
         </section>
         <article class="container mx-auto px-6 py-12 text-slate-700">

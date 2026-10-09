@@ -4,7 +4,7 @@
             <ServicesArticleHero
                 title="GPS Navigation"
                 intro="Stay on track with up-to-date maps, clear routes, and reliable voice guidance throughout your journey."
-                image="/images/services/gps-navigation.webp"
+                image="/images/services/large/gps-navigation.webp"
             ></ServicesArticleHero>
         </section>
         <article class="container mx-auto px-6 py-12 text-slate-700">

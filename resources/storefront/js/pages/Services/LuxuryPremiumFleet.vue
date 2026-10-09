@@ -4,7 +4,7 @@
             <ServicesArticleHero
                 title="Luxury & Premium Fleet"
                 intro="Experience comfort, elegance, and refined performance with our selection of luxury and premium vehicles."
-                image="/images/services/luxury-premium-fleet.webp"
+                image="/images/services/large/luxury-premium-fleet.webp"
             ></ServicesArticleHero>
         </section>
         <article class="container mx-auto px-6 py-12 text-slate-700">

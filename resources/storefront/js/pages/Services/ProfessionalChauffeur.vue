@@ -4,7 +4,7 @@
             <ServicesArticleHero
                 title="Professional Chauffeur"
                 intro="Enjoy a comfortable, professional chauffeur service for any occasion, from business travel to special events."
-                image="/images/services/professional-chauffeur.webp"
+                image="/images/services/large/professional-chauffeur.webp"
             ></ServicesArticleHero>
         </section>
         <article class="container mx-auto px-6 py-12 text-slate-700">

@@ -4,7 +4,7 @@
             <ServicesArticleHero
                 title="Airport Transfers"
                 intro="Enjoy hassle-free airport pickup and drop-off with a reliable driver waiting for you when you arrive. Start or finish your journey without queues, uncertainty or unnecessary stress."
-                image="/images/services/airport-transfers.webp"
+                image="/images/services/large/airport-transfers.webp"
             ></ServicesArticleHero>
         </section>
         <article class="container mx-auto px-6 py-12 text-slate-700">
